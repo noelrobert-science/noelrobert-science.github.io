@@ -1,6 +1,6 @@
-# Mr Robert's learning spaces
+﻿# Mr Robert's learning spaces
 
-Public practice pages for learners, published with GitHub Pages at https://noelrobert-wq.github.io/
+Public practice pages for learners, published with GitHub Pages at https://noelrobert-science.github.io/
 
 | Folder | What | Source of truth |
 | --- | --- | --- |
