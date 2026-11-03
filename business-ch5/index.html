@@ -1,0 +1,509 @@
+<title>Business Environments Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Lexend:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: one calm column (max 920px) with a sticky route bar; labs are white panels on a faintly teal ground. Same teal and type as the printed coursebook. */
+:root{
+  --bg:#f6faf9; --panel:#ffffff; --ink:#1f2937; --ink2:#4b5563; --line:#dbe4e2;
+  --acc:#0f766e; --acc-soft:#e6f4f2; --acc-ink:#115e59;
+  --warm:#b45309; --warm-soft:#fdf3e7; --blue:#2563eb; --blue-soft:#eaf1fe;
+  --good:#15803d; --good-soft:#e8f6ec; --bad:#b91c1c; --bad-soft:#fdecec;
+  --display:'Outfit',ui-sans-serif,system-ui,sans-serif; --body:'Lexend',ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1716; --panel:#16201f; --ink:#e5eeec; --ink2:#a9b8b5; --line:#2a3a38;
+  --acc:#2dd4bf; --acc-soft:#123331; --acc-ink:#99f6e4;
+  --warm:#f59e0b; --warm-soft:#33260f; --blue:#7aa7ff; --blue-soft:#18233a;
+  --good:#4ade80; --good-soft:#13301e; --bad:#f87171; --bad-soft:#3a1717; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1716; --panel:#16201f; --ink:#e5eeec; --ink2:#a9b8b5; --line:#2a3a38;
+  --acc:#2dd4bf; --acc-soft:#123331; --acc-ink:#99f6e4;
+  --warm:#f59e0b; --warm-soft:#33260f; --blue:#7aa7ff; --blue-soft:#18233a;
+  --good:#4ade80; --good-soft:#13301e; --bad:#f87171; --bad-soft:#3a1717; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+b,strong{font-weight:600}
+.wrap{max-width:920px;margin:0 auto;display:grid;gap:22px;grid-template-columns:minmax(0,1fr);overflow-x:clip}
+.wrap > *{min-width:0}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h2{font-size:clamp(22px,4vw,28px);font-weight:800}
+h3{font-size:18px;font-weight:700;color:var(--acc-ink)}
+p{margin:0}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+.muted{color:var(--ink2)}
+.small{font-size:14px}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* cover */
+.cover{padding-top:28px;display:grid;gap:14px}
+.school{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink2)}
+.cover h1{font-size:clamp(34px,7vw,58px);font-weight:900;letter-spacing:-.01em}
+.cover h1 span{color:var(--acc)}
+.lede{font-size:18px;max-width:62ch;color:var(--ink2)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 12px;font-size:13px}
+.target{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:12px;padding:16px 18px;display:grid;gap:6px}
+
+/* route bar */
+.routes{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0;display:flex;gap:8px;overflow-x:auto}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.routes a{flex:none;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-family:var(--display);font-weight:700;font-size:14px}
+.routes a.on{background:var(--acc);border-color:var(--acc);color:var(--panel)}
+
+section.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,3vw,28px);display:grid;gap:16px;scroll-margin-top:70px}
+.head{display:grid;gap:4px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.card.story{border-left:6px solid var(--acc)}
+.card.exam{border-left:6px solid var(--blue)}
+.card.theme{border-left:6px solid var(--warm)}
+.flag{display:inline-block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.08em;border-radius:4px;padding:2px 8px;color:var(--panel);width:max-content}
+.flag.sa{background:var(--warm)}.flag.gl{background:var(--blue)}
+
+/* rings */
+.rings{display:grid;place-items:center}
+.rings svg{width:100%;max-width:620px;height:auto}
+.ring{cursor:pointer}
+.ring rect{transition:stroke-width .15s}
+.ring:hover rect,.ring:focus rect{stroke-width:4}
+.ringinfo{min-height:72px}
+
+/* buttons and choices */
+.btn{border:1px solid var(--acc);background:var(--acc);color:var(--panel);border-radius:10px;padding:9px 16px;font-family:var(--display);font-weight:700}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn.small{padding:6px 12px;font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.choice{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 14px;text-align:left}
+.choice.sel{border-color:var(--acc);background:var(--acc-soft)}
+.choice.right{border-color:var(--good);background:var(--good-soft)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{border-radius:10px;padding:10px 14px;font-size:15px}
+.fb.good{background:var(--good-soft);border:1px solid var(--good)}
+.fb.bad{background:var(--bad-soft);border:1px solid var(--bad)}
+.fb.hint{background:var(--blue-soft);border:1px solid var(--blue)}
+
+/* sorter */
+.deck{display:flex;flex-wrap:wrap;gap:8px}
+.fcard{border:1px dashed var(--ink2);background:var(--panel);border-radius:10px;padding:8px 12px;font-size:15px;text-align:left;max-width:100%}
+.fcard.sel{border-style:solid;border-color:var(--blue);background:var(--blue-soft)}
+.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.bin{border:2px solid var(--line);border-radius:12px;padding:10px;min-height:110px;display:grid;align-content:start;gap:6px;text-align:left;background:var(--panel)}
+.bin h4{margin:0;font-family:var(--display);font-size:15px}
+.bin.micro{border-color:var(--acc)}.bin.market{border-color:var(--warm)}.bin.macro{border-color:var(--ink2)}
+.placed{font-size:13px;border-radius:8px;padding:4px 8px;background:var(--good-soft)}
+.score{font-family:var(--display);font-weight:800;font-size:20px;color:var(--acc)}
+
+/* forces meter */
+.force{display:grid;grid-template-columns:minmax(0,1fr) 150px 30px;gap:10px;align-items:center}
+.force label{font-size:15px}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.gauge{height:16px;border-radius:999px;background:var(--acc-soft);overflow:hidden;border:1px solid var(--line)}
+.gauge i{display:block;height:100%;background:var(--acc);transition:width .3s}
+
+/* practice */
+.q{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.q:first-of-type{border-top:0;padding-top:0}
+textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel);color:var(--ink);font:inherit;font-size:15px}
+details{border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+summary{cursor:pointer;font-family:var(--display);font-weight:700;color:var(--acc-ink)}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.swot div{border:1px solid var(--line);border-radius:10px;padding:8px;min-height:70px}
+.swot h4{margin:0 0 4px;font-family:var(--display);font-size:14px;color:var(--acc-ink)}
+
+/* check */
+.prog{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border-radius:999px;padding:3px 10px;font-size:13px;border:1px solid var(--line)}
+.pill.done{background:var(--good-soft);border-color:var(--good)}
+.watch a{color:var(--blue)}
+footer{font-size:13px;color:var(--ink2);display:grid;gap:6px}
+footer a{color:var(--blue)}
+/* Business in Action book look: left-rule callouts, small-caps labels, hairline panels */
+.brandrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--acc);padding-bottom:8px}
+.bookname{font-family:var(--display);font-weight:900;font-size:20px;color:var(--ink)}
+.bookname span{color:var(--acc)}
+.hero{margin-top:6px}
+.herosvg{display:block;width:100%;height:auto;border-radius:12px}
+.eyebrow{letter-spacing:.14em}
+.target{border:none;border-left:5px solid var(--acc);border-radius:0;background:transparent;padding:4px 0 4px 16px}
+section.panel{border-radius:10px}
+.card{border:none;border-left:4px solid var(--line);border-radius:0;padding:4px 0 4px 16px}
+.card.story{border-left-color:var(--acc)}.card.exam{border-left-color:var(--blue)}.card.theme{border-left-color:var(--warm)}
+.card > .eyebrow{font-size:11px}
+.choice,.fcard,.bin,details,textarea,.btn{border-radius:6px}
+.tag{border-radius:6px}
+.routes a{border-radius:6px}
+@media (max-width:520px){.force{grid-template-columns:1fr 1fr 26px}.force label{grid-column:1/-1}.swot{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="cover" id="top">
+    <div class="brandrow"><div class="school" id="schoolName">Grade 10 Business Studies</div><div class="bookname">Business <span>in Action</span></div></div>
+    <div class="eyebrow">Chapter 5 · The business environments · Learning space</div>
+    <h1>Who else is <span>in the room?</span></h1>
+    <div class="hero"><svg class="herosvg" role="img" aria-label="Kasi to Global: township shops growing into a city skyline" viewBox="0 0 600 300" width="100%" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="600" height="300" rx="18" fill="#e0f2fe"/><circle cx="455" cy="92" r="58" fill="#f59e0b" opacity=".9"/><rect x="70" y="52" width="70" height="16" rx="8" fill="#fff"/><rect x="84" y="43" width="35" height="16" rx="8" fill="#fff"/><rect x="250" y="34" width="90" height="16" rx="8" fill="#fff"/><rect x="264" y="25" width="45" height="16" rx="8" fill="#fff"/><rect x="380" y="160" width="60" height="16" rx="8" fill="#fff"/><rect x="394" y="151" width="30" height="16" rx="8" fill="#fff"/><rect x="26" y="204" width="58" height="48" rx="3" fill="#e11d48"/><rect x="23" y="200" width="64" height="10" rx="2" fill="#fff" opacity=".85"/><text x="55.0" y="208" text-anchor="middle" font-size="8" font-weight="800" fill="#e11d48" font-family="Outfit">SPAZA</text><rect x="47.0" y="230" width="16" height="22" fill="#fff" opacity=".9"/><rect x="92" y="194" width="58" height="58" rx="3" fill="#f59e0b"/><rect x="89" y="190" width="64" height="10" rx="2" fill="#fff" opacity=".85"/><text x="121.0" y="198" text-anchor="middle" font-size="8" font-weight="800" fill="#f59e0b" font-family="Outfit">SALON</text><rect x="113.0" y="230" width="16" height="22" fill="#fff" opacity=".9"/><rect x="158" y="182" width="58" height="70" rx="3" fill="#0f766e"/><rect x="155" y="178" width="64" height="10" rx="2" fill="#fff" opacity=".85"/><text x="187.0" y="186" text-anchor="middle" font-size="8" font-weight="800" fill="#0f766e" font-family="Outfit">KICKS</text><rect x="179.0" y="230" width="16" height="22" fill="#fff" opacity=".9"/><rect x="224" y="164" width="62" height="88" rx="3" fill="#14b8a6"/><rect x="232" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="247" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="262" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="232" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="247" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="262" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="232" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="247" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="262" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="232" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="247" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="262" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="232" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="247" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="262" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="294" y="142" width="62" height="110" rx="3" fill="#232c44"/><rect x="302" y="152" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="152" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="152" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="302" y="168" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="168" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="168" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="302" y="184" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="184" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="184" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="302" y="200" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="200" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="200" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="302" y="216" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="216" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="216" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="302" y="232" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="317" y="232" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="332" y="232" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="364" y="116" width="62" height="136" rx="3" fill="#0f766e"/><rect x="372" y="126" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="126" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="126" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="142" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="142" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="142" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="158" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="158" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="158" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="174" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="190" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="206" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="222" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="372" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="387" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="402" y="238" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="434" y="86" width="62" height="166" rx="3" fill="#232c44"/><rect x="442" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="442" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="457" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="472" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="504" y="54" width="62" height="198" rx="3" fill="#334155"/><rect x="512" y="64" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="64" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="64" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="80" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="80" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="80" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="96" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="112" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="128" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="144" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="160" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="176" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="192" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="208" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="512" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="527" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="542" y="224" width="8" height="9" rx="1" fill="#fff" opacity=".55"/><rect x="0" y="252" width="600" height="48" fill="#334155"/><rect x="20" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="80" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="140" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="200" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="260" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="320" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="380" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="440" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="500" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="560" y="274" width="30" height="4" rx="2" fill="#fde68a"/><rect x="64" y="256" width="74" height="30" rx="8" fill="#fff"/><rect x="72" y="261" width="44" height="10" rx="2" fill="#e0f2fe"/><rect x="64" y="274" width="74" height="5" fill="#0f766e"/><circle cx="82" cy="287" r="6" fill="#232c44"/><circle cx="122" cy="287" r="6" fill="#232c44"/><path d="M48 178 C 170 150, 300 110, 520 26" fill="none" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/><path d="M520 26 l-26 2 l13 18 z" fill="#0f766e"/><circle cx="548" cy="44" r="26" fill="#fff" stroke="#232c44" stroke-width="3"/><ellipse cx="548" cy="44" rx="11" ry="26" fill="none" stroke="#232c44" stroke-width="2"/><path d="M522 44 H574 M526 31 H570 M526 57 H570" stroke="#232c44" stroke-width="2"/><text x="36" y="34" font-size="13" font-weight="900" fill="#232c44" font-family="Outfit" letter-spacing="2">KASI</text><text x="36" y="50" font-size="9.5" font-weight="700" fill="#0f766e" font-family="Outfit" letter-spacing="1.5">TO GLOBAL</text></svg></div>
+    <p class="lede">Sole Revival did nothing wrong this week, yet sales fell by a third. A rival opened in Maponya Mall, the power went off for four hours a day and foam got 15% dearer. Work out what happened, and what a smart owner does next.</p>
+    <div class="tags"><span class="tag">No AI needed</span><span class="tag">Works on your phone</span><span class="tag">About 45 minutes</span><span class="tag">Matches coursebook Chapter 5</span></div>
+    <div class="target">
+      <div class="eyebrow">Your learning target</div>
+      <p>Name the <b>micro, market and macro</b> environments and how much control a business has over each. Sort factors using <b>PESTLE</b>, <b>Porter's Six Forces</b> and <b>SWOT</b>, and explain how a change in one environment ripples into the others.</p>
+    </div>
+  </header>
+
+  <nav class="routes" aria-label="Sections">
+    <a href="#learn">1 · Learn</a><a href="#labs">2 · Labs</a><a href="#practise">3 · Practise</a><a href="#check">4 · Check yourself</a><a href="#theme">5 · Theme lens</a>
+  </nav>
+
+  <!-- LEARN -->
+  <section class="panel" id="learn">
+    <div class="head"><div class="eyebrow">Route 1 · Learn</div><h2>Three rings around every business</h2>
+      <p class="muted">Tap a ring to see what lives there and how much control the business has.</p></div>
+    <div class="rings">
+      <svg viewBox="0 0 600 250" role="group" aria-label="Three business environments">
+        <g class="ring" data-ring="macro" tabindex="0" role="button" aria-label="Macro environment">
+          <rect x="3" y="3" width="594" height="244" rx="30" style="fill:var(--panel);stroke:var(--ink2)" stroke-width="2"/>
+          <text x="300" y="30" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="15" style="fill:var(--ink2)">MACRO · the big outside world</text>
+        </g>
+        <g class="ring" data-ring="market" tabindex="0" role="button" aria-label="Market environment">
+          <rect x="70" y="50" width="460" height="180" rx="26" style="fill:var(--panel);stroke:var(--warm)" stroke-width="2"/>
+          <text x="300" y="78" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="15" style="fill:var(--warm)">MARKET · who you deal with</text>
+        </g>
+        <g class="ring" data-ring="micro" tabindex="0" role="button" aria-label="Micro environment">
+          <rect x="180" y="100" width="240" height="110" rx="22" style="fill:var(--acc-soft);stroke:var(--acc)" stroke-width="2.5"/>
+          <text x="300" y="148" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="16" style="fill:var(--acc)">MICRO</text>
+          <text x="300" y="172" text-anchor="middle" font-family="Lexend" font-size="13" style="fill:var(--ink)">the business itself</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card ringinfo" id="ringInfo" aria-live="polite"><p class="muted">Start with the middle ring.</p></div>
+
+    <div class="grid2">
+      <div class="card story"><div class="eyebrow">Explained example</div>
+        <p><b>Problem:</b> Their foam supplier raises prices by 15%. Which environment is this, and how much control does Sole Revival have?</p>
+        <p><b>Step 1, who is it?</b> A supplier, a business Sole Revival deals with directly. That is the <b>market</b> environment.</p>
+        <p><b>Step 2, control?</b> Ayanda cannot order the supplier to drop its price, but she can negotiate, buy in bulk or find another supplier. That is <b>some influence</b>, not control.</p>
+        <p><b>Step 3, ripple:</b> The supplier may have raised prices because the fuel price rose (macro). The macro change pushed on the market, and now Sole Revival must respond inside its micro environment.</p>
+      </div>
+      <div class="card exam"><div class="eyebrow">Say it like an examiner</div>
+        <p><b>Micro environment:</b> the internal environment of the business: its functions, resources, vision and mission, policies, structure and culture. Management has full control.</p>
+        <p><b>Market environment:</b> customers, competitors, suppliers, intermediaries and other organisations the business deals with directly. The business can influence but not control it.</p>
+        <p><b>Macro environment:</b> the political, economic, social, technological, legal and environmental forces that affect all businesses. The business has no control.</p>
+      </div>
+    </div>
+
+    <h3>PESTLE flip cards</h3>
+    <div class="deck" id="pestle"></div>
+
+    <div class="card watch">
+      <div class="eyebrow">Watch (optional, turn on captions)</div>
+      <p class="small">Short explainers to watch before or after the labs. These links open a YouTube search, so your teacher can choose the clip that suits the class.</p>
+      <div class="row small">
+        <a href="https://www.youtube.com/results?search_query=PESTLE+analysis+explained+for+students" target="_blank" rel="noopener">PESTLE explained</a> ·
+        <a href="https://www.youtube.com/results?search_query=Porter%27s+five+forces+explained+simply" target="_blank" rel="noopener">Porter's forces explained</a> ·
+        <a href="https://www.youtube.com/results?search_query=SWOT+analysis+explained+for+students" target="_blank" rel="noopener">SWOT explained</a> ·
+        <a href="https://www.youtube.com/results?search_query=business+environment+micro+market+macro+grade+10" target="_blank" rel="noopener">Micro, market, macro (Grade 10)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABS -->
+  <section class="panel" id="labs">
+    <div class="head"><div class="eyebrow">Route 2 · Labs</div><h2>Three labs to play with the ideas</h2></div>
+
+    <h3>Lab A · The environment sorter</h3>
+    <p class="muted small">Tap a card, then tap the ring it belongs in. Each card tells you why if you get it wrong.</p>
+    <div class="row"><span class="score" id="sortScore">0 / 12</span><button class="btn ghost small" id="sortReset">Shuffle and restart</button></div>
+    <div class="deck" id="sortDeck"></div>
+    <div class="bins">
+      <button class="bin micro" data-bin="micro"><h4>Micro · full control</h4><div class="placedList"></div></button>
+      <button class="bin market" data-bin="market"><h4>Market · some influence</h4><div class="placedList"></div></button>
+      <button class="bin macro" data-bin="macro"><h4>Macro · no control</h4><div class="placedList"></div></button>
+    </div>
+    <div id="sortFb" aria-live="polite"></div>
+
+    <h3>Lab B · The ripple simulator</h3>
+    <p class="muted small">Pick a shock from the outside world. Watch it ripple inward, then choose what Sole Revival should do.</p>
+    <div class="row" id="shocks"></div>
+    <div class="grid2" id="ripple"></div>
+    <div id="rippleQ"></div>
+
+    <h3>Lab C · How tough is this market?</h3>
+    <p class="muted small">Choose a business. Rate each of Porter's forces from 1 (weak) to 5 (strong). The meter shows how tough the market is.</p>
+    <div class="row"><select id="biz" aria-label="Business">
+      <option value="sneaker">Sole Revival (sneaker cleaning, Soweto)</option>
+      <option value="restaurant">A family sit-down restaurant in a busy mall</option>
+      <option value="takealot">Takealot (online store)</option>
+    </select><button class="btn ghost small" id="suggest">Show a suggested rating</button></div>
+    <div id="forces" class="grid2" style="grid-template-columns:1fr"></div>
+    <div class="card"><div class="row" style="justify-content:space-between"><b>Market toughness</b><span id="toughTxt" class="score"></span></div>
+      <div class="gauge" aria-hidden="true"><i id="gauge"></i></div><p class="small muted" id="toughNote"></p></div>
+  </section>
+
+  <!-- PRACTISE -->
+  <section class="panel" id="practise">
+    <div class="head"><div class="eyebrow">Route 3 · Practise with support</div><h2>Try it, get a hint if you need one</h2>
+      <p class="muted">Hints get more explicit each time. Using a hint is fine here; the check in Route 4 has none.</p></div>
+    <div id="practiceList"></div>
+
+    <div class="q">
+      <b>P5 · Build a SWOT for Mama's Kitchen</b>
+      <div class="card"><p><i>Mama's Kitchen is a family restaurant in Pietermaritzburg. This year two new franchise restaurants opened in the same street. Food prices have risen sharply, and the owner, Mrs Dlamini, has noticed that more young customers book tables online. Her head chef has worked there for 15 years, but the kitchen equipment is old.</i></p></div>
+      <p class="small muted">Tap each fact, then tap S, W, O or T.</p>
+      <div class="deck" id="swotDeck"></div>
+      <div class="swot" id="swotBins"></div>
+      <div id="swotFb" aria-live="polite"></div>
+    </div>
+
+    <div class="q">
+      <b>P6 · Explain it in your own words</b>
+      <p>Explain how ONE macro change in the Mama's Kitchen extract creates an opportunity in the market environment. (4 marks)</p>
+      <label class="small muted" for="p6">My answer (saved on this device only)</label>
+      <textarea id="p6"></textarea>
+      <details><summary>Compare with a model answer and mark yourself</summary>
+        <p>Technology ✓: young customers now book tables online ✓, a macro trend. Mama's Kitchen can use online booking and social media to reach these new customers ✓ and win them from the two new rivals ✓.</p>
+        <p class="small muted">Did you: name the macro factor? quote or describe the change? link it to customers or competitors? say what the business gains?</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CHECK -->
+  <section class="panel" id="check">
+    <div class="head"><div class="eyebrow">Route 4 · Check yourself independently</div><h2>Fresh questions, no hints</h2>
+      <p class="muted">Eight new questions. Feedback appears only after you submit. Your score is kept on this device, separately from your practice.</p></div>
+    <div class="row"><button class="btn" id="newCheck">Start a fresh check</button><span class="small muted" id="lastCheck"></span></div>
+    <div id="checkArea"></div>
+  </section>
+
+  <!-- THEME -->
+  <section class="panel" id="theme">
+    <div class="head"><div class="eyebrow">Theme lens · IEB 2026 theme</div><h2>Sit-down dining</h2>
+      <p class="muted">Each year IEB gives matrics an industry theme for the final exam. In 2026 it is "Sit-Down" Dining Businesses. Examiners want examples from the theme, not generic ones. Practise the habit now.</p></div>
+    <div class="grid2">
+      <div class="card theme"><b>Your mission</b>
+        <p>Choose a sit-down restaurant you know, such as a Spur, a Mugg &amp; Bean, an Ocean Basket or a local family restaurant. Give one factor for each PESTLE letter, then name the two strongest of Porter's forces.</p>
+        <label class="small muted" for="themeAns">My scan (saved on this device only)</label>
+        <textarea id="themeAns" placeholder="P: … E: … S: … T: … L: … E: …"></textarea>
+      </div>
+      <div class="card"><b>Need a start?</b>
+        <details><summary>Show example factors</summary>
+          <p><b>P:</b> liquor licence rules · <b>E:</b> food prices, interest rates · <b>S:</b> families eating out less, health trends · <b>T:</b> online booking, delivery apps · <b>L:</b> health and safety laws, BCEA for waiters · <b>E:</b> load-shedding, water shortages.</p>
+          <p><b>Strong forces:</b> rivalry (many restaurants in one mall); substitutes (Uber Eats and Mr D bring food home).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>For teachers.</b> Aligned to the Grade 10 Business Environments content in the IEB Business Studies Subject Assessment Guidelines (2025, updated October 2022): micro, market and macro environments; SWOT and PESTLE (identify, no application); Porter's Six Forces (identify only). Follows the Learn, Practise and Check independently routes. Everything works without AI. Progress is stored only in each learner's own browser.</p>
+    <p>Part of <i>Business in Action: Grade 10</i>. Prepared by Noel Robert, November 2026.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const store = {
+    get(k, d){ try{ const v = localStorage.getItem('bel.'+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+    set(k, v){ try{ localStorage.setItem('bel.'+k, JSON.stringify(v)); }catch(e){} }
+  };
+  const shuffle = a => { a = a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+  const el = (tag, cls, html) => { const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; };
+
+  /* route bar highlight */
+  const links=[...document.querySelectorAll('.routes a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  function onScroll(){ let cur=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<120) cur=i; }); links.forEach((a,i)=>a.classList.toggle('on',i===cur)); }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* rings */
+  const RING={
+    micro:'<b>Micro environment · full control.</b> Everything inside Sole Revival: its eight business functions, its money, people and equipment, its rules, structure and culture. Example: Sipho forgot to order foam. That was inside their control.',
+    market:'<b>Market environment · some influence.</b> Customers, competitors, suppliers and intermediaries. Example: KlynKicks opened a kiosk nearby. Sole Revival can fight back with price or service but cannot make KlynKicks leave.',
+    macro:'<b>Macro environment · no control.</b> The big forces that hit every business: Political, Economic, Social, Technological, Legal, Environmental. Example: Stage 4 load-shedding. Sole Revival can only respond, for example by buying a generator.'
+  };
+  document.querySelectorAll('.ring').forEach(g=>{
+    const show=e=>{ e.stopPropagation(); $('#ringInfo').innerHTML='<p>'+RING[g.dataset.ring]+'</p>'; };
+    g.addEventListener('click',show);
+    g.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); show(e);} });
+  });
+
+  /* PESTLE flip cards */
+  const P=[['P','Political','Government decisions, e.g. load-shedding policy or B-BBEE rules'],['E','Economic','Interest rates, the petrol price, the rand, unemployment'],
+           ['S','Social','Trends, fashion, crime, a young population'],['T','Technological','Smartphones, online shopping, Yoco card machines'],
+           ['L','Legal','Laws such as the Consumer Protection Act'],['E','Environmental','Drought, floods, pollution, climate change']];
+  P.forEach(([l,n,ex])=>{ const b=el('button','fcard','<b>'+l+'</b> · tap to reveal'); let open=false;
+    b.setAttribute('aria-expanded','false');
+    b.onclick=()=>{ open=!open; b.innerHTML=open?('<b>'+l+' · '+n+'</b><br><span class="small">'+ex+'</span>'):('<b>'+l+'</b> · tap to reveal'); b.setAttribute('aria-expanded',String(open)); };
+    $('#pestle').append(b); });
+
+  /* Lab A sorter */
+  const FACTS=[
+    ['Ayanda trains Sipho to use the steam cleaner','micro','Training staff happens inside the business. Management controls it.'],
+    ['The business has only one steam cleaner','micro','Equipment is a resource inside the business.'],
+    ['A rule: no refunds without a slip','micro','Policies are set by the business itself.'],
+    ['A friendly, fast "kasi" culture','micro','Culture is "how we do things here", inside the business.'],
+    ['KlynKicks opens a kiosk in Maponya Mall','market','A competitor. Sole Revival deals with competitors directly but cannot control them.'],
+    ['The foam supplier raises prices by 15%','market','A supplier is part of the market. Ayanda can negotiate, but not control the price.'],
+    ['Customers ask for same-day collection','market','Customers are in the market environment.'],
+    ['Takealot offers to list their cleaning kits','market','Takealot would be an intermediary, a go-between to reach customers.'],
+    ['Stage 4 load-shedding','macro','A national power shortage hits every business. No business controls it. Political or economic.'],
+    ['The fuel price rises again','macro','Fuel prices are set by world oil prices and the rand. Economic factor.'],
+    ['A viral TikTok makes white sneakers the must-have look','macro','A social trend in the wider society. Social factor.'],
+    ['A new law bans single-use plastic bags','macro','Laws are made by government. Legal factor.']];
+  let sortSel=null, sortDone=0;
+  function sortStart(){
+    sortSel=null; sortDone=0; $('#sortScore').textContent='0 / 12'; $('#sortFb').innerHTML='';
+    $('#sortDeck').innerHTML=''; document.querySelectorAll('.placedList').forEach(p=>p.innerHTML='');
+    shuffle(FACTS).forEach(f=>{ const b=el('button','fcard',f[0]); b.onclick=()=>{ document.querySelectorAll('#sortDeck .fcard').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); sortSel={b,f}; }; $('#sortDeck').append(b); });
+  }
+  document.querySelectorAll('.bin').forEach(bin=>bin.onclick=()=>{
+    if(!sortSel){ $('#sortFb').innerHTML='<div class="fb hint">Tap a card first, then tap a ring.</div>'; return; }
+    const {b,f}=sortSel;
+    if(bin.dataset.bin===f[1]){
+      b.remove(); bin.querySelector('.placedList').append(el('div','placed',f[0])); sortDone++; sortSel=null;
+      $('#sortScore').textContent=sortDone+' / 12';
+      $('#sortFb').innerHTML='<div class="fb good">Right. '+f[2]+'</div>';
+      if(sortDone===12){ $('#sortFb').innerHTML='<div class="fb good"><b>All 12 sorted.</b> Notice that the macro cards are things Sole Revival can only respond to.</div>'; store.set('sorter',true); }
+    } else {
+      $('#sortFb').innerHTML='<div class="fb bad">Not quite. '+f[2]+' Try another ring.</div>';
+    }
+  });
+  $('#sortReset').onclick=sortStart; sortStart();
+
+  /* Lab B ripple */
+  const SHOCKS={
+    'Load-shedding':{f:'Political / economic',market:'Customers cannot get sneakers cleaned in the evening. KlynKicks has a generator and wins them.',micro:'The steam cleaner stands idle four hours a day; income drops.',
+      opts:[['Buy a small generator or inverter and advertise "always on"',1,'Good. It turns a threat into an edge over rivals without one, though it costs money.'],['Close the business until load-shedding ends',0,'Too drastic. Nobody knows when it will end, and customers will go elsewhere.'],['Complain to Eskom',0,'Understandable, but a business cannot control the macro environment. Focus on your response.']]},
+    'Fuel price up':{f:'Economic',market:'Suppliers raise prices to cover delivery. Taxi fares rise, so fewer customers travel in.',micro:'Costs rise while sales fall; profit is squeezed.',
+      opts:[['Offer a collect-and-deliver service for groups of pairs',1,'Good. It solves the customer\'s travel cost and spreads the fuel cost over many pairs.'],['Double all prices',0,'Risky. Customers are already spending more on transport and may leave for KlynKicks.'],['Do nothing',0,'Ignoring a macro change usually means losing to rivals who respond.']]},
+    'Plastic-bag ban':{f:'Legal / environmental',market:'Customers expect a new way to carry clean sneakers home. Rivals switch to cloth bags.',micro:'Sole Revival must change its packaging.',
+      opts:[['Sell branded reusable sneaker bags',1,'Good. It obeys the law and turns packaging into extra income and free advertising.'],['Keep using plastic bags quietly',0,'Breaking the law risks fines and damages the brand.'],['Stop giving any bag',0,'Legal, but customers lose out; rivals with bags look better.']]},
+    'White-sneaker trend':{f:'Social',market:'Many more customers want spotless white sneakers. New cleaners may enter the market.',micro:'Demand jumps; the single steam cleaner becomes a bottleneck.',
+      opts:[['Launch a "white sneaker rescue" special and post before-and-after videos on TikTok',1,'Good. It captures the opportunity fast and uses the same channel as the trend.'],['Wait to see if the trend lasts a year',0,'Trends move fast. By then rivals will own the market.'],['Raise prices because demand is high',0,'Possible, but it invites new entrants. Building a loyal base first is stronger.']]}
+  };
+  Object.keys(SHOCKS).forEach(k=>{ const b=el('button','choice',k); b.onclick=()=>{ document.querySelectorAll('#shocks .choice').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); ripple(k); }; $('#shocks').append(b); });
+  function ripple(k){
+    const s=SHOCKS[k];
+    $('#ripple').innerHTML='<div class="card"><span class="eyebrow">1 · Macro</span><b>'+k+'</b><span class="small muted">PESTLE: '+s.f+'</span></div>'+
+      '<div class="card"><span class="eyebrow">2 · Market</span><span class="small">'+s.market+'</span></div>'+
+      '<div class="card"><span class="eyebrow">3 · Micro</span><span class="small">'+s.micro+'</span></div>';
+    const q=$('#rippleQ'); q.innerHTML='<p><b>What should Sole Revival do?</b></p>'; const row=el('div','row'); const fb=el('div','');
+    shuffle(s.opts).forEach(o=>{ const b=el('button','choice',o[0]); b.onclick=()=>{ row.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong')); b.classList.add(o[1]?'right':'wrong'); fb.innerHTML='<div class="fb '+(o[1]?'good':'bad')+'">'+o[2]+'</div>'; }; row.append(b); });
+    q.append(row,fb);
+  }
+  ripple('Load-shedding'); document.querySelector('#shocks .choice').classList.add('sel');
+
+  /* Lab C forces */
+  const FORCES=[['Threat of new entrants','How easily could someone start the same thing?'],['Power of suppliers','Can suppliers push their prices up?'],['Power of buyers','Can customers push prices down?'],
+                ['Substitute products','Can customers meet the need another way?'],['Complementary products','Do products bought alongside help or hurt? (5 = they hurt or are scarce)'],['Level of rivalry','How hard do competitors fight?']];
+  const SUG={sneaker:[[5,'Anyone with a brush can start.'],[4,'Only one foam supplier nearby.'],[3,'Customers can shop around, but most are single customers.'],[4,'R60 home cleaning kits.'],[1,'New sneaker sales keep growing, which helps.'],[4,'KlynKicks plus street cleaners.']],
+             restaurant:[[3,'Opening a restaurant costs a lot, but malls attract franchises.'],[3,'Food prices are rising; few suppliers for some items.'],[4,'Diners can easily choose the restaurant next door.'],[4,'Delivery apps and cooking at home.'],[2,'Mall foot traffic and parking help.'],[5,'Many restaurants in one mall.']],
+             takealot:[[2,'Building a national warehouse and delivery network is very expensive.'],[2,'Thousands of sellers want to be listed.'],[4,'Shoppers compare prices online in seconds.'],[3,'Physical stores and other online shops.'],[2,'Fast internet and card payments help.'],[4,'Amazon launched in South Africa in 2024.']]};
+  function drawForces(vals){
+    const box=$('#forces'); box.innerHTML='';
+    FORCES.forEach((f,i)=>{ const r=el('div','force'); const id='f'+i;
+      r.innerHTML='<label for="'+id+'"><b>'+f[0]+'</b><br><span class="small muted">'+f[1]+'</span></label><input type="range" min="1" max="5" step="1" id="'+id+'" value="'+(vals?vals[i][0]:3)+'"><span class="score" id="'+id+'v"></span>';
+      box.append(r); });
+    if(vals) box.append(el('p','small muted','<b>Suggested reasons:</b> '+vals.map((v,i)=>FORCES[i][0]+': '+v[1]).join(' · ')));
+    box.querySelectorAll('input').forEach(inp=>inp.oninput=meter); meter();
+  }
+  function meter(){
+    let t=0; document.querySelectorAll('#forces input').forEach(i=>{ t+=+i.value; $('#'+i.id+'v').textContent=i.value; });
+    const pct=Math.round((t-6)/24*100); $('#gauge').style.width=pct+'%';
+    $('#toughTxt').textContent=t+' / 30';
+    $('#toughNote').textContent = t>=22?'A very tough market. Profits will be hard to protect; the business needs something that makes it different.':
+      t>=15?'A competitive market. The business can do well, but must watch its strongest forces closely.':'A fairly gentle market. Good for profits, but it may attract new entrants.';
+  }
+  $('#biz').onchange=()=>drawForces(); $('#suggest').onclick=()=>drawForces(SUG[$('#biz').value]); drawForces();
+
+  /* Practise: MCQs with hint ladders */
+  const PRAC=[
+    {q:'P1 · "Interest rates went up, so fewer customers can afford a meal out." Which PESTLE factor is this?',o:['Political','Economic','Social','Legal'],a:1,
+     h:['Think about what interest rates are: the cost of borrowing money.','Money, prices, jobs and the rand all belong to one letter of PESTLE.','It is <b>Economic</b>: interest rates affect how much money people have to spend.'],
+     why:['Government may set policy, but interest rates themselves are an economic factor.','','Spending habits are social only when they come from trends or values, not from money.','No law changed here.']},
+    {q:'P2 · Which of these is part of the <b>micro</b> environment of a restaurant?',o:['Its suppliers of fresh fish','Its head chef\'s training','A new food-safety law','A rival restaurant next door'],a:1,
+     h:['Micro means inside the business.','Which option can the restaurant\'s own management fully control?','Training its own staff is inside the business: <b>micro</b>.'],
+     why:['Suppliers are outside the business: market.','','A law is macro: legal.','A rival is market: competitor.']},
+    {q:'P3 · "Customers can make the same burger at home for half the price." Which of Porter\'s forces is this?',o:['Power of suppliers','Threat of new entrants','Substitute products','Complementary products'],a:2,
+     h:['Is someone new opening a business, or are customers meeting their need another way?','Cooking at home replaces buying the product.','It is a <b>substitute</b>: another way to satisfy the same need.'],
+     why:['Suppliers sell to the restaurant; this is about customers.','Nobody is starting a new business here.','','Complementary products are bought alongside, not instead.']},
+    {q:'P4 · True or false: "A business can control its market environment if it advertises enough."',o:['True','False'],a:1,
+     h:['Can advertising force a competitor to close or a customer to buy?','Advertising can influence people, but influence is not control.','<b>False.</b> A business can influence the market environment but cannot control it.'],
+     why:['Advertising influences customers but cannot control them or rivals.','']}
+  ];
+  PRAC.forEach((p,pi)=>{
+    const wrap=el('div','q'); wrap.append(el('b','',p.q));
+    const row=el('div','row'); const fb=el('div',''); fb.setAttribute('aria-live','polite');
+    let hintN=0, hintsUsed=0;
+    p.o.forEach((o,i)=>{ const b=el('button','choice',o); b.onclick=()=>{
+      row.querySelectorAll('.choice').forEach(x=>x.classList.remove('right','wrong'));
+      if(i===p.a){ b.classList.add('right'); fb.innerHTML='<div class="fb good">Correct'+(hintsUsed?' (with '+hintsUsed+' hint'+(hintsUsed>1?'s':'')+')':'')+'.</div>'; const s=store.get('prac',{}); s[pi]=hintsUsed?'assisted':'unaided'; store.set('prac',s); }
+      else { b.classList.add('wrong'); fb.innerHTML='<div class="fb bad">'+(p.why[i]||'Not this one.')+' Try again.</div>'; }
+    }; row.append(b); });
+    const hb=el('button','btn ghost small','I need a hint');
+    hb.onclick=()=>{ if(hintN<p.h.length){ hintsUsed++; fb.innerHTML='<div class="fb hint">'+(hintN===p.h.length-1?'<b>Full method:</b> ':'<b>Hint '+(hintN+1)+':</b> ')+p.h[hintN]+'</div>'; hintN++; if(hintN===p.h.length) hb.textContent='All hints shown'; } };
+    wrap.append(row,el('div','row'),fb); wrap.children[2].append(hb);
+    $('#practiceList').append(wrap);
+  });
+
+  /* Practise: SWOT sort */
+  const SW=[['"Her head chef has worked there for 15 years"','S','Experienced staff are an internal strength.'],['"The kitchen equipment is old"','W','Old equipment is an internal weakness.'],
+            ['"More young customers book tables online"','O','A good trend outside the business: an opportunity.'],['"Two new franchise restaurants opened in the same street"','T','New rivals outside the business: a threat.'],
+            ['"Food prices have risen sharply"','T','An economic change outside the business that raises costs: a threat.']];
+  const SWN={S:'Strengths · inside, good',W:'Weaknesses · inside, bad',O:'Opportunities · outside, good',T:'Threats · outside, bad'};
+  let swSel=null;
+  Object.keys(SWN).forEach(k=>{ const d=el('button','bin','<h4>'+SWN[k]+'</h4><div class="placedList"></div>'); d.dataset.k=k; d.style.minHeight='70px';
+    d.onclick=()=>{ if(!swSel){ $('#swotFb').innerHTML='<div class="fb hint">Tap a fact first.</div>'; return; }
+      if(swSel.f[1]===k){ swSel.b.remove(); d.querySelector('.placedList').append(el('div','placed',swSel.f[0])); $('#swotFb').innerHTML='<div class="fb good">'+swSel.f[2]+'</div>'; swSel=null;
+        if(!$('#swotDeck').children.length) $('#swotFb').innerHTML='<div class="fb good"><b>SWOT complete.</b> S and W came from inside Mama\'s Kitchen; O and T came from outside.</div>'; }
+      else $('#swotFb').innerHTML='<div class="fb bad">Not quite. Ask: is it inside or outside the business? Is it good or bad for Mama\'s Kitchen?</div>'; };
+    $('#swotBins').append(d); });
+  shuffle(SW).forEach(f=>{ const b=el('button','fcard',f[0]); b.onclick=()=>{ document.querySelectorAll('#swotDeck .fcard').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); swSel={b,f}; }; $('#swotDeck').append(b); });
+
+  /* saved text answers */
+  ['p6','themeAns'].forEach(id=>{ const t=$('#'+id); t.value=store.get('txt.'+id,''); t.oninput=()=>store.set('txt.'+id,t.value); });
+
+  /* Check independently */
+  const BANK=[
+    ['A spaza shop\'s owner decides to open an hour earlier. This decision is part of the ... environment.',['micro','market','macro'],0],
+    ['A cell-phone shop\'s main supplier goes out of business. This affects the ... environment.',['micro','market','macro'],1],
+    ['Unemployment in South Africa rises. This is part of the ... environment.',['micro','market','macro'],2],
+    ['"A new tax on sugary drinks" is which PESTLE factor?',['Legal or political','Social','Technological','Environmental'],0],
+    ['"Floods damage roads in KwaZulu-Natal" is which PESTLE factor?',['Economic','Environmental','Social','Technological'],1],
+    ['"Most learners now pay with a phone app" is which PESTLE factor?',['Political','Legal','Technological','Environmental'],2],
+    ['"Customers can catch a taxi to the next town where shoes are cheaper" shows the ...',['power of buyers','power of suppliers','threat of new entrants','complementary products'],0],
+    ['"Anyone with R2 000 can start selling vetkoek" shows the ...',['level of rivalry','threat of new entrants','substitute products','power of suppliers'],1],
+    ['"Only one company makes the special part a factory needs" shows the ...',['power of buyers','substitute products','power of suppliers','threat of new entrants'],2],
+    ['In a SWOT, "a loyal group of regular customers" is a ...',['strength','weakness','opportunity','threat'],0],
+    ['In a SWOT, "a new shopping mall opening nearby that will bring more feet" is a(n) ...',['strength','weakness','opportunity','threat'],2],
+    ['In a SWOT, "staff who are often late" is a ...',['strength','weakness','opportunity','threat'],1],
+    ['Over which environment does a business have NO control?',['micro','market','macro'],2],
+    ['A restaurant cannot control a rival, but it can ... it.',['ignore','influence','own'],1],
+    ['Which set lists only elements of the market environment?',['customers, suppliers, competitors','culture, policies, structure','inflation, laws, technology'],0],
+    ['Opportunities and threats in a SWOT come from the ...',['micro environment','market and macro environments','business functions'],1]];
+  let current=null;
+  function lastCheckText(){ const h=store.get('checks',[]); $('#lastCheck').textContent = h.length ? ('Last independent check: '+h[h.length-1].score+' / 8 on '+h[h.length-1].date+'. Try a fresh one in about three days.') : 'No independent checks yet.'; }
+  lastCheckText();
+  $('#newCheck').onclick=()=>{
+    current=shuffle(BANK).slice(0,8).map(q=>{ const idx=shuffle(q[1].map((_,i)=>i)); return {t:q[0],o:idx.map(i=>q[1][i]),a:idx.indexOf(q[2])}; });
+    const area=$('#checkArea'); area.innerHTML='';
+    current.forEach((q,qi)=>{ const w=el('div','q'); w.append(el('b','',(qi+1)+' · '+q.t)); const r=el('div','row');
+      q.o.forEach((o,oi)=>{ const b=el('button','choice',o); b.onclick=()=>{ r.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); q.pick=oi; }; r.append(b); });
+      w.append(r); area.append(w); });
+    const sub=el('button','btn','Submit my answers'); const out=el('div',''); out.setAttribute('aria-live','polite');
+    sub.onclick=()=>{
+      if(current.some(q=>q.pick===undefined)){ out.innerHTML='<div class="fb hint">Answer all eight first. A guess is fine.</div>'; return; }
+      let sc=0; area.querySelectorAll('.q').forEach((w,qi)=>{ const q=current[qi]; const bs=w.querySelectorAll('.choice');
+        bs.forEach(b=>b.disabled=true); bs[q.a].classList.add('right'); if(q.pick===q.a) sc++; else bs[q.pick].classList.add('wrong'); });
+      const h=store.get('checks',[]); h.push({score:sc,date:new Date().toLocaleDateString('en-ZA')}); store.set('checks',h); lastCheckText();
+      out.innerHTML='<div class="fb '+(sc>=6?'good':'bad')+'"><b>'+sc+' / 8.</b> '+(sc>=6?'Strong independent work. Come back in a few days for a fresh set, without looking at your notes.':'Go back to Learn and the labs for the ones you missed, then try a fresh check.')+'</div>';
+      sub.remove();
+    };
+    area.append(sub,out);
+  };
+})();
+</script>

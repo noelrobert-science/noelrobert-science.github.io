@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mr Robert's Learning Spaces</title>
+<meta name="description" content="Interactive practice spaces for Physical Sciences and Business Studies.">
+<style>
+@font-face { font-family: 'Lexend'; font-weight: 400; src: url(assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Lexend'; font-weight: 600; src: url(assets/fonts/Lexend-600.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Outfit'; font-weight: 800; src: url(assets/fonts/Outfit-800.woff2) format('woff2'); font-display: swap; }
+</style>
+<link rel="stylesheet" href="assets/tokens.css">
+<style>
+  body { margin: 0; background: var(--wash); line-height: 1.55; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  .kicker { font-variant: small-caps; letter-spacing: .08em; font-weight: 600; color: var(--acc); margin: 0; }
+  h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.05; margin: .2em 0 .3em; }
+  h1 span { color: var(--acc); }
+  .lead { color: var(--ink2); max-width: 36em; }
+  h2 { margin: 2rem 0 .6rem; font-size: 1.15rem; color: var(--ink2); }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  a.card { display: block; text-decoration: none; color: var(--ink); background: var(--paper);
+           border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--acc));
+           border-radius: var(--radius); padding: 16px; }
+  a.card:hover, a.card:focus-visible { border-color: var(--bc, var(--acc)); outline: none; }
+  .card b { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+  .card small { color: var(--mute); }
+  footer { margin-top: 3rem; color: var(--mute); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Learning spaces</p>
+  <h1>Learn it. <span>Practise it.</span> Check it.</h1>
+  <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and come back in a few days to check it stuck.</p>
+
+  <h2>Grade 10 Physical Sciences</h2>
+  <div class="grid">
+    <a class="card" href="momentum/" style="--bc: var(--learn)"><b>Momentum Studio</b><small>Momentum, impulse and collisions, with a crash simulation.</small></a>
+    <a class="card" href="chemical-calculations/" style="--bc: var(--exam)"><b>Chemical Calculations Studio</b><small>Moles, molar mass, concentration and yields.</small></a>
+  </div>
+
+  <h2>Grade 10 Business Studies</h2>
+  <div class="grid">
+    <a class="card" href="business-ch5/" style="--bc: var(--theme)"><b>Business environments</b><small>Chapter 5: micro, market and macro environments, PESTLE and SWOT.</small></a>
+  </div>
+
+  <footer>Made by Mr N. Robert for his learners. No sign-in needed. Your progress is saved only in this browser.</footer>
+</main>
+</body>
+</html>

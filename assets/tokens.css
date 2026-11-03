@@ -1,0 +1,33 @@
+/* House style tokens for apps and learning spaces (matches the "in Action" books).
+   Link this file, then use var(--name). Fonts: copy ../fonts next to the app, or load
+   Lexend + Outfit from Google Fonts. */
+:root {
+  --font-body: 'Lexend', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Lexend', sans-serif;
+  --font-hand: 'Patrick Hand', cursive;   /* handwriting in worked answers only */
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ink: #1f2937;     --ink2: #374151;   --mute: #6b7280;
+  --rule: #9ca3af;    --line: #a8b5c4;   --paper: #ffffff;  --wash: #f8fafc;
+  --navy: #14213d;                        /* cover band, crest header */
+  --acc: #0f766e;     --acc2: #115e59;   --accl: #f0fdfa;  /* teal accent */
+  --hand: #1d4ed8;                        /* worked-answer ink */
+
+  /* callout colours: left rule + small-caps label */
+  --learn: #0f766e;  --exam: #1d4ed8;  --myth: #b91c1c;  --dyk: #7c3aed;
+  --try: #374151;    --sa: #c2410c;    --ai: #0e7490;    --world: #2563eb;
+  --theme: #b45309;  --boss: #111827;
+
+  --good: #15803d;   --goodl: #dcfce7;  --warn: #ea580c;  --warnl: #ffedd5;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e5e7eb; --ink2: #cbd5e1; --mute: #94a3b8; --rule: #475569; --line: #334155;
+    --paper: #0f172a; --wash: #111827; --accl: #042f2e; --goodl: #052e16; --warnl: #431407;
+  }
+}
+body { font-family: var(--font-body); color: var(--ink); background: var(--paper); }
+h1, h2, h3 { font-family: var(--font-display); }
+.callout { border-left: 4px solid var(--bc, var(--acc)); padding: .6rem .9rem; margin: 1rem 0; }
+.callout > .label { font-variant: small-caps; letter-spacing: .06em; font-weight: 600; color: var(--bc, var(--acc)); }
