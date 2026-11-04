@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Starter Kit (lite)</title>
+<meta name="description" content="Noel Robert's Teacher Starter Kit, lite edition: how to build coursebooks, papers and learning apps with Claude, using a learning-science design lens.">
+<style>
+@font-face { font-family: 'Lexend'; src: url('../fonts/Lexend-300.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'Lexend'; src: url('../fonts/Lexend-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Lexend'; src: url('../fonts/Lexend-600.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Outfit'; src: url('../fonts/Outfit-800.woff2') format('woff2'); font-weight: 800; }
+@font-face { font-family: 'Patrick Hand'; src: url('../fonts/PatrickHand-400.woff2') format('woff2'); }
+:root {
+  --ink: #1b2230; --muted: #596273; --line: #c9d1de; --soft: #f4f5f7; --paper: #ffffff;
+  --acc: #1c64d6; --red: #c8101a; --ans: #1d5fd1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --ink: #e5e7eb; --muted: #a3adbd; --line: #334155; --soft: #151b28; --paper: #0f141e; --acc: #6ea0ff; --red: #ff5a60; --ans: #7fb0ff; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.6 'Lexend', system-ui, sans-serif; }
+main { max-width: 920px; margin: 0 auto; padding: 40px 16px 80px; }
+h1, h2, h3 { font-family: 'Outfit', 'Lexend', sans-serif; font-weight: 800; line-height: 1.15; }
+h1 { font-size: clamp(34px, 6vw, 52px); margin: 6px 0 12px; }
+h2 { font-size: 30px; margin: 56px 0 12px; padding-top: 12px; border-top: 2px solid var(--line); }
+h3 { font-size: 21px; margin: 26px 0 6px; }
+.kicker { color: var(--red); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 14px; }
+.lead { font-size: 21px; color: var(--muted); }
+a { color: var(--acc); }
+.box { border: 1px solid var(--line); border-left: 6px solid var(--acc); border-radius: 10px; padding: 14px 18px; margin: 16px 0; background: var(--soft); }
+.box.learn { border-left-color: var(--ink); }
+.prompt { font-family: 'Patrick Hand', cursive; font-size: 21px; color: var(--ans); background: var(--soft); border-radius: 10px; padding: 14px 18px; border: 1px dashed var(--line); }
+ol li, ul li { margin: 6px 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.sw { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 14px; }
+.sw i { display: block; height: 44px; }
+.sw span { display: block; padding: 6px 10px; }
+figure { margin: 18px 0 26px; }
+figure img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.dl { display: inline-block; margin: 6px 10px 6px 0; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); text-decoration: none; font-weight: 600; }
+footer { margin-top: 60px; color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Teacher Starter Kit · lite edition</p>
+  <h1>Build coursebooks, papers and learning apps with AI, through your own lens</h1>
+  <p class="lead">This is the public, shortened version of my starter kit: what I give Claude before it builds anything. Your subject knowledge is the lens; the AI does the technical work.</p>
+  <p>Noel Robert · Physical Sciences · Reddam House Durbanville · November 2026</p>
+
+  <h2 id="start">1 · Start here: the 2-minute way</h2>
+  <ol>
+    <li>Open Claude (a paid plan works best; the desktop app is ideal).</li>
+    <li>Give it this page's link, and download the two files below so it can keep them.</li>
+    <li>Paste this, filling in the brackets:</li>
+  </ol>
+  <p class="prompt">"Read this starter kit page and its files first. Use the design lens as your rules. I want to make [a coursebook / an exam paper / a worksheet / a learning app] for [grade and subject]. My sources are [folder or files]. Before you start, tell me which model, effort level and settings to use, then wait for my go. After that, show me a plan and one sample page before building the rest. Do any technical steps yourself and only stop me for sign-ins or approvals."</p>
+  <p>Then say <b>go</b>, approve the plan, give feedback on the sample, and let it finish.</p>
+  <p><a class="dl" href="files/education-design-lens-SKILL.md" download>Design lens checklist (SKILL.md)</a><a class="dl" href="files/house-style-tokens.css" download>House style tokens (CSS)</a></p>
+
+  <h2 id="lens">2 · The design lens in one page</h2>
+  <div class="box learn"><b>The one test.</b> For every page, task and app feature, name what the pupil must <b>recall</b>, <b>think about</b> or <b>produce</b>. If a feature only decorates, entertains or keeps pupils clicking, cut it or redesign it.</div>
+  <h3>Five lenses, all written down</h3>
+  <ul>
+    <li><b>Curriculum:</b> exact syllabus wording, exam weighting, what examiners reward.</li>
+    <li><b>Learning science:</b> retrieval practice, worked examples that fade, spacing, feedback.</li>
+    <li><b>Learner:</b> calm and clear for weaker readers; a stretch for the bright.</li>
+    <li><b>Print and design:</b> answer space sized from the real worked answer; page spreads; greyscale-safe colour.</li>
+    <li><b>School:</b> house style, crest, "For moderation" labels, versions.</li>
+  </ul>
+  <h3>The learning sequence</h3>
+  <p>Explanation → worked example → supported attempt ("Now you") → fresh independent problem → revisit later. Support fades at each step.</p>
+  <h3>Rules worth keeping</h3>
+  <ul>
+    <li>Pair each worked example with a closely related attempt, then remove prompts and vary contexts. Show <i>why</i> each step is chosen.</li>
+    <li>Words and diagrams together, with labels beside what they explain. Every colour cue also has a word or shape cue.</li>
+    <li>Build in retrieval, correction and later reattempts. Feedback names the first gap and one next action.</li>
+    <li>Judge a design by what learners can retrieve, explain and apply later <b>on their own</b>.</li>
+    <li>No learning styles, left/right-brain or fixed attention-span claims.</li>
+  </ul>
+  <p>The full checklist is in the <a href="files/education-design-lens-SKILL.md">SKILL.md download</a>. Install it as a Claude skill so it is applied automatically.</p>
+
+  <h2 id="books">3 · How we build textbooks (short version)</h2>
+  <h3>Every module takes the same route</h3>
+  <p>Ready? questions → teaching with worked examples → Now you → quick checks → practice at three levels → an exam-style question → summary → "Done on / Try again on" dates.</p>
+  <h3>A matching answer book</h3>
+  <p>Design the answer book at the same time as the coursebook. Same question codes, same page layout, the model answer sits exactly where the pupil writes, so pupils can mark themselves line by line.</p>
+  <h3>Print-light house style</h3>
+  <ul>
+    <li>One box style: a thin grey frame with an icon and heading. Only the definition box gets a heavy ink bar.</li>
+    <li>Common mistakes: dashed frame, WRONG struck through, RIGHT white on ink, so it works without red and green.</li>
+    <li>Diagram colours at different lightness so they stay distinct in greyscale. Smallest type 8 pt.</li>
+  </ul>
+  <h3>Checks before anything is printed</h3>
+  <ul>
+    <li>Render the real PDF as double-sided spreads, not single pages.</li>
+    <li>No split worked examples, no orphan headings, chapters open on a right-hand page.</li>
+    <li>Answer space sized from the full worked answer; memo marks cross-checked against the paper.</li>
+    <li>Label work "For moderation" while a colleague reviews it; "Final for printing" only after.</li>
+  </ul>
+
+  <h2 id="style">4 · House style</h2>
+  <p>Free fonts (Google Fonts): <b>Lexend</b> for body text, <b>Outfit</b> or <b>Bricolage Grotesque</b> for headings, <b>Patrick Hand</b> for worked answers.</p>
+  <div class="grid">
+    <div class="sw"><i style="background:#1b2230"></i><span>Ink #1b2230</span></div>
+    <div class="sw"><i style="background:#1c64d6"></i><span>Accent #1c64d6</span></div>
+    <div class="sw"><i style="background:#1d5fd1"></i><span>Answers #1d5fd1</span></div>
+    <div class="sw"><i style="background:#0f9d58"></i><span>Ticks #0f9d58</span></div>
+    <div class="sw"><i style="background:#c9d1de"></i><span>Rules #c9d1de</span></div>
+  </div>
+  <p><a class="dl" href="files/house-style-tokens.css" download>Download the colour and font tokens (CSS)</a></p>
+
+  <h2 id="research">5 · The research behind it</h2>
+  <ul>
+    <li><a href="https://www.aft.org/sites/default/files/Rosenshine.pdf">Rosenshine, Principles of Instruction (American Educator, 2012)</a></li>
+    <li><a href="https://www.learningscientists.org/downloadable-materials">The Learning Scientists: six strategies for effective learning</a></li>
+    <li><a href="https://deansforimpact.org/resources/the-science-of-learning/">Deans for Impact: The Science of Learning</a></li>
+    <li><a href="https://www.apa.org/ed/schools/teaching-learning/top-twenty">American Psychological Association: Top 20 principles for PreK-12 teaching and learning</a></li>
+    <li>Sherrington and Caviglioli, <i>Rosenshine's Principles in Action</i> (book): the visual summaries</li>
+  </ul>
+
+  <h2 id="samples">6 · Sample spreads</h2>
+  <p>Three spreads from the Grade 10 IEB Physical Sciences coursebook (Edition 1, print-light), built this way.</p>
+  <figure><img src="img/spread-how-this-book-works.jpg" alt="Spread: How this book works, and How to learn from this book" loading="lazy"><figcaption>How the book works, and the study habits it is built on (pp. 2 to 3).</figcaption></figure>
+  <figure><img src="img/spread-equations-of-motion.jpg" alt="Spread: equations of motion, with a quick check and a table for choosing the equation" loading="lazy"><figcaption>Teaching, a quick check and a decision table (pp. 68 to 69).</figcaption></figure>
+  <figure><img src="img/spread-momentum-worked-example.jpg" alt="Spread: a momentum worked example with diagrams, marked steps and a Common mistake box" loading="lazy"><figcaption>A worked example set out like the memo, then a Common mistake (pp. 141 to 142).</figcaption></figure>
+
+  <footer>
+    <p>Made by Noel Robert with Claude, November 2026. No learner data appears on this page. Research documents belong to their publishers and are linked, not copied.</p>
+  </footer>
+</main>
+</body>
+</html>
