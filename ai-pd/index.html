@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Built with AI: a teacher's journey</title>
+<meta name="description" content="Noel Robert's AI professional-development talk for teachers, IT staff and Inspired Schools head office. Sample: acts 0 and 2.">
+<link rel="stylesheet" href="vendor/reveal/reset.css">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<link rel="stylesheet" href="css/deck.css">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ================= ACT 0: COLD OPEN ================= -->
+
+<section id="s-title" data-act="0">
+  <div class="title-wrap">
+    <p class="kt first" data-split>This talk was built with&nbsp;AI.</p>
+    <p class="kt second fragment" data-fragment-index="0" data-split data-fx="book-in">So was this book.</p>
+    <p class="byline fragment" data-fragment-index="1" data-fx="none"><b>Noel Robert</b> · Physical Sciences · Reddam House Durbanville</p>
+  </div>
+  <img class="cover-hero fragment" data-fragment-index="0" src="img/g10-cover.jpg" alt="Cover of the Grade 10 IEB Physical Sciences Coursebook and Workbook, Edition 1">
+  <aside class="notes">
+    Hold up the printed Grade 10 coursebook before you click.
+    Click 1: "So was this book." The cover slides in.
+    Click 2: your name.
+    Say: "Everything you'll see today, this deck included, was built with AI on my own PC. But AI didn't decide what goes into it. I did. That's what this hour is about."
+    Source: cover of Grade-10-Physical-Sciences-IEB-Coursebook-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free_to print.pdf (Classroom\Grade 10 IEB\Tb).
+  </aside>
+</section>
+
+<section id="s-predict" data-act="0">
+  <div class="frame">
+    <p class="kicker">Predict first</p>
+    <h2 class="headline">How long did the Grade 10 coursebook and answer book take to build?</h2>
+    <div class="body">
+      <div class="options">
+        <div class="opt"><span class="letter">A</span><span class="what">A full year</span></div>
+        <div class="opt"><span class="letter">B</span><span class="what">One term</span></div>
+        <div class="opt"><span class="letter">C</span><span class="what">A few weeks</span></div>
+        <div class="opt"><span class="letter">D</span><span class="what">A few days</span></div>
+      </div>
+      <div class="reveal-card fragment" data-fx="none">
+        <div class="answer-box">
+          <div class="big">The real answer</div>
+          <div class="confirm">[CONFIRM WITH NOEL: build time, from first prompt to print copy]</div>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="n">469</span><span class="l">pages in the coursebook and workbook</span></div>
+          <div class="fact"><span class="n">326</span><span class="l">pages in the worked answer book</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 0</b> · Cold open</div>
+  <aside class="notes">
+    Ask the room to vote with hands (or a poll later): A, B, C or D. Let them commit before you click.
+    Click 1: the real answer and the page counts.
+    [CONFIRM WITH NOEL] Give the real build time. The build log for the first giant build in a chat ran 23 to 26 Oct 2026 (Grade 9 Physics and FS Chemistry); the Grade 10 Edition 1 files are dated 24 Oct (v0.6 draft) to 2 Nov 2026 (AI-free print copy). Noel to confirm the honest figure, including his own review hours.
+    Sources: page counts read from the PDFs on 4 Nov 2026: coursebook "Grade-10-Physical-Sciences-IEB-Coursebook-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free_to print.pdf" (469 pages) and answer book "Grade-10-Physical-Sciences-IEB-Worked-Answer-Book-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free.pdf" (326 pages).
+    Noel confirmed (4 Nov 2026): use the printed copy figures, 469 + 326 pages.
+  </aside>
+</section>
+
+<section id="s-explode" data-act="0">
+  <div class="frame">
+    <p class="kicker">Inside the book</p>
+    <h2 class="headline">One book: <em>18 modules</em> and <em>115 sections</em>, every one built to the same route.</h2>
+    <div class="body">
+      <div class="explode">
+        <img class="mini-cover" src="img/g10-cover.jpg" alt="">
+        <div class="strand-rows" id="strand-rows"></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">Source: contents pages 5 to 6, Grade 10 Coursebook Edition 1 (print copy)</div>
+  <aside class="notes">
+    The cover "explodes" into its modules, grouped by strand. Each dot is one section.
+    Say: "Every module takes the same route: Ready? questions, teaching with worked examples, Now you, quick checks, practice at three levels, an exam question, a summary. A learner always knows where they are."
+    Sources: module and section list counted from the contents (pp. 5 to 6) of "Grade-10-Physical-Sciences-IEB-Coursebook-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free_to print.pdf": 18 modules, 115 sections. Module route from "How this book works" (p. 2).
+    Noel confirmed (4 Nov 2026): the printed Edition 1 is the final book, so this slide uses its 18 modules and 115 sections (not the v0.6 draft's 57 modules).
+  </aside>
+</section>
+
+<section id="s-map" data-act="0">
+  <div class="frame">
+    <p class="kicker">Today's map</p>
+    <h2 class="headline">One hour, nine acts, three lanes: each group leaves with one thing to act on.</h2>
+    <div class="body">
+      <div class="map-wrap" id="map-wrap">
+        <div class="map" id="map"></div>
+        <div class="map-highlight fragment" data-fx="map-now" id="hl-now"><span class="map-label">Now</span></div>
+        <div class="map-highlight next fragment" data-fx="map-next" id="hl-next"><span class="map-label">Next</span></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Three lanes. Teachers: "I can start tomorrow, and the AI does the technical bits." IT: how it is wired, and where the data boundaries are. Head office: what it would take to roll this out, and what's next.
+    A filled dot means that act is written for that group. Acts 0, 1, 3 and 7 are for everyone.
+    Click 1: "Now", the cold open. Click 2: "Next", act 2, the lens.
+    Source: outline doc "AI PD presentation: outline and platform proposal" (4 Nov 2026), Proposed outline table.
+  </aside>
+</section>
+
+<!-- ================= ACT 2: THE LENS ================= -->
+
+<section id="s-generic" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · The lens</p>
+    <h2 class="headline">A great textbook comes from an <em>expert's lens</em>, not a clever prompt.</h2>
+    <div class="body">
+      <div class="vs">
+        <div class="side">
+          <div class="mock" aria-label="Mock-up of a typical one-prompt chatbot page">
+            <div class="t">Momentum Made Easy!</div>
+            <div class="em">&#x1F680; &#x26A1; &#x1F3C0;</div>
+            <div class="p">Momentum is a super important concept in physics! It tells us how much "oomph" a moving object has. Let's dive in and explore this exciting topic together!</div>
+            <div class="g">&#x2728;</div>
+            <ul class="b"><li>Momentum = mass × velocity</li><li>Heavier things have more momentum</li><li>Fun fact: a truck has lots of momentum!</li><li>Remember: practice makes perfect!</li></ul>
+          </div>
+          <div class="vs-label"><span class="tag grey">One quick prompt</span><br>Mock-up of a typical result: friendly, generic, nothing to do</div>
+        </div>
+        <div class="side fragment" data-fx="none">
+          <img class="page" src="img/g10-p142-printlight.jpg" alt="Grade 10 coursebook page 142: Worked example 7.2, a ball hit back by a bat, with diagrams, marked steps and a Common mistake box">
+          <div class="vs-label"><span class="tag red">Built through the lens</span><br>Worked example 7.2, Grade 10 coursebook p. 142</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    Left: what most people get from a quick chat. It looks friendly, but there's no SAGS wording, no worked example and nothing for the pupil to do. The left page is a mock-up, not a real chat output: say so.
+    Click 1: the real page. Point at: the IEB memo layout (formula, substitution, answer, each tick one mark); the three-panel diagram (before, during, after contact); the sign convention stated first; the "Explain: a learner wrote..." question; the Common mistake box taken from real learner errors.
+    Line: "Claude has read nearly everything, so it can produce something generic and pretty in seconds. What it doesn't have is my judgement for these learners, this curriculum and this exam board. A lens is that judgement, written down."
+    Sources: Grade 10 coursebook print copy p. 142; "From chatbot to co-worker" guide p. 4 ("The expert's lens, and the plumbing").
+  </aside>
+</section>
+
+<section id="s-lenses" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · The lens</p>
+    <h2 class="headline">Five lenses, all written down, focus every page.</h2>
+    <div class="body lens-stage">
+      <img class="page lens-page" src="img/g10-p142-printlight.jpg" alt="">
+      <div class="focus-ring" id="focus-ring"></div>
+      <div class="lens l1 fragment dim-after" data-fx="none" style="left:0;top:0"><div class="ring"></div><div class="ln">Curriculum</div><div class="ld">Exact SAGS wording, exam weighting, what examiners reward</div></div>
+      <div class="lens l2 fragment dim-after" data-fx="none" style="left:0;top:215px;bottom:auto"><div class="ring"></div><div class="ln">Learning science</div><div class="ld">Retrieval, worked examples that fade, spacing, feedback</div></div>
+      <div class="lens l3 fragment dim-after" data-fx="none" style="left:0;top:430px;bottom:auto"><div class="ring"></div><div class="ln">Learner</div><div class="ld">Calm and clear for weaker readers; stretch for the bright</div></div>
+      <div class="lens l4 fragment dim-after" data-fx="none" style="right:0;top:0;bottom:auto"><div class="ring"></div><div class="ln">Print and design</div><div class="ld">Answer space from the real worked answer; greyscale-safe</div></div>
+      <div class="lens l5 fragment dim-after" data-fx="none" style="right:0;top:215px;left:auto;bottom:auto;transform:none"><div class="ring"></div><div class="ln">School</div><div class="ld">House style, crest, moderation labels, versions</div></div>
+      <div class="lens fragment" data-fx="focus" style="right:0;top:430px;border-color:var(--red)"><div class="ln" style="color:var(--red-text)">You</div><div class="ld">The teacher is the expert. That part can't be handed over.</div></div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    One click per lens. Each one dims when you move on.
+    Curriculum: SAGS wording word for word, with the page number. Learning science: Rosenshine, retrieval, spacing, worked examples that fade. Learner: weaker readers need it clear and calm; bright learners need a stretch. Print and design: answer space sized from the real worked answer, page spreads, greyscale. School: house style, crest, "For moderation" labels.
+    Last click: "You". The lenses focus on the page.
+    "My lenses took weeks of background research before the first good page appeared."
+    Source: "From chatbot to co-worker: a teacher's guide to building with Claude" (Classroom, 3 Nov 2026), p. 4.
+  </aside>
+</section>
+
+<section id="s-test" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · The one test</p>
+    <h2 class="test-quote">For every page and task, name what the pupil must <span>recall</span>, <span>think about</span> or <span>produce</span>.</h2>
+    <div class="body">
+      <div class="tri">
+        <img class="page" src="img/g10-p142-printlight.jpg" alt="">
+        <div class="verbs">
+          <div class="verb fragment dim-after" data-fx="none"><span class="v">Recall</span><span class="d">p = mv, and that a rebound reverses the sign of the velocity</span></div>
+          <div class="verb fragment dim-after" data-fx="none"><span class="v">Think</span><span class="d">Why a bounce changes momentum more than a stop</span></div>
+          <div class="verb fragment dim-after" data-fx="none"><span class="v">Produce</span><span class="d">Δp with formula, substitution, answer, unit and direction</span></div>
+          <div class="cut fragment" data-fx="none">Anything that only decorates, entertains or keeps pupils clicking is cut.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    This is the one test from my Learning Design Lens. Apply it to the same page, Worked example 7.2.
+    Recall: p = mv; give both velocities a sign. Think: the Common mistake box (4 m/s or 20 m/s?). Produce: the full memo layout, each tick one mark.
+    Last click: the rule that cuts things. That's how I judge every app feature too.
+    Source: "Learning design lens - full text.md" (What goes into a textbook\02 Our design lens and guides), line 13: "The one test. For every screen, task and feature, name what the pupil must recall, think about or produce there."
+  </aside>
+</section>
+
+<section id="s-sequence" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · The learning sequence</p>
+    <h2 class="headline">Support fades step by step until the pupil <em>works alone</em>, then the idea comes back later.</h2>
+    <div class="body">
+      <div class="seq" id="seq">
+        <div class="axis"><span>Support</span></div>
+        <div class="step"><div class="support" data-h="380"></div><div class="card"><div class="sn">1</div><div class="st">Explanation</div><div class="bk">Learn box, equation card</div></div></div>
+        <div class="step fragment" data-fx="seq"><div class="support" data-h="290"></div><div class="card"><div class="sn">2</div><div class="st">Worked example</div><div class="bk">Every step, memo layout</div></div></div>
+        <div class="step fragment" data-fx="seq"><div class="support" data-h="170"></div><div class="card"><div class="sn">3</div><div class="st">Supported attempt</div><div class="bk">Now you: finish the working</div></div></div>
+        <div class="step fragment" data-fx="seq"><div class="support" data-h="40"></div><div class="card"><div class="sn">4</div><div class="st">Fresh problem</div><div class="bk">Quick check, practice ★ to ★★★</div></div></div>
+        <div class="step fragment" data-fx="seq"><div class="support" data-h="40"></div><div class="card"><div class="sn">5</div><div class="st">Revisit later</div><div class="bk">Look back, Try again on date</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    The red bar is how much help the page gives. It shrinks as you click. Bar heights show direction only; they are not measured values.
+    1 Explanation: Learn box in SAGS words. 2 Worked example: every decision shown. 3 Supported attempt: "Now you" finishes a partly worked example. 4 Fresh independent problem: new numbers, no help. 5 Revisit later: Look back questions and the Try again on date, because spacing is what makes it stick.
+    Sources: "Designing science notes that teach - research guide for teachers.pdf" p. 1 ("build each small learning sequence around a clear explanation, an annotated worked example, a supported attempt and a fresh independent problem. Revisit the learning later."); Grade 10 coursebook pp. 2 to 3 ("How this book works", "How to learn from this book").
+  </aside>
+</section>
+
+<section id="s-match" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · Matching pages</p>
+    <h2 class="headline">Every question page has a matching answer page: <em>same code, same layout</em>.</h2>
+    <div class="body">
+      <div class="match">
+        <div class="flip" id="flip">
+          <img class="page lrn" src="img/cc06-q01-learner.jpg" alt="Learner page CC06 Q01: From the salt to its ions, with empty writing lines">
+          <img class="page ans" src="img/cc06-q01-answer.jpg" alt="Answer overlay CC06 Q01: the same page with the model answer written in blue on the writing lines">
+        </div>
+        <div class="match-notes">
+          <div><span class="chip red">CC06 · Q01</span></div>
+          <div class="mn-row">Learner page: <b>empty lines</b>, sized from the real worked answer</div>
+          <div class="mn-row fragment" data-fx="flip">Answer overlay: <b>the model answer</b> sits exactly where the pupil writes</div>
+          <div class="mn-row fragment" data-fx="none">Pupils mark their own work line by line, then retry with fresh numbers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    Click 1: the learner page turns into its answer overlay. Same code, same question, same lines, with the model answer in blue.
+    Say: "Because the answer book is designed at the same time as the coursebook, every page matches. Pupils can mark themselves without hunting."
+    The Grade 10 books use the same idea: the worked answer book follows the coursebook page for page.
+    Source: "Workbook and answer-book layout sample.pdf" (design lens folder), pp. 2 and 3, CC06 Q01. Rule from the House style README: "The answer book uses the same heights, so both books match page for page."
+  </aside>
+</section>
+
+<section id="s-printlight" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · Print and design lens</p>
+    <h2 class="headline">Print-light: <em>less colour, same content</em>, and it still works on a photocopier.</h2>
+    <div class="body">
+      <div class="pl">
+        <div class="side">
+          <img class="page" src="img/g10-ed1-p137-colour.jpg" alt="Edition 1 page 137: the same worked example with heavy coloured frames">
+          <div class="page-label"><b>Before:</b> Edition 1, coloured frames</div>
+        </div>
+        <div class="side fragment" data-fx="none">
+          <img class="page grey" id="pl-after" src="img/g10-p142-printlight.jpg" alt="Print-light page 142: the same worked example with thin grey frames">
+          <div class="page-label"><b>After:</b> print-light <span class="fragment" data-fx="greyscale">· now in greyscale</span></div>
+        </div>
+      </div>
+      <div class="stat-row fragment" data-fx="none">
+        <div class="stat"><b>1.5%</b>of a page in colour (median)</div>
+        <div class="stat"><b>9 → 1</b>box colours to box style</div>
+        <div class="stat"><b>8 pt</b>smallest type</div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    I asked Claude: "Is it too busy? Is it acceptable to say that sometimes less is more?" The review said the book was mostly fine. Colour covered a median 1.5% of a page. The problem was about nine different box colours stacking up, and colours that printed as identical greys.
+    Click 1: the print-light page. Click 2: the photocopier test. It turns to greyscale and still reads. Click 3: the numbers.
+    Rule now for every book: one box style, only the Learn box gets a heavy ink bar, and every colour cue also has a word or shape.
+    Sources: "Textbook decisions after 26 Oct 2026 (spec addendum).md", section 1 (median 1.5%, about nine box colours, one box style, smallest type 8 pt). Pages: Edition 1 "CLAUDE_Printing" p. 137 and the print-light AI-free print copy p. 142, the same Worked example 7.2.
+  </aside>
+</section>
+
+<section id="s-plumbing" data-act="2">
+  <div class="frame">
+    <p class="kicker">Act 2 · Bridge to act 5</p>
+    <h2 class="headline">No single prompt: <em>the lens plus the plumbing.</em></h2>
+    <div class="body plumb">
+      <div class="pipe-row">
+        <div class="node hot"><div class="nt">Your lens</div><div class="nd">Judgement written down: design rules, house style, curriculum notes</div></div>
+        <div class="arrow fragment" data-fx="grow"></div>
+        <div class="node fragment" data-fx="none"><div class="nt">The plumbing</div><div class="nd">Files the AI reads before every job, so it never forgets</div></div>
+        <div class="arrow fragment" data-fx="grow"></div>
+        <div class="node fragment" data-fx="none"><div class="nt">Every output</div><div class="nd">Books, papers, apps, all to the same spec, every session</div></div>
+      </div>
+      <div class="not-prompt fragment" data-fx="none">"What prompt did you use?" <s>A prompt.</s> A folder.</div>
+      <div class="uth fragment" data-fx="none">
+        <div class="uh">Under the hood · for IT</div>
+        <div class="ub">The lens is a skill (<code>SKILL.md</code>) plus a hub rules file (<code>CLAUDE.md</code>), loaded automatically in every Claude Code session and versioned in Git.</div>
+      </div>
+    </div>
+  </div>
+  <div class="act-tag"><b>Act 2</b> · The lens</div>
+  <aside class="notes">
+    "When a colleague asks what prompt I used, the honest answer is: no single prompt. It's the lens folder plus the plumbing. That's why I share one folder, my Teacher Starter Kit, instead of a prompt."
+    For IT: the design lens is installed as the skill "education-design-lens" in both Claude Code and Codex, and the hub CLAUDE.md is read at the start of every teaching task. Both live in Drive, with the vault in Git.
+    Bridge: "In act 5 I'll show you exactly how that plumbing is wired."
+    Sources: "From chatbot to co-worker" pp. 4 to 5; Teaching Hub CLAUDE.md ("Shared resources" table).
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="vendor/reveal/reveal.js"></script>
+<script src="vendor/reveal/plugin/notes/notes.js"></script>
+<script src="vendor/gsap/gsap.min.js"></script>
+<script src="js/deck.js"></script>
+</body>
+</html>
