@@ -4,10 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Built with AI: a teacher's journey</title>
-<meta name="description" content="Noel Robert's AI professional-development talk for teachers, IT staff and Inspired Schools head office. Sample: acts 0 and 2.">
+<meta name="description" content="Noel Robert's AI professional-development talk for teachers, IT staff and Inspired Schools head office. Full draft v0.5.">
 <link rel="stylesheet" href="vendor/reveal/reset.css">
 <link rel="stylesheet" href="vendor/reveal/reveal.css">
 <link rel="stylesheet" href="css/deck.css">
+<link rel="stylesheet" href="css/acts.css">
+<link rel="stylesheet" href="css/v3.css">
+<link rel="stylesheet" href="css/v4.css">
+<link rel="stylesheet" href="css/v5.css">
 </head>
 <body>
 <div class="reveal">
@@ -95,6 +99,42 @@
   </aside>
 </section>
 
+<section id="s-hero" data-act="0">
+  <div class="frame">
+    <p class="kicker">Every school day</p>
+    <h2 class="headline">This is what my pupils see <em>every day.</em></h2>
+    <div class="body">
+      <div class="browser"><div class="chrome-bar"><i></i><i></i><i></i><span>Canvas · Grade 10 Physical Science IEB</span></div>
+        <div class="viewport" id="hero-vp"><img id="hero-img" src="img/canvas-landing-hi.jpg" alt="Noel's Grade 10 Physical Science IEB Canvas home page: November revision with practice papers and worked memos, course resources, learning studios, and a cycle test review"></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Full-screen reveal: the page scrolls slowly so the room sees all of it.
+    "This is my Grade 10 Canvas home page. Everything a pupil needs this term is one tap away: revision papers with worked memos, every resource organised, the learning studios, and the cycle test review."
+    If you're signed in to Canvas, you can open the live page: canvas.inspirededucationschools.com, course "Grade 10 Physical Science IEB".
+    Source: the page's own content, copied read-only from Canvas on 4 Nov 2026 and re-rendered at high resolution; the footer with my email is left out. No pupil data.
+  </aside>
+</section>
+
+<section id="s-template" data-act="0">
+  <div class="frame">
+    <p class="kicker">Same Canvas, same starting point</p>
+    <h2 class="headline">Same Canvas, same group template to start from. <em>Here's what a teacher plus AI can build on it.</em></h2>
+    <div class="body">
+      <div class="cards c2 tv">
+        <div><div class="tvbox"><img src="img/canvas-template.jpg" alt="The group Course Overview template page: term-by-term topic tables and a cycle test table"></div><p class="cap">The group template: the Course Overview page every course starts with</p></div>
+        <div class="fragment" data-fx="none"><div class="tvbox hot"><img src="img/canvas-landing-hi.jpg" alt="Noel's Grade 10 home page built on top of it"></div><p class="cap">Built on it: my Grade 10 home page, with AI doing the building</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Say it warmly: the group template gives every course the same reliable structure, and the Course Overview is still there in my course. AI let me build on that starting point in an afternoon instead of a term.
+    Sources: the Course Overview page and the home page of my Grade 10 course, both copied read-only on 4 Nov 2026.
+  </aside>
+</section>
+
+
 <section id="s-map" data-act="0">
   <div class="frame">
     <p class="kicker">Today's map</p>
@@ -112,6 +152,138 @@
     A filled dot means that act is written for that group. Acts 0, 1, 3 and 7 are for everyone.
     Click 1: "Now", the cold open. Click 2: "Next", act 2, the lens.
     Source: outline doc "AI PD presentation: outline and platform proposal" (4 Nov 2026), Proposed outline table.
+  </aside>
+</section>
+
+
+<!-- ================= ACT 1: MY JOURNEY ================= -->
+
+<section class="opener" id="s-a1" data-act="1" data-opener="1">
+  <aside class="notes">
+    Act 1, about 6 minutes. For everyone.
+    "Here's how I got here, mistakes included."
+  </aside>
+</section>
+
+<section id="s-journey" data-act="1">
+  <div class="frame">
+    <p class="kicker">Act 1 · My journey</p>
+    <h2 class="headline">In about a month I went from chatbot user to running <em>a co-worker on my PC</em>.</h2>
+    <div class="body">
+      <div class="stairs">
+        <div class="stair" style="left:0;bottom:0"><div class="card2"><div class="when">Sept to mid Oct</div><div class="t">ChatGPT</div><div class="fix">First learner site, staff app, drafts</div><div class="pain">Couldn't make the Gr 10 book I wanted</div></div></div>
+        <div class="stair fragment" data-fx="none" style="left:340px;bottom:70px"><div class="card2"><div class="when">19 to 26 Oct</div><div class="t">Claude chats</div><div class="fix">A 435-page book in one chat</div><div class="pain">The chat compacted; first prompts lost</div></div></div>
+        <div class="stair fragment" data-fx="none" style="left:680px;bottom:140px"><div class="card2"><div class="when">26 Oct to 2 Nov</div><div class="t">Projects</div><div class="fix">Threads side by side, one job each</div><div class="pain">Rules scattered; usage limits hit</div></div></div>
+        <div class="stair fragment" data-fx="none" style="left:1020px;bottom:210px"><div class="card2"><div class="when">31 Oct to 2 Nov</div><div class="t">Claude on my PC</div><div class="fix">Reads Drive, drives Chrome, checks its work</div><div class="pain">Still too many clicks for me</div></div></div>
+        <div class="stair fragment" data-fx="none" style="left:1360px;bottom:280px"><div class="card2 hot"><div class="when">3 Nov</div><div class="t">The foundation</div><div class="fix">One rules hub, a lens skill, Git, backup</div></div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Five stages. Each move fixed one problem and showed me the next. Only the last stage, building a proper foundation, took the technical strain off me.
+    ChatGPT built the first Grade 10 Science learner site and a first staff app.
+    Claude chats: the first giant build, 23 to 26 Oct: a 435-page coursebook and a 368-page answer book in one chat. The chat compacted and the first prompts were lost; files too big to upload, so I dragged them into Drive by hand.
+    Projects from 26 Oct: "I should have started making all my textbooks as a project." Then threads in parallel.
+    Claude on my PC: remote control, Chrome, Drive, from 31 Oct.
+    Foundation on 3 Nov: hub rules file, design-lens skill, GitHub, a private backup vault of 521 files.
+    Sources: "From chatbot to co-worker" guide p. 3 (five stages); research file "Research - Claude projects journey (4 Nov 2026).md", section 2 (dates and figures).
+  </aside>
+</section>
+
+<section id="s-foundation" data-act="1">
+  <div class="frame">
+    <p class="kicker">Act 1 · The foundation, unpacked</p>
+    <div class="body fd" id="fd">
+      <p class="fd-open fragment" data-fx="fdstep" data-fragment-index="0">In a normal chat, the AI forgets everything when the chat ends. The foundation is how I make it remember, and how I make sure my work is mine.</p>
+      <div class="fd-bubbles" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="fd-card" id="fd-card">
+        <div class="when">3 Nov</div>
+        <div class="t">The foundation</div>
+        <div class="fix">One rules hub, a lens skill, Git, backup</div>
+      </div>
+
+      <div class="fd-chip fragment" data-fx="fdstep" data-fragment-index="1" data-k="hub" style="left:250px;top:170px"><span class="fd-ic" data-icon="hub"></span><span>Rules hub</span></div>
+      <div class="fd-chip fragment" data-fx="fdstep" data-fragment-index="2" data-k="lens" style="left:250px;top:370px"><span class="fd-ic" data-icon="lens"></span><span>Lens skill</span></div>
+      <div class="fd-chip fragment" data-fx="fdstep" data-fragment-index="3" data-k="git" style="left:1110px;top:170px"><span class="fd-ic" data-icon="git"></span><span>Git</span></div>
+      <div class="fd-chip fragment" data-fx="fdstep" data-fragment-index="4" data-k="gh" style="left:1110px;top:370px"><span class="fd-ic" data-icon="gh"></span><span>GitHub</span></div>
+      <div class="fd-chip fragment" data-fx="fdstep" data-fragment-index="5" data-k="bk" style="left:680px;top:548px"><span class="fd-ic" data-icon="bk"></span><span>Backup</span></div>
+
+      <div class="fd-panel" id="fd-panel"><div class="fd-art" id="fd-art"></div><div><div class="fd-pt" id="fd-pt"></div><div class="fd-px" id="fd-px"></div></div></div>
+
+      <div class="fd-final fragment" data-fx="fdstep" data-fragment-index="6">
+        <div class="fd-ba">
+          <div class="fd-before"><div class="lab">Before</div><div class="fd-scene before-scene"><span class="bub"></span><span class="bub"></span><span class="bub"></span><span class="trap">files</span></div><div class="txt">Every chat started from zero, and my work lived inside the AI.</div></div>
+          <div class="fd-arrow"></div>
+          <div class="fd-after"><div class="lab">Now</div><div class="fd-scene after-scene" id="fd-after-icons"></div><div class="txt">The AI starts with my rules and my lens, and my work is <b>saved, tracked and owned by me.</b></div></div>
+        </div>
+        <div class="fd-closer fragment" data-fx="fdstep" data-fragment-index="7">
+          <p class="fd-close">"None of this is technical for me. I asked the AI to set it up, and I only clicked Allow when it asked."</p>
+          <span class="allow" id="fd-allow">Allow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Click 1, open: "In a normal chat, the AI forgets everything when the chat ends. The foundation is how I make it remember, and how I make sure my work is mine."
+    Click 2, One rules hub: it's like the induction pack every new teacher gets. It's one file of my rules that every AI reads before it starts: no pupil names, my house style, never overwrite, check your own work. I stopped repeating myself in every chat.
+    Click 3, A lens skill: my design lens written as a recipe. The AI picks it up by itself whenever it makes a book or a lesson, like clipping the department's playbook to every job.
+    Click 4, Git: "track changes" for a whole folder. Every save becomes a numbered snapshot with a note on what changed, so nothing is ever lost and I can always go back. It's save-as v1, v2, v3, but automatic.
+    Click 5, GitHub: an online home for those folders. GitHub Pages turns a folder into a free website. That's how pupils open the studios, and how this deck is online.
+    Click 6, Backup: a private copy of all my teaching material, 521 files, safe on GitHub. If the laptop dies or I change AI tools, the work is still mine.
+    Click 7, the one-liner: "Before, every chat started from zero and my work lived inside the AI. Now the AI starts with my rules and my lens, and my work is saved, tracked and owned by me."
+    Click 8, close: "None of this is technical for me. I asked the AI to set it up, and I only clicked Allow when it asked."
+    Sources: Teaching Hub CLAUDE.md; research file (private backup vault, 521 files, about 95 MB, 3 Nov 2026); "From chatbot to co-worker" pp. 4 and 7.
+  </aside>
+</section>
+
+<section id="s-quotes" data-act="1">
+  <div class="frame">
+    <p class="kicker">Act 1 · In my own words</p>
+    <h2 class="headline">My questions changed from <em>"then what?"</em> to <em>"who owns this?"</em></h2>
+    <div class="body quotes">
+      <div class="qline"></div>
+      <div class="q up" style="left:0">"I downloaded it, unzipped it? Then what?"<span class="qd">27 Oct</span></div>
+      <div class="q down fragment dim-after" data-fx="none" style="left:330px">"Can we start another thread while waiting?"<span class="qd">28 Oct</span></div>
+      <div class="q up fragment dim-after" data-fx="none" style="left:700px">"How can you do all this?!! Can you take over my computer!!"<span class="qd">1 Nov</span></div>
+      <div class="q down fragment" data-fx="none" style="left:1150px;width:520px">"I own all the teaching materials… make sure everything stays with me."<span class="qd">3 Nov</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Read them out in your own voice. They're real messages from my Claude projects, spelling tidied.
+    The arc: lost in the interface, then discovering parallel work, then amazement, then ownership. The last one led to the GitHub backup and the hub.
+    Source: research file, section 3 (quotes with dates). No learner data in any of them.
+  </aside>
+</section>
+
+<section id="s-mistakes" data-act="1">
+  <div class="frame">
+    <p class="kicker">Act 1 · Mistakes</p>
+    <h2 class="headline">I made almost every mistake, <em>so you don't have to</em>.</h2>
+    <div class="body">
+      <table class="tbl">
+        <tr><th>What went wrong</th><th>What I do now</th></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>One giant chat for a whole book: it compacted and lost my first prompts</td><td><b>One job per thread</b>, and files on disk, not chat history</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>My rules lived in three places, so every project reinvented the cover</td><td><b>One hub rules file</b> that every session reads first</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Learner names and marks went into a chat</td><td><b>Learner numbers only</b>; marks stay in Drive (POPIA)</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Two GitHub accounts and two AIs on the same files</td><td><b>One account, one main builder</b>, one shared rules file</td></tr>
+        <tr class="fragment" data-fx="none"><td>Simple jobs on maximum effort, which burned my limit</td><td><b>Ask first</b> which model and effort the job needs</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes">
+    Short and honest. One click per row.
+    Details: the 435-page book chat compacted (23 to 26 Oct); rules sat in AGENTS.md, a Drive spec and project instructions; the AS Chemistry forecast analysis (20 Oct) put learner data into a chat; GitHub went round in circles with two accounts (30 Oct, 3 Nov); usage limits hit on 28 and 31 Oct.
+    Sources: research file, section 4 (mistakes and lessons); "From chatbot to co-worker" pp. 5 to 6.
+  </aside>
+</section>
+
+<!-- ================= ACT 2 OPENER ================= -->
+
+<section class="opener" id="s-a2" data-act="2" data-opener="2">
+  <aside class="notes">
+    Act 2, about 8 minutes. Mostly for teachers and head office.
+    "What actually makes these books good, and why it isn't the prompt."
   </aside>
 </section>
 
@@ -309,12 +481,824 @@
   </aside>
 </section>
 
+
+<!-- ================= ACT 3: WHAT I BUILT ================= -->
+
+<section class="opener" id="s-a3" data-act="3" data-opener="3">
+  <aside class="notes">Act 3, about 8 minutes. For everyone. Live demos: check the Wi-Fi before the talk. Every live page has an offline screenshot behind it.</aside>
+</section>
+
+<section id="s-canvas-hub" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · The map</p>
+    <h2 class="headline">Canvas is the hub: <em>every tool is one tap from the home page.</em></h2>
+    <div class="body hubmap">
+      <div class="mapimg" id="mapimg"><img src="img/canvas-landing-hi.jpg" alt="Grade 10 Canvas home page"><div id="hotspots"></div></div>
+      <div class="feats" id="hs-list">
+        <div class="feat fragment dim-after" data-fx="hs" data-hs="0"><b>Revision papers</b> with worked memos: <i>check it</i></div>
+        <div class="feat fragment dim-after" data-fx="hs" data-hs="1"><b>Every resource</b>, organised by the AI</div>
+        <div class="feat fragment dim-after" data-fx="hs" data-hs="2"><b>Learning studios</b> and the phone app</div>
+        <div class="feat fragment dim-after" data-fx="hs" data-hs="3"><b>Memo overlays</b> to correct a test</div>
+        <div class="feat fragment" data-fx="hs" data-hs="-1"><b>Plus</b> the coursebook, answer book and lesson videos</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    The home page is the map for this act. Each click lights up one part, and the next slides open each part up: the system (book, answer book, studios, app), the studios, the lesson videos, then the app.
+    The Mr R Science app tile was added to this page on 4 Nov 2026 (inside Learning studios), at Noel's request.
+    Source: Grade 10 Canvas home page, copied read-only 4 Nov 2026.
+  </aside>
+</section>
+
+
+<section id="s-system" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · The system</p>
+    <h2 class="headline">Four tools, <em>one job each</em>, used in sequence.</h2>
+    <div class="body">
+      <div class="sys">
+        <div class="card2 sysc"><div class="sysimg"><img src="img/g10-cover.jpg" alt="Grade 10 coursebook cover"></div><div class="t"><small>Learn it</small>Coursebook</div><div class="d">Explanations and worked examples in SAGS wording</div></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="0"></div>
+        <div class="card2 sysc fragment" data-fx="none" data-fragment-index="0"><div class="sysimg"><img src="img/cc06-q01-answer.jpg" alt="A worked answer page"></div><div class="t"><small>Check it</small>Answer book</div><div class="d">Matching pages, fully worked answers</div></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="1"></div>
+        <div class="card2 sysc fragment" data-fx="none" data-fragment-index="1"><div class="sysimg"><img src="img/live-momentum.jpg" alt="Momentum Studio"></div><div class="t"><small>The classroom</small>Studios on Canvas</div><div class="d">Simulations, guided activities, longer practice</div></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="2"></div>
+        <div class="card2 sysc hot fragment" data-fx="none" data-fragment-index="2"><div class="sysimg phoneish"><img src="img/app-home.jpg" alt="The Mr R Science phone app"></div><div class="t"><small>The gym</small>Phone app</div><div class="d">Short daily practice, fresh numbers, XP and streaks</div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">Built to make pupils think. <em>Works without AI.</em> The teacher stays in control.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    The story in one line: pupils learn by retrieving and using ideas, not by rereading them: worked examples that fade, practice with feedback, coming back days later to check it stuck.
+    So every tool has one job. The coursebook teaches, in SAGS wording. The answer book lets pupils check themselves, page for page. The learning studios on Canvas are the classroom: simulations, guided activities, longer practice. The phone app is the gym: short daily practice with fresh numbers every time.
+    All of it is built on our own coursebooks, the IEB SAGS and published learning-science research, with Claude as the technical builder.
+    Source: Noel's email about the Grade 10 tools (sources/noel-email-grade10-tools-2026-11.md).
+  </aside>
+</section>
+
+
+<section id="s-studios" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · The classroom: learning studios</p>
+    <h2 class="headline">The studios make pupils <em>predict, practise, then check on their own.</em></h2>
+    <div class="body">
+      <div class="cards c2">
+        <div><div class="livebox" data-live="https://noelrobert-science.github.io/momentum/" style="width:820px;height:513px"><img src="img/live-momentum.jpg" alt="Momentum Studio home page"><span class="badge">offline copy</span></div><p class="cap" style="margin-top:14px">Momentum Studio, with a crash simulation</p></div>
+        <div class="fragment" data-fx="live"><div class="livebox" data-live="https://noelrobert-science.github.io/chemical-calculations/" style="width:820px;height:513px"><img src="img/live-chemcalc.jpg" alt="Chemical Calculations Studio home page"><span class="badge">offline copy</span></div><p class="cap" style="margin-top:14px">Chemical Calculations Studio: mass ↔ moles ↔ particles</p></div>
+      </div>
+      <div class="pill-row fragment" data-fx="none"><span class="pill">No AI needed</span><span class="pill">Works on a phone</span><span class="pill">No sign-in</span><span class="pill">Linked from Canvas</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    If a badge says "live", the real studio is running inside the slide: click into it (for example the Collision lab), ask the room to predict, then run it. Click outside the frame and press the right arrow to move on. If it says "offline copy", it's a screenshot from 4 Nov 2026.
+    Both studios follow the book's route: learn from a model, practise with support, check on your own, return later.
+    Sources: noelrobert-science.github.io/momentum and /chemical-calculations (screenshots 4 Nov 2026); Noel's email ("open to anyone, no sign-in").
+  </aside>
+</section>
+
+<section id="s-videos" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · Video inside the studio</p>
+    <h2 class="headline">The lesson video <em>stops and makes pupils predict</em> before it explains.</h2>
+    <div class="body vidwrap">
+      <img class="shot" src="img/studio-video.jpg" alt="Momentum Studio: a narrated lesson video, 'Two carts will stick together: predict their final direction before calculating'">
+      <div class="feats">
+        <div class="feat fragment dim-after" data-fx="none">A four-minute narrated lesson</div>
+        <div class="feat fragment dim-after" data-fx="none">It pauses for <b>five prediction checks</b></div>
+        <div class="feat fragment" data-fx="none">Then pupils test both cases in the collision lab</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    The videos live inside the studios, linked from Canvas, so pupils never hunt for them. Each one pauses at prediction checks: commit to an answer first, then see the explanation.
+    Source: Momentum Studio, "Watch & predict" tab (noelrobert-science.github.io/momentum, captured 4 Nov 2026): "A four-minute narrated lesson... Predict before each explanation, then test both cases in the Collision lab"; "Pause for the five prediction checks".
+  </aside>
+</section>
+
+<section id="s-app" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · The gym: the Mr R Science app</p>
+    <h2 class="headline">The app is daily practice where <em>the hint only opens after a real attempt.</em></h2>
+    <div class="body app">
+      <div class="phones">
+        <div class="phone"><img src="img/app-home.jpg" alt="Mr R Science app home screen"></div>
+        <div class="phone fragment" data-fx="none" data-fragment-index="1"><img src="img/app-crashlab.jpg" alt="Crash Lab: predict a collision, then watch it"></div>
+        <div class="phone fragment" data-fx="none" data-fragment-index="2"><img src="img/app-impulse.jpg" alt="Impulse: a worked example that fades into the pupil's own steps"></div>
+      </div>
+      <div class="feats">
+        <div class="feat fragment dim-after" data-fx="none" data-fragment-index="0"><b>Its own icon:</b> Add to Home Screen</div>
+        <div class="feat fragment dim-after" data-fx="none" data-fragment-index="1"><b>Crash Lab:</b> predict a collision, then watch it</div>
+        <div class="feat fragment dim-after" data-fx="none" data-fragment-index="2"><b>Impulse:</b> a "Ready?" check, then a worked example that fades into your steps</div>
+        <div class="feat fragment dim-after" data-fx="none" data-fragment-index="3"><b>Hints</b> open only after a go, or once you say where you're stuck</div>
+        <div class="feat fragment dim-after" data-fx="none" data-fragment-index="4"><b>Check it on my own:</b> three fresh questions, help off, back after 2 and 7 days</div>
+        <div class="feat fragment" data-fx="none" data-fragment-index="5"><b>Built 31 Oct:</b> rebuilt on an Apps Script backend, with its own home-screen icon</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    mr-r-science.web.app. It needs a Reddam House Google sign-in, because it saves each pupil's progress; anyone with a school account gets straight in.
+    Try it live on your phone if the Wi-Fi allows: tap Climb, then Crash Lab.
+    "Check it on my own" is recorded separately from assisted practice, so I can see what pupils can do without help, which is what the research says matters.
+    Next: an installable version that opens full-screen and works offline.
+    The teacher dashboard is deliberately not shown: it holds pupils' names and progress.
+    Source: Noel's email about the Grade 10 tools (sources/noel-email-grade10-tools-2026-11.md); screenshots from Noel's own account, 4 Nov 2026.
+  </aside>
+</section>
+
+<section id="s-dash" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · Beyond the classroom: the marks dashboard <span class="demo-flag" style="margin-left:16px;letter-spacing:0">DEMO COPY · invented data</span></p>
+    <h2 class="headline">A whole grade's marks, <em>in a 15-second snapshot.</em></h2>
+    <div class="body bstage">
+      <div class="bcenter wide"><iframe src="demo/dashboard/index.html" title="Demo copy of the marks dashboard" tabindex="-1"></iframe><button class="bopen" data-view="demo/dashboard/index.html">Open the demo ▸</button></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="0" style="left:0;top:0"><span class="bn">1</span>Claude drove Chrome and read iSAMS, <b>read-only</b>: nothing changed</div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="1" style="left:0;top:190px"><span class="bn">2</span>Pupil list and marks copied into a Google Sheet: the <b>Marks Hub</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="2" style="left:0;top:380px"><span class="bn">3</span>A first dashboard, with <b>exam-path trend cards</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="3" style="right:0;top:60px"><span class="bn">4</span>Rebuilt as a school web app: every 2026 mark sheet, read-only, plus <b>two years of trends</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="4" style="right:0;top:300px"><span class="bn">5</span>Works on an iPad, school sign-in only, and writes <b>a tutor comment</b> per pupil</div>
+      <div class="bclose fragment" data-fx="none" data-fragment-index="5">Hours of spreadsheet work become a 15-second snapshot, <em>and the teacher still decides.</em></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Built on 1 Nov 2026 in my "Data analysis" project. One click per step.
+    1 Claude drove Chrome on my PC and read iSAMS read-only, changing nothing. 2 The pupil list and marks went into a Google Sheet copy, the Marks Hub. 3 Claude built a first dashboard with exam-path trend cards. 4 It became a Google Apps Script web app that reads every 2026 mark sheet read-only, plus 2024 and 2025 for trends. 5 It works on an iPad, opens only with a school account, takes about 15 seconds to load, and writes a tutor comment per pupil.
+    My reaction that day: "How can you do all this?!! Can you take over my computer!!"
+    Close: "The teacher still decides. As I told a colleague, you have a better intuitive judgement on this even compared to AI analysis of marks."
+    Click the dashboard (or "Open the demo") to try it: six tabs: Grade overview, Watch list, Tutor group, Subject, Pupil profile, Externals and trends. EVERY pupil, group and mark in the demo is invented. The real dashboard is never shown.
+    Sources: research file section 2 (1 Nov 2026); Noel's emails of 2 and 3 Nov (six tabs, about 15 seconds, iPad, school sign-in, asks once to read the Marks Hub), verified by the project assistant on 4 Nov.
+  </aside>
+</section>
+
+<section id="s-staff" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · Beyond the classroom: the staff app <span class="demo-flag" style="margin-left:16px;letter-spacing:0">DEMO COPY · invented data</span></p>
+    <h2 class="headline">The school day, safety and duties, <em>in every teacher's pocket.</em></h2>
+    <div class="body bstage">
+      <div class="bcenter phone"><iframe src="demo/staffapp/index.html" title="Demo copy of the staff app" tabindex="-1"></iframe><button class="bopen" data-view="demo/staffapp/index.html" data-phone="1">Open the demo ▸</button></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="0" style="left:0;top:0"><span class="bn">1</span>30 Oct, safety first: <b>"How safe is everything, no leaks?"</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="1" style="left:0;top:190px"><span class="bn">2</span>First built with <b>ChatGPT and Codex</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="2" style="left:0;top:380px"><span class="bn">3</span>Claude compared both apps and <b>recommended ChatGPT's</b></div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="3" style="right:0;top:60px"><span class="bn">4</span>Apps Script backend: <b>school sign-in only</b>, admin roles, an activity log</div>
+      <div class="bs fragment" data-fx="bstep" data-fragment-index="4" style="right:0;top:300px"><span class="bn">5</span>Add to Home Screen on <b>Android and iPhone</b></div>
+      <div class="bclose fragment" data-fx="none" data-fragment-index="5">Notices, duties, safety and invigilation in one place, <em>built safety-first.</em></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Built 30 to 31 Oct 2026 in my APPS project, with safety as the top priority. My first question: "How safe is everything, no leaks?"
+    1 Safety first. 2 The first version came from ChatGPT and Codex. 3 Claude compared ChatGPT's staff app with its own and honestly recommended ChatGPT's, adding only its own sign-in logging. 4 A Google Apps Script backend: school accounts only, admin roles, an activity log. 5 Add to Home Screen through Chrome on Android and Safari on iPhone.
+    It opens on Home ("your day"), with buttons along the top: Home, Notices, Calendar, Timetable, Safety, Invigilation, Admin, Activity. Click the phone to try the demo. Every name, notice and duty in it is invented.
+    Sources: research file sections 2 and 5 (30 to 31 Oct 2026); Noel's email of 3 Nov (verified by the project assistant, 4 Nov).
+  </aside>
+</section>
+
+<section id="s-samemonth" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · Same month, same method</p>
+    <h2 class="headline">The same lens and the same plumbing, <em>for everything else too.</em></h2>
+    <div class="body">
+      <div class="tiles6" id="tiles6">
+        <button class="tile6 opens" data-view="demo/booklets/viewer.html#junior+video"><span class="tk">28 Oct</span><b>"Brain On, AI On"</b> AI literacy for Grades 7 to 9</button>
+        <button class="tile6 opens" data-view="demo/booklets/viewer.html#senior+video"><span class="tk">28 Oct</span><b>"Co-Pilot, Not Autopilot"</b> AI literacy for Grades 10 to 12: learners write their own AI policy</button>
+        <button class="tile6 opens" data-view="demo/booklets/viewer.html#g7"><span class="tk">28 Oct</span><b>Junior coursebooks</b> and answer books for Grades 7, 8 and 9, for colleagues</button>
+        <button class="tile6 opens" data-view="demo/changelists/index.html"><span class="tk">28 Oct</span><b>Textbook change lists</b> Colleagues ask for edits in one shared folder</button>
+        <button class="tile6 opens" data-view="demo/booklets/viewer.html#syllabus"><span class="tk">29 Oct</span><b>Junior syllabus reviews</b> in Physics and Chemistry, with lesson-by-lesson plans</button>
+        <button class="tile6 opens" data-view="demo/booklets/viewer.html#risk"><span class="tk">30 Oct</span><b>Risk and emergency booklet</b> Staff-ready, at a glance</button>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    All built in the same few days, with the same lens and the same plumbing.
+    The AI literacy booklets cover how models work and fail, a "how strong is this study?" table, what South African universities now do (for example UCT dropping AI detectors, oral defences, declaring AI use), career data, the IEB declaration and deepfake law; learners write their own AI policy.
+    The junior books came with a shared "Textbook change lists" folder so colleagues can ask for edits instead of editing the files.
+    Every tile opens on this slide (Esc or × comes back here): the two AI literacy tiles play the 60-second video, then flip through that booklet; coursebooks show Grade 7, Grade 8 (Physics and Chemistry) and Grade 9 sample spreads; change lists show how the shared folder works, with a staff-only Drive button; the syllabus tile shows the Physics review with week-by-week plans, and the Chemistry review; the risk tile shows the cover and one generic method page, with a staff-only Drive button.
+    If you ever jump to another slide, a "Back to slide N" pill appears; click it or press Backspace.
+    Sources: research file section 2 (28 to 30 Oct 2026); Classroom folder (AI literacy booklets, Junior Physics Grades 7–9 plans); Noel's emails as summarised by the project assistant.
+  </aside>
+</section>
+
+
+<section id="s-parallel" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · 28 October</p>
+    <h2 class="headline">Threads ran side by side: <em>four coursebooks and two booklets</em> in one day.</h2>
+    <div class="body">
+      <div class="lanes" id="lanes">
+        <div class="lane"><span class="ln2">Grade 7 Chemistry + answer book</span><div class="track"><div class="fill"></div></div></div>
+        <div class="lane"><span class="ln2">Grade 9 Chemistry + answer book</span><div class="track"><div class="fill"></div></div></div>
+        <div class="lane"><span class="ln2">Grade 8 Chemistry + answer book</span><div class="track"><div class="fill"></div></div></div>
+        <div class="lane"><span class="ln2">Grade 8 Physics + answer book</span><div class="track"><div class="fill"></div></div></div>
+        <div class="lane"><span class="ln2">Junior AI-literacy booklet</span><div class="track"><div class="fill"></div></div></div>
+        <div class="lane"><span class="ln2">Senior AI-literacy booklet</span><div class="track"><div class="fill"></div></div></div>
+      </div>
+      <p class="cap fragment" data-fx="none" style="margin-top:26px">My job that day: answer questions and approve each plan. Same day: the first usage-limit stop.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    The bars fill together because the threads really did run at the same time, each one a separate job in the Textbooks project.
+    "Can we start another thread while waiting for the Grade 7 chem textbook?" That one question changed how I worked.
+    Honest note: the bars show "in progress together", not hours. Same day: the first usage-limit stop.
+    Source: research file, section 2 (28 Oct 2026); Textbooks project timeline.
+  </aside>
+</section>
+
+<section id="s-bigbuilds" data-act="3">
+  <div class="frame">
+    <p class="kicker">Act 3 · The big builds</p>
+    <h2 class="headline">The AI checks its own work: <em>an independent pass found and fixed 54 errors.</em></h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat2"><div class="n" data-count="443">443</div><div class="l">IEB SAGS bullets placed in <b>33 modules</b> for the combined Grade 11 to 12 book</div></div>
+        <div class="stat2 fragment" data-fx="count"><div class="n" data-count="344">344</div><div class="l">pages in the FS Chemistry Paper 2 books (194 + 150), with matching page numbers</div></div>
+        <div class="stat2 fragment" data-fx="count"><div class="n"><span data-count="54">54</span></div><div class="l">errors found and fixed by an independent checking pass</div></div>
+        <div class="stat2 fragment" data-fx="count"><div class="n" data-count="139">139</div><div class="l">curly arrows in the organic mechanisms, every one checked</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    The point for everyone: "AI makes mistakes" is true, so the build includes a second AI pass that only checks. In the FS Chemistry book it found and fixed 54 errors before I saw it. I still moderate every page.
+    Sources: research file, section 2 (2 Nov 2026); "Textbook decisions after 26 Oct 2026 (spec addendum).md", sections 3 and 4 (139 curly arrows; 443 SAGS bullets in 33 modules); FS Chemistry Paper 2 build report (194-page coursebook, 150-page answer book, 54 errors fixed).
+  </aside>
+</section>
+
+
+<!-- ================= ACT 4: AI ON MY COMPUTER ================= -->
+
+<section class="opener" id="s-a4" data-act="4" data-opener="4">
+  <aside class="notes">Act 4, about 6 minutes. For teachers and IT.</aside>
+</section>
+
+<section id="s-canvas-fill" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · AI on my computer</p>
+    <h2 class="headline">The AI fills Canvas for me, <em>so I keep the teaching.</em></h2>
+    <div class="body">
+      <div class="fill3">
+        <div class="col">
+          <div class="srcs">
+            <div class="card2"><div class="t">Google Drive<span class="rtag read">reads</span></div></div>
+            <div class="card2 fragment" data-fx="none" data-fragment-index="0"><div class="t">IEB docs library<span class="rtag read">reads</span></div></div>
+            <div class="card2 fragment" data-fx="none" data-fragment-index="0"><div class="t">Cambridge hub<span class="rtag read">reads</span></div></div>
+            <div class="card2 fragment" data-fx="none" data-fragment-index="0"><div class="t">Any folder or site</div></div>
+          </div>
+        </div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="1"></div>
+        <div class="hubnode2 fragment" data-fx="none" data-fragment-index="1">Claude<small>copies, renames, sorts</small></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="2"></div>
+        <div class="col fragment" data-fx="none" data-fragment-index="2">
+          <div class="card2 hot"><div class="t">Canvas<span class="rtag write">builds</span></div>
+            <div class="d tree">Past papers and memos<br>&nbsp;&nbsp;└ by year, by paper<br>Notes and worked examples<br>&nbsp;&nbsp;└ by topic<br>Studios and app links<br>Landing page</div></div>
+        </div>
+      </div>
+      <p class="cap fragment" data-fx="none" style="margin-top:20px">Sources are read only. A Gmail message is only ever a draft: I press send.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Canvas can connect to almost anything; the AI does the connecting. Claude, working in my own Chrome, reads from Google Drive, the IEB docs library and the Cambridge School Support Hub, copies the files into Canvas and organises them: past papers and memos by year and paper, notes by topic, studio and app links in one place.
+    It never changes the sources, and it never sends an email for me.
+    Exam content itself is not shown on these slides; only the structure.
+    Sources: Noel's email ("AI can... connect to any drive, Cambridge hub, IEB doc library, and automatically copy resources into Canvas"); the act 4 screen clip.
+  </aside>
+</section>
+
+<section id="s-canvas-ai" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · Watch it happen <span class="demo-flag" style="margin-left:16px;letter-spacing:0">ILLUSTRATION</span></p>
+    <h2 class="headline">The AI rebuilds a Canvas page <em>in seconds.</em></h2>
+    <div class="body">
+      <img class="shot" src="img/canvas-before-after.jpg" alt="Before: a plain list of revision links. After: the same links laid out by the AI as a revision card, studio buttons and a notes box" style="width:1500px;margin:0 auto">
+      <p class="cap fragment" data-fx="none" style="margin-top:18px;text-align:center">Same content, same links. I describe the layout; the AI writes the page; I approve it before pupils see it.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    This is an illustration of the kind of change the AI makes, not a recording: a plain list of links on the left, and the same links laid out the way my real home page is on the right. My Grade 10 home page (act 0 and act 3) was built exactly this way.
+    [CONFIRM WITH NOEL] A real 60 to 90-second screen recording on an unpublished test page in your Sandbox course (no pupils) can replace this. My safety check stopped me making that Canvas edit without your direct OK.
+    Source: illustration rendered for the deck (tools/render-beforeafter.js), styled like Noel's real home page.
+  </aside>
+</section>
+
+<section id="s-quiz" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · Quizzes and marking <span class="demo-flag" style="margin-left:16px;letter-spacing:0">DEMO PUPILS · invented</span></p>
+    <h2 class="headline">Design it so <em>the marking does itself.</em></h2>
+    <div class="body">
+      <div class="qflow">
+        <div class="card2"><div class="t"><small>1 · AI builds</small>From the answer book</div><div class="d">Multiple choice, drop-downs, matching, numerical answers, fresh-number formulas</div></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="0"></div>
+        <div class="card2 fragment" data-fx="none" data-fragment-index="0"><div class="t"><small>2 · Pupils</small>Do the quiz</div><div class="d">On Canvas, on any device</div></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="1"></div>
+        <div class="card2 fragment" data-fx="none" data-fragment-index="1"><div class="t"><small>3 · Canvas</small>Marks it</div><div class="d">Instantly; marks land in the gradebook, <b>hidden</b></div>
+          <table class="gb" aria-label="Demo gradebook with invented pupils"><tr><td>Pupil A</td><td>14/15</td></tr><tr><td>Pupil B</td><td>11/15</td></tr><tr><td>Pupil C</td><td>9/15</td></tr></table></div>
+        <div class="arr fragment" data-fx="none" data-fragment-index="2"></div>
+        <div class="card2 hot fragment" data-fx="none" data-fragment-index="2"><div class="t"><small>4 · Teacher</small>Checks, then releases</div><div class="d">Nothing goes out until I post it</div></div>
+      </div>
+      <p class="cap fragment" data-fx="none" style="margin-top:24px">Pupil work and marks stay in the school's own systems (Canvas, school Google). Nothing identifiable goes into an AI chat.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    The trick is in the design, not in AI marking: the AI turns a coursebook or answer-book page into questions Canvas can mark by itself, such as multiple choice, drop-down menus, matching, numerical answers with a tolerance, and formula questions that give each pupil fresh numbers.
+    Canvas marks them the moment pupils submit. The marks go into the gradebook hidden (manual posting), and I check them before I release them.
+    The pupils and marks on this slide are invented for the demo.
+    Governance: pupil work and marks stay inside Canvas and the school's Google; nothing identifiable goes into AI chats; the teacher approves before anything is released.
+    Source: Noel, 4 Nov 2026 (how his Canvas quizzes work); Teaching Hub CLAUDE.md (POPIA rules).
+  </aside>
+</section>
+
+<section id="s-workload" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · Workload <span class="demo-flag" style="margin-left:16px;letter-spacing:0">ILLUSTRATION</span></p>
+    <h2 class="headline">The AI takes the clicking out of my week; <em>I keep the decisions.</em></h2>
+    <div class="body">
+      <table class="tbl wl">
+        <tr><th>Job</th><th>Before</th><th>Now</th></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Set up Canvas pages</td><td>By hand, page by page</td><td><b>AI builds</b>; I approve the look</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Copy papers, memos and notes</td><td>Download, rename, upload</td><td><b>AI fetches and sorts</b> them</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Build quizzes</td><td>Type every question</td><td><b>AI drafts</b> from the answer book; I check</td></tr>
+        <tr class="fragment" data-fx="none"><td>Mark and capture</td><td>Mark, then type marks in</td><td><b>Canvas marks</b>; I check and release</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes">
+    An illustration of steps removed, not measured hours. [CONFIRM WITH NOEL] If you want hours on this slide, give me your own estimates and I'll add them, labelled as estimates.
+    Every "Now" still ends with me: I approve, I check, I release.
+    Source: Noel, 4 Nov 2026 (Canvas workflow); act 4 demo.
+  </aside>
+</section>
+
+<section id="s-remote" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · Remote control</p>
+    <h2 class="headline">I ask from anywhere; the work runs on my PC; <em>I only approve sign-ins.</em></h2>
+    <div class="body">
+      <div class="flow">
+        <div class="card2"><div class="t"><small>1 · Ask</small>Phone or laptop</div><div class="d">A message in my Claude project</div></div>
+        <div class="arr"></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>2 · Plan</small>In the cloud</div><div class="d">Research, a plan, my settings check; then it waits for my "go"</div></div>
+        <div class="arr fragment" data-fx="none"></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>3 · Build</small>On my PC</div><div class="d">Files, Chrome, print checks, publishing</div></div>
+        <div class="arr fragment" data-fx="none"></div>
+        <div class="card2 hot fragment" data-fx="none"><div class="t"><small>4 · Me</small>Approve</div><div class="d">Sign-ins and permission prompts only</div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">Plan in the cloud. <em>Build on my computer.</em></p>
+    </div>
+  </div>
+  <aside class="notes">
+    This deck was built exactly like this: I asked in the Professional Development project, it planned, then a session on my PC built and checked it.
+    Rule from my hub: before any job, Claude recommends the model, the effort and where to run it, then waits for my "go".
+    Keep the computer awake and the lid open during big builds; a sleeping PC stalls them.
+    Sources: Teaching Hub CLAUDE.md ("Settings check", "Do the technical work"); BUILD-LOG.md of this deck.
+  </aside>
+</section>
+
+<section id="s-compare" data-act="4">
+  <div class="frame">
+    <p class="kicker">Act 4 · An honest comparison (my experience, Nov 2026)</p>
+    <h2 class="headline">Different tools, different strengths: <em>pick by the job.</em></h2>
+    <div class="body">
+      <div class="cards c2">
+        <div class="card2"><div class="t">ChatGPT and OpenAI's agent</div><div class="d">Smoother at <b>taking over websites</b> and the laptop. Quick to a first app.</div></div>
+        <div class="card2 fragment" data-fx="none"><div class="t">Claude</div><div class="d">Stronger at <b>long, rule-bound, detailed builds</b>: coursebooks, exam papers, memos. Keeps to my lens across sessions.</div></div>
+      </div>
+      <div class="card2 hot fragment" data-fx="none" style="margin-top:30px"><div class="t" style="font-size:38px">The honesty moment</div><div class="d">Asked to compare two staff apps, Claude recommended <b>ChatGPT's version over its own</b>.</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    Keep this fair and personal: "in my experience, in November 2026". These tools change monthly.
+    The staff-app comparison was on 31 Oct 2026 in the APPS project: Claude said ChatGPT's staff app was further along and suggested adding only its own sign-in logging.
+    Sources: research file, sections 2 and 5; "From chatbot to co-worker" guide, the "ChatGPT or Claude" section.
+  </aside>
+</section>
+
+
+<!-- ================= ACT 5: THE PLUMBING ================= -->
+
+<section class="opener" id="s-a5" data-act="5" data-opener="5">
+  <aside class="notes">Act 5, about 6 minutes. Mainly for IT. Teachers: this is the part Claude sets up for you.</aside>
+</section>
+
+<section id="s-where" data-act="5">
+  <div class="frame">
+    <p class="kicker">Act 5 · The plumbing</p>
+    <h2 class="headline">Where your work lives decides <em>what the AI remembers.</em></h2>
+    <div class="body">
+      <div class="cards c3">
+        <div class="card2"><div class="t"><small>Chat</small>Conversation</div><div class="d">Everything lives in the chat. Long chats get <b>compacted</b>, and early detail is lost.</div></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>Projects</small>Workspace</div><div class="d">Instructions, files and memory per project. Threads run <b>side by side</b>.</div></div>
+        <div class="card2 hot fragment" data-fx="none"><div class="t"><small>Claude Code</small>My computer</div><div class="d">Works on <b>real files</b>: my Drive folder, Chrome, Git. Rules load at the start of every session.</div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">Anything that must survive the session belongs <em>in a file, not a chat.</em></p>
+    </div>
+  </div>
+  <aside class="notes">
+    Under the hood: stages 1 to 3 of my journey kept all state in conversation history or the cloud; stage 4 moved execution to my machine (Claude Code via remote control, with direct access to the Drive-synced folder); stage 5 moved state to disk and version control (CLAUDE.md, skills, Git, a private remote).
+    Compaction is the context manager summarising older turns; anything not on disk is lossy after that. Long threads re-send their whole context on every turn, so cost grows fast.
+    Source: "From chatbot to co-worker" pp. 2, 4 and 7 (Under the hood boxes).
+  </aside>
+</section>
+
+<section id="s-stack" data-act="5">
+  <div class="frame">
+    <p class="kicker">Act 5 · The layers</p>
+    <h2 class="headline">My lens sits on top; <em>the library sits underneath.</em></h2>
+    <div class="body stack-wrap">
+      <div class="stack" id="stack">
+        <div class="layer top"><span class="lnum">1</span><div><div class="lt">Rules file (CLAUDE.md)</div><div class="ld">My hub: standards, versions, privacy, how to work with me</div></div></div>
+        <div class="layer top"><span class="lnum">2</span><div><div class="lt">Design-lens skill (SKILL.md)</div><div class="ld">My learning-science checklist, applied automatically</div></div></div>
+        <div class="layer"><span class="lnum">3</span><div><div class="lt">Education skills library</div><div class="ld">About 170 teaching tools: hint ladders, retrieval, fading</div></div></div>
+        <div class="layer"><span class="lnum">4</span><div><div class="lt">Connectors</div><div class="ld">Drive, Gmail, Canva: they do nothing until I sign in</div></div></div>
+      </div>
+      <div>
+        <div class="punch fragment" data-fx="none">My lens <em>wins over</em> any generic skill.</div>
+        <p class="cap fragment" data-fx="none">Curate the toolbox: switch off what you don't teach with. Fewer irrelevant skills, better picks.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Skills work in the background: the AI picks one up when a job matches it, so you don't have to call it.
+    Safeguard added to my hub on 4 Nov 2026: my design lens, spec and house style always win over any education skill, and social-posting, finance and marketing tools are never used for teaching work.
+    Honest limit: plugins are switched on and off by hand in the Claude app (Customize > Plugins); the AI can't do that for you.
+    Source: research file, section 6 (4 Nov 2026 conversation on skills, plugins and connectors); Teaching Hub CLAUDE.md.
+  </aside>
+</section>
+
+<section id="s-dials" data-act="5">
+  <div class="frame">
+    <p class="kicker">Act 5 · Settings</p>
+    <h2 class="headline">Three dials: <em>which brain, how long it thinks, how big the team.</em></h2>
+    <div class="body">
+      <div class="cards c3">
+        <div class="card2"><div class="gauge g2"></div><div class="t">Model</div><div class="d">The brain. Quick questions: a lighter model. <b>Books and papers: the top model.</b></div></div>
+        <div class="card2 fragment" data-fx="none"><div class="gauge g1"></div><div class="t">Effort</div><div class="d">Thinking time. <b>Medium</b> for normal building; <b>high or max</b> for anything printed for learners.</div></div>
+        <div class="card2 fragment" data-fx="none"><div class="gauge g3"></div><div class="t">Ultracode</div><div class="d">A team of agents. <b>Only for huge jobs</b> that split into parallel parts; it uses limits fast.</div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">Before every job, the AI recommends the settings <em>and waits for my "go".</em></p>
+    </div>
+  </div>
+  <aside class="notes">
+    My standing rule since 3 Nov: the first reply to any new job recommends the model, effort and Ultracode, and whether it needs my computer or can run in the cloud. Then it stops and waits.
+    Gauge fill is a visual cue only, not a measurement.
+    Source: Teaching Hub CLAUDE.md, "Settings check at the start of every new task".
+  </aside>
+</section>
+
+<section id="s-own" data-act="5">
+  <div class="frame">
+    <p class="kicker">Act 5 · Ownership</p>
+    <h2 class="headline">Everything I make lives <em>where I own it</em>, not inside the AI.</h2>
+    <div class="body">
+      <div class="cards c3">
+        <div class="card2"><div class="t"><small>Working files</small>Google Drive</div><div class="d">Synced to my PC; Claude saves straight into the right folder</div></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>Private backup</small>GitHub vault</div><div class="d"><b>521 files, about 95 MB</b>: hub, lens, book engines, apps</div></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>For learners</small>GitHub Pages</div><div class="d">Public studios on my own link: <b>no sign-in, no learner data</b></div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">If I move schools, <em>my work moves with me.</em></p>
+    </div>
+  </div>
+  <aside class="notes">
+    Personal GitHub account on a personal email, not a school one: I lost years of work once when I left a school email behind.
+    Sources: research file, section 2 (3 Nov 2026: private backup vault, 521 files, about 95 MB); INDEX.md ("Where it's published and backed up"); "From chatbot to co-worker" p. 7.
+  </aside>
+</section>
+
+<section id="s-safe" data-act="5">
+  <div class="frame">
+    <p class="kicker">Act 5 · Data boundaries</p>
+    <h2 class="headline">Learner data <em>never goes into an AI chat.</em></h2>
+    <div class="body">
+      <table class="tbl">
+        <tr><th>Rule</th><th>How it's enforced</th></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>No names, ID numbers or emails in chats or public pages</td><td>Written into the <b>hub rules file</b> every session reads</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Mark analysis uses learner numbers only</td><td>Marks files <b>stay in Drive</b>; the AI reads exports, never edits</td></tr>
+        <tr class="fragment dim-after" data-fx="none"><td>Anything that collects learner data</td><td>Runs in the <b>school's own Google Workspace</b>, with approval</td></tr>
+        <tr class="fragment" data-fx="none"><td>Passwords and sending</td><td><b>Never stored</b>; email is drafted, a human sends</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes">
+    POPIA in practice. These are the exact rules in my hub file, and the AI follows them because it reads them before every job.
+    Sources: Teaching Hub CLAUDE.md, "Learner data (POPIA)"; act 4 (Gmail drafts only).
+  </aside>
+</section>
+
+<!-- ================= ACT 6: WHAT'S NEXT ================= -->
+
+<section class="opener" id="s-a6" data-act="6" data-opener="6">
+  <aside class="notes">Act 6, about 6 minutes. Mainly for Inspired Schools head office.</aside>
+</section>
+
+<section id="s-bastani" data-act="6">
+  <div class="frame">
+    <p class="kicker">Act 6 · What the research warns</p>
+    <h2 class="headline">Unguarded AI raised practice grades, then <em>lowered grades once it was taken away.</em></h2>
+    <div class="body">
+      <div class="bars" id="bars">
+        <div class="bcol"><div class="bplot"><div class="bval">+48%</div><div class="bbar" data-h="120"></div></div><div class="blab"><b>Plain chatbot</b><br>while practising</div></div>
+        <div class="bcol fragment" data-fx="bars"><div class="bplot"><div class="bval">+127%</div><div class="bbar" data-h="318"></div></div><div class="blab"><b>Tutor with guardrails</b><br>while practising</div></div>
+        <div class="bcol fragment" data-fx="bars"><div class="bplot"><div class="bval">&nbsp;</div></div><div class="bplot neg"><div class="bbar" data-h="42"></div><div class="bval">−17%</div></div><div class="blab"><b>Plain chatbot</b><br>after it was removed</div></div>
+      </div>
+      <p class="cap fragment" data-fx="none" style="margin-top:16px">The tutor's guardrails largely prevented the harm. Nearly 1,000 high-school maths students (Bastani et al., PNAS 2025).</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Percent changes in grades compared with students who had no AI access. Bar heights are drawn to scale (48 : 127 : 17).
+    "Without guardrails, students attempt to use GPT-4 as a crutch during practice problem sessions, and subsequently perform worse on their own."
+    Lesson for us: build tools that make learners think, not tools that think for them.
+    Source, checked 4 Nov 2026 against the published abstract (via Europe PMC): Bastani, H. et al. (2025) "Generative AI without guardrails can harm learning: Evidence from high school mathematics", PNAS. Figures: 48% improvement (GPT Base) and 127% (GPT Tutor) while practising; 17% reduction for GPT Base when access was removed; negative effects largely mitigated by GPT Tutor's safeguards; nearly a thousand students.
+  </aside>
+</section>
+
+<section id="s-ailit" data-act="6" class="edit">
+  <div class="frame">
+    <p class="kicker">Act 6 · Keeping pupils thinking</p>
+    <h2 class="headline zh">AI literacy, <em>in two minutes.</em></h2>
+    <div class="body zbody">
+      <button class="ail-cover zl" data-view="demo/booklets/viewer.html#junior"><img src="demo/booklets/junior-cover.jpg" alt="Brain On, AI On: AI literacy booklet for Grades 7 to 9"><span>Brain On, AI On<br>Grades 7–9</span></button>
+      <div class="zvid"><video id="ail-video" playsinline preload="metadata" poster="video/v4/ai-literacy-poster-v4.jpg" src="video/v4/ai-literacy-v4.mp4"></video><button class="zplay" id="ail-play" aria-label="Play the video">▶ Play</button></div>
+      <button class="ail-cover zr" data-view="demo/booklets/viewer.html#senior"><img src="demo/booklets/senior-cover.jpg" alt="Co-Pilot, Not Autopilot: AI literacy booklet for Grades 10 to 12"><span>Co-Pilot, Not Autopilot<br>Grades 10–12</span></button>
+    
+      <div class="ail-chapters" id="ail-chapters"></div>
+      <div class="ail-chips">
+        <button class="ail-chip" data-view="demo/booklets/viewer.html#senior@2">How strong is each claim? ▸</button>
+        <button class="ail-chip" data-view="demo/booklets/viewer.html#senior@4">Deepfakes and the law ▸</button>
+        <button class="ail-chip" data-view="demo/booklets/viewer.html#senior@3">The future of work ▸</button>
+        <button class="ail-chip" data-view="demo/booklets/viewer.html#senior@5">Your personal AI policy ▸</button>
+        <button class="ail-chip ail-ext" data-view="video/v4/extended.html">Watch the extended cut (3:14) ▸</button>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Click Play (or press Space on this slide; Space again pauses). The AI literacy video v4: two minutes, six chapters, paced so every card can be read. Captions are off because the text is on screen; the CC chip turns them on. The dots under the video jump to a chapter.
+    From the UPDATED booklets (2 Nov 2026): "Brain On, AI On" (Grades 7 to 9) and "Co-Pilot, Not Autopilot" (Grades 10 to 12). Chapters: 1 Start here ("Stop using it like Google"); 2 The evidence (nearly 1 000 pupils: +48% and +127% in practice, -17% in the exam; "Practice soared. Learning sank."); 3 Why it goes wrong (98% of challenged answers; the Pietermaritzburg court case; "carry the one" for 36 + 59); 4 The fix (augment, don't automate; the attempt-first routine; the hint ladder); 5 The world has moved (UCT, explain out loud, declare AI use); 6 The two books, and "The measure that counts: what you can do with the AI switched off."
+    Click a cover to flip through that booklet. The four buttons open the spreads the film leaves out: the evidence-strength table, deepfakes and the law, the future of work, and the personal AI policy. Esc closes.
+    Timing: the film is 2:00, a minute longer than before, which takes the talk to about 48 minutes. If time is tight, click the "6 · The two books" dot after chapter 4 (saves about 25 s), or take a minute from questions.
+    Every line and page is in video/CLAIMS.md. Original sound made in code; no voices, no samples, no real faces. Earlier cuts are kept in video/v1 to v3.
+  </aside>
+</section>
+
+<section id="s-coach" data-act="6">
+  <div class="frame">
+    <p class="kicker">Act 6 · The coach <span class="demo-flag" style="margin-left:16px;letter-spacing:0">ILLUSTRATION</span></p>
+    <h2 class="headline">With AI on, the coach should <em>teach like a good teacher.</em></h2>
+    <div class="body coach">
+      <div class="chat">
+        <div class="msg ai"><span class="who">Coach</span>Before I help: what does momentum depend on?</div>
+        <div class="msg me fragment" data-fx="none">mass and velocity, p = mv</div>
+        <div class="msg ai fragment" data-fx="none"><span class="who">Coach</span>Good. Try part (a) and show me your first line.</div>
+        <div class="msg me fragment" data-fx="none">Δp = 0,2(8 − 12)</div>
+        <div class="msg ai fragment" data-fx="none"><span class="who">Coach</span>Check your signs: which way is the ball moving after the bounce?</div>
+      </div>
+      <div class="rules">
+        <div class="fragment" data-fx="none" data-fragment-index="0">Retrieve first</div>
+        <div class="fragment" data-fx="none" data-fragment-index="2">Attempt before help</div>
+        <div class="fragment" data-fx="none" data-fragment-index="3">Hints, not answers</div>
+        <div class="fragment" data-fx="none" data-fragment-index="4">Check unaided a week later</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    This is an illustration I wrote for the talk, not a real pupil transcript. It uses Worked example 7.2 from act 2.
+    The coach never gives the answer; it makes the pupil retrieve, attempt, and fix their own mistake. A week later the studio checks the same idea with fresh numbers and no help.
+    Sources: Learning design lens ("The one test"; AI tutors section); Teaching Hub CLAUDE.md ("hints in steps, full solution only after a real attempt, fresh numbers on retry"); Bastani et al. 2025 (guardrails).
+  </aside>
+</section>
+
+<section id="s-canvas" data-act="6">
+  <div class="frame">
+    <p class="kicker">Act 6 · AI in Canvas and the suites</p>
+    <h2 class="headline">The suites already work with AI off. <em>With AI on, add a coach, never a shortcut.</em></h2>
+    <div class="body">
+      <div class="flow">
+        <div class="card2"><div class="t"><small>Today</small>Canvas course</div><div class="d">Where pupils already work</div></div>
+        <div class="arr"></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>Today</small>Learning studio</div><div class="d">Learn · Practise · Check, <b>no AI needed</b></div></div>
+        <div class="arr fragment" data-fx="none"></div>
+        <div class="card2 hot fragment" data-fx="none"><div class="t"><small>Next</small>Guarded AI coach</div><div class="d">Optional; retrieve first, hints in steps</div></div>
+        <div class="arr fragment" data-fx="none"></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>Next</small>Teacher view</div><div class="d">Which idea each class missed, and what to re-teach</div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    The design rule from my learning studio brief: every studio must work with AI switched off. The coach is an extra layer, not the foundation.
+    Feedback names the first gap and one next action.
+    Sources: Learning studio design brief and roadmap (Classroom); Teaching Hub CLAUDE.md ("Apps and learning spaces").
+  </aside>
+</section>
+
+<section id="s-group" data-act="6">
+  <div class="frame">
+    <p class="kicker">Act 6 · Across Inspired schools</p>
+    <h2 class="headline">One approved toolbox for the group, <em>with each school's lens on top.</em></h2>
+    <div class="body group">
+      <div class="schools">
+        <div class="card2 fragment" data-fx="none" data-fragment-index="1"><div class="t">School A</div><div class="d">Own lens, house style, crest</div></div>
+        <div class="card2 fragment" data-fx="none" data-fragment-index="1"><div class="t">School B</div><div class="d">Own lens, house style, crest</div></div>
+        <div class="card2 fragment" data-fx="none" data-fragment-index="1"><div class="t">School C</div><div class="d">Own lens, house style, crest</div></div>
+      </div>
+      <div class="base"><div class="t">Shared, school-approved skills library</div><div class="d">Learning-science tools vetted once, used everywhere</div></div>
+      <div class="gov fragment" data-fx="none"><span class="pill">POPIA</span><span class="pill">School Google Workspace</span><span class="pill">Approved connectors only</span><span class="pill">Human moderation</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    The same model as my own setup, scaled up: a shared base the group approves once, and each school's own lens and house style on top.
+    School A, B and C are placeholders, not real schools.
+    Sources: research file, section 6 (shared toolbox idea, 4 Nov 2026); Teaching Hub CLAUDE.md (POPIA rules).
+  </aside>
+</section>
+
+
+<!-- ================= ACT 7: HOW THIS DECK WAS BUILT ================= -->
+
+<section class="opener" id="s-a7" data-act="7" data-opener="7">
+  <aside class="notes">Act 7, about 3 minutes. For everyone.</aside>
+</section>
+
+<section id="s-gitlog" data-act="7">
+  <div class="frame">
+    <p class="kicker">Act 7 · How this deck was built</p>
+    <h2 class="headline" id="git-headline">Every step of this deck is <em>on record</em>.</h2>
+    <div class="body gitlog">
+      <div class="commits"><div id="commit-list"></div></div>
+      <div class="gstats" id="git-stats"></div>
+    </div>
+  </div>
+  <aside class="notes">
+    This is the deck's own Git history, replayed. Each line is a saved step, with the time on my PC.
+    The numbers are read from the Git log and the build log when the deck was last built (see js/build-data.js), so they're real, not typed in.
+    Sources: Git history of Documents\GitHub\ai-pd-deck; BUILD-LOG.md.
+  </aside>
+</section>
+
+<section id="s-proof" data-act="7">
+  <div class="frame">
+    <p class="kicker">Act 7 · The proof</p>
+    <h2 class="headline">You've just watched the proof: <em>my words in, a checked deck out.</em></h2>
+    <div class="body">
+      <div class="flow">
+        <div class="card2"><div class="t"><small>My prompt</small>One message</div><div class="d">"I need to create a presentation for professional development for teachers, IT and head office…"</div></div>
+        <div class="arr"></div>
+        <div class="card2 fragment" data-fx="none"><div class="t"><small>The plan</small>A doc I approved</div><div class="d">Outline, platform choice, five decisions in comments</div></div>
+        <div class="arr fragment" data-fx="none"></div>
+        <div class="card2 hot fragment" data-fx="none"><div class="t"><small>The checks</small>Every click</div><div class="d">Two screen sizes, offline, reduced motion, screenshots in Drive</div></div>
+      </div>
+      <p class="tagline fragment" data-fx="none">I decided what good looks like. <em>The AI did the rest.</em></p>
+    </div>
+  </div>
+  <aside class="notes">
+    My prompt (4 Nov 2026, Professional Development project, shortened): "I need to create a presentation for professional development for teachers (novice wrt AI), IT (specialists) and inspired schools head office wrt what is possible with AI…"
+    The plan: "AI PD presentation: outline and platform proposal" doc, approved through comments (platform, one-hour slot, date, public link, presenter).
+    The checks: an automated browser stepped through every click at 1920×1080 and 1280×720, offline from the folder and with reduced motion; screenshots are in Drive under PD.
+    Sources: Professional Development project timeline; the outline doc; BUILD-LOG.md.
+  </aside>
+</section>
+
+<!-- ================= ACT 8: START TOMORROW ================= -->
+
+<section class="opener" id="s-a8" data-act="8" data-opener="8">
+  <aside class="notes">Act 8, about 2 minutes. For teachers.</aside>
+</section>
+
+<section id="s-steps" data-act="8">
+  <div class="frame">
+    <p class="kicker">Act 8 · Start tomorrow</p>
+    <h2 class="headline">Five things, once, on day one. <em>Ask Claude to do each one.</em></h2>
+    <div class="body">
+      <div class="steps5">
+        <div class="st5"><span class="k">1</span><span class="w">Install the desktop app; turn on Claude in Chrome</span><span class="say">"Check I have everything installed and switched on."</span></div>
+        <div class="st5 fragment" data-fx="none"><span class="k">2</span><span class="w">Make a hub folder in your Drive</span><span class="say">"Set up my hub folder and fill it from what you know about my work."</span></div>
+        <div class="st5 fragment" data-fx="none"><span class="k">3</span><span class="w">Write down your design lens</span><span class="say">"Turn my design lens into a skill you apply automatically."</span></div>
+        <div class="st5 fragment" data-fx="none"><span class="k">4</span><span class="w">A personal GitHub account</span><span class="say">"Set up GitHub for me. Only stop me to sign in."</span></div>
+        <div class="st5 fragment" data-fx="none"><span class="k">5</span><span class="w">A backup to that private account</span><span class="say">"Set up a one-click backup of my teaching work."</span></div>
+        <p class="then fragment" data-fx="none"><b>Then pick your toolbox:</b> switch on the education skills, switch off what you don't teach with. From then on, every job begins with <b>"Read my hub first."</b></p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Step 3 is the one only you can do: your lens is your judgement. The AI does the technical work in the others; you sign in and approve.
+    These are the guide's five start-here steps and its phrases, word for word (guide p. 7). Then the toolbox (4 Nov): switch on the education skills, switch off what you don't teach with, connect only what you use. After that, just say "refresh my backup".
+    The Teacher Starter Kit (one shared folder) has all of this ready to copy.
+    [CONFIRM WITH NOEL] Add the Teacher Starter Kit link or a QR code here once you've decided how widely to share the folder.
+    Sources: "From chatbot to co-worker" p. 7 ("Start here", steps 1 to 5, quoted phrases); research file, section 6 (toolbox).
+  </aside>
+</section>
+
+<section id="s-toolbox" data-act="8">
+  <div class="frame">
+    <p class="kicker">Act 8 · Start tomorrow</p>
+    <h2 class="headline">Your toolbox: <em>skills, connectors, plugins, extensions.</em></h2>
+    <div class="body">
+      <div class="tool4">
+        <div class="tc fragment" data-fx="none"><span class="tk4">Connectors</span><b>Let Claude reach your apps.</b><span class="td">Drive, Gmail, Calendar, Canva. You approve what each one may do.</span><span class="tx">Mine: Drive, so it files every book where it belongs.</span></div>
+        <div class="tc fragment" data-fx="none"><span class="tk4">Skills</span><b>Saved know-how, loaded when it's relevant.</b><span class="td">Built-in skills make proper Word, PowerPoint, Excel and PDF files.</span><span class="tx">Mine: my design lens is a skill.</span></div>
+        <div class="tc fragment" data-fx="none"><span class="tk4">Plugins</span><b>Bundles for a kind of work.</b><span class="td">Switch on only what you use.</span><span class="tx">Mine: finance, marketing and similar switched off.</span></div>
+        <div class="tc fragment" data-fx="none"><span class="tk4">Extensions</span><b>Claude beyond the chat window.</b><span class="td">Claude in Chrome reads Canvas and the IEB library. The desktop app works with my folders.</span><span class="tx">Mine: Claude Code built the studios and this deck, by remote control of my PC.</span></div>
+      </div>
+      <p class="then fragment" data-fx="none"><b>Connect only what you need. Keep learner data out.</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    Four kinds of add-on, one click each. Connectors reach your apps (Drive, Gmail, Calendar, Canva): you approve what each may do. Skills are saved know-how Claude loads when relevant; my design lens is one, and built-in skills make Word, PowerPoint, Excel and PDF files. Plugins bundle skills and connectors for a kind of work: I switched off finance, marketing and similar, because they only add noise. Extensions take Claude beyond the chat: Claude in Chrome reads Canvas and the IEB library with my permission; the desktop app works with my folders; Claude Code built the learning studios and this deck, running on my PC by remote control.
+    Close: connect only what you need, and keep learner data out. Not sure? Ask Claude: "What should I switch on for what I want to do, and is it safe?"
+    The same four ideas are in the web guide ("Your toolbox", new on 4 Nov) and in the email.
+  </aside>
+</section>
+
+
+
+<section id="s-onehub" data-act="8">
+  <div class="frame">
+    <p class="kicker">Act 8 · Everything in one place</p>
+    <h2 class="headline">Everything from today, <em>in one place.</em></h2>
+    <div class="body">
+      <div class="hubgrid">
+        <button class="hublink" data-view="starter-kit/guide/index.html"><span class="hl-t">The guide</span><span class="hl-d">From chatbot to co-worker: the journey, the mistakes, the five start-here steps</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="starter-kit/index.html"><span class="hl-t">Starter Kit</span><span class="hl-d">The lens, the house style and the prompt to start with. Open to anyone</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-tab="https://drive.google.com/drive/folders/1yd9LqF8LvNslLLT4r5jjhqtyRyHYUuxK"><span class="hl-t">Full kit</span><span class="hl-d">Every file behind the books. Reddam staff, with a school account</span><span class="hl-u">Open in new tab ↗</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="https://noelrobert-science.github.io/momentum/" data-fallback="img/live-momentum.jpg"><span class="hl-t">Momentum Studio</span><span class="hl-d">Momentum, impulse and collisions, with a crash simulation. No sign-in</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="https://noelrobert-science.github.io/chemical-calculations/" data-fallback="img/live-chemcalc.jpg"><span class="hl-t">Chemical Calculations</span><span class="hl-d">Moles, concentration and yields. No sign-in</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="demo/dashboard/index.html"><span class="hl-t">Marks dashboard</span><span class="hl-d">Demo copy, invented data: all six tabs</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="demo/staffapp/index.html" data-phone="1"><span class="hl-t">Staff app</span><span class="hl-d">Demo copy, invented data: every tab</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-view="video/v4/extended.html"><span class="hl-t">AI literacy video</span><span class="hl-d">The extended cut (3:14): more from the two booklets</span><span class="hl-u">Open ▸</span></button>
+        <button class="hublink fragment" data-fx="none" data-tab="https://mr-r-science.web.app"><span class="hl-t">Mr R Science app</span><span class="hl-d">Daily practice with fresh numbers. Reddam Google sign-in</span><span class="hl-u">Open in new tab ↗</span></button>
+        <button class="hublink fragment" data-fx="none" data-tab="https://noelrobert-science.github.io/ai-pd/"><span class="hl-t">This talk</span><span class="hl-d">The slides, online, to look back at later</span><span class="hl-u">Open in new tab ↗</span></button>
+        <button class="hublink fragment" data-fx="none" data-tab="https://canvas.inspirededucationschools.com/courses/24590"><span class="hl-t">Canvas course</span><span class="hl-d">My Grade 10 home page. Canvas sign-in</span><span class="hl-u">Open in new tab ↗</span></button>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Click a card to open it. The guide, the Starter Kit and the two studios open inside the slide in a scrollable viewer: press Esc or the × to come back. Offline, the studios show a screenshot; the guide and kit are stored in the deck, so they always work. The full kit, the app and Canvas need a sign-in, so they open in a new tab.
+    "This talk" links to the online version, which is the short sample until the full talk is published. [CONFIRM WITH NOEL]
+    This slide is also my own "one place": the guide, the kit, the studios, the app and the course, all together, like my email about the Grade 10 tools.
+    Sources: Teaching Hub INDEX.md; Noel's email about the Grade 10 tools.
+  </aside>
+</section>
+
+<section id="s-guidemap" data-act="8">
+  <div class="frame">
+    <p class="kicker">Act 8 · The guide and this talk</p>
+    <h2 class="headline">The talk shows what's possible; <em>the guide shows you how.</em></h2>
+    <div class="body">
+      <table class="tbl gmap">
+        <tr><th>In this talk</th><th>The guide goes deeper</th></tr>
+        <tr><td>Act 1 · Journey, mistakes, the foundation</td><td>p. 3 journey · pp. 5–6 mistakes · p. 7 start here</td></tr>
+        <tr><td>Act 2 · The lens</td><td>pp. 4–5 the expert's lens and the plumbing</td></tr>
+        <tr><td>Act 4 · AI on my computer, remote control</td><td>pp. 8–9 let Claude do the technical work · pp. 11–12 where to work · pp. 12–14 ChatGPT or Claude</td></tr>
+        <tr><td>Act 5 · Settings, ownership, privacy</td><td>p. 10 model, effort, Ultracode · pp. 15–16 keeping your work yours</td></tr>
+        <tr><td>Act 8 · Start tomorrow</td><td>p. 7 the five steps · pp. 14–15 recipe and starter prompts · pp. 16–17 cheat sheet</td></tr>
+        <tr class="only"><td>Only in the talk</td><td>Canvas, the studios, the app and quiz design; the research warning; the coach; the group toolbox</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes">
+    The guide (17 pages, 3 Nov 2026) is the how-to; the talk is the story and the proof. They share the journey, the lens, the mistakes, the foundation and the start-here steps.
+    Only in the guide: the honest trade-off about usage allowance, the starter prompts, Google Takeout, and contract ownership.
+    Only in the talk: Canvas, the studios, the app, quiz design, the research warning, the coach and the group toolbox.
+    Page numbers checked against the PDF on 4 Nov 2026.
+  </aside>
+</section>
+
+<section id="s-close" data-act="8">
+  <div class="closing">
+    <div class="big" data-split2>You bring the lens.<br><em>The AI brings the hands.</em></div>
+    <div class="sub fragment" data-fx="none">Noel Robert · Physical Sciences · Reddam House Durbanville<br>Questions?</div>
+    <div class="qrbox fragment" data-fx="none"><img src="img/qr-starter-kit.svg" alt="QR code for the Teacher Starter Kit"><div><b>Teacher Starter Kit</b><br>noelrobert-science.github.io/ai-pd/starter-kit</div></div>
+  </div>
+  <aside class="notes">
+    The closing line. Pause after it.
+    "The AI can build almost anything now. What it can't do is decide what's good for your learners. That's you. That's the lens."
+    Then open for questions (about 13 minutes). The QR code opens the lite Teacher Starter Kit page. [CONFIRM WITH NOEL] It only works once the kit page is published.
+  </aside>
+</section>
+
+<section id="s-appA" data-act="8">
+  <div class="frame">
+    <p class="kicker">Appendix A · The guide: From chatbot to co-worker</p>
+    <div class="body"><div class="docview"><iframe src="starter-kit/guide/index.html" title="From chatbot to co-worker: a teacher's guide to building with Claude"></iframe></div></div>
+  </div>
+  <aside class="notes">The full guide inside the deck. Click into it and scroll; click outside and press the right arrow to move on. It's stored in the deck, so it works offline.</aside>
+</section>
+
+<section id="s-appB" data-act="8">
+  <div class="frame">
+    <p class="kicker">Appendix B · The Teacher Starter Kit</p>
+    <div class="body"><div class="docview"><iframe src="starter-kit/index.html" title="Teacher Starter Kit"></iframe></div></div>
+  </div>
+  <aside class="notes">The Starter Kit inside the deck (a local copy, so it works offline). The live version is at noelrobert-science.github.io/ai-pd/starter-kit, with the Reddam staff button for the full kit.</aside>
+</section>
+
 </div>
 </div>
 
 <script src="vendor/reveal/reveal.js"></script>
 <script src="vendor/reveal/plugin/notes/notes.js"></script>
+<script src="vendor/reveal/plugin/zoom/zoom.js"></script>
 <script src="vendor/gsap/gsap.min.js"></script>
+<script src="js/build-data.js"></script>
+<script src="js/hotspots.js"></script>
+<script src="js/acts.js"></script>
+<script src="js/v3.js"></script>
+<script src="js/v4.js"></script>
+<script src="js/ail-cues.js"></script>
+<script src="js/v5.js"></script>
 <script src="js/deck.js"></script>
 </body>
 </html>

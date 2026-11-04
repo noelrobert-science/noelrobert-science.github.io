@@ -22,13 +22,13 @@ const STRANDS = [
 
 // Outline doc, Proposed outline table: act number, short name, minutes, lanes [teachers, IT, head office].
 const ACTS = [
-  [0, 'Cold open', 2, [1, 1, 1]],
-  [1, 'My journey', 6, [1, 1, 1]],
-  [2, 'The lens', 8, [1, 0, 1]],
-  [3, 'What I built', 8, [1, 1, 1]],
-  [4, 'AI on my PC', 6, [1, 1, 0]],
-  [5, 'Plumbing', 6, [0, 1, 0]],
-  [6, "What's next", 6, [0, 0, 1]],
+  [0, 'Cold open', 3, [1, 1, 1]],
+  [1, 'My journey', 5, [1, 1, 1]],
+  [2, 'The lens', 6, [1, 0, 1]],
+  [3, 'What I built', 13, [1, 1, 1]],
+  [4, 'AI on my PC', 7, [1, 1, 0]],
+  [5, 'Plumbing', 4, [0, 1, 0]],
+  [6, "What's next", 4, [0, 0, 1]],
   [7, 'How it was built', 3, [1, 1, 1]],
   [8, 'Start tomorrow', 2, [1, 0, 0]],
 ];
@@ -198,6 +198,7 @@ const ON_FRAGMENT = {
   grow: (f, shown) => { if (shown) grow(f); },
 };
 
+if (typeof buildActs === "function") { buildActs(); Object.assign(ON_SLIDE, ACT_SLIDE); Object.assign(ON_FRAGMENT, ACT_FRAGMENT); }
 buildStrands();
 buildMap();
 document.querySelectorAll('#seq .support').forEach((b) => { b.style.height = b.dataset.h + 'px'; });
@@ -218,9 +219,9 @@ Reveal.initialize({
   transitionSpeed: 'default',
   backgroundTransition: 'fade',
   showNotes: false,
-  plugins: [RevealNotes],
+  plugins: [RevealNotes, RevealZoom],
 }).then(() => {
-  const run = (slide) => { const fn = ON_SLIDE[slide.id]; if (fn) fn(); };
+  const run = (slide) => { const fn = ON_SLIDE[slide.id]; if (fn) fn(slide); };
   run(Reveal.getCurrentSlide());
   Reveal.on('slidechanged', (e) => run(e.currentSlide));
   Reveal.on('resize', () => { if (Reveal.getCurrentSlide().id === 's-map') placeMapHighlights(); });

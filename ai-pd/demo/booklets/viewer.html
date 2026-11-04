@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample pages</title>
+<style>
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-600.woff2') format('woff2'); font-weight: 600; }
+* { box-sizing: border-box; }
+body { margin: 0; height: 100vh; display: flex; flex-direction: column; background: #14171f; color: #f2f3f5; font: 16px 'Lexend', system-ui, sans-serif; }
+body.framed header { padding-right: 340px; }
+header { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 16px; }
+header .t { font-weight: 600; }
+header .n { color: #a9b0bd; font-size: 14px; }
+.tabs button, .nav button, .staff { border: 1px solid #3a4154; background: #1d2230; color: #fff; border-radius: 999px; padding: 6px 14px; font: inherit; cursor: pointer; text-decoration: none; }
+.tabs button.on { background: #e3121b; border-color: #e3121b; }
+.staff { background: #233e59; border-color: #233e59; }
+.stage { flex: 1; display: flex; align-items: center; justify-content: center; perspective: 1800px; padding: 8px 16px; min-height: 0; }
+.stage img, .stage video { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+.stage img, .stage video, #title, .cap { transition: opacity .22s ease, transform .22s ease; }
+.stage img.flip { opacity: 0; transform: scale(.985); }
+.fade { opacity: 0; }
+.stage video { background: #000; }
+.cap { text-align: center; color: #c9ced8; font-size: 15px; padding: 0 16px; min-height: 20px; }
+.nav { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 10px; flex-wrap: wrap; }
+.hidden { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .stage img { transition: none; } }
+</style>
+</head>
+<body>
+<header><span class="t" id="title"></span><span class="tabs" id="tabs"></span><span class="n" id="count"></span></header>
+<div class="stage" id="stage"><img id="img" alt=""><video id="vid" class="hidden" controls playsinline preload="metadata" poster="../../video/v4/ai-literacy-poster-v4.jpg" src="../../video/v4/ai-literacy-v4.mp4"></video></div>
+<div class="cap" id="cap"></div>
+<div class="nav"><button id="prev">◀ Previous</button><button id="next">Next ▶</button><a class="staff hidden" id="staff" target="_blank" rel="noopener"></a></div>
+<script src="../../js/ail-cues.js"></script>
+<script>
+/* One viewer for every "Open ▸" tile. Hash = book key; add "+video" to start with the 60-second AI literacy video. */
+if (parent !== window) document.body.classList.add('framed');
+const RISK = 'https://drive.google.com/file/d/1IDrgbdmx3zX9xvzV8-VYsuXvgXknOjlv/view';
+const BOOKS = {
+  junior: { tab: 'Brain On, AI On · Gr 7–9', title: 'Brain On, AI On · AI literacy for Grades 7 to 9 · updated edition, 2 Nov · sample spreads', pages: ['junior-cover', 'junior-1', 'junior-2', 'junior-3'],
+    caps: ['The cover: how to use AI so it makes you smarter, not lazier', 'How a chatbot writes its answer, and what AI is good and bad at', 'Your brain on AI: what happened in a real experiment', 'Stay safe, and spot fake pictures, voices and videos'] },
+  senior: { tab: 'Co-Pilot, Not Autopilot · Gr 10–12', title: 'Co-Pilot, Not Autopilot · AI literacy for Grades 10 to 12 · updated edition, 2 Nov · sample spreads', pages: ['senior-cover', 'senior-1', 'senior-2', 'senior-3', 'senior-4', 'senior-5'],
+    caps: ['The cover: you fly the plane, AI helps you navigate', 'Under the hood, and five ways it fails', 'The evidence: how strong is each claim?', 'University and careers: what universities now expect, and the future of work', 'Integrity, law and ethics: the IEB declaration, and deepfakes', 'Your personal AI policy, and a 30-day challenge'] },
+  g7: { tab: 'Grade 7', title: 'Physics Field Guide · Grade 7 coursebook · sample spreads', pages: ['g7-cover', 'g7-a', 'g7-b', 'g7-c'],
+    caps: ['The cover', 'How the book works, and how to make it stick', 'Forces you need to know, then the weight–mass graph', 'Practice pages: short questions that build up'] },
+  g8: { tab: 'Grade 8 Physics', title: 'Physics · Grade 8 coursebook and workbook · sample spreads', pages: ['g8-cover', 'g8-a', 'g8-b'],
+    caps: ['The cover', 'How this book works, and how to learn from it', 'Waves: a quick check, then a worksheet'] },
+  g8c: { tab: 'Grade 8 Chemistry', title: 'Chemistry · Grade 8 coursebook and workbook · sample spreads', pages: ['g8c-cover', 'g8c-a', 'g8c-b'],
+    caps: ['The cover', 'Inside the atom: a definition to learn, then a quick check', 'Formulae with brackets: worked example, then your turn'] },
+  g9: { tab: 'Grade 9', title: 'Physics · Grade 9 coursebook and workbook · sample spreads', pages: ['g9-cover', 'g9-a', 'g9-b', 'g9-c'],
+    caps: ['The cover', 'How this book works, and how to learn from it', 'Acceleration: worked example, then your turn', 'Units and pressure, with space to write'] },
+  syllabus: { tab: 'Physics review', title: 'Junior Physics, Grades 7 to 9 · syllabus review and lesson plans', pages: ['sy-1', 'sy-3', 'wk-1', 'wk-2'],
+    caps: ['Each strand climbs from Grade 7 to Grade 9, then feeds Grade 10', 'What stays the same, and what changes and why', 'Week by week: one row per week, one cell per lesson', 'Each lesson planned, with what is different from 2026'] },
+  chem: { tab: 'Chemistry review', title: 'Junior Chemistry, Grades 7 to 9 · sequence review and recommended structure', pages: ['ch-1', 'ch-2', 'ch-3'],
+    caps: ['At a glance: what to cut, what to keep, and why', 'One shared trunk: each strand climbs from Grade 7 to Grade 9', 'Overlap audit: good spiral or wasteful repeat?'] },
+  risk: { tab: 'Risk booklet', title: 'Practical school safety · risk and readiness booklet · sample', pages: ['rk-cover', 'rk-1'],
+    caps: ['The cover: a one-page decision brief for leadership', 'A reusable method: assess the activity before it starts'],
+    staff: ['Reddam staff: open in Drive ↗', RISK] },
+};
+const GROUPS = [['junior', 'senior'], ['g7', 'g8', 'g8c', 'g9'], ['syllabus', 'chem'], ['risk']];
+const h = decodeURIComponent(location.hash.slice(1)).split('+');
+const [hb, hp] = h[0].split('@');   // e.g. #senior@2 opens that book at page 2 (0 = cover)
+let book = hb in BOOKS ? hb : 'junior';
+const withVideo = h.includes('video');
+const group = GROUPS.find((g) => g.includes(book));
+let i = 0;
+const img = document.getElementById('img'), vid = document.getElementById('vid');
+const tabs = document.getElementById('tabs');
+// Switching book always lands on that book's cover (never on the shared video), so the change is visible.
+group.forEach((k) => { if (group.length < 2) return; const b = document.createElement('button'); b.dataset.b = k; b.textContent = BOOKS[k].tab; b.onclick = () => { if (book === k && i === coverIndex()) return; book = k; show(coverIndex()); }; tabs.appendChild(b); });
+function coverIndex() { return pagesOf()[0] === 'VIDEO' ? 1 : 0; }
+try { const tr = vid.addTextTrack('captions', 'English', 'en'); (window.AIL_CUES || []).forEach(([a, z, s]) => { const c = new VTTCue(a, z, s); c.line = -3; tr.addCue(c); }); tr.mode = 'hidden'; } catch (e) {}
+function pagesOf() { return (withVideo && (book === 'junior' || book === 'senior') ? ['VIDEO'] : []).concat(BOOKS[book].pages); }
+function show(k) {
+  const B = BOOKS[book], pages = pagesOf(); i = (k + pages.length) % pages.length;
+  const p = pages[i], isV = p === 'VIDEO', off = pages.length - B.pages.length;
+  const tEl = document.getElementById('title'), cEl = document.getElementById('cap');
+  const newT = isV ? 'AI literacy in two minutes · then the booklet' : B.title;
+  const newC = isV ? 'Press play. Captions: the CC button. Next ▶ opens the booklet.' : ((B.caps || [])[i - off] || '');
+  [tEl, cEl].forEach((el) => el.classList.add('fade')); img.classList.add('flip');
+  if (!isV) vid.pause();
+  setTimeout(() => {
+    vid.classList.toggle('hidden', !isV); img.classList.toggle('hidden', isV);
+    if (!isV) { img.src = p + '.jpg'; img.alt = B.title + ', page ' + (i - off + 1); }
+    tEl.textContent = newT; cEl.textContent = newC;
+    requestAnimationFrame(() => { img.classList.remove('flip'); [tEl, cEl].forEach((el) => el.classList.remove('fade')); });
+  }, 200);
+  document.getElementById('count').textContent = `${i + 1} of ${pages.length}`;
+  tabs.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.b === book));
+  const st = document.getElementById('staff'); st.classList.toggle('hidden', !B.staff);
+  if (B.staff) { st.textContent = B.staff[0]; st.href = B.staff[1]; }
+}
+document.getElementById('prev').onclick = () => show(i - 1);
+document.getElementById('next').onclick = () => show(i + 1);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1);
+  if (e.key === 'Escape' && parent !== window) parent.postMessage('ai-pd:close-view', '*');
+});
+show(hp ? coverIndex() + (+hp) : 0);
+</script>
+</body>
+</html>

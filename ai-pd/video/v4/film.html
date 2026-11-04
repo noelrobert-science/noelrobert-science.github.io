@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI literacy · v4 renderer</title>
+<style>
+html, body { margin: 0; background: #000; }
+canvas { display: block; width: 1920px; height: 1080px; }
+</style>
+</head>
+<body>
+<canvas id="out" width="1920" height="1080"></canvas>
+<script src="lib/mp4-muxer.js"></script>
+<script>
+/* AI literacy, v3 (new script from the updated editions, same look and sound as v2): an editorial motion graphic drawn in code.
+   Every frame is a pure function of time, so stills, previews and the final film all come from one source.
+   Claims and sources: ../CLAIMS.md (unchanged from v1). Audio: synthesised in code below, no samples. */
+const W = 1920, H = 1080, FPS = 30, SUB = 6, SHUTTER = 0.5;
+const INK = '#0d0e11', PAPER = '#efece4', RED = '#e3121b', GREY = '#8b9099';
+const M = 120, GUT = 24, CW = (W - 2 * M - 11 * GUT) / 12;
+const col = (i) => M + i * (CW + GUT);
+
+/* ---------- easing ---------- */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  expoOut: (x) => (x >= 1 ? 1 : 1 - Math.pow(2, -10 * x)),
+  expoIn: (x) => (x <= 0 ? 0 : Math.pow(2, 10 * x - 10)),
+  expoInOut: (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2),
+  quartOut: (x) => 1 - Math.pow(1 - x, 4),
+  quartInOut: (x) => (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2),
+};
+function rng(seed) { let s = seed >>> 0 || 1; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+/* ---------- type ---------- */
+const F = {
+  g: (w, s) => `${w} ${s}px SG`,
+  serif: (s) => `italic 400 ${s}px NR`,
+  serifUp: (s) => `500 ${s}px NR`,
+  mono: (s) => `500 ${s}px JB`,
+};
+function setType(ctx, font, size, track) { ctx.font = font; ctx.letterSpacing = (track === undefined ? -0.03 * size : track) + 'px'; }
+/* A line that rises into a mask on the way in and lifts out of it on the way out. */
+function T(ctx, o) {
+  const { s, x, y, size, font, color, tin, tout = 1e9, din = 0.75, dout = 0.5, align = 'left', track } = o;
+  const t = o.t;
+  if (t < tin || t > tout + dout) return 0;
+  setType(ctx, font, size, track);
+  ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+  const w = ctx.measureText(s).width;
+  const pIn = E.expoOut(prog(t, tin, tin + din)), pOut = E.expoIn(prog(t, tout, tout + dout));
+  const dy = (1 - pIn) * size * 1.15 - pOut * size * 1.15;
+  const x0 = align === 'left' ? x : align === 'right' ? x - w : x - w / 2;
+  ctx.save(); ctx.beginPath(); ctx.rect(x0 - 40, y - size * 1.02, w + 80, size * 1.32); ctx.clip();
+  ctx.fillStyle = color; ctx.fillText(s, x, y + dy); ctx.restore();
+  return w;
+}
+/* Typewriter: characters appear one by one with a caret. */
+function typed(ctx, s, x, y, size, font, color, t, t0, cps = 26, caret = true, track) {
+  if (t < t0) return 0;
+  const n = Math.min(s.length, Math.floor((t - t0) * cps));
+  setType(ctx, font, size, track); ctx.textAlign = 'left'; ctx.fillStyle = color;
+  const part = s.slice(0, n); ctx.fillText(part, x, y);
+  const w = ctx.measureText(part).width;
+  if (caret && (n < s.length || Math.floor(t * 2.4) % 2 === 0)) { ctx.fillStyle = RED; ctx.fillRect(x + w + 6, y - size * 0.78, Math.max(3, size * 0.06), size * 0.92); }
+  return w;
+}
+function hair(ctx, x1, y, x2, color, p, lw = 2) { if (p <= 0) return; ctx.fillStyle = color; ctx.fillRect(x1, y - lw / 2, (x2 - x1) * p, lw); }
+
+/* ---------- scenes ---------- */
+/* ===== v4: one idea at a time, held long enough to read =====
+   Pacing: each card lands, then holds for max(3 s, words ÷ 3 + 1.5 s) (+2 s when a number counts up),
+   then lifts out. Chapters change with a 0.8 s wipe and a short breath of quiet.
+   Every line and page: ../CLAIMS.md. CUT: 'talk' (about 2:00) or 'extended' (later). */
+const COVERS = {};
+const CUT = new URLSearchParams(location.search).get('cut') || 'talk';
+const IN = 1.0, OUT = 0.55, WIPE = 0.6, BREATH = 0.3;
+
+/* helpers: a stack of lines, each rising into its mask, lifting out together at the card's end */
+function L(ctx, c, t, s, x, y, size, kind, color, delay = 0, align = 'left') {
+  const font = kind === 's' ? F.serif(size) : kind === 'm' ? F.mono(size) : F.g(kind === 'g5' ? 500 : kind === 'g4' ? 400 : 700, size);
+  const track = kind === 's' ? -size * 0.018 : kind === 'm' ? size * 0.14 : undefined;
+  return T(ctx, { t, s, x, y, size, font, color, tin: c.a + delay, tout: c.end, din: 0.9, dout: OUT - 0.05, align, track });
+}
+function fadeIn(t, c, d = 0, len = 0.6) { return E.quartOut(prog(t, c.a + d, c.a + d + len)) * (1 - E.quartInOut(prog(t, c.end, c.end + OUT))); }
+function count(t, c, d, n) { return Math.round(n * E.quartOut(prog(t, c.a + d, c.a + d + 1.6))); }
+
+/* ---------- the cards ---------- */
+const CARDS = [
+  // 1 · Start here
+  { ch: 'Start here', bg: INK, cap: 'Stop using it like Google.', inT: 3.2, src: 'Co-Pilot, Not Autopilot · p. 2 · chat shown as an illustration',
+    draw(ctx, c, t) {
+      const fg = PAPER, u = t - c.a, m = E.quartInOut(prog(u, 1.5, 2.5));
+      const bx = col(0), by = 230, bw = col(11) + CW - col(0), bh = 120 + 300 * m, a = fadeIn(t, c, 0, 0.5);
+      ctx.globalAlpha = a; ctx.strokeStyle = 'rgba(239,236,228,.55)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.roundRect(bx, by, bw, bh, 60 - 44 * m); ctx.stroke();
+      ctx.globalAlpha = a * (1 - m);
+      ctx.beginPath(); ctx.arc(bx + 70, by + 58, 18, 0, Math.PI * 2); ctx.stroke(); ctx.beginPath(); ctx.moveTo(bx + 83, by + 71); ctx.lineTo(bx + 98, by + 86); ctx.stroke();
+      typed(ctx, 'what is momentum', bx + 130, by + 78, 46, F.g(400, 46), fg, t, c.a + 0.3, 14, u < 1.5, 0);
+      ctx.globalAlpha = a * E.quartOut(prog(u, 2.3, 2.8));
+      setType(ctx, F.mono(20), 20, 3); ctx.fillStyle = GREY; ctx.fillText('YOU', bx + 50, by + 70);
+      setType(ctx, F.g(400, 40), 40, 0); ctx.fillStyle = fg; ctx.fillText('My attempt: p = mv, so p = 2 × 3 = 6. Units?', bx + 50, by + 120);
+      ctx.globalAlpha = a * E.quartOut(prog(u, 2.8, 3.3));
+      setType(ctx, F.mono(20), 20, 3); ctx.fillStyle = RED; ctx.fillText('AI · ONE HINT', bx + 50, by + 210);
+      setType(ctx, F.serif(44), 44, -0.5); ctx.fillStyle = fg; ctx.fillText('Good start. What are the units of mass and of velocity?', bx + 50, by + 262);
+      ctx.globalAlpha = 1;
+      L(ctx, c, t, 'Stop using it', col(0), 800, 130, 'g', fg, 3.0);
+      setType(ctx, F.g(700, 130), 130); const w = ctx.measureText('Stop using it ').width;
+      L(ctx, c, t, 'like Google.', col(0) + w, 800, 134, 's', RED, 3.2);
+    } },
+  { ch: 'Start here', bg: INK, extendedOnly: true, count: true, inT: 2.2,
+    cap: 'Everyone is using it. Few use it well. 64% of US teens use AI chatbots. 47% of student chats asked directly for an answer or finished work.',
+    src: 'Co-Pilot, Not Autopilot · p. 3 · Pew 2026 · Anthropic 2025 · USA, self-reported',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'Everyone is using it.', col(0), 260, 84, 'g', PAPER, 0.1);
+      L(ctx, c, t, 'Few use it well.', col(0), 360, 88, 's', RED, 0.4);
+      L(ctx, c, t, `${count(t, c, 0.8, 64)}%`, col(0) - 6, 590, 170, 'g', PAPER, 0.8);
+      L(ctx, c, t, 'of US teens use AI chatbots', col(4), 560, 52, 'g5', PAPER, 1.0);
+      L(ctx, c, t, `${count(t, c, 1.4, 47)}%`, col(0) - 6, 800, 170, 'g', RED, 1.4);
+      L(ctx, c, t, 'of student chats Anthropic analysed', col(4), 750, 52, 'g5', PAPER, 1.6);
+      L(ctx, c, t, 'asked directly for an answer or finished work', col(4), 815, 52, 's', PAPER, 1.8);
+      L(ctx, c, t, 'USA FIGURES · SELF-REPORTED', col(4), 600, 22, 'm', GREY, 1.2);
+    } },
+  // 2 · The evidence
+  { ch: 'The evidence', bg: PAPER, cap: 'Nearly 1 000 pupils. Practice with AI: +48% and +127%. Exam, AI off: −17%. Practice soared. Learning sank.', inT: 4.6, count: true,
+    src: 'Bastani et al. 2025, PNAS · Co-Pilot, Not Autopilot · p. 7 · Brain On, AI On · p. 8',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'Nearly 1 000 pupils.', col(0), 230, 88, 'g', INK, 0.1);
+      setType(ctx, F.g(700, 88), 88); const w = ctx.measureText('Nearly 1 000 pupils. ').width;
+      L(ctx, c, t, 'Maths practice with AI.', col(0) + w, 230, 90, 's', INK, 0.4);
+      panel(ctx, c, t, col(0), col(5) + CW - 20, 'DURING PRACTICE · AI ON', [['No AI', 0, 'baseline'], ['Open chatbot', 48], ['Hint-only tutor', 127]], 0.9);
+      panel(ctx, c, t, col(6) + 20, col(11) + CW, 'THE EXAM · AI SWITCHED OFF', [['No AI', 0, 'baseline'], ['Open chatbot', -17, null, true], ['Hint-only tutor', 0, 'no clear drop']], 2.4);
+      L(ctx, c, t, 'Practice soared.', col(0), 800, 100, 'g', INK, 3.9);
+      setType(ctx, F.g(700, 100), 100); const w2 = ctx.measureText('Practice soared. ').width;
+      L(ctx, c, t, 'Learning sank.', col(0) + w2, 800, 104, 's', RED, 4.2);
+    } },
+  { ch: 'The evidence', bg: PAPER, extendedOnly: true, inT: 2.0,
+    cap: 'Design beats the chatbot. At Harvard, 194 physics students learnt from an AI tutor built around how people learn: the median gain was more than double. The software made students follow the steps in order.',
+    src: 'Co-Pilot, Not Autopilot · p. 8 · Kestin et al. 2025, Scientific Reports',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'HARVARD · 194 PHYSICS STUDENTS', col(0), 250, 26, 'm', RED, 0);
+      L(ctx, c, t, 'Design beats the chatbot.', col(0), 380, 120, 'g', INK, 0.1);
+      L(ctx, c, t, 'An AI tutor built around how people learn:', col(0), 500, 60, 's', INK, 0.6);
+      L(ctx, c, t, 'the median gain was more than double.', col(0), 580, 60, 's', RED, 0.9);
+      const p = E.quartOut(prog(t - c.a, 1.0, 2.2)), a = fadeIn(t, c, 0.9);
+      ctx.globalAlpha = a; setType(ctx, F.mono(22), 22, 2); ctx.fillStyle = GREY;
+      ctx.fillText('ACTIVE-LEARNING CLASS', col(8), 470); ctx.fillText('AI TUTOR', col(8), 560);
+      ctx.fillStyle = 'rgba(13,14,17,.55)'; ctx.fillRect(col(8), 485, 170 * p, 26);
+      ctx.fillStyle = RED; ctx.fillRect(col(8), 575, 400 * p, 26);
+      ctx.globalAlpha = a * 0.7; setType(ctx, F.mono(18), 18, 2); ctx.fillStyle = GREY; ctx.fillText('MEDIAN GAIN · NOT TO SCALE', col(8), 640);
+      ctx.globalAlpha = 1;
+      L(ctx, c, t, 'The software made students follow the steps in order.', col(0), 760, 58, 'g5', INK, 1.6);
+    } },
+  // 3 · Why it goes wrong
+  { ch: 'Why it goes wrong', bg: INK, cap: 'Asked “Are you sure?”, one model wrongly admitted a “mistake” in up to 98% of challenged answers.', inT: 2.0, count: true, glitch: 1.8,
+    src: 'Co-Pilot, Not Autopilot · p. 6',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'SYCOPHANCY · PEOPLE-PLEASING', col(0), 240, 26, 'm', RED, 0);
+      L(ctx, c, t, 'Asked “Are you sure?”,', col(0), 370, 88, 'g', PAPER, 0.1);
+      L(ctx, c, t, 'one model wrongly admitted a “mistake”', col(0), 470, 76, 's', PAPER, 0.4);
+      L(ctx, c, t, 'in up to', col(0), 570, 44, 'g5', GREY, 0.8);
+      L(ctx, c, t, `${count(t, c, 0.9, 98)}%`, col(0) - 8, 800, 250, 'g', RED, 0.9);
+      L(ctx, c, t, 'of challenged answers.', col(6), 780, 60, 'g5', PAPER, 1.2);
+    } },
+  { ch: 'Why it goes wrong', bg: INK, extendedOnly: true, count: true, inT: 2.2, glitch: 1.9,
+    cap: 'Most AI tests give marks for a lucky guess, but none for “I don’t know”. An older model was wrong 75% of the time. A newer one skipped half the questions: wrong 26%.',
+    src: 'Co-Pilot, Not Autopilot · p. 6 · OpenAI 2025',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'HALLUCINATION · MADE-UP FACTS', col(0), 240, 26, 'm', RED, 0);
+      L(ctx, c, t, 'Tests reward a lucky guess,', col(0), 370, 90, 'g', PAPER, 0.1);
+      L(ctx, c, t, 'not “I don’t know”.', col(0), 470, 94, 's', RED, 0.4);
+      [['An older model', 75, 'wrong'], ['A newer one, which skipped half the questions', 26, 'wrong']].forEach(([lab, v, w], i) => {
+        const y = 620 + i * 120, d = 1.0 + i * 0.5, p = E.quartOut(prog(t - c.a, d, d + 1.4)), a = fadeIn(t, c, d - 0.1);
+        ctx.globalAlpha = a; setType(ctx, F.g(500, 40), 40, -0.3); ctx.fillStyle = PAPER; ctx.fillText(lab, col(0), y);
+        ctx.fillStyle = i ? 'rgba(239,236,228,.6)' : RED; ctx.fillRect(col(0), y + 18, 900 * (v / 100) * p, 26);
+        setType(ctx, F.mono(40), 40, 0); ctx.fillStyle = i ? PAPER : RED; ctx.fillText(`${w} ${Math.round(v * p)}% of the time`, col(0) + 900 * (v / 100) * p + 24, y + 42);
+      });
+      ctx.globalAlpha = 1;
+    } },
+  { ch: 'Why it goes wrong', bg: INK, cap: 'A legal team cited nine cases. Only two could be traced. The court: “irresponsible and downright unprofessional”.', inT: 2.2, glitch: 1.6,
+    src: 'Co-Pilot, Not Autopilot · p. 6 · Pietermaritzburg High Court, Jan 2025',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'THE REAL-WORLD COST · PIETERMARITZBURG HIGH COURT · JAN 2025', col(0), 240, 26, 'm', RED, 0);
+      L(ctx, c, t, 'A legal team cited nine cases.', col(0), 370, 88, 'g', PAPER, 0.1);
+      L(ctx, c, t, 'Only two could be traced.', col(0), 470, 90, 's', RED, 0.5);
+      const u = t - c.a;
+      for (let i = 0; i < 9; i++) {
+        const p = fadeIn(t, c, 0.7 + i * 0.06, 0.4), x = col(0) + i * 124, y = 540, real = i < 2;
+        ctx.globalAlpha = p * (real || u < 1.6 ? 1 : 0.35); ctx.strokeStyle = PAPER; ctx.lineWidth = 2; ctx.strokeRect(x, y, 86, 110);
+        if (real) { ctx.fillStyle = PAPER; ctx.fillRect(x + 14, y + 22, 58, 6); ctx.fillRect(x + 14, y + 40, 42, 6); ctx.fillRect(x + 14, y + 58, 52, 6); }
+        if (!real && u > 1.6) { ctx.strokeStyle = RED; ctx.beginPath(); ctx.moveTo(x - 6, y + 116); ctx.lineTo(x + 92, y - 6); ctx.stroke(); }
+      }
+      ctx.globalAlpha = 1;
+      L(ctx, c, t, '“irresponsible and downright unprofessional”', col(0), 760, 66, 's', PAPER, 1.9);
+      L(ctx, c, t, 'THE COURT, ON CITATIONS THAT LIKELY CAME FROM AI', col(0), 815, 22, 'm', GREY, 2.1);
+    } },
+  { ch: 'Why it goes wrong', bg: INK, cap: 'Asked to explain 36 + 59, it described “carry the one”. That is not what it actually did.', inT: 2.4, glitch: 2.0,
+    src: 'Co-Pilot, Not Autopilot · p. 5 · Anthropic 2025',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'IT CANNOT SEE ITS OWN WORKING · ANTHROPIC 2025', col(0), 240, 26, 'm', RED, 0);
+      L(ctx, c, t, '36 + 59', col(0) - 6, 500, 240, 'g', PAPER, 0.1);
+      const p = E.quartInOut(prog(t - c.a, 0.5, 1.4)), a = fadeIn(t, c, 0.4);
+      ctx.globalAlpha = a; ctx.strokeStyle = RED; ctx.lineWidth = 3; const sx = col(7), ex = col(10);
+      [360, 450].forEach((y) => { ctx.beginPath(); ctx.moveTo(sx, y); ctx.lineTo(sx + (ex - sx) * p, y + (405 - y) * p * p); ctx.stroke(); });
+      setType(ctx, F.mono(20), 20, 3); ctx.fillStyle = GREY; ctx.fillText('TWO SEPARATE CALCULATIONS, AT THE SAME TIME', sx, 310);
+      ctx.globalAlpha = fadeIn(t, c, 1.3); setType(ctx, F.g(700, 96), 96); ctx.fillStyle = PAPER; ctx.fillText('95', ex + 30, 440); ctx.globalAlpha = 1;
+      L(ctx, c, t, 'Asked to explain, it described “carry the one”.', col(0), 680, 68, 's', PAPER, 1.5);
+      setType(ctx, F.serif(68), 68, -1.2); const cw = ctx.measureText('Asked to explain, it described “carry the one”.').width, pre = ctx.measureText('Asked to explain, it ').width;
+      hair(ctx, col(0) + pre, 660, col(0) + cw, RED, E.quartInOut(prog(t - c.a, 2.0, 2.4)) * (1 - E.quartInOut(prog(t, c.end, c.end + OUT))), 5);
+      L(ctx, c, t, 'That is not what it actually did.', col(0), 790, 84, 'g', RED, 2.2);
+    } },
+  // (extended) How learning works
+  { ch: 'How learning works', bg: PAPER, extendedOnly: true, inT: 1.6,
+    cap: 'Memory is the residue of thought. If the AI does the thinking, it is the AI’s “memory” that gets the practice, not yours.',
+    src: 'Co-Pilot, Not Autopilot · p. 10 · Willingham 2009',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'Memory is the residue', col(0), 420, 140, 's', INK, 0.1);
+      L(ctx, c, t, 'of thought.', col(0), 570, 146, 's', RED, 0.4);
+      L(ctx, c, t, 'If the AI does the thinking, it is the AI’s “memory”', col(0), 740, 54, 'g5', INK, 1.0);
+      L(ctx, c, t, 'that gets the practice, not yours.', col(0), 808, 54, 'g5', INK, 1.2);
+    } },
+  // 4 · The fix
+  { ch: 'The fix', bg: PAPER, cap: 'Augment your thinking: explain, question, give feedback. Don’t automate it: write, solve, summarise for you.', inT: 2.2,
+    src: 'Co-Pilot, Not Autopilot · p. 8',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'Augment your thinking.', col(0), 340, 120, 'g', INK, 0.1);
+      L(ctx, c, t, 'explain · question · give feedback', col(0), 420, 42, 'g4', GREY, 0.4);
+      L(ctx, c, t, 'you can learn more', col(8), 420, 46, 's', RED, 0.6);
+      L(ctx, c, t, 'Don’t automate it.', col(0), 640, 124, 's', GREY, 1.0);
+      setType(ctx, F.serif(124), 124, -2.2); const aw = ctx.measureText('Don’t automate it.').width;
+      hair(ctx, col(0) - 6, 602, col(0) + aw + 6, RED, E.quartInOut(prog(t - c.a, 1.6, 2.1)) * (1 - E.quartInOut(prog(t, c.end, c.end + OUT))), 6);
+      L(ctx, c, t, 'write · solve · summarise for you', col(0), 720, 42, 'g4', GREY, 1.2);
+      L(ctx, c, t, 'you learn less', col(8), 720, 46, 's', GREY, 1.4);
+    } },
+  { ch: 'The fix', bg: PAPER, cap: 'Attempt it first. Name the blockage. Ask for ONE hint. Check it. Close the AI, go again.', inT: 3.0,
+    src: 'Co-Pilot, Not Autopilot · pp. 12, 29 · Brain On, AI On · p. 12',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'The attempt-first routine', col(0), 300, 96, 'g', INK, 0.1);
+      L(ctx, c, t, 'One routine for every subject.', col(0), 380, 46, 's', GREY, 0.4);
+      const x0 = col(0) + 170, x1 = col(11) + CW - 170, y = 590, a = fadeIn(t, c, 0.6);
+      ctx.globalAlpha = a; hair(ctx, x0, y, x1, 'rgba(13,14,17,.25)', E.quartInOut(prog(t - c.a, 0.6, 3.1)), 2);
+      ['Attempt it first', 'Name the blockage', 'Ask for ONE hint', 'Check it', 'Close the AI, go again'].forEach((s, i) => {
+        const d = 0.7 + i * 0.55, x = x0 + (x1 - x0) * (i / 4), p = E.quartOut(prog(t - c.a, d, d + 0.5));
+        if (t - c.a < d) return;
+        ctx.globalAlpha = a * p; ctx.fillStyle = i === 4 ? RED : INK; ctx.beginPath(); ctx.arc(x, y, 28, 0, Math.PI * 2); ctx.fill();
+        setType(ctx, F.mono(26), 26, 0); ctx.fillStyle = PAPER; ctx.textAlign = 'center'; ctx.fillText(String(i + 1), x, y + 9);
+        setType(ctx, F.g(500, 40), 40, -0.3); ctx.fillStyle = INK;
+        const words = s.split(' '); let line = '', ly = y + 96;
+        words.forEach((wd) => { const tl = line ? line + ' ' + wd : wd; if (ctx.measureText(tl).width > 300) { ctx.fillText(line, x, ly); line = wd; ly += 48; } else line = tl; });
+        ctx.fillText(line, x, ly); ctx.textAlign = 'left';
+      });
+      ctx.globalAlpha = 1;
+    } },
+  { ch: 'The fix', bg: PAPER, cap: 'The hint ladder: climb only as high as you need. The full solution is the last resort.', inT: 2.2,
+    src: 'Co-Pilot, Not Autopilot · p. 12',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'The hint ladder', col(0), 300, 96, 'g', INK, 0.1);
+      L(ctx, c, t, 'Climb only as high as you need.', col(0), 380, 46, 's', GREY, 0.4);
+      L(ctx, c, t, 'The full solution', col(0), 640, 56, 's', RED, 2.0);
+      L(ctx, c, t, 'is the last resort.', col(0), 705, 56, 's', RED, 2.2);
+      const R = [['Which principle applies?', 'SMALLEST HELP'], ['What should my first step be?', 'A NUDGE'], ['Where is my first error?', 'YOU STILL FIX IT'], ['Show a similar worked example', 'THEN REDO YOURS'], ['Show the full solution', 'LAST RESORT ONLY']];
+      const lx = col(6), lw = col(11) + CW - col(6);
+      R.forEach(([q, tag], i) => {
+        const y = 790 - i * 112, p = fadeIn(t, c, 0.5 + i * 0.3, 0.5);
+        ctx.globalAlpha = p; ctx.fillStyle = i === 4 ? RED : 'rgba(13,14,17,.85)'; ctx.fillRect(lx, y, lw, 3);
+        setType(ctx, F.g(500, 38), 38, -0.3); ctx.fillStyle = i === 4 ? RED : INK; ctx.fillText(`${i + 1}  ${q}`, lx, y - 22);
+        setType(ctx, F.mono(18), 18, 3); ctx.fillStyle = i === 4 ? RED : GREY; ctx.textAlign = 'right'; ctx.fillText(tag, lx + lw, y - 26); ctx.textAlign = 'left';
+      });
+      const steps = [1.6, 2.0, 2.4]; let r = -1; steps.forEach((tt, k) => { if (t - c.a >= tt) r = k; });
+      if (r >= 0) { const prev = Math.max(0, r - 1), q = E.quartInOut(prog(t - c.a, steps[r], steps[r] + 0.45)); const y = 790 - (prev + (r - prev) * q) * 112;
+        ctx.globalAlpha = fadeIn(t, c, 1.6); ctx.fillStyle = RED; ctx.beginPath(); ctx.arc(lx - 40, y, 14, 0, Math.PI * 2); ctx.fill(); }
+      ctx.globalAlpha = 1;
+    } },
+  { ch: 'The fix', bg: PAPER, extendedOnly: true, count: true, inT: 2.0,
+    cap: 'The most successful prompts average about 21 words. Most people type fewer than 9. A good prompt is a short paragraph, not a search.',
+    src: 'Co-Pilot, Not Autopilot · p. 14 · Google 2024, Prompting Guide 101',
+    draw(ctx, c, t) {
+      L(ctx, c, t, `${count(t, c, 0.2, 21)}`, col(0) - 10, 520, 330, 'g', RED, 0.1);
+      L(ctx, c, t, 'words: the average', col(3) + 40, 380, 60, 'g5', INK, 0.5);
+      L(ctx, c, t, 'in the most successful prompts', col(3) + 40, 450, 60, 'g5', INK, 0.7);
+      L(ctx, c, t, 'Most people type fewer than 9.', col(3) + 40, 530, 60, 's', GREY, 1.1);
+      L(ctx, c, t, 'A good prompt is a short paragraph,', col(0), 720, 76, 'g', INK, 1.6);
+      L(ctx, c, t, 'not a search.', col(0), 810, 80, 's', RED, 1.9);
+    } },
+  // 5 · The world has moved
+  { ch: 'The world has moved', bg: INK, cap: 'UCT stopped using AI-detection scores: “simply not reliable”. Expect to explain your work out loud. Declare your AI use.', inT: 2.3,
+    src: 'Co-Pilot, Not Autopilot · p. 23',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'UCT · FROM OCTOBER 2025', col(0), 230, 26, 'm', RED, 0);
+      L(ctx, c, t, 'AI-detection scores', col(0), 360, 100, 'g', t - c.a > 0.9 ? GREY : PAPER, 0.1);
+      setType(ctx, F.g(700, 100), 100); const w = ctx.measureText('AI-detection scores').width;
+      hair(ctx, col(0) - 10, 328, col(0) + w + 10, RED, E.quartInOut(prog(t - c.a, 0.7, 1.2)) * (1 - E.quartInOut(prog(t, c.end, c.end + OUT))), 7);
+      L(ctx, c, t, '“simply not reliable”', col(0) + w + 50, 360, 70, 's', PAPER, 1.1);
+      L(ctx, c, t, 'Expect to explain', col(0), 560, 110, 'g', PAPER, 1.6);
+      L(ctx, c, t, 'your work out loud.', col(0), 680, 114, 's', PAPER, 1.8);
+      L(ctx, c, t, 'Declare your AI use.', col(0), 820, 100, 'g', RED, 2.2);
+    } },
+  // 6 · The two books
+  { ch: 'The two books', bg: PAPER, cap: 'Brain On, AI On: AI is a power tool. Your brain is the power. Co-Pilot, Not Autopilot: you fly the plane. AI helps you navigate.', inT: 2.0,
+    src: 'Brain On, AI On · p. 2 · Co-Pilot, Not Autopilot · p. 1',
+    draw(ctx, c, t) {
+      [['junior', col(0), 'GRADES 7–9', 'Brain On, AI On', 'AI is a power tool.', 'Your brain is the power.', 0],
+       ['senior', col(6), 'GRADES 10–12', 'Co-Pilot, Not Autopilot', 'You fly the plane.', 'AI helps you navigate.', 0.5]].forEach(([k, x, gr, title, l1, l2, d]) => {
+        const p = fadeIn(t, c, d, 0.9); const im = COVERS[k];
+        if (im) { const h = 400, w = h * im.width / im.height; ctx.save(); ctx.globalAlpha = p; ctx.shadowColor = 'rgba(0,0,0,.25)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 16; ctx.drawImage(im, x, 180 + 30 * (1 - p), w, h); ctx.restore(); }
+        L(ctx, c, t, gr, x, 650, 24, 'm', RED, d + 0.3);
+        L(ctx, c, t, title, x, 720, 60, k === 'senior' ? 's' : 'g', INK, d + 0.4);
+        L(ctx, c, t, l1, x, 790, 44, 's', INK, d + 0.7);
+        L(ctx, c, t, l2, x, 845, 44, 's', RED, d + 0.9);
+      });
+    } },
+  { ch: '', bg: '#000', cap: '', silence: 0.6, src: '' },
+  { ch: '', bg: PAPER, cap: 'The measure that counts: what you can do with the AI switched off.', end: true, inT: 2.0, src: '',
+    draw(ctx, c, t) {
+      L(ctx, c, t, 'The measure that counts:', col(0), 260, 66, 'g5', GREY, 0.05);
+      L(ctx, c, t, 'what you can do', col(0), 410, 130, 'g', INK, 0.25);
+      L(ctx, c, t, 'with the AI switched off.', col(0), 550, 136, 's', RED, 0.5);
+      const a = fadeIn(t, c, 1.2, 0.8);
+      ctx.globalAlpha = a * 0.25; ctx.fillStyle = INK; ctx.fillRect(M, 690, W - 2 * M, 1); ctx.globalAlpha = a;
+      setType(ctx, F.g(700, 40), 40); ctx.fillStyle = INK; ctx.fillText('Brain On, AI On', M, 760);
+      setType(ctx, F.serif(42), 42, -0.6); ctx.fillText('Co-Pilot, Not Autopilot', M + 420, 760);
+      ctx.globalAlpha = a * 0.75; setType(ctx, F.mono(22), 22, 2); ctx.fillText('NOEL ROBERT · REDDAM HOUSE DURBANVILLE', M, 820);
+      ctx.textAlign = 'right'; ctx.fillText('AI LITERACY BOOKLETS · UPDATED EDITIONS', W - M, 820); ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+    } },
+];
+
+function panel(ctx, c, t, x0, x1, title, rows, d0) {
+  const zero = x0 + 330, unit = (x1 - zero - 170) / 127, a = fadeIn(t, c, d0 - 0.2);
+  ctx.globalAlpha = a; setType(ctx, F.mono(22), 22, 3); ctx.fillStyle = GREY; ctx.fillText(title, x0, 330);
+  ctx.fillStyle = 'rgba(13,14,17,.35)'; ctx.fillRect(zero - 1, 360, 2, 330 * E.quartOut(prog(t - c.a, d0, d0 + 0.6)));
+  rows.forEach(([lab, v, txt, red], i) => {
+    const y = 425 + i * 105, d = d0 + 0.2 + i * 0.3, p = E.quartOut(prog(t - c.a, d, d + 1.4));
+    ctx.globalAlpha = fadeIn(t, c, d - 0.1, 0.5);
+    setType(ctx, F.g(500, 38), 38, -0.3); ctx.fillStyle = INK; ctx.textAlign = 'right'; ctx.fillText(lab, zero - 50, y + 13); ctx.textAlign = 'left';
+    const w = v * unit * p;
+    if (v === 0) { ctx.fillStyle = 'rgba(13,14,17,.3)'; ctx.fillRect(zero - 3, y - 16, 6, 32); }
+    else { ctx.fillStyle = red ? RED : INK; ctx.fillRect(w >= 0 ? zero : zero + w, y - 14, Math.abs(w), 30); }
+    setType(ctx, F.mono(38), 38, 0); ctx.fillStyle = red ? RED : (v === 0 ? GREY : INK);
+    ctx.fillText(txt || (v > 0 ? '+' : '−') + Math.round(Math.abs(v) * p) + '%', zero + Math.max(w, 0) + 22, y + 13);
+  });
+  ctx.globalAlpha = 1;
+}
+/* bars sized for reading: labels in their own column, numbers that count up, then hold */
+function bigBars(ctx, c, t, title, rows, d0) {
+  const x0 = col(0), x1 = col(11) + CW, zero = x0 + 470, unit = (x1 - zero - 220) / 127, a = fadeIn(t, c, d0 - 0.2);
+  ctx.globalAlpha = a; setType(ctx, F.mono(24), 24, 3); ctx.fillStyle = GREY; ctx.fillText(title, x0, 410);
+  ctx.fillStyle = 'rgba(13,14,17,.35)'; ctx.fillRect(zero - 1, 440, 2, 330 * E.quartOut(prog(t - c.a, d0, d0 + 0.6)));
+  rows.forEach(([lab, v, txt, red], i) => {
+    const y = 510 + i * 115, d = d0 + 0.3 + i * 0.35, p = E.quartOut(prog(t - c.a, d, d + 1.6));
+    ctx.globalAlpha = fadeIn(t, c, d - 0.1, 0.5);
+    setType(ctx, F.g(500, 46), 46, -0.4); ctx.fillStyle = INK; ctx.textAlign = 'right'; ctx.fillText(lab, zero - 60, y + 16); ctx.textAlign = 'left';
+    const w = v * unit * p;
+    if (v === 0) { ctx.fillStyle = 'rgba(13,14,17,.3)'; ctx.fillRect(zero - 3, y - 18, 6, 38); }
+    else { ctx.fillStyle = red ? RED : INK; ctx.fillRect(w >= 0 ? zero : zero + w, y - 16, Math.abs(w), 34); }
+    setType(ctx, F.mono(44), 44, 0); ctx.fillStyle = red ? RED : (v === 0 ? GREY : INK);
+    const label = txt || (v > 0 ? '+' : '−') + Math.round(Math.abs(v) * p) + '%';
+    ctx.fillText(label, zero + Math.max(w, 0) + 24, y + 16);
+  });
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- timeline from the cards ---------- */
+const words = (s) => (s.match(/[\w’'%+−-]+/g) || []).length;
+let cursor = 0, prevCh = null;
+const TL = [];
+for (const card of CARDS.filter((k) => CUT === 'extended' || !k.extendedOnly)) {
+  const isNewCh = card.ch && card.ch !== prevCh && prevCh !== null;
+  if (isNewCh) cursor += WIPE + BREATH;
+  const c = Object.assign({}, card);
+  c.a = cursor;
+  if (c.silence) { c.end = c.a + c.silence; c.b = c.end; cursor = c.b; TL.push(c); prevCh = '§'; continue; }
+  const hold = Math.max(3, words(c.cap) / 3 + 1.5) + (c.count ? 2 : 0);
+  c.land = c.a + (c.inT || IN);
+  c.end = c.end === true || c.endCard ? 1e9 : c.land + hold;
+  if (card.end) { c.end = c.land + hold; c.b = c.end; cursor = c.b; TL.push(c); break; }
+  c.b = c.end + OUT;
+  cursor = c.b; TL.push(c); if (c.ch) prevCh = c.ch;
+}
+const DUR_ = Math.ceil(TL[TL.length - 1].b * 10) / 10; const DUR = DUR_;
+const CHAPTERS = []; TL.forEach((c) => { if (c.ch && (!CHAPTERS.length || CHAPTERS[CHAPTERS.length - 1].ch !== c.ch)) CHAPTERS.push({ ch: c.ch, a: c.a }); });
+const CORRUPT = TL.filter((c) => c.glitch).map((c) => [c.a + c.glitch, c.a + c.glitch + 0.3]);
+const HOLD = CORRUPT.map(([a]) => [a, a + 0.1]);
+const SIL_A = TL.find((c) => c.silence)?.a ?? DUR_ - 6, SIL_B = SIL_A + 0.6;
+window.__timeline = { dur: DUR_, chapters: CHAPTERS, cards: TL.map((c) => ({ ch: c.ch, a: +c.a.toFixed(2), land: c.land && +c.land.toFixed(2), end: +Math.min(c.end, DUR_).toFixed(2), cap: c.cap })) };
+
+function chrome(ctx, t, c) {
+  if (!c.ch) return;
+  const fg = c.bg === PAPER ? INK : PAPER, n = CHAPTERS.findIndex((x) => x.ch === c.ch) + 1;
+  const first = CHAPTERS[n - 1].a, k = E.quartOut(prog(t, first + 0.05, first + 0.8));
+  ctx.globalAlpha = k; setType(ctx, F.mono(22), 22, 2); ctx.textAlign = 'left'; ctx.fillStyle = RED; ctx.fillText(String(n), M, 92);
+  ctx.fillStyle = fg; ctx.fillText('· ' + c.ch.toUpperCase(), M + 26, 92);
+  ctx.textAlign = 'right'; ctx.globalAlpha = 0.55 * k; ctx.fillText('AI LITERACY · TWO BOOKLETS', W - M, 92);
+  ctx.globalAlpha = 0.5; ctx.textAlign = 'left'; setType(ctx, F.mono(16), 16, 1); ctx.fillText((c.src || '').toUpperCase(), M, H - 62);
+  ctx.textAlign = 'right'; const s = Math.floor(t), D = Math.round(DUR_);
+  ctx.fillText(`${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')} / ${String(Math.floor(D / 60)).padStart(2, '0')}:${String(D % 60).padStart(2, '0')}`, W - M, H - 62);
+  ctx.globalAlpha = 0.18; ctx.fillStyle = fg; ctx.fillRect(M, H - 92, W - 2 * M, 1);
+  ctx.globalAlpha = 1; ctx.fillStyle = RED; ctx.fillRect(M, H - 93, (W - 2 * M) * (t / DUR_), 3);
+  ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+}
+function camera(ctx, t, c) { const p = prog(t, c.a, c.b), z = 1 + 0.012 * E.quartInOut(p); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2); }
+function drawCard(ctx, t, i) {
+  const c = TL[i];
+  ctx.fillStyle = c.bg; ctx.fillRect(0, 0, W, H);
+  if (c.draw) { ctx.save(); camera(ctx, t, c); c.draw(ctx, c, t); ctx.restore(); }
+  chrome(ctx, t, c);
+}
+function scene(ctx, t) {
+  let i = TL.findIndex((c) => t >= c.a && t < c.b); if (i < 0) i = t < 0 ? 0 : TL.length - 1;
+  // between cards in the gap before a new chapter: wipe in the next chapter's ground
+  if (i < 0 || (t >= TL[i].b)) i = TL.length - 1;
+  const nx = TL.findIndex((c) => c.a > t);
+  if (nx > 0 && TL[nx].ch && TL[nx].ch !== TL[nx - 1].ch && t >= TL[nx].a - WIPE - BREATH && !TL[nx - 1].silence && TL[nx - 1].ch) {
+    // gap: previous card has left; show its ground, then wipe up the next chapter's ground
+    const prev = TL[nx - 1];
+    if (t >= prev.b) {
+      drawCard(ctx, prev.b - 0.001, nx - 1);
+      const p = E.quartInOut(prog(t, TL[nx].a - WIPE - BREATH, TL[nx].a - BREATH));
+      ctx.save(); ctx.beginPath(); ctx.rect(0, H * (1 - p), W, H * p); ctx.clip(); drawCard(ctx, TL[nx].a, nx); ctx.restore();
+      if (p > 0 && p < 1) { ctx.fillStyle = RED; ctx.fillRect(0, H * (1 - p) - 2, W, 4); }
+      return;
+    }
+  }
+  const found = TL.findIndex((c) => t >= c.a && t < c.b);
+  drawCard(ctx, t, found < 0 ? (t < TL[0].a ? 0 : TL.length - 1) : found);
+}
+
+/* ---------- signal corruption (only at the hallucination) ---------- */
+const scratch = document.createElement('canvas'); scratch.width = W; scratch.height = H;
+const tint = document.createElement('canvas'); tint.width = W; tint.height = H;
+function corrupt(ctx, src, t) {
+  const c = CORRUPT.find(([a, b]) => t >= a && t < b); if (!c) return false;
+  const p = prog(t, c[0], c[1]), amt = Math.sin(p * Math.PI);
+  const R = rng(Math.floor(t * 60) + 11), sh = Math.round(14 + 26 * amt);
+  const tc = tint.getContext('2d');
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+  ctx.globalCompositeOperation = 'lighter';
+  for (const [color, dx] of [['#ff0000', sh], ['#00ff00', 0], ['#0000ff', -sh]]) {
+    tc.globalCompositeOperation = 'source-over'; tc.drawImage(src, 0, 0);
+    tc.globalCompositeOperation = 'multiply'; tc.fillStyle = color; tc.fillRect(0, 0, W, H);
+    ctx.drawImage(tint, dx, 0);
+  }
+  ctx.globalCompositeOperation = 'source-over';
+  const n = 6 + Math.floor(10 * amt);
+  for (let i = 0; i < n; i++) { const y = Math.floor(R() * H), h = 6 + Math.floor(R() * 60), dx = (R() - 0.5) * 220 * amt; ctx.drawImage(src, 0, y, W, h, dx, y, W, h); }
+  ctx.globalAlpha = 0.12 * amt; ctx.fillStyle = '#fff'; for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1); ctx.globalAlpha = 1;
+  return true;
+}
+
+/* ---------- film grain ---------- */
+const grain = document.createElement('canvas'); grain.width = 512; grain.height = 512;
+{ const g = grain.getContext('2d'), d = g.createImageData(512, 512), R = rng(3); for (let i = 0; i < d.data.length; i += 4) { const v = 128 + (R() - 0.5) * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } g.putImageData(d, 0, 0); }
+
+/* ---------- frame = motion-blurred average of sub-frames ---------- */
+const sceneC = document.createElement('canvas'); sceneC.width = W; sceneC.height = H;
+const accC = document.createElement('canvas'); accC.width = W; accC.height = H;
+function effTime(t) { const h = HOLD.find(([a, b]) => t >= a && t < b); return h ? h[0] : t; }
+function frame(f, outCtx, sub = SUB) {
+  const sc = sceneC.getContext('2d'), ac = accC.getContext('2d');
+  for (let k = 0; k < sub; k++) {
+    const t = effTime(f / FPS + (k / sub) * SHUTTER / FPS);
+    sc.setTransform(1, 0, 0, 1, 0, 0); sc.globalAlpha = 1;
+    scene(sc, t);
+    if (CORRUPT.some(([a, b]) => t >= a && t < b)) { scratch.getContext('2d').drawImage(sceneC, 0, 0); corrupt(sc, scratch, t); }
+    ac.globalAlpha = 1 / (k + 1); ac.drawImage(sceneC, 0, 0);
+  }
+  ac.globalAlpha = 1;
+  const R = rng(f + 101); ac.globalCompositeOperation = 'overlay'; ac.globalAlpha = 0.05;
+  const ox = Math.floor(R() * 512), oy = Math.floor(R() * 512);
+  for (let x = -ox; x < W; x += 512) for (let y = -oy; y < H; y += 512) ac.drawImage(grain, x, y);
+  ac.globalCompositeOperation = 'source-over'; ac.globalAlpha = 1;
+  if (outCtx) outCtx.drawImage(accC, 0, 0);
+  return accC;
+}
+
+/* ---------- sound ---------- */
+const BPM = 90, BEAT = 60 / BPM, SR = 48000;
+// chapter breaths: the gap before each new chapter goes quiet (no pulse, no ticks)
+const GAPS = TL.slice(1).map((c, i) => [TL[i].b, c.a]).filter(([x, y]) => y - x > 0.2);
+const inGap = (t) => GAPS.some(([x, y]) => t > x + 0.15 && t < y) || (t > SIL_A && t < SIL_B);
+const CLICKS = TL.filter((c) => c.draw).flatMap((c) => [c.a + 0.1, c.a + 0.45, (c.land || c.a + 1) - 0.25]).filter((t) => t < SIL_A);
+async function renderAudio() {
+  const ac = new OfflineAudioContext(2, Math.round(SR * DUR), SR);
+  const master = ac.createGain(); master.gain.value = 1;
+  const comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 3; comp.attack.value = 0.005; comp.release.value = 0.2;
+  master.connect(comp); comp.connect(ac.destination);
+  const noise = ac.createBuffer(1, SR * 2, SR); { const d = noise.getChannelData(0), R = rng(5); for (let i = 0; i < d.length; i++) d[i] = R() * 2 - 1; }
+  const quiet = inGap;
+  // sub pulse on every beat
+  for (let t = 0; t < SIL_A; t += BEAT) {
+    if (quiet(t)) continue;
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.frequency.setValueAtTime(62, t); o.frequency.exponentialRampToValueAtTime(38, t + 0.28);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(t < 1.2 ? 0.25 : 0.55, t + 0.006); g.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.55);
+  }
+  // ticks on the off-beat eighths from scene 2
+  for (let t = TL[1].a + BEAT / 2; t < SIL_A; t += BEAT / 2) {
+    if (quiet(t)) continue;
+    const s = ac.createBufferSource(); s.buffer = noise; const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 8000;
+    const g = ac.createGain(), pan = ac.createStereoPanner(); pan.pan.value = (Math.round(t / (BEAT / 2)) % 4 < 2) ? -0.35 : 0.35;
+    const lvl = Math.round(t / (BEAT / 2)) % 2 ? 0.05 : 0.025;
+    g.gain.setValueAtTime(lvl, t); g.gain.exponentialRampToValueAtTime(0.0005, t + 0.035);
+    s.connect(hp); hp.connect(g); g.connect(pan); pan.connect(master); s.start(t, (t * 7) % 1.5, 0.05);
+  }
+  // crisp clicks on the type
+  for (const t of CLICKS) {
+    const s = ac.createBufferSource(); s.buffer = noise; const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 3200; bp.Q.value = 2;
+    const g = ac.createGain(); g.gain.setValueAtTime(0.32, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.012);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(t, (t * 3) % 1.5, 0.02);
+    const o = ac.createOscillator(), og = ac.createGain(); o.frequency.value = 2400; og.gain.setValueAtTime(0.05, t); og.gain.exponentialRampToValueAtTime(0.0005, t + 0.03);
+    o.connect(og); og.connect(master); o.start(t); o.stop(t + 0.04);
+  }
+  // a quiet pad: A minor, F, C, G, each two bars
+  const CH = [[110, 164.81, 261.63], [87.31, 130.81, 220], [130.81, 196, 329.63], [98, 146.83, 246.94]];
+  const padOut = ac.createBiquadFilter(); padOut.type = 'lowpass'; padOut.frequency.value = 1100; padOut.connect(master);
+  for (let i = 0, t = 0; t < SIL_A; i++, t += BEAT * 8) {
+    const end = Math.min(t + BEAT * 8 + 0.4, SIL_A);
+    for (const f of CH[i % 4]) for (const det of [-6, 6]) {
+      const o = ac.createOscillator(), g = ac.createGain(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = det;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.012, t + 1.2); g.gain.setValueAtTime(0.012, end - 0.5); g.gain.linearRampToValueAtTime(0, end);
+      o.connect(g); g.connect(padOut); o.start(t); o.stop(end + 0.05);
+    }
+  }
+  // signal corruption: a short crushed burst
+  { const len = Math.floor(0.32 * SR), b = ac.createBuffer(1, len, SR), d = b.getChannelData(0), R = rng(9); let v = 0;
+    for (let i = 0; i < len; i++) { if (i % 90 === 0) v = (R() * 2 - 1) * 0.6; d[i] = v * (1 - i / len); }
+    for (const [st] of CORRUPT) { const s = ac.createBufferSource(); s.buffer = b; const g = ac.createGain(); g.gain.value = 0.3; s.connect(g); g.connect(master); s.start(st); } }
+  // riser into the close, cut dead for one beat of silence
+  { const s = ac.createBufferSource(); s.buffer = noise; s.loop = true; const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 6;
+    bp.frequency.setValueAtTime(300, SIL_A - 3); bp.frequency.exponentialRampToValueAtTime(9000, SIL_A - 0.02);
+    const g = ac.createGain(); g.gain.setValueAtTime(0, SIL_A - 3); g.gain.linearRampToValueAtTime(0.45, SIL_A - 0.04); g.gain.linearRampToValueAtTime(0, SIL_A);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(SIL_A - 3); s.stop(SIL_A + 0.01);
+    const o = ac.createOscillator(), og = ac.createGain(); o.type = 'triangle'; o.frequency.setValueAtTime(110, SIL_A - 3); o.frequency.exponentialRampToValueAtTime(880, SIL_A - 0.02);
+    og.gain.setValueAtTime(0, SIL_A - 3); og.gain.linearRampToValueAtTime(0.06, SIL_A - 0.04); og.gain.linearRampToValueAtTime(0, SIL_A); o.connect(og); og.connect(master); o.start(SIL_A - 3); o.stop(SIL_A + 0.01); }
+  // end card: one low hit and a soft bell, then a gentle fade
+  { const t = SIL_B;
+    const o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(70, t); o.frequency.exponentialRampToValueAtTime(41, t + 0.4);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.7, t + 0.008); g.gain.exponentialRampToValueAtTime(0.001, t + 1.6); o.connect(g); g.connect(master); o.start(t); o.stop(t + 1.7);
+    for (const [f, l] of [[440, 0.05], [659.25, 0.035], [880, 0.025], [1318.5, 0.012]]) {
+      const b = ac.createOscillator(), bg = ac.createGain(); b.frequency.value = f; bg.gain.setValueAtTime(0, t); bg.gain.linearRampToValueAtTime(l, t + 0.01);
+      bg.gain.exponentialRampToValueAtTime(0.0005, DUR - 0.1); b.connect(bg); bg.connect(master); b.start(t); b.stop(DUR);
+    }
+    for (const f of [110, 164.81, 261.63]) { const p = ac.createOscillator(), pg = ac.createGain(); p.type = 'sawtooth'; p.frequency.value = f; pg.gain.setValueAtTime(0, t); pg.gain.linearRampToValueAtTime(0.01, t + 0.4); pg.gain.linearRampToValueAtTime(0, DUR - 0.1); p.connect(pg); pg.connect(padOut); p.start(t); p.stop(DUR); }
+  }
+  master.gain.setValueAtTime(0, 0); master.gain.linearRampToValueAtTime(1, 0.05); master.gain.setValueAtTime(1, DUR - 1.2); master.gain.linearRampToValueAtTime(0, DUR - 0.05);
+  const buf = await ac.startRendering();
+  // loudness: K-weighted, gated (BS.1770 style), normalised to -16 LUFS, peaks held under -1 dBFS
+  const kac = new OfflineAudioContext(2, buf.length, SR), src = kac.createBufferSource(); src.buffer = buf;
+  const sh = kac.createBiquadFilter(); sh.type = 'highshelf'; sh.frequency.value = 1681; sh.gain.value = 4;
+  const hp = kac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 38; hp.Q.value = 0.5;
+  src.connect(sh); sh.connect(hp); hp.connect(kac.destination); src.start();
+  const kb = await kac.startRendering();
+  const L = kb.getChannelData(0), Rr = kb.getChannelData(1), blk = 0.4 * SR, hop = 0.1 * SR, ms = [];
+  for (let s = 0; s + blk <= L.length; s += hop) { let a = 0; for (let i = s; i < s + blk; i++) a += L[i] * L[i] + Rr[i] * Rr[i]; ms.push(a / blk); }
+  const lufs = (m) => -0.691 + 10 * Math.log10(m);
+  let g1 = ms.filter((m) => lufs(m) > -70); const rel = lufs(g1.reduce((a, b) => a + b, 0) / g1.length) - 10;
+  const g2 = g1.filter((m) => lufs(m) > rel); const integrated = lufs(g2.reduce((a, b) => a + b, 0) / g2.length);
+  const gain = Math.pow(10, (-16 - integrated) / 20), ceil = Math.pow(10, -1 / 20);
+  const outB = [buf.getChannelData(0), buf.getChannelData(1)].map((ch) => { const o = new Float32Array(ch.length); for (let i = 0; i < ch.length; i++) { let v = ch[i] * gain; const a = Math.abs(v); if (a > ceil * 0.8) v = Math.sign(v) * (ceil * 0.8 + (ceil * 0.2) * Math.tanh((a - ceil * 0.8) / (ceil * 0.2))); o[i] = v; } return o; });
+  let peak = 0; outB.forEach((c) => c.forEach((v) => { if (Math.abs(v) > peak) peak = Math.abs(v); }));
+  window.__audioInfo = { integratedBefore: integrated.toFixed(2), gainDb: (20 * Math.log10(gain)).toFixed(2), peakDb: (20 * Math.log10(peak)).toFixed(2) };
+  return outB;
+}
+
+/* ---------- export: H.264 + AAC in MP4, all in the browser ---------- */
+async function exportFilm(opts = {}) {
+  const fps = opts.fps || FPS, bitrate = opts.bitrate || 1_400_000, frames = Math.round((opts.dur || DUR) * fps);
+  const chans = await renderAudio();
+  const muxer = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), fastStart: 'in-memory',
+    video: { codec: 'avc', width: W, height: H, frameRate: fps }, audio: { codec: 'aac', numberOfChannels: 2, sampleRate: SR } });
+  const ve = new VideoEncoder({ output: (c, m) => muxer.addVideoChunk(c, m), error: (e) => { window.__err = String(e); } });
+  ve.configure({ codec: 'avc1.640032', width: W, height: H, bitrate, framerate: fps, bitrateMode: opts.mode || 'variable', avc: { format: 'avc' } });
+  const ae = new AudioEncoder({ output: (c, m) => muxer.addAudioChunk(c, m), error: (e) => { window.__err = String(e); } });
+  ae.configure({ codec: 'mp4a.40.2', sampleRate: SR, numberOfChannels: 2, bitrate: 160000 });
+  const N = chans[0].length;
+  for (let s = 0; s < N; s += 4800) {
+    const n = Math.min(4800, N - s), data = new Float32Array(n * 2); data.set(chans[0].subarray(s, s + n), 0); data.set(chans[1].subarray(s, s + n), n);
+    ae.encode(new AudioData({ format: 'f32-planar', sampleRate: SR, numberOfFrames: n, numberOfChannels: 2, timestamp: Math.round(s / SR * 1e6), data }));
+  }
+  const out = document.getElementById('out').getContext('2d');
+  for (let f = 0; f < frames; f++) {
+    const c = frame(f * (FPS / fps), null, opts.sub || SUB);
+    if (f % 30 === 0) out.drawImage(c, 0, 0);
+    const vf = new VideoFrame(c, { timestamp: Math.round(f / fps * 1e6), duration: Math.round(1e6 / fps) });
+    ve.encode(vf, { keyFrame: f % (fps * 2) === 0 }); vf.close();
+    while (ve.encodeQueueSize > 6) await new Promise((r) => setTimeout(r, 2));
+    window.__progress = f / frames;
+  }
+  await ve.flush(); await ae.flush(); muxer.finalize();
+  window.__mp4 = new Uint8Array(muxer.target.buffer);
+  return window.__mp4.length;
+}
+window.getChunk = (i, size) => { let s = ''; const a = window.__mp4.subarray(i, i + size); for (let k = 0; k < a.length; k += 0x8000) s += String.fromCharCode.apply(null, a.subarray(k, k + 0x8000)); return btoa(s); };
+
+/* ---------- boot ---------- */
+async function boot() {
+  const fonts = [['SG', 'lib/space-grotesk-latin-400-normal.woff2', '400', 'normal'], ['SG', 'lib/space-grotesk-latin-500-normal.woff2', '500', 'normal'], ['SG', 'lib/space-grotesk-latin-700-normal.woff2', '700', 'normal'],
+    ['NR', 'lib/newsreader-latin-400-italic.woff2', '400', 'italic'], ['NR', 'lib/newsreader-latin-500-normal.woff2', '500', 'normal'], ['JB', 'lib/jetbrains-mono-latin-500-normal.woff2', '500', 'normal']];
+  await Promise.all(fonts.map(([fam, url, weight, style]) => new FontFace(fam, `url(${url})`, { weight, style }).load().then((f) => document.fonts.add(f))));
+  await Promise.all(['junior', 'senior'].map((k) => new Promise((r) => { const im = new Image(); im.onload = () => { COVERS[k] = im; r(); }; im.onerror = r; im.src = `../../demo/booklets/${k}-cover.jpg`; })));
+  window.__ready = true;
+  const q = new URLSearchParams(location.search);
+  if (q.has('t')) frame(Math.round(+q.get('t') * FPS), document.getElementById('out').getContext('2d'));
+}
+window.still = (t) => frame(Math.round(t * FPS), document.getElementById('out').getContext('2d'));
+boot();
+</script>
+</body>
+</html>

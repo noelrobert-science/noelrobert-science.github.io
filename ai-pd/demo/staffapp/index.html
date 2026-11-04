@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staff app (demo copy)</title>
+<style>
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-600.woff2') format('woff2'); font-weight: 600; }
+:root { --ink: #1b2230; --muted: #596273; --line: #dde2ea; --navy: #233e59; --red: #c8101a; --ok: #0f9d58; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.45 'Lexend', system-ui, sans-serif; color: var(--ink); background: #f4f6f9; }
+header { background: var(--navy); color: #fff; padding: 14px 16px 10px; }
+header .row { display: flex; justify-content: space-between; align-items: center; }
+header h1 { margin: 0; font-size: 18px; }
+.demo { background: #ffd166; color: #111; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; }
+nav { display: flex; gap: 6px; overflow-x: auto; padding: 10px 12px; background: #fff; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+nav button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+nav button.on { background: var(--navy); color: #fff; border-color: var(--navy); }
+main { padding: 12px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.card h3 { margin: 0 0 6px; font-size: 15px; }
+.muted { color: var(--muted); font-size: 13px; }
+.pill { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #eef1f6; margin-right: 4px; }
+.pill.red { background: #fde8e9; color: var(--red); } .pill.green { background: #e3f5ec; color: var(--ok); }
+.slot { display: grid; grid-template-columns: 70px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.slot:last-child { border: 0; }
+button.act { border: 0; background: var(--red); color: #fff; border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 600; width: 100%; cursor: pointer; }
+.toast { position: fixed; left: 12px; right: 12px; bottom: 16px; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 10px; display: none; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; } td, th { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<header><div class="row"><h1>Staff app</h1><span class="demo">Demo copy · invented data</span></div><div class="muted" style="color:#c9d4e3">Signed in as Ms Demo Teacher (school account)</div></header>
+<nav id="tabs"></nav>
+<main id="view"></main>
+<div class="toast" id="toast"></div>
+<script>
+/* Demo twin of the school staff app. All staff, notices, rooms and duties are invented. */
+const TABS = {
+  Home: () => `
+    <div class="card"><h3>Your day · Thursday</h3><div class="slot"><b>07:45</b><span>Staff briefing, hall</span></div><div class="slot"><b>08:00</b><span>Grade 10 Physical Sciences · Lab 2</span></div><div class="slot"><b>10:30</b><span>Invigilation · Room 14 <span class="pill red">duty</span></span></div><div class="slot"><b>13:20</b><span>Break duty · North field</span></div></div>
+    <div class="card"><h3>2 new notices</h3><div class="muted">Fire drill moved to Friday · Lab safety audit next week</div></div>
+    <button class="act" onclick="emergency()">Emergency: what to do</button>`,
+  Notices: () => [
+    ['Fire drill moved to Friday', 'Assemble on the North field. Registers to the safety team.', 'Safety'],
+    ['Lab safety audit next week', 'Please check eyewash stations and log any faults.', 'Science'],
+    ['Exam timetable updated', 'Invigilation swaps through the app only, by Wednesday.', 'Exams'],
+  ].map(([t, b, c]) => `<div class="card"><span class="pill">${c}</span><h3>${t}</h3><div class="muted">${b}</div></div>`).join(''),
+  Calendar: () => `<div class="card"><h3>This week</h3>${[['Mon', 'Staff meeting 14:30'], ['Tue', 'Grade 10 parents evening'], ['Wed', 'Invigilation swaps close'], ['Thu', 'Sports fixtures (away)'], ['Fri', 'Fire drill 10:00']].map(([d, e]) => `<div class="slot"><b>${d}</b><span>${e}</span></div>`).join('')}</div>`,
+  Timetable: () => `<div class="card"><h3>My timetable · Day 4</h3>${[['P1', '10C Physical Sciences · Lab 2'], ['P2', '11B Physical Sciences · Lab 2'], ['P3', 'Free'], ['P4', '12A Chemistry · Lab 3'], ['P5', 'Invigilation · Room 14']].map(([p, s]) => `<div class="slot"><b>${p}</b><span>${s}</span></div>`).join('')}</div>`,
+  Safety: () => `<div class="card"><h3>Health and safety</h3><div class="slot"><b>AED</b><span>Reception and sports pavilion</span></div><div class="slot"><b>Assembly</b><span>North field, by grade</span></div><div class="slot"><b>First aid</b><span>Sanatorium, ext. 000</span></div></div><button class="act" onclick="emergency()">Report an incident</button>`,
+  Invigilation: () => `<div class="card"><h3>My invigilation</h3><table><tr><th>Day</th><th>Time</th><th>Room</th></tr><tr><td>Thu</td><td>10:30</td><td>Room 14</td></tr><tr><td>Mon</td><td>08:00</td><td>Hall</td></tr></table><p class="muted">Need a swap? Request it here; the exams officer approves.</p><button class="act" style="background:#233e59" onclick="toast('Swap request sent to the exams officer (demo)')">Request a swap</button></div>`,
+  Admin: () => `<div class="card"><h3>Admin roles</h3><div class="slot"><b>Admin</b><span>Ms Demo Head</span></div><div class="slot"><b>Safety</b><span>Mr Demo Safety</span></div><div class="slot"><b>Exams</b><span>Ms Demo Exams</span></div><p class="muted">Only admins can post notices and change duties.</p></div>`,
+  Activity: () => `<div class="card"><h3>Activity log</h3><p class="muted">Who did what, for safety and accountability.</p><table><tr><th>Time</th><th>Who</th><th>Action</th></tr><tr><td>07:41</td><td>Ms Demo Head</td><td>Posted a notice</td></tr><tr><td>07:52</td><td>Mr Demo Safety</td><td>Updated assembly points</td></tr><tr><td>08:03</td><td>Ms Demo Teacher</td><td>Viewed timetable</td></tr></table></div>`,
+};
+const nav = document.getElementById('tabs'), view = document.getElementById('view');
+function go(t) { [...nav.children].forEach((b) => b.classList.toggle('on', b.textContent === t)); view.innerHTML = TABS[t](); }
+Object.keys(TABS).forEach((t) => { const b = document.createElement('button'); b.textContent = t; b.onclick = () => go(t); nav.appendChild(b); });
+function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; setTimeout(() => (t.style.display = 'none'), 2200); }
+function emergency() { go('Safety'); toast('Emergency steps opened (demo). Call the safety team first.'); }
+go('Home');
+</script>
+</body>
+</html>

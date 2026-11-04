@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marks dashboard (demo copy)</title>
+<style>
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-600.woff2') format('woff2'); font-weight: 600; }
+:root { --ink: #1b2230; --muted: #596273; --line: #d5dbe5; --soft: #f4f6f9; --acc: #1c64d6; --warn: #c8101a; --ok: #0f9d58; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.45 'Lexend', system-ui, sans-serif; color: var(--ink); background: #eef1f6; }
+header { background: #233e59; color: #fff; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+header h1 { margin: 0; font-size: 20px; }
+.demo { background: #ffd166; color: #111; font-weight: 600; font-size: 13px; padding: 3px 10px; border-radius: 6px; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--line); }
+nav button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 14px; font: inherit; cursor: pointer; }
+nav button.on { background: var(--acc); border-color: var(--acc); color: #fff; }
+main { padding: 16px; max-width: 1200px; margin: 0 auto; }
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.card h3 { margin: 0 0 8px; font-size: 15px; color: var(--muted); font-weight: 600; }
+.big { font-size: 30px; font-weight: 600; }
+.sub { color: var(--muted); font-size: 13px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
+th { background: var(--soft); color: var(--muted); font-weight: 600; }
+tr.click { cursor: pointer; } tr.click:hover { background: #f6f9ff; }
+.tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); }
+.tag.down { background: #fde8e9; color: var(--warn); } .tag.up { background: #e3f5ec; color: var(--ok); }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+select, input { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; }
+.comment { background: #f6f9ff; border-left: 4px solid var(--acc); border-radius: 8px; padding: 12px 14px; }
+.load { position: fixed; inset: 0; background: #233e59; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 5; transition: opacity .4s; }
+canvas { max-width: 100%; }
+</style>
+</head>
+<body>
+<div class="load" id="load">Reading the mark sheets (read-only)…</div>
+<header><h1>Grade 10 marks dashboard</h1><span class="demo">Demo copy · invented data</span></header>
+<nav id="tabs"></nav>
+<main id="view"></main>
+<script src="../../vendor/chartjs/chart.umd.js"></script>
+<script>
+/* Demo twin of Noel's marks dashboard. Every pupil, group and mark here is invented by a seeded random generator. */
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const SUBJECTS = ['Physical Sciences', 'Mathematics', 'English', 'Life Sciences', 'Geography', 'Afrikaans'];
+const TESTS = ['Nov 2025', 'Jun 2026', 'Sep 2026'];
+const GROUPS = ['Tutor 10A', 'Tutor 10B', 'Tutor 10C', 'Tutor 10D'];
+const PUPILS = Array.from({ length: 48 }, (_, i) => {
+  const base = 45 + rnd() * 40;
+  const marks = {};
+  SUBJECTS.forEach((s) => { const sb = base + (rnd() - 0.5) * 18; let m = sb; marks[s] = TESTS.map(() => { m = Math.max(25, Math.min(98, m + (rnd() - 0.55) * 12)); return Math.round(m); }); if (i % 7 === 3) marks[s][2] = Math.max(25, marks[s][2] - 9); });
+  return { id: 'Pupil A' + String(i + 1).padStart(2, '0'), group: GROUPS[i % 4], marks };
+});
+const avg = (a) => Math.round(a.reduce((x, y) => x + y, 0) / a.length);
+const latest = (p, s) => p.marks[s][2];
+const change = (p, s) => p.marks[s][2] - p.marks[s][1];
+const overall = (p) => avg(SUBJECTS.map((s) => latest(p, s)));
+const overallPrev = (p) => avg(SUBJECTS.map((s) => p.marks[s][1]));
+let charts = [];
+const clearCharts = () => { charts.forEach((c) => c.destroy()); charts = []; };
+const chart = (el, cfg) => { charts.push(new Chart(el, cfg)); };
+const TABS = { 'Grade overview': overview, 'Watch list': watch, 'Tutor group': tutor, 'Subject': subject, 'Pupil profile': () => profile(PUPILS[0].id), 'Externals & trends': trends };
+const nav = document.getElementById('tabs'), view = document.getElementById('view');
+Object.keys(TABS).forEach((t, i) => { const b = document.createElement('button'); b.textContent = t; b.onclick = () => go(t); if (!i) b.classList.add('on'); nav.appendChild(b); });
+function go(t, arg) { [...nav.children].forEach((b) => b.classList.toggle('on', b.textContent === t)); clearCharts(); view.innerHTML = ''; (arg ? profile : TABS[t])(arg); }
+
+function overview() {
+  const all = PUPILS.map(overall);
+  view.innerHTML = `<div class="grid">
+    <div class="card"><h3>Grade average (Sep 2026)</h3><div class="big">${avg(all)}%</div><div class="sub">48 pupils · 6 subjects</div></div>
+    <div class="card"><h3>On the watch list</h3><div class="big">${PUPILS.filter((p) => overall(p) - overallPrev(p) <= -5 || overall(p) < 50).length}</div><div class="sub">dropped 5+ points or below 50%</div></div>
+    <div class="card"><h3>Improved since June</h3><div class="big">${PUPILS.filter((p) => overall(p) > overallPrev(p)).length}</div><div class="sub">pupils with a higher average</div></div></div>
+    <div class="grid" style="margin-top:14px"><div class="card"><h3>Subject averages</h3><canvas id="c1" height="140"></canvas></div><div class="card"><h3>Spread of marks</h3><canvas id="c2" height="140"></canvas></div></div>`;
+  chart(document.getElementById('c1'), { type: 'bar', data: { labels: SUBJECTS, datasets: TESTS.map((t, k) => ({ label: t, data: SUBJECTS.map((s) => avg(PUPILS.map((p) => p.marks[s][k]))), backgroundColor: ['#9fb8e8', '#5f8ad6', '#1c4fa8'][k] })) }, options: { scales: { y: { min: 0, max: 100 } } } });
+  const bins = [0, 0, 0, 0, 0, 0]; all.forEach((m) => bins[Math.min(5, Math.max(0, Math.floor((m - 40) / 10)))]++);
+  chart(document.getElementById('c2'), { type: 'bar', data: { labels: ['<50', '50s', '60s', '70s', '80s', '90+'], datasets: [{ label: 'Pupils', data: bins, backgroundColor: '#233e59' }] } });
+}
+function watch() {
+  view.innerHTML = `<div class="filters">Show pupils who <select id="f"><option value="drop">dropped 5+ points since June</option><option value="low">are below 50% in any subject</option><option value="all">all pupils</option></select> in <select id="g"><option>All groups</option>${GROUPS.map((g) => `<option>${g}</option>`).join('')}</select></div><div id="list"></div>`;
+  const draw = () => {
+    const f = document.getElementById('f').value, g = document.getElementById('g').value;
+    let rows = PUPILS.filter((p) => g === 'All groups' || p.group === g);
+    if (f === 'drop') rows = rows.filter((p) => overall(p) - overallPrev(p) <= -5);
+    if (f === 'low') rows = rows.filter((p) => SUBJECTS.some((s) => latest(p, s) < 50));
+    document.getElementById('list').innerHTML = `<table><tr><th>Pupil</th><th>Group</th><th>Average</th><th>Since June</th><th>Lowest subject</th></tr>${rows.map((p) => { const d = overall(p) - overallPrev(p); const lo = SUBJECTS.reduce((a, s) => (latest(p, s) < latest(p, a) ? s : a)); return `<tr class="click" data-id="${p.id}"><td>${p.id}</td><td>${p.group}</td><td>${overall(p)}%</td><td><span class="tag ${d < 0 ? 'down' : 'up'}">${d > 0 ? '+' : ''}${d}</span></td><td>${lo} (${latest(p, lo)}%)</td></tr>`; }).join('') || '<tr><td colspan="5">Nobody on this list.</td></tr>'}</table>`;
+    document.querySelectorAll('tr.click').forEach((r) => (r.onclick = () => go('Pupil profile', r.dataset.id)));
+  };
+  document.getElementById('f').onchange = draw; document.getElementById('g').onchange = draw; draw();
+}
+function tutor() {
+  view.innerHTML = `<div class="filters">Tutor group <select id="tg">${GROUPS.map((g) => `<option>${g}</option>`).join('')}</select></div><div id="tl"></div>`;
+  const draw = () => {
+    const g = document.getElementById('tg').value, rows = PUPILS.filter((p) => p.group === g);
+    document.getElementById('tl').innerHTML = `<table><tr><th>Pupil</th>${SUBJECTS.map((s) => `<th>${s.split(' ')[0]}</th>`).join('')}<th>Avg</th></tr>${rows.map((p) => `<tr class="click" data-id="${p.id}"><td>${p.id}</td>${SUBJECTS.map((s) => `<td>${latest(p, s)}</td>`).join('')}<td><b>${overall(p)}</b></td></tr>`).join('')}</table>`;
+    document.querySelectorAll('tr.click').forEach((r) => (r.onclick = () => go('Pupil profile', r.dataset.id)));
+  };
+  document.getElementById('tg').onchange = draw; draw();
+}
+function subject() {
+  view.innerHTML = `<div class="filters">Subject <select id="sj">${SUBJECTS.map((s) => `<option>${s}</option>`).join('')}</select></div><div class="grid"><div class="card"><h3>Average per test</h3><canvas id="c3" height="150"></canvas></div><div class="card"><h3>Top movers since June</h3><div id="mv"></div></div></div>`;
+  const draw = () => {
+    clearCharts(); const s = document.getElementById('sj').value;
+    chart(document.getElementById('c3'), { type: 'line', data: { labels: TESTS, datasets: GROUPS.map((g, k) => ({ label: g, data: TESTS.map((_, t) => avg(PUPILS.filter((p) => p.group === g).map((p) => p.marks[s][t]))), borderColor: ['#1c64d6', '#c8101a', '#0f9d58', '#b8580b'][k], tension: .3 })) }, options: { scales: { y: { min: 30, max: 90 } } } });
+    const mv = [...PUPILS].sort((a, b) => change(b, s) - change(a, s));
+    document.getElementById('mv').innerHTML = [...mv.slice(0, 3), ...mv.slice(-3)].map((p) => `<div>${p.id} <span class="tag ${change(p, s) < 0 ? 'down' : 'up'}">${change(p, s) > 0 ? '+' : ''}${change(p, s)}</span></div>`).join('');
+  };
+  document.getElementById('sj').onchange = draw; draw();
+}
+function profile(id) {
+  const p = PUPILS.find((x) => x.id === id) || PUPILS[0];
+  const best = SUBJECTS.reduce((a, s) => (latest(p, s) > latest(p, a) ? s : a));
+  const worst = SUBJECTS.reduce((a, s) => (latest(p, s) < latest(p, a) ? s : a));
+  const d = overall(p) - overallPrev(p);
+  const comment = `${p.id} is averaging ${overall(p)}% (${d >= 0 ? 'up' : 'down'} ${Math.abs(d)} since June). ${best} is the strongest subject at ${latest(p, best)}%. ${worst} at ${latest(p, worst)}% needs attention: ${change(p, worst) < 0 ? 'it has dropped since June, so a short check-in with the subject teacher would help.' : 'it is improving, so keep encouraging steady practice.'}`;
+  view.innerHTML = `<div class="filters">Pupil <select id="pp">${PUPILS.map((x) => `<option ${x.id === p.id ? 'selected' : ''}>${x.id}</option>`).join('')}</select> <span class="sub">${p.group}</span></div>
+    <div class="grid"><div class="card"><h3>Snapshot</h3><div class="big">${overall(p)}%</div><div class="sub">average, Sep 2026</div><canvas id="c4" height="160" style="margin-top:8px"></canvas></div>
+    <div class="card"><h3>Comment for the tutor (auto-written, teacher edits)</h3><div class="comment">${comment}</div></div></div>`;
+  chart(document.getElementById('c4'), { type: 'radar', data: { labels: SUBJECTS.map((s) => s.split(' ')[0]), datasets: [{ label: 'Sep 2026', data: SUBJECTS.map((s) => latest(p, s)), borderColor: '#1c64d6', backgroundColor: 'rgba(28,100,214,.15)' }, { label: 'Jun 2026', data: SUBJECTS.map((s) => p.marks[s][1]), borderColor: '#9aa3b2', backgroundColor: 'rgba(0,0,0,0)' }] }, options: { scales: { r: { min: 20, max: 100 } } } });
+  document.getElementById('pp').onchange = (e) => go('Pupil profile', e.target.value);
+}
+function trends() {
+  view.innerHTML = `<p class="sub">Exam path per subject: the same pupils from last November to this year's tests, with two years of history (invented).</p><div class="grid" id="tc"></div>`;
+  const tc = document.getElementById('tc');
+  SUBJECTS.forEach((s, k) => {
+    const c = document.createElement('div'); c.className = 'card'; c.innerHTML = `<h3>${s}</h3><canvas height="120"></canvas>`; tc.appendChild(c);
+    const hist = [avg(PUPILS.map((p) => p.marks[s][0])) - 4 + (k % 3), avg(PUPILS.map((p) => p.marks[s][0])) - 2];
+    chart(c.querySelector('canvas'), { type: 'line', data: { labels: ['2024', '2025', ...TESTS], datasets: [{ label: s, data: [...hist, ...TESTS.map((_, t) => avg(PUPILS.map((p) => p.marks[s][t])))], borderColor: '#233e59', tension: .3, pointRadius: 3 }] }, options: { plugins: { legend: { display: false } }, scales: { y: { min: 40, max: 80 } } } });
+  });
+}
+overview();
+setTimeout(() => { const l = document.getElementById('load'); l.style.opacity = 0; setTimeout(() => l.remove(), 400); }, 1200);
+</script>
+</body>
+</html>
