@@ -36,20 +36,24 @@
     <p class="kicker">Predict first</p>
     <h2 class="headline">How long did the Grade 10 coursebook and answer book take to build?</h2>
     <div class="body">
-      <div class="options">
-        <div class="opt"><span class="letter">A</span><span class="what">A full year</span></div>
-        <div class="opt"><span class="letter">B</span><span class="what">One term</span></div>
-        <div class="opt"><span class="letter">C</span><span class="what">A few weeks</span></div>
-        <div class="opt"><span class="letter">D</span><span class="what">A few days</span></div>
+      <div class="options fragment fade-out" data-fragment-index="0">
+        <div class="opt"><span class="letter">A</span><span class="what">A year</span></div>
+        <div class="opt"><span class="letter">B</span><span class="what">A term</span></div>
+        <div class="opt"><span class="letter">C</span><span class="what">A month</span></div>
+        <div class="opt"><span class="letter">D</span><span class="what">A long weekend</span></div>
       </div>
-      <div class="reveal-card fragment" data-fx="none">
-        <div class="answer-box">
-          <div class="big">The real answer</div>
-          <div class="confirm">[CONFIRM WITH NOEL: build time, from first prompt to print copy]</div>
+      <div class="timeline-card fragment" data-fragment-index="0" data-fx="timeline">
+        <div class="tl-answer"><span class="d-chip">D</span> A long weekend to print-ready. <em>Nine days</em> to the final copy.</div>
+        <div class="tl">
+          <div class="pt"><i></i><div class="dt">Sat 24 Oct, am</div><div class="lb">The first prompt</div></div>
+          <div class="pt"><i></i><div class="dt">Sat 24 Oct, pm</div><div class="lb">First full draft of both books</div></div>
+          <div class="pt key"><i></i><div class="dt">Mon 26 Oct</div><div class="lb">Edition 1 to the print room <b>(3 days)</b></div></div>
+          <div class="pt"><i></i><div class="dt">Tue 27 Oct</div><div class="lb">The print-light version</div></div>
+          <div class="pt key"><i></i><div class="dt">Mon 2 Nov</div><div class="lb">Final AI-free copy to print <b>(9 days)</b></div></div>
         </div>
-        <div class="facts">
-          <div class="fact"><span class="n">469</span><span class="l">pages in the coursebook and workbook</span></div>
-          <div class="fact"><span class="n">326</span><span class="l">pages in the worked answer book</span></div>
+        <div class="facts row">
+          <div class="fact"><span class="n">469</span><span class="l">pages: coursebook and workbook</span></div>
+          <div class="fact"><span class="n">326</span><span class="l">pages: worked answer book</span></div>
         </div>
       </div>
     </div>
@@ -57,8 +61,15 @@
   <div class="act-tag"><b>Act 0</b> · Cold open</div>
   <aside class="notes">
     Ask the room to vote with hands (or a poll later): A, B, C or D. Let them commit before you click.
-    Click 1: the real answer and the page counts.
-    [CONFIRM WITH NOEL] Give the real build time. The build log for the first giant build in a chat ran 23 to 26 Oct 2026 (Grade 9 Physics and FS Chemistry); the Grade 10 Edition 1 files are dated 24 Oct (v0.6 draft) to 2 Nov 2026 (AI-free print copy). Noel to confirm the honest figure, including his own review hours.
+    Click 1: the options give way to the answer, the timeline and the page counts.
+    Say: "A long weekend to print-ready. Nine days to the final copy."
+    Be honest: this is calendar time, not hours of work, and it doesn't count the earlier AI work on other books that shaped the rules.
+    Timeline sources (times in UTC; SAST is UTC+2), worked out from Drive file dates and sent emails:
+    - Sat 24 Oct, morning: "Lets create a workbook for my grade 10 IEB physical science class chat prompt.docx" created 24 Oct 08:04 UTC, the earliest Grade 10 book file in Drive.
+    - Sat 24 Oct, afternoon: "01-grade10-textbook-workbook.pdf" and "02-grade10-worked-answer-book.pdf" first saved 24 Oct 13:37 UTC; "01-grade10-textbook-workbook-v0.6-2026-10-24.pdf" saved 24 Oct 16:52 UTC.
+    - Mon 26 Oct: "Grade-10-Physical-Sciences-IEB-Coursebook-Edition-1_ CLAUDE_Printing.pdf" saved 26 Oct 12:45 UTC; email to the print room "Re: Grade 10 IEB Physical Science Change" sent 26 Oct 15:54 UTC.
+    - Tue 27 Oct: print-light Edition 1 PDFs saved 27 Oct 15:17 UTC.
+    - Mon 2 Nov: AI-free print copy saved 2 Nov 14:03 UTC; email "Grade 10 IEB Physical Science Coursebook" to the print room sent 2 Nov 14:33 UTC.
     Sources: page counts read from the PDFs on 4 Nov 2026: coursebook "Grade-10-Physical-Sciences-IEB-Coursebook-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free_to print.pdf" (469 pages) and answer book "Grade-10-Physical-Sciences-IEB-Worked-Answer-Book-Edition-1_PRINT-LIGHT-greyscale-safe_AI-free.pdf" (326 pages).
     Noel confirmed (4 Nov 2026): use the printed copy figures, 469 + 326 pages.
   </aside>

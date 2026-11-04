@@ -164,6 +164,17 @@ function focusLenses(on) {
   }
 }
 
+function timeline() {
+  const card = document.querySelector('#s-predict .timeline-card');
+  const tl = card.querySelector('.tl');
+  let bar = tl.querySelector('.bar');
+  if (!bar) { bar = document.createElement('span'); bar.className = 'bar'; tl.prepend(bar); }
+  gsap.fromTo(card.querySelector('.tl-answer'), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: d(0.6), ease: 'power2.out' });
+  gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: d(1.6), ease: 'power1.inOut', delay: d(0.4) });
+  gsap.fromTo(tl.querySelectorAll('.pt'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: d(0.5), stagger: d(0.3), delay: d(0.4) });
+  gsap.fromTo(card.querySelectorAll('.facts .fact'), { opacity: 0 }, { opacity: 1, duration: d(0.5), stagger: d(0.15), delay: d(2) });
+}
+
 function grow(el) {
   gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: d(0.6), ease: 'power2.out' });
 }
@@ -179,6 +190,7 @@ const ON_SLIDE = {
 
 const ON_FRAGMENT = {
   'book-in': (f, shown) => { if (shown) bookIn(); },
+  timeline: (f, shown) => { if (shown) timeline(); },
   seq: () => seqStep(seqCount()),
   flip: (f, shown) => flip(shown),
   focus: (f, shown) => focusLenses(shown),
