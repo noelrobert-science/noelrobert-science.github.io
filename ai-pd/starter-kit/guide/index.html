@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From chatbot to co-worker</title>
+<meta name="description" content="A teacher's guide to building with Claude, by Noel Robert (3 Nov 2026). Web version of the PDF guide.">
+<style>
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-300.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Lexend'; src: url('../../fonts/Lexend-600.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Outfit'; src: url('../../fonts/Outfit-800.woff2') format('woff2'); font-weight: 800; }
+@font-face { font-family: 'JetBrains Mono'; src: url('../../fonts/JetBrainsMono-500.woff2') format('woff2'); font-weight: 500; }
+:root { --ink: #1b2230; --muted: #596273; --line: #c9d1de; --soft: #f4f5f7; --paper: #fff; --acc: #1c64d6; --red: #c8101a; --hood: #f1f4f9; --hoodline: #8aa0c2; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink: #e5e7eb; --muted: #a3adbd; --line: #334155; --soft: #151b28; --paper: #0f141e; --acc: #6ea0ff; --red: #ff5a60; --hood: #172033; --hoodline: #4b5f80; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.65 'Lexend', system-ui, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 36px 16px 80px; }
+h1, h2, h3 { font-family: 'Outfit', 'Lexend', sans-serif; font-weight: 800; line-height: 1.15; }
+h1 { font-size: clamp(32px, 6vw, 48px); margin: 4px 0 6px; }
+h2 { font-size: 28px; margin: 54px 0 12px; padding-top: 14px; border-top: 2px solid var(--line); }
+h3 { font-size: 20px; margin: 22px 0 6px; }
+.byline { color: var(--muted); margin: 0 0 26px; }
+a { color: var(--acc); word-break: break-word; }
+.note { border: 2px solid var(--red); border-radius: 12px; padding: 14px 18px; margin: 22px 0; }
+.hood { background: var(--hood); border-left: 6px solid var(--hoodline); border-radius: 10px; padding: 14px 18px; margin: 20px 0; font-size: 16px; }
+.hood .hl { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .04em; color: var(--hoodline); text-transform: uppercase; display: block; margin-bottom: 6px; }
+code { font-family: 'JetBrains Mono', monospace; font-size: .88em; background: var(--soft); padding: 1px 5px; border-radius: 4px; }
+.lead { font-size: 20px; font-weight: 600; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 16px; }
+th { text-align: left; border-bottom: 2px solid var(--line); padding: 8px 10px 8px 0; color: var(--muted); font-weight: 600; }
+td { border-bottom: 1px solid var(--line); padding: 10px 10px 10px 0; vertical-align: top; }
+.tablewrap { overflow-x: auto; }
+ol li, ul li { margin: 6px 0; }
+.stages { display: grid; gap: 10px; margin: 18px 0; }
+.stage { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; gap: 12px; }
+.stage > div { border: 2px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.stage .s b { display: block; }
+.stage .s span, .stage .w span { color: var(--muted); display: block; }
+.stage.final > div { border-color: var(--acc); }
+@media (max-width: 560px) { .stage { grid-template-columns: 1fr; } }
+.prompt { background: var(--soft); border-radius: 10px; padding: 12px 16px; margin: 10px 0; }
+.cheat { border: 2px solid var(--ink); border-radius: 12px; padding: 16px 20px; }
+.back { display: inline-block; margin-bottom: 18px; font-size: 15px; }
+footer { margin-top: 50px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../">← Teacher Starter Kit</a>
+<h1>From chatbot to co-worker: a teacher's guide to building with Claude</h1>
+<p class="byline">Noel Robert · 3 November 2026</p>
+
+<p class="lead">I spent a month making coursebooks, exam papers and learning apps with AI. I made almost every mistake you can make. This guide is so you don't have to.</p>
+
+<h3>How to read this guide</h3>
+<p>Every section has two tracks.</p>
+<p>The main text is for every teacher. Short steps, plain words, no jargon. If you only read this, you'll be fine.</p>
+<p>"Under the hood" boxes are for the IT-minded: the IT teacher, the timetabler who writes spreadsheet formulas, the colleague who sets up the smartboards. They explain the same step in technical terms, with the extra detail you'd want before trusting it.</p>
+
+<div class="note"><b>Note: too busy, or does all this reading make you anxious? Hand it to Claude.</b><br>You don't have to read this guide or do any of the steps yourself. Open Claude, paste in this guide's link (and my Teacher Starter Kit folder: <a href="https://drive.google.com/drive/folders/1yd9LqF8LvNslLLT4r5jjhqtyRyHYUuxK">drive.google.com/drive/folders/1yd9LqF8LvNslLLT4r5jjhqtyRyHYUuxK</a>), and say: "Read this guide and take me through it step by step. Do every technical step yourself and only stop me for sign-ins or approvals." Claude does the setting up; you just click Allow now and then, and get back to your learners.</div>
+
+<p><b>The single most important idea: you are the teacher, Claude is the technician.</b> You decide what good looks like. Claude does the installing, uploading, formatting, checking and fixing. If you find yourself doing technical chores, stop and ask Claude to do them.</p>
+
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Claude here means Anthropic's assistant in three forms: the claude.ai chat, claude.ai Projects (persistent workspaces with their own instructions and files), and Claude Code, an agentic coding tool that can run shell commands, edit files, drive a browser and work across sessions. Most of this guide is about getting from the first to the third without the detours I took.</div>
+
+<h2 id="journey">My journey, in one picture</h2>
+<p>I'm a Physical Sciences teacher, and my main job is making our science coursebooks. I started in ChatGPT, moved to Claude chats when ChatGPT couldn't produce the Grade 10 IEB coursebook I wanted, then to Claude Projects, then to Claude Code on my own computer. Each move fixed one problem and showed me the next. Only the last stage, building a proper foundation, took the technical strain off me.</p>
+<p><b>Five stages in one month, and only the last one took the strain off me</b></p>
+<div class="stages" role="table" aria-label="My journey: five stages, September to November 2026">
+  <div class="stage"><div class="s"><b>ChatGPT chats</b><span>Sept to mid Oct 2026</span></div><div class="w">Started the Grade 10 book; exam PDFs and studios in Codex.<span>Couldn't get the book I wanted; apps hosted on chatgpt.site.</span></div></div>
+  <div class="stage"><div class="s"><b>Claude chats</b><span>19 to 26 Oct</span></div><div class="w">Design lens written; Grade 7, 9 and 10 books built in chat.<span>Long chats lost my first prompts; 400-page PDFs too big to upload.</span></div></div>
+  <div class="stage"><div class="s"><b>Claude Projects (cloud)</b><span>26 Oct to 2 Nov</span></div><div class="w">One project per subject or product: Textbooks, Examinations and more.<span>Couldn't see my Drive; re-explained rules; screenshot ping-pong.</span></div></div>
+  <div class="stage"><div class="s"><b>Claude Code on my PC</b><span>31 Oct to 2 Nov</span></div><div class="w">Remote Control: saves straight into Drive, builds the phone app.<span>Still doing technical chores myself; work tied to school account.</span></div></div>
+  <div class="stage final"><div class="s"><b>A proper foundation</b><span>3 Nov 2026</span></div><div class="w">Hub with rules and house style, design lens skill, settings check.<span>Private backup, my own learner site, Takeout. Claude does the tech.</span></div></div>
+</div>
+
+<h2 id="lens">The expert's lens, and the plumbing</h2>
+<p>A great textbook doesn't come from a clever prompt. It comes from an expert's lens, and from plumbing that makes sure Claude looks through that lens every single time.</p>
+<p>The lens is you. Claude has read nearly everything, so it can produce something generic and pretty-looking in seconds. That's what most people get from a quick chat. What it doesn't have is your judgement: what matters for these learners, this curriculum, this exam board, your classroom. A lens is that judgement, written down. The teacher is the expert; that part can't be handed over.</p>
+<p>You'll need several lenses. Mine took weeks of background research before the first good page appeared:</p>
+<ul>
+  <li><b>Curriculum lens:</b> exact SAGS wording, exam weighting, what examiners reward.</li>
+  <li><b>Learning-science lens:</b> retrieval practice, worked examples that fade, spacing, feedback (Rosenshine and others).</li>
+  <li><b>Learner lens:</b> weaker readers who need it clear and calm; bright learners who need a stretch.</li>
+  <li><b>Print and design lens:</b> answer space sized from the real worked answer, page spreads, greyscale-safe colour.</li>
+  <li><b>School lens:</b> house style, crest, moderation labels, versions.</li>
+</ul>
+<p>The plumbing makes the lenses stick. In a normal chat, Claude forgets your lens the moment the chat ends or gets too long. Plumbing means putting every lens in files that Claude reads automatically before every job: a rules file, a design-lens skill, a hub folder, a backup. That's what the "Start here" steps build. It's boring to set up, so ask Claude to set it up for you.</p>
+<p>So when a colleague asks "what prompt did you use?", the honest answer is: no single prompt. It's the lens folder plus the plumbing. That's why I share one folder, my Teacher Starter Kit, instead of a prompt.</p>
+
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Stages 1 to 3 kept all state in conversation history or the cloud; stage 4 moved execution to the local machine (Claude Code via Remote Control, with native file access to the Drive-synced folder); stage 5 moved state to disk and version control (CLAUDE.md, skills, Git, a private remote, scheduled Takeout). The pattern generalises: anything you want to survive the session belongs in a file, not a chat.</div>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>A lens is durable, curated context. The model's general knowledge is broad but unweighted; the lens supplies the weighting (priorities, constraints, acceptance criteria) for a specific domain. The plumbing is how that context is injected deterministically rather than by memory: a CLAUDE.md the harness loads at session start, a skill whose description triggers on matching tasks, reference files loaded on demand, and version control so the lens itself evolves with a history. Without plumbing, quality depends on what happened to be in the conversation; with it, every session starts from the same spec.</div>
+
+<h2 id="mistakes">The mistakes that cost me, and what to do instead</h2>
+<p>Nearly all of these happened to me in October 2026; the school-account one happened years earlier and still stings. Most cost hours; two nearly cost me work I'd spent years on.</p>
+<div class="tablewrap"><table>
+<tr><th>Mistake</th><th>What it cost me</th><th>Do this instead</th></tr>
+<tr><td>Building whole books inside one long chat</td><td>The chat "compacted" (summarised itself) and my first prompts were lost for good. Long chats also burn your usage limit, because every message re-reads the whole history.</td><td>One job per thread. Keep rules in a file, not in the chat.</td></tr>
+<tr><td>Making big files in chat</td><td>400-page PDFs were too big to upload to Drive, so I dragged them across by hand.</td><td>Build on your own computer with Claude Code, which saves straight into your folders.</td></tr>
+<tr><td>Re-explaining my rules every time</td><td>Same print rules, same style, typed again and again, and still forgotten.</td><td>Write your rules once in a rules file (CLAUDE.md) that every project reads.</td></tr>
+<tr><td>No house style</td><td>A book cover went through about eight versions.</td><td>Keep one style kit (fonts, colours, covers, crests) and point every new book at it.</td></tr>
+<tr><td>Two AI tools on the same files</td><td>ChatGPT/Codex and Claude both editing my folders, each needing the same briefing.</td><td>Pick one main builder per project.</td></tr>
+<tr><td>Hosting learner apps on AI platforms</td><td>My studios lived on chatgpt.site and claude.ai links. If I left either service, the links would die.</td><td>Host learner pages somewhere you own (GitHub Pages is free).</td></tr>
+<tr><td>Everything on my school account</td><td>When I left Hilton College after 19 years, everything was tied to that email.</td><td>Keep a private backup in a personal account.</td></tr>
+<tr><td>Doing the technical chores myself</td><td>Endless screenshots: "where do I click?", "is this the old link?"</td><td>Tell Claude to do it. It can install, upload and publish for you (see "Let Claude do the technical work").</td></tr>
+<tr><td>No version history</td><td>"Which file is the latest?"</td><td>Let Claude keep versions in Git: every change saved, nothing overwritten.</td></tr>
+<tr><td>Learner names and marks in chats</td><td>A privacy risk (POPIA).</td><td>Use learner numbers, never names, in any AI tool.</td></tr>
+<tr><td>Settings left on the wrong level</td><td>Simple jobs at max effort, and the multi-agent switch (Ultracode) left on. Both drain your limits.</td><td>Ask Claude which model and effort a job needs before you start.</td></tr>
+</table></div>
+
+<h2 id="start">Start here: the foundation I wish I had on day one</h2>
+<p>Do these five things once, in your first session. Ask Claude to do each one for you; you only need to sign in when it asks.</p>
+<ol>
+  <li>Install the Claude desktop app on the computer where your school files are (or are synced, e.g. Google Drive for desktop), and turn on the Claude in Chrome extension so Claude can work in your browser. Ask Claude: "Check I have everything installed and switched on."</li>
+  <li>Make a hub folder in your Drive, e.g. <i>00 Teaching Hub</i>, holding your rules (CLAUDE.md), an index of your projects and links, and your house style. Every future project starts by reading it. Ask Claude: "Set up my hub folder and fill it from what you know about my work."</li>
+  <li>Write down your design lens: what makes a good page, worksheet or app for your learners. Mine is a learning-science checklist (retrieval, worked examples, spacing, feedback). Ask Claude: "Turn my design lens into a skill you apply automatically" (or start from my Teacher Starter Kit).</li>
+  <li>Create a personal GitHub account with your personal email, not your school one. It gives you version history, a private backup and free hosting of learner pages. You won't need to understand Git. Ask Claude: "Set up GitHub for me. Only stop me to sign in."</li>
+  <li>Set up a backup that copies your hub, sources and finished work to that private account. Ask Claude: "Set up a one-click backup of my teaching work." After that, just say "refresh my backup".</li>
+</ol>
+<p>That's it. From then on every project begins with "read my hub", and you never re-explain yourself.</p>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Compaction is the context-window manager summarising older turns to free tokens; anything not written to disk or a memory file is lossy after that. Usage limits are token-based, and a long thread re-sends its whole context on every turn, so cost grows faster than linearly with thread length. The cure is state on disk: a CLAUDE.md the harness loads at session start, project memory files, and Git for artefacts.</div>
+
+<h2 id="technical">Let Claude do the technical work</h2>
+<p>This is the most important section. You should not be the technician. My biggest frustration was being asked "click here, now click there" dozens of times. Most of that was unnecessary: Claude can do it.</p>
+<p><b>What Claude can do for you, if you let it:</b></p>
+<ul>
+  <li>Install software, create folders, copy and back up files on your computer.</li>
+  <li>Work in your Chrome browser: open sites, fill in forms, create things on GitHub, set up Google Takeout.</li>
+  <li>Look at your screen to see what's wrong, instead of you sending screenshots.</li>
+  <li>Publish learner pages, upload backups, keep version history.</li>
+  <li>Check its own work: render the PDF, open the app at phone size, cross-check a memo against the paper.</li>
+</ul>
+<p><b>How to switch on autopilot:</b></p>
+<ol>
+  <li>Say it plainly at the start: "Do the technical steps yourself. Only stop me for sign-ins, passwords or approvals." (Better still, put that line in your rules file once.)</li>
+  <li>Turn on the tools it needs: the Claude in Chrome extension, and Computer use in the desktop app's settings (lets Claude click in desktop apps such as GitHub Desktop).</li>
+  <li>When starting a build, say "use remote control on my computer" so it works on your machine, not in the cloud.</li>
+  <li>Step away. If you're using the same browser at the same time, you'll get in each other's way.</li>
+</ol>
+<p><b>What still needs you (by design, for your safety):</b> signing in, passwords and passkeys, approving access ("Authorize" buttons), and anything that spends money or sends messages for you. Claude will tell you exactly which button, one at a time, then check your screen itself.</p>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Claude Code loads <code>~/.claude/CLAUDE.md</code> (global) and any <code>CLAUDE.md</code> in the working directory at session start; I keep the global file as a short pointer to the hub so one Drive file governs every project, and Codex reads <code>~/.codex/AGENTS.md</code> pointing to the same place. Skills live in <code>~/.claude/skills/&lt;name&gt;/SKILL.md</code> with a frontmatter description that decides when they trigger; put long reference material in <code>references/</code> so it loads only when needed. The backup is a robocopy-plus-git script pushing to a private repo, with Git Credential Manager handling the OAuth token. Set <code>core.autocrlf false</code> and a <code>* -text</code> <code>.gitattributes</code> so PDFs aren't corrupted by line-ending conversion, and exclude <code>desktop.ini</code> and <code>.gdoc</code> stubs (Google Docs on Drive for desktop are pointer files; export them with Google Takeout).</div>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Claude Code runs shell commands (PowerShell or Bash) under a permission mode; auto mode lets a classifier approve routine actions so you aren't prompted for each one, while destructive or outward-facing actions still need confirmation. Browser control goes through the Claude in Chrome extension (DOM-aware: it reads the accessibility tree, clicks by element reference and runs page JavaScript), so it's faster and more precise than pixel-clicking. Desktop control ("computer use") is off by default and is granted per app; browsers are read-only through it, and terminals click-only. Credentials are never typed by the model: OAuth flows (GitHub Desktop, Git Credential Manager) hand the token to the OS credential store after you click Authorize. One gotcha on locked-down school laptops: PowerShell script execution may be disabled, so run scripts with <code>-ExecutionPolicy Bypass -File</code> per process rather than changing machine policy.</div>
+
+<h2 id="toolbox">Your toolbox: skills, connectors, plugins and extensions</h2>
+<p>Out of the box, Claude only sees what you type. Four kinds of add-on change that. You switch each one on yourself, and you can switch it off again.</p>
+<ul>
+<li><b>Connectors</b> let Claude reach your other apps, such as Google Drive, Gmail, Calendar or Canva, so it can find and file things for you. You turn them on in Claude's settings and approve what each one may do. Connect only what you need.</li>
+<li><b>Skills</b> are saved know-how: a set of instructions Claude loads automatically when they're relevant. Built-in skills let it make proper Word, PowerPoint, Excel and PDF files. You can add your own. My "design lens" is a skill: it makes every resource follow the same learning-science rules. Ask Claude to turn your own house rules into a skill, and it will tell you where to add it.</li>
+<li><b>Plugins</b> are ready-made bundles of skills and connectors for a kind of work, like design or productivity. Switch on only the ones you actually use. I switched off the finance, marketing and similar ones, because they just add noise.</li>
+<li><b>Extensions</b> let Claude work beyond the chat window. <i>Claude in Chrome</i> can read and click through websites in your browser, like Canvas or the IEB document library, with your permission. The <i>Claude desktop app</i> can work with folders on your own computer. <i>Claude Code</i> builds websites and apps: my learning studios and this presentation were made with it.</li>
+</ul>
+<p><b>Not sure which to use?</b> Ask Claude: "What should I switch on for what I want to do, and is it safe?" And one rule for all four: <b>connect only what you need, and keep learner data out.</b></p>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Connectors are MCP (Model Context Protocol) servers: each exposes named tools with their own OAuth scopes, granted per user and revocable in settings. Skills are folders with a SKILL.md whose description decides when the model loads them; only the description sits in context until then. Plugins package skills, connectors, commands and hooks so they can be enabled or disabled as a set, which also keeps the tool list short. Claude in Chrome acts in the user's own signed-in browser and asks before site access and sensitive actions; Claude Code and the desktop app work on local files under a permission mode.</div>
+
+<h2 id="settings">Which model, which effort level, and when to use Ultracode</h2>
+<p>Three settings sit at the bottom of the Claude window. Think of them like this:</p>
+<ul>
+  <li><b>Model = which brain.</b> Bigger models are smarter but use your allowance faster. Lighter ones (Haiku, Sonnet) are quick and cheap; the top ones (Opus, and Fable where your plan offers it) are for the hardest work.</li>
+  <li><b>Effort (low, medium, high, max) = how long it thinks before answering.</b> More thinking means fewer mistakes on hard jobs, but it's slower and costs more.</li>
+  <li><b>Ultracode = lets Claude split a huge job across a team of helper agents working in parallel.</b> Powerful, but it uses limits very fast. Off unless the job is genuinely huge.</li>
+</ul>
+<p><b>The easy way: let Claude decide.</b> I've told Claude, in my rules file, to start every new job by recommending the model, effort and Ultracode setting, and saying whether to change them. You can do the same: add "At the start of every new task, tell me the best model, effort level and whether Ultracode should be on" to your rules.</p>
+<div class="tablewrap"><table>
+<tr><th>The job</th><th>Model</th><th>Effort</th><th>Ultracode</th></tr>
+<tr><td>A quick question, an email, fixing a typo</td><td>Lighter model (Sonnet or Haiku)</td><td>Low</td><td>Off</td></tr>
+<tr><td>Planning a unit, a worksheet, a short letter</td><td>Opus</td><td>Medium</td><td>Off</td></tr>
+<tr><td>Setting things up (folders, GitHub, backups)</td><td>Opus</td><td>Medium</td><td>Off</td></tr>
+<tr><td>An exam paper with memo, a textbook module, checking SAGS definitions</td><td>Opus (or the top model offered)</td><td>High</td><td>Off</td></tr>
+<tr><td>A whole textbook build or final print check</td><td>Top model</td><td>High or max</td><td>Off</td></tr>
+<tr><td>Independently checking a whole 400-page book, many parts at once</td><td>Top model</td><td>High</td><td>On, for that job only</td></tr>
+</table></div>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>Effort controls the model's reasoning budget per turn (extended thinking tokens); higher effort improves multi-step correctness but raises latency and token spend. Ultracode authorises the Workflow tool, which orchestrates many subagents deterministically: excellent for embarrassingly parallel work (per-module review, per-file verification), wasteful for linear writing. Model choice trades capability against rate-limit consumption; the 1M-context variants help when a session must hold a whole book's sources at once. Settings apply from the next turn, so change them before you send the request. The model can't silently change its own model or effort; it can recommend, and switch only when you explicitly ask.</div>
+
+<h2 id="where">Where to work: chat, cloud projects, or your own computer</h2>
+<p>My rule of thumb: <b>plan in the cloud, build on your computer.</b></p>
+<div class="tablewrap"><table>
+<tr><th>Where</th><th>Best for</th><th>Not for</th></tr>
+<tr><td>claude.ai chat</td><td>Questions, research, one email or letter, thinking something through</td><td>Anything that makes many files or runs over several days</td></tr>
+<tr><td>A project thread in the cloud (the default)</td><td>Planning, reading SAGS and examiner reports, research. Runs even when your computer is off</td><td>Building books or apps: it can't see your folders and can't upload big files</td></tr>
+<tr><td>A project thread on your computer ("use remote control on my computer")</td><td>Building textbooks, exam papers, memos and apps; anything that must land in your Drive and be print-checked</td><td>Times when your computer is off or asleep</td></tr>
+</table></div>
+<p>Organise projects by subject or product (Textbooks, Grade 11–12 Physical Sciences, Examinations), and inside each one use one thread per job ("Gr 11 Paper 1", "Module 3: Electrostatics"). Short, focused threads stay cheaper and never lose their rules, because the rules live in your hub.</p>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>A cloud thread runs in an ephemeral container with a fresh clone of any linked repo; it reaches Drive only through the Google Drive connector, which has a roughly 10 MB upload ceiling and treats Google Docs as API objects. A Remote Control session runs Claude Code on your own machine with your PATH, credentials and synced Drive (<code>G:\My Drive</code> on Windows), so file I/O is native and unlimited, local skills and CLAUDE.md load, and headless Chromium/Playwright can render and inspect the real PDFs. The trade-off is availability: the host must be awake, so keep long builds plugged in with sleep disabled.</div>
+
+<h2 id="chatgpt">ChatGPT or Claude: which for what, and why</h2>
+<p>Both are excellent; they just suit different jobs. This is what I found in a busy teaching term, not a lab test.</p>
+<div class="tablewrap"><table>
+<tr><th>The job</th><th>What worked better for me</th><th>Why</th></tr>
+<tr><td>Quick ideas, a brainstorm, rewording a letter</td><td>Either; ChatGPT feels very quick and chatty</td><td>Short jobs don't need deep reading</td></tr>
+<tr><td>Making a picture, poster image or cartoon</td><td>ChatGPT</td><td>It creates images directly. Claude makes diagrams as drawings or code instead.</td></tr>
+<tr><td>Talking it through out loud, on your phone</td><td>Either (voice modes)</td><td>Personal preference</td></tr>
+<tr><td>Reading 20 past papers, a syllabus and examiner reports, then planning</td><td>Claude</td><td>It reads large piles of documents carefully and keeps track of the detail</td></tr>
+<tr><td>Building a whole coursebook, memo or exam paper to a strict spec</td><td>Claude, in Claude Code</td><td>It follows long rule files consistently, works through many files, and checks its own work</td></tr>
+<tr><td>Building an app or learning space and publishing it</td><td>Claude, in Claude Code</td><td>It can install, test at phone size and publish on your computer</td></tr>
+<tr><td>"Make it look professional"</td><td>Claude with a lens folder</td><td>Looks come from your house style and lens, not from the chatbot</td></tr>
+</table></div>
+<p><b>The honest trade-off:</b> Claude's careful, detail-heavy way of working uses more of your allowance on big jobs. For quick everyday questions, a lighter setting (or either tool) is fine. For the coursebook that represents a year of your teaching, the extra care is worth it.</p>
+<p><b>Why I switched for my coursebook:</b> ChatGPT kept giving me something that looked fine at a glance but didn't hold the detail: exact SAGS wording, answer spaces that fit the real working, page breaks that print properly. Claude, given my lens and rules, kept to them across hundreds of pages.</p>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>The difference shows most in long-context, multi-document, rule-bound work. Claude's large context windows (up to 1M tokens in some variants) let it hold a syllabus, a spec and many past papers at once, and Claude Code adds an agentic loop: it reads files, writes code, runs it, inspects the output and iterates, with tools for the shell, browser and file system. ChatGPT is strong at fast conversational turns and has native image generation and a broad plug-in and app ecosystem. Cost scales with tokens processed: reading many large files and reasoning at high effort is precisely what consumes allowance, so match the model and effort to the job. Both vendors change their products quickly; re-test before you standardise a department on either.</div>
+
+<h2 id="recipe">Your first textbook, app or learning space: the recipe</h2>
+<p>The same six steps work for a coursebook, an exam paper or an app.</p>
+<ol>
+  <li>Gather your sources in one Drive folder: the curriculum document (SAGS, CAPS or syllabus), past papers, examiner reports, your notes, any old textbook chapters.</li>
+  <li>Start a thread on your computer and ask for a plan first: "Use remote control on my computer. Read my hub. I want to build [the thing] for [grade and subject] from the sources in [folder]. Recommend the model and effort, then show me a plan before building anything."</li>
+  <li>Approve the plan, or change it. This is where your expertise matters most: sequence, emphasis, what your learners struggle with.</li>
+  <li>Let it build one sample first (one chapter, one question, one screen). Give feedback on the sample, then let it do the rest in the same style.</li>
+  <li>Ask it to check its own work before you see it: "Render the PDF as double-sided spreads and check page breaks", "Open the app at phone width and test every button", "Cross-check every memo mark against the paper."</li>
+  <li>Moderate, then finalise. Files are labelled "For moderation" until you say they're final. Then: "Refresh my backup."</li>
+</ol>
+<p><b>Starter prompts to copy:</b></p>
+<div class="prompt"><b>Textbook:</b> Use remote control on my computer. Read my hub and design lens. Plan a Grade [x] [subject] coursebook and matching worked-answer book from the sources in [folder]. Every curriculum statement must be covered. Show me the module list and one sample module before building the rest.</div>
+<div class="prompt"><b>Exam paper:</b> Use remote control on my computer. Read my hub. Build the Grade [x] [subject] [paper] with a matching memo overlay, from [sources]. Answer spaces sized from the worked answer. Show me the plan first. Save everything "For moderation".</div>
+<div class="prompt"><b>Learning app:</b> Use remote control on my computer. Read my hub and design lens. Build a phone-friendly practice app for [topic] with fresh numbers each time, hints only after an attempt, and a "check it on your own" mode. Host it on my GitHub Pages. No learner names or sign-in.</div>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>My books are generated, not typeset: one Python source file per module emits HTML, headless Chromium (Playwright) prints the PDF, and a build pass measures each answer space in the answer book so the coursebook matches it page for page. A width check flags any element wider than the 180 mm text block (one over-wide element makes Chrome scale every page). Apps are single-file HTML/JS (no build step) or Google Apps Script web apps when sign-in and a class spreadsheet are needed; Apps Script keeps learner data inside the school's Google Workspace, which is the right home for anything identifiable.</div>
+
+<h2 id="yours">Keeping your work yours</h2>
+<p>Your textbooks, design lens and years of teaching knowledge are yours. Make sure your files agree.</p>
+<ul>
+  <li><b>Personal account, private backup.</b> Keep a private copy in an account tied to your personal email (mine is a private GitHub repository). If you change schools, it comes with you.</li>
+  <li><b>Learner pages somewhere you own.</b> Free GitHub Pages gives you a permanent link like <i>yourname.github.io</i>, not one that dies when you stop paying for an AI service.</li>
+  <li><b>Google Docs need their own backup.</b> On your computer they are only shortcuts. Google Takeout can email you a full copy every two months; download it to a personal drive.</li>
+  <li><b>Learner privacy.</b> No learner names, ID numbers, emails or marks in AI chats or public pages. Use learner numbers for mark analysis. Anything that records learner data runs inside the school's own system, with permission.</li>
+  <li><b>Check your contract</b> about who owns materials you create, especially if you share them with other schools.</li>
+</ul>
+<div class="hood"><span class="hl">Under the hood · for IT staff</span>A user GitHub Pages site needs a public repo named exactly <code>&lt;username&gt;.github.io</code>; keep source you don't want public in a separate private repo. GitHub accounts belong to the person, but if the only verified email is a school address, password resets and SSO sign-in die with the mailbox, so add a personal email or create the account on one. Takeout scheduled exports (every 2 months for a year) are free; zips over 2 GB use zip64. POPIA gives children's personal information extra protection (processing generally needs a competent person's consent or another lawful ground), so prefer pseudonymised IDs, keep identifiable data in Workspace, and never paste it into a consumer AI product.</div>
+
+<h2 id="cheat">Cheat sheet</h2>
+<div class="cheat">
+<p><b>Once, on day one:</b> desktop app and Chrome extension on · hub folder with rules, index and style · design lens saved as a skill · personal GitHub · backup set up. Ask Claude to do all of it.</p>
+<p><b>Every new job:</b></p>
+<ul>
+  <li>New thread, one job only</li>
+  <li>Building? Say "use remote control on my computer"</li>
+  <li>Ask "which model, effort and Ultracode?" (or have it in your rules)</li>
+  <li>Plan first, then one sample, then the rest</li>
+  <li>Ask it to check its own work</li>
+  <li>"For moderation" until you approve</li>
+  <li>"Refresh my backup"</li>
+</ul>
+<p><b>Magic phrases:</b></p>
+<ul>
+  <li>"Do the technical steps yourself. Only stop me for sign-ins and approvals."</li>
+  <li>"Read my hub first."</li>
+  <li>"Show me a plan before you build."</li>
+  <li>"Check it yourself before you send it."</li>
+  <li>"Add that to my rules so you remember next time."</li>
+</ul>
+<p><b>Never:</b> learner names in chats · everything on a school-only account · one giant chat for a whole book · you doing the technical chores.</p>
+</div>
+
+<footer>Web version of the 17-page PDF guide (3 November 2026). Noel Robert.</footer>
+</main>
+</body>
+</html>
