@@ -173,7 +173,7 @@ body.no-progress .reveal .progress { display: none !important; }
 
 /* v0.5.5: the map comes back: mini map on act openers and on the closing map slide; lanes "for you" pulse */
 .op-meta span.for { border-color: var(--red); color: var(--text); animation: lanepulse 1.6s ease-in-out 0.4s 2; }
-.op-meta span.skip { opacity: .35; text-decoration: line-through; }
+.op-meta span.skip { display: none; }
 @keyframes lanepulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(227,18,27,0); } 50% { box-shadow: 0 0 0 10px rgba(227,18,27,.25); } }
 .minimap { display: flex; gap: 8px; margin-top: 46px; }
 .opener .minimap { position: absolute; left: 120px; right: 120px; bottom: 80px; margin: 0; }
@@ -338,3 +338,4 @@ body.no-progress .ribbon { display: none; }
 .lx-end p { margin: 0; font: 800 70px/1.2 var(--font-display); color: var(--text); }
 .lx-end em { font-style: normal; color: var(--red-text); }
 .lx-end p + p { margin-top: 24px; font-size: 58px; }
+.op-meta span.forlab { border: 0; padding: 8px 0 8px 6px; color: var(--dim); }

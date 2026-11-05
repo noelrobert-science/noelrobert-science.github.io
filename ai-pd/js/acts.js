@@ -49,7 +49,7 @@ function buildOpeners() {
         <div class="op-num">${n}</div>
         <div class="op-name">${name}</div>
         <div class="op-line">${line}</div>
-        <div class="op-meta"><span class="min">${a[2]} min</span>${['Teachers', 'IT', 'Head office'].map((l, i) => `<span class="${a[3][i] ? 'for' : 'skip'}">${l}</span>`).join('')}</div>
+        <div class="op-meta"><span class="min">${a[2]} min</span><span class="forlab">For:</span>${a[3].every(Boolean) ? '<span class="for">Everyone</span>' : ['Teachers', 'IT', 'Head office'].filter((l, i) => a[3][i]).map((l) => `<span class="for">${l}</span>`).join('')}</div>
       </div>
       ${miniMap(n)}`);
     if (notes) s.appendChild(notes);
