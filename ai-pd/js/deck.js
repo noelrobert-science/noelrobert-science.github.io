@@ -60,20 +60,20 @@ function buildMap() {
 }
 
 function placeMapHighlights() {
-  // Position the "Now" and "Next" boxes over act 0 and act 2 columns (in slide pixels).
+  // Position the "Now" and "Next" boxes over act 0 (this slide closes the cold open) and act 1 (my journey), in slide pixels.
   const wrap = document.getElementById('map-wrap');
   const scale = Reveal.getScale() || 1;
   const wr = wrap.getBoundingClientRect();
-  [['hl-now', 0], ['hl-next', 2]].forEach(([id, act]) => {
+  [['hl-now', 0], ['hl-next', 1]].forEach(([id, act]) => {
     const col = wrap.querySelector(`.act[data-act="${act}"]`);
     const last = [...wrap.querySelectorAll(`.cell[data-act="${act}"]`)].pop();
     const a = col.getBoundingClientRect(), b = last.getBoundingClientRect();
     const el = document.getElementById(id);
-    el.style.left = ((a.left - wr.left) / scale - 4) + 'px';
-    el.style.width = (a.width / scale + 8) + 'px';
+    el.style.left = ((a.left - wr.left) / scale + 2) + 'px';
+    el.style.width = (a.width / scale - 4) + 'px';
     el.style.top = ((a.top - wr.top) / scale - 14) + 'px';
     el.style.height = ((b.bottom - a.top) / scale + 22) + 'px';
-    el.querySelector('.map-label').style.left = (a.width / scale / 2 + 4) + 'px';
+    el.querySelector('.map-label').style.left = (a.width / scale / 2 - 2) + 'px';
   });
 }
 

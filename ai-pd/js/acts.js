@@ -11,7 +11,7 @@ const ACT_FULL = {
   4: ['AI on my computer', 'The AI does the clicking, so I keep the teaching.'],
   5: ['The plumbing', "How it's wired, and where the data boundaries are."],
   6: ["What's next", 'Guarded AI coaches, and one toolbox for the whole group.'],
-  7: ['How this deck was built', "This deck's own build, replayed."],
+  7: ['How it was built', 'Five versions, one expert: what the teacher decided.'],
   8: ['Start tomorrow', 'Five steps, and the AI does four of them.'],
 };
 
@@ -23,6 +23,17 @@ const DEMO = {
   topics: ['Momentum', 'Moles', 'Bonding', 'Circuits'],
   gap: [[72, 48, 81, 66], [58, 41, 69, 52], [80, 63, 77, 71], [51, 38, 60, 57]],
 };
+
+
+/* v0.5.5: the map comes back. One shared component: a mini map on every act opener and on the closing map slide. */
+function miniMap(cur, allDone) {
+  const nx = cur + 1;
+  return `<div class="minimap${allDone ? ' alldone' : ''}" aria-hidden="true">${ACTS.map(([n, nm]) => {
+    const st = allDone || n < cur ? 'done' : n === cur ? 'now' : n === nx ? 'next' : '';
+    const tag = allDone ? '' : n === cur ? '<b class="mtag">Now</b>' : n === nx ? '<b class="mtag">Next</b>' : '';
+    return `<div class="mm ${st}" style="--i:${n}"><span class="mlab">${st === 'done' ? '✓ ' : ''}${n} · ${nm}</span><i></i>${tag}</div>`;
+  }).join('')}</div>`;
+}
 
 /* ---------- Build markup ---------- */
 
@@ -38,8 +49,9 @@ function buildOpeners() {
         <div class="op-num">${n}</div>
         <div class="op-name">${name}</div>
         <div class="op-line">${line}</div>
-        <div class="op-meta"><span class="min">${a[2]} min</span>${lanes.map((l) => `<span>${l}</span>`).join('')}</div>
-      </div>`);
+        <div class="op-meta"><span class="min">${a[2]} min</span>${['Teachers', 'IT', 'Head office'].map((l, i) => `<span class="${a[3][i] ? 'for' : 'skip'}">${l}</span>`).join('')}</div>
+      </div>
+      ${miniMap(n)}`);
     if (notes) s.appendChild(notes);
   });
 }
@@ -50,7 +62,7 @@ function buildRibbons() {
     const r = document.createElement('div');
     r.className = 'ribbon';
     r.setAttribute('aria-hidden', 'true');
-    r.innerHTML = ACTS.map(([n]) => `<i class="${n === act ? 'on' : n < act ? 'done' : ''}"></i>`).join('');
+    r.innerHTML = ACTS.map(([n, nm]) => `<i class="${n === act ? 'on' : n < act ? 'done' : ''}" title="${n} · ${nm}"></i>`).join('');
     s.appendChild(r);
   });
 }
@@ -196,7 +208,6 @@ const ACT_SLIDE = {
   's-momentum': (s) => goLive(s),
   's-parallel': lanes,
   's-bigbuilds': () => countUp(document.querySelector('#s-bigbuilds .stat2')),
-  's-bastani': () => growBar(document.querySelector('#bars .bcol')),
   's-stack': stackUp,
   's-dashboard': dashIn,
   's-gitlog': gitReplay,

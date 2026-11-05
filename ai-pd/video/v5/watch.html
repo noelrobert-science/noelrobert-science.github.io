@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI literacy · narrated (For moderation)</title>
+<style>
+  :root { --bg: #0d0e11; --fg: #efece4; --red: #e3121b; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 16px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; box-sizing: border-box; }
+  video { width: min(100%, calc((100vh - 90px) * 16 / 9)); aspect-ratio: 16 / 9; background: #000; border-radius: 10px; }
+  p { margin: 0; opacity: .7; text-align: center; }
+  b { color: var(--red); }
+</style>
+</head>
+<body>
+<main>
+  <video id="v" controls playsinline preload="auto" poster=""></video>
+  <p><b>For moderation</b> · press play, then <b>F</b> for full screen · captions are built into the picture</p>
+</main>
+<script>
+  const v = document.getElementById('v');
+  fetch('ai-literacy-v5.mp4').then((r) => r.blob()).then((b) => { v.src = URL.createObjectURL(b); }).catch(() => { v.src = 'ai-literacy-v5.mp4'; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'f' || e.key === 'F') { (document.fullscreenElement ? document.exitFullscreen() : v.requestFullscreen()).catch(() => {}); } });
+</script>
+</body>
+</html>

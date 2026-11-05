@@ -170,4 +170,4 @@
 .closing .sub { font-size: 40px; color: var(--dim); margin-top: 50px; line-height: 1.35; }
 
 /* Centre content vertically on slides whose body is short */
-#s-parallel .body, #s-remote .body, #s-compare .body, #s-where .body, #s-own .body, #s-safe .body, #s-studios .body, #s-dials .body, #s-canvas .body, #s-proof .body, #s-mistakes .body, #s-steps .body, #s-group .body, #s-bigbuilds .body, #s-tools .body { display: flex; flex-direction: column; justify-content: center; }
+#s-parallel .body, #s-remote .body, #s-compare .body, #s-where .body, #s-own .body, #s-safe .body, #s-studios .body, #s-dials .body, #s-pilot .body, #s-canvas .body, #s-proof .body, #s-mistakes .body, #s-steps .body, #s-group .body, #s-bigbuilds .body, #s-tools .body { display: flex; flex-direction: column; justify-content: center; }

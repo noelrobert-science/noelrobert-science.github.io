@@ -109,6 +109,30 @@ function setupAilVideo() {
   const v = document.getElementById('ail-video'), b = document.getElementById('ail-play'); if (!v) return;
   // captions start hidden (the text is already on screen); the CC chip shows them
   let tr = null; try { tr = v.addTextTrack('captions', 'English', 'en'); AIL_CUES.forEach(([a, z, s]) => { const c = new VTTCue(a, z, s); c.line = -3; tr.addCue(c); }); tr.mode = 'hidden'; } catch (e) {}
+  // seek safely: wait for metadata if needed, never reset the source, keep playing
+  const seekTo = (t) => { const go = () => { v.currentTime = t; if (v.paused) { v.play(); v.parentNode.classList.add('playing'); } };
+    if (v.readyState >= 1) go(); else { v.addEventListener('loadedmetadata', go, { once: true }); v.load(); } };
+  // Expand / Collapse: the video grows to fill the slide and shrinks back, without stopping playback
+  const sec = document.getElementById('s-ailit'), zv = v.parentNode;
+  // a seek bar you can drag, with the time, in both the normal and the expanded layout
+  const bar = document.createElement('div'); bar.className = 'zbar';
+  bar.innerHTML = '<input type="range" class="zseek" min="0" max="1000" value="0" aria-label="Video position"><span class="ztime">0:00 / 0:00</span>';
+  zv.appendChild(bar);
+  const sk = bar.querySelector('.zseek'), tm = bar.querySelector('.ztime');
+  const fmt = (s) => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  let dragging = false;
+  const show = () => { const d = v.duration || 0; if (!dragging && d) sk.value = Math.round(v.currentTime / d * 1000); tm.textContent = fmt(v.currentTime) + ' / ' + fmt(d); };
+  ['timeupdate', 'loadedmetadata', 'seeked'].forEach((ev) => v.addEventListener(ev, show));
+  ['click', 'mousedown', 'pointerdown', 'dblclick', 'keydown'].forEach((ev) => bar.addEventListener(ev, (e) => e.stopPropagation()));
+  sk.addEventListener('input', () => { dragging = true; const d = v.duration || 0; if (d) { tm.textContent = fmt(sk.value / 1000 * d) + ' / ' + fmt(d); } });
+  sk.addEventListener('change', () => { dragging = false; const go = () => { v.currentTime = sk.value / 1000 * v.duration; };
+    if (v.readyState >= 1) go(); else { v.addEventListener('loadedmetadata', go, { once: true }); v.load(); } });
+  const fb = document.createElement('button'); fb.className = 'zfull'; fb.type = 'button'; fb.innerHTML = '⤢ Expand'; zv.appendChild(fb);
+  const setMax = (on) => { sec.classList.toggle('ail-max', on); fb.innerHTML = on ? '⤡ Collapse' : '⤢ Expand'; window.__ailMax = on; };
+  fb.addEventListener('click', (e) => { e.stopPropagation(); setMax(!sec.classList.contains('ail-max')); });
+  v.addEventListener('dblclick', (e) => { e.stopPropagation(); setMax(!sec.classList.contains('ail-max')); });
+  window.addEventListener('keydown', (e) => { if (window.__ailMax && (e.key === 'Escape' || e.keyCode === 27)) { e.preventDefault(); e.stopImmediatePropagation(); setMax(false); } }, true);
+  Reveal.on('slidechanged', () => { if (window.__ailMax) setMax(false); });
   const toggle = (e) => { e && e.stopPropagation(); if (v.paused) { v.play(); v.parentNode.classList.add('playing'); } else { v.pause(); v.parentNode.classList.remove('playing'); } };
   b.addEventListener('click', toggle); v.addEventListener('click', toggle);
   // Space plays or pauses the video while this slide is showing; elsewhere it still moves on
@@ -119,10 +143,10 @@ function setupAilVideo() {
     AIL_CHAPTERS.forEach(([a, z, name], i) => {
       const d = document.createElement('button'); d.className = 'ail-dot'; d.type = 'button'; d.dataset.a = a; d.dataset.z = z;
       d.innerHTML = `<i></i><span>${i + 1} · ${name}</span>`;
-      d.addEventListener('click', (e) => { e.stopPropagation(); v.currentTime = a + 0.05; if (v.paused) toggle(); });
+      d.addEventListener('click', (e) => { e.stopPropagation(); seekTo(+a + 0.05); });
       row.appendChild(d);
     });
-    const cc = document.createElement('button'); cc.className = 'ail-dot ail-cc'; cc.type = 'button'; cc.textContent = 'CC';
+    const cc = document.createElement('button'); cc.className = 'ail-dot ail-cc'; cc.type = 'button'; cc.textContent = 'CC'; if (!AIL_CUES.length) cc.style.display = 'none';
     cc.addEventListener('click', (e) => { e.stopPropagation(); if (tr) { tr.mode = tr.mode === 'showing' ? 'hidden' : 'showing'; cc.classList.toggle('on', tr.mode === 'showing'); } });
     row.appendChild(cc);
     v.addEventListener('timeupdate', () => row.querySelectorAll('.ail-dot[data-a]').forEach((d) => d.classList.toggle('on', v.currentTime >= +d.dataset.a && v.currentTime < +d.dataset.z)));
@@ -165,3 +189,6 @@ buildActs = function () {
   // one keyboard map (Reveal.configure replaces it whole): P toggles the progress bar; Space plays the AI literacy video on its slide
   Reveal.configure({ keyboard: { 80: () => document.body.classList.toggle('no-progress'), 32: () => (window.__ailSpace ? window.__ailSpace() : Reveal.next()) } });
 };
+
+/* v0.5.5: the closing map callback uses the same mini map as the act openers */
+(function () { const go = () => { const el = document.querySelector('#s-mapback .mapback-strip'); if (el && typeof miniMap === 'function') el.outerHTML = miniMap(8, true); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); })();
