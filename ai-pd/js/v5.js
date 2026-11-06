@@ -192,3 +192,28 @@ buildActs = function () {
 
 /* v0.5.5: the closing map callback uses the same mini map as the act openers */
 (function () { const go = () => { const el = document.querySelector('#s-mapback .mapback-strip'); if (el && typeof miniMap === 'function') el.outerHTML = miniMap(8, true); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); })();
+
+/* v0.5.6: a clear yellow "Interactive" label on every slide the audience (or presenter) can click into:
+   live studios, demo twins, the video, and cards that open in place. */
+(function () {
+  const SEL = '.livebox, iframe, .tile6.opens, #ail-video, .ail-cover, .hublink[data-view], .opens[data-view]';
+  const tag = () => document.querySelectorAll('.slides > section').forEach((s) => {
+    if (s.querySelector('.ia-tag') || !s.querySelector(SEL)) return;
+    const what = s.querySelector('.livebox') ? 'Try it: click into the live studio' : s.querySelector('#ail-video') ? 'Try it: play, jump to chapters, expand' : s.querySelector('iframe') ? 'Try it: click inside the demo' : 'Try it: click a card to open it';
+    const t = document.createElement('div'); t.className = 'ia-tag'; t.innerHTML = '<span>▶</span>' + what; s.appendChild(t);
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(tag, 300)); else setTimeout(tag, 300);
+  window.addEventListener('load', () => setTimeout(tag, 800));
+})();
+
+/* v0.5.6: a "Press me" callout pointing at every "Open the demo" button */
+(function () {
+  const add = () => document.querySelectorAll('.bcenter .bopen').forEach((b) => {
+    const box = b.closest('.bcenter'); if (box.querySelector('.press-me')) return;
+    const c = document.createElement('div'); c.className = 'press-me';
+    c.innerHTML = 'Click to try it <b>▶</b>';
+    if (box.classList.contains('phone')) { c.classList.add('side'); box.parentNode.appendChild(c); }
+    else box.appendChild(c);
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
+})();

@@ -39,6 +39,15 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; } td, th { text
 .emsteps { margin: 12px 14px; }
 .emsteps ol { margin: 6px 0 0; padding-left: 20px; }
 .emclose { margin: 0 14px 18px; width: calc(100% - 28px); padding: 12px; border: 0; border-radius: 10px; background: #e7e9ee; font-weight: 700; }
+.guides { margin-top: 12px; }
+.guides h3 { margin: 0 0 8px; font-size: 15px; }
+.guides details { background: #f6f7f9; border: 1px solid var(--line); border-radius: 10px; }
+.guides summary { list-style: none; cursor: pointer; padding: 12px 14px; font-weight: 700; font-size: 14px; display: flex; gap: 8px; }
+.guides summary::-webkit-details-marker { display: none; }
+.guides summary::before { content: "\25B6"; font-size: 11px; line-height: 20px; }
+.guides details[open] summary::before { content: "\25BC"; }
+.guides ol { margin: 0; padding: 0 16px 14px 34px; font-size: 14px; line-height: 1.45; }
+.guides li { margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -53,7 +62,14 @@ const TABS = {
   Home: () => `
     <div class="card"><h3>Your day · Thursday</h3><div class="slot"><b>07:45</b><span>Staff briefing, hall</span></div><div class="slot"><b>08:00</b><span>Grade 10 Physical Sciences · Lab 2</span></div><div class="slot"><b>10:30</b><span>Invigilation · Room 14 <span class="pill red">duty</span></span></div><div class="slot"><b>13:20</b><span>Break duty · North field</span></div></div>
     <div class="card"><h3>2 new notices</h3><div class="muted">Fire drill moved to Friday · Lab safety audit next week</div></div>
-    <button class="act emerg" onclick="emergency()">EMERGENCY</button>`,
+    <button class="act emerg" onclick="emergency()">EMERGENCY</button>
+    <div class="card guides"><h3>Quick condition guides</h3><details><summary>Unresponsive and not breathing normally — adult / adolescent</summary><ol>
+<li>Call 112 on speakerphone; send someone for the AED. Gasping is not normal breathing. Follow the dispatcher.</li>
+<li>Start chest compressions in the centre of the chest: 100–120 a minute, 5–6 cm deep, with full recoil.</li>
+<li>If trained and willing, give 30 compressions then 2 breaths. Otherwise continue compressions and follow telephone guidance.</li>
+<li>Switch on the AED and follow its prompts. Keep everyone clear during analysis and shocks; resume CPR promptly.</li>
+<li>Continue until professionals take over, normal breathing/signs of life return, the scene becomes unsafe, or you cannot continue.</li>
+</ol></details></div>`,
   Notices: () => [
     ['Fire drill moved to Friday', 'Assemble on the North field. Registers to the safety team.', 'Safety'],
     ['Lab safety audit next week', 'Please check eyewash stations and log any faults.', 'Science'],

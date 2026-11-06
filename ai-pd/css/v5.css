@@ -339,3 +339,17 @@ body.no-progress .ribbon { display: none; }
 .lx-end em { font-style: normal; color: var(--red-text); }
 .lx-end p + p { margin-top: 24px; font-size: 58px; }
 .op-meta span.forlab { border: 0; padding: 8px 0 8px 6px; color: var(--dim); }
+
+/* v0.5.6: yellow "Interactive" label on clickable slides */
+.ia-tag { position: absolute; right: 120px; top: 70px; z-index: 30; display: flex; align-items: center; gap: 10px; background: #FFD43B; color: #15171c; font: 700 26px var(--font-body); padding: 8px 18px; border-radius: 999px; box-shadow: 0 6px 24px rgba(255,212,59,.25); }
+.ia-tag span { font-size: 20px; }
+.present .ia-tag { animation: iapulse 2.4s ease-in-out .6s 2; }
+@keyframes iapulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,212,59,.0); } 50% { box-shadow: 0 0 0 12px rgba(255,212,59,.28); } }
+.press-me { position: absolute; z-index: 3; right: 345px; bottom: 26px; background: #FFD43B; color: #15171c; font: 700 26px var(--font-body); padding: 8px 18px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,.35); pointer-events: none; display: flex; align-items: center; gap: 10px; }
+.press-me b { display: inline-block; animation: pressnudge 1s ease-in-out infinite; }
+@keyframes pressnudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+.press-me.side { right: auto; bottom: auto; z-index: 5; left: 420px; top: 478px; }
+
+/* v0.5.7: "Open the demo" buttons in yellow, so they never look like the red EMERGENCY button */
+.bopen { background: #FFD43B; color: #1a1a1a; box-shadow: 0 0 0 3px #1a1a1a, 0 6px 18px rgba(0,0,0,.35); }
+.bopen:hover { background: #FFE066; }
