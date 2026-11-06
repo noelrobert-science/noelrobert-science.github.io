@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>90%+ Challenge booklets · Grade 12 IEB Physical Sciences</title>
+<meta name="description" content="For learners aiming at 90% and above: the hardest Paper 1 and Paper 2 ideas, with a separate answer book that shows how a top script thinks.">
+<style>
+@font-face { font-family: 'Lexend'; font-weight: 400; src: url(../../assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Lexend'; font-weight: 600; src: url(../../assets/fonts/Lexend-600.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; src: url(../../assets/fonts/Outfit-800.woff2) format('woff2'); font-display: swap; }
+</style>
+<link rel="stylesheet" href="../../assets/tokens.css">
+<style>
+  body { margin: 0; background: var(--soft); line-height: 1.55; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  .kicker { font-variant: small-caps; letter-spacing: .08em; font-weight: 600; color: var(--acc); margin: 0; }
+  .kicker a { color: inherit; text-decoration: none; }
+  h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); line-height: 1.1; margin: .2em 0 .4em; }
+  h1 span { color: var(--acc); }
+  .lead { color: var(--muted); max-width: 38em; }
+  h2 { margin: 2.2rem 0 .6rem; font-size: 1.2rem; }
+  h2 a { color: var(--ink); }
+  h3 { margin: 1.6rem 0 .5rem; font-size: 1rem; color: var(--muted); }
+  .sec-lead { color: var(--muted); margin: 0 0 .8rem; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .list { display: grid; gap: 10px; }
+  a.card { display: block; text-decoration: none; color: var(--ink); background: var(--paper);
+           border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--acc));
+           border-radius: var(--radius); padding: 14px 16px; }
+  a.card:hover, a.card:focus-visible { border-color: var(--bc, var(--acc)); outline: none; }
+  .card b { display: block; font-family: var(--font-display); font-size: 1.08rem; }
+  .card small { color: var(--muted); display: block; }
+  .card .pdf { display: inline-block; margin-top: 6px; font-size: .8rem; font-weight: 600; color: var(--bc, var(--acc)); }
+  .back { display: inline-block; margin-top: 2rem; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  footer p { margin: .2rem 0; }
+</style>
+<script src="../js/count.js"></script>
+</head>
+<body>
+<main>
+  <p class="kicker"><a data-keep href="../">Grade 12 IEB Physical Sciences · Noel Robert</a></p>
+  <h1>90%+ Challenge booklets</h1>
+  <p class="lead">For learners aiming at 90% and above: the hardest Paper 1 and Paper 2 ideas, with a separate answer book that shows how a top script thinks.</p>
+  <a class="card" data-keep href="../go/p1-90-booklet/" style="--bc: var(--circ)"><b>Physics P1 · 90%+ Challenge Booklet</b><small>14 level-4 Paper 1 problems (251 marks), all checked against the 2025 SAGs.</small><span class="pdf">Open the PDF &rarr;</span></a>
+  <a class="card" data-keep href="../go/p1-90-answers/" style="--bc: var(--circ)"><b>Physics P1 · 90%+ Answer Book</b><small>Fully worked answers to the Physics booklet, with the trap that costs strong candidates the mark.</small><span class="pdf">Open the PDF &rarr;</span></a>
+  <a class="card" data-keep href="../go/p2-90-booklet/" style="--bc: var(--circ)"><b>Chemistry P2 · 90%+ Challenge Booklet</b><small>Stoichiometry hidden inside rates, equilibrium, acids and electrochemistry, plus the explanations most candidates half-answer.</small><span class="pdf">Open the PDF &rarr;</span></a>
+  <a class="card" data-keep href="../go/p2-90-answers/" style="--bc: var(--circ)"><b>Chemistry P2 · 90%+ Answer Book</b><small>Fully worked answers to the Chemistry booklet, with a picture of the idea where one helps.</small><span class="pdf">Open the PDF &rarr;</span></a>
+</div>
+  <a class="back" data-keep href="../">&larr; All Grade 12 revision guides</a>
+  <footer><p>&copy; 2026 Noel Robert. All rights reserved. Personal and classroom use only.</p><p>This site counts visits anonymously, no personal data (GoatCounter).</p></footer>
+</main>
+<script>
+(function () {
+  var f = '';
+  try { f = new URLSearchParams(location.search).get('from') || sessionStorage.getItem('gc_from') || ''; } catch (e) {}
+  f = f.toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+  if (!f) return;
+  document.querySelectorAll('a[data-keep]').forEach(function (a) {
+    var h = a.getAttribute('href'), i = h.indexOf('#'), hash = i < 0 ? '' : h.slice(i); h = i < 0 ? h : h.slice(0, i);
+    a.setAttribute('href', h + (h.indexOf('?') < 0 ? '?' : '&') + 'from=' + f + hash);
+  });
+})();
+</script>
+</body>
+</html>
