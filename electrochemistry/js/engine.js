@@ -18,9 +18,9 @@
 
   // Relative atomic masses as used in the coursebooks (IEB data sheet values)
   const AR = {
-    H: 1, He: 4, Li: 7, Be: 9, B: 11, C: 12, N: 14, O: 16, F: 19, Ne: 20, Na: 23, Mg: 24.3, Al: 27, Si: 28,
+    H: 1, He: 4, Li: 7, Be: 9, B: 10.8, C: 12, N: 14, O: 16, F: 19, Ne: 20, Na: 23, Mg: 24.3, Al: 27, Si: 28,
     P: 31, S: 32, Cl: 35.5, Ar: 40, K: 39, Ca: 40, Ti: 48, Cr: 52, Mn: 55, Fe: 56, Co: 59, Ni: 59, Cu: 63.5,
-    Zn: 65.4, Br: 80, Sr: 88, Ag: 108, Cd: 112, Sn: 119, I: 127, Cs: 133, Ba: 137, Au: 197, Hg: 201, Pb: 207
+    Zn: 65.4, Br: 80, Sr: 88, Ag: 108, Cd: 112, Sn: 119, I: 127, Cs: 133, Ba: 137.3, Pt: 195, Au: 197, Hg: 200.6, Pb: 207
   };
 
   /* ---------- Table 4 (IEB 2025 data sheet, top to bottom: most negative first) ---------- */
@@ -142,8 +142,8 @@
   // num(2416.3, 2) -> "2 416,30"; num(0.5) -> "0,5"; negative uses a true minus
   function num(x, dp) {
     let s;
-    if (dp === undefined) s = String(round(x, 10));
-    else s = Math.abs(x).toFixed(dp);
+    if (dp === undefined) { s = String(round(x, 10)); if (/e/i.test(s)) s = Math.abs(x).toFixed(10).replace(/0+$/, '').replace(/\.$/, ''); }
+    else s = Math.abs(round(x, dp)).toFixed(dp);
     s = s.replace('-', '');
     const [i, d] = s.split('.');
     const out = group(i) + (d !== undefined ? ',' + d : '');
@@ -156,6 +156,7 @@
     return p >= 0 ? round(x, p) : Math.round(x / Math.pow(10, -p)) * Math.pow(10, -p);
   }
   function numSig(x, n) {
+    if (x === 0) return '0';
     const v = sig(x, n);
     const p = Math.max(0, n - 1 - Math.floor(Math.log10(Math.abs(v))));
     let s = num(v, p);
@@ -169,9 +170,11 @@
   function evPlain(e) { return Math.abs(e) < 1e-9 ? '0,00' : (e < 0 ? MINUS : '') + Math.abs(e).toFixed(2).replace('.', ','); }
   // standard form: 1,8 × 10⁷
   function sci(x, sf) {
-    const e = Math.floor(Math.log10(Math.abs(x)));
-    const m = x / Math.pow(10, e);
-    let ms = num(round(m, (sf || 2) - 1), (sf || 2) - 1);
+    if (x === 0) return '0';
+    let e = Math.floor(Math.log10(Math.abs(x)));
+    let m = round(x / Math.pow(10, e), (sf || 2) - 1);
+    if (Math.abs(m) >= 10) { m = round(m / 10, (sf || 2) - 1); e += 1; }
+    let ms = num(m, (sf || 2) - 1);
     ms = ms.replace(/,?0+$/, '') || '0';
     return `${ms} × 10${e < 0 ? '⁻' : ''}${sup(Math.abs(e))}`;
   }
@@ -223,11 +226,12 @@
     }
     return null;
   }
-  // every row in which a species can act (for the "Fe is twice on the right" check)
+  // the rows in which a species does each job: only rows where it is THE oxidising (or reducing) agent,
+  // not rows where it just balances the equation (H₂O in SO₄²⁻ + 4H⁺ + 2e⁻ ⇌ SO₂ + 2H₂O is not a reducing agent)
   function jobsOf(sp) {
     return {
-      asOA: rowsWithLeft(sp),       // can be reduced: oxidising agent
-      asRA: rowsWithRight(sp)       // can be oxidised: reducing agent
+      asOA: rowsWithLeft(sp).filter(r => r.oa === sp),    // can be reduced: oxidising agent
+      asRA: rowsWithRight(sp).filter(r => r.ra === sp)    // can be oxidised: reducing agent
     };
   }
   const TWO_JOBS = (() => {
@@ -356,13 +360,17 @@
     return { value: v, formula, substitute, answer, valueText, spontaneous: v > 0, line: `${substitute} = ${valueText}` };
   }
 
+  /* A species is judged on its strongest row (simplest row first, as rowFor in tools-t4.js):
+     Fe³⁺ is on the −0,04 V and +0,77 V rows, Fe on the −0,44 V and −0,04 V rows. */
+  const strongestOA = r => rowsWithLeft(r.oa).filter(x => x.oa === r.oa).sort((a, b) => a.ox.length - b.ox.length || b.E - a.E)[0] === r;
+  const strongestRA = r => rowsWithRight(r.ra).filter(x => x.ra === r.ra).sort((a, b) => a.red.length - b.red.length || a.E - b.E)[0] === r;
   /* Window finder: oxidising agents that oxidise X (reducing agent) but not Y. */
   function windowOA(xRow, yRow) {
     const lo = Math.min(xRow.E, yRow.E), hi = Math.max(xRow.E, yRow.E);
-    return ROWS.filter(r => r.E > xRow.E && r.E < yRow.E && r.E > lo && r.E < hi);
+    return ROWS.filter(r => r.E > xRow.E && r.E < yRow.E && r.E > lo && r.E < hi && strongestOA(r));
   }
   /* Reducing agents that reduce X (oxidising agent) but not Y. */
-  function windowRA(xRow, yRow) { return ROWS.filter(r => r.E < xRow.E && r.E > yRow.E); }
+  function windowRA(xRow, yRow) { return ROWS.filter(r => r.E < xRow.E && r.E > yRow.E && strongestRA(r)); }
 
   /* ---------- phases and cell notation ---------- */
   function isMetal(sp) { return METALS.includes(sp); }
@@ -382,7 +390,7 @@
   }
   // one half-cell. For the anode the reduced form comes first, for the cathode the oxidised form.
   function halfCellParts(row, role) {
-    const skip = ['H₂O'];
+    const skip = (role === 'anode' ? row.ra : row.oa) === 'H₂O' ? [] : ['H₂O'];
     const red = row.red.map(t => t.sp).filter(s => !skip.includes(s));
     const ox = row.ox.map(t => t.sp).filter(s => !skip.includes(s));
     const metal = red.find(s => isMetal(s) && s !== 'Hg');
@@ -416,17 +424,30 @@
   // Common notation errors the workshop names (memo words)
   function checkNotation(attempt, anodeRow, cathodeRow) {
     const correct = cellNotation(anodeRow, cathodeRow).text;
-    const norm = s => s.replace(/\s+/g, ' ').replace(/\s*\|\s*/g, ' | ').replace(/\s*\|\s\|\s*/g, ' || ').replace(/\s*,\s*/g, ', ').trim();
+    // protect the salt bridge '||' before single lines are spaced (two separate '|' tiles stay two lines)
+    const norm = s => s.replace(/\s+/g, ' ').replace(/\s*\|\|\s*/g, '\u0000').replace(/\s*\|\s*/g, ' | ').replace(/\u0000/g, ' || ').replace(/\s*,\s*/g, ', ').trim();
     const a = norm(attempt), c = norm(correct);
     const issues = [];
     if (a === c) return { ok: true, issues, correct };
     if (/(^|[\s|,])\d+[A-Z]/.test(a)) issues.push('coefficients: cell notation has no coefficients, even when the balanced equation needs them');
-    const pt = (correct.match(/Pt/g) || []).length, ptA = (a.match(/Pt/g) || []).length;
-    if (ptA < pt) issues.push('missing Pt: a half-cell with no solid conductor needs an inert platinum electrode on the outside');
+    // Pt is checked half-cell by half-cell, so a Pt on the wrong side is named
+    const ptSides = s => s.split('||').map(x => (x.match(/Pt/g) || []).length);
+    const sideName = l => l.length === 2 ? 'both half-cells' : l[0] ? 'the cathode half-cell (right)' : 'the anode half-cell (left)';
+    if (a.includes('||') && ptSides(a).length === 2) {
+      const cs = ptSides(correct), as = ptSides(a), miss = [0, 1].filter(i => as[i] < cs[i]), extra = [0, 1].filter(i => as[i] > cs[i]);
+      if (miss.length) issues.push(`missing Pt in ${sideName(miss)}: a half-cell with no solid conductor needs an inert platinum electrode on the outside`);
+      extra.forEach(i => issues.push(cs[i] === 0 ? `extra Pt in ${sideName([i])}: this half-cell has a metal electrode, so it needs no Pt. Pt is only for a half-cell with no solid conductor` : `extra Pt in ${sideName([i])}: one inert electrode per half-cell, on the outside`));
+    } else {
+      const pt = (correct.match(/Pt/g) || []).length, ptA = (a.match(/Pt/g) || []).length;
+      if (ptA < pt) issues.push('missing Pt: a half-cell with no solid conductor needs an inert platinum electrode on the outside');
+      if (ptA > pt) issues.push('extra Pt: Pt is only for a half-cell with no solid conductor');
+    }
     if (!a.includes('||')) issues.push('salt bridge: show it with a double line ||');
     const [aL] = a.split(' || ');
     const [cL] = c.split(' || ');
-    if (aL && cL && aL !== cL && a.split(' || ').reverse().join(' || ') === c) issues.push('sides swapped: the anode goes on the left');
+    // the cathode half-cell written as if it were the anode (the whole cell backwards), or the two halves swapped as written
+    const backwards = norm(cellNotation(cathodeRow, anodeRow).text);
+    if (a === backwards || (aL && cL && aL !== cL && a.split(' || ').reverse().join(' || ') === c)) issues.push('sides swapped: the anode goes on the left');
     if (/[⇌↔]/.test(a)) issues.push('arrows do not belong in cell notation');
     if (!issues.length) issues.push('check the order inside each half-cell and the comma (same phase) or line (phase boundary)');
     return { ok: false, issues, correct };
@@ -474,6 +495,7 @@
     'NiSO4': { label: 'NiSO₄(aq)', cations: ['Ni²⁺'], anions: ['SO₄²⁻'], aqueous: true },
     'AℓCℓ3': { label: 'AℓCℓ₃(aq)', cations: ['Aℓ³⁺'], anions: ['Cℓ⁻'], aqueous: true, concentrated: false },
     'MgCℓ2-aq': { label: 'MgCℓ₂(aq), concentrated', cations: ['Mg²⁺'], anions: ['Cℓ⁻'], aqueous: true, concentrated: true },
+    'MgCℓ2-aq-dil': { label: 'MgCℓ₂(aq), dilute', cations: ['Mg²⁺'], anions: ['Cℓ⁻'], aqueous: true, concentrated: false },
     'NaCℓ-molten': { label: 'molten NaCℓ', cations: ['Na⁺'], anions: ['Cℓ⁻'], aqueous: false },
     'PbBr2-molten': { label: 'molten PbBr₂', cations: ['Pb²⁺'], anions: ['Br⁻'], aqueous: false },
     'MgCℓ2-molten': { label: 'molten MgCℓ₂', cations: ['Mg²⁺'], anions: ['Cℓ⁻'], aqueous: false }
@@ -559,9 +581,9 @@
     // p: {I, t} or {q}; ratio; M or gas:true
     const lines = [];
     let q = p.q;
-    if (q === undefined) { q = C6(p.I * p.t); lines.push(`q = It = (${num(p.I)})(${num(p.t)}) = ${q >= 1e5 ? sci(q, 2) : num(q)} C`); }
+    if (q === undefined) { q = C6(p.I * p.t); lines.push(`q = It = (${num(p.I)})(${num(p.t)}) = ${q >= 1e7 ? sci(q, 6) : num(q)} C`); }
     const ne = C6(q / F);
-    lines.push(`n(e⁻) = q/F = ${q >= 1e5 ? sci(q, 2) : num(q)} / 96 500 = ${numSig(ne, 6)} mol`);
+    lines.push(`n(e⁻) = q/F = ${q >= 1e7 ? sci(q, 6) : num(q)} / 96 500 = ${numSig(ne, 6)} mol`);
     const n = C6(ne / p.ratio);
     lines.push(`n = ${p.ratio === 1 ? '' : '1/' + p.ratio + ' × '}n(e⁻) = ${numSig(n, 6)} mol`);
     const out = { q, ne, n, lines };
@@ -575,11 +597,11 @@
     const n = C6(p.m / p.M);
     lines.push(`n = m/M = ${num(p.m)} / ${num(p.M)} = ${numSig(n, 6)} mol`);
     const ne = C6(n * p.ratio);
-    lines.push(`n(e⁻) = ${p.ratio}n = ${p.ratio} × ${numSig(n, 6)} = ${numSig(ne, 6)} mol`);
-    const q = Math.round(ne * F);
-    lines.push(`q = nF = (${numSig(ne, 6)})(96 500) = ${num(q)} C`);
+    lines.push(`n(e⁻) = ${p.ratio === 1 ? '' : p.ratio}n = ${p.ratio === 1 ? '' : p.ratio + ' × '}${numSig(n, 6)} = ${numSig(ne, 6)} mol`);
+    const q = ne * F;
+    lines.push(`q = nF = (${numSig(ne, 6)})(96 500) = ${num(q, 2)} C`);
     const out = { n, ne, q, lines };
-    if (p.I) { out.t = round(q / p.I, 2); lines.push(`t = q/I = ${num(q)} / ${num(p.I)} = ${num(out.t, 2)} s`); }
+    if (p.I) { out.t = round(q / p.I, 2); lines.push(`t = q/I = ${num(q, 2)} / ${num(p.I)} = ${num(out.t, 2)} s`); }
     return out;
   }
 

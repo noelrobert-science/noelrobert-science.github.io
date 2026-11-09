@@ -9,7 +9,7 @@ window.IEB = [
 "q": "Question 1.9",
 "mcq": true,
 "marks": 2,
-"question": "cell Ni(s) | Ni(NO₃)₂(aq) || AgNO₃(aq) | Ag(s), KNO₃ salt bridge. Four diagrams show ions moving between the end of the salt bridge and the electrolyte. \"Which one of the following diagrams correctly represents the movement of ions between the salt bridge and electrolyte solution in the OXIDATION half-cell?\"",
+"question": "The galvanic cell is Ni(s) | Ni(NO₃)₂(aq) || AgNO₃(aq) | Ag(s), with a KNO₃ salt bridge. Four diagrams show ions moving between the end of the salt bridge and the electrolyte. \"Which one of the following diagrams correctly represents the movement of ions between the salt bridge and electrolyte solution in the OXIDATION half-cell?\"\nA NO₃⁻ ions move from the electrolyte solution into the salt bridge, and K⁺ ions move from the salt bridge into the electrolyte solution.\nB NO₃⁻ ions and K⁺ ions both move from the salt bridge into the electrolyte solution.\nC NO₃⁻ ions and Ag⁺ ions both move from the electrolyte solution into the salt bridge.\nD Ni²⁺ ions move from the electrolyte solution into the salt bridge, and NO₃⁻ ions move from the salt bridge into the electrolyte solution.",
 "memo": "D. Ni²⁺ moves into the salt bridge and NO₃⁻ moves out into the Ni half-cell.",
 "report": "",
 "module": 28,
@@ -22,10 +22,10 @@ window.IEB = [
 "q": "Question 6.1",
 "mcq": false,
 "marks": 2,
-"question": "a galvanic cell with half-cell X | X²⁺(aq) and Au | Au³⁺(aq) under standard conditions; solid gold deposits on the gold electrode. \"Define electrolyte.\"",
+"question": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode. \"Define electrolyte.\"",
 "memo": "\"A substance that can conduct electricity by forming free ions when molten or dissolved in solution.\"",
 "report": "",
-"module": 29,
+"module": 28,
 "noMemo": false
 },
 {
@@ -36,10 +36,11 @@ window.IEB = [
 "mcq": false,
 "marks": 2,
 "question": "\"Write the FORMULA of a suitable electrolyte that could be used in the Au half-cell solution.\"",
-"memo": "\"Au(NO3)3 (OR AuCℓ3)\".",
+"memo": "\"Au(NO₃)₃ (OR AuCℓ₃)\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode."
 },
 {
 "id": "2020-Q6.3to6.4",
@@ -49,10 +50,11 @@ window.IEB = [
 "mcq": false,
 "marks": 3,
 "question": "\"Which electrode, X or Au, is the anode?\" (1). \"Write an equation for the reduction half-reaction.\" (2)",
-"memo": "6.3: X.\n6.4: Au³⁺ + 3e⁻ → Au. \"coe from 6.3 – if the answer to Q6.2 is Au, then accept: X2+ + 2e− → X\" (sic: Q6.2 should read Q6.3); \"(−1) if double arrow is used\".",
+"memo": "6.3: X.\n6.4: Au³⁺ + 3e⁻ → Au. \"coe from 6.3 – if the answer to Q6.2 is Au, then accept: X²⁺ + 2e⁻ → X\" [the memo means Q6.3]; \"(−1) if double arrow is used\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode."
 },
 {
 "id": "2020-Q6.5.1to6.5.2",
@@ -62,10 +64,11 @@ window.IEB = [
 "mcq": false,
 "marks": 5,
 "question": "\"The initial reading of the voltmeter is 1,82 V.\" 6.5.1 \"Perform a calculation to determine the identity of X.\" (4). 6.5.2 \"Despite the large emf, it is not profitable to produce this cell for use in a commercial battery. Suggest ONE reason for this.\" (1)",
-"memo": "6.5.1: Eθcell = Eθcathode − Eθanode; 1,82 = 1,42 − Eθanode; Eθanode = −0,4 V, \"∴ X is Cd (OR cadmium)\"; \"coe from 6.3 for calculation but not conclusion / identification\".\n6.5.2: \"Gold is too expensive (OR cadmium is very toxic)\".\nChecked: 1,42 − 1,82 = −0,40 V, which is the Cd²⁺/Cd row.",
+"memo": "6.5.1: Eθcell = Eθcathode − Eθanode; 1,82 = 1,42 − Eθanode; Eθanode = −0,4 V, \"∴ X is Cd (OR cadmium)\"; \"coe from 6.3 for calculation but not conclusion / identification\".\n6.5.2: \"Gold is too expensive (OR cadmium is very toxic)\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode."
 },
 {
 "id": "2020-Q6.6.1",
@@ -75,10 +78,11 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Describe the standard hydrogen electrode and briefly explain its role as the reference electrode.\"",
-"memo": "\"Pt electrode\";\n\"Solution of H+ ions (at 1 mol·dm−3) AND/OR H2 gas (at 1 atm) AND/OR temperature of 25 °C (any two )\";\n\"All electrode potentials are measured relative to the SHE (which is given a defined electrode potential of 0,00 V)\".",
+"memo": "\"Pt electrode\";\n\"Solution of H⁺ ions (at 1 mol·dm⁻³) AND/OR H₂ gas (at 1 atm) AND/OR temperature of 25 °C (any two )\";\n\"All electrode potentials are measured relative to the SHE (which is given a defined electrode potential of 0,00 V)\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode."
 },
 {
 "id": "2020-Q6.6.2",
@@ -88,10 +92,11 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Write the cell notation for the cell that Ufezile would use to determine the standard electrode potential for the gold half-cell. Include phase indicators.\"",
-"memo": "\"Pt(s) | H2(g) | H+(aq) || Au3+(aq) | Au(s)\". One mark each for Pt, H₂ | H⁺, Au³⁺ | Au, and phases.",
+"memo": "\"Pt(s) | H₂(g) | H⁺(aq) || Au³⁺(aq) | Au(s)\". One mark each for Pt, H₂ | H⁺, Au³⁺ | Au, and phases.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A galvanic cell has a half-cell X | X²⁺(aq) and a half-cell Au | Au³⁺(aq) under standard conditions. Solid gold deposits on the gold electrode."
 },
 {
 "id": "2020-Q7.1to7.3",
@@ -117,7 +122,8 @@ window.IEB = [
 "memo": "7.4.1: Q.\n7.4.2: 2Cℓ⁻ → Cℓ₂ + 2e⁻.\n7.4.3: Cu²⁺ + 2e⁻ → Cu.\n7.4.4: Cℓ⁻.\n\"Subtract one mark for use of reversible arrows in either 7.4.2 or 7.4.3\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cell A holds MOLTEN copper(II) chloride with graphite electrodes P(+) and Q(−). Cell B holds concentrated AQUEOUS CuCℓ₂ (blue), with a graphite anode R(+) and a copper cathode S(−)."
 },
 {
 "id": "2020-Q7.5to7.6",
@@ -130,7 +136,8 @@ window.IEB = [
 "memo": "7.5: \"The blue colour of the electrolyte will fade (get lighter)\"; Cu²⁺ + 2e⁻ → Cu.\n7.6: \"Q and S\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cell A holds MOLTEN copper(II) chloride with graphite electrodes P(+) and Q(−). Cell B holds concentrated AQUEOUS CuCℓ₂ (blue), with a graphite anode R(+) and a copper cathode S(−)."
 },
 {
 "id": "2020-Q7.7",
@@ -143,7 +150,8 @@ window.IEB = [
 "memo": "7.7.1: \"The reaction would proceed faster\".\n7.7.2: \"The reaction of a molecular substance with water to produce ions.\"\n7.7.3: \"There is an increase in the concentration of ions.\"\n7.7.4: \"Increase\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cell A holds MOLTEN copper(II) chloride with graphite electrodes P(+) and Q(−). Cell B holds concentrated AQUEOUS CuCℓ₂ (blue), with a graphite anode R(+) and a copper cathode S(−)."
 },
 {
 "id": "2021-Q1.4",
@@ -152,7 +160,7 @@ window.IEB = [
 "q": "Question 1.4",
 "mcq": true,
 "marks": 2,
-"question": "calcium (tube X), iron (Y) and silver (Z) nails each sit in 1 mol·dm⁻³ HCℓ at 25 °C. \"In which tubes will hydrogen gas be produced?\" A X and Y only; B X and Z only; C Y and Z only; D X, Y and Z.",
+"question": "Calcium (tube X), iron (tube Y) and silver (tube Z) each sit in 1 mol·dm⁻³ HCℓ at 25 °C. \"In which tubes will hydrogen gas be produced?\" A X and Y only; B X and Z only; C Y and Z only; D X, Y and Z.",
 "memo": "A.",
 "report": "",
 "module": 27,
@@ -191,7 +199,7 @@ window.IEB = [
 "q": "Question 6.1.1 to 6.1.3",
 "mcq": false,
 "marks": 3,
-"question": "cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C, set up to find the standard electrode potential of Ni²⁺ | Ni.\n6.1.1 the standard condition for H₂(g) besides 25 °C (1).\n6.1.2 the standard condition for H⁺(aq) (1).\n6.1.3 \"Which terminal of the voltmeter should be connected to the standard hydrogen electrode? State only POSITIVE or NEGATIVE.\" (1)",
+"question": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni.\n6.1.1 State the standard condition for H₂(g), other than 25 °C. (1)\n6.1.2 State the standard condition for H⁺(aq). (1)\n6.1.3 \"Which terminal of the voltmeter should be connected to the standard hydrogen electrode? State only POSITIVE or NEGATIVE.\" (1)",
 "memo": "6.1.1: 1 atm (accept 101 kPa, 101,3 kPa or 1,01 × 10⁵ Pa). 6.1.2: 1 mol·dm⁻³. 6.1.3: negative.",
 "report": "",
 "module": 28,
@@ -205,10 +213,11 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Calculate the initial reading on the voltmeter. Show all working.\"",
-"memo": "Eθcell = −0,25 − 0 = −0,25 V. \"Full marks only to be awarded if the calculation is shown (this value can be read directly off the table)\".",
+"memo": "Eθcell = Eθcathode − Eθanode = (−0,25) − (0) = −0,25 V. \"Full marks only to be awarded if the calculation is shown (this value can be read directly off the table)\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni."
 },
 {
 "id": "2021-Q6.2.1",
@@ -221,7 +230,8 @@ window.IEB = [
 "memo": "2H⁺ + 2e⁻ → H₂.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni."
 },
 {
 "id": "2021-Q6.2.2",
@@ -234,7 +244,8 @@ window.IEB = [
 "memo": "Q = It = (2,25)(4 × 3 600) = 32 400 C; n(e⁻) = 32 400/96 500 = 0,33575 mol; n(Ni) = ½ × 0,33575 = 0,1679 mol; m = nM = (0,1679)(59) = 9,9 g. The memo gives the magnitude only and does not require \"decrease\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni."
 },
 {
 "id": "2021-Q6.2.3",
@@ -247,7 +258,8 @@ window.IEB = [
 "memo": "Ni²⁺ ions are produced in the nickel half-cell; anions move out of the salt bridge into the nickel half-cell; Ni²⁺ (cations) move into the salt bridge.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni."
 },
 {
 "id": "2021-Q6.3",
@@ -256,11 +268,12 @@ window.IEB = [
 "q": "Question 6.3",
 "mcq": false,
 "marks": 4,
-"question": "a larger Pt electrode in the hydrogen half-cell. Effect on 6.3.1 \"The maximum current produced in the cell.\" (2) and 6.3.2 \"The initial emf of this cell.\" (2) State only INCREASE, DECREASE or NO EFFECT.",
+"question": "The Pt electrode in the hydrogen half-cell is replaced by a larger one. State the effect on 6.3.1 \"The maximum current produced in the cell.\" (2) and 6.3.2 \"The initial emf of this cell.\" (2) State only INCREASE, DECREASE or NO EFFECT.",
 "memo": "6.3.1 increase; 6.3.2 no effect.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "The cell Pt(s) | H₂(g) | H⁺(aq) || Ni²⁺(aq) | Ni(s) at 25 °C is set up to find the standard electrode potential of Ni²⁺ | Ni."
 },
 {
 "id": "2021-Q7.1to7.3",
@@ -269,7 +282,7 @@ window.IEB = [
 "q": "Question 7.1 to 7.3",
 "mcq": false,
 "marks": 6,
-"question": "The cell refines blister copper (impure copper containing zinc, cobalt, silver and gold). Pure copper electrode; electrolyte CuSO₄(aq) + H₂SO₄(aq).\n7.1 \"Copper is mainly used as a conductor in electrical circuits. Why, then, is it important that the copper used be PURE?\" (1)\n7.2 \"What energy conversion occurs in this cell?\" (2)\n7.3.1 \"Explain why it is necessary to dissolve the CuSO4 in solution.\" (2)\n7.3.2 \"What is the purpose of the H2SO4?\" (1)",
+"question": "The cell refines blister copper (impure copper containing zinc, cobalt, silver and gold). Pure copper electrode; electrolyte CuSO₄(aq) + H₂SO₄(aq).\n7.1 \"Copper is mainly used as a conductor in electrical circuits. Why, then, is it important that the copper used be PURE?\" (1)\n7.2 \"What energy conversion occurs in this cell?\" (2)\n7.3.1 \"Explain why it is necessary to dissolve the CuSO₄ in solution.\" (2)\n7.3.2 \"What is the purpose of the H₂SO₄?\" (1)",
 "memo": "7.1: \"Any impurities will decrease the conductivity (OR increase the resistance) of the copper.\" \"[Accept: any impurities will affect the conductivity/resistance of the copper]\"\n7.2: electrical (potential) energy to chemical (potential) energy.\n7.3.1: the ions become free (mobile), so the electrolyte conducts.\n7.3.2: it increases the conductivity.",
 "report": "",
 "module": 29,
@@ -286,20 +299,36 @@ window.IEB = [
 "memo": "7.4: positive.\n7.5.1: copper is deposited (the cathode gains mass).\n7.5.2: Cu²⁺ + 2e⁻ → Cu \"(–1 for whole question for use of ⇌)\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (impure copper containing zinc, cobalt, silver and gold) is refined. The other electrode is pure copper; the electrolyte is CuSO₄(aq) with H₂SO₄(aq)."
 },
 {
-"id": "2021-Q7.6.1to7.6.3",
+"id": "2021-Q7.6.1to7.6.2",
 "year": "2021",
 "paper": "IEB NSC Nov 2021 Paper 2",
-"q": "Question 7.6.1 to 7.6.3",
+"q": "Question 7.6.1 to 7.6.2",
 "mcq": false,
-"marks": 5,
-"question": "\"The zinc and cobalt impurities in the blister copper electrode are oxidised in addition to the copper. The silver and gold impurities are not oxidised.\"\n7.6.1 \"Define oxidation.\" (1)\n7.6.2 \"Write an equation for the half-reaction for the oxidation of copper.\" (2)\n7.6.3 \"A sludge accumulates below the blister copper electrode. Which impurities are present in this sludge?\" (2)",
-"memo": "7.6.1: loss of electrons. 7.6.2: Cu → Cu²⁺ + 2e⁻. 7.6.3: silver and gold.",
+"marks": 3,
+"question": "\"The zinc and cobalt impurities in the blister copper electrode are oxidised in addition to the copper. The silver and gold impurities are not oxidised.\"\n7.6.1 \"Define oxidation.\" (1)\n7.6.2 \"Write an equation for the half-reaction for the oxidation of copper.\" (2)",
+"memo": "7.6.1: loss of electrons. 7.6.2: Cu → Cu²⁺ + 2e⁻.",
 "report": "",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (impure copper containing zinc, cobalt, silver and gold) is refined. The other electrode is pure copper; the electrolyte is CuSO₄(aq) with H₂SO₄(aq)."
+},
+{
+"id": "2021-Q7.6.3",
+"year": "2021",
+"paper": "IEB NSC Nov 2021 Paper 2",
+"q": "Question 7.6.3",
+"mcq": false,
+"marks": 2,
+"question": "\"The zinc and cobalt impurities in the blister copper electrode are oxidised in addition to the copper. The silver and gold impurities are not oxidised.\" 7.6.3 \"A sludge accumulates below the blister copper electrode. Which impurities are present in this sludge?\" (2)",
+"memo": "7.6.3: silver and gold.",
+"report": "",
+"module": 29,
+"noMemo": false,
+"stem": "Blister copper (impure copper containing zinc, cobalt, silver and gold) is refined. The other electrode is pure copper; the electrolyte is CuSO₄(aq) with H₂SO₄(aq)."
 },
 {
 "id": "2021-Q7.6.4",
@@ -311,8 +340,9 @@ window.IEB = [
 "question": "\"Fully explain why the zinc is oxidised but the silver is not.\"",
 "memo": "Zn is a stronger reducing agent than Cu (more negative Eθ), so it is oxidised; Ag is a (much) weaker reducing agent than Cu, so it is not oxidised.",
 "report": "",
-"module": 29,
-"noMemo": false
+"module": 27,
+"noMemo": false,
+"stem": "Blister copper (impure copper containing zinc, cobalt, silver and gold) is refined. The other electrode is pure copper; the electrolyte is CuSO₄(aq) with H₂SO₄(aq)."
 },
 {
 "id": "2021-Q7.7",
@@ -321,11 +351,12 @@ window.IEB = [
 "q": "Question 7.7",
 "mcq": false,
 "marks": 3,
-"question": "\"Explain how the concentration of the Cu2+ ions in the electrolyte changes over time.\"",
+"question": "\"Explain how the concentration of the Cu²⁺ ions in the electrolyte changes over time.\"",
 "memo": "at the anode, Cu²⁺, Co²⁺ and Zn²⁺ form, but at the cathode only Cu²⁺ is reduced, so [Cu²⁺] decreases.",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (impure copper containing zinc, cobalt, silver and gold) is refined. The other electrode is pure copper; the electrolyte is CuSO₄(aq) with H₂SO₄(aq)."
 },
 {
 "id": "2022-Q3.5.1to3.5.2",
@@ -334,7 +365,7 @@ window.IEB = [
 "q": "Question 3.5.1 to 3.5.2",
 "mcq": false,
 "marks": 2,
-"question": "\"Define redox reaction.\" (1) \"Identify the reducing agent in this reaction.\" (1)",
+"question": "\"Nitrogen monoxide gas may be prepared by adding copper metal to dilute nitric acid. The balanced equation for the redox reaction is given below:\"\n3Cu(s) + 8HNO₃(aq) → 3Cu(NO₃)₂(aq) + 2NO(g) + 4H₂O(ℓ)\n3.5.1 \"Define redox reaction.\" (1)\n3.5.2 \"Identify the reducing agent in this reaction.\" (1)",
 "memo": "\"A reaction that involves the transfer of electrons\"; \"Cu or copper\".",
 "report": "",
 "module": 27,
@@ -347,7 +378,7 @@ window.IEB = [
 "q": "Question 3.5.3",
 "mcq": false,
 "marks": 2,
-"question": "\"Identify and write down the ionic equation for the reduction half-reaction. Refer to the table of standard electrode potentials (Table 4).\"",
+"question": "\"Nitrogen monoxide gas may be prepared by adding copper metal to dilute nitric acid. The balanced equation for the redox reaction is given below:\"\n3Cu(s) + 8HNO₃(aq) → 3Cu(NO₃)₂(aq) + 2NO(g) + 4H₂O(ℓ)\n\"Identify and write down the ionic equation for the reduction half-reaction. Refer to the table of standard electrode potentials (Table 4).\"",
 "memo": "NO₃⁻ + 4H⁺ + 3e⁻ → NO + 2H₂O \"(–1 for double arrow)\".",
 "report": "",
 "module": 27,
@@ -360,7 +391,7 @@ window.IEB = [
 "q": "Question 6.1",
 "mcq": false,
 "marks": 2,
-"question": "a standard voltaic cell. Half-cell A is a Pt gauze electrode in Sn⁴⁺ and Sn²⁺(aq); half-cell B is Cr in Cr³⁺(aq); the salt bridge holds KNO₃(aq). \"What is the benefit of using platinum gauze rather than just a straight piece of platinum wire?\"",
+"question": "A standard voltaic cell: half-cell A is a Pt gauze electrode in Sn⁴⁺ and Sn²⁺(aq); half-cell B is Cr in Cr³⁺(aq); the salt bridge holds KNO₃(aq). \"What is the benefit of using platinum gauze rather than just a straight piece of platinum wire?\"",
 "memo": "\"The gauze provides a bigger surface area\", EITHER a better catalyst (electron transfer takes place on its surface), OR it increases the rate more, OR \"It increases the current the cell can deliver more than the wire does.\"",
 "report": "",
 "module": 28,
@@ -377,7 +408,8 @@ window.IEB = [
 "memo": "Sn⁴⁺.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q6.3",
@@ -390,7 +422,8 @@ window.IEB = [
 "memo": "Cr | Cr³⁺ || Sn⁴⁺, Sn²⁺ | Pt. One mark each for anode, cathode, salt bridge and platinum; \"–1 in total for any punctuation errors\" (e.g. | instead of ,).",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q6.4",
@@ -399,11 +432,12 @@ window.IEB = [
 "q": "Question 6.4",
 "mcq": false,
 "marks": 6,
-"question": "\"Consider the electrolyte solutions in this cell\":\n6.4.1 \"Name the compound SnCℓ4.\" (2)\n6.4.2 \"Identify the anion, other than NO3−, that will be in higher concentration in the salt bridge after the cell has been operating for some time.\" (2)\n6.4.3 \"Explain the direction of the movement of the anion identified in Question 6.4.2.\" (2)",
-"memo": "6.4.1: \"tin(IV) chloride (accept tin tetrachloride or stannic chloride )\".\n6.4.2: \"Cℓ– (or chloride)\".\n6.4.3: anions from the cathode electrolyte move (to the anode electrolyte) \"to balance the extra positive charge resulting from the oxidation of Cr to Cr3+\", OR anions move out of the cathode electrolyte \"due to an increase of negative charge there resulting from reduction of Sn4+ to Sn2+\".",
+"question": "\"Consider the electrolyte solutions in this cell\": • SnCℓ₂(aq) and SnCℓ₄(aq) in half-cell A • Cr₂(SO₄)₃(aq) in half-cell B • KNO₃(aq) in the salt bridge.\n6.4.1 \"Name the compound SnCℓ₄.\" (2)\n6.4.2 \"Identify the anion, other than NO₃⁻, that will be in higher concentration in the salt bridge after the cell has been operating for some time.\" (2)\n6.4.3 \"Explain the direction of the movement of the anion identified in Question 6.4.2.\" (2)",
+"memo": "6.4.1: \"tin(IV) chloride (accept tin tetrachloride or stannic chloride )\".\n6.4.2: \"Cℓ⁻ (or chloride)\".\n6.4.3: anions from the cathode electrolyte move (to the anode electrolyte) \"to balance the extra positive charge resulting from the oxidation of Cr to Cr³⁺\", OR anions move out of the cathode electrolyte \"due to an increase of negative charge there resulting from reduction of Sn⁴⁺ to Sn²⁺\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q6.5",
@@ -416,7 +450,8 @@ window.IEB = [
 "memo": "two of: a shorter salt bridge; a wider salt bridge; a more concentrated KNO₃ solution; a more conductive salt in the salt bridge.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q6.6",
@@ -425,11 +460,12 @@ window.IEB = [
 "q": "Question 6.6",
 "mcq": false,
 "marks": 4,
-"question": "\"A soluble Cr2(SO4)3 salt is used to prepare the electrolyte for half-cell B. Assume that the salt dissociates completely. Calculate the mass of Cr2(SO4)3 that should be weighed out in order to prepare 0,25 dm3 of the 1 mol.dm–3 Cr3+ electrolyte solution.\"",
+"question": "\"A soluble Cr₂(SO₄)₃ salt is used to prepare the electrolyte for half-cell B. Assume that the salt dissociates completely. Calculate the mass of Cr₂(SO₄)₃ that should be weighed out in order to prepare 0,25 dm³ of the 1 mol·dm⁻³ Cr³⁺ electrolyte solution.\"",
 "memo": "m = cVM = 0,5 × 0,25 × 392 = 49 g (OR n = 0,5 × 0,25 = 0,125 mol, then m = 0,125 × 392 = 49 g).",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q6.7",
@@ -438,11 +474,12 @@ window.IEB = [
 "q": "Question 6.7",
 "mcq": false,
 "marks": 3,
-"question": "a diagram of the bonding in solid Cr. 6.7.1 \"Name this type of bonding.\" (1) 6.7.2 \"With reference to the diagram, explain why Cr can be used as an electrode in half-cell B.\" (2)",
+"question": "The paper shows a diagram of the bonding in solid Cr: positive chromium ions in a lattice, surrounded by a sea of delocalised electrons. 6.7.1 \"Name this type of bonding.\" (1) 6.7.2 \"With reference to the diagram, explain why Cr can be used as an electrode in half-cell B.\" (2)",
 "memo": "\"metallic bonding\"; \"it can conduct electricity because the (delocalised) electrons are free to move/mobile\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard voltaic cell. Half-cell A: a Pt gauze electrode in SnCℓ₂(aq) and SnCℓ₄(aq). Half-cell B: Cr in Cr₂(SO₄)₃(aq). The salt bridge holds KNO₃(aq)."
 },
 {
 "id": "2022-Q7.1.1to7.1.3",
@@ -451,7 +488,7 @@ window.IEB = [
 "q": "Question 7.1.1 to 7.1.3",
 "mcq": false,
 "marks": 4,
-"question": "A Hofmann voltameter holds water + Na₂SO₄ + bromothymol blue. \"NOTE: Na2SO4 is used to increase the conductivity of the water but it does not participate in the redox reaction.\" Both electrodes are platinum.\nGiven: I 2H₂O + 2e⁻ → 2OH⁻ + H₂(g); II 2H₂O → O₂(g) + 4H⁺ + 4e⁻.\n7.1.1 \"What is the benefit of using platinum rather than another metal?\" (1)\n7.1.2 is the anode connected to the POSITIVE or NEGATIVE terminal? (1)\n7.1.3 \"Classify half-reaction I as OXIDATION or REDUCTION. Give a reason for your answer.\" (2)",
+"question": "A Hofmann voltameter holds water + Na₂SO₄ + bromothymol blue. \"NOTE: Na₂SO₄ is used to increase the conductivity of the water but it does not participate in the redox reaction.\" Both electrodes are platinum.\nGiven: I 2H₂O + 2e⁻ → 2OH⁻ + H₂(g); II 2H₂O → O₂(g) + 4H⁺ + 4e⁻.\n7.1.1 \"What is the benefit of using platinum rather than another metal?\" (1)\n7.1.2 Is the anode connected to the POSITIVE or NEGATIVE terminal? (1)\n7.1.3 \"Classify half-reaction I as OXIDATION or REDUCTION. Give a reason for your answer.\" (2)",
 "memo": "7.1.1 \"it is inert\". 7.1.2 \"positive\". 7.1.3 \"reduction\", with any of: \"electrons are gained\", OR \"the oxidation number of H decreases\", OR \"it takes place at the cathode\".",
 "report": "",
 "module": 29,
@@ -467,8 +504,9 @@ window.IEB = [
 "question": "7.1.4 \"Calculate the cell potential (Eθcell) for the decomposition of water under standard conditions.\" (4) 7.1.5 \"Is the reaction SPONTANEOUS or NON-SPONTANEOUS? Give a reason in terms of the calculated cell potential.\" (2)",
 "memo": "\"Eθcell = Eθcathode – Eθanode = – 0,83 – 1,23 = – 2,06 V\", \"no carry-over\"; \"non-spontaneous; Eθcell < 0 (must follow from 7.1.4)\".",
 "report": "",
-"module": 29,
-"noMemo": false
+"module": 28,
+"noMemo": false,
+"stem": "A Hofmann voltameter holds water with Na₂SO₄ and bromothymol blue, and has two platinum electrodes. Half-reaction I: 2H₂O + 2e⁻ → 2OH⁻ + H₂(g). Half-reaction II: 2H₂O → O₂(g) + 4H⁺ + 4e⁻."
 },
 {
 "id": "2022-Q7.1.6",
@@ -477,11 +515,12 @@ window.IEB = [
 "q": "Question 7.1.6",
 "mcq": false,
 "marks": 4,
-"question": "\"Bromothymol blue is a weak acid indicator that is yellow in acidic solution and blue in alkaline solution.\" HIn + H₂O ⇌ In⁻ + H₃O⁺. (a) \"What is the colour of In–, the deprotonated form of the indicator?\" (2) (b) \"What will be the colour of the solution around the cathode?\" (2)",
+"question": "\"Bromothymol blue is a weak acid indicator that is yellow in acidic solution and blue in alkaline solution.\" HIn + H₂O ⇌ In⁻ + H₃O⁺. (a) \"What is the colour of In⁻, the deprotonated form of the indicator?\" (2) (b) \"What will be the colour of the solution around the cathode?\" (2)",
 "memo": "(a) blue; (b) blue.",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "A Hofmann voltameter holds water with Na₂SO₄ and bromothymol blue, and has two platinum electrodes. Half-reaction I: 2H₂O + 2e⁻ → 2OH⁻ + H₂(g). Half-reaction II: 2H₂O → O₂(g) + 4H⁺ + 4e⁻."
 },
 {
 "id": "2022-Q7.1.7",
@@ -490,11 +529,12 @@ window.IEB = [
 "q": "Question 7.1.7",
 "mcq": false,
 "marks": 7,
-"question": "\"A constant current of 0,05 A is maintained for 1,5 hours by carefully controlling the rheostat.\" (a) \"Calculate the amount of charge that passes through the solution in this time period.\" (3) (b) \"Hence, calculate the volume of oxygen gas that will be produced at STP in this time period.\" (4). Half-reaction II is printed again.",
-"memo": "(a) q = It = 0,05 × (1,5 × 3 600) = 270 C.\n(b) n(e⁻) = 270/96 500 = 0,0028 mol [OR N(e⁻) = 270/1,6 × 10⁻¹⁹, then n = N/NA]; n(O₂) = 0,0028/4 = 0,0007 mol; V = 0,0007 × 22,4 = \"0,016 dm3 OR 0,02 dm3\".",
+"question": "\"A constant current of 0,05 A is maintained for 1,5 hours by carefully controlling the rheostat.\" (a) \"Calculate the amount of charge that passes through the solution in this time period.\" (3) (b) \"Hence, calculate the volume of oxygen gas that will be produced at STP in this time period.\" (4). Half-reaction II is printed again: 2H₂O → O₂(g) + 4H⁺ + 4e⁻.",
+"memo": "(a) q = It = 0,05 × (1,5 × 3 600) = 270 C.\n(b) n(e⁻) = 270/96 500 = 0,0028 mol [OR N(e⁻) = 270/1,6 × 10⁻¹⁹, then n = N/NA]; n(O₂) = 0,0028/4 = 0,0007 mol; V = 0,0007 × 22,4 = \"0,016 dm³ OR 0,02 dm³\".",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "A Hofmann voltameter holds water with Na₂SO₄ and bromothymol blue, and has two platinum electrodes. Half-reaction I: 2H₂O + 2e⁻ → 2OH⁻ + H₂(g). Half-reaction II: 2H₂O → O₂(g) + 4H⁺ + 4e⁻."
 },
 {
 "id": "2022-Q7.2.1",
@@ -542,8 +582,8 @@ window.IEB = [
 "q": "Question 2.4.4 to 2.4.5",
 "mcq": false,
 "marks": 3,
-"question": "inside a bonding question: \"An aqueous solution of sodium thiosulfate is prepared.\" 2.4.4 \"Define electrolyte.\" (2) 2.4.5 \"Is this solution an electrolyte? Answer either YES or NO.\" (1)",
-"memo": "2.4.4 \"A substance that can conduct electricity by forming free ions when\" molten or dissolved (the same older wording as 2020 Q6.1). 2.4.5 \"Yes\".",
+"question": "\"An aqueous solution of sodium thiosulfate is prepared.\" 2.4.4 \"Define electrolyte.\" (2) 2.4.5 \"Is this solution an electrolyte? Answer either YES or NO.\" (1)",
+"memo": "2.4.4 \"A substance that can conduct electricity by forming free ions when molten or dissolved in solution.\" 2.4.5 \"Yes\".",
 "report": "",
 "module": 27,
 "noMemo": false
@@ -555,9 +595,9 @@ window.IEB = [
 "q": "Question 6.1",
 "mcq": false,
 "marks": 2,
-"question": "\"Sam wrote the following cell notation to represent a galvanic cell:\" Fe(s) | Fe³⁺(aq) || Cℓ₂(g) | Cℓ⁻(aq) (the separators are lost in the text extract and restored here). \"Complete the above cell notation to include the one important component that Sam left out. Standard conditions were not required.\"",
+"question": "\"Sam wrote the following cell notation to represent a galvanic cell:\" Fe(s) | Fe³⁺(aq) || Cℓ₂(g) | Cℓ⁻(aq). \"Complete the above cell notation to include the one important component that Sam left out. Standard conditions were not required.\"",
 "memo": "add | Pt(s) OR C(s) at the right-hand end; \"(–1 for any omissions)\".",
-"report": "\"Many candidates did not see this question – see suggestion to avoid this in Exam technique bullet above.\"",
+"report": "\"Many candidates did not see this question.\" The report suggests ticking next to each question number once you have answered it, so that no question is missed.",
 "module": 28,
 "noMemo": false
 },
@@ -570,9 +610,10 @@ window.IEB = [
 "marks": 3,
 "question": "\"Define anode.\" (2) \"Identify the anode in this cell.\" (1)",
 "memo": "\"the electrode where oxidation takes place\"; \"Fe or iron\".",
-"report": "\"The anode is the solid conductor; Fe/Fe3+ was not accepted.\"",
+"report": "\"The anode is the solid conductor; Fe/Fe³⁺ was not accepted.\"",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q6.4",
@@ -583,9 +624,10 @@ window.IEB = [
 "marks": 3,
 "question": "\"Write down the net ionic equation for the reaction that takes place when this cell operates.\"",
 "memo": "2Fe + 3Cℓ₂ → 2Fe³⁺ + 6Cℓ⁻ (one mark each for reactants, products and balancing); \"Double arrow –1\".",
-"report": "",
+"report": "\"Candidates were penalised for use of a double arrow in 6.4.\" Candidates need to know when to use each type of arrow.",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q6.5",
@@ -594,11 +636,12 @@ window.IEB = [
 "q": "Question 6.5",
 "mcq": false,
 "marks": 5,
-"question": "6.5.1 \"Define standard solution.\" (2) 6.5.2 \"The standard solutions are prepared using the ionic salts Fe(NO3)3 and CaCℓ2. What should the concentrations of these solutions be?\" (3)",
+"question": "\"For this cell to operate at standard conditions, standard solutions of Fe³⁺ and Cℓ⁻ need to be prepared.\" 6.5.1 \"Define standard solution.\" (2) 6.5.2 \"The standard solutions are prepared using the ionic salts Fe(NO₃)₃ and CaCℓ₂. What should the concentrations of these solutions be?\" (3)",
 "memo": "6.5.1 \"A solution of known concentration\". 6.5.2 Fe(NO₃)₃ = 1 mol·dm⁻³; CaCℓ₂ = 0,5 mol·dm⁻³; \"–1 in total if units incorrect\".",
 "report": "\"It is important to understand the meaning of an ionic formula and know that the concentration of the ions in solution is not necessarily the same as the concentration of the salt.\"",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q6.6",
@@ -607,11 +650,12 @@ window.IEB = [
 "q": "Question 6.6",
 "mcq": false,
 "marks": 1,
-"question": "\"Sam states: 'For this cell to be operating at standard conditions, the atmospheric pressure must be 1,01 × 105 Pa.' Correct Sam's statement.\"",
-"memo": "\"The pressure of the (chlorine) gas must be 1,01 × 105 Pa\".",
+"question": "\"Sam states: 'For this cell to be operating at standard conditions, the atmospheric pressure must be 1,01 × 10⁵ Pa.' Correct Sam's statement.\"",
+"memo": "\"The pressure of the (chlorine) gas must be 1,01 × 10⁵ Pa\".",
 "report": "\"the GAS (chlorine) pressure must be at standard conditions.\"",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q6.7",
@@ -622,9 +666,10 @@ window.IEB = [
 "marks": 4,
 "question": "\"Calculate the standard cell potential, Eθcell , for this cell.\"",
 "memo": "Eθcell = Eθcathode − Eθanode = 1,36 − (−0,04) = 1,40 V.",
-"report": "\"There appears to be some confusion about the \"Eθ/volt\" column heading in the SEP table. Many candidates wrote the whole thing or \"electronvolts\" or eV instead of V as the unit\". It adds: \"This heading will be changed to \"Eθ (volt)\"\". The 2024 report confirms a change to 'Eθ (V)'.",
+"report": "\"There appears to be some confusion about the \"Eθ/volt\" column heading in the SEP table. Many candidates wrote the whole thing or \"electronvolts\" or eV instead of V as the unit\". It adds: \"This heading will be changed to \"Eθ (volt)\"\".",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q6.8",
@@ -633,11 +678,12 @@ window.IEB = [
 "q": "Question 6.8",
 "mcq": false,
 "marks": 4,
-"question": "\"Sam adds some AgNO3 solution to the chlorine half-cell, causing solid AgCℓ to precipitate. How will this affect the voltage of the cell? Circle the correct option between the brackets and explain the answer.\" (INCREASE / DECREASE / REMAIN THE SAME)",
+"question": "\"Sam adds some AgNO₃ solution to the chlorine half-cell, causing solid AgCℓ to precipitate. How will this affect the voltage of the cell? Circle the correct option between the brackets and explain the answer.\" (INCREASE / DECREASE / REMAIN THE SAME)",
 "memo": "\"Voltage of cell increases\"; \"Chloride concentration decreases\"; \"Forward cell reaction favoured\"; \"To make more chloride / counteract the stress\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Sam’s galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq))."
 },
 {
 "id": "2023-Q7.1.1",
@@ -663,7 +709,8 @@ window.IEB = [
 "memo": "(a) C; (b) \"it has free / delocalised electrons (that can move / are mobile)\"; (c) Cu²⁺; H₂O; decrease.",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "A concentrated aqueous solution of copper(II) sulfate is electrolysed with pure electrodes. Cell A has copper electrodes; Cell B has graphite electrodes."
 },
 {
 "id": "2023-Q7.2.1to7.2.2",
@@ -672,7 +719,7 @@ window.IEB = [
 "q": "Question 7.2.1 to 7.2.2",
 "mcq": false,
 "marks": 4,
-"question": "\"You are required to plate a lead rod with nickel.\" Supplied: a cell, a beaker, an ammeter, connecting wires, and • a lead rod • a nickel rod • an aqueous solution of lead(II) nitrate • an aqueous solution of nickel(II) nitrate. 7.2.1 \"Give the formula of lead(II) nitrate.\" (1) 7.2.2 \"Choose from the bulleted list above to label the diagram of the set-up.\" (3)",
+"question": "\"You are required to plate a lead rod with nickel.\" Supplied: a cell, a beaker, an ammeter, connecting wires, and • a lead rod • a nickel rod • an aqueous solution of lead(II) nitrate • an aqueous solution of nickel(II) nitrate. 7.2.1 \"Give the formula of lead(II) nitrate.\" (1) 7.2.2 \"Choose from the bulleted list above to label the diagram of the set-up.\" (3) The diagram shows the cell and the ammeter joined in series to two rods in a beaker of solution, with three blank labels: the rod joined to the positive terminal, the rod joined to the negative terminal, and the solution.",
 "memo": "Pb(NO₃)₂; nickel (anode), lead (cathode), aqueous nickel(II) nitrate OR Ni(NO₃)₂.",
 "report": "\"Many candidates did not follow instructions to choose from the bulleted list. If they then wrote an incorrect formula for nickel(II) nitrate instead, it was not accepted.\"",
 "module": 29,
@@ -689,7 +736,8 @@ window.IEB = [
 "memo": "(a) \"Lead rod is plated with nickel (M = 59).\" n(Ni) = 1,10/59 = 0,0186 mol; n(e⁻) = 0,0186 × 2 = 0,0373 mol.\n(b) EITHER q = nF = 0,0373 × 96 500 = 3 599,45 C, and I = q/t = 3 599,45/(30 × 60) = 2 A. OR N(e⁻) = nNA and q = N × 1,6 × 10⁻¹⁹ = 3 592,74 C, so I = 2 A.",
 "report": "\"It was key to understand that the lead rod was increasing in mass due to the mass of nickel plating it.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "A lead rod is to be plated with nickel. Supplied: a cell, a beaker, an ammeter, connecting wires, a lead rod, a nickel rod, lead(II) nitrate solution and nickel(II) nitrate solution."
 },
 {
 "id": "2023-Q7.2.4",
@@ -698,11 +746,12 @@ window.IEB = [
 "q": "Question 7.2.4",
 "mcq": false,
 "marks": 3,
-"question": "\"Explain why it would not be possible, under standard conditions, to plate the lead rod with aluminium metal from an aqueous solution of Aℓ3+ ions.\"",
-"memo": "\"H2O is a stronger oxidising agent than Aℓ3+\"; \"H2O will be reduced at the cathode, not Aℓ3+\".",
+"question": "\"Explain why it would not be possible, under standard conditions, to plate the lead rod with aluminium metal from an aqueous solution of Aℓ³⁺ ions.\"",
+"memo": "\"H₂O is a stronger oxidising agent than Aℓ³⁺\"; \"H₂O will be reduced at the cathode, not Aℓ³⁺\".",
 "report": "\"Straight from SAGs – par F4(b) (2nd sub-bullet). Note that although electrolytic cells may or may not be operating at standard conditions, the Eθ values on the SEP table, and thus any comparisons made using the table, only apply at standard conditions.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "A lead rod is to be plated with nickel. Supplied: a cell, a beaker, an ammeter, connecting wires, a lead rod, a nickel rod, lead(II) nitrate solution and nickel(II) nitrate solution."
 },
 {
 "id": "2024-Q1.7",
@@ -713,7 +762,7 @@ window.IEB = [
 "marks": 2,
 "question": "\"A galvanic cell is set up using the following half-reactions and a suitable salt-bridge.\" 2H₂O + O₂ + 4e⁻ ⇌ 4OH⁻, Eθ = +0,40 V; Fe³⁺ + e⁻ ⇌ Fe²⁺, Eθ = +0,77 V. \"When this cell operates under standard conditions, the pH …\" A at the anode will increase; B at the anode will decrease; C at the cathode will increase; D at the cathode will decrease.",
 "memo": "B.",
-"report": "\"OH− is oxidised\" … \"[OH−] at the anode decreases, [H3O+] increases, pH decreases\". The arrows between these parts are lost in the text extract.",
+"report": "\"OH⁻ is oxidised, [OH⁻] at the anode decreases, [H₃O⁺] increases, pH decreases.\"",
 "module": 28,
 "noMemo": false
 },
@@ -741,7 +790,8 @@ window.IEB = [
 "memo": "\"(Pt) electrode B / the positive electrode / the electrode in Half-cell Q.\"; \"permanganate (ion)\".",
 "report": "\"The cathode is an electrode, not Half-cell Q.\"",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q6.4",
@@ -752,9 +802,10 @@ window.IEB = [
 "marks": 7,
 "question": "\"Write the equations for …\" 6.4.1 \"the oxidation half reaction.\" (2) 6.4.2 \"the reduction half reaction.\" (2) 6.4.3 \"the net ionic cell reaction.\" (3)",
 "memo": "6.4.1: H₂O₂ → O₂ + 2H⁺ + 2e⁻ (×5).\n6.4.2: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O (×2).\n6.4.3: 5H₂O₂ + 2MnO₄⁻ + 6H⁺ → 5O₂ + 2Mn²⁺ + 8H₂O (one mark each for LHS, RHS and balancing).",
-"report": "\"The electrode polarity was given to lead learners to Half-cell Q being the cathode. A comment was received that H2O2 would undergo an auto-redox reaction and decompose, but this is very slow and requires catalysis.\" \"Learners received carry-over marks for both Question 6.4.3 and 6.5.\"",
+"report": "\"The electrode polarity was given to lead learners to Half-cell Q being the cathode. A comment was received that H₂O₂ would undergo an auto-redox reaction and decompose, but this is very slow and requires catalysis.\" \"Learners received carry-over marks for both Question 6.4.3 and 6.5.\" \"Learners were penalised for use of a double arrow in Question 2.1.1, 3.1 and 6.4.\"",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q6.5",
@@ -764,10 +815,11 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Calculate Eθcell , the reading on the voltmeter when the switch S is open.\"",
-"memo": "Eθcell = 1,51 − 0,68 = 0,83 V.",
+"memo": "Eθcell = Eθcathode − Eθanode = 1,51 − 0,68 = 0,83 V.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q6.6",
@@ -780,7 +832,8 @@ window.IEB = [
 "memo": "two of: a shorter salt bridge; a wider salt bridge; a more conductive salt bridge; electrodes with a larger surface area.",
 "report": "\"Changes in electrolyte concentration or gas pressure affect the standard cell emf; this question was referring to the p.d. which decreases as a result of internal resistance. Yes, this is more emphasised in Physics, but internal resistance is in the Chemistry SAGs. It is hoped that these concepts are linked when teaching the section.\"",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q6.7",
@@ -789,11 +842,12 @@ window.IEB = [
 "q": "Question 6.7",
 "mcq": false,
 "marks": 3,
-"question": "\"In a different galvanic cell, half cell Q functions as the cathode. Zack writes the cell notation for half cell Q on the right hand side as follows:\" (anode) || Pt(s) | MnO₄⁻(aq) | 8H⁺(aq) | Mn²⁺(aq). \"Standard conditions were not required. Identify THREE different errors that Zack made in the format of the cell notation.\" The separators are inferred from the memo; they are lost in the text extract.",
-"memo": "\"He put Pt first instead of last (on the outside).\" \"He used phase separators ( | ), not commas ( , ) to separate (aq) substances.\" (The bar symbol is lost in the text extract and restored here.) \"He used the balancing number (8).\"",
-"report": "\"Learners would probably not be expected to write the cell notation for a half-cell involving H+ ions, but should know the applicable formatting rules: inert electrodes on the outside, commas separate homogeneous substances, balancing numbers are not included. Note that the H+ is included to indicate that acid-medium is necessary, but H2O is not included unless it is itself being oxidised or reduced.\"",
+"question": "\"In a different galvanic cell, half cell Q functions as the cathode. Zack writes the cell notation for half cell Q on the right hand side as follows:\" (anode) || Pt(s) | MnO₄⁻(aq) | 8H⁺(aq) | Mn²⁺(aq). \"Standard conditions were not required. Identify THREE different errors that Zack made in the format of the cell notation.\"",
+"memo": "\"He put Pt first instead of last (on the outside).\" \"He used phase separators ( | ), not commas ( , ) to separate (aq) substances.\" \"He used the balancing number (8).\"",
+"report": "\"Learners would probably not be expected to write the cell notation for a half-cell involving H⁺ ions, but should know the applicable formatting rules: inert electrodes on the outside, commas separate homogeneous substances, balancing numbers are not included. Note that the H⁺ is included to indicate that acid-medium is necessary, but H₂O is not included unless it is itself being oxidised or reduced.\"",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q6.8",
@@ -802,11 +856,12 @@ window.IEB = [
 "q": "Question 6.8",
 "mcq": false,
 "marks": 3,
-"question": "\"The electrolyte solutions in both half-cells need to be acidified. Give a reason why H2SO4 and not HCℓ should be used in half-cell Q. Use the table of standard electrode potentials to assist you.\"",
-"memo": "\"Cℓ− can / will be oxidised by MnO4− (to form Cℓ2)\"; \"SO42− will not.\"",
+"question": "\"The electrolyte solutions in both half-cells need to be acidified. Give a reason why H₂SO₄ and not HCℓ should be used in half-cell Q. Use the table of standard electrode potentials to assist you.\"",
+"memo": "\"Cℓ⁻ can / will be oxidised by MnO₄⁻ (to form Cℓ₂)\"; \"SO₄²⁻ will not.\"",
 "report": "\"Chloride will be oxidised by the permanganate, while sulfate will not\".",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "A standard galvanic cell. Half-cell P: Pt electrode A (negative) with O₂(g), H₂O₂(aq) and H⁺(aq). Half-cell Q: Pt electrode B (positive) with MnO₄⁻(aq), Mn²⁺(aq) and H⁺(aq). The circuit has a switch S."
 },
 {
 "id": "2024-Q7.1to7.2",
@@ -815,7 +870,7 @@ window.IEB = [
 "q": "Question 7.1 to 7.2",
 "mcq": false,
 "marks": 2,
-"question": "graphite electrodes. Cell X holds saturated MgCℓ₂(aq) (electrodes P and Q) and cell Y holds dilute MgCℓ₂(aq), 1 mol·dm⁻³ (electrodes R and S), both at 25 °C. 7.1 \"What type of electrochemical cell is represented by X and Y?\" (1) 7.2 \"In this type of cell, reduction takes place at the (POSITIVE / NEGATIVE) electrode.\" (1)",
+"question": "Cells X and Y have graphite electrodes. Cell X holds saturated MgCℓ₂(aq) (electrodes P and Q) and cell Y holds dilute MgCℓ₂(aq), 1 mol·dm⁻³ (electrodes R and S), both at 25 °C. Each cell has its own power source. P and R are joined to the positive terminals, and Q and S to the negative terminals. 7.1 \"What type of electrochemical cell is represented by X and Y?\" (1) 7.2 \"In this type of cell, reduction takes place at the (POSITIVE / NEGATIVE) electrode.\" (1)",
 "memo": "electrolytic; negative.",
 "report": "",
 "module": 29,
@@ -832,7 +887,8 @@ window.IEB = [
 "memo": "H₂ + (2)OH⁻.",
 "report": "",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cells X and Y have graphite electrodes. Cell X: saturated MgCℓ₂(aq), electrodes P(+) and Q(−). Cell Y: 1 mol·dm⁻³ MgCℓ₂(aq), electrodes R(+) and S(−). Both are at 25 °C, each with its own power source."
 },
 {
 "id": "2024-Q7.4",
@@ -841,11 +897,12 @@ window.IEB = [
 "q": "Question 7.4",
 "mcq": false,
 "marks": 5,
-"question": "\"The solubility of MgCℓ2·6H2O in water at 25 °C (i.e. the maximum amount that will dissolve) is 55 g per 100 cm3 of solution. Calculate the molar concentration of the chloride ions in the saturated solution in cell X.\"",
+"question": "\"The solubility of MgCℓ₂·6H₂O in water at 25 °C (i.e. the maximum amount that will dissolve) is 55 g per 100 cm³ of solution. Calculate the molar concentration of the chloride ions in the saturated solution in cell X.\"",
 "memo": "c = m/MV = 55/(203,3 × 0,1) = 2,71 mol·dm⁻³; [Cℓ⁻] = 2 × 2,71 = 5,42 mol·dm⁻³ (OR n = 0,271 mol first).",
-"report": "\"The overwhelming majority of learners did not know what to do with the 6H2O waters of crystallisation. Please include this in your teaching and assessment.\" \"Again, many learners did not make use of the ionic ratio to calculate the chloride ion concentration, which is the relevant consideration in this question.\"",
+"report": "\"The overwhelming majority of learners did not know what to do with the 6H₂O waters of crystallisation. Please include this in your teaching and assessment.\" \"Again, many learners did not make use of the ionic ratio to calculate the chloride ion concentration, which is the relevant consideration in this question.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cells X and Y have graphite electrodes. Cell X: saturated MgCℓ₂(aq), electrodes P(+) and Q(−). Cell Y: 1 mol·dm⁻³ MgCℓ₂(aq), electrodes R(+) and S(−). Both are at 25 °C, each with its own power source."
 },
 {
 "id": "2024-Q7.5to7.6",
@@ -855,10 +912,11 @@ window.IEB = [
 "mcq": false,
 "marks": 9,
 "question": "7.5 \"The chemical substances that form preferentially at electrodes P and R are different. Identify these substances. Use the table of standard electrode potentials to assist you.\" (3) 7.6 \"Refer to the cell conditions to explain why different products form at electrodes P and R.\" (6)",
-"memo": "7.5: P Cℓ₂; R O₂ + (4)H⁺.\n7.6: \"When the concentration of MgCℓ2 is 1 mol·dm−3 H2O is a stronger reducing agent than Cℓ− therefore H2O is oxidised to O2 at R. When the concentration of Cℓ− is high (cell X) the rate of oxidation of Cℓ− increases OR Cℓ− is a stronger reducing agent than water and more Cℓ2 forms at P.\"",
-"report": "\"The given 1 mol.dm–3 was meant to guide learners to 'standard conditions' (although it should have been given as 0,5 mol.dm –3 because as it stands, the [chloride] is actually 2 mol.dm–3. Doing this would have added an extra layer of difficulty.) The question did state that different products form at the two electrodes.\"",
+"memo": "7.5: P Cℓ₂; R O₂ + (4)H⁺.\n7.6: \"When the concentration of MgCℓ₂ is 1 mol·dm⁻³ H₂O is a stronger reducing agent than Cℓ⁻ therefore H₂O is oxidised to O₂ at R. When the concentration of Cℓ⁻ is high (cell X) the rate of oxidation of Cℓ⁻ increases OR Cℓ⁻ is a stronger reducing agent than water and more Cℓ₂ forms at P.\"",
+"report": "\"The given 1 mol·dm⁻³ was meant to guide learners to 'standard conditions' (although it should have been given as 0,5 mol·dm⁻³ because as it stands, the [chloride] is actually 2 mol·dm⁻³. Doing this would have added an extra layer of difficulty.) The question did state that different products form at the two electrodes.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cells X and Y have graphite electrodes. Cell X: saturated MgCℓ₂(aq), electrodes P(+) and Q(−). Cell Y: 1 mol·dm⁻³ MgCℓ₂(aq), electrodes R(+) and S(−). Both are at 25 °C, each with its own power source."
 },
 {
 "id": "2024-Q7.7",
@@ -867,11 +925,12 @@ window.IEB = [
 "q": "Question 7.7",
 "mcq": false,
 "marks": 6,
-"question": "cell Z holds molten MgCℓ₂(ℓ) at 750 °C, with graphite electrodes T and U. 7.7.1 \"Define electrolyte.\" (2) 7.7.2 \"Explain briefly why a much higher temperature is needed for Cell Z.\" (2) 7.7.3 \"Identify the chemical substances that form at:\" electrode T and electrode U (2).",
-"memo": "7.7.1: \"A substance that can conduct electricity due to the presence of free (mobile) ions when molten or dissolved in solution.\" This is now the SAGS wording.\n7.7.2: \"MgCℓ2 is an ionic compound – it has a high melting point.\"\n7.7.3: T Cℓ₂ (chlorine); U Mg (magnesium).",
+"question": "Cell Z holds molten MgCℓ₂(ℓ) at 750 °C, with graphite electrodes T and U. T is joined to the positive terminal of the power source, and U to the negative terminal. 7.7.1 \"Define electrolyte.\" (2) 7.7.2 \"Explain briefly why a much higher temperature is needed for Cell Z.\" (2) 7.7.3 \"Identify the chemical substances that form at:\" electrode T and electrode U (2).",
+"memo": "7.7.1: \"A substance that can conduct electricity due to the presence of free (mobile) ions when molten or dissolved in solution.\" Learn this SAGS definition word for word.\n7.7.2: \"MgCℓ₂ is an ionic compound – it has a high melting point.\"\n7.7.3: T Cℓ₂ (chlorine); U Mg (magnesium).",
 "report": "7.7.2 \"Simply stating 'It is a liquid' was not awarded any marks – learners had to explain why a high temperature was necessary to keep the magnesium chloride in the molten state.\" 7.7.3 \"Products were often swopped – candidates should know that the ions are attracted to the oppositely charged electrodes.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Cells X and Y have graphite electrodes. Cell X: saturated MgCℓ₂(aq), electrodes P(+) and Q(−). Cell Y: 1 mol·dm⁻³ MgCℓ₂(aq), electrodes R(+) and S(−). Both are at 25 °C, each with its own power source."
 },
 {
 "id": "2025-Q1.4",
@@ -880,7 +939,7 @@ window.IEB = [
 "q": "Question 1.4",
 "mcq": true,
 "marks": 2,
-"question": "\"Which of the given reaction types describe the reaction below? Ba(OH)2(aq) + H2C2O4(aq) → 2H2O(ℓ) + BaC2O4(s)\". 1 Redox, 2 Precipitation, 3 Neutralisation. A 1, 2 and 3; B 1 and 3 only; C 1 and 2 only; D 2 and 3 only.",
+"question": "\"Which of the given reaction types describe the reaction below? Ba(OH)₂(aq) + H₂C₂O₄(aq) → 2H₂O(ℓ) + BaC₂O₄(s)\". 1 Redox, 2 Precipitation, 3 Neutralisation. A 1, 2 and 3; B 1 and 3 only; C 1 and 2 only; D 2 and 3 only.",
 "memo": "D (acid + base, so neutralisation; a solid forms, so precipitation).",
 "report": "",
 "module": 27,
@@ -893,7 +952,7 @@ window.IEB = [
 "q": "Question 1.8",
 "mcq": true,
 "marks": 2,
-"question": "galvanic cell with Ni in NiCℓ₂(aq) and Cr in Cr₂(SO₄)₃(aq), and a salt bridge containing KNO₃(aq). \"Which of the following ions will move into the salt bridge when the cell is operating?\" A Ni²⁺, Cℓ⁻; B Cr³⁺, SO₄²⁻; C Cr³⁺, Cℓ⁻; D Ni²⁺, SO₄²⁻.",
+"question": "A galvanic cell has a Ni electrode in NiCℓ₂(aq), a Cr electrode in Cr₂(SO₄)₃(aq), and a salt bridge containing KNO₃(aq). \"Which of the following ions will move into the salt bridge when the cell is operating?\" A Ni²⁺, Cℓ⁻; B Cr³⁺, SO₄²⁻; C Cr³⁺, Cℓ⁻; D Ni²⁺, SO₄²⁻.",
 "memo": "C, \"Cr is anode, Ni is cathode\".",
 "report": "",
 "module": 28,
@@ -906,9 +965,9 @@ window.IEB = [
 "q": "Question 3.2",
 "mcq": false,
 "marks": 4,
-"question": "\"Study the following two-step redox reaction of the peroxydisulfate ion (S2O82−) with the iodide ion in aqueous solution: Step (i) 2Fe3+(aq) + 2I−(aq) → 2Fe2+(aq) + I2(aq); Step (ii) 2Fe2+(aq) + S2O82−(aq) → 2Fe3+(aq) + 2SO42−(aq)\".\n3.2.1 \"Complete the definition: A redox reaction is a reaction involving…\" (1)\n3.2.2 write \"the overall (net) reaction that takes place. State symbols are not required.\" (2)\n3.2.3 \"Identify the catalyst in this reaction.\" (1)",
-"memo": "3.2.1 \"… the transfer of electrons\". 3.2.2 2I⁻ + S₂O₈²⁻ → I₂ + 2SO₄²⁻. 3.2.3 \"Fe3+ or iron(III)\".",
-"report": "\"This question was poorly answered. The catalyst (Fe3+) is the species used in Step (i) and reformed in Step (ii) i.e. it remains unchanged (as per the definition). The two-step process is faster than the reaction without a catalyst (note that the overall one-step reaction requires the collision of two anions which would naturally repel each other). The Fe2+ (formed in Step (i) and used up in Step (ii)) is called a reaction intermediate (not examinable).\"",
+"question": "\"Study the following two-step redox reaction of the peroxydisulfate ion (S₂O₈²⁻) with the iodide ion in aqueous solution: Step (i) 2Fe³⁺(aq) + 2I⁻(aq) → 2Fe²⁺(aq) + I₂(aq); Step (ii) 2Fe²⁺(aq) + S₂O₈²⁻(aq) → 2Fe³⁺(aq) + 2SO₄²⁻(aq)\".\n3.2.1 \"Complete the definition: A redox reaction is a reaction involving…\" (1)\n3.2.2 write \"the overall (net) reaction that takes place. State symbols are not required.\" (2)\n3.2.3 \"Identify the catalyst in this reaction.\" (1)",
+"memo": "3.2.1 \"… the transfer of electrons\". 3.2.2 2I⁻ + S₂O₈²⁻ → I₂ + 2SO₄²⁻. 3.2.3 \"Fe³⁺ or iron(III)\".",
+"report": "\"This question was poorly answered. The catalyst (Fe³⁺) is the species used in Step (i) and reformed in Step (ii) i.e. it remains unchanged (as per the definition). The two-step process is faster than the reaction without a catalyst (note that the overall one-step reaction requires the collision of two anions which would naturally repel each other). The Fe²⁺ (formed in Step (i) and used up in Step (ii)) is called a reaction intermediate (not examinable).\"",
 "module": 27,
 "noMemo": false
 },
@@ -920,8 +979,8 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Chlorine gas is bubbled through an aqueous solution of potassium bromide.\" 6.1 \"Write the balanced net ionic equation for the redox reaction that occurs.\" (3) 6.2 \"Identify the oxidising agent in the reaction.\" (1)",
-"memo": "Cℓ₂ + 2Br⁻ → 2Cℓ⁻ + Br₂; \"chlorine OR Cℓ2\".",
-"report": "\"Candidates struggled to identify the reacting species vs the spectator ion – more practice using the SEP table is strongly recommended. More than half the candidates chose potassium as the reducing agent, although KBr does not contain any potassium atoms, only potassium ions. They were awarded carry over marks for the cell notation and emf calculation, despite the impossibility of using potassium metal as an electrode.\"",
+"memo": "Cℓ₂ + 2Br⁻ → 2Cℓ⁻ + Br₂; \"chlorine OR Cℓ₂\".",
+"report": "\"Candidates struggled to identify the reacting species vs the spectator ion – more practice using the SEP table is strongly recommended. More than half the candidates chose potassium as the reducing agent, although KBr does not contain any potassium atoms, only potassium ions. They were awarded carry over marks for the cell notation and emf calculation, despite the impossibility of using potassium metal as an electrode.\" \"Candidates were penalised for use of a double arrow in Questions 5.2, 6.1, and 8.8.\"",
 "module": 27,
 "noMemo": false
 },
@@ -933,10 +992,11 @@ window.IEB = [
 "mcq": false,
 "marks": 3,
 "question": "\"A galvanic cell can be set up making use of the reaction in Question 6.1.\" 6.3.1 \"What is a galvanic cell?\" (3)",
-"memo": "\"An electrochemical cell that converts the chemical energy of spontaneous redox reactions into electrical energy.\" This is the SAGS F3 wording.",
+"memo": "\"An electrochemical cell that converts the chemical energy of spontaneous redox reactions into electrical energy.\" Learn this SAGS definition word for word.",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Chlorine gas is bubbled through an aqueous solution of potassium bromide (Question 6.1). A galvanic cell can be set up using this reaction."
 },
 {
 "id": "2025-Q6.3.2",
@@ -947,9 +1007,10 @@ window.IEB = [
 "marks": 4,
 "question": "\"Write the cell notation for the cell. Assume that both products of the cell reaction are in aqueous solution. Conditions and state symbols are not required.\"",
 "memo": "Pt | Br⁻, Br₂ || Cℓ₂ | Cℓ⁻ | Pt.",
-"report": "\"Many candidates omitted the two Pt electrodes, needed because the cell does not involve any solid conductor. Reaction coefficients must not be included. Commas separate species in the same phase (Br−, Br2) (the question stated that the bromine was in the aqueous phase), and a vertical line separates species in different phases (Cl2│Cl-).\"",
+"report": "\"Many candidates omitted the two Pt electrodes, needed because the cell does not involve any solid conductor. Reaction coefficients must not be included. Commas separate species in the same phase (Br⁻, Br₂) (the question stated that the bromine was in the aqueous phase), and a vertical line separates species in different phases (Cℓ₂│Cℓ⁻).\"",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Chlorine gas is bubbled through an aqueous solution of potassium bromide (Question 6.1). A galvanic cell can be set up using this reaction."
 },
 {
 "id": "2025-Q6.3.3to6.3.4",
@@ -959,10 +1020,11 @@ window.IEB = [
 "mcq": false,
 "marks": 5,
 "question": "6.3.3 \"Calculate the emf of the cell at standard conditions.\" (4) 6.3.4 \"State one method of increasing the emf of this cell, calculated in Question 6.3.3.\" (1)",
-"memo": "6.3.3: Eθcell = 1,36 − 1,09 = 0,27 V.\n6.3.4 \"Any one of\": increase pressure of Cℓ₂(g); increase [Cℓ₂]; increase [Br⁻]; decrease [Cℓ⁻]; decrease [Br₂]; \"decrease temperature\".",
+"memo": "6.3.3: Eθcell = Eθcathode − Eθanode = 1,36 − 1,09 = 0,27 V.\n6.3.4 \"Any one of\": increase pressure of Cℓ₂(g); increase [Cℓ₂]; increase [Br⁻]; decrease [Cℓ⁻]; decrease [Br₂]; \"decrease temperature\".",
 "report": "",
 "module": 28,
-"noMemo": false
+"noMemo": false,
+"stem": "Chlorine gas is bubbled through an aqueous solution of potassium bromide (Question 6.1). A galvanic cell can be set up using this reaction."
 },
 {
 "id": "2025-Q6.4",
@@ -972,10 +1034,11 @@ window.IEB = [
 "mcq": false,
 "marks": 4,
 "question": "\"Some bromine is added to an aqueous solution of potassium chloride.\" 6.4.1 \"Will a spontaneous reaction take place?\" Circle YES or NO (1). 6.4.2 \"Explain the answer by referring to the relative strengths of the oxidising agents.\" (3)",
-"memo": "NO; \"Bromine(Br2) is a weaker oxidising agent than chlorine (Cℓ2) therefore will not oxidise chloride (Cℓ−) to chlorine (Cℓ2).\"",
+"memo": "NO; \"Bromine(Br₂) is a weaker oxidising agent than chlorine (Cℓ₂) therefore will not oxidise chloride (Cℓ⁻) to chlorine (Cℓ₂).\"",
 "report": "\"The steps for answering such questions must be practised.\"",
 "module": 27,
-"noMemo": false
+"noMemo": false,
+"stem": "Chlorine gas is bubbled through an aqueous solution of potassium bromide (Question 6.1). A galvanic cell can be set up using this reaction."
 },
 {
 "id": "2025-Q7.4to7.6",
@@ -997,11 +1060,12 @@ window.IEB = [
 "q": "Question 7.7 to 7.8",
 "mcq": false,
 "marks": 5,
-"question": "7.7 \"Explain why Co2+ ions will be found in the CuSO4 electrolyte but not Au3+ ions.\" (3) 7.8 \"Explain why the Co2+ ions in the solution do not deposit on the electrode.\" (2)",
-"memo": "7.7: \"Co is a stronger reducing agent than Cu\"; \"Au is a weaker reducing agent than Cu\"; \"Co will be oxidised, but Au will not\".\n7.8: \"Cu2+ is a stronger oxidising agent than Co2+\"; \"Hence, only Cu2+ will be reduced\" (OR Co²⁺ is a weaker oxidising agent than Cu²⁺, so it will not be reduced).",
+"question": "7.7 \"Explain why Co²⁺ ions will be found in the CuSO₄ electrolyte but not Au³⁺ ions.\" (3) 7.8 \"Explain why the Co²⁺ ions in the solution do not deposit on the electrode.\" (2)",
+"memo": "7.7: \"Co is a stronger reducing agent than Cu\"; \"Au is a weaker reducing agent than Cu\"; \"Co will be oxidised, but Au will not\".\n7.8: \"Cu²⁺ is a stronger oxidising agent than Co²⁺\"; \"Hence, only Cu²⁺ will be reduced\" (OR Co²⁺ is a weaker oxidising agent than Cu²⁺, so it will not be reduced).",
 "report": "7.7 \"Candidates should avoid the term 'reducing ability' as it is unclear whether they mean the ability to be reduced or the ability to reduce something else.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (about 98% pure, with traces of gold and cobalt) is purified electrochemically. A DC supply is joined to the blister copper and to a pure copper electrode in acidified CuSO₄(aq)."
 },
 {
 "id": "2025-Q7.9",
@@ -1010,11 +1074,12 @@ window.IEB = [
 "q": "Question 7.9",
 "mcq": false,
 "marks": 4,
-"question": "\"Consider how the electrode reactions affect the electrolyte concentration during the process.\" 7.9.1 \"Circle the correct option in the table. The [Cu2+] in the electrolyte will…\" INCREASE / DECREASE / REMAIN THE SAME (1). 7.9.2 \"Explain the answer in Question 7.9.1.\" (3)",
-"memo": "DECREASE. \"Only Cu2+ is being reduced at the cathode. At the anode, Cu and other impurity atoms (Co) are being oxidised. Therefore, in the same time interval, more Cu2+ reacts than is produced.\"",
-"report": "\"Thus, the [Cu2+] will decrease over time (unlike in electroplating, where it will remain the same). This question was scaffolded (like many questions in the paper) and the candidates would have been led to the correct answer by Questions 7.7 and 7.8, even if they had not been explicitly taught this.\"",
+"question": "\"Consider how the electrode reactions affect the electrolyte concentration during the process.\" 7.9.1 \"Circle the correct option in the table. The [Cu²⁺] in the electrolyte will…\" INCREASE / DECREASE / REMAIN THE SAME (1). 7.9.2 \"Explain the answer in Question 7.9.1.\" (3)",
+"memo": "DECREASE. \"Only Cu²⁺ is being reduced at the cathode. At the anode, Cu and other impurity atoms (Co) are being oxidised. Therefore, in the same time interval, more Cu²⁺ reacts than is produced.\"",
+"report": "\"Since only Cu²⁺ is reduced at the cathode while Cu and other more reactive impurity metals are all oxidised at the anode, the rate at which Cu²⁺ is produced is less than the rate at which Cu²⁺ is reduced. Thus, the [Cu²⁺] will decrease over time (unlike in electroplating, where it will remain the same). This question was scaffolded (like many questions in the paper) and the candidates would have been led to the correct answer by Questions 7.7 and 7.8, even if they had not been explicitly taught this.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (about 98% pure, with traces of gold and cobalt) is purified electrochemically. A DC supply is joined to the blister copper and to a pure copper electrode in acidified CuSO₄(aq)."
 },
 {
 "id": "2025-Q7.10",
@@ -1023,20 +1088,21 @@ window.IEB = [
 "q": "Question 7.10",
 "mcq": false,
 "marks": 6,
-"question": "\"In a certain time interval, 19,3 × 103 C of charge passes through the cell.\" 7.10.1 \"How many moles of electrons does this represent?\" (3) 7.10.2 \"Hence, calculate the mass of copper that will be deposited on the pure copper electrode during this time interval.\" (3)",
+"question": "\"In a certain time interval, 19,3 × 10³ C of charge passes through the cell.\" 7.10.1 \"How many moles of electrons does this represent?\" (3) 7.10.2 \"Hence, calculate the mass of copper that will be deposited on the pure copper electrode during this time interval.\" (3)",
 "memo": "n(e⁻) = q/F = 19,3 × 10³/96 500 = 0,2 mol (OR N(e⁻) = q/1,6 × 10⁻¹⁹ = 1,20625 × 10²³, so n = N/NA = 0,2 mol); n(Cu) = 0,2/2 = 0,1 mol; m = 0,1 × 63,5 = 6,35 g.",
 "report": "\"Many candidates are still neglecting to use the ratio in the half-reaction.\"",
 "module": 29,
-"noMemo": false
+"noMemo": false,
+"stem": "Blister copper (about 98% pure, with traces of gold and cobalt) is purified electrochemically. A DC supply is joined to the blister copper and to a pure copper electrode in acidified CuSO₄(aq)."
 },
 {
 "id": "May2026-Q1.6",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 1.6",
 "mcq": true,
 "marks": 2,
-"question": "\"Which one of the substances below will oxidise Zn to Zn2+ but not Sn to Sn2+?\" A Mg²⁺; B Co; C Br₂; D Cd²⁺.",
+"question": "\"Which one of the substances below will oxidise Zn to Zn²⁺ but not Sn to Sn²⁺?\" A Mg²⁺; B Co; C Br₂; D Cd²⁺.",
 "memo": "D (Cd²⁺). To oxidise Zn but not Sn, the oxidising agent must lie between the two rows: stronger than Zn²⁺ (−0,76 V) but weaker than Sn²⁺ (−0,14 V). Cd²⁺ (−0,40 V) is the only one. Mg²⁺ is too weak; Co is a reducing agent; Br₂ would oxidise both.",
 "report": "",
 "module": 27,
@@ -1045,11 +1111,11 @@ window.IEB = [
 {
 "id": "May2026-Q1.7",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 1.7",
 "mcq": true,
 "marks": 2,
-"question": "\"The following cell is set up: Cu(s)|Cu2+(aq)||Ag+(aq)|Ag(s). What is the standard cell emf, Eθcell?\" A +0,46 V; B −0,46 V; C +1,14 V; D −1,14 V.",
+"question": "\"The following cell is set up: Cu(s)|Cu²⁺(aq)||Ag⁺(aq)|Ag(s). What is the standard cell emf, Eθcell?\" A +0,46 V; B −0,46 V; C +1,14 V; D −1,14 V.",
 "memo": "A (+0,46 V). Cu is the anode (on the left), Ag⁺ is reduced at the cathode: Eθcell = Eθcathode − Eθanode = 0,80 − 0,34 = +0,46 V.",
 "report": "",
 "module": 28,
@@ -1058,7 +1124,7 @@ window.IEB = [
 {
 "id": "May2026-Q1.8",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 1.8",
 "mcq": true,
 "marks": 2,
@@ -1071,11 +1137,11 @@ window.IEB = [
 {
 "id": "May2026-Q6.1.1to6.1.3",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 6.1.1 to 6.1.3",
 "mcq": false,
 "marks": 6,
-"question": "\"The reaction of hot, concentrated sulfuric acid with copper metal will produce SO2 gas.\" 6.1.1 \"Why is this classified as a redox reaction?\" (2) 6.1.2 \"Write equations for the following: (a) The oxidation half-reaction (1) (b) The reduction half-reaction (1)\". 6.1.3 \"Define oxidising agent.\" (2)",
+"question": "\"The reaction of hot, concentrated sulfuric acid with copper metal will produce SO₂ gas.\" 6.1.1 \"Why is this classified as a redox reaction?\" (2) 6.1.2 \"Write equations for the following: (a) The oxidation half-reaction (1) (b) The reduction half-reaction (1)\". 6.1.3 \"Define oxidising agent.\" (2)",
 "memo": "6.1.1 Electrons are transferred ✓: copper loses electrons (is oxidised to Cu²⁺) and the sulfate gains electrons (is reduced to SO₂) ✓.\n6.1.2 (a) Cu → Cu²⁺ + 2e⁻ ✓ (b) SO₄²⁻ + 4H⁺ + 2e⁻ → SO₂ + 2H₂O ✓\n6.1.3 A substance that accepts electrons ✓✓.",
 "report": "",
 "module": 27,
@@ -1084,7 +1150,7 @@ window.IEB = [
 {
 "id": "May2026-Q6.1.4",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 6.1.4",
 "mcq": false,
 "marks": 5,
@@ -1092,12 +1158,13 @@ window.IEB = [
 "memo": "Under standard conditions SO₄²⁻ (+0,17 V) is a weaker oxidising agent than Cu²⁺ (+0,34 V) ✓, so it cannot oxidise Cu to Cu²⁺ ✓ (and H⁺ in the dilute acid, 0,00 V, is weaker still) ✓. Hot, concentrated acid is not at standard conditions: the high [H⁺] and [SO₄²⁻] and the high temperature favour the forward reaction SO₄²⁻ + 4H⁺ + 2e⁻ → SO₂ + 2H₂O ✓, so the sulfate becomes a stronger oxidising agent, strong enough to oxidise Cu to Cu²⁺ ✓.",
 "report": "",
 "module": 27,
-"noMemo": true
+"noMemo": true,
+"stem": "Hot, concentrated sulfuric acid reacts with copper metal to produce SO₂ gas."
 },
 {
 "id": "May2026-Q7.1",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 7.1",
 "mcq": false,
 "marks": 2,
@@ -1110,7 +1177,7 @@ window.IEB = [
 {
 "id": "May2026-Q7.2.1to7.2.3",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 7.2.1 to 7.2.3",
 "mcq": false,
 "marks": 6,
@@ -1123,20 +1190,21 @@ window.IEB = [
 {
 "id": "May2026-Q7.2.4",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 7.2.4",
 "mcq": false,
 "marks": 3,
 "question": "\"Refer to the value of KW at 25 °C to explain why pure water cannot easily be electrolysed.\" (3)",
-"memo": "Kw = 1 × 10⁻¹⁴ at 25 °C is very small ✓, so water ionises only very slightly: [H⁺] = [OH⁻] = 1 × 10⁻⁷ mol·dm⁻³ ✓. There are too few free (mobile) ions to carry the charge, so pure water is a very poor conductor ✓.",
+"memo": "Kw = [H₃O⁺][OH⁻] = 1 × 10⁻¹⁴ at 25 °C is very small ✓, so water ionises only very slightly: [H₃O⁺] = [OH⁻] = 1 × 10⁻⁷ mol·dm⁻³ ✓. There are too few free (mobile) ions to carry the charge, so pure water is a very poor conductor ✓.",
 "report": "",
 "module": 29,
-"noMemo": true
+"noMemo": true,
+"stem": "Water with some potassium sulfate and a few drops of bromothymol blue is electrolysed. Hydrogen gas and oxygen gas form at the electrodes."
 },
 {
 "id": "May2026-Q7.3.1to7.3.4",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 7.3.1 to 7.3.4",
 "mcq": false,
 "marks": 7,
@@ -1149,14 +1217,15 @@ window.IEB = [
 {
 "id": "May2026-Q7.3.5",
 "year": "May 2026",
-"paper": "IEB May 2026 Paper 2",
+"paper": "IEB NSC May 2026 Paper 2",
 "q": "Question 7.3.5",
 "mcq": false,
 "marks": 7,
 "question": "\"In a certain time interval, 15,9 g of copper is deposited on the shoe.\" (a) \"Calculate the number of moles of electrons that must be supplied to produce 15,9 g of copper from the copper(II) sulfate electrolyte.\" (3) (b) \"Given that a constant current of 20 A was used, calculate the time taken for the copper to be deposited.\" (4)",
-"memo": "(a) n(Cu) = m/M = 15,9 / 63,5 = 0,2504 mol ✓; Cu²⁺ + 2e⁻ → Cu, so n(e⁻) = 2n(Cu) ✓ = 0,50 mol ✓.\n(b) q = nF = (0,500787)(96 500) ✓ = 48 325,98 C ✓; t = q/I = 48 325,98 / 20 ✓ = 2 416,30 s ✓ (about 40 minutes). This is Worked example 29.12.",
+"memo": "(a) n(Cu) = m/M = 15,9 / 63,5 = 0,250394 mol ✓; Cu²⁺ + 2e⁻ → Cu, so n(e⁻) = 2n(Cu) ✓ = 2 × 0,250394 = 0,500787 mol ≈ 0,50 mol ✓.\n(b) q = nF = (0,500787)(96 500) ✓ = 48 325,98 C ✓; t = q/I = 48 325,98 / 20 ✓ = 2 416,30 s ✓ (about 40 minutes). Rounding to 0,50 mol first gives q = 48 250 C and t = 2 412,5 s: keep the calculator value until the end. This is Worked example 29.12.",
 "report": "",
 "module": 29,
-"noMemo": true
+"noMemo": true,
+"stem": "Baby shoes are copper-plated, with an acidified copper(II) sulfate solution as the electrolyte."
 }
 ];

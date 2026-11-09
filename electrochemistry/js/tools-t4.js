@@ -21,6 +21,13 @@
   // memo-style sentence about relative strengths (WE 27.5, 27.6)
   function memoSentence(raRow, oaRow) {
     const oa = oaRow.oa, otherOA = raRow.oa, ra = raRow.ra, prod = raRow.oa;
+    if (Math.abs(oaRow.E - raRow.E) < 1e-9 && raRow !== oaRow) // two rows with the same Eθ (Ag⁺ and NO₃⁻ at +0,80 V)
+      return `${oa} (${EC.ev(oaRow.E)} V) and ${otherOA} (${EC.ev(raRow.E)} V) are equally strong oxidising agents, so ${oa} cannot oxidise ${ra} to ${prod} under standard conditions.`;
+    // the same oxidising agent on both rows (Fe³⁺, O₂, NO₃⁻): compare the two reducing agents, never a species with itself
+    if (oa === otherOA) {
+      return EC.reacts(raRow, oaRow) ? `${ra} (${EC.ev(raRow.E)} V) is a stronger reducing agent than ${oaRow.ra} (${EC.ev(oaRow.E)} V), so ${ra} reduces ${oa} to ${oaRow.ra}.`
+        : `${ra} (${EC.ev(raRow.E)} V) is a weaker reducing agent than ${oaRow.ra} (${EC.ev(oaRow.E)} V), so ${ra} cannot reduce ${oa} to ${oaRow.ra}: no reaction.`;
+    }
     if (EC.reacts(raRow, oaRow)) {
       return `${oa} (${EC.ev(oaRow.E)} V) is a stronger oxidising agent than ${otherOA} (${EC.ev(raRow.E)} V), so ${oa} oxidises ${ra} to ${prod}.`;
     }
@@ -31,7 +38,7 @@
   /* distractors for a net equation, built from the real traps */
   function netOptions(raRow, oaRow) {
     const net = EC.netEquation(raRow, oaRow);
-    const opts = [{ t: net.text, ok: true }];
+    const opts = [{ t: net.text, ok: true, why: 'Electrons lost = electrons gained, the species on both sides are cancelled, and the arrow is single.' }];
     const ox = EC.oxidationHalf(raRow), red = EC.reductionHalf(oaRow);
     if (net.ko !== 1 || net.kr !== 1) {
       const L = [...ox.left, ...red.left.filter(t => t.sp !== 'e⁻')], R = [...ox.right.filter(t => t.sp !== 'e⁻'), ...red.right];
@@ -48,7 +55,7 @@
   /* ---------- the table ---------- */
   function table4(state, onTap, opts) {
     opts = opts || {};
-    const tbl = h('table', { class: 't4', role: 'grid', 'aria-label': 'Table 4: standard electrode potentials' });
+    const tbl = h('table', { class: 't4', 'aria-label': 'Table 4: standard electrode potentials' });
     tbl.appendChild(h('thead', null, h('tr', null,
       h('th', { class: 'small', style: { width: '26px' } }, ''),
       h('th', { class: 'small k-red', style: { textAlign: 'right', padding: '6px 8px', fontFamily: 'var(--font)' } }, 'oxidising agent side'),
@@ -62,7 +69,7 @@
     ROWS.forEach((r, i) => {
       const tr = h('tr', { class: [state.oa === i ? 'selOA' : '', state.ra === i ? 'selRA' : '', state.win && state.win.includes(i) ? 'win' : '', state.dim && !state.dim.includes(i) ? 'dim' : ''].join(' ') });
       const arr = h('td', { class: 'arr' });
-      if (lo >= 0 && lo !== hi && i >= lo && i <= hi) {
+      if (lo >= 0 && lo !== hi && Math.abs(ROWS[lo].E - ROWS[hi].E) > 1e-9 && i >= lo && i <= hi) {
         const bad = !down;
         const segEl = h('span', { class: 'arrseg' + (i === lo ? ' start' : '') + (i === hi ? ' end' : '') + (bad ? ' bad' : '') });
         arr.appendChild(segEl);
@@ -71,7 +78,8 @@
         if (i === lo && down) arr.appendChild(h('span', { class: 'elab' }, 'e⁻'));
       }
       const two = opts.twoJobs ? EC.TWO_JOBS : [];
-      const lHas = r.ox.some(t => two.includes(t.sp)), rHas = r.red.some(t => two.includes(t.sp));
+      // outline only the agent itself, not a species that only balances the row (O₂ + 2H₂O, NO₂ + H₂O)
+      const lHas = two.includes(r.oa), rHas = two.includes(r.ra);
       const lb = h('button', { class: 'side' + (lHas ? ' two' : ''), type: 'button', 'aria-label': `${r.leftText}, Eθ ${EC.ev(r.E)} V: choose as oxidising agent`, onclick: () => onTap(i, 'oa') }, r.leftText);
       const rb = h('button', { class: 'side' + (rHas ? ' two' : ''), type: 'button', 'aria-label': `${r.rightText}, Eθ ${EC.ev(r.E)} V: choose as reducing agent`, onclick: () => onTap(i, 'ra') }, r.rightText);
       add(tr, [arr, h('td', { class: 'l' }, lb), h('td', { class: 'eq' }, '⇌'), h('td', { class: 'r' }, rb), h('td', { class: 'E' }, EC.ev(r.E))]);
@@ -96,7 +104,8 @@
       const left = h('div'), right = h('div');
       const bar = h('div', { class: 'row', style: { marginBottom: '12px' } });
       add(el, [S.legend(), bar, h('div', { class: 'split sticky' }, left, right)]);
-      function drawBar() {
+      function drawBar(...a) { return S.keepFocus(el, () => drawBar0(...a)); } // keep keyboard focus on the control that was used
+      function drawBar0() {
         clear(bar);
         add(bar, [
           seg([['pair', 'Pair and build'], ['window', 'Window finder'], ['reagent', 'Reagent translator'], ['jobs', 'Two jobs']], st.mode, v => { st.mode = v; st.win = null; st.dim = null; st.task = null; st.jobs = null; st.reagent = null; if (v === 'window') newWindow(); draw(); }),
@@ -121,11 +130,12 @@
         if (st.mode === 'window' && !st.task) newWindow();
         if (st.mode === 'jobs' && st.jobs) {
           const r = ROWS[st.jobs.i];
-          const sp = (st.jobs.side === 'oa' ? r.ox : r.red).map(t => t.sp).find(x => EC.TWO_JOBS.includes(x));
+          const sp0 = st.jobs.side === 'oa' ? r.oa : r.ra, sp = EC.TWO_JOBS.includes(sp0) ? sp0 : null;
           if (sp) { const j = EC.jobsOf(sp); st.dim = [j.asOA.filter(x => x.ox.some(t => t.sp === sp))[0].i, j.asRA[0].i]; }
         }
       }
-      function draw() {
+      function draw(...a) { return S.keepFocus(el, () => draw0(...a)); } // keep keyboard focus on the control that was used
+      function draw0() {
         prepare();
         drawBar();
         clear(left).appendChild(table4(st, tap, { twoJobs: st.mode === 'jobs' }));
@@ -137,18 +147,22 @@
       }
 
       /* T5 window finder */
-      const WINDOWS = [['Fe', 'Ni', ['Ag⁺', 'Cd²⁺', 'Zn²⁺', 'Cu²⁺'], '27.7'], ['Zn', 'Sn', ['Fe²⁺', 'Mg²⁺', 'Cu²⁺', 'Aℓ³⁺'], 'May 2026 Q1.6'], ['Fe', 'Cu', ['Pb²⁺', 'Zn²⁺', 'Ag⁺', 'Mg²⁺'], ''], ['Mg', 'Zn', ['Aℓ³⁺', 'Na⁺', 'Cu²⁺', 'Ag⁺'], ''], ['Cu', 'Ag', ['Fe³⁺', 'Zn²⁺', 'Cℓ₂', 'Ni²⁺'], ''], ['I⁻', 'Br⁻', ['Fe³⁺', 'Cu²⁺', 'Cℓ₂', 'Zn²⁺'], '']];
+      const WINDOWS = [['Fe', 'Ni', ['Ag⁺', 'Cd²⁺', 'Zn²⁺', 'Cu²⁺'], '27.7'], ['Zn', 'Sn', ['Mg²⁺', 'Co', 'Br₂', 'Cd²⁺'], 'May 2026 Q1.6'], ['Fe', 'Cu', ['Pb²⁺', 'Zn²⁺', 'Ag⁺', 'Mg²⁺'], ''], ['Mg', 'Zn', ['Aℓ³⁺', 'Na⁺', 'Cu²⁺', 'Ag⁺'], ''], ['Cu', 'Ag', ['Fe³⁺', 'Zn²⁺', 'Cℓ₂', 'Ni²⁺'], ''], ['I⁻', 'Br⁻', ['Fe³⁺', 'Cu²⁺', 'Cℓ₂', 'Zn²⁺'], '']];
       function newWindow() {
         const [x, y, cands, src] = st.task && st.task.fixed ? st.task.fixed : pick(WINDOWS);
         const xr = rowFor(x, 'ra'), yr = rowFor(y, 'ra');
-        st.task = { x, y, xr, yr, cands, src, answered: null };
+        st.task = { x, y, xr, yr, cands, src, answered: null, logged: false };
         st.win = ROWS.filter(r => r.E > xr.E && r.E < yr.E).map(r => r.i);
         st.dim = null; st.ra = null; st.oa = null;
       }
       function windowTap(i, side) {
         if (!st.task) newWindow();
-        if (side !== 'oa') { st.task.answered = { i, wrongSide: true }; draw(); return; }
-        st.task.answered = { i }; st.oa = i; draw();
+        const t = st.task, logOnce = ok => { if (!t.logged) { t.logged = true; logAttempt({ kind: 'supported', section: '27.3', id: 'window', correct: ok ? 1 : 0, total: 1 }); } };
+        if (side !== 'oa') { t.answered = { i, wrongSide: true }; logOnce(false); draw(); return; }
+        t.answered = { i }; st.oa = t.cands.includes(ROWS[i].oa) ? rowFor(ROWS[i].oa, 'oa').i : i;   // a choice is lit on its strongest row
+        const r = t.cands.includes(ROWS[i].oa) ? rowFor(ROWS[i].oa, 'oa') : ROWS[i];
+        logOnce(t.cands.includes(r.oa) && r.E > t.xr.E && r.E < t.yr.E);
+        draw();
       }
       function windowPanel() {
         if (!st.task || !st.task.xr) { newWindow(); }
@@ -156,20 +170,21 @@
         const box = h('div', { class: 'card' });
         add(box, [h('h3', null, `Oxidise ${t.x}, but not ${t.y}`),
           h('p', null, `Which of these will oxidise ${t.x} to ${t.xr.oa} but not ${t.y} to ${t.yr.oa} under standard conditions: `, chem(t.cands.join(', ')), '? Tap your answer on the LEFT side of the table.'),
-          t.src ? h('p', { class: 'small muted' }, 'From ' + (t.src.startsWith('May') ? 'IEB ' + t.src : 'Worked example ' + t.src) + '.') : null]);
+          t.src ? h('p', { class: 'small muted' }, 'From ' + (t.src.startsWith('May') ? 'IEB NSC ' + t.src + ' (our answer: no official memo yet)' : 'Worked example ' + t.src) + '.') : null]);
         const a = t.answered;
         if (a) {
           if (a.wrongSide) box.appendChild(notice('no', 'You tapped the reducing agent side. The species that oxidises something is an oxidising agent: it is on the LEFT.'));
           else {
-            const r = ROWS[a.i], ok = t.cands.includes(r.oa) && r.E > t.xr.E && r.E < t.yr.E;
-            const inWin = r.E > t.xr.E && r.E < t.yr.E;
-            box.appendChild(notice(ok ? 'ok' : 'no', ok ? `Yes: ${r.oa} (${eTxt(r)}) lies between the two rows.` :
+            // judge a choice on its strongest row (lowest on the left): Fe³⁺ is on the −0,04 V and the +0,77 V rows
+            const tapped = ROWS[a.i], cand = t.cands.includes(tapped.oa), r = cand ? rowFor(tapped.oa, 'oa') : tapped;
+            const ok = cand && r.E > t.xr.E && r.E < t.yr.E, inWin = r.E > t.xr.E && r.E < t.yr.E;
+            const also = r !== tapped ? ` You tapped the ${eTxt(tapped)} row: ${r.oa} is also on the ${eTxt(r)} row, lower on the left, where it is a stronger oxidising agent.` : '';
+            box.appendChild(notice(ok ? 'ok' : 'no', (ok ? `Yes: ${r.oa} (${eTxt(r)}) lies between the two rows.` :
               !t.cands.includes(r.oa) ? `${r.oa} is not one of the four choices. Look for a choice inside the shaded window.` :
                 r.E <= t.xr.E ? `${r.oa} (${eTxt(r)}) is too weak: it is a weaker oxidising agent than ${t.xr.oa} (${eTxt(t.xr)}), so it cannot oxidise ${t.x}.` :
-                  `${r.oa} (${eTxt(r)}) is too strong: it is a stronger oxidising agent than ${t.yr.oa} (${eTxt(t.yr)}), so it would oxidise ${t.y} as well.`));
+                  `${r.oa} (${eTxt(r)}) is too strong: it is a stronger oxidising agent than ${t.yr.oa} (${eTxt(t.yr)}), so it would oxidise ${t.y} as well.`) + also));
             if (ok || !inWin) box.appendChild(h('div', { class: 'callout' }, h('h4', null, 'Window'),
               `The oxidising agent must be stronger than ${t.xr.oa} (${eTxt(t.xr)}) but weaker than ${t.yr.oa} (${eTxt(t.yr)}). Draw the two reducing agents’ rows, then look for an oxidising agent between them.`));
-            if (ok) logAttempt({ kind: 'supported', section: '27.3', id: 'window', correct: 1, total: 1 });
           }
         }
         box.appendChild(h('div', { class: 'row', style: { marginTop: '10px' } }, h('button', { class: 'btn ghost', type: 'button', onclick: () => { st.task = null; newWindow(); draw(); } }, 'New window question')));
@@ -189,7 +204,7 @@
           h('div', { class: 'steps', style: { marginTop: '10px' } },
             stepLine('', 'Made from', chem(R.formula)),
             stepLine(R.role === 'OA' ? 'red' : 'ox', 'Species that reacts', chem(R.species.join(' and ')), R.role === 'OA' ? 'oxidising agent: on the left of the row' : 'reducing agent: on the right of the row'),
-            stepLine('', 'Spectator ions', R.spectators.length ? chem(R.spectators.join(', ')) : 'none', R.spectators.length ? 'They appear only where they cannot react, so they take no part in the electron transfer.' : null),
+            stepLine('', 'Spectator ions', R.spectators.length ? chem(R.spectators.join(', ')) : 'none', R.spectators.length ? 'They are there before and after, unchanged: nothing in this mixture is strong enough to react with them, so they take no part in the electron transfer.' : null),
             stepLine(R.role === 'OA' ? 'red' : 'ox', 'Its row in Table 4', chem(row.leftText + ' ⇌ ' + row.rightText), EC.ev(row.E) + ' V')),
           R.note ? notice('', R.note) : null,
           cur === 'potassium bromide' ? h('div', { class: 'callout ex' }, h('h4', null, 'Examiner says · IEB 2025 P2 Q6.1'), '“More than half the candidates chose potassium as the reducing agent, although KBr does not contain any potassium atoms, only potassium ions.”') : null,
@@ -203,7 +218,7 @@
         add(box, [h('h3', null, 'Species with two jobs'), h('p', { class: 'muted' }, 'The outlined species appear on both sides of Table 4. Tap one to see both rows. The partner decides which job it does.')]);
         if (!st.jobs) { box.appendChild(h('div', { class: 'tiles' }, EC.TWO_JOBS.map(sp => h('span', { class: 'pill' }, sp)))); return box; }
         const r = ROWS[st.jobs.i];
-        const terms = (st.jobs.side === 'oa' ? r.ox : r.red).map(t => t.sp).filter(sp => EC.TWO_JOBS.includes(sp));
+        const sp0 = st.jobs.side === 'oa' ? r.oa : r.ra, terms = EC.TWO_JOBS.includes(sp0) ? [sp0] : [];
         if (!terms.length) { box.appendChild(notice('', 'This species has only one job. Tap an outlined species.')); return box; }
         const sp = terms[0];
         const j = EC.jobsOf(sp);
@@ -229,12 +244,15 @@
           h('li', null, 'Tap a ', h('span', { class: 'k-ox' }, 'reducing agent'), ' on the RIGHT side of a row (blue).'),
           h('li', null, 'Tap an ', h('span', { class: 'k-red' }, 'oxidising agent'), ' on the LEFT side of another row (red).'),
           h('li', null, 'Electrons run downhill: if the reducing agent is higher up than the oxidising agent, they react.')),
-        h('p', { class: 'small muted' }, st.ra !== null ? 'Reducing agent chosen: ' + ROWS[st.ra].rightText + '. Now tap an oxidising agent.' : st.oa !== null ? 'Oxidising agent chosen: ' + ROWS[st.oa].leftText + '. Now tap a reducing agent.' : 'Try zinc (Zn, right) with copper(II) ions (Cu²⁺, left).')]);
+        h('p', { class: 'small muted' }, st.ra !== null ? 'Reducing agent chosen: ' + ROWS[st.ra].ra + ' (' + EC.ev(ROWS[st.ra].E) + ' V row). Now tap an oxidising agent.' : st.oa !== null ? 'Oxidising agent chosen: ' + ROWS[st.oa].oa + ' (' + EC.ev(ROWS[st.oa].E) + ' V row). Now tap a reducing agent.' : 'Try zinc (Zn, right) with copper(II) ions (Cu²⁺, left).')]);
       return box;
     }
     const ra = ROWS[st.ra], oa = ROWS[st.oa];
     if (ra === oa) { box.appendChild(notice('no', 'You chose both sides of the same row. A row cannot react with itself: choose a partner from a different row.')); return box; }
     const reacts = EC.reacts(ra, oa);
+    // Fe is twice on the right and Fe³⁺ twice on the left: if the tapped rows do not react but the species' strongest rows do
+    // (exam recipe step 3), the answer to "Will it react?" is still YES
+    const raBest = rowFor(ra.ra, 'ra'), oaBest = rowFor(oa.oa, 'oa'), other = !reacts && EC.reacts(raBest, oaBest), yes = reacts || other;
     const net = EC.netEquation(ra, oa);
     const cn = EC.cellNotation(ra, oa);
     const ec = EC.eCell(oa, ra);
@@ -254,13 +272,23 @@
       return s;
     }
     // 1 will it react
-    const yesNo = h('div', { class: 'row' }, ['YES', 'NO'].map(v => h('button', { class: 'btn ghost small', type: 'button', onclick: () => { st.guess.react = v; R.react = 1; logAttempt({ kind: 'supported', section: '27.3', id: 'react', correct: (v === 'YES') === reacts ? 1 : 0, total: 1 }); redraw(); } }, v)));
+    const yesNo = h('div', { class: 'row' }, ['YES', 'NO'].map(v => h('button', { class: 'btn ghost small', type: 'button', onclick: () => { st.guess.react = v; R.react = 1; logAttempt({ kind: 'supported', section: '27.3', id: 'react', correct: (v === 'YES') === yes ? 1 : 0, total: 1 }); redraw(); } }, v)));
     const g = st.guess.react;
-    steps.appendChild(lockable('react', 'el', '1 · Will it react?', reacts ? 'YES: the reducing agent is higher, so electrons run downhill to the oxidising agent.' : 'NO: the reducing agent is lower than the oxidising agent, so the electrons would have to run uphill.',
-      memoSentence(ra, oa), h('div', null, h('div', { class: 'small' }, 'Predict: will a spontaneous reaction take place?'), yesNo)));
-    if (g) steps.lastChild.appendChild(notice((g === 'YES') === reacts ? 'ok' : 'no', (g === 'YES') === reacts ? 'Your prediction was right.' : 'Your prediction was wrong. Find both rows: electrons only run downhill.'));
+    const also = [raBest !== ra ? `${ra.ra} is also on the ${eTxt(raBest)} row` : '', oaBest !== oa ? `${oa.oa} is also on the ${eTxt(oaBest)} row` : ''].filter(Boolean).join(', and ');
+    const tappedRows = raBest !== ra && oaBest !== oa ? 'the rows you tapped' : `the ${eTxt(raBest !== ra ? ra : oa)} row you tapped`;
+    const level = !reacts && !other && Math.abs(ra.E - oa.E) < 1e-9;
+    steps.appendChild(lockable('react', 'el', '1 · Will it react?', level ? `NO: both rows have Eθ = ${EC.ev(ra.E)} V, so neither is the stronger oxidising agent and nothing pushes the electrons.` : reacts ? 'YES: the reducing agent is higher, so electrons run downhill to the oxidising agent.' :
+      other ? `YES: ${also}. There the reducing agent is higher, so electrons run downhill to the oxidising agent. With ${tappedRows} they would have to run uphill.` :
+        'NO: the reducing agent is lower than the oxidising agent, so the electrons would have to run uphill.',
+      other ? memoSentence(raBest, oaBest) : memoSentence(ra, oa), h('div', null, h('div', { class: 'small' }, 'Predict: will a spontaneous reaction take place?'), yesNo)));
+    if (g) steps.lastChild.appendChild(notice((g === 'YES') === yes ? 'ok' : 'no', (g === 'YES') === yes ? 'Your prediction was right.' : 'Your prediction was wrong. Find both rows: electrons only run downhill.'));
+    if (other) {
+      box.appendChild(h('div', { class: 'row', style: { marginTop: '10px' } }, h('button', { class: 'btn', type: 'button', onclick: () => { st.ra = raBest.i; st.oa = oaBest.i; redraw(); } }, 'Use the rows that react →')));
+      return box;
+    }
     if (!reacts) {
-      steps.appendChild(lockable('ecell', '', '2 · Eθcell confirms it', h('span', null, ec.formula, h('br'), ec.substitute, h('br'), ec.answer), 'Negative: not spontaneous under standard conditions.'));
+      steps.appendChild(lockable('ecell', '', '2 · Eθcell confirms it', h('span', null, ec.formula, h('br'), ec.substitute, h('br'), ec.answer), level ? 'Zero: not spontaneous under standard conditions.' : 'Negative: non-spontaneous under standard conditions.'));
+      if (level) return box; // the reverse is also 0,00 V: nothing to swap
       const rev = h('div', { class: 'row', style: { marginTop: '10px' } }, h('button', { class: 'btn', type: 'button', onclick: () => {
         const nra = rowFor(oa.ra, 'ra'), noa = rowFor(ra.oa, 'oa');
         st.ra = nra.i; st.oa = noa.i; redraw();
@@ -277,12 +305,15 @@
     const cancelTxt = net.cancelled.length ? `Added: ${net.added}. Cancel ${net.cancelled.join(', ')} from both sides. ` : '';
     steps.appendChild(lockable('net', 'el', (net.ko !== 1 || net.kr !== 1 ? '5' : '4') + ' · Net ionic equation', chem(net.text), cancelTxt + `Charge check: left ${EC.chargeText(net.check.leftCharge)}, right ${EC.chargeText(net.check.rightCharge)}. Atoms balance.`, h('div', null, h('div', { class: 'small' }, 'Predict: choose the balanced net equation.'), choose)));
     if (st.guess.net) steps.lastChild.appendChild(notice(st.guess.net.ok ? 'ok' : 'no', st.guess.net.ok ? 'Correct.' : st.guess.net.why));
-    steps.appendChild(lockable('cn', '', 'Cell notation (as a galvanic cell)', chem(cn.text), (cn.needsPt ? 'Pt is needed: a half-cell with no solid conductor. ' : '') + 'Anode on the left, salt bridge ||, no coefficients.'));
-    const inp = h('input', { type: 'text', inputmode: 'decimal', placeholder: 'e.g. 1,10', 'aria-label': 'Your Eθcell in volts' });
-    const tryE = h('div', null, h('div', { class: 'small' }, 'Predict: Eθcell = Eθcathode − Eθanode = ?'), h('div', { class: 'answer-row' }, inp, h('span', null, 'V'), h('button', { class: 'btn small', type: 'button', onclick: () => {
-      const v = readNum(inp.value); if (isNaN(v)) { inp.focus(); return; }
-      st.guess.e = v; R.ecell = 1; logAttempt({ kind: 'supported', section: '28.6', id: 'emf', correct: close(v, ec.value, 0.005) ? 1 : 0, total: 1 }); redraw();
-    } }, 'Check')));
+    if (ra.ra === 'H₂O' || oa.oa === 'H₂O') steps.appendChild(stepLine('', 'Cell notation', 'Not shown here for a half-cell in which water itself is oxidised or reduced. When it is written, H₂O is included because water itself reacts (2024 examiners’ report, Q6.7).'));
+    else steps.appendChild(lockable('cn', '', 'Cell notation (as a galvanic cell)', chem(cn.text), (cn.needsPt ? 'Pt is needed: a half-cell with no solid conductor. ' : '') + 'Anode on the left, salt bridge ||, no coefficients.'));
+    const checkE = h('button', { class: 'btn small', type: 'button', onclick: () => {
+      const v = readNum(st.guess.typedE || ''); if (isNaN(v)) { st.guess.eBlank = true; redraw(); return; }
+      st.guess.eBlank = false; st.guess.e = v; R.ecell = 1; logAttempt({ kind: 'supported', section: '28.6', id: 'emf', correct: close(v, ec.value, 0.005) ? 1 : 0, total: 1 }); redraw();
+    } }, 'Check');
+    // the typed value survives redraws (choosing a net equation, a wrong-answer message), and Enter checks it
+    const inp = h('input', { type: 'text', inputmode: 'decimal', placeholder: 'e.g. 1,10', 'aria-label': 'Your Eθcell in volts', value: st.guess.typedE || '', oninput: e => { st.guess.typedE = e.target.value; }, onkeydown: e => { if (e.key === 'Enter') { e.preventDefault(); checkE.click(); } } });
+    const tryE = h('div', null, h('div', { class: 'small' }, 'Predict: Eθcell = Eθcathode − Eθanode = ?'), h('div', { class: 'answer-row' }, inp, h('span', null, 'V'), checkE), st.guess.eBlank ? notice('', 'Type a number (a decimal comma is fine).') : null);
     steps.appendChild(lockable('ecell', '', 'Eθcell', h('span', null, ec.formula, h('br'), ec.substitute, h('br'), ec.answer), 'Positive: spontaneous under standard conditions. Brackets round a negative Eθ; the unit is V.', tryE));
     if (st.guess.e !== undefined) steps.lastChild.appendChild(notice(close(st.guess.e, ec.value, 0.005) ? 'ok' : 'no', close(st.guess.e, ec.value, 0.005) ? 'Correct.' :
       close(st.guess.e, -ec.value, 0.005) ? 'The sign is wrong: cathode minus anode. The cathode is where the oxidising agent is reduced.' :
@@ -295,45 +326,97 @@
     id: 'ruler', mod: 28, section: '28.6', title: 'The emf ruler',
     blurb: 'Table 4 drawn to scale. The emf is the distance between two rows, so it never changes when you multiply a half-reaction.',
     render(el, params) {
-      const st = { c: rowFor('Ag⁺', 'oa').i, a: rowFor('Mg', 'ra').i, times: 1 };
-      const ctl = h('div', { class: 'card' }), stage = h('div', { class: 'stage' }), info = h('div');
-      add(el, [h('div', { class: 'split' }, h('div', null, stage), h('div', null, ctl, info))]);
-      const opts = ROWS.map(r => [String(r.i), `${r.leftText} ⇌ ${r.rightText}   (${EC.ev(r.E)} V)`]);
-      function draw() {
-        clear(ctl); clear(info); clear(stage);
-        add(ctl, [h('label', { class: 'f' }, h('span', { class: 'k-red' }, 'Cathode half-cell (reduction)')), select(opts, String(st.c), v => { st.c = +v; draw(); }),
-          h('label', { class: 'f' }, h('span', { class: 'k-ox' }, 'Anode half-cell (oxidation)')), select(opts, String(st.a), v => { st.a = +v; draw(); }),
-          h('label', { class: 'f' }, 'Multiply the cathode half-reaction'), seg([['1', '× 1'], ['2', '× 2'], ['3', '× 3']], String(st.times), v => { st.times = +v; draw(); })]);
-        const c = ROWS[st.c], a = ROWS[st.a];
-        const W = 420, H = 680, top = 30, bot = 650, Emin = -3.2, Emax = 3.0;
-        const y = E => top + (E - Emin) / (Emax - Emin) * (bot - top);
-        let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vertical Eθ scale with the two chosen rows marked">`;
+      const st = { c: rowFor('Ag⁺', 'oa').i, a: rowFor('Mg', 'ra').i, times: [1, 2, 3].includes(+(params || {}).times) ? +params.times : 1 };
+      const ctl = h('div', { class: 'card' }), stage = h('div', { class: 'stage ruler-stage' }), info = h('div');
+      add(el, [h('div', { class: 'split' }, h('div', null, stage, h('p', { class: 'small muted', style: { marginTop: '6px' } }, 'Drag the red (cathode) or blue (anode) marker along the scale: it snaps to the nearest row. Or choose the rows from the lists.')), h('div', null, ctl, info))]);
+      // the couple form fits a phone-width list and matches the labels on the scale
+      const opts = ROWS.map(r => [String(r.i), `${r.oa} / ${r.ra}   (${EC.ev(r.E)} V)`]);
+      const selC = select(opts, String(st.c), v => { st.c = +v; draw(); }, { 'aria-label': 'Cathode half-cell (reduction)' });
+      const selA = select(opts, String(st.a), v => { st.a = +v; draw(); }, { 'aria-label': 'Anode half-cell (oxidation)' });
+      const segBox = h('div');
+      function drawSeg() { clear(segBox); segBox.appendChild(seg([['1', '× 1'], ['2', '× 2'], ['3', '× 3']], String(st.times), v => { st.times = +v; drawSeg(); draw(); const b = segBox.querySelector('[aria-pressed="true"]'); if (b) b.focus({ preventScroll: true }); })); }
+      add(ctl, [h('label', { class: 'f' }, h('span', { class: 'k-red' }, 'Cathode half-cell (reduction)')), selC,
+        h('label', { class: 'f' }, h('span', { class: 'k-ox' }, 'Anode half-cell (oxidation)')), selA,
+        h('label', { class: 'f' }, 'Multiply the cathode half-reaction'), segBox]);
+      drawSeg();
+      const W = 420, H = 680, top = 30, bot = 650, Emin = -3.2, Emax = 3.0;
+      const y = E => top + (E - Emin) / (Emax - Emin) * (bot - top);
+      const Eof = yy => Emin + (yy - top) / (bot - top) * (Emax - Emin);
+      function verdict(v) {
+        return v > 0 ? 'The cathode row is lower (more positive): electrons run downhill. Positive Eθcell: spontaneous under standard conditions.'
+          : v < 0 ? 'The cathode row is higher: electrons would have to run uphill. Negative Eθcell: non-spontaneous under standard conditions.'
+          : 'The two rows are level (same Eθ): Eθcell = 0,00 V. Nothing pushes the electrons, so the reaction is not spontaneous under standard conditions.';
+      }
+      function drawStage() {
+        const c = ROWS[st.c], a = ROWS[st.a], v = EC.eCellValue(c, a);
+        const yc = y(c.E), ya = y(a.E);
+        let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vertical Eθ scale. Cathode ${c.oa}/${c.ra} at ${EC.ev(c.E)} V, anode ${a.oa}/${a.ra} at ${EC.ev(a.E)} V, Eθcell ${EC.ev(v)} V.">`;
+        svg += `<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0 L14,7 L0,14 z" fill="#343a40"/></marker></defs>`;
         svg += `<line x1="120" y1="${top}" x2="120" y2="${bot}" stroke="#52677a" stroke-width="2"/>`;
         for (let E = -3; E <= 3.001; E += 0.5) { const yy = y(E); svg += `<line x1="112" y1="${yy}" x2="128" y2="${yy}" stroke="#52677a"/><text x="104" y="${yy + 5}" text-anchor="end" font-size="13" fill="#52677a">${EC.ev(Math.round(E * 10) / 10)}</text>`; }
-        ROWS.forEach(r => { const yy = y(r.E); svg += `<line x1="122" y1="${yy}" x2="134" y2="${yy}" stroke="#b8c7cf" stroke-width="2"/>`; });
-        const yc = y(c.E), ya = y(a.E);
-        svg += `<line x1="128" y1="${yc}" x2="250" y2="${yc}" stroke="#c92a2a" stroke-width="3"/><text x="256" y="${yc + 5}" font-size="14" fill="#c92a2a" font-weight="700">${c.oa} / ${c.ra}  ${EC.ev(c.E)} V</text>`;
-        svg += `<line x1="128" y1="${ya}" x2="250" y2="${ya}" stroke="#1c64d6" stroke-width="3"/><text x="256" y="${ya + 5}" font-size="14" fill="#1c64d6" font-weight="700">${a.oa} / ${a.ra}  ${EC.ev(a.E)} V</text>`;
-        if (c !== a) {
-          svg += `<line x1="200" y1="${ya}" x2="200" y2="${yc}" stroke="#343a40" stroke-width="3" marker-end="url(#ah)"/>`;
-          svg += `<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#343a40"/></marker></defs>`;
-          svg += `<rect x="150" y="${(ya + yc) / 2 - 14}" width="100" height="28" rx="6" fill="#fff" stroke="#343a40"/><text x="200" y="${(ya + yc) / 2 + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="#343a40">${EC.evPlain(EC.eCellValue(c, a))} V</text>`;
+        ROWS.forEach(r => { const yy = y(r.E); svg += `<line x1="122" y1="${yy}" x2="134" y2="${yy}" stroke="#7d8d98" stroke-width="2"/>`; });
+        // labels: cathode, anode and the dashed ×n mark, pushed apart so they never print on top of each other
+        const wrong = st.times > 1 && c.E !== 0 ? c.E * st.times : null;
+        const showWrong = wrong !== null && wrong < Emax && wrong > Emin;
+        const labs = [{ k: 'c', y0: yc, y: yc }, { k: 'a', y0: ya, y: ya }].concat(showWrong ? [{ k: 'w', y0: y(wrong), y: y(wrong) }] : []);
+        for (let pass = 0; pass < 8; pass++) {
+          labs.sort((p, q) => p.y - q.y);
+          for (let i = 1; i < labs.length; i++) { const gap = labs[i].y - labs[i - 1].y; if (gap < 18) { const d = (18 - gap) / 2; labs[i - 1].y -= d; labs[i].y += d; } }
+          labs.forEach(l => { l.y = Math.max(top - 2, Math.min(bot + 2, l.y)); });
         }
-        if (st.times > 1) {
-          const wrong = c.E * st.times;
-          if (wrong < Emax && wrong > Emin) svg += `<line x1="128" y1="${y(wrong)}" x2="230" y2="${y(wrong)}" stroke="#c92a2a" stroke-dasharray="5 5" opacity=".5"/><text x="236" y="${y(wrong) + 5}" font-size="13" fill="#a3360f">✗ ${st.times}(${EC.evPlain(c.E)}) is not a row</text>`;
-        }
+        const L = k => labs.find(l => l.k === k);
+        svg += `<line x1="128" y1="${yc}" x2="250" y2="${yc}" stroke="#c92a2a" stroke-width="3"/><line x1="250" y1="${yc}" x2="256" y2="${L('c').y}" stroke="#c92a2a"/>`;
+        svg += `<line x1="128" y1="${ya}" x2="250" y2="${ya}" stroke="#1c64d6" stroke-width="3"/><line x1="250" y1="${ya}" x2="256" y2="${L('a').y}" stroke="#1c64d6"/>`;
+        // drag handles on the scale
+        svg += `<g class="handle" data-k="c" style="cursor: ns-resize; touch-action: none"><rect x="122" y="${yc - 16}" width="134" height="32" fill="transparent"/><circle cx="140" cy="${yc}" r="8" fill="#c92a2a" stroke="#fff" stroke-width="2"/></g>`;
+        svg += `<g class="handle" data-k="a" style="cursor: ns-resize; touch-action: none"><rect x="122" y="${ya - 16}" width="134" height="32" fill="transparent"/><circle cx="160" cy="${ya}" r="8" fill="#1c64d6" stroke="#fff" stroke-width="2"/></g>`;
+        svg += `<text x="260" y="${L('c').y + 5}" font-size="14" fill="#c92a2a" font-weight="700">${c.oa} / ${c.ra}  ${EC.ev(c.E)} V</text>`;
+        svg += `<text x="260" y="${L('a').y + 5}" font-size="14" fill="#1c64d6" font-weight="700">${a.oa} / ${a.ra}  ${EC.ev(a.E)} V</text>`;
+        if (showWrong) { const yw = y(wrong); svg += `<line x1="128" y1="${yw}" x2="230" y2="${yw}" stroke="#c92a2a" stroke-dasharray="5 5" opacity=".6"/><line x1="230" y1="${yw}" x2="236" y2="${L('w').y}" stroke="#a3360f"/><text x="240" y="${L('w').y + 5}" font-size="13" fill="#a3360f">✗ ${st.times}(${EC.evPlain(c.E)}): not the ${c.oa} row</text>`; }
+        if (Math.abs(yc - ya) >= 30) svg += `<line x1="200" y1="${ya}" x2="200" y2="${yc}" stroke="#343a40" stroke-width="3" marker-end="url(#ah)"/>`;
+        // the emf box: between the rows when there is room, otherwise in the first clear band beside the pair
+        const lines = [yc, ya].concat(showWrong ? [y(wrong)] : []);
+        const clearBand = b => b >= top - 2 && b + 28 <= bot + 2 && lines.every(l => l < b - 2 || l > b + 30);
+        const lo = Math.max(yc, ya), hi = Math.min(yc, ya);
+        let by = Math.abs(yc - ya) >= 34 ? (yc + ya) / 2 - 14 : null;
+        if (by === null) by = [lo + 8, hi - 36, lo + 40, hi - 68].find(clearBand);
+        if (by === undefined) by = lo + 8;
+        svg += `<rect x="150" y="${by}" width="100" height="28" rx="6" fill="#fff" stroke="#343a40"/><text x="200" y="${by + 19}" text-anchor="middle" font-size="15" font-weight="700" fill="#343a40">${EC.evPlain(v)} V</text>`;
         svg += `<text x="20" y="${top - 10}" font-size="12" fill="#52677a">more negative: stronger reducing agents</text><text x="20" y="${bot + 22}" font-size="12" fill="#52677a">more positive: stronger oxidising agents</text></svg>`;
         stage.innerHTML = svg;
-        const ec = EC.eCell(c, a);
+      }
+      // dragging a marker: it snaps to the nearest Table 4 row
+      let drag = null;
+      stage.addEventListener('pointerdown', e => {
+        const g = e.target.closest && e.target.closest('.handle'); if (!g) return;
+        drag = g.dataset.k; stage.setPointerCapture(e.pointerId); e.preventDefault();
+      });
+      stage.addEventListener('pointermove', e => {
+        if (!drag) return;
+        const svg = stage.querySelector('svg'), r = svg.getBoundingClientRect();
+        const yy = (e.clientY - r.top) * (H / r.height), E = Eof(yy);
+        let best = ROWS[0]; ROWS.forEach(row => { if (Math.abs(row.E - E) < Math.abs(best.E - E)) best = row; });
+        if (st[drag] !== best.i) { st[drag] = best.i; (drag === 'c' ? selC : selA).value = String(best.i); draw(true); }
+      });
+      const end = () => { if (drag) { drag = null; draw(); } };
+      stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+      function draw(...a) { return S.keepFocus(el, () => draw0(...a)); } // keep keyboard focus on the control that was used
+      function draw0(quiet) {
+        clear(info);
+        drawStage();
+        const c = ROWS[st.c], a = ROWS[st.a];
+        const ec = EC.eCell(c, a), v = ec.value;
         const kred = EC.reductionHalf(c, st.times);
         add(info, [h('div', { class: 'steps', style: { marginTop: '12px' } },
           stepLine('red', 'Cathode half-reaction' + (st.times > 1 ? ' × ' + st.times : ''), chem(kred.text), 'Eθ stays ' + EC.ev(c.E) + ' V'),
           stepLine('ox', 'Anode half-reaction', chem(EC.oxidationHalf(a).text), 'Eθ stays ' + EC.ev(a.E) + ' V'),
-          stepLine('el', 'Eθcell = the distance between the rows', h('span', null, ec.formula, h('br'), ec.substitute, h('br'), ec.answer), ec.value > 0 ? 'The cathode row is lower (more positive): electrons run downhill. Spontaneous.' : 'The cathode row is higher: electrons would run uphill. Not spontaneous.')),
-          st.times > 1 ? h('div', { class: 'callout trap' }, h('h4', null, 'IEB trap · WE 28.7'), `✗ ${st.times}(${EC.evPlain(c.E)}) − ${EC.evSub(a.E)} = ${EC.evPlain(c.E * st.times - a.E)} V because the half-reaction was multiplied by ${st.times}.`, h('br'), `✓ The row does not move when you multiply the equation: Eθcell is still ${ec.valueText}. Multiply the equation, never the Eθ value.`) : null]);
+          stepLine('el', 'Eθcell = cathode row − anode row', h('span', null, ec.formula, h('br'), ec.substitute, h('br'), ec.answer), verdict(v))),
+          st.times > 1 ? h('div', { class: 'callout trap' }, h('h4', null, 'IEB trap · WE 28.7'),
+            c.E === 0 ? `✗ ${st.times} × 0,00 is still 0,00, so the slip does not change the answer here.` : `✗ ${st.times}(${EC.evPlain(c.E)}) − ${EC.evSub(a.E)} = ${EC.evPlain(c.E * st.times - a.E)} V because the half-reaction was multiplied by ${st.times}.`, h('br'),
+            `✓ Eθ does not depend on the number of electrons transferred, so it is never multiplied by a coefficient: Eθcell is still ${ec.valueText}. On the ruler, the row does not move.`) : null]);
+        if (!quiet) S.say(`Cathode ${c.oa}/${c.ra} ${EC.ev(c.E)} V, anode ${a.oa}/${a.ra} ${EC.ev(a.E)} V. Eθcell = ${ec.valueText}${st.times > 1 ? ', unchanged by × ' + st.times : ''}. ${verdict(v)}`);
       }
-      draw();
+      draw(true);
     }
   };
 
@@ -360,7 +443,8 @@
       const box = h('div', { class: 'grid g2' });
       el.appendChild(box);
       function fresh() { task = halfTarget(pick(HALF_TASKS)); st = { row: null, dir: null, eSide: null, eN: 1, arrow: '→', checked: null }; draw(); }
-      function draw() {
+      function draw(...a) { return S.keepFocus(el, () => draw0(...a)); } // keep keyboard focus on the control that was used
+      function draw0() {
         clear(box);
         const L = h('div', { class: 'card' }), Rp = h('div', { class: 'card' });
         add(box, [L, Rp]);
@@ -401,7 +485,7 @@
         if (r === task.row && st.dir !== wantDir) issues.push(task.dir === 'reduction' ? 'A reduction is the row copied: the species gains electrons, so the electrons are on the left.' : 'An oxidation is the row written backwards: the species loses electrons, so the electrons end up on the right.');
         const wantSide = task.dir === 'reduction' ? 'left' : 'right';
         if (st.eSide !== wantSide) issues.push(`Electrons on the wrong side: in ${task.dir === 'reduction' ? 'a reduction they are gained (left)' : 'an oxidation they are lost (right)'}.`);
-        if (r === task.row && st.eN !== task.row.n) issues.push(`Electron count: the charges must balance. ${task.sp === 'Br⁻' ? '2Br⁻ → Br₂ needs 2e⁻, not 1.' : 'Check the charge meter.'}`);
+        if (r === task.row && st.eN !== task.row.n) issues.push(`Electron count: the charges must balance. ${task.sp === 'Br⁻' ? `2Br⁻ → Br₂ needs 2e⁻, not ${st.eN}.` : 'Check the charge meter.'}`);
         if (st.arrow !== '→') issues.push('Use a single arrow. The IEB memo deducts a mark for ⇌ in a half-reaction (examiners’ report 2025).');
         const ok = !issues.length;
         logAttempt({ kind: 'supported', section: '27.2', id: 'halfrx', correct: ok ? 1 : 0, total: 1 });
@@ -431,7 +515,8 @@
       el.appendChild(box);
       function fresh() { const pr = pick(PAIRS); p = pairRows(pr); st = { ko: 1, kr: 1, stage: 0 }; draw(); }
       function dots(n, cls) { return h('span', { 'aria-label': n + ' electrons' }, Array.from({ length: n }, () => h('span', { style: { display: 'inline-block', width: '14px', height: '14px', borderRadius: '50%', background: 'var(--el)', margin: '2px' } })), h('span', { class: 'small k-el', style: { marginLeft: '6px' } }, n + 'e⁻')); }
-      function draw() {
+      function draw(...a) { return S.keepFocus(el, () => draw0(...a)); } // keep keyboard focus on the control that was used
+      function draw0() {
         clear(box);
         const ox = EC.oxidationHalf(p.raRow, st.ko), red = EC.reductionHalf(p.oaRow, st.kr);
         const eo = p.raRow.n * st.ko, er = p.oaRow.n * st.kr;
