@@ -27,6 +27,13 @@
   .card b { display: block; font-family: var(--font-display); font-size: 1.15rem; }
   .card small { color: var(--muted); }
   footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+  .grades { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.4rem 0 .4rem; }
+  .grades button { font: inherit; font-weight: 600; min-height: 44px; padding: 8px 18px; border-radius: 999px;
+           border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .grades button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .empty { color: var(--muted); background: var(--paper); border: 1px dashed var(--line); border-radius: var(--radius); padding: 16px; margin: 0; }
+  section[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -35,19 +42,59 @@
   <h1>Learn it. <span>Practise it.</span> Check it.</h1>
   <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and come back in a few days to check it stuck.</p>
 
+  <div class="grades" role="group" aria-label="Choose your grade">
+    <button type="button" data-g="all" aria-pressed="true">All studios</button>
+    <button type="button" data-g="10" aria-pressed="false">Grade 10</button>
+    <button type="button" data-g="11" aria-pressed="false">Grade 11</button>
+    <button type="button" data-g="12" aria-pressed="false">Grade 12</button>
+  </div>
+
+  <section data-grade="10">
   <h2>Grade 10 Physical Sciences</h2>
   <div class="grid">
     <a class="card" href="momentum/" style="--bc: var(--mom)"><b>Momentum Studio</b><small>Momentum, impulse and collisions, with a crash simulation.</small></a>
     <a class="card" href="chemical-calculations/" style="--bc: var(--mole)"><b>Chemical Calculations Studio</b><small>Moles, molar mass, concentration and yields.</small></a>
   </div>
+  </section>
 
+  <section data-grade="10">
   <h2>Grade 10 Business Studies</h2>
   <div class="grid">
     <a class="card" href="business-ch5/" style="--bc: var(--exam)"><b>Business environments</b><small>Chapter 5: micro, market and macro environments, PESTLE and SWOT.</small></a>
     <a class="card" href="business-ch5-rhd/" style="--bc: var(--exam)"><b>Business environments · Reddam House edition</b><small>Chapter 5 with the Reddam House Durbanville crest.</small></a>
   </div>
+  </section>
+
+  <section data-grade="11">
+  <h2>Grade 11 Physical Sciences</h2>
+  <p class="empty">Grade 11 studios are on the way. Until then, the Grade 12 studios below use the same coursebook.</p>
+  </section>
+
+  <section data-grade="12">
+  <h2>Grade 12 Physical Sciences</h2>
+  <div class="grid">
+    <a class="card" href="electrochemistry/" style="--bc: #00646b"><b>Electrochemistry Studio</b><small>Modules 27 to 29: a live Table 4, galvanic and electrolytic cell labs, Faraday calculations and IEB past-paper questions.</small></a>
+  </div>
+  </section>
 
   <footer>Made by Mr N. Robert for his learners. No sign-in needed. Your progress is saved only in this browser.</footer>
 </main>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.grades button'), secs = document.querySelectorAll('section[data-grade]');
+  function show(g) {
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.g === g)); });
+    secs.forEach(function (s) {
+      var gr = s.dataset.grade;
+      s.hidden = !(g === 'all' || gr === g || (g === '11' && gr === '12'));
+      var empty = s.querySelector('.empty'); if (empty) s.hidden = s.hidden || g === 'all';
+    });
+    try { localStorage.setItem('ls-grade', g); } catch (e) {}
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.g); }); });
+  var start = 'all'; try { start = localStorage.getItem('ls-grade') || 'all'; } catch (e) {}
+  show(start);
+})();
+</script>
 </body>
 </html>
