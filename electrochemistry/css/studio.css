@@ -286,3 +286,25 @@ dl.defs dd { margin: 2px 0 0; }
 .linkbtn:focus-visible { outline: 2px solid var(--acc); }
 .filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; align-items: center; margin-bottom: 12px; }
 .filters .btn { justify-self: start; }
+
+/* ---------- narrated lessons ---------- */
+@media (min-width: 861px) { .split.lesson { grid-template-columns: minmax(300px, 390px) minmax(0, 1fr); } }
+.lesson-player audio { width: 100%; margin-bottom: 8px; }
+.lesson-player .eyebrow { margin-top: 10px; }
+.board { background: var(--soft); border: 1px solid var(--line); border-left: 5px solid var(--acc); border-radius: 10px; padding: 12px 14px; margin: 6px 0 10px; min-height: 84px; }
+.board ul { margin: 0; padding-left: 18px; }
+.board li { font-size: 1.08rem; line-height: 1.45; margin: 4px 0; }
+.caption { font-size: 1rem; line-height: 1.5; color: var(--ink); min-height: 3em; margin: 6px 0 0; }
+ol.scenes { margin: 0; padding-left: 22px; }
+ol.scenes li { margin: 3px 0; }
+ol.scenes li.on .linkbtn { font-weight: 700; color: var(--acc); }
+.transcript { margin-top: 12px; }
+.transcript summary { cursor: pointer; font-weight: 600; }
+.transcript p[data-i] { cursor: pointer; margin: 6px 0; padding: 4px 6px; border-radius: 6px; }
+.transcript p.on { background: var(--warml); }
+.lesson-lab { min-width: 0; }
+body.present .board li { font-size: 1.3rem; }
+body.present .caption { font-size: 1.2rem; }
+.lesson-lab { position: relative; }
+.lesson-lab.veiled > * { filter: blur(7px); pointer-events: none; user-select: none; }
+.lesson-lab.veiled::after { content: attr(data-veil); position: absolute; top: 90px; left: 50%; transform: translateX(-50%); width: min(90%, 360px); background: var(--paper); border: 2px solid var(--warm); border-radius: 12px; padding: 14px 16px; font-weight: 600; text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.12); z-index: 2; }

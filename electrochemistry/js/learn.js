@@ -47,7 +47,8 @@
           h('div', { class: 'card', style: { marginTop: '14px' } }, h('h3', null, 'The rules'), h('ol', { class: 'rules' }, s.rules.map(r => h('li', null, chem(r, 'cwrap')))))),
         h('div', null,
           h('div', { class: 'callout trap' }, h('h4', null, 'IEB trap'), '✗ ', chem(s.trap.wrong, 'cwrap'), h('br'), '✓ ', chem(s.trap.right, 'cwrap')),
-          h('div', { class: 'card', style: { marginTop: '14px' } }, h('h3', null, 'Try it in a lab'), h('div', { class: 'grid' }, s.tools.filter(id => S.tools[id]).map(S.toolCard)))))]);
+          h('div', { class: 'card', style: { marginTop: '14px' } }, h('h3', null, 'Try it in a lab'), h('div', { class: 'grid' }, s.tools.filter(id => S.tools[id]).map(S.toolCard))),
+          S.lessonsFor && S.lessonsFor(s.id).length ? h('div', { class: 'card', style: { marginTop: '14px' } }, h('h3', null, 'Listen first'), h('div', { class: 'grid' }, S.lessonsFor(s.id).map(S.lessonCard))) : null))]);
     }
     function worked() {
       const w = s.worked;

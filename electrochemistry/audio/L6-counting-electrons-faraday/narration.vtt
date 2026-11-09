@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.500 --> 00:00:09.186
+In electrolysis, the electrons that flow through the wire are the ones that make the product. Count the electrons, and you know how much product you made.
+
+00:00:11.686 --> 00:00:14.256
+Every Faraday calculation follows the same chain.
+
+00:00:14.856 --> 00:00:25.990
+Current and time give the charge. Charge gives moles of electrons. The half-reaction gives the ratio. Then moles of product, and finally the mass or the volume.
+
+00:00:28.490 --> 00:00:33.858
+A current of two amperes flows for one thousand nine hundred and thirty seconds, depositing copper.
+
+00:00:34.458 --> 00:00:42.164
+The charge is current times time. Two times one thousand nine hundred and thirty gives three thousand eight hundred and sixty coulombs.
+
+00:00:42.764 --> 00:00:49.489
+The time must be in seconds. Minutes times sixty. Hours times three thousand six hundred.
+
+00:00:51.989 --> 00:00:59.562
+One mole of electrons carries ninety-six thousand five hundred coulombs. That is the Faraday constant, on your data sheet.
+
+00:01:00.162 --> 00:01:07.058
+Three thousand eight hundred and sixty divided by ninety-six thousand five hundred gives zero comma zero four moles of electrons.
+
+00:01:09.558 --> 00:01:20.656
+The half-reaction is copper two plus, plus two electrons, gives copper. How many moles of copper do zero comma zero four moles of electrons deposit? Decide now.
+
+00:01:25.256 --> 00:01:33.302
+Zero comma zero two moles. Each copper atom needs two electrons, so the moles of copper are half the moles of electrons.
+
+00:01:35.802 --> 00:01:43.782
+Mass is moles times molar mass. Zero comma zero two times sixty-three comma five gives one comma two seven grams of copper.
+
+00:01:46.282 --> 00:02:01.735
+The most common mistake is to treat moles of electrons as moles of product. The examiners' report for twenty twenty-five said many candidates are still neglecting the ratio in the half-reaction. Always write the half-reaction first. It gives you the ratio.
+
+00:02:04.235 --> 00:02:24.095
+You can run the chain backwards too. To deposit fifteen comma nine grams of copper with a current of twenty amperes: find the moles of copper, double them for the electrons, multiply by the Faraday constant to get the charge, and divide by the current. It takes about two thousand four hundred and sixteen seconds, roughly forty minutes.
+
+00:02:26.595 --> 00:02:34.876
+Open the Faraday machine. Change the current and the time, switch to two cells in series, and watch both cells share the same charge.
