@@ -44,6 +44,16 @@ header h1 small { display: block; font-family: var(--font-body); font-weight: 40
 .line:focus { background: rgba(255,255,255,.08) }
 .pause { font-size: 15px; color: #ffcf5a; font-weight: 600 }
 .prompter.big .line { font-size: clamp(28px, 4.4vw, 46px) }
+/* One line at a time: the line sits top-centre, right under the webcam, so the eyes barely move. */
+.stage.focus { grid-template-columns: 1fr }
+.stage.focus .prompter { text-align: center; min-height: 220px; align-content: center }
+.stage.focus .prompter .tag { justify-content: center }
+.stage.focus .line { font-size: clamp(28px, 4vw, 44px); max-width: 30ch; margin: 0 auto }
+.stage.focus .line.off, .stage.focus .pause.off { display: none }
+.stage.focus .side { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 16px; width: 170px; z-index: 5 }
+.stage.focus .side .small { display: none }
+.lineNav { font-size: 14px; color: #9fb0cc }
+.stage:not(.focus) .lineNav { display: none }
 
 .side { display: grid; gap: 12px; min-width: 0 }
 .cam { position: relative; aspect-ratio: 1; width: 100%; max-width: 260px; border-radius: 14px; overflow: hidden; background: #000 }
@@ -91,6 +101,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       <li>Sit facing a window or a lamp, with the camera at eye level. A quiet room, phone on silent, a glass of water.</li>
       <li>Keep your face inside the dashed circle. That is what learners see.</li>
       <li>Change any words to how you would really say them: click the text and type. Your changes are saved with the recording.</li>
+      <li>Lines come one at a time, just under your webcam, so your eyes stay near the lens. Press <kbd>→</kbd> (or click the text) for the next line, even while recording. Read the line, then look up at the camera and say it.</li>
       <li>One scene at a time. Retake as often as you like; only the last take is kept.</li>
     </ul>
     <div class="row">
@@ -103,11 +114,12 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     </div>
   </section>
 
-  <div class="stage">
+  <div class="stage focus" id="stage">
     <section class="prompter" id="prompter" aria-live="polite">
       <div class="tag" id="tag"></div>
       <div class="note" id="note"></div>
       <div class="lines" id="lines"></div>
+      <div class="lineNav" id="lineNav"></div>
     </section>
     <aside class="side">
       <div class="cam" id="cam">
@@ -127,6 +139,8 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     <button class="btn" id="prevBtn">← Back</button>
     <button class="btn" id="nextBtn">Next scene →</button>
     <button class="btn" id="bigBtn">Bigger text</button>
+    <button class="btn" id="focusBtn">Show all lines</button>
+    <button class="btn" id="setBtn" hidden>Camera settings</button>
     <span id="msg"></span>
   </div>
   <video class="playback" id="playback" controls playsinline hidden></video>
@@ -149,7 +163,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   'use strict';
   const $ = (id) => document.getElementById(id);
   const lessonId = (new URLSearchParams(location.search).get('l') || 'L4').replace(/[^A-Za-z0-9-]/g, '');
-  let script = null, items = [], cur = 0, stream = null, rec = null, chunks = [], recStart = 0, tick = null, armed = false, clearArmed = false;
+  let lineIdx = 0, script = null, items = [], cur = 0, stream = null, rec = null, chunks = [], recStart = 0, tick = null, armed = false, clearArmed = false;
   const takes = {};   // slug -> { blob, mime, secs }
 
   /* ---------- storage (IndexedDB) so a refresh never loses a take ---------- */
@@ -197,10 +211,11 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       it.lines.forEach((txt, i) => {
         const p = document.createElement('div'); p.className = 'line'; p.contentEditable = 'true'; p.spellcheck = false; p.textContent = txt;
         p.addEventListener('input', () => { it.lines[i] = p.textContent.replace(/\s+/g, ' ').trim(); saveScript(); });
-        box.append(p);
-        if ((it.pauseAfter || []).includes(i)) { const q = document.createElement('div'); q.className = 'pause'; q.textContent = 'PAUSE · stay quiet for 3 seconds, then give the answer'; box.append(q); }
+        p.dataset.i = i; box.append(p);
+        if ((it.pauseAfter || []).includes(i)) { const q = document.createElement('div'); q.className = 'pause'; q.dataset.i = i; q.textContent = 'PAUSE · stay quiet for 3 seconds, then give the answer'; box.append(q); }
       });
     }
+    showLine();
     // scene buttons
     const sc = $('scenes'); sc.textContent = '';
     items.forEach((x, i) => {
@@ -208,7 +223,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       const t = document.createElement('span'); t.textContent = x.tone ? 'Room tone (10 s)' : x.n + '. ' + x.t;
       const s = document.createElement('span'); s.className = 's' + (takes[x.slug] ? ' done' : '');
       s.textContent = takes[x.slug] ? '✓ recorded · ' + fmt(takes[x.slug].secs) : (x.tone ? 'Do this once' : (x.face ? 'Face on' : 'Voice only'));
-      b.append(t, s); b.onclick = () => { if (!rec) { cur = i; showPlayback(false); render(); } };
+      b.append(t, s); b.onclick = () => { if (!rec) { cur = i; lineIdx = 0; showPlayback(false); render(); } };
       sc.append(b);
     });
     const done = items.filter((x) => takes[x.slug]).length;
@@ -219,6 +234,13 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     $('prevBtn').disabled = cur === 0; $('nextBtn').disabled = cur === items.length - 1;
   }
 
+  function showLine() {
+    const it = items[cur], n = it.tone ? 0 : it.lines.length;
+    if (lineIdx > Math.max(0, n - 1)) lineIdx = Math.max(0, n - 1);
+    document.querySelectorAll('#lines .line, #lines .pause').forEach((el) => { el.classList.toggle('off', !it.tone && Number(el.dataset.i) !== lineIdx); });
+    $('lineNav').textContent = n > 1 ? 'Line ' + (lineIdx + 1) + ' of ' + n + (lineIdx < n - 1 ? '  ·  → next line' : '  ·  last line: press Space to stop') : (n === 1 ? 'One line  ·  press Space to stop' : '');
+  }
+  function stepLine(d) { const it = items[cur]; if (it.tone) return; lineIdx = Math.min(Math.max(0, lineIdx + d), it.lines.length - 1); showLine(); }
   /* ---------- camera and mic ---------- */
   async function startCam() {
     try {
@@ -233,7 +255,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       meter(stream);
       await listDevices();
       $('recBtn').disabled = false; $('startCam').textContent = 'Restart camera and mic';
-      $('tips').hidden = true; $('setupH').hidden = true;  // keep the prompter near the top, close to the webcam
+      $('tips').hidden = true; $('setupH').hidden = true; $('setup').hidden = true; $('setBtn').hidden = false;  // keep the prompter near the top, close to the webcam
       say('Camera on. Press Record (or Space) when you are ready.');
     } catch (e) {
       say('The camera or mic did not start: ' + (e && e.name ? e.name : e) + '. Allow camera and mic for this site, then try again.');
@@ -274,7 +296,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   async function record() {
     if (rec) { stop(); return; }
     if (!stream || armed) return;
-    armed = true; showPlayback(false);
+    armed = true; showPlayback(false); lineIdx = 0; showLine();
     const it = items[cur];
     await countdown();
     const mime = pickMime();
@@ -350,9 +372,12 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   $('camSel').onchange = startCam; $('micSel').onchange = startCam;
   $('recBtn').onclick = record;
   $('playBtn').onclick = () => showPlayback(true);
-  $('prevBtn').onclick = () => { if (!rec && cur > 0) { cur--; showPlayback(false); render(); } };
-  $('nextBtn').onclick = () => { if (!rec && cur < items.length - 1) { cur++; showPlayback(false); render(); } };
+  $('prevBtn').onclick = () => { if (!rec && cur > 0) { cur--; lineIdx = 0; showPlayback(false); render(); } };
+  $('nextBtn').onclick = () => { if (!rec && cur < items.length - 1) { cur++; lineIdx = 0; showPlayback(false); render(); } };
   $('bigBtn').onclick = () => { const p = $('prompter'); p.classList.toggle('big'); $('bigBtn').textContent = p.classList.contains('big') ? 'Smaller text' : 'Bigger text'; };
+  $('focusBtn').onclick = () => { const st = $('stage'); st.classList.toggle('focus'); $('focusBtn').textContent = st.classList.contains('focus') ? 'Show all lines' : 'One line at a time'; showLine(); };
+  $('lines').addEventListener('click', (e) => { if ($('stage').classList.contains('focus') && rec) { if (document.activeElement) document.activeElement.blur(); stepLine(1); } });
+  $('setBtn').onclick = () => { $('setup').hidden = !$('setup').hidden; };
   $('zipBtn').onclick = downloadZip;
   $('clearBtn').onclick = async () => {
     if (!clearArmed) { clearArmed = true; $('clearBtn').textContent = 'Tap again to delete every take'; setTimeout(() => { clearArmed = false; $('clearBtn').textContent = 'Clear all takes'; }, 4000); return; }
@@ -362,6 +387,9 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     Object.keys(takes).forEach((k) => delete takes[k]); showPlayback(false); render(); $('zipMsg').textContent = 'All takes deleted. Your script edits are kept.';
   };
   document.addEventListener('keydown', (e) => {
+    if ((e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowUp') && !(e.target && e.target.isContentEditable) && !/INPUT|SELECT/.test(e.target.tagName)) {
+      e.preventDefault(); stepLine(e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1); return;
+    }
     if (e.code !== 'Space' || (e.target && e.target.isContentEditable) || /INPUT|SELECT|VIDEO/.test(e.target.tagName)) return;
     e.preventDefault(); if (e.target.tagName === 'BUTTON') e.target.blur();
     if (!e.repeat && !$('recBtn').disabled) record();
