@@ -107,7 +107,7 @@
               ],
               "check": [] },
             { "id": "salt-bridge", "title": "The salt bridge", "section": "28.2",
-              "watch": [ { "title": "The salt bridge", "href": "../electrochemistry/#listen/L4", "voice": "Leah (AI voice)", "mins": "2:23", "pilot": "Mr Robert's own version is the first teacher-video pilot" } ],
+              "watch": [ { "title": "The salt bridge", "href": "../electrochemistry/#listen/L4", "voice": "Mr Robert", "mins": "3:22", "note": "Mr Robert's own voice and face. Leah's version is one tap away." } ],
               "train": [
                 { "title": "Build a cell (change the salt bridge)", "href": "../electrochemistry/#lab/cell", "kind": "lab" },
                 { "title": "When a cell runs down", "href": "../electrochemistry/#lab/rundown", "kind": "lab" },

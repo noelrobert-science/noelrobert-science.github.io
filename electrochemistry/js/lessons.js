@@ -80,13 +80,18 @@
   ];
   S.LESSONS = LESSONS;
   const byId = id => LESSONS.find(l => l.id === id);
-  const audio = id => (S.LESSON_AUDIO || {})[id];
+  /* Voices: Leah (synthetic South African voice) for every lesson; Mr Robert's own voice and face where he has recorded one.
+     The learner's choice is remembered; Mr Robert is the default where it exists. */
+  const leah = id => (S.LESSON_AUDIO || {})[id];
+  const noel = id => ((S.LESSON_VOICES || {})[id] || {}).noel;
+  const voiceOf = () => store.get('lesson-voice', 'noel');
+  const audio = id => (voiceOf() === 'noel' && noel(id)) || leah(id);
   const mmss = (s, up) => { const v = up ? Math.round(s) : Math.floor(s); return Math.floor(v / 60) + ':' + String(v % 60).padStart(2, '0'); };
   S.lessonsFor = section => LESSONS.filter(l => l.sections.includes(section));
   S.lessonCard = l => {
     const a = audio(l.id), done = store.get('lessons', {})[l.id];
     return h('a', { class: 'card', href: '#listen/' + l.id, style: { '--bc': S.MODS[l.mod].colour } },
-      h('span', { class: 'tag' }, 'Lesson ' + l.id.slice(1) + ' · ' + (a ? mmss(a.dur, true) : '') + (done ? ' · heard ✓' : '')),
+      h('span', { class: 'tag' }, 'Lesson ' + l.id.slice(1) + ' · ' + (a ? mmss(a.dur, true) : '') + (a && a.voice ? ' · ' + a.voice : '') + (done ? ' · heard ✓' : '')),
       h('b', null, '▶ ' + l.title), h('small', null, l.blurb));
   };
 
@@ -98,7 +103,7 @@
 
   function list(el) {
     add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'Narrated lessons'),
-      h('p', null, 'Six short lessons, about three minutes each, read by a South African voice. Each plays beside the live lab it is about, and stops at every prediction so you can decide first.'))),
+      h('p', null, 'Six short lessons, about three minutes each. Each plays beside the live lab it is about, and stops at every prediction so you can decide first. Lesson 4 is in Mr Robert’s own voice; the others are read by Leah, a South African voice, until he records them.'))),
       h('div', { class: 'grid g3' }, LESSONS.filter(l => audio(l.id)).map(S.lessonCard)),
       h('p', { class: 'small muted', style: { marginTop: '14px' } }, 'Headphones help in class. Every lesson has a full transcript, and the words appear on screen as they are spoken.'),
       S.offline && S.offline.canKeep() ? allRow() : null]);
@@ -107,14 +112,15 @@
   // keep all six lessons on this device in one go
   function allRow() {
     const row = h('div', { class: 'row small', style: { marginTop: '6px' } }), urls = LESSONS.filter(l => audio(l.id)).map(l => 'audio/' + audio(l.id).folder + '/narration.mp3');
-    const total = LESSONS.reduce((s, l) => s + ((audio(l.id) || {}).bytes || 0), 0);
+    const extra = LESSONS.filter(l => audio(l.id) && audio(l.id).face).map(l => 'audio/' + audio(l.id).folder + '/' + audio(l.id).face.src);
+    const total = LESSONS.reduce((s, l) => s + ((audio(l.id) || {}).bytes || 0) + (((audio(l.id) || {}).face || {}).bytes || 0), 0);
     async function draw(msg) {
       const got = (await Promise.all(urls.map(S.offline.lessonSaved))).filter(Boolean).length;
       clear(row);
       add(row, [got === urls.length ? h('span', { class: 'tag tag-score' }, '✓ All six lessons saved for offline') :
         h('button', { class: 'btn ghost small', type: 'button', onclick: async e => {
           e.currentTarget.disabled = true; e.currentTarget.textContent = 'Saving…';
-          let ok = true; for (const u of urls) { try { if (!(await S.offline.lessonSaved(u))) await S.offline.saveLesson(u); } catch (err) { ok = false; } }
+          let ok = true; for (const u of urls.concat(extra)) { try { if (!(await S.offline.lessonSaved(u))) await S.offline.saveLesson(u); } catch (err) { ok = false; } }
           await draw(ok ? 'Saved: the lessons now play without the internet.' : 'Some lessons could not be saved. Check the connection and try again.');
         } }, 'Save all lessons for offline' + (total ? ' (' + (total / 1048576).toFixed(0) + ' MB)' : '') + (got ? ' · ' + got + ' saved' : '')),
         msg ? h('span', { class: 'muted', role: 'status' }, msg) : null]);
@@ -134,7 +140,8 @@
     const netMsg = h('div', { role: 'status' });
     // Save for offline: the narration is kept on this device, so the lesson plays without the internet
     const keepRow = h('div', { class: 'row small keep-row' });
-    const mp3 = base + 'narration.mp3', mb = A.bytes ? ' (' + (A.bytes / 1048576).toFixed(1).replace('.', ',') + ' MB)' : '';
+    const mp3 = base + 'narration.mp3', faceUrl = A.face ? base + A.face.src : null, allBytes = (A.bytes || 0) + (A.face ? A.face.bytes || 0 : 0);
+    const mb = allBytes ? ' (' + (allBytes / 1048576).toFixed(1).replace('.', ',') + ' MB)' : '';
     async function drawKeep(msg) {
       if (!S.offline || !S.offline.canKeep()) return;
       const saved = await S.offline.lessonSaved(mp3);
@@ -142,7 +149,7 @@
       add(keepRow, [saved ? h('span', { class: 'tag tag-score' }, '✓ Saved for offline') : null,
         h('button', { class: 'btn ghost small', type: 'button', onclick: async e => {
           const b = e.currentTarget; b.disabled = true; b.textContent = saved ? 'Removing…' : 'Saving…';
-          try { if (saved) await S.offline.forgetLesson(mp3); else await S.offline.saveLesson(mp3); await drawKeep(saved ? 'Removed from this device.' : 'Saved: this lesson now plays without the internet.'); }
+          try { if (saved) { await S.offline.forgetLesson(mp3); if (faceUrl) await S.offline.forgetLesson(faceUrl); } else { await S.offline.saveLesson(mp3); if (faceUrl) await S.offline.saveLesson(faceUrl); } await drawKeep(saved ? 'Removed from this device.' : 'Saved: this lesson now plays without the internet.'); }
           catch (err) { await drawKeep('Could not save it now. Check the connection and try again.'); }
           const nb = keepRow.querySelector('button'); if (nb) nb.focus({ preventScroll: true });
         } }, saved ? 'Remove from this device' : 'Save for offline' + mb),
@@ -150,6 +157,23 @@
     }
     drawKeep();
     player.addEventListener('error', () => { clear(netMsg); netMsg.appendChild(S.notice('no', 'The narration needs an internet connection, or tap “Save for offline” next time you are online. The scenes, the board, the live lab and the transcript still work.')); });
+    // voice switch (only where Mr Robert has recorded this lesson) and his face circle, which shows in the face-on scenes
+    let showFace = store.get('lesson-face', true);
+    const voiceRow = noel(l.id) && leah(l.id) ? h('div', { class: 'row small voice-row' }, h('span', { class: 'muted' }, 'Voice'),
+      S.seg([['noel', 'Mr Robert'], ['leah', 'Leah']], A === noel(l.id) ? 'noel' : 'leah', v => { store.set('lesson-voice', v); S.onLeaveNow(); clear(el); lesson(el, l); }),
+      A.face ? h('label', { class: 'row', style: { gap: '6px' } }, h('input', { type: 'checkbox', checked: showFace, onchange: e => { showFace = e.target.checked; store.set('lesson-face', showFace); syncFace(true); } }), 'Show Mr Robert') : null) : null;
+    const face = A.face ? h('video', { class: 'lesson-face', muted: true, playsinline: true, preload: 'metadata', src: faceUrl, 'aria-hidden': 'true', tabindex: '-1' }) : null;
+    if (face) { face.muted = true; face.setAttribute('playsinline', ''); face.addEventListener('error', () => { face.hidden = true; }); }
+    function faceScene() { const t = player.currentTime; let st = null; A.scenes.forEach(sc => { if (t >= sc.a - 0.05) st = sc.t; }); return st; }
+    function syncFace(force) {
+      if (!face) return;
+      const on = showFace && !face.hidden && A.face.scenes.includes(faceScene());
+      face.classList.toggle('on', on);
+      if (player.paused || !on) { if (!face.paused) face.pause(); if (force || Math.abs(face.currentTime - player.currentTime) > 0.08) { try { face.currentTime = player.currentTime; } catch (e) { } } return; }
+      if (Math.abs(face.currentTime - player.currentTime) > 0.25) { try { face.currentTime = player.currentTime; } catch (e) { } }
+      face.playbackRate = player.playbackRate;
+      if (face.paused) face.play().catch(() => { });
+    }
     const sceneTitle = h('div', { class: 'eyebrow', 'aria-live': 'polite' });
     const board = h('div', { class: 'board' });
     const caption = h('p', { class: 'caption', 'aria-hidden': 'true' });
@@ -170,7 +194,7 @@
       h('div', { class: 'head' }, h('div', null, h('h2', null, l.title), h('p', null, l.blurb))),
       h('div', { class: 'split sticky-left lesson' },
         h('div', null,
-          h('div', { class: 'card lesson-player' }, player, netMsg, keepRow, stopToggle, sceneTitle, board, waitBox, caption),
+          h('div', { class: 'card lesson-player' }, voiceRow, player, netMsg, keepRow, stopToggle, sceneTitle, face ? h('div', { class: 'board-wrap' }, board, face) : board, waitBox, caption),
           h('div', { class: 'card', style: { marginTop: '12px' } }, h('h3', null, 'Scenes'), sceneList),
           transcript),
         h('div', null, h('p', { class: 'small muted no-present', style: { margin: '0 0 6px' } }, 'The live lab: it changes with each scene. Pause the lesson any time and try it yourself.'), veilNote, labBox)),
@@ -185,7 +209,7 @@
     // going back before a prediction makes the lesson stop there again
     const restop = t => stopped.forEach(pc => { if (pc.b > t) stopped.delete(pc); });
     function seek(t) { waiting = null; clear(waitBox); restop(t); player.currentTime = Math.max(0, t - 0.05); update(); player.play().catch(() => { }); }
-    function predictCue(sc) { return A.cues.find(c => c.s === sc && /Decide/.test(c.x)); }
+    function predictCue(sc) { return A.cues.find(c => c.s === sc && (c.p || /Decide/.test(c.x))); }
     /* the answer is shown on the board and in the lab only when the narrator starts giving it (the cue after the question) */
     function revealAt(pc) { const i = A.cues.indexOf(pc); return A.cues[i + 1] ? A.cues[i + 1].a - 0.1 : pc.b + 0.3; }
     function isRevealed(pc, t) { return !!pc && t >= revealAt(pc) && !waiting; }
@@ -209,7 +233,7 @@
       } catch (e) { console.error(e); }
       finally { S.onLeave = orig; }
     }
-    S.onLeave(() => { player.pause(); player.removeAttribute('src'); player.load(); labCleanup.forEach(f => { try { f(); } catch (e) { } }); });
+    S.onLeave(() => { player.pause(); player.removeAttribute('src'); player.load(); if (face) { face.pause(); face.removeAttribute('src'); face.load(); } labCleanup.forEach(f => { try { f(); } catch (e) { } }); });
 
     function drawBoard(meta, sc) {
       clear(board);
@@ -258,6 +282,7 @@
       [...transcript.querySelectorAll('p[data-i]')].forEach(p => { const on = !!cue && A.cues[+p.dataset.i] === cue; p.classList.toggle('on', on); if (on) p.setAttribute('aria-current', 'true'); else p.removeAttribute('aria-current'); });
     }
     player.addEventListener('timeupdate', update);
+    if (face) ['play', 'pause', 'seeked', 'timeupdate', 'ratechange', 'ended'].forEach(ev => player.addEventListener(ev, () => syncFace(ev === 'seeked')));
     player.addEventListener('seeked', update);
     player.addEventListener('play', () => { if (waiting) resume(); });
     player.addEventListener('ended', () => {

@@ -2,7 +2,7 @@
    Narrated lessons are large, so each is kept only when the learner taps "Save for offline".
    Updates: when online, the browser fetches this file again; a new VERSION means a new studio is downloaded in the
    background and the page offers "New version ready: refresh". Nothing about the learner is stored or sent. */
-const VERSION = 'a7a4ea61ccca';
+const VERSION = 'cbfd0f92124a';
 const APP = 'ec-app-' + VERSION, AUDIO = 'ec-audio-v1';
 const FILES = [ "./", "./index.html", "./manifest.webmanifest", "../assets/fonts/Lexend-400.woff2", "../assets/fonts/Outfit-800.woff2", "./css/studio.css", "./js/app.js", "./js/bookchecks.js", "./js/content.js", "./js/engine.js", "./js/ieb.js", "./js/labmodes.js", "./js/learn.js", "./js/lessons-data.js", "./js/lessons.js", "./js/minipaper.js", "./js/museum.js", "./js/nowyou.js", "./js/practice.js", "./js/tools-cells.js", "./js/tools-electro.js", "./js/tools-redox.js", "./js/tools-t4.js", "./icons/icon-192.png", "./icons/icon-512.png" ];
 
@@ -34,7 +34,7 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
-  if (/\/audio\/.+\.(mp3|vtt)$/.test(url.pathname)) {
+  if (/\/audio\/.+\.(mp3|vtt|mp4)$/.test(url.pathname)) {
     e.respondWith(caches.open(AUDIO).then(c => c.match(url.pathname)).then(hit => hit ? ranged(req, hit) : fetch(req)));
     return;
   }

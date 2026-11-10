@@ -427,3 +427,14 @@ input.blank { max-width: 100%; box-sizing: border-box; width: auto; min-height: 
 /* One cell, two ways: the comparison table wraps instead of being cut off (iPad landscape and phones) */
 table.wraptbl .chem { white-space: normal; }
 table.wraptbl td { min-width: 0; }
+
+/* Mr Robert's voice and face (teacher-presented lessons) */
+.voice-row { gap: 10px; align-items: center; margin: 0 0 8px; flex-wrap: wrap; }
+.board-wrap { position: relative; display: flex; gap: 12px; align-items: flex-start; }
+.board-wrap .board { flex: 1; min-width: 0; }
+.lesson-face { flex: none; width: 0; height: 0; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--soft);
+  border: 3px solid var(--paper); box-shadow: 0 4px 16px rgba(0,0,0,.18); opacity: 0; transform: scale(.6); margin-top: 6px;
+  transition: opacity .35s ease, transform .35s ease, width .35s ease; }
+.lesson-face.on { width: clamp(96px, 24vw, 150px); height: clamp(96px, 24vw, 150px); opacity: 1; transform: none; }
+body.present .lesson-face.on { width: 180px; height: 180px; }
+@media (prefers-reduced-motion: reduce) { .lesson-face { transition: none; } }
