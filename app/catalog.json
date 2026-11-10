@@ -1,0 +1,157 @@
+{
+  "name": "Mr R Science",
+  "updated": "2026-11-10",
+  "note": "One list of everything learners can use, by grade, module and topic. The app, the studio hub and school pages all read this file. Paths are relative to /app/.",
+  "grades": [
+    {
+      "id": "10", "label": "Grade 10", "syllabus": "IEB Physical Sciences",
+      "modules": [
+        {
+          "id": "g10-m7-8", "num": "7–8", "title": "Momentum and impulse", "colour": "#c2410c",
+          "book": "Coursebook Modules 7 and 8 (p. 133 and p. 153)",
+          "topics": [
+            { "id": "momentum", "title": "Momentum, Δp and impulse", "section": "7.1–7.4", "page": 133,
+              "watch": [ { "title": "A sticking collision, step by step", "href": "../momentum/", "voice": "Studio video", "note": "In the Momentum Studio" } ],
+              "train": [
+                { "title": "Momentum p = mv", "href": "gym/#climb/mp", "kind": "gym" },
+                { "title": "Δp and force", "href": "gym/#climb/mdp", "kind": "gym" },
+                { "title": "Impulse: airbags and catches", "href": "gym/#climb/mstop", "kind": "gym" },
+                { "title": "Real world in 30 seconds", "href": "gym/#climb/real", "kind": "gym" }
+              ],
+              "check": [ { "title": "Check it on my own", "href": "gym/#climb", "kind": "gym", "note": "Choose a topic, then Check it on my own" } ] },
+            { "id": "conservation", "title": "Conservation of momentum", "section": "8.1–8.4", "page": 153,
+              "watch": [],
+              "train": [
+                { "title": "Crash Lab: predict, then watch", "href": "gym/#climb/crash", "kind": "gym" },
+                { "title": "Stick together", "href": "gym/#climb/mstick", "kind": "gym" },
+                { "title": "Bounce apart", "href": "gym/#climb/mbounce", "kind": "gym" },
+                { "title": "Explosions and recoil", "href": "gym/#climb/mexplode", "kind": "gym" },
+                { "title": "Elastic or inelastic?", "href": "gym/#climb/melastic", "kind": "gym" },
+                { "title": "Fix it: find the mistake", "href": "gym/#climb/fixit", "kind": "gym" },
+                { "title": "Collision carts lab", "href": "../momentum/collision-carts.html", "kind": "studio" },
+                { "title": "Momentum Studio", "href": "../momentum/", "kind": "studio" }
+              ],
+              "check": [ { "title": "Daily 5 (mixed retrieval)", "href": "gym/#climb/daily", "kind": "gym" } ] }
+          ]
+        },
+        {
+          "id": "g10-m14", "num": "14", "title": "Chemical calculations", "colour": "#d9480f",
+          "book": "Coursebook Module 14 (pp. 290–340)",
+          "topics": [
+            { "id": "mass-moles", "title": "Mass, molar mass and moles", "section": "14.1–14.2", "page": 291,
+              "watch": [ { "title": "Mass, molar mass and moles", "href": "gym/#learn", "voice": "Studio video", "mins": "4 min", "note": "Pauses for you to write" } ],
+              "train": [
+                { "title": "Grams → moles", "href": "gym/#climb/mass", "kind": "gym" },
+                { "title": "Moles → grams", "href": "gym/#climb/reverse", "kind": "gym" },
+                { "title": "Chemical Calculations Studio", "href": "../chemical-calculations/", "kind": "studio" }
+              ],
+              "check": [ { "title": "Exam-style, without help", "href": "gym/#practice", "kind": "gym" } ] },
+            { "id": "mixtures", "title": "Ions in mixed solutions", "section": "14.5", "page": 303,
+              "watch": [],
+              "train": [ { "title": "Ions in a mixture", "href": "gym/#climb/mix", "kind": "gym" } ],
+              "check": [ { "title": "Exam-style, without help", "href": "gym/#practice", "kind": "gym" } ] },
+            { "id": "limiting-purity", "title": "Limiting reagents and purity", "section": "14.9–14.12", "page": 320,
+              "watch": [],
+              "train": [
+                { "title": "Limiting and excess", "href": "gym/#climb/limiting", "kind": "gym" },
+                { "title": "Percentage purity", "href": "gym/#climb/purity", "kind": "gym" }
+              ],
+              "check": [ { "title": "Exam-style, without help", "href": "gym/#practice", "kind": "gym" } ] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11", "label": "Grade 11", "syllabus": "IEB Physical Sciences",
+      "modules": [],
+      "coming": "Electric circuits is being built now (Ohm's law, power, internal resistance)."
+    },
+    {
+      "id": "12", "label": "Grade 12", "syllabus": "IEB Physical Sciences",
+      "modules": [
+        {
+          "id": "g12-m27", "num": "27", "title": "Redox and Table 4", "colour": "#0b7285",
+          "book": "Grade 11–12 coursebook, Module 27",
+          "topics": [
+            { "id": "table4", "title": "Reading Table 4", "section": "27",
+              "watch": [ { "title": "Reading Table 4", "href": "../electrochemistry/#listen/L1", "voice": "Leah (AI voice)", "mins": "2:47" } ],
+              "train": [
+                { "title": "Who does what?", "href": "../electrochemistry/#lab/roles", "kind": "lab" },
+                { "title": "Half-reaction builder", "href": "../electrochemistry/#lab/halfrx", "kind": "lab" },
+                { "title": "Electron balancer", "href": "../electrochemistry/#lab/balancer", "kind": "lab" },
+                { "title": "Is it redox?", "href": "../electrochemistry/#lab/isredox", "kind": "lab" },
+                { "title": "Spectator spotter", "href": "../electrochemistry/#lab/spectators", "kind": "lab" }
+              ],
+              "check": [ { "title": "Mistake museum", "href": "../electrochemistry/#museum", "kind": "studio" } ] },
+            { "id": "will-it-react", "title": "Will it react?", "section": "27",
+              "watch": [ { "title": "Will it react?", "href": "../electrochemistry/#listen/L2", "voice": "Leah (AI voice)", "mins": "2:20" } ],
+              "train": [
+                { "title": "Test-tube lab", "href": "../electrochemistry/#lab/testtube", "kind": "lab" },
+                { "title": "Live Table 4: pair and build", "href": "../electrochemistry/#lab/table4", "kind": "lab" },
+                { "title": "Zinc in copper(II) sulfate, up close", "href": "../electrochemistry/#lab/zinc", "kind": "lab" }
+              ],
+              "check": [] }
+          ]
+        },
+        {
+          "id": "g12-m28", "num": "28", "title": "Galvanic cells", "colour": "#7048e8",
+          "book": "Grade 11–12 coursebook, Module 28",
+          "topics": [
+            { "id": "galvanic", "title": "The galvanic cell", "section": "28.1",
+              "watch": [ { "title": "The galvanic cell", "href": "../electrochemistry/#listen/L3", "voice": "Leah (AI voice)", "mins": "2:40" } ],
+              "train": [
+                { "title": "Build a cell", "href": "../electrochemistry/#lab/cell", "kind": "lab" },
+                { "title": "Cell notation workshop", "href": "../electrochemistry/#lab/notation", "kind": "lab" },
+                { "title": "The emf ruler", "href": "../electrochemistry/#lab/ruler", "kind": "lab" },
+                { "title": "Standard hydrogen electrode explorer", "href": "../electrochemistry/#lab/she", "kind": "lab" }
+              ],
+              "check": [] },
+            { "id": "salt-bridge", "title": "The salt bridge", "section": "28.2",
+              "watch": [ { "title": "The salt bridge", "href": "../electrochemistry/#listen/L4", "voice": "Leah (AI voice)", "mins": "2:23", "pilot": "Mr Robert's own version is the first teacher-video pilot" } ],
+              "train": [
+                { "title": "Build a cell (change the salt bridge)", "href": "../electrochemistry/#lab/cell", "kind": "lab" },
+                { "title": "When a cell runs down", "href": "../electrochemistry/#lab/rundown", "kind": "lab" },
+                { "title": "Internal resistance bench", "href": "../electrochemistry/#lab/resistance", "kind": "lab" }
+              ],
+              "check": [] }
+          ]
+        },
+        {
+          "id": "g12-m29", "num": "29", "title": "Electrolytic cells and Faraday", "colour": "#e8590c",
+          "book": "Grade 11–12 coursebook, Module 29",
+          "topics": [
+            { "id": "electrolysis", "title": "Electrolysis: the two contests", "section": "29.1–29.4",
+              "watch": [ { "title": "Electrolysis: the two contests", "href": "../electrochemistry/#listen/L5", "voice": "Leah (AI voice)", "mins": "2:58" } ],
+              "train": [
+                { "title": "Electrolysis lab", "href": "../electrochemistry/#lab/electrolysis", "kind": "lab" },
+                { "title": "One cell, two directions", "href": "../electrochemistry/#lab/twoway", "kind": "lab" },
+                { "title": "The membrane cell", "href": "../electrochemistry/#lab/membrane", "kind": "lab" },
+                { "title": "Plating and refining", "href": "../electrochemistry/#lab/plating", "kind": "lab" }
+              ],
+              "check": [] },
+            { "id": "faraday", "title": "Counting electrons: Faraday", "section": "29.5",
+              "watch": [ { "title": "Counting electrons: Faraday", "href": "../electrochemistry/#listen/L6", "voice": "Leah (AI voice)", "mins": "2:35" } ],
+              "train": [
+                { "title": "The Faraday machine", "href": "../electrochemistry/#lab/faraday", "kind": "lab" },
+                { "title": "Hydrate and ion-ratio trainer", "href": "../electrochemistry/#lab/hydrate", "kind": "lab" }
+              ],
+              "check": [ { "title": "Mini-papers A, B and C (all three modules)", "href": "../electrochemistry/#minipaper", "kind": "studio" } ] }
+          ]
+        },
+        {
+          "id": "g12-revise", "num": "★", "title": "Revision guides", "colour": "#334155",
+          "book": "Grade 12 revision guides, 90-plus booklets and challenge banks",
+          "topics": [
+            { "id": "guides", "title": "All revision guides", "section": "Papers 1 and 2",
+              "watch": [],
+              "train": [
+                { "title": "Revision guides by topic", "href": "../gr12-guides/", "kind": "studio" },
+                { "title": "Challenge banks", "href": "../gr12-guides/challenge/", "kind": "studio" }
+              ],
+              "check": [ { "title": "90-plus booklets", "href": "../gr12-guides/90-plus/", "kind": "studio" } ] }
+          ]
+        }
+      ]
+    }
+  ]
+}
