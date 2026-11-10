@@ -2,7 +2,7 @@
    Narrated lessons are large, so each is kept only when the learner taps "Save for offline".
    Updates: when online, the browser fetches this file again; a new VERSION means a new studio is downloaded in the
    background and the page offers "New version ready: refresh". Nothing about the learner is stored or sent. */
-const VERSION = '92dc741942fe';
+const VERSION = 'c6e038bf4bd0';
 const APP = 'ec-app-' + VERSION, AUDIO = 'ec-audio-v1';
 const FILES = [ "./", "./index.html", "./manifest.webmanifest", "../assets/fonts/Lexend-400.woff2", "../assets/fonts/Outfit-800.woff2", "./css/studio.css", "./js/app.js", "./js/bookchecks.js", "./js/content.js", "./js/engine.js", "./js/ieb.js", "./js/labmodes.js", "./js/learn.js", "./js/lessons-data.js", "./js/lessons.js", "./js/minipaper.js", "./js/museum.js", "./js/nowyou.js", "./js/practice.js", "./js/tools-cells.js", "./js/tools-electro.js", "./js/tools-redox.js", "./js/tools-t4.js", "./icons/icon-192.png", "./icons/icon-512.png" ];
 

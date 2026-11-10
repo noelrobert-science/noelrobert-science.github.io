@@ -55,6 +55,60 @@
   /* the cell picture: two beakers, wire, voltmeter, salt bridge. p is the animation clock (seconds).
      o.compact: the drawing is in a phone-width box, so every word is drawn about twice as large (11 px or more on screen)
      and the solution names go in a line under the drawing. */
+  /* Pictures that act out a narrated lesson (L4): o.build = charge building up with no salt bridge; o.spot = which ions
+     to follow through the salt bridge, or the electrons-never-in-the-bridge trap. Colours follow the house code:
+     blue = oxidation side, red = reduction side, dark grey = electrons. */
+  function lessonOverlay(o, g) {
+    const { cp, F, anodeLeft } = g; let s = '';
+    const fs = n => cp ? F(n) : n, blue = '#1c64d6', red = '#c92a2a', grey = '#343a40', ink = '#17324d';
+    const aX = anodeLeft ? 40 : 490, cX = anodeLeft ? 490 : 40, aE = (anodeLeft ? g.xl : g.xr), cE = (anodeLeft ? g.xr : g.xl);
+    const an = anodeLeft ? g.L : g.R, ca = anodeLeft ? g.R : g.L;
+    const ion = (x, y, t, fill, op) => `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-size="${cp ? F(10) : 13}" font-weight="700" fill="${fill}" opacity="${op == null ? 1 : op.toFixed(2)}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`;
+    // charge signs sit either side of the electrode (E), never on it
+    const signs = (E, n, sign, label, fill) => {
+      if (n <= 0) return '';
+      const xs = (cp ? [E - 72, E + 50, E + 92, E - 38, E + 134] : [E - 80, E + 42, E + 74, E - 50, E + 106]).slice(0, n);
+      let t = ''; xs.forEach(x => { t += `<circle cx="${x}" cy="${cp ? 282 : 252}" r="${cp ? 15 : 12}" fill="#fff" stroke="${fill}" stroke-width="2.5"/><text x="${x}" y="${cp ? 290 : 258}" text-anchor="middle" font-size="${fs(14)}" font-weight="800" fill="${fill}">${sign}</text>`; });
+      return t + (label && !cp ? `<text x="${E + 18}" y="285" font-size="11" font-weight="700" fill="${fill}" stroke="#fff" stroke-width="4" paint-order="stroke">${label}</text>` : '');
+    };
+    const b = o.build;
+    if (b) {
+      const mName = an.el || 'M', mIon = (hcRow(an).oa || 'M²⁺'), cIon = (hcRow(ca).oa || 'Cu²⁺');
+      // anode: metal atoms leave the electrode as ions, one after another
+      const slotsA = [[-70, 340], [55, 330], [-55, 385], [70, 380], [-80, 300], [95, 300], [-45, 362], [40, 355]];
+      (cp ? slotsA.slice(0, 6).map(([dx, y]) => [dx, 320 + (y - 300) * 0.55]) : slotsA).forEach(([dx, y], j, arr) => { const f = Math.max(0, Math.min(1, b.a * arr.length - j)); if (f > 0) s += ion(aE + dx * f, 300 + (y - 300) * f, mIon, blue, Math.min(1, f * 2)); });
+      s += signs(aE, Math.round(b.a * 5), '+', b.a > 0.35 ? (cp ? '+ builds up' : '+ charge builds up') : '', blue);
+      // cathode: the oxidising agent's ions go to the electrode and are removed; the negative ions are left behind
+      const slotsC = [[-70, 340], [60, 330], [-55, 385], [70, 382], [-85, 300], [85, 300]];
+      (cp ? slotsC.map(([dx, y]) => [dx, 320 + (y - 300) * 0.4]) : slotsC).forEach(([dx, y], j) => { const f = Math.max(0, Math.min(1, b.c * slotsC.length - j)); if (f < 1) s += ion(cE + dx * (1 - f), y + (300 - y) * f * 0.3, cIon, red, 1 - f); });
+      (cp ? [[-75, 345], [70, 340], [-60, 372], [62, 368]] : [[-40, 395], [35, 400], [-95, 360], [95, 355]]).forEach(([dx, y]) => { s += ion(cE + dx, y, 'NO₃⁻', '#495057', 0.9); });
+      s += signs(cE, Math.round(b.c * 5), '−', b.c > 0.35 ? (cp ? '− builds up' : '− charge builds up') : '', red);
+      if (b.flow <= 0.01 && b.stopped) s += `<text x="380" y="${cp ? 118 : 108}" text-anchor="middle" font-size="${fs(14)}" font-weight="800" fill="#a3360f">current stops</text>`;
+    }
+    const sp = o.spot;
+    if (sp === 'anion' || sp === 'cation' || sp === 'both') {
+      const p = o.p || 0, lx = anodeLeft ? 235 : 525, rx = anodeLeft ? 525 : 235, dirA = lx < 380 ? -1 : 1;
+      const anion = o.bridge === 'KCℓ' ? 'Cℓ⁻' : 'NO₃⁻';
+      const out = (x0, dir, t, fill, k) => { let r = ''; for (let j = 0; j < 3; j++) { const ph = ((p * 0.35) + j / 3 + k) % 1; r += ion(x0 + dir * (8 + ph * 70), 395 - j * 22, t, fill, 1 - ph * 0.6); } return r; };
+      if (sp !== 'cation') {
+        s += out(lx, dirA, anion, blue, 0);
+        s += `<text x="380" y="${cp ? 300 : 300}" text-anchor="middle" font-size="${fs(13)}" font-weight="700" fill="${blue}" stroke="#fff" stroke-width="4" paint-order="stroke">${dirA < 0 ? '← ' : ''}${anion} into ${cp ? '' : 'the '}${anodeLeft ? hcWord(g.L) : hcWord(g.R)}${cp ? '' : ' half-cell'}${dirA > 0 ? ' →' : ''}</text>`;
+      }
+      if (sp !== 'anion') {
+        s += out(rx, -dirA, 'K⁺', red, 0.5);
+        s += `<text x="380" y="${cp ? 340 : 325}" text-anchor="middle" font-size="${fs(13)}" font-weight="700" fill="${red}" stroke="#fff" stroke-width="4" paint-order="stroke">${dirA > 0 ? '← ' : ''}K⁺ into ${cp ? '' : 'the '}${anodeLeft ? hcWord(g.R) : hcWord(g.L)}${cp ? '' : ' half-cell'}${dirA < 0 ? ' →' : ''}</text>`;
+      }
+      if (sp === 'both') s += cp ? `<text x="380" y="384" text-anchor="middle" font-size="${F(11)}" font-weight="700" fill="${ink}" stroke="#fff" stroke-width="4" paint-order="stroke">ions move both ways</text>`
+        : `<text x="380" y="352" text-anchor="middle" font-size="12" font-weight="700" fill="${ink}" stroke="#fff" stroke-width="4" paint-order="stroke">ions also move from</text><text x="380" y="368" text-anchor="middle" font-size="12" font-weight="700" fill="${ink}" stroke="#fff" stroke-width="4" paint-order="stroke">each half-cell into the bridge</text>`;
+    }
+    if (sp === 'trap') {
+      const tl = cp ? [['✗ no electrons', 300, 12, '#a3360f', 800], ['in the bridge', 328, 12, '#a3360f', 800], ['ions carry the charge', 360, 10, ink, 700]] : [['✗ no electrons in the bridge', 236, 14, '#a3360f', 800], ['ions carry the charge here', 258, 12, ink, 700]];
+      tl.forEach(([t, y, f, c, w]) => { s += `<text x="380" y="${y}" text-anchor="middle" font-size="${fs(f)}" font-weight="${w}" fill="${c}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`; });
+      if (!cp) s += `<text x="${anodeLeft ? 230 : 530}" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="${grey}">e⁻ only in the wire</text>`;
+    }
+    return s;
+  }
+  const hcWord = c => ({ Zn: 'zinc', Cu: 'copper', Ag: 'silver', Fe: 'iron', Ni: 'nickel', Mg: 'magnesium', Al: 'aluminium', Pb: 'lead', Co: 'cobalt', Cr: 'chromium', MnO4: 'permanganate' })[c.id] || (c.el || c.id);
   function cellSVG(L, R, o) {
     const W = 760, H = 440, cp = !!o.compact, k = cp ? 1.9 : 1, F = n => (n * k).toFixed(1);
     const anodeLeft = o.anodeLeft;
@@ -129,6 +183,17 @@
       if (lf) s += '</g>';
     } else s += cp ? `<text x="380" y="150" text-anchor="middle" font-size="${F(12)}" fill="#a3360f" font-weight="700">no salt bridge:</text><text x="380" y="176" text-anchor="middle" font-size="${F(12)}" fill="#a3360f" font-weight="700">the circuit is open</text>`
       : `<text x="380" y="150" text-anchor="middle" font-size="13" fill="#a3360f" font-weight="700">no salt bridge: the circuit is open</text>`;
+    if (o.build && o.build.flow > 0.01) {
+      const path = anodeLeft ? [[xl, 120], [xl, 50], [xr, 50], [xr, 120]] : [[xr, 120], [xr, 50], [xl, 50], [xl, 120]];
+      const segs = []; let tot = 0;
+      for (let i = 0; i < 3; i++) { const d = Math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1]); segs.push(d); tot += d; }
+      for (let j = 0; j < 7; j++) {
+        let d = (((o.build.dist || 0) + j * tot / 7) % tot); let i = 0; while (d > segs[i]) { d -= segs[i]; i++; }
+        const f = d / segs[i], x = path[i][0] + (path[i + 1][0] - path[i][0]) * f, y = path[i][1] + (path[i + 1][1] - path[i][1]) * f;
+        if (Math.abs(x - 380) < mr + 2 && y < 100) continue;
+        s += `<circle cx="${x}" cy="${y}" r="${cp ? 8 : 6}" fill="#343a40" opacity="${(0.35 + 0.65 * o.build.flow).toFixed(2)}"/>`;
+      }
+    }
     if (run) {
       // electrons along the wire from anode to cathode
       const path = anodeLeft ? [[xl, 120], [xl, 50], [xr, 50], [xr, 120]] : [[xr, 120], [xr, 50], [xl, 50], [xl, 120]];
@@ -150,6 +215,7 @@
         s += `<text x="${cx}" y="${cp ? 150 : 146}" text-anchor="middle" font-size="${F(12)}" font-weight="700" fill="#c92a2a">K⁺</text><text x="${ax}" y="${j % 2 ? (cp ? 170 : 160) : (cp ? 126 : 132)}" text-anchor="middle" font-size="${F(11)}" font-weight="700" fill="#1c64d6">${anion}</text>`;
       }
     }
+    s += lessonOverlay(o, { cp, F, anodeLeft, xl, xr, L, R });
     s += '</svg>';
     if (cp) s += `<p class="small muted" style="margin:6px 0 0">Left: ${L.sol}. Right: ${R.sol}.</p>`;
     return s;
@@ -195,11 +261,12 @@
         // SAGS 29/54: the SHE is always connected as the anode (negative terminal), so the reading is Eθ of the other half-cell, with its sign
         const she = an.she ? an : ca.she ? ca : null, other = she ? (she === an ? ca : an) : null;
         let value = she ? EC.eCellValue(hcRow(other), hcRow(she)) : EC.eCellValue(cRow, aRow);
+        const emf = value;
         if (noBridge) value = 0;
         else if (ppt && st.elapsed > 2) { const k = Math.min(1, st.elapsed / 20); value = agAnode && !mno4 ? value + 0.1 * k : Math.max(0, value - 0.35 * k); }
         else if (mno4 && st.elapsed > 0) value = Math.max(0, value - 0.3 * Math.min(1, st.elapsed / 20));
         else if (st.elapsed > 0) value *= 1 - 0.1 * Math.min(1, st.elapsed / 30); // the reading falls a little as the concentrations change (28.7)
-        return { an, ca, aRow, cRow, anodeLeft, ppt, attacked, problem, noBridge, value, she, other, aSide: anodeLeft ? 'L' : 'R', cSide: anodeLeft ? 'R' : 'L' };
+        return { an, ca, aRow, cRow, anodeLeft, ppt, attacked, problem, noBridge, value, emf, she, other, aSide: anodeLeft ? 'L' : 'R', cSide: anodeLeft ? 'R' : 'L' };
       }
       function frame(ts) {
         const dt = last ? Math.min(0.05, (ts - last) / 1000) : 0; last = ts;
@@ -211,7 +278,7 @@
         const z = state();
         const same = st.L === st.R;
         const show = !st.predict || st.revealed;
-        svgBox.innerHTML = cellSVG(st.L, st.R, { compact: compactBox(svgBox), anodeLeft: z.anodeLeft, running: st.running && !same, p: st.p, elapsed: st.elapsed, noBridge: z.noBridge, bridge: st.bridge, reading: same ? '0,00' : st.lift > 0.35 ? '0,00' : show || st.running ? EC.evPlain(z.value) : '?', lift: st.lift || 0, ppt: z.ppt, electrode: st.electrode, attacked: z.attacked, showRoles: show && !same });
+        svgBox.innerHTML = cellSVG(st.L, st.R, { compact: compactBox(svgBox), anodeLeft: z.anodeLeft, running: st.running && !same, p: st.p, elapsed: st.elapsed, noBridge: z.noBridge, bridge: st.bridge, reading: same ? '0,00' : st.build ? EC.evPlain(z.emf * st.build.flow) : st.lift > 0.35 ? '0,00' : show || st.running ? EC.evPlain(z.value) : '?', lift: st.lift || 0, build: st.build, spot: st.spot, ppt: z.ppt, electrode: st.electrode, attacked: z.attacked, showRoles: show && !same });
       }
       const draw = () => S.keepFocus(el, draw0); // keep keyboard focus on the control that was used
       function draw0() {
@@ -299,9 +366,40 @@
         return box;
       }
       draw();
+      /* charge build-up (no salt bridge): phases start -> cathode -> slow -> stop, each fired by a lesson beat.
+         Without animation (a jump in the lesson, or reduced motion) the phase's end state is drawn at once. */
+      let braf = 0;
+      function buildBeat(ev) {
+        const B = st.build || (st.build = { a: 0, c: 0, flow: 1, dist: 0, phase: 0, stopped: false });
+        const order = { start: 1, cathode: 2, slow: 3, stop: 4 }, ph = order[ev.build] || 1;
+        B.phase = Math.max(B.phase, ph);
+        if (!ev.animate || S.reduced()) {
+          if (ph >= 1) B.a = 1; if (ph >= 2) B.c = 1; if (ph >= 3) B.flow = Math.min(B.flow, 0.35); if (ph >= 4) { B.flow = 0; B.stopped = true; }
+          drawSVG(); if (S.reduced()) return;
+        }
+        cancelAnimationFrame(braf); let lt = 0;
+        const step = ts => {
+          const dt = lt ? Math.min(0.05, (ts - lt) / 1000) : 0; lt = ts;
+          if (B.phase >= 1) B.a = Math.min(1, B.a + dt / 6);
+          if (B.phase >= 2) B.c = Math.min(1, B.c + dt / 6);
+          if (B.phase === 1 || B.phase === 2) B.flow = Math.max(0.45, 1 - 0.3 * Math.max(B.a, B.c));
+          if (B.phase >= 3) B.flow = Math.max(B.phase >= 4 ? 0 : 0.2, B.flow - dt / (B.phase >= 4 ? 0.8 : 3));
+          if (B.phase >= 4 && B.flow <= 0.01) B.stopped = true;
+          B.dist += dt * 90 * B.flow; drawSVG();
+          if (!(B.phase >= 4 && B.flow <= 0 && B.a >= 1 && B.c >= 1)) braf = requestAnimationFrame(step);
+        };
+        braf = requestAnimationFrame(step);
+      }
+      S.onLeave(() => cancelAnimationFrame(braf));
       // a narrated lesson can lift the salt bridge out on cue ("I'm going to lift the salt bridge out")
       el.addEventListener('lesson-beat', e => {
         const ev = e.detail || {};
+        if (ev.build) return buildBeat(ev);
+        if (ev.spot !== undefined) { st.spot = ev.spot; if (!st.running && ev.spot && ev.spot !== 'trap') { st.running = true; last = 0; if (!S.reduced()) raf = requestAnimationFrame(frame); } drawSVG(); return; }
+        if (ev.l || ev.r || (ev.bridge && ev.bridge !== 'none')) {
+          if (ev.l) st.L = HC.find(c => c.id === ev.l) || st.L; if (ev.r) st.R = HC.find(c => c.id === ev.r) || st.R;
+          if (ev.bridge) st.bridge = ev.bridge; st.elapsed = 0; st.spot = null; draw(); return;
+        }
         if (ev.bridge !== 'none' || st.bridge === 'none') return;
         const finish = () => { st.lift = 0; st.bridge = 'none'; st.running = false; cancelAnimationFrame(raf); draw(); };
         if (!ev.animate || S.reduced()) return finish();

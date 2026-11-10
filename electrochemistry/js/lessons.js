@@ -45,11 +45,11 @@
       blurb: 'Why the current stops without it, which ions move where, the two functions the memo wants, and choosing the salt.',
       scenes: {
         'Take the bridge away': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 0, word: 'lift', event: { bridge: 'none' } }], board: ['No salt bridge → no current', 'So what is the salt bridge doing?'] },
-        'Charge builds up': { lab: ['cell', { l: 'Zn', r: 'Cu' }], board: ['Zinc half-cell: Zn²⁺ forms, + charge builds up', 'Copper half-cell: Cu²⁺ removed, − charge builds up', 'The build-up opposes the flow'] },
-        'Pause and predict': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], board: ['Salt bridge: KNO₃', 'Which ions move into the zinc half-cell?'], after: ['NO₃⁻ moves from the bridge into the zinc half-cell', 'Zn²⁺ moves from the zinc half-cell into the bridge', 'K⁺ moves from the bridge into the copper half-cell; NO₃⁻ moves from it into the bridge', 'Ions move both ways: out of the bridge and into it'] },
+        'Charge builds up': { lab: ['cell', { l: 'Zn', r: 'Cu', bridge: 'none' }], beats: [{ cue: 0, word: 'zinc', event: { build: 'start' } }, { cue: 1, word: 'copper', event: { build: 'cathode' } }, { cue: 2, word: 'pushes', event: { build: 'slow' } }, { cue: 2, word: ['within', 'current'], event: { build: 'stop' } }], board: ['Zinc half-cell: Zn²⁺ forms, + charge builds up', 'Copper half-cell: Cu²⁺ removed, − charge builds up', 'The build-up opposes the flow'] },
+        'Pause and predict': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 1, word: 'nitrate', event: { spot: 'anion' } }, { cue: 2, word: 'potassium', event: { spot: 'both' } }], board: ['Salt bridge: KNO₃', 'Which ions move into the zinc half-cell?'], after: ['NO₃⁻ moves from the bridge into the zinc half-cell', 'Zn²⁺ moves from the zinc half-cell into the bridge', 'K⁺ moves from the bridge into the copper half-cell; NO₃⁻ moves from it into the bridge', 'Ions move both ways: out of the bridge and into it'] },
         'What the memo wants': { board: ['Completes the circuit ✓', 'Maintains electrical neutrality in the half-cells ✓', 'Name the ions and the half-cells'] },
-        'The trap': { board: ['✗ Electrons flow through the salt bridge.', '✓ Electrons flow only in the wire and electrodes; ions carry the charge in the bridge.'] },
-        'Choosing the salt': { lab: ['cell', { l: 'Cu', r: 'Ag', bridge: 'KCℓ', run: '1' }], board: ['The bridge ions must not react with either half-cell', 'KNO₃: nitrates form no precipitates', 'KCℓ next to Ag⁺: white AgCℓ precipitate', 'KCℓ next to MnO₄⁻: Cℓ⁻ is oxidised'] },
+        'The trap': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 0, word: 'electrons', event: { spot: 'trap' } }], board: ['✗ Electrons flow through the salt bridge.', '✓ Electrons flow only in the wire and electrodes; ions carry the charge in the bridge.'] },
+        'Choosing the salt': { lab: ['cell', { l: 'Cu', r: 'Ag', run: '1' }], beats: [{ cue: 1, word: 'chloride', event: { bridge: 'KCℓ' } }, { cue: 2, word: 'permanganate', event: { r: 'MnO4' } }], board: ['The bridge ions must not react with either half-cell', 'KNO₃: nitrates form no precipitates', 'KCℓ next to Ag⁺: white AgCℓ precipitate', 'KCℓ next to MnO₄⁻: Cℓ⁻ is oxidised'] },
         'Your turn': { lab: ['cell', { l: 'Cu', r: 'Ag' }], board: ['Now try: change the salt bridge', 'Watch what each choice does to the voltage'], links: [['#lab/cell', 'Galvanic cell lab'], ['#section/28.2', 'Learn › 28.2']] }
       } },
     { id: 'L5', title: 'Electrolysis: the two contests', sections: ['29.1', '29.2', '29.3'], mod: 29,
@@ -239,7 +239,7 @@
        word's place in the cue, so it works for both voices. Going back before a beat rebuilds the lab as it was. */
     const beatTime = (sc, bt) => {
       const cs = A.cues.filter(c => c.s === sc.t), c = cs[bt.cue || 0]; if (!c) return Infinity;
-      const ws = c.x.toLowerCase().split(/\s+/), i = ws.findIndex(w => w.replace(/[^a-z']/g, '').startsWith(bt.word));
+      const ws = c.x.toLowerCase().split(/\s+/), words = [].concat(bt.word); let i = -1; for (const wd of words) { i = ws.findIndex(w => w.replace(/[^a-z']/g, '').startsWith(wd)); if (i >= 0) break; }
       return i < 0 ? c.a : c.a + (c.b - c.a) * i / ws.length;
     };
     let fired = new Set();
