@@ -550,7 +550,8 @@
     let stars = ['1', '2', '3'].includes(params.lvl) ? +params.lvl : 0;
     let streak = 0, n = 0, right = 0;
     const head = h('div'), area = h('div'), score = h('p', { class: 'session-score score-only small muted', role: 'status' });
-    add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'Practise'), h('p', null, 'Fresh questions every time, with hints in steps and a worked solution. Choose a section or a mixed module, and a level if you like.'))), head, score, area]);
+    add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'Practise'), h('p', null, 'Fresh questions every time, with hints in steps and a worked solution. Choose a section or a mixed module, and a level if you like.')),
+      h('div', { class: 'row' }, h('a', { class: 'btn ghost small', href: '#museum' }, 'Mistake museum'), h('a', { class: 'btn ghost small', href: '#minipaper' }, 'Mini-paper'))), head, score, area]);
     const secSel = select([['mix27', 'Mixed: Module 27'], ['mix28', 'Mixed: Module 28'], ['mix29', 'Mixed: Module 29'], ['mixall', 'Mixed: all three']].concat(S.SECTIONS.map(s => [s.id, s.id + ' ' + s.title])), section, v => { section = v; S.setParams({ s: v }); links(); next(); }, { 'aria-label': 'Section' });
     const lvlSel = select([['0', 'All levels'], ['1', '★ only'], ['2', '★★ only'], ['3', '★★★ only']], String(stars), v => { stars = +v; S.setParams({ lvl: stars || null }); next(); }, { 'aria-label': 'Level' });
     const linkBox = h('span', { class: 'row' });
@@ -747,7 +748,7 @@
         h('div', { class: 'card' }, h('h3', null, dueNow.length ? `${dueNow.length} section${dueNow.length > 1 ? 's' : ''} due now` : 'Nothing due right now'),
           dueNow.length ? h('div', null, h('ul', null, dueNow.map(s => h('li', null, s + ' ' + S.sectionById(s).title))), h('button', { class: 'btn', type: 'button', onclick: () => run(dueNow) }, 'Start the review')) : h('p', { class: 'muted' }, 'Finish an “On your own” question or a Check, and the section is scheduled here.'),
           upcoming.length ? h('div', { class: 'score-only' }, h('h4', null, 'Coming up'), h('ul', { class: 'small' }, upcoming.map(s => h('li', null, `${s} ${S.sectionById(s).short}: ${new Date(rv[s].due).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' })}`)))) : null),
-        h('div', { class: 'card' }, h('h3', null, 'Definitions: flip cards'), h('p', { class: 'small muted' }, 'Say the SAGS wording out loud, then flip.'), flip())),
+        h('div', { class: 'card' }, h('h3', null, 'Flip cards'), flip())),
         h('div', { class: 'card score-only', style: { marginTop: '14px' } }, h('h3', null, 'Your learning record'), record(rv))]);
     }
     function run(list) {
@@ -765,14 +766,40 @@
       }
       nextOne();
     }
+    let deck = 'defs';
     function flip() {
+      const w = h('div'), box = h('div');
+      add(w, [h('div', { class: 'row', style: { marginBottom: '8px' } }, S.seg([['defs', 'SAGS definitions'], ['words', 'Words that win marks']], deck, v => { deck = v; box.replaceChildren(v === 'defs' ? defsDeck() : wordsDeck()); })), box]);
+      box.appendChild(deck === 'defs' ? defsDeck() : wordsDeck());
+      return w;
+    }
+    // Words that win marks: say what you would write, then flip to see the memo wording and the answer that loses the mark
+    function wordsDeck() {
+      const all = S.WORDS || [];
+      let mod = 'all', list = all, k = 0, open = false;
+      const w = h('div');
+      function d() {
+        clear(w);
+        const x = list[k];
+        add(w, [h('p', { class: 'small muted', style: { margin: '0 0 8px' } }, 'Say what you would write, then flip. From the coursebooks’ “Words that win marks” tables.'),
+          h('div', { class: 'row', style: { marginBottom: '8px' } }, S.select([['all', 'All three modules'], ['27', 'Module 27'], ['28', 'Module 28'], ['29', 'Module 29']], mod, v => { mod = v; list = v === 'all' ? all : all.filter(r => String(r.mod) === v); k = 0; open = false; S.keepFocus(w, d); }, { 'aria-label': 'Module' })),
+          h('button', { class: 'flip words', type: 'button', 'aria-expanded': String(open), style: { '--mc': (S.MODS[x.mod] || {}).colour }, onclick: () => { open = !open; S.keepFocus(w, d); if (open) S.say('Write: ' + x.yes + '. Not: ' + x.no); } },
+            h('small', { class: 'muted' }, 'When you…'), h('b', null, x.when),
+            open ? h('span', { class: 'words-back' }, h('span', { class: 'w-yes' }, h('i', { 'aria-hidden': 'true' }, '✓'), h('span', null, h('em', null, 'Write: '), x.yes)), h('span', { class: 'w-no' }, h('i', { 'aria-hidden': 'true' }, '✗'), h('span', null, h('em', null, 'Not: '), x.no))) : h('span', { class: 'muted' }, 'Tap to flip'),
+            h('small', { class: 'muted' }, 'Module ' + x.mod + ' · coursebook table')),
+          h('div', { class: 'row', style: { marginTop: '8px' } }, h('button', { class: 'btn ghost small', type: 'button', onclick: () => { k = (k + list.length - 1) % list.length; open = false; S.keepFocus(w, d); } }, '← Previous'), h('span', { class: 'small muted' }, `${k + 1} of ${list.length}`), h('button', { class: 'btn ghost small', type: 'button', onclick: () => { k = (k + 1) % list.length; open = false; S.keepFocus(w, d); } }, 'Next →'))]);
+      }
+      d();
+      return w;
+    }
+    function defsDeck() {
       const defs = S.DEFS;
       let k = 0, open = false;
       const w = h('div');
       function d() {
         clear(w);
         const x = defs[k];
-        add(w, [h('button', { class: 'flip', type: 'button', 'aria-expanded': String(open), onclick: () => { open = !open; S.keepFocus(w, d); if (open) S.say(x.def); } }, h('b', null, x.term), open ? h('span', null, x.def) : h('span', { class: 'muted' }, 'Tap to flip'), h('small', { class: 'muted' }, 'Section ' + x.section + (x.cls ? ' · class definition (not in SAGS)' : ''))),
+        add(w, [h('p', { class: 'small muted', style: { margin: '0 0 8px' } }, 'Say the SAGS wording out loud, then flip.'), h('button', { class: 'flip', type: 'button', 'aria-expanded': String(open), onclick: () => { open = !open; S.keepFocus(w, d); if (open) S.say(x.def); } }, h('b', null, x.term), open ? h('span', null, x.def) : h('span', { class: 'muted' }, 'Tap to flip'), h('small', { class: 'muted' }, 'Section ' + x.section + (x.cls ? ' · class definition (not in SAGS)' : ''))),
           h('div', { class: 'row', style: { marginTop: '8px' } }, h('button', { class: 'btn ghost small', type: 'button', onclick: () => { k = (k + defs.length - 1) % defs.length; open = false; S.keepFocus(w, d); } }, '← Previous'), h('span', { class: 'small muted' }, `${k + 1} of ${defs.length}`), h('button', { class: 'btn ghost small', type: 'button', onclick: () => { k = (k + 1) % defs.length; open = false; S.keepFocus(w, d); } }, 'Next →'))]);
       }
       d();

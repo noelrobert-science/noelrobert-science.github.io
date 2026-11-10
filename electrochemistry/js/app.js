@@ -337,10 +337,10 @@
             h('li', null, h('b', null, 'Learn: '), 'one route per coursebook section: the rules, the worked example step by step, then a question with help fading.'),
             h('li', null, h('b', null, 'Labs: '), 'predict first, then watch. Every lab builds its answers from Table 4.'),
             h('li', null, h('b', null, 'Lessons: '), 'six narrated lessons of about three minutes, each beside its live lab.'),
-            h('li', null, h('b', null, 'Practise: '), 'fresh questions every time, hints in steps, and IEB past-paper questions.'),
+            h('li', null, h('b', null, 'Practise: '), 'fresh questions every time, hints in steps, IEB past-paper questions, the ', h('a', { href: '#museum' }, 'mistake museum'), ' and a timed ', h('a', { href: '#minipaper' }, 'mini-paper'), '.'),
             h('li', null, h('b', null, 'Check: '), 'a fresh mixed set with help locked until you submit.'),
-            h('li', null, h('b', null, 'Return later: '), 'come back after 1, 3, 7 and 21 days.')),
-          h('p', { class: 'small muted' }, 'Keep paper, a pencil, your calculator and your data sheet next to you. Nothing here needs AI or a sign-in. Once the studio has loaded, everything except the narrated lessons works without an internet connection.'))),
+            h('li', null, h('b', null, 'Return later: '), 'come back after 1, 3, 7 and 21 days, with flip cards for the SAGS definitions and the Words that win marks.')),
+          h('p', { class: 'small muted' }, 'Keep paper, a pencil, your calculator and your data sheet next to you. Nothing here needs AI or a sign-in. Once the studio has loaded, it works without an internet connection; tap “Save for offline” on a lesson to keep it too.'))),
       due.length ? h('div', { class: 'callout warm' }, h('b', null, 'Return later: '), `${due.length} section${due.length > 1 ? 's are' : ' is'} due for review. `, h('a', { href: '#review' }, 'Start the review →')) : null,
       legend(),
       h('h2', null, 'Three modules, one engine'),
@@ -386,7 +386,7 @@
           h('h3', null, 'How it was checked'),
           h('p', null, 'One chemistry engine drives every screen. Before anything else was built, it had to reproduce every worked example in Modules 27 to 29 that has something to calculate, balance or predict (35 of the 38; WE 28.3, 28.9 and 28.10 are explained in words), and every pairing of Table 4 rows (1 901 set-ups, including electrolysis) is machine-checked for atom and charge balance. Each fix to the chemistry engine and the IEB bank added a test that fails on the old studio; the screens were checked in a browser at phone and laptop sizes and in Present mode.'),
           h('h3', null, 'Coming later'),
-          h('p', null, 'For now the narrated audio lessons take the place of the planned MP4 videos. Short clips of real experiments will be added once they have been filmed and approved. Ideas planned for later: a mystery-metal investigation, catalyst or intermediate?, why electrolysis needs DC (with an AC animation), multiple-choice questions worked aloud, a mistake museum, an electrochemistry mini-paper, design challenges, and the coursebooks’ “Words that win marks” tables on the flip cards.'),
+          h('p', null, 'For now the narrated audio lessons take the place of the planned MP4 videos. Short clips of real experiments will be added once they have been filmed and approved. Ideas planned for later: a mystery-metal investigation, catalyst or intermediate?, why electrolysis needs DC (with an AC animation), multiple-choice questions worked aloud and design challenges. Now built: the mistake museum, the mini-paper, and the coursebooks’ “Words that win marks” tables on the flip cards in Return later.'),
           h('p', { class: 'muted small' }, 'Made by Mr N. Robert for his learners, to go with the Grade 11 and 12 IEB Physical Sciences coursebook, Modules 27 to 29. Status: for moderation.')))
     ]);
   };

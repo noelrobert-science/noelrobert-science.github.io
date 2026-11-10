@@ -360,6 +360,35 @@
   ];
   S.sectionById = id => S.SECTIONS.find(s => s.id === id);
 
+
+  /* Words that win marks: the tables at the end of Part B in the Modules 27 to 29 coursebooks (When you… / Write this / Not this) */
+  S.WORDS = [{"mod": 27, "when": "define redox", "yes": "a reaction involving the transfer of electrons", "no": "“oxygen is added”, “an exchange of ions”"},
+    {"mod": 27, "when": "define an oxidising agent", "yes": "a substance that accepts electrons", "no": "“a substance that is oxidised”"},
+    {"mod": 27, "when": "define anode or cathode", "yes": "the ELECTRODE where oxidation (reduction) takes place", "no": "“the half-cell where…”, or “Fe/Fe³⁺”"},
+    {"mod": 27, "when": "define electrolyte", "yes": "a substance that can conduct electricity due to the presence of free (mobile) ions when molten or dissolved in solution", "no": "“a liquid that will conduct” (mercury conducts by electrons)"},
+    {"mod": 27, "when": "name or give the symbol of an agent", "yes": "NAME: permanganate (ion); SYMBOL: MnO₄⁻", "no": "the other one, or the product"},
+    {"mod": 27, "when": "name an agent", "yes": "the reactant: Cu²⁺ (or copper(II) ions)", "no": "the product (Cu), or “copper” for Cu²⁺"},
+    {"mod": 27, "when": "write a half-reaction", "yes": "single arrow →; electrons on the correct side; charges balance", "no": "⇌, or 2Br⁻ → Br₂ + e⁻"},
+    {"mod": 27, "when": "balance a redox equation", "yes": "multiply the half-reactions so e⁻ lost = e⁻ gained", "no": "multiplying the Eθ values"},
+    {"mod": 27, "when": "explain spontaneity", "yes": "Cℓ₂ is a stronger oxidising agent than Br₂, so Cℓ₂ oxidises Br⁻ to Br₂", "no": "“copper is less reactive” with no agents named; “reducing ability”"},
+    {"mod": 27, "when": "find the reducing agent in KBr(aq)", "yes": "Br⁻ (the bromide ions)", "no": "K or K⁺"},
+    {"mod": 27, "when": "write a net ionic equation", "yes": "only the species that change; spectators crossed out", "no": "ions unchanged on both sides left in (K⁺, Na⁺; NO₃⁻ or SO₄²⁻ when nothing reacts with them)"},
+    {"mod": 28, "when": "describe a galvanic cell", "yes": "an electrochemical cell that converts the chemical energy of spontaneous redox reactions into electrical energy", "no": "“makes electricity”"},
+    {"mod": 28, "when": "identify the anode", "yes": "the electrode (e.g. the zinc electrode) where oxidation takes place", "no": "“the zinc half-cell”, “the Zn²⁺ solution”"},
+    {"mod": 28, "when": "write a half-reaction", "yes": "single arrow →; electrons on the correct side; charges balance", "no": "⇌ or electrons on the wrong side"},
+    {"mod": 28, "when": "describe electron flow", "yes": "from the anode to the cathode through the external circuit", "no": "“through the salt bridge”"},
+    {"mod": 28, "when": "describe the salt bridge", "yes": "completes the circuit; maintains electrical neutrality; anions move into the anode half-cell", "no": "“ions flow” (no names or directions)"},
+    {"mod": 28, "when": "compare two agents", "yes": "Ag⁺ is a stronger oxidising agent than Cu²⁺", "no": "“silver is more reactive”, “higher reducing ability”"},
+    {"mod": 28, "when": "write cell notation", "yes": "Pt on the outside; comma for the same phase; no coefficients", "no": "2Ag⁺, missing Pt"},
+    {"mod": 28, "when": "give an emf", "yes": "1,10 V, from Eθ values exactly as printed", "no": "a multiplied Eθ; a missing unit"},
+    {"mod": 29, "when": "describe an electrolytic cell", "yes": "uses electrical energy to cause a non-spontaneous redox reaction; electrical → chemical energy", "no": "“makes electricity”"},
+    {"mod": 29, "when": "identify the anode", "yes": "the electrode joined to the positive terminal, where oxidation takes place", "no": "“the negative electrode”"},
+    {"mod": 29, "when": "explain a cathode product", "yes": "Na⁺ is a weaker oxidising agent than H₂O, so H₂O is reduced", "no": "“sodium is too reactive”"},
+    {"mod": 29, "when": "explain Cℓ₂ from brine", "yes": "the high [Cℓ⁻] favours the oxidation of Cℓ⁻ over water", "no": "“chlorine is more reactive than oxygen”"},
+    {"mod": 29, "when": "give reasons for an inert electrode", "yes": "conducts electricity and is not oxidised / does not react", "no": "“it is inert” only"},
+    {"mod": 29, "when": "name the process", "yes": "electrorefining; electroplating", "no": "“electrolysis purification”, “refining”"},
+    {"mod": 29, "when": "do a Faraday calculation", "yes": "write the half-reaction; use its e⁻ ratio; t in seconds", "no": "n(metal) = n(e⁻) for Cu; minutes in q = It"},
+    {"mod": 29, "when": "identify the oxidising agent in aqueous electrolysis", "yes": "H₂O, when water is reduced at the cathode", "no": "“Na⁺”, “K⁺”, “the power supply”"}];
   /* The definitions to learn word for word (SAGS), for the flip cards in Return later */
   S.DEFS = [];
   S.SECTIONS.forEach(s => (s.defs || []).forEach(([t, d]) => S.DEFS.push({ term: t, def: d, section: s.id })));
