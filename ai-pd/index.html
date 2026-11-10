@@ -515,7 +515,7 @@
         <div class="im-row fragment" data-fx="none"><b>Coursebooks and answer books</b><span class="im-pic">Pupils learn by retrieving and using ideas, not by rereading them.</span><span class="im-built">469-page coursebook and a matching 326-page answer book</span></div>
         <div class="im-row fragment" data-fx="none"><b>Mr R Science app</b><span class="im-pic">A gym for physics: short daily practice, and a hint only after a real attempt.</span><span class="im-built">One free app: Watch, Train and Check, with every studio inside</span></div>
         <div class="im-row fragment" data-fx="none"><b>Staff app</b><span class="im-pic">Too many platforms. I pictured one place for every link, plus an Emergency button for the teacher in a panic, because their phone is always on them.</span><span class="im-built">The school day, safety and duties on every teacher's phone, school sign-in only</span></div>
-        <div class="im-row fragment" data-fx="none"><b>Marks dashboard</b><span class="im-pic">Hours of spreadsheet work to see how a whole grade is doing.</span><span class="im-built">A whole grade's marks in a 15-second snapshot, read-only</span></div>
+        <div class="im-row fragment" data-fx="none"><b>Marks dashboard</b><span class="im-pic">Hours of spreadsheet work to see how a whole grade is doing.</span><span class="im-built">A whole grade's marks on one screen in about 15 seconds, read-only</span></div>
         <div class="im-row fragment" data-fx="none"><b>This deck</b><span class="im-pic">One talk, three lanes: teachers, IT and head office each leave with one thing to act on.</span><span class="im-built">Nine acts, three lanes, built and checked with AI</span></div>
       </div>
     </div>
@@ -657,49 +657,24 @@
   <div class="frame">
     <p class="kicker">Act 3 · How a pupil uses it all</p>
     <h2 class="headline">A week with Mr R Science: <em>watch, train, write, check.</em></h2>
-    <div class="body wk" id="wk">
-      <div class="wk-stage">
-        <div class="wk-panel" data-i="0">
-          <div class="wk-txt"><p class="wk-when">Start of the lesson <span>5 min</span></p><div class="wk-tags"><span class="tg k-app">App · Check</span></div><p class="wk-do">A few quick questions on earlier topics. <b>No notes, no hints.</b> Did it stick?</p></div>
-          <div class="wk-shots"><img class="wp" src="img/week/wk-check.jpg" alt="Check yourself: fresh questions with no hints"></div>
-        </div>
-        <div class="wk-panel" data-i="1">
-          <div class="wk-txt"><p class="wk-when">In class <span>the lesson</span></p><div class="wk-tags"><span class="tg k-book">Coursebook</span><span class="tg k-app">Lab on the TV</span></div><p class="wk-do">I teach from the book in GoodNotes. The lab runs on the TV in <b>Present mode</b>. Pupils write in their book.</p></div>
-          <div class="wk-shots"><img class="wb" src="img/week/wk-book9.jpg" alt="Coursebook page 28.2, The salt bridge"><img class="wl" src="img/week/wk-class.jpg" alt="Build a cell lab in Present mode"></div>
-        </div>
-        <div class="wk-panel" data-i="2">
-          <div class="wk-txt"><p class="wk-when">Same evening <span>30 min</span></p><div class="wk-tags"><span class="tg k-app">App · Watch</span><span class="tg k-app">App · Train</span><span class="tg k-book">Book, then answer book</span></div><p class="wk-do">My 3-minute lesson <b>stops for their prediction.</b> Train until two clean in a row. Then the matched exercise in pen, marked after.</p></div>
-          <div class="wk-shots"><img class="wp" src="img/week/wk-watch.jpg" alt="The salt bridge lesson stops: Which ions move into the zinc half-cell?"><img class="wp" src="img/week/wk-train.jpg" alt="Build a cell lab"><img class="wb" src="img/week/wk-answer.jpg" alt="Answer book page with worked answers"></div>
-        </div>
-        <div class="wk-panel" data-i="3">
-          <div class="wk-txt"><p class="wk-when">End of the week <span>20 min</span></p><div class="wk-tags"><span class="tg k-app">App · Check</span><span class="tg k-cv">Canvas</span></div><p class="wk-do">Three fresh questions with <b>the help switched off.</b> Then the weekly task that I mark.</p></div>
-          <div class="wk-shots"><img class="wp" src="img/week/wk-appcheck.jpg" alt="The app's Check tab"><img class="wl" src="img/week/wk-canvas.jpg" alt="The Canvas course page"></div>
-        </div>
-        <div class="wk-panel" data-i="4">
-          <div class="wk-txt"><p class="wk-when">Days later <span>5 min</span></p><div class="wk-tags"><span class="tg k-app">App · Come back</span><span class="tg k-app">Mini-papers</span></div><p class="wk-do">It <b>comes back</b> to check it stuck. Before the test: timed mini-papers and past papers.</p></div>
-          <div class="wk-shots"><img class="wp" src="img/week/wk-return.jpg" alt="Return later: sections come back after days"><img class="wp" src="img/week/wk-test.jpg" alt="Mini-papers from real IEB papers"></div>
-        </div>
+    <div class="body wk2" id="wk">
+      <div class="wk2-bar"><i class="wk2-fill"></i></div>
+      <div class="wk2-cols">
+        <div class="wk2-col on"><b class="wk2-dot"></b><p class="wk2-when">Start of lesson</p><div class="wk2-pic"><img src="img/week/wk-check.jpg" alt="Check: quick questions with no hints"></div><p class="wk2-do">Quick questions. <b>No help.</b></p><div class="wk2-tags"><span class="tg k-app">App</span></div></div>
+        <div class="wk2-col fragment" data-fx="wk"><b class="wk2-dot"></b><p class="wk2-when">In class</p><div class="wk2-pic pg"><img src="img/week/wk-book9.jpg" alt="Coursebook page 28.2, The salt bridge"></div><p class="wk2-do">Learn from <b>the book</b>, lab on the TV.</p><div class="wk2-tags"><span class="tg k-book">Book</span></div></div>
+        <div class="wk2-col fragment" data-fx="wk"><b class="wk2-dot"></b><p class="wk2-when">Same evening</p><div class="wk2-pic"><img src="img/week/wk-watch.jpg" alt="The salt bridge lesson stops for a prediction"></div><p class="wk2-do"><b>Watch, train,</b> then write in pen.</p><div class="wk2-tags"><span class="tg k-app">App</span><span class="tg k-book">Book</span></div></div>
+        <div class="wk2-col fragment" data-fx="wk"><b class="wk2-dot"></b><p class="wk2-when">End of week</p><div class="wk2-pic"><img src="img/week/wk-appcheck.jpg" alt="The app's Check tab"></div><p class="wk2-do"><b>Check alone,</b> hand in the task.</p><div class="wk2-tags"><span class="tg k-app">App</span><span class="tg k-cv">Canvas</span></div></div>
+        <div class="wk2-col fragment" data-fx="wk"><b class="wk2-dot"></b><p class="wk2-when">Days later</p><div class="wk2-pic"><img src="img/week/wk-return.jpg" alt="Return later: topics come back days later"></div><p class="wk2-do">It <b>comes back.</b> Did it stick?</p><div class="wk2-tags"><span class="tg k-app">App</span></div></div>
       </div>
-      <div class="wk-track">
-        <div class="wk-bar"><i class="wk-fill"></i><b class="wk-dot"></b></div>
-        <div class="wk-stops">
-          <div class="wk-stop" data-i="0"><span>Start of lesson</span><i class="k-app"></i></div>
-          <div class="wk-stop" data-i="1"><span>In class</span><i class="k-book"></i><i class="k-app"></i></div>
-          <div class="wk-stop" data-i="2"><span>Same evening</span><i class="k-app"></i><i class="k-app"></i><i class="k-book"></i></div>
-          <div class="wk-stop" data-i="3"><span>End of week</span><i class="k-app"></i><i class="k-cv"></i></div>
-          <div class="wk-stop" data-i="4"><span>Days later</span><i class="k-app"></i></div>
-        </div>
-      </div>
-      <span class="fragment" data-fx="wk"></span><span class="fragment" data-fx="wk"></span><span class="fragment" data-fx="wk"></span><span class="fragment" data-fx="wk"></span>
-      <p class="wk-sum fragment" data-fx="wk"><span>About <b>30 to 40 minutes</b> after each lesson, in a fixed order. <em>Each step points to the next.</em></span></p>
+      <p class="wk2-sum fragment" data-fx="none">About <b>30 to 40 minutes</b> after each lesson. <em>Each step points to the next.</em></p>
     </div>
   </div>
   <aside class="notes">
-    One topic, the salt bridge, through one week. Each click moves the dot to the next moment, with the real screens.
-    1 Start of the lesson: retrieval on earlier topics, no help (5 min). 2 In class: I teach from the coursebook in GoodNotes; the studio lab runs on the class TV in Present mode; pupils write in their book. 3 Same evening: one 3-minute lesson in my voice that stops at the prediction, then Train until two clean questions in a row, then the matched exercise on paper, marked from the answer book with errors logged (about 30 min). 4 End of the week: three fresh questions with no help, then the Canvas assignment I mark (20 min). 5 Days later: come-back checks; before the test, timed mini-papers and past papers.
+    One topic, the salt bridge, through one week. The first step shows; each click adds the next one, left to right, with the real screen. The last click adds the time it takes.
+    1 Start of the lesson: retrieval on earlier topics, no help (5 min). 2 In class: I teach from the coursebook in GoodNotes; the studio lab runs on the class TV in Present mode; pupils write in their book. 3 Same evening: one 3-minute lesson in my voice that stops at the prediction, then Train until two clean questions in a row, then the matched exercise on paper, marked from the answer book (about 30 min). 4 End of the week: three fresh questions with no help, then the Canvas assignment I mark (20 min). 5 Days later: come-back checks; before the test, timed mini-papers and past papers.
     Colours: red is the app, white is paper, blue is Canvas.
     Honest caveat: none of this has been measured with a class yet. The L4 pilot checks whether pupils follow watch, train, write, check without being told, how long it really takes, and whether the delayed checks improve.
-    Sources: "How a learner uses it all" (10 Nov 2026), "A typical week" table; screens from the app and the Electrochemistry Studio (10 Nov 2026); Grade 11-12 Module 28 coursebook p. 9 and answer book p. 11.
+    Sources: "How a learner uses it all" (10 Nov 2026), "A typical week" table; screens from the app and the Electrochemistry Studio (10 Nov 2026); Grade 11-12 Module 28 coursebook p. 9.
   </aside>
 </section>
 
@@ -733,14 +708,14 @@
     <p class="kicker">Act 3 · From the pupil's side</p>
     <h2 class="headline">A week with Mr R Science, <em>in 90 seconds.</em></h2>
     <div class="body wv">
-      <div class="zvid" id="wv-box"><video id="wv-video" playsinline preload="metadata" poster="video/week/week-poster.jpg"><source src="video/week/week.mp4" type="video/mp4"><track kind="captions" src="video/week/week.vtt" srclang="en" label="English"></video><button class="zplay" id="wv-play" aria-label="Play the video">▶ Play</button><div class="wv-soon" hidden><b>Recording next</b><span>Mr Robert records the voice; the screens and captions are built around it.</span></div></div>
-      <p class="cap">Real screens, my voice, captions on. It also plays on its own: <b>noelrobert-science.github.io/app</b></p>
+      <div class="zvid" id="wv-box"><video id="wv-video" playsinline preload="metadata" poster="video/week/week-poster.jpg"><source src="video/week/week.mp4" type="video/mp4"><track kind="captions" src="video/week/week.vtt" srclang="en" label="English"></video><button class="zplay" id="wv-play" aria-label="Play the video">▶ Play</button><div class="wv-soon" hidden><b>Video not found</b><span>Open video/week/week.mp4, or use the week slide before this one.</span></div></div>
+      <p class="cap">Real app screens, narrated by Leah, with one real clip of my salt bridge lesson. Captions built in.</p>
     </div>
   </div>
   <aside class="notes">
-    Click Play (or Space). About 90 seconds: start of the lesson, in class, watch, train, write, check, days later. My voice only (no face); real app screens throughout; captions built in.
-    If the video hasn't been added yet, the slide says "Recording next" and the week timeline on the slide before covers the same ground.
-    Sources: script in recorder/week.json (10 Nov 2026), drawn from "How a learner uses it all", "A typical week".
+    Click Play (or Space). 86 seconds: start of the lesson, in class, watch, train, write, check, days later. Real app screens recorded live, narrated by Leah (the South African AI voice), with one real 10-second clip of my own salt bridge lesson where it stops for the prediction. Captions are built into the picture. It also plays on its own at noelrobert-science.github.io/ai-pd/video/week/week.mp4.
+    No recording session was needed: the narration was made with my AI voice kit and the screens were recorded by a robot browser, the same afternoon.
+    Sources: script drawn from "How a learner uses it all" (10 Nov 2026), "A typical week"; screens from the app and the Electrochemistry Studio; clip from Lesson 4, The salt bridge (Mr Robert's voice and face).
   </aside>
 </section>
 
@@ -748,7 +723,7 @@
   <div class="frame">
     <p class="kicker">Act 3 · Beyond the classroom: the marks dashboard</p>
     <p class="pih"><b>The picture in my head:</b> Hours of spreadsheet work to see how a whole grade is doing.</p>
-    <h2 class="headline">A whole grade's marks, <em>in a 15-second snapshot.</em></h2>
+    <h2 class="headline">A whole grade's marks <em>on one screen, in about 15 seconds.</em></h2>
     <div class="body bstage">
       <div class="bcenter wide"><iframe src="demo/dashboard/index.html" title="Demo copy of the marks dashboard" tabindex="-1"></iframe><button class="bopen" data-view="demo/dashboard/index.html">Open the demo ▸</button></div>
       <p class="demo-note wide"><b>Demo version with invented data.</b> The real dashboard looks and works far better.</p>
@@ -757,7 +732,7 @@
       <div class="bs fragment" data-fx="bstep" data-fragment-index="2" style="left:0;top:380px"><span class="bn">3</span>A first dashboard, with <b>exam-path trend cards</b></div>
       <div class="bs fragment" data-fx="bstep" data-fragment-index="3" style="right:0;top:60px"><span class="bn">4</span>Rebuilt as a school web app: every 2026 mark sheet, read-only, plus <b>two years of trends</b></div>
       <div class="bs fragment" data-fx="bstep" data-fragment-index="4" style="right:0;top:300px"><span class="bn">5</span>Works on an iPad, school sign-in only, and writes <b>a tutor comment</b> per pupil</div>
-      <div class="bclose fragment" data-fx="none" data-fragment-index="5" style="top:612px">Hours of spreadsheet work become a 15-second snapshot, <em>and the teacher still decides.</em></div>
+      <div class="bclose fragment" data-fx="none" data-fragment-index="5" style="top:612px">Hours of spreadsheet work now take about 15 seconds to load, <em>and the teacher still decides.</em></div>
     </div>
   </div>
   <aside class="notes">

@@ -73,3 +73,23 @@
 .wv-soon b { font-family: var(--font-display); font-weight: 800; font-size: 56px; }
 .wv-soon span { font-size: 32px; color: var(--dim); }
 .wv .cap b { color: var(--text); font-weight: 600; }
+
+/* Week timeline v2 (simpler): five columns build left to right */
+.wk2 { display: flex; flex-direction: column; }
+.wk2-bar { flex: none; position: relative; z-index: 0; height: 8px; margin: 18px 10% 0; background: var(--line); border-radius: 4px; }
+.wk2-fill { position: absolute; inset: 0; background: var(--red); border-radius: 4px; transform-origin: 0 50%; transform: scaleX(0); }
+.wk2-cols { flex: none; position: relative; z-index: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: -22px; }
+.wk2-col { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+.wk2-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 8px rgba(227,18,27,.22); }
+.wk2-when { margin: 6px 0 0; font-family: var(--font-display); font-weight: 800; font-size: 38px; line-height: 1.1; }
+.wk2-pic { width: 230px; height: 300px; border: 7px solid #20242e; border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.wk2-pic img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; margin: 0; }
+.wk2-do { margin: 4px 0 0; font-size: 32px; line-height: 1.22; color: var(--dim); min-height: 80px; }
+.wk2-do b { color: var(--text); font-weight: 600; }
+.wk2 .tg { font-size: 32px; }
+.wk2-sum { flex: none; margin: 22px 0 0; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 46px; }
+.wk2-sum b { color: var(--text); }
+.wk2-sum em { font-style: normal; color: var(--red-text); }
+.wk2-tags { display: flex; gap: 8px; justify-content: center; }
+.wk2-pic.pg img { object-position: left top; }
+.wv-soon[hidden] { display: none; }
