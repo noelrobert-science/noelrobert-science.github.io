@@ -1,8 +1,8 @@
 /* Mr R Science offline cache. Bump VERSION on every publish so phones pick up the update. */
-const VERSION = 'mrr-app-2026-11-10a';
+const VERSION = 'mrr-app-2026-11-10b';
 const CORE = ['./', 'index.html', 'catalog.json', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon-180.png', 'gym/', 'gym/index.html'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE))); });
-self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSION).map(k => caches.delete(k))))); self.clients.claim(); });
+self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('mrr-app-') && k !== VERSION).map(k => caches.delete(k))))); self.clients.claim(); });
 self.addEventListener('message', e => { if (e.data === 'skip-waiting') self.skipWaiting(); });
 self.addEventListener('fetch', e => {
   const u = new URL(e.request.url);
