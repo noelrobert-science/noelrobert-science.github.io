@@ -395,6 +395,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     if (!e.repeat && !$('recBtn').disabled) record();
   });
   window.addEventListener('beforeunload', (e) => { if (rec) { e.preventDefault(); e.returnValue = ''; } });
+  if (navigator.mediaDevices && navigator.mediaDevices.addEventListener) navigator.mediaDevices.addEventListener('devicechange', () => { if (stream) listDevices(); });
   if (!navigator.mediaDevices || !window.MediaRecorder) say('This browser cannot record. Use Chrome or Edge on your laptop.');
   load().catch(() => { $('lessonName').textContent = 'Could not load the script'; });
 })();
