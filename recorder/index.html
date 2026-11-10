@@ -189,7 +189,8 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     const saved = await dbGet(lessonId + ':script');
     if (saved) script.scenes.forEach((s) => { if (saved[s.slug]) s.lines = saved[s.slug]; });
     items = [{ slug: script.roomTone.slug, t: 'Room tone', note: script.roomTone.note, lines: [], tone: true }].concat(script.scenes);
-    $('lessonName').textContent = script.lesson + ' · ' + script.title;
+    $('lessonName').textContent = script.lesson + ' · ' + script.title + (script.voiceOnly ? ' · voice only, no camera' : '');
+    if (script.voiceOnly) { $('startCam').textContent = 'Turn on the mic'; const cam = document.querySelector('.cam'); if (cam) cam.hidden = true; $('setBtn').textContent = 'Mic settings'; }
     for (const it of items) { const t = await dbGet(lessonId + ':' + it.slug); if (t) takes[it.slug] = t; }
     cur = 1; render();
   }
@@ -247,16 +248,17 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       if (stream) stream.getTracks().forEach((t) => t.stop());
       const raw = $('raw').checked;
       const v = $('camSel').value, a = $('micSel').value;
+      const vo = !!(script && script.voiceOnly);
       stream = await navigator.mediaDevices.getUserMedia({
-        video: Object.assign({ width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } }, v ? { deviceId: { exact: v } } : {}),
+        video: vo ? false : Object.assign({ width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } }, v ? { deviceId: { exact: v } } : {}),
         audio: Object.assign({ echoCancellation: !raw, noiseSuppression: !raw, autoGainControl: !raw, channelCount: 1, sampleRate: 48000 }, a ? { deviceId: { exact: a } } : {})
       });
       $('preview').srcObject = stream;
       meter(stream);
       await listDevices();
-      $('recBtn').disabled = false; $('startCam').textContent = 'Restart camera and mic';
+      $('recBtn').disabled = false; $('startCam').textContent = vo ? 'Restart the mic' : 'Restart camera and mic';
       $('tips').hidden = true; $('setupH').hidden = true; $('setup').hidden = true; $('setBtn').hidden = false;  // keep the prompter near the top, close to the webcam
-      say('Camera on. Press Record (or Space) when you are ready.');
+      say(vo ? 'Mic on (no camera: this script is voice only). Press Record (or Space) when you are ready.' : 'Camera on. Press Record (or Space) when you are ready.');
     } catch (e) {
       say('The camera or mic did not start: ' + (e && e.name ? e.name : e) + '. Allow camera and mic for this site, then try again.');
     }
@@ -285,6 +287,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
 
   /* ---------- recording ---------- */
   function pickMime() {
+    if (script && script.voiceOnly) return ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'].find((m) => window.MediaRecorder && MediaRecorder.isTypeSupported(m)) || '';
     const opts = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm', 'video/mp4;codecs=avc1,mp4a.40.2', 'video/mp4'];
     return opts.find((m) => window.MediaRecorder && MediaRecorder.isTypeSupported(m)) || '';
   }
@@ -301,7 +304,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     await countdown();
     const mime = pickMime();
     chunks = [];
-    try { rec = new MediaRecorder(stream, Object.assign({ videoBitsPerSecond: 5000000, audioBitsPerSecond: 192000 }, mime ? { mimeType: mime } : {})); }
+    try { rec = new MediaRecorder(stream, Object.assign(script.voiceOnly ? { audioBitsPerSecond: 192000 } : { videoBitsPerSecond: 5000000, audioBitsPerSecond: 192000 }, mime ? { mimeType: mime } : {})); }
     catch (e) { armed = false; say('This browser cannot record video. Use Chrome or Edge on your laptop.'); return; }
     rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
     rec.onstop = async () => {
