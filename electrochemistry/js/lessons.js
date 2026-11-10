@@ -44,7 +44,7 @@
     { id: 'L4', title: 'The salt bridge', sections: ['28.2'], mod: 28,
       blurb: 'Why the current stops without it, which ions move where, the two functions the memo wants, and choosing the salt.',
       scenes: {
-        'Take the bridge away': { lab: ['cell', { l: 'Zn', r: 'Cu', bridge: 'none' }], board: ['No salt bridge → no current', 'So what is the salt bridge doing?'] },
+        'Take the bridge away': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 0, word: 'lift', event: { bridge: 'none' } }], board: ['No salt bridge → no current', 'So what is the salt bridge doing?'] },
         'Charge builds up': { lab: ['cell', { l: 'Zn', r: 'Cu' }], board: ['Zinc half-cell: Zn²⁺ forms, + charge builds up', 'Copper half-cell: Cu²⁺ removed, − charge builds up', 'The build-up opposes the flow'] },
         'Pause and predict': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], board: ['Salt bridge: KNO₃', 'Which ions move into the zinc half-cell?'], after: ['NO₃⁻ moves from the bridge into the zinc half-cell', 'Zn²⁺ moves from the zinc half-cell into the bridge', 'K⁺ moves from the bridge into the copper half-cell; NO₃⁻ moves from it into the bridge', 'Ions move both ways: out of the bridge and into it'] },
         'What the memo wants': { board: ['Completes the circuit ✓', 'Maintains electrical neutrality in the half-cells ✓', 'Name the ions and the half-cells'] },
@@ -235,6 +235,24 @@
     }
     S.onLeave(() => { player.pause(); player.removeAttribute('src'); player.load(); if (face) { face.pause(); face.removeAttribute('src'); face.load(); } labCleanup.forEach(f => { try { f(); } catch (e) { } }); });
 
+    /* beats: a lab event at a word of a cue, e.g. the bridge lifts out as the narrator says "lift". The time comes from the
+       word's place in the cue, so it works for both voices. Going back before a beat rebuilds the lab as it was. */
+    const beatTime = (sc, bt) => {
+      const cs = A.cues.filter(c => c.s === sc.t), c = cs[bt.cue || 0]; if (!c) return Infinity;
+      const ws = c.x.toLowerCase().split(/\s+/), i = ws.findIndex(w => w.replace(/[^a-z']/g, '').startsWith(bt.word));
+      return i < 0 ? c.a : c.a + (c.b - c.a) * i / ws.length;
+    };
+    let fired = new Set();
+    function runBeats(meta, sc, t) {
+      const bs = (meta && meta.beats) || [];
+      bs.forEach(bt => {
+        const at = beatTime(sc, bt);
+        if (t >= at && !fired.has(bt)) {
+          fired.add(bt);
+          const target = labBox.lastChild; if (target) target.dispatchEvent(new CustomEvent('lesson-beat', { detail: Object.assign({ animate: !player.paused && t - at < 1.5 }, bt.event) }));
+        } else if (t < at - 0.05 && fired.has(bt)) { fired.delete(bt); labKey = null; showLab(meta.lab); }
+      });
+    }
     function drawBoard(meta, sc) {
       clear(board);
       if (!meta) return;
@@ -259,8 +277,9 @@
         scene = si;
         sceneTitle.textContent = 'Scene ' + (si + 1) + ' of ' + A.scenes.length + ' · ' + sc.t;
         [...sceneList.children].forEach((li, i) => li.classList.toggle('on', i === si));
-        if (meta && meta.lab !== undefined) showLab(meta.lab);
+        if (meta && meta.lab !== undefined) { fired = new Set(); if (meta.beats) labKey = null; showLab(meta.lab); }
       }
+      runBeats(meta, sc, t);
       const pc = predictCue(sc.t);
       if (pc && stopAtPredict && !player.paused && t >= pc.b && t < pc.b + 1.5 && !stopped.has(pc)) {
         stopped.add(pc);

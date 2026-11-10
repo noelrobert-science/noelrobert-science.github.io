@@ -58,7 +58,7 @@
   function cellSVG(L, R, o) {
     const W = 760, H = 440, cp = !!o.compact, k = cp ? 1.9 : 1, F = n => (n * k).toFixed(1);
     const anodeLeft = o.anodeLeft;
-    const run = o.running && !o.noBridge;
+    const run = o.running && !o.noBridge && !(o.lift > 0.35);
     const p = o.p || 0;
     const prog = Math.min(1, (o.elapsed || 0) / 30);
     const anion = o.bridge === 'KCℓ' ? 'Cℓ⁻' : 'NO₃⁻';
@@ -121,10 +121,12 @@
     if (o.terminals) s += `<text x="${380 - mr - 8}" y="38" text-anchor="end" font-size="${F(16)}" font-weight="700" fill="#343a40">${o.terminals[0]}</text><text x="${380 + mr + 8}" y="38" font-size="${F(16)}" font-weight="700" fill="#343a40">${o.terminals[1]}</text>`;
     // salt bridge: a dark outline first, so the band stands out on the stage and in the solutions
     if (!o.noBridge) {
-      const d = 'M235 380 L235 160 Q235 140 255 140 L505 140 Q525 140 525 160 L525 380';
+      const d = 'M235 380 L235 160 Q235 140 255 140 L505 140 Q525 140 525 160 L525 380', lf = o.lift || 0;
+      if (lf) s += `<g transform="translate(0 ${(-260 * lf).toFixed(1)})" opacity="${(1 - 0.85 * lf).toFixed(2)}">`;
       s += `<path d="${d}" fill="none" stroke="#8a7a3e" stroke-width="34"/><path d="${d}" fill="none" stroke="#dfd1a6" stroke-width="30"/>`;
       s += cp ? `<text x="380" y="190" text-anchor="middle" font-size="${F(12)}" fill="#6b5a1e">salt bridge</text><text x="380" y="216" text-anchor="middle" font-size="${F(12)}" fill="#6b5a1e">${o.bridge || 'KNO₃'}(aq)</text>`
         : `<text x="380" y="180" text-anchor="middle" font-size="12" fill="#6b5a1e">salt bridge: ${o.bridge || 'KNO₃'}(aq)</text>`;
+      if (lf) s += '</g>';
     } else s += cp ? `<text x="380" y="150" text-anchor="middle" font-size="${F(12)}" fill="#a3360f" font-weight="700">no salt bridge:</text><text x="380" y="176" text-anchor="middle" font-size="${F(12)}" fill="#a3360f" font-weight="700">the circuit is open</text>`
       : `<text x="380" y="150" text-anchor="middle" font-size="13" fill="#a3360f" font-weight="700">no salt bridge: the circuit is open</text>`;
     if (run) {
@@ -209,7 +211,7 @@
         const z = state();
         const same = st.L === st.R;
         const show = !st.predict || st.revealed;
-        svgBox.innerHTML = cellSVG(st.L, st.R, { compact: compactBox(svgBox), anodeLeft: z.anodeLeft, running: st.running && !same, p: st.p, elapsed: st.elapsed, noBridge: z.noBridge, bridge: st.bridge, reading: same ? '0,00' : show || st.running ? EC.evPlain(z.value) : '?', ppt: z.ppt, electrode: st.electrode, attacked: z.attacked, showRoles: show && !same });
+        svgBox.innerHTML = cellSVG(st.L, st.R, { compact: compactBox(svgBox), anodeLeft: z.anodeLeft, running: st.running && !same, p: st.p, elapsed: st.elapsed, noBridge: z.noBridge, bridge: st.bridge, reading: same ? '0,00' : st.lift > 0.35 ? '0,00' : show || st.running ? EC.evPlain(z.value) : '?', lift: st.lift || 0, ppt: z.ppt, electrode: st.electrode, attacked: z.attacked, showRoles: show && !same });
       }
       const draw = () => S.keepFocus(el, draw0); // keep keyboard focus on the control that was used
       function draw0() {
@@ -297,6 +299,17 @@
         return box;
       }
       draw();
+      // a narrated lesson can lift the salt bridge out on cue ("I'm going to lift the salt bridge out")
+      el.addEventListener('lesson-beat', e => {
+        const ev = e.detail || {};
+        if (ev.bridge !== 'none' || st.bridge === 'none') return;
+        const finish = () => { st.lift = 0; st.bridge = 'none'; st.running = false; cancelAnimationFrame(raf); draw(); };
+        if (!ev.animate || S.reduced()) return finish();
+        const t0 = performance.now(), wasRunning = st.running;
+        cancelAnimationFrame(raf);
+        const step = ts => { st.lift = Math.min(1, (ts - t0) / 1100); if (wasRunning) { st.p += 1 / 60; } drawSVG(); if (st.lift < 1) raf = requestAnimationFrame(step); else finish(); };
+        raf = requestAnimationFrame(step);
+      });
       if (params.run === '1' && st.L !== st.R && !st.predict) { st.running = true; last = 0; if (S.reduced()) { st.elapsed = 30; } else raf = requestAnimationFrame(frame); draw(); }
     }
   };
