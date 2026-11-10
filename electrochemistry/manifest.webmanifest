@@ -1,0 +1,15 @@
+{
+  "name": "Electrochemistry Studio · Grade 12",
+  "short_name": "Electrochem",
+  "description": "Follow the electrons: Grade 12 IEB Physical Sciences, Modules 27 to 29. Works offline.",
+  "start_url": "./#start",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f8f9",
+  "theme_color": "#00646b",
+  "lang": "en-ZA",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

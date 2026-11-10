@@ -377,6 +377,9 @@
           h('p', null, 'Table 4 (the table of standard electrode potentials) is as printed on the IEB 2025 Paper 2 data sheet. Relative atomic masses are the data-sheet values used in the coursebooks.'),
           h('p', null, 'May 2026 questions have no official marking guideline yet: their answers are worked by us and are labelled “Our answer (no official memo)”.')),
         h('div', { class: 'card' },
+          h('h3', null, 'Offline'),
+          h('p', null, 'After your first visit, the studio works without the internet on this device: every page, lab and question. To keep the narrated lessons too, open a lesson and tap “Save for offline”. On a phone or iPad you can also add the studio to your home screen (Share › Add to Home Screen, or the browser menu › Install app).'),
+          h('p', null, 'Updates still arrive: when you are online, the studio checks for a new version and offers “Refresh” when it is ready. The link stays the same.'),
           h('h3', null, 'Privacy'),
           h('p', null, 'No sign-in, no tracking and no cookies. Your answers and progress are kept only in this browser on this device (if the browser allows saved site data). Nothing is sent anywhere, and nothing in this studio calls an AI service.'),
           h('p', null, 'To keep a copy, download your learning record from Return later.'),
@@ -397,6 +400,41 @@
   Object.assign(S, { focusTo, h, add, $, $$, clear, chem, shuffle, pick, seg, select, stepLine, notice, readNum, close, store, logAttempt, scheduleReview, dueReviews, go, route, onLeave, MODS, legend, backTo, reduced, setPresent, GAPS,
     nb, say, keepFocus, typeset, typesetTree, tallies, saveNote, setParams, parseHash, presentSteps, onLeaveNow, toolHead, canSave: () => canSave });
 
+
+  /* ---------- offline ---------- */
+  // sw.js keeps the whole studio on this device after the first visit. When a new version is published, it downloads in the
+  // background and this bar offers it; nothing reloads by itself, so a learner never loses an answer they are typing.
+  const AUDIO_CACHE = 'ec-audio-v1';
+  function offlineSetup() {
+    if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (reloading) location.reload(); });
+    const offer = w => {
+      if (!w || !navigator.serviceWorker.controller || $('#updateBar')) return;
+      const bar = h('div', { id: 'updateBar', class: 'update-bar', role: 'status' }, h('span', null, 'A new version of the studio is ready.'),
+        h('button', { class: 'btn small', type: 'button', onclick: () => { reloading = true; w.postMessage({ type: 'skip-waiting' }); } }, 'Refresh'),
+        h('button', { class: 'btn ghost small', type: 'button', onclick: () => bar.remove() }, 'Later'));
+      document.body.appendChild(bar);
+    };
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      offer(reg.waiting);
+      reg.addEventListener('updatefound', () => { const w = reg.installing; if (w) w.addEventListener('statechange', () => { if (w.state === 'installed') offer(w); }); });
+      // a studio left open all day still hears about updates
+      setInterval(() => reg.update().catch(() => { }), 60 * 60 * 1000);
+    }).catch(() => { });
+  }
+  // narrated lessons: kept on the device only when the learner asks (each is about 2 to 3 MB)
+  const canKeep = () => 'caches' in window && 'serviceWorker' in navigator;
+  async function lessonSaved(url) { try { const c = await caches.open(AUDIO_CACHE); return !!(await c.match(new URL(url, location.href).pathname)); } catch (e) { return false; } }
+  async function saveLesson(url) {
+    const c = await caches.open(AUDIO_CACHE), abs = new URL(url, location.href);
+    const res = await fetch(abs.href, { cache: 'reload' });
+    if (!res.ok) throw new Error('fetch');
+    await c.put(abs.pathname, res);
+  }
+  async function forgetLesson(url) { const c = await caches.open(AUDIO_CACHE); await c.delete(new URL(url, location.href).pathname); }
+  S.offline = { canKeep, lessonSaved, saveLesson, forgetLesson };
+
   /* ---------- boot ---------- */
   function boot() {
     let pres = false; try { pres = sessionStorage.getItem('ec-present') === '1'; } catch (e) { }
@@ -406,6 +444,7 @@
     showSaveNote();
     new MutationObserver(queuePresent).observe($('#main'), { childList: true, subtree: true });
     typesetTree(document.body);
+    offlineSetup();
     new MutationObserver(ms => ms.forEach(m => { if (m.type === 'characterData') typesetTree(m.target); else m.addedNodes.forEach(typesetTree); }))
       .observe(document.body, { childList: true, subtree: true, characterData: true });
     $('#main').addEventListener('change', () => { PST = {}; queuePresent(); }, true);

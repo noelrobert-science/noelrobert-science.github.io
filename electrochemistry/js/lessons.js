@@ -100,7 +100,27 @@
     add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'Narrated lessons'),
       h('p', null, 'Six short lessons, about three minutes each, read by a South African voice. Each plays beside the live lab it is about, and stops at every prediction so you can decide first.'))),
       h('div', { class: 'grid g3' }, LESSONS.filter(l => audio(l.id)).map(S.lessonCard)),
-      h('p', { class: 'small muted', style: { marginTop: '14px' } }, 'Headphones help in class. Every lesson has a full transcript, and the words appear on screen as they are spoken.')]);
+      h('p', { class: 'small muted', style: { marginTop: '14px' } }, 'Headphones help in class. Every lesson has a full transcript, and the words appear on screen as they are spoken.'),
+      S.offline && S.offline.canKeep() ? allRow() : null]);
+  }
+
+  // keep all six lessons on this device in one go
+  function allRow() {
+    const row = h('div', { class: 'row small', style: { marginTop: '6px' } }), urls = LESSONS.filter(l => audio(l.id)).map(l => 'audio/' + audio(l.id).folder + '/narration.mp3');
+    const total = LESSONS.reduce((s, l) => s + ((audio(l.id) || {}).bytes || 0), 0);
+    async function draw(msg) {
+      const got = (await Promise.all(urls.map(S.offline.lessonSaved))).filter(Boolean).length;
+      clear(row);
+      add(row, [got === urls.length ? h('span', { class: 'tag tag-score' }, '✓ All six lessons saved for offline') :
+        h('button', { class: 'btn ghost small', type: 'button', onclick: async e => {
+          e.currentTarget.disabled = true; e.currentTarget.textContent = 'Saving…';
+          let ok = true; for (const u of urls) { try { if (!(await S.offline.lessonSaved(u))) await S.offline.saveLesson(u); } catch (err) { ok = false; } }
+          await draw(ok ? 'Saved: the lessons now play without the internet.' : 'Some lessons could not be saved. Check the connection and try again.');
+        } }, 'Save all lessons for offline' + (total ? ' (' + (total / 1048576).toFixed(0) + ' MB)' : '') + (got ? ' · ' + got + ' saved' : '')),
+        msg ? h('span', { class: 'muted', role: 'status' }, msg) : null]);
+    }
+    draw();
+    return row;
   }
 
   function lesson(el, l) {
@@ -112,7 +132,24 @@
 
     const player = h('audio', { controls: true, preload: 'none', src: base + 'narration.mp3', class: 'lesson-audio', 'aria-label': 'Narration: ' + l.title });
     const netMsg = h('div', { role: 'status' });
-    player.addEventListener('error', () => { clear(netMsg); netMsg.appendChild(S.notice('no', 'The narration needs an internet connection. The scenes, the board, the live lab and the transcript still work.')); });
+    // Save for offline: the narration is kept on this device, so the lesson plays without the internet
+    const keepRow = h('div', { class: 'row small keep-row' });
+    const mp3 = base + 'narration.mp3', mb = A.bytes ? ' (' + (A.bytes / 1048576).toFixed(1).replace('.', ',') + ' MB)' : '';
+    async function drawKeep(msg) {
+      if (!S.offline || !S.offline.canKeep()) return;
+      const saved = await S.offline.lessonSaved(mp3);
+      clear(keepRow);
+      add(keepRow, [saved ? h('span', { class: 'tag tag-score' }, '✓ Saved for offline') : null,
+        h('button', { class: 'btn ghost small', type: 'button', onclick: async e => {
+          const b = e.currentTarget; b.disabled = true; b.textContent = saved ? 'Removing…' : 'Saving…';
+          try { if (saved) await S.offline.forgetLesson(mp3); else await S.offline.saveLesson(mp3); await drawKeep(saved ? 'Removed from this device.' : 'Saved: this lesson now plays without the internet.'); }
+          catch (err) { await drawKeep('Could not save it now. Check the connection and try again.'); }
+          const nb = keepRow.querySelector('button'); if (nb) nb.focus({ preventScroll: true });
+        } }, saved ? 'Remove from this device' : 'Save for offline' + mb),
+        msg ? h('span', { class: 'muted', role: 'status' }, msg) : null]);
+    }
+    drawKeep();
+    player.addEventListener('error', () => { clear(netMsg); netMsg.appendChild(S.notice('no', 'The narration needs an internet connection, or tap “Save for offline” next time you are online. The scenes, the board, the live lab and the transcript still work.')); });
     const sceneTitle = h('div', { class: 'eyebrow', 'aria-live': 'polite' });
     const board = h('div', { class: 'board' });
     const caption = h('p', { class: 'caption', 'aria-hidden': 'true' });
@@ -133,7 +170,7 @@
       h('div', { class: 'head' }, h('div', null, h('h2', null, l.title), h('p', null, l.blurb))),
       h('div', { class: 'split sticky-left lesson' },
         h('div', null,
-          h('div', { class: 'card lesson-player' }, player, netMsg, stopToggle, sceneTitle, board, waitBox, caption),
+          h('div', { class: 'card lesson-player' }, player, netMsg, keepRow, stopToggle, sceneTitle, board, waitBox, caption),
           h('div', { class: 'card', style: { marginTop: '12px' } }, h('h3', null, 'Scenes'), sceneList),
           transcript),
         h('div', null, h('p', { class: 'small muted no-present', style: { margin: '0 0 6px' } }, 'The live lab: it changes with each scene. Pause the lesson any time and try it yourself.'), veilNote, labBox)),
