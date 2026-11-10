@@ -177,7 +177,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   }
   async function dbPut(key, val) { try { const d = await db(); await new Promise((res, rej) => { const t = d.transaction(ST, 'readwrite'); t.objectStore(ST).put(val, key); t.oncomplete = res; t.onerror = () => rej(t.error); }); } catch (e) { say('Could not save the take in this browser: download soon.'); } }
   async function dbGet(key) { try { const d = await db(); return await new Promise((res) => { const r = d.transaction(ST).objectStore(ST).get(key); r.onsuccess = () => res(r.result); r.onerror = () => res(undefined); }); } catch (e) { return undefined; } }
-  async function dbClear() { try { const d = await db(); await new Promise((res) => { const t = d.transaction(ST, 'readwrite'); t.objectStore(ST).clear(); t.oncomplete = res; }); } catch (e) {} }
+  async function dbDel(key) { try { const d = await db(); await new Promise((res) => { const t = d.transaction(ST, 'readwrite'); t.objectStore(ST).delete(key); t.oncomplete = res; t.onerror = res; }); } catch (e) {} }
 
   function say(t) { $('msg').textContent = t; }
   const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
@@ -382,8 +382,8 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   $('clearBtn').onclick = async () => {
     if (!clearArmed) { clearArmed = true; $('clearBtn').textContent = 'Tap again to delete every take'; setTimeout(() => { clearArmed = false; $('clearBtn').textContent = 'Clear all takes'; }, 4000); return; }
     clearArmed = false; $('clearBtn').textContent = 'Clear all takes';
-    const scriptEdits = await dbGet(lessonId + ':script');
-    await dbClear(); if (scriptEdits) await dbPut(lessonId + ':script', scriptEdits);
+    // only this script's takes: other lessons recorded in this browser stay safe
+    for (const it of items) await dbDel(lessonId + ':' + it.slug);
     Object.keys(takes).forEach((k) => delete takes[k]); showPlayback(false); render(); $('zipMsg').textContent = 'All takes deleted. Your script edits are kept.';
   };
   document.addEventListener('keydown', (e) => {

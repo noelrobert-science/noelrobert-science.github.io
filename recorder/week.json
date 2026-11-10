@@ -1,0 +1,55 @@
+{
+  "lesson": "week",
+  "title": "A week with Mr R Science",
+  "studio": "app",
+  "version": "2026-11-10a",
+  "scenes": [
+    { "n": 1, "t": "Hello", "slug": "01-hello", "face": true,
+      "note": "Your face shows. Smile, look at the camera, relaxed and warm.",
+      "lines": [
+        "Hi, I'm Mr Robert. This is a week with Mr R Science: what my pupils do after a lesson, and why."
+      ] },
+    { "n": 2, "t": "Start of the lesson", "slug": "02-start-of-the-lesson", "face": false,
+      "note": "Voice over the app's Check screen.",
+      "lines": [
+        "Every lesson starts with a few quick questions on earlier work. No notes, no hints. Just: did it stick?"
+      ] },
+    { "n": 3, "t": "In class", "slug": "03-in-class", "face": false,
+      "note": "Voice over the coursebook page and the lab on the class TV.",
+      "lines": [
+        "In class, I teach from the coursebook. The live lab runs on the TV, and pupils write in their own book."
+      ] },
+    { "n": 4, "t": "Watch", "slug": "04-watch", "face": false,
+      "note": "Voice over the salt bridge lesson. Slow down on 'predict'.",
+      "lines": [
+        "That evening, they watch one short lesson in my voice. It stops and asks them to predict, so they have to think before I explain."
+      ] },
+    { "n": 5, "t": "Train", "slug": "05-train", "face": false,
+      "note": "Voice over the Build a cell lab.",
+      "lines": [
+        "Then they train. Fresh numbers every time, and a hint only opens after a real attempt."
+      ] },
+    { "n": 6, "t": "Write and mark", "slug": "06-write-and-mark", "face": false,
+      "note": "Voice over the coursebook page, then the answer book page.",
+      "lines": [
+        "Then it's back to paper: the matching exercise in pen, marked from the answer book."
+      ] },
+    { "n": 7, "t": "End of the week", "slug": "07-end-of-the-week", "face": false,
+      "note": "Voice over the Check screen.",
+      "lines": [
+        "At the end of the week, three fresh questions with the help switched off. Then the weekly task that I mark."
+      ] },
+    { "n": 8, "t": "Days later", "slug": "08-days-later", "face": false,
+      "note": "Voice over the Return later screen.",
+      "lines": [
+        "And a few days later, it comes back. Three quick questions, to check it really stuck."
+      ] },
+    { "n": 9, "t": "Goodbye", "slug": "09-goodbye", "face": true,
+      "note": "Your face shows. Count the four words on your fingers if it helps, then smile.",
+      "lines": [
+        "Watch, train, write, check. About half an hour after each lesson. It's free, there's no sign-in, and it works on any phone."
+      ] }
+  ],
+  "roomTone": { "slug": "00-room-tone", "secs": 10,
+    "note": "Sit still and say nothing for 10 seconds. I use this to take out the background hum." }
+}

@@ -1,0 +1,75 @@
+/* v0.6 (10 Nov 2026): one job per tool. The app slide with portrait phones,
+   the week timeline, the support-fades guards and the 90-second video. */
+
+:root { --app-c: #ff4a50; --book-c: #f2f3f5; --cv-c: #5aa2ff; }
+
+/* Lesson video slide: the screenshot opens the live lesson */
+.bcenter.vshot { position: relative; left: auto; top: auto; background: transparent; box-shadow: none; }
+.bcenter.vshot .shot { margin: 0; }
+
+/* App slide: three portrait phones fanned out, features beside them */
+.app6 { display: grid; grid-template-columns: 760px 1fr; gap: 56px; align-items: start; }
+.phones6 { position: relative; height: 610px; }
+.ph6 { position: absolute; width: 250px; border: 9px solid #20242e; border-radius: 30px; overflow: hidden; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.ph6 img { width: 100%; display: block; margin: 0; }
+.ph6:nth-child(1) { left: 0; top: 0; }
+.ph6:nth-child(2) { left: 250px; top: 36px; }
+.ph6:nth-child(3) { left: 500px; top: 72px; }
+.app6 .feats { gap: 12px; }
+.app6 .feat { font-size: 32px; padding: 12px 20px; }
+
+/* Week timeline */
+.wk { display: flex; flex-direction: column; }
+.wk-stage { position: relative; flex: 1; min-height: 0; }
+.wk-panel { position: absolute; inset: 0; display: grid; grid-template-columns: 560px 1fr; gap: 44px; align-items: center; opacity: 0; visibility: hidden; }
+.wk-txt { display: flex; flex-direction: column; gap: 20px; }
+.wk-when { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 56px; line-height: 1.05; }
+.wk-when span { display: block; margin-top: 8px; font-family: var(--font-mono); font-weight: 500; font-size: 32px; color: var(--dim); }
+.wk-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tg { font-size: 32px; padding: 4px 16px; border-radius: 999px; border: 3px solid; line-height: 1.25; }
+.tg.k-app { border-color: var(--app-c); color: var(--app-c); }
+.tg.k-book { border-color: var(--book-c); color: var(--book-c); }
+.tg.k-cv { border-color: var(--cv-c); color: var(--cv-c); }
+.wk-do { margin: 0; font-size: 36px; line-height: 1.3; color: var(--dim); }
+.wk-do b { color: var(--text); font-weight: 600; }
+.wk-shots { display: flex; gap: 26px; align-items: center; justify-content: flex-end; height: 100%; }
+.wk-shots img { display: block; margin: 0; box-shadow: 0 24px 60px rgba(0,0,0,.55); }
+.wk-shots .wp { height: 440px; width: auto; border: 7px solid #20242e; border-radius: 26px; background: #fff; }
+.wk-shots .wb { height: 380px; width: auto; border-radius: 8px; background: #fff; }
+.wk-shots .wl { width: 560px; height: auto; border-radius: 10px; }
+.wk-panel[data-i="2"] .wb { height: 330px; }
+.wk-track { flex: none; padding-top: 22px; }
+.wk-bar { position: relative; height: 8px; margin: 0 10%; background: var(--line); border-radius: 4px; }
+.wk-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--red); border-radius: 4px; transform-origin: 0 50%; transform: scaleX(0); }
+.wk-dot { position: absolute; top: 50%; left: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 8px rgba(227,18,27,.25); }
+.wk-stops { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 22px; text-align: center; }
+.wk-stop span { display: block; font-size: 32px; color: var(--faint); transition: color .4s; }
+.wk-stop.done span { color: var(--dim); }
+.wk-stop.on span { color: var(--text); font-weight: 600; }
+.wk-stop i { display: inline-block; width: 16px; height: 16px; margin: 10px 4px 0; border-radius: 50%; }
+.wk-stop i.k-app { background: var(--app-c); }
+.wk-stop i.k-book { background: var(--book-c); }
+.wk-stop i.k-cv { background: var(--cv-c); }
+.wk .fragment[data-fx="wk"]:not(.wk-sum) { position: absolute; width: 0; height: 0; }
+.wk-sum { position: absolute; left: 0; right: 0; top: 0; height: calc(100% - 150px); display: flex; align-items: center; justify-content: center; text-align: center; margin: 0; padding: 0 160px; text-wrap: balance; font-family: var(--font-display); font-weight: 800; font-size: 60px; line-height: 1.2; }
+.wk-sum b { color: var(--text); }
+.wk-sum em { font-style: normal; color: var(--red-text); display: block; margin-top: 16px; }
+.wk.summed .wk-panel.on { opacity: .06 !important; }
+.wk-sum span { display: block; }
+
+/* Guards: the support-fades bars again, now in the app */
+#seq2.gseq { height: 500px; }
+#seq2 .card { min-height: 220px; }
+#seq2 .st { font-size: 36px; }
+#seq2 .bk b { color: var(--text); font-weight: 600; }
+.gnote { margin: 44px 0 0; font-family: var(--font-display); font-weight: 800; font-size: 46px; }
+.gnote em { font-style: normal; color: var(--red-text); }
+
+/* 90-second video */
+.wv { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.wv .zvid { width: 1000px; aspect-ratio: 16 / 9; }
+.wv .zvid video { width: 100%; height: 100%; object-fit: contain; }
+.wv-soon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: linear-gradient(180deg, rgba(11,13,18,.55), rgba(11,13,18,.9)); text-align: center; padding: 0 80px; }
+.wv-soon b { font-family: var(--font-display); font-weight: 800; font-size: 56px; }
+.wv-soon span { font-size: 32px; color: var(--dim); }
+.wv .cap b { color: var(--text); font-weight: 600; }
