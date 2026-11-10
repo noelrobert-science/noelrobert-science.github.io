@@ -24,11 +24,79 @@
     return el;
   }
   function add(el, kids) {
+    const plain = PLAIN.test(el.tagName) || el.namespaceURI !== HTML;
     for (const c of kids.flat(Infinity)) {
       if (c === null || c === undefined || c === false) continue;
-      el.appendChild(c instanceof Node ? c : document.createTextNode(nb(String(c))));
+      el.appendChild(c instanceof Node ? c : (plain ? document.createTextNode(nb(String(c))) : typeset(nb(String(c)))));
     }
     return el;
+  }
+  /* Chemistry type (display only). The studio's font has no raised or lowered digit and sign characters, so the browser
+     borrowed them from another font and they looked uneven. Each run of them is drawn as a real superscript or
+     subscript in the studio's own font. The text itself does not change (copying, searching and every check still
+     see Zn²⁺), so only the picture is new. Eθ is set as in the coursebook: θ raised, then cell, anode or cathode lowered. */
+  const HTML = 'http://www.w3.org/1999/xhtml', PLAIN = /^(OPTION|TEXTAREA|TITLE|STYLE|SCRIPT)$/;
+  const SUP = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁺': '+', '⁻': '−' };
+  const TYPE = /(?<![A-Za-z])E(θ)(?:(cell|cathode|anode|red|ox|OA|RA)(?![a-z]))?|([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+)|([₀₁₂₃₄₅₆₇₈₉]+)/g;
+  const NEEDS = /(?<![A-Za-z])Eθ|[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻₀₁₂₃₄₅₆₇₈₉]/;
+  const SKIP = 'svg, option, select, textarea, script, style, title, [contenteditable], .ts-up, .ts-dn, .ts-th, .ts-lo, .no-ts';
+  // text that code writes later (textContent, lesson captions) is set the same way
+  function typesetNode(t) {
+    const p = t.parentElement;
+    if (!p || !t.data || !NEEDS.test(t.data) || p.closest(SKIP)) return;
+    p.replaceChild(typeset(t.data), t);
+  }
+  // in a drawing: raised and lowered tspans (dy moves the baseline; the next piece moves it back)
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  function typesetSvg(t) {
+    const p = t.parentNode;
+    if (!p || !t.data || !NEEDS.test(t.data) || !/^(text|tspan)$/.test(p.localName) || p.closest('.ts-svg')) return;
+    const s = t.data, f = document.createDocumentFragment();
+    let last = 0, m, off = 0;
+    const piece = (str, to, small) => { const sp = document.createElementNS(SVGNS, 'tspan'); sp.setAttribute('class', 'ts-svg');
+      const dy = to - off; if (dy) sp.setAttribute('dy', dy.toFixed(2) + 'em'); off = to; if (small) sp.setAttribute('font-size', '72%'); sp.textContent = str; f.appendChild(sp); };
+    TYPE.lastIndex = 0;
+    while ((m = TYPE.exec(s))) {
+      if (m.index > last) piece(s.slice(last, m.index), 0, false);
+      if (m[1]) { piece('E', 0, false); piece('θ', -0.42, true); if (m[2]) piece(m[2], 0.22, true); }
+      else if (m[3]) piece([...m[3]].map(c => SUP[c]).join(''), -0.42, true);
+      else piece([...m[4]].map(c => String(c.charCodeAt(0) - 0x2080)).join(''), 0.22, true);
+      last = TYPE.lastIndex;
+    }
+    piece(s.slice(last) || '\u200b', 0, false);
+    p.replaceChild(f, t);
+  }
+  function typesetTree(root) {
+    if (root.nodeType === 3) { if (root.parentNode && root.parentNode.namespaceURI === SVGNS) typesetSvg(root); else typesetNode(root); return; }
+    if (root.nodeType !== 1) return;
+    if (root.namespaceURI === SVGNS || root.querySelector('svg')) {
+      const sw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), sl = [];
+      while (sw.nextNode()) if (sw.currentNode.parentNode.namespaceURI === SVGNS) sl.push(sw.currentNode);
+      sl.forEach(typesetSvg);
+      if (root.namespaceURI === SVGNS) return;
+    }
+    if (root.closest(SKIP)) return;
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), list = [];
+    while (w.nextNode()) list.push(w.currentNode);
+    list.forEach(typesetNode);
+  }
+  function typeset(s) {
+    if (!NEEDS.test(s)) return document.createTextNode(s);
+    const f = document.createDocumentFragment();
+    let last = 0, m;
+    const run = (cls, shown, raw) => { const o = document.createElement('span'); o.className = cls; o.setAttribute('data-t', shown);
+      const r = document.createElement('span'); r.setAttribute('aria-hidden', 'true'); r.textContent = raw; o.appendChild(r); return o; };
+    const span = (cls, t) => { const o = document.createElement('span'); o.className = cls; o.textContent = t; return o; };
+    TYPE.lastIndex = 0;
+    while ((m = TYPE.exec(s))) {
+      if (m.index > last) f.appendChild(document.createTextNode(s.slice(last, m.index)));
+      if (m[1]) { f.appendChild(document.createTextNode('E')); f.appendChild(span('ts-th', 'θ')); if (m[2]) f.appendChild(span('ts-lo', m[2])); }
+      else if (m[3]) f.appendChild(run('ts-up', [...m[3]].map(c => SUP[c]).join(''), m[3]));
+      else f.appendChild(run('ts-dn', [...m[4]].map(c => String(c.charCodeAt(0) - 0x2080)).join(''), m[4]));
+      last = TYPE.lastIndex;
+    }
+    if (last < s.length) f.appendChild(document.createTextNode(s.slice(last)));
+    return f;
   }
   // keep a number together on one line: digit groups (3 592,74), a power of ten (1,6 × 10⁻¹⁹) and the unit after a number (25 °C, 10⁵ Pa)
   function nb(s) {
@@ -327,7 +395,7 @@
 
   /* expose */
   Object.assign(S, { focusTo, h, add, $, $$, clear, chem, shuffle, pick, seg, select, stepLine, notice, readNum, close, store, logAttempt, scheduleReview, dueReviews, go, route, onLeave, MODS, legend, backTo, reduced, setPresent, GAPS,
-    nb, say, keepFocus, tallies, saveNote, setParams, parseHash, presentSteps, onLeaveNow, toolHead, canSave: () => canSave });
+    nb, say, keepFocus, typeset, typesetTree, tallies, saveNote, setParams, parseHash, presentSteps, onLeaveNow, toolHead, canSave: () => canSave });
 
   /* ---------- boot ---------- */
   function boot() {
@@ -337,6 +405,9 @@
     const sk = $('.skip'); if (sk) sk.addEventListener('click', e => { e.preventDefault(); const m = $('#main'); const hd = m.querySelector('h1, h2'); (hd || m).tabIndex = -1; (hd || m).focus(); });
     showSaveNote();
     new MutationObserver(queuePresent).observe($('#main'), { childList: true, subtree: true });
+    typesetTree(document.body);
+    new MutationObserver(ms => ms.forEach(m => { if (m.type === 'characterData') typesetTree(m.target); else m.addedNodes.forEach(typesetTree); }))
+      .observe(document.body, { childList: true, subtree: true, characterData: true });
     $('#main').addEventListener('change', () => { PST = {}; queuePresent(); }, true);
     document.addEventListener('keydown', e => {
       if (!document.body.classList.contains('present') || e.altKey || e.ctrlKey || e.metaKey) return;

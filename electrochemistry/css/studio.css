@@ -14,7 +14,7 @@
   --radius: 12px;
   --font: 'Lexend', 'Segoe UI', system-ui, -apple-system, 'Noto Sans', sans-serif;
   --display: 'Outfit', 'Lexend', system-ui, sans-serif;
-  --chem: 'Segoe UI', 'Noto Sans', system-ui, -apple-system, sans-serif;
+  --chem: 'Lexend', 'Segoe UI', 'Noto Sans', system-ui, -apple-system, sans-serif;
   color-scheme: only light;
 }
 * { box-sizing: border-box; }
@@ -29,6 +29,14 @@ h2 { font: 800 clamp(1.45rem, 3.4vw, 1.9rem)/1.15 var(--display); }
 h3 { font-size: 1.12rem; font-weight: 600; }
 p { margin: 0 0 .8em; }
 sub, sup { font-size: .72em; line-height: 0; }
+/* chemistry type: real raised and lowered characters in the studio's own font (see typeset in app.js) */
+.ts-up, .ts-dn, .ts-th, .ts-lo { line-height: 0; white-space: nowrap; }
+.ts-up > span, .ts-dn > span { font-size: 0; }
+.ts-up::after, .ts-dn::after { content: attr(data-t); font-size: .7em; line-height: 0; }
+.ts-up::after { vertical-align: .55em; margin-left: .03em; }
+.ts-dn::after { vertical-align: -.22em; }
+.ts-th { font-size: .74em; vertical-align: .5em; margin-left: .02em; }
+.ts-lo { font-size: .7em; vertical-align: -.22em; }
 .chem { font-family: var(--chem); white-space: nowrap; }
 .chem.cwrap { white-space: normal; overflow-wrap: anywhere; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
@@ -179,11 +187,15 @@ svg text { font-family: var(--chem); }
 
 /* choices and tiles */
 .choices { display: grid; gap: 8px; margin: 8px 0; }
-.choice { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--paper); cursor: pointer; text-align: left; width: 100%; }
+.choice { display: flex; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; line-height: 1.4; min-height: 48px; background: var(--paper); cursor: pointer; text-align: left; width: 100%; }
 .choice:hover { border-color: var(--acc); }
-.choice[aria-pressed="true"] { border: 2px solid var(--acc); background: var(--accl); padding: 9px 11px; }
-.choice.right { border: 2px solid var(--tick); background: var(--tickl); }
-.choice.wrongc { border: 2px solid var(--wrong); background: var(--wrongl); }
+.choice[aria-pressed="true"] { border: 2px solid var(--acc); background: var(--accl); padding: 10px 12px; }
+.choice[aria-pressed="true"] .ieb-letter { background: var(--acc); color: #fff; }
+.choice.right .ieb-letter { background: var(--tick); color: #fff; }
+.choice.wrongc .ieb-letter { background: var(--wrong); color: #fff; }
+.tag-star { color: #b07a00; background: #fff6dc; letter-spacing: 1px; }
+.choice.right { border: 2px solid var(--tick); background: var(--tickl); padding: 10px 12px; }
+.choice.wrongc { border: 2px solid var(--wrong); background: var(--wrongl); padding: 10px 12px; }
 .choice .chem { white-space: normal; }
 .tiles { display: flex; flex-wrap: wrap; gap: 7px; }
 .tile { border: 1px solid var(--line); background: var(--paper); border-radius: 9px; padding: 7px 11px; min-height: 40px; cursor: pointer; font-family: var(--chem); font-size: 1rem; }
@@ -219,6 +231,37 @@ svg text { font-family: var(--chem); }
 
 /* practice */
 .qcard { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+/* IEB question cards: a tag line, the set-up in a soft box, the question on its own, options as separate cards */
+.ieb-card { border-left: 5px solid var(--mc); padding-top: 14px; }
+.ieb-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.tag { display: inline-block; font-size: .78rem; font-weight: 600; line-height: 1.2; padding: 4px 9px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.tag-paper { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+.tag-mod { background: color-mix(in srgb, var(--mc) 12%, #fff); color: var(--mc); }
+.tag-score { background: var(--tickl); color: var(--tick); }
+.tag-mk { margin-left: 8px; background: transparent; color: var(--muted); padding: 0; font-weight: 500; vertical-align: 1px; }
+.ieb-setup { background: var(--soft); border-radius: 10px; padding: 10px 14px 4px; margin: 0 0 12px; color: #2c4458; font-size: .96rem; }
+.ieb-setup p { margin: 0 0 .5em; }
+.ieb-label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.ieb-ask { font-size: 1.1rem; font-weight: 600; line-height: 1.45; margin: 4px 0 12px; max-width: 62ch; }
+.ieb-subs { list-style: none; padding: 0; margin: 4px 0 12px; display: grid; gap: 10px; }
+.ieb-subs li { display: flex; gap: 10px; align-items: baseline; font-size: 1.04rem; line-height: 1.45; }
+.ieb-subs .tag-mk { margin-left: auto; padding-left: 12px; }
+.ieb-n { flex: none; font-weight: 700; color: var(--mc); min-width: 3.2em; }
+.ieb-st { font-weight: 500; }
+.ieb-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 2px 0 14px; }
+.ieb-opts.long { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ieb-opt { display: flex; gap: 10px; align-items: flex-start; text-align: left; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); cursor: pointer; line-height: 1.4; font-size: .98rem; }
+.ieb-opt:hover { border-color: var(--mc); }
+.ieb-opt[aria-pressed="true"] { border: 2px solid var(--mc); padding: 9px 11px; background: color-mix(in srgb, var(--mc) 7%, #fff); }
+.ieb-opt.right { border: 2px solid var(--tick); padding: 9px 11px; background: var(--tickl); }
+.ieb-opt.wrongc { border: 2px solid var(--wrong); padding: 9px 11px; background: var(--wrongl); }
+.ieb-letter { flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--soft); color: var(--ink); font-weight: 700; font-size: .85rem; margin-top: -1px; }
+.ieb-opt[aria-pressed="true"] .ieb-letter { background: var(--mc); color: #fff; }
+.ieb-opt.right .ieb-letter { background: var(--tick); color: #fff; }
+.ieb-opt.wrongc .ieb-letter { background: var(--wrong); color: #fff; }
+.ieb-show { margin-top: 2px; }
+@media (max-width: 560px) { .ieb-opts { grid-template-columns: 1fr; } .ieb-ask { font-size: 1.04rem; } .ieb-n { min-width: 2.8em; } }
+
 .qmeta { display: flex; gap: 8px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); margin-bottom: 8px; }
 .prompt { font-size: 1.12rem; margin: 6px 0 12px; }
 .hint { background: #fffbea; border: 1px solid #f1e1a6; border-radius: 10px; padding: 10px 12px; margin: 8px 0; }

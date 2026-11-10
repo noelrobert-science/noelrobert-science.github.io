@@ -467,8 +467,8 @@
     function draw() {
       clear(box);
       const sec = sectionOf(q);
-      add(box, [h('div', { class: 'row small muted', style: { justifyContent: 'space-between' } }, h('span', null, (sec ? sec.id + ' · ' + sec.short : '')),
-        h('span', null, stepped ? h('span', { class: 'score-only' }, q.steps.length + ' marks · ') : null, h('span', { 'aria-label': (q.stars || 1) + ' star' + ((q.stars || 1) > 1 ? 's' : '') }, '★'.repeat(q.stars || 1)))),
+      add(box, [h('div', { class: 'ieb-tags' }, sec ? h('span', { class: 'tag tag-paper' }, sec.id + ' · ' + sec.short.charAt(0).toUpperCase() + sec.short.slice(1)) : null,
+        stepped ? h('span', { class: 'tag score-only' }, q.steps.length + ' marks') : null, h('span', { class: 'tag tag-star', 'aria-label': (q.stars || 1) + ' star' + ((q.stars || 1) > 1 ? 's' : '') }, '★'.repeat(q.stars || 1))),
         h('p', { class: 'prompt' }, q.prompt)]);
       if (q.type === 'mcq') {
         box.appendChild(h('div', { class: 'choices' }, q.options.map((op, i) => {
@@ -477,7 +477,7 @@
             if (op.ok) { cls += ' right'; mark = h('span', { class: 'mark' }, i === st.pick ? ' ✓ your answer, right' : ' ✓ right answer'); }
             else if (i === st.pick) { cls += ' wrongc'; mark = h('span', { class: 'mark' }, ' ✗ your answer'); }
           }
-          return h('button', { class: cls, type: 'button', 'aria-pressed': String(st.pick === i), disabled: st.done, onclick: () => { st.pick = i; if (mode === 'check') o.onChange && o.onChange(api); redraw(); } }, chem(op.t), mark);
+          return h('button', { class: cls, type: 'button', 'aria-pressed': String(st.pick === i), disabled: st.done, onclick: () => { st.pick = i; if (mode === 'check') o.onChange && o.onChange(api); redraw(); } }, h('span', { class: 'ieb-letter', 'aria-hidden': 'true' }, 'ABCDEF'[i]), chem(op.t), mark);
         })));
       } else if (stepped) {
         const j = revealed() ? judgeSteps() : null;
@@ -578,6 +578,45 @@
   const SUPS = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁺': '+', '⁻': '-' };
   const norm = s => String(s).toLowerCase().replace(/ℓ/g, 'l').replace(/[₀-₉]/g, c => String(c.charCodeAt(0) - 0x2080)).replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/g, c => SUPS[c]).replace(/[−–]/g, '-').replace(/θ/g, '').replace(/\s+/g, ' ').trim();
   S.normSearch = norm;
+  /* An IEB question as calm parts: the set-up (our words for the paper's diagrams), the question in the IEB's own words
+     (without the quote marks), numbered sub-questions with their marks, and the options A to D as separate cards. */
+  const curly = s => s.replace(/"([^"]*)"/g, '“$1”').replace(/(\w)'(\w)/g, '$1’$2');
+  function iebParts(x) {
+    let s = x.question.trim(), opts = null;
+    // options at the end: one per line (A …\nB …), or inline (A …; B …; C …; D …)
+    const lines = s.split('\n');
+    const at = lines.findIndex(l => /^A /.test(l));
+    if (at > 0 && lines.slice(at, at + 4).map(l => l[0]).join('') === 'ABCD' && lines.length === at + 4) {
+      opts = lines.slice(at).map(l => l.slice(2).trim()); s = lines.slice(0, at).join('\n').trim();
+    } else {
+      const b = s.lastIndexOf('; B '), a = b > 0 ? s.lastIndexOf(' A ', b) : -1;
+      if (a > 0 && /; C .*; D /.test(s.slice(b))) {
+        const m = s.slice(a + 1).match(/^A (.+?); B (.+?); C (.+?); D (.+?)\.?$/);
+        if (m) { opts = m.slice(1, 5); s = s.slice(0, a).trim(); }
+      }
+    }
+    if (opts) opts = opts.map(o => o.replace(/^"(.*)"\.?$/, '$1'));
+    // numbered sub-questions (6.1.1 …), on their own lines or run together
+    const subRe = /(?:^|\s)(\d{1,2}\.\d{1,2}(?:\.\d{1,2})?)\s(?=[A-Z"])/g;
+    const cuts = []; let m;
+    while ((m = subRe.exec(s))) cuts.push({ i: m.index + (m[0].length - m[1].length - 1), n: m[1] });
+    let lead = s, subs = [];
+    if (cuts.length) {
+      lead = s.slice(0, cuts[0].i).trim();
+      subs = cuts.map((c, k) => { let t = s.slice(c.i + c.n.length, k + 1 < cuts.length ? cuts[k + 1].i : s.length).trim(), mk = null;
+        const mm = t.match(/\s*\((\d+)\)\s*$/); if (mm) { mk = +mm[1]; t = t.slice(0, mm.index).trim(); }
+        return { n: c.n, t, marks: mk }; });
+    }
+    // the lead: words outside quote marks are the set-up, quoted words are the question
+    const asks = [], setup = [];
+    let rest = lead.replace(/"([^"]+)"\s*(?:\((\d+)\))?/g, (all, q, mk) => { asks.push({ t: q.trim(), marks: mk ? +mk : null }); return '\u0000'; });
+    rest.split('\u0000').map(t => t.trim()).filter(Boolean).forEach(t => setup.push(t));
+    if (!asks.length && !subs.length && setup.length) asks.push({ t: setup.pop(), marks: null });
+    const unq = t => t.replace(/^"(.*)"$/, '$1').replace(/"/g, '');
+    subs.forEach(sb => { sb.t = unq(sb.t); });
+    return { setup: [x.stem, ...setup].filter(Boolean), asks, subs, opts };
+  }
+  S.iebParts = iebParts;
   S.views.ieb = function (el, arg, params) {
     const items = window.IEB || [];
     // 2021 Q7.6 was split into two cards (7.6.1 to 7.6.2, and 7.6.3): an old self-mark cannot be shared out, so ask for it again
@@ -586,7 +625,7 @@
     const years = Array.from(new Set(items.map(x => x.year)));
     let mod = ['27', '28', '29'].includes(params.m) ? params.m : 'all', year = years.includes(params.y) ? params.y : 'all', text = '';
     const list = h('div'), filt = h('div', { class: 'filters' });
-    add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'IEB questions'), h('p', null, `${items.length} questions from IEB NSC Paper 2 (2020 to May 2026) on Modules 27 to 29. Answer on paper first, then open the memo and mark yourself. Diagrams are described in words.`))),
+    add(el, [h('div', { class: 'head' }, h('div', null, h('h2', null, 'IEB questions'), h('p', null, `${items.length} questions from IEB NSC Paper 2 (2020 to May 2026) on Modules 27 to 29. Answer on paper first, then open the memo and mark yourself. The question is in the IEB’s own words; the set-up describes the paper’s diagrams in words.`))),
       h('p', { class: 'small muted' }, 'Reproduced with acknowledgement to the IEB: see ', h('a', { href: '#about' }, 'About'), '. May 2026 answers are ours: there is no official memo yet.'),
       h('div', { class: 'callout warm' }, h('h4', null, 'Exam technique'), 'Tick each question number when you finish it. Always choose an option on a multiple-choice or circle-the-answer item. Answer briefly: long answers often contradict themselves.'),
       split ? notice('warn', '2021 Question 7.6 is now two cards (7.6.1 to 7.6.2, and 7.6.3), so its old mark was cleared. Please mark them again.') : null,
@@ -595,18 +634,25 @@
       select([['all', 'All years']].concat(years.map(y => [y, y])), year, v => { year = v; S.setParams({ y: v === 'all' ? null : v }); draw(); }, { 'aria-label': 'Year' }),
       h('input', { type: 'search', placeholder: 'Search, e.g. salt bridge', value: text, 'aria-label': 'Search the questions', oninput: e => { text = norm(e.target.value); draw(); } })]);
     function card(x) {
-      const c = h('div', { class: 'qcard' });
-      let open = false;
+      const c = h('div', { class: 'qcard ieb-card', style: { '--mc': (S.MODS[x.module] || {}).colour || 'var(--acc)' } });
+      const P = iebParts(x), key = x.mcq ? (x.memo.match(/^([A-D])\b/) || [])[1] : null;
+      let open = false, pick = null;
       function d() {
         const marks = store.get('ieb', {}); // read on every redraw: before the first mark is saved, store.get returns a new {} each time
         clear(c);
-        add(c, [h('div', { class: 'row small muted', style: { justifyContent: 'space-between' } }, h('span', null, `${x.paper} · ${x.q}`),
-          h('span', null, `Module ${x.module} · ${x.marks} mark${x.marks > 1 ? 's' : ''}`, marks[x.id] !== undefined ? h('span', { class: 'score-only' }, ' · you scored ' + marks[x.id] + '/' + x.marks) : null)),
-          x.stem ? h('p', { class: 'small muted ieb-stem' }, h('b', null, 'The set-up: '), x.stem) : null,
-          h('p', { class: 'prompt', style: { whiteSpace: 'pre-line' } }, x.question),
-          !open ? h('button', { class: 'btn ghost small', type: 'button', onclick: () => { open = true; S.keepFocus(c, d); const s = c.querySelector('.sol'); if (s) { s.tabIndex = -1; s.focus({ preventScroll: true }); } } }, 'I have answered: show the memo') :
-            h('div', null, h('div', { class: 'sol' }, h('b', null, x.noMemo ? 'Our answer (no official memo)' : 'Memo'), h('div', { class: 'ln', style: { whiteSpace: 'pre-line' } }, x.memo)),
-              x.report ? h('div', { class: 'callout ex' }, h('h4', null, 'Examiners’ report ' + x.year), x.report) : null,
+        const paper = x.paper.replace(/^IEB NSC /, 'IEB ').replace(' Paper 2', ''), qn = x.q.replace(/^Question /, 'Q');
+        add(c, [h('div', { class: 'ieb-tags' }, h('span', { class: 'tag tag-paper' }, paper + ' · ' + qn), h('span', { class: 'tag tag-mod' }, 'Module ' + x.module),
+            h('span', { class: 'tag' }, x.marks + ' mark' + (x.marks > 1 ? 's' : '')), marks[x.id] !== undefined ? h('span', { class: 'tag tag-score score-only' }, 'You: ' + marks[x.id] + '/' + x.marks) : null),
+          P.setup.length ? h('div', { class: 'ieb-setup' }, h('span', { class: 'ieb-label' }, 'Set-up'), P.setup.map(t => h('p', null, curly(t)))) : null,
+          P.asks.map(a => h('p', { class: 'ieb-ask' }, a.t, a.marks ? h('span', { class: 'tag tag-mk' }, '(' + a.marks + ')') : null)),
+          P.subs.length ? h('ol', { class: 'ieb-subs' }, P.subs.map(sb => h('li', null, h('span', { class: 'ieb-n' }, sb.n), h('span', { class: 'ieb-st' }, sb.t), sb.marks ? h('span', { class: 'tag tag-mk' }, '(' + sb.marks + ')') : null))) : null,
+          P.opts ? h('div', { class: 'ieb-opts' + (Math.max(...P.opts.map(o => o.length)) > 34 ? ' long' : ''), role: 'group', 'aria-label': 'Options' }, P.opts.map((o, i) => { const L = 'ABCD'[i];
+            const cls = 'ieb-opt' + (open && key ? (L === key ? ' right' : pick === L ? ' wrongc' : '') : '');
+            return h('button', { type: 'button', class: cls, 'aria-pressed': String(pick === L), onclick: () => { if (open) return; pick = pick === L ? null : L; S.keepFocus(c, d); } },
+              h('span', { class: 'ieb-letter', 'aria-hidden': 'true' }, L), h('span', { class: 'sr' }, 'Option ' + L + ': '), h('span', null, curly(o))); })) : null,
+          !open ? h('button', { class: 'btn ghost small ieb-show', type: 'button', onclick: () => { open = true; S.keepFocus(c, d); const s = c.querySelector('.sol'); if (s) { s.tabIndex = -1; s.focus({ preventScroll: true }); } } }, 'I have answered: show the memo') :
+            h('div', null, h('div', { class: 'sol' }, h('b', null, x.noMemo ? 'Our answer (no official memo)' : 'Memo'), h('div', { class: 'ln', style: { whiteSpace: 'pre-line' } }, curly(x.memo).replace(/(?:;|\.)\s+(?=\d+\.\d+(?:\.\d+)?:)/g, m => (m[0] === '.' ? '.' : '') + '\n')), key && pick ? h('p', { class: 'small', style: { margin: '6px 0 0' } }, pick === key ? 'You chose ' + pick + ': right.' : 'You chose ' + pick + '. The answer is ' + key + '.') : null),
+              x.report ? h('div', { class: 'callout ex' }, h('h4', null, 'Examiners’ report ' + x.year), curly(x.report)) : null,
               h('div', { class: 'row score-only', style: { marginTop: '8px' } }, h('span', { class: 'small' }, 'Mark yourself:'),
                 Array.from({ length: x.marks + 1 }, (_, i) => h('button', { type: 'button', class: 'btn small ' + (marks[x.id] === i ? 'on' : 'ghost'), 'aria-pressed': String(marks[x.id] === i), onclick: () => {
                   store.fresh();
