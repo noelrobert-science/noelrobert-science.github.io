@@ -137,12 +137,24 @@
          "kind": "lab"
         },
         {
+         "title": "Practise: charge, current and pd",
+         "href": "../circuits/#practise/T1?r=0&g=10",
+         "kind": "studio"
+        },
+        {
          "title": "Circuits Studio: all the labs",
          "href": "../circuits/?g=10",
          "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/current?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "meters",
@@ -157,7 +169,14 @@
          "kind": "lab"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/meters?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "ohm",
@@ -175,9 +194,21 @@
          "title": "Plot the V–I graph",
          "href": "../circuits/#graph/ohm?r=0&g=10",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: Ohm's law",
+         "href": "../circuits/#practise/T2?r=0&g=10",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/ohm?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "series-parallel",
@@ -195,9 +226,21 @@
          "title": "Two resistors in parallel",
          "href": "../circuits/#lab/par2?r=0&g=10",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: series and parallel",
+         "href": "../circuits/#practise/T3?r=0&g=10",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/series-parallel?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "combos",
@@ -220,9 +263,26 @@
          "title": "From one branch current to the emf",
          "href": "../circuits/#lab/g10-C?r=0&g=10",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf",
+         "href": "../circuits/#practise/T3?type=chain&r=0&g=10",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: combinations",
+         "href": "../circuits/#practise/T6?r=0&g=10",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/combos?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "explain",
@@ -240,9 +300,21 @@
          "title": "Identical bulbs and switches",
          "href": "../circuits/#lab/g10-bulbs?r=0&g=10",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: explaining changes",
+         "href": "../circuits/#practise/T9?r=0&g=10",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/explain?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "power",
@@ -260,9 +332,48 @@
          "title": "kWh and cost",
          "href": "../circuits/#exp/kwh?r=0&g=10",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: power and energy",
+         "href": "../circuits/#practise/T4?r=0&g=10",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: cost",
+         "href": "../circuits/#practise/T5?r=0&g=10",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/power?r=0&g=10",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "review",
+       "title": "Review: come-back checks, papers and mistakes",
+       "section": "Revise",
+       "page": 230,
+       "watch": [],
+       "train": [],
+       "check": [
+        {
+         "title": "Come-back checks",
+         "href": "../circuits/#later?r=0&g=10",
+         "kind": "studio",
+         "note": "After 2 and 7 days"
+        },
+        {
+         "title": "Daily mixed check",
+         "href": "../circuits/#check/daily?r=0&g=10",
+         "kind": "studio",
+         "note": "5 questions from topics you have checked, help off"
+        }
+       ]
       }
      ]
     },
@@ -388,12 +499,24 @@
          "kind": "lab"
         },
         {
+         "title": "Practise: charge, current and pd",
+         "href": "../circuits/#practise/T1?r=0&g=11",
+         "kind": "studio"
+        },
+        {
          "title": "Circuits Studio: all the labs",
          "href": "../circuits/?g=11",
          "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/current?r=0&g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "ohm",
@@ -411,9 +534,21 @@
          "title": "Plot the I–V graph",
          "href": "../circuits/#graph/ohm?r=0&g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: Ohm's law",
+         "href": "../circuits/#practise/T2?r=0&g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/ohm?r=0&g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "series-parallel",
@@ -436,9 +571,26 @@
          "title": "A lamp before the junction",
          "href": "../circuits/#lab/D?r=0&g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf",
+         "href": "../circuits/#practise/T3?type=chain&r=0&g=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: series and parallel",
+         "href": "../circuits/#practise/T3?r=0&g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/series-parallel?r=0&g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "power",
@@ -451,9 +603,21 @@
          "title": "Power and brightness",
          "href": "../circuits/#exp/power?r=0&g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: power and energy",
+         "href": "../circuits/#practise/T4?r=0&g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/power?r=0&g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "kwh",
@@ -466,9 +630,21 @@
          "title": "kWh and cost",
          "href": "../circuits/#exp/kwh?r=0&g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: cost",
+         "href": "../circuits/#practise/T5?r=0&g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/kwh?r=0&g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       }
      ]
     },
@@ -490,9 +666,21 @@
          "title": "A network in the potential view",
          "href": "../circuits/#lab/B2?view=potential&g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: networks",
+         "href": "../circuits/#practise/T6?g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/networks?g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "emf-r",
@@ -510,9 +698,21 @@
          "title": "Explain a change: open the switch",
          "href": "../circuits/#explain/E3?g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: emf and internal resistance",
+         "href": "../circuits/#practise/T7?g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/emf-r?g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "with-r",
@@ -530,9 +730,26 @@
          "title": "A wire across a resistor",
          "href": "../circuits/#lab/D2?g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf, with r",
+         "href": "../circuits/#practise/T6?type=chain&g=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: circuits with r",
+         "href": "../circuits/#practise/T8?g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/with-r?g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "graph-r",
@@ -550,9 +767,26 @@
          "title": "Find a hidden battery's emf and r",
          "href": "../circuits/#exp/emf-r?g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: graphs",
+         "href": "../circuits/#practise/T10?g=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: practical skills",
+         "href": "../circuits/#practise/T11?g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/graph-r?g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "explain",
@@ -570,9 +804,43 @@
          "title": "Do the headlamps dim?",
          "href": "../circuits/#explain/B-1?g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: explaining changes",
+         "href": "../circuits/#practise/T9?g=11",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/explain?g=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "review",
+       "title": "Review: come-back checks, papers and mistakes",
+       "section": "Revise (M10, M11)",
+       "page": null,
+       "watch": [],
+       "train": [],
+       "check": [
+        {
+         "title": "Come-back checks",
+         "href": "../circuits/#later?g=11",
+         "kind": "studio",
+         "note": "After 2 and 7 days"
+        },
+        {
+         "title": "Daily mixed check",
+         "href": "../circuits/#check/daily?g=11",
+         "kind": "studio",
+         "note": "5 questions from topics you have checked, help off"
+        }
+       ]
       }
      ]
     }
@@ -603,12 +871,24 @@
          "kind": "lab"
         },
         {
+         "title": "Practise: charge, current and pd",
+         "href": "../circuits/#practise/T1?r=0&g=12",
+         "kind": "studio"
+        },
+        {
          "title": "Circuits Studio: all the labs",
          "href": "../circuits/?g=12",
          "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/current?r=0&g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "ohm",
@@ -626,9 +906,21 @@
          "title": "Plot the I–V graph",
          "href": "../circuits/#graph/ohm?r=0&g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: Ohm's law",
+         "href": "../circuits/#practise/T2?r=0&g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/ohm?r=0&g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "series-parallel",
@@ -651,9 +943,26 @@
          "title": "A lamp before the junction",
          "href": "../circuits/#lab/D?r=0&g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf",
+         "href": "../circuits/#practise/T3?type=chain&r=0&g=12",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: series and parallel",
+         "href": "../circuits/#practise/T3?r=0&g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/series-parallel?r=0&g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "power",
@@ -666,9 +975,21 @@
          "title": "Power and brightness",
          "href": "../circuits/#exp/power?r=0&g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: power and energy",
+         "href": "../circuits/#practise/T4?r=0&g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/power?r=0&g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "kwh",
@@ -681,9 +1002,21 @@
          "title": "kWh and cost",
          "href": "../circuits/#exp/kwh?r=0&g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: cost",
+         "href": "../circuits/#practise/T5?r=0&g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/kwh?r=0&g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       }
      ]
     },
@@ -705,9 +1038,21 @@
          "title": "A network in the potential view",
          "href": "../circuits/#lab/B2?view=potential&g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: networks",
+         "href": "../circuits/#practise/T6?g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/networks?g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "emf-r",
@@ -725,9 +1070,21 @@
          "title": "Explain a change: open the switch",
          "href": "../circuits/#explain/E3?g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: emf and internal resistance",
+         "href": "../circuits/#practise/T7?g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/emf-r?g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "with-r",
@@ -745,9 +1102,26 @@
          "title": "A wire across a resistor",
          "href": "../circuits/#lab/D2?g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf, with r",
+         "href": "../circuits/#practise/T6?type=chain&g=12",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: circuits with r",
+         "href": "../circuits/#practise/T8?g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/with-r?g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "graph-r",
@@ -767,12 +1141,34 @@
          "kind": "lab"
         },
         {
+         "title": "Practise: graphs",
+         "href": "../circuits/#practise/T10?g=12",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: practical skills",
+         "href": "../circuits/#practise/T11?g=12",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: two readings, two equations",
+         "href": "../circuits/#practise/T8?type=simul&g=12",
+         "kind": "studio"
+        },
+        {
          "title": "A real voltmeter: meter loading",
          "href": "../circuits/#lab/loading?g=12",
          "kind": "lab"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/graph-r?g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
       },
       {
        "id": "explain",
@@ -790,9 +1186,43 @@
          "title": "Do the headlamps dim?",
          "href": "../circuits/#explain/B-1?g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Practise: explaining changes",
+         "href": "../circuits/#practise/T9?g=12",
+         "kind": "studio"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/explain?g=12",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "review",
+       "title": "Review: come-back checks, papers and mistakes",
+       "section": "Revise (M10, M11)",
+       "page": null,
+       "watch": [],
+       "train": [],
+       "check": [
+        {
+         "title": "Come-back checks",
+         "href": "../circuits/#later?g=12",
+         "kind": "studio",
+         "note": "After 2 and 7 days"
+        },
+        {
+         "title": "Daily mixed check",
+         "href": "../circuits/#check/daily?g=12",
+         "kind": "studio",
+         "note": "5 questions from topics you have checked, help off"
+        }
+       ]
       }
      ]
     },
