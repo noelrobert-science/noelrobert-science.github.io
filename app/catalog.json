@@ -56,10 +56,22 @@
        ],
        "check": [
         {
-         "title": "Check it on my own",
-         "href": "gym/#climb",
+         "title": "Test myself: Δp and force",
+         "href": "gym/#climb/mdp/check",
          "kind": "gym",
-         "note": "Choose a topic, then Check it on my own"
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: momentum p = mv",
+         "href": "gym/#climb/mp/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: impulse, airbags and catches",
+         "href": "gym/#climb/mstop/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
         }
        ]
       },
@@ -124,6 +136,30 @@
         }
        ],
        "check": [
+        {
+         "title": "Test myself: stick together",
+         "href": "gym/#climb/mstick/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: bounce apart",
+         "href": "gym/#climb/mbounce/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: explosions and recoil",
+         "href": "gym/#climb/mexplode/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: elastic or inelastic?",
+         "href": "gym/#climb/melastic/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
         {
          "title": "Daily 5 (mixed retrieval)",
          "href": "gym/#climb/daily",
@@ -433,7 +469,19 @@
        ],
        "check": [
         {
-         "title": "Exam-style, without help",
+         "title": "Test myself: grams → moles",
+         "href": "gym/#climb/mass/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: moles → grams",
+         "href": "gym/#climb/reverse/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Exam-style questions, help off",
          "href": "gym/#practice",
          "kind": "gym"
         }
@@ -454,7 +502,13 @@
        ],
        "check": [
         {
-         "title": "Exam-style, without help",
+         "title": "Test myself: ions in a mixture",
+         "href": "gym/#climb/mix/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Exam-style questions, help off",
          "href": "gym/#practice",
          "kind": "gym"
         }
@@ -480,7 +534,19 @@
        ],
        "check": [
         {
-         "title": "Exam-style, without help",
+         "title": "Test myself: limiting and excess",
+         "href": "gym/#climb/limiting/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Test myself: percentage purity",
+         "href": "gym/#climb/purity/check",
+         "kind": "gym",
+         "note": "3 fresh questions, help off"
+        },
+        {
+         "title": "Exam-style questions, help off",
          "href": "gym/#practice",
          "kind": "gym"
         }
