@@ -160,12 +160,37 @@
        "check": []
       },
       {
+       "id": "ohm",
+       "title": "Resistance and Ohm's law",
+       "section": "10.3",
+       "page": 207,
+       "watch": [],
+       "train": [
+        {
+         "title": "Ohm's law experiment",
+         "href": "../circuits/#exp/ohm?r=0&g=10",
+         "kind": "lab"
+        },
+        {
+         "title": "Plot the V–I graph",
+         "href": "../circuits/#graph/ohm?r=0&g=10",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
        "id": "series-parallel",
        "title": "Resistors in series and in parallel",
        "section": "10.4",
        "page": 210,
        "watch": [],
        "train": [
+        {
+         "title": "Series and parallel rules",
+         "href": "../circuits/#exp/rules?r=0&g=10",
+         "kind": "lab"
+        },
         {
          "title": "Two resistors in parallel",
          "href": "../circuits/#lab/par2?r=0&g=10",
@@ -209,6 +234,26 @@
         {
          "title": "Identical bulbs and switches",
          "href": "../circuits/#lab/g10-bulbs?r=0&g=10",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "power",
+       "title": "Electrical power, energy and the cost of electricity",
+       "section": "10.7",
+       "page": 219,
+       "watch": [],
+       "train": [
+        {
+         "title": "Power and brightness",
+         "href": "../circuits/#exp/power?r=0&g=10",
+         "kind": "lab"
+        },
+        {
+         "title": "kWh and cost",
+         "href": "../circuits/#exp/kwh?r=0&g=10",
          "kind": "lab"
         }
        ],
@@ -346,12 +391,37 @@
        "check": []
       },
       {
+       "id": "ohm",
+       "title": "Ohm's law; ohmic and non-ohmic conductors",
+       "section": "10.2",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Ohm's law experiment",
+         "href": "../circuits/#exp/ohm?r=0&g=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Plot the I–V graph",
+         "href": "../circuits/#graph/ohm?r=0&g=11",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
        "id": "series-parallel",
        "title": "Series and parallel resistors",
        "section": "10.3",
        "page": null,
        "watch": [],
        "train": [
+        {
+         "title": "Series and parallel rules",
+         "href": "../circuits/#exp/rules?r=0&g=11",
+         "kind": "lab"
+        },
         {
          "title": "The meters lab (the WE 10.4 circuit)",
          "href": "../circuits/#lab/meters?r=0&g=11",
@@ -360,6 +430,36 @@
         {
          "title": "A lamp before the junction",
          "href": "../circuits/#lab/D?r=0&g=11",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "power",
+       "title": "Electrical power and energy",
+       "section": "10.4",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Power and brightness",
+         "href": "../circuits/#exp/power?r=0&g=11",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "kwh",
+       "title": "Paying for electricity: the kWh",
+       "section": "10.5",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "kWh and cost",
+         "href": "../circuits/#exp/kwh?r=0&g=11",
          "kind": "lab"
         }
        ],
@@ -423,6 +523,26 @@
         }
        ],
        "check": []
+      },
+      {
+       "id": "graph-r",
+       "title": "emf and r from two readings or a graph",
+       "section": "11.4",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "The terminal pd graph",
+         "href": "../circuits/#graph/vi-term?g=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Find a hidden battery's emf and r",
+         "href": "../circuits/#exp/emf-r?g=11",
+         "kind": "lab"
+        }
+       ],
+       "check": []
       }
      ]
     }
@@ -461,12 +581,37 @@
        "check": []
       },
       {
+       "id": "ohm",
+       "title": "Ohm's law; ohmic and non-ohmic conductors",
+       "section": "10.2",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Ohm's law experiment",
+         "href": "../circuits/#exp/ohm?r=0&g=12",
+         "kind": "lab"
+        },
+        {
+         "title": "Plot the I–V graph",
+         "href": "../circuits/#graph/ohm?r=0&g=12",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
        "id": "series-parallel",
        "title": "Series and parallel resistors",
        "section": "10.3",
        "page": null,
        "watch": [],
        "train": [
+        {
+         "title": "Series and parallel rules",
+         "href": "../circuits/#exp/rules?r=0&g=12",
+         "kind": "lab"
+        },
         {
          "title": "The meters lab (the WE 10.4 circuit)",
          "href": "../circuits/#lab/meters?r=0&g=12",
@@ -475,6 +620,36 @@
         {
          "title": "A lamp before the junction",
          "href": "../circuits/#lab/D?r=0&g=12",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "power",
+       "title": "Electrical power and energy",
+       "section": "10.4",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Power and brightness",
+         "href": "../circuits/#exp/power?r=0&g=12",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "kwh",
+       "title": "Paying for electricity: the kWh",
+       "section": "10.5",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "kWh and cost",
+         "href": "../circuits/#exp/kwh?r=0&g=12",
          "kind": "lab"
         }
        ],
@@ -546,6 +721,16 @@
        "page": null,
        "watch": [],
        "train": [
+        {
+         "title": "The terminal pd graph",
+         "href": "../circuits/#graph/vi-term?g=12",
+         "kind": "lab"
+        },
+        {
+         "title": "Find a hidden battery's emf and r",
+         "href": "../circuits/#exp/emf-r?g=12",
+         "kind": "lab"
+        },
         {
          "title": "A real voltmeter: meter loading",
          "href": "../circuits/#lab/loading?g=12",
