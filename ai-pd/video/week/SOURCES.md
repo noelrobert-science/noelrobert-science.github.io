@@ -1,4 +1,4 @@
-# A week with Mr R Science (86 s), sources
+# A week with Mr R Science (82 s), sources
 
 - Script: drawn from "How a learner uses it all" (10 Nov 2026), the "A typical week" table.
 - Narration: Leah, a South African AI voice (Azure), rendered with Mr Robert's own narration kit on 10 Nov 2026.
