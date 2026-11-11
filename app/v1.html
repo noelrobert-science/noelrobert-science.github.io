@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mr R Science (old version)</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Watch, train and check: physical sciences by Noel Robert, free for every learner.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Lexend:wght@300;400;600&display=swap">
+<style>
+/* Layout: phone-first app. Sticky header with grade chips; one column of modules > topics; bottom tab bar on phones, top tabs on wider screens. */
+:root {
+  --paper: #ffffff; --soft: #f4f6f9; --ink: #1b2230; --muted: #596273; --line: #d6dce6;
+  --accent: #e3121b; --link: #1c64d6; --tab: #1b2230; --tabfg: #ffffff;
+  --font-display: 'Bricolage Grotesque', 'Lexend', system-ui, sans-serif;
+  --font-body: 'Lexend', system-ui, sans-serif;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f1626; --soft: #172036; --ink: #e7ebf2; --muted: #9aa6ba; --line: #2b3754; --link: #7fb0ff; --tab: #e7ebf2; --tabfg: #0f1626; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #0f1626; --soft: #172036; --ink: #e7ebf2; --muted: #9aa6ba; --line: #2b3754; --link: #7fb0ff; --tab: #e7ebf2; --tabfg: #0f1626; color-scheme: dark }
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 300 16px/1.55 var(--font-body) }
+a { color: var(--link) }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+header { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px) }
+.bar { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding-block: 10px; flex-wrap: wrap }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto }
+.brand img { width: 38px; height: 38px; border-radius: 9px }
+.brand b { font: 800 21px/1 var(--font-display) }
+.grades { display: flex; gap: 6px }
+.grades button { font: 600 13px var(--font-body); border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 99px; padding: 7px 12px; min-height: 36px; cursor: pointer }
+.grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink) }
+nav.tabs { display: flex; gap: 4px; max-width: 960px; margin: 0 auto; padding-bottom: 8px }
+nav.tabs a { flex: 1; text-align: center; text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 8px 6px; border-radius: 9px }
+nav.tabs a span { display: block; font-size: 18px; line-height: 1.2 }
+nav.tabs a[aria-current="page"] { background: var(--tab); color: var(--tabfg) }
+@media (max-width: 640px) {
+  nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; background: var(--paper); border-top: 1px solid var(--line); padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); z-index: 5 }
+  main { padding-bottom: 96px }
+}
+main { max-width: 960px; margin: 0 auto; padding-block: 20px 40px; display: grid; gap: 22px }
+h1 { font: 800 clamp(26px, 6vw, 36px)/1.1 var(--font-display); margin: 0; text-wrap: balance }
+h2 { font: 800 21px/1.2 var(--font-display); margin: 0 }
+h3 { font-size: 16px; font-weight: 600; margin: 0 }
+.lede { color: var(--muted); margin: 6px 0 0; max-width: 62ch }
+.module { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden }
+.module > .mh { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px; background: var(--soft); border-left: 6px solid var(--mc, var(--ink)) }
+.module > .mh .num { font: 800 15px var(--font-display); color: var(--mc, var(--ink)); min-width: 2.2em }
+.module > .mh small { display: block; color: var(--muted); font-size: 12.5px }
+.topic { padding: 14px 16px; border-top: 1px solid var(--line); display: grid; gap: 10px }
+.topic .th { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap }
+.topic .th small { color: var(--muted); font-size: 12.5px }
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px }
+.item { display: grid; gap: 2px; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0 }
+.item:hover { border-color: var(--ink) }
+.item b { font-weight: 600; font-size: 14.5px }
+.item small { color: var(--muted); font-size: 12px }
+.item.watch { border-left: 4px solid var(--accent) }
+.pill { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted) }
+.cross { font-size: 13.5px; display: flex; gap: 14px; flex-wrap: wrap }
+.empty { color: var(--muted); font-size: 14px; margin: 0 }
+.home-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
+@media (max-width: 520px) { .home-actions { grid-template-columns: 1fr } }
+.home-actions a { text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 4px }
+.home-actions a b { font: 800 19px var(--font-display) }
+.home-actions a small { color: var(--muted) }
+.home-actions a:hover { border-color: var(--ink) }
+.note { background: var(--soft); border-radius: var(--radius); padding: 14px 16px; font-size: 14.5px }
+footer { max-width: 960px; margin: 0 auto; padding-block: 0 30px; color: var(--muted); font-size: 12.5px }
+@media (prefers-reduced-motion: no-preference) { .item, .home-actions a { transition: border-color .15s } }
+</style>
+</head>
+<body>
+<header class="gut">
+  <div class="bar">
+    <a class="brand" href="#home"><img src="icons/icon.svg" alt=""><b>Mr R Science</b></a>
+    <div class="grades" role="group" aria-label="Grade" id="grades"></div>
+  </div>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#watch" data-tab="watch"><span aria-hidden="true">▶</span>Watch</a>
+    <a href="#train" data-tab="train"><span aria-hidden="true">▲</span>Train</a>
+    <a href="#check" data-tab="check"><span aria-hidden="true">✓</span>Check</a>
+    <a href="#book" data-tab="book"><span aria-hidden="true">▤</span>Book</a>
+  </nav>
+</header>
+<main class="gut" id="main" tabindex="-1"><p class="empty">Loading…</p></main>
+<footer class="gut"><a href="#about">About Mr R Science</a> · By Noel Robert · No sign-in. Your progress stays on this device.</footer>
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = { get(k, d) { try { const v = localStorage.getItem('mrr-' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+                set(k, v) { try { localStorage.setItem('mrr-' + k, JSON.stringify(v)); } catch {} } };
+let CAT = null, grade = store.get('grade', '10');
+
+const TABS = {
+  watch: { title: 'Watch', lede: 'Short lessons that stop for you to think. Each one ends by sending you to practise it.', key: 'watch' },
+  train: { title: 'Train', lede: 'Practice with fresh numbers and help that fades as you get better. Climb from Watch me to Solo.', key: 'train' },
+  check: { title: 'Check', lede: 'Prove it stuck: questions with the help switched off. Come back in a few days and try again.', key: 'check' },
+  book:  { title: 'Book', lede: 'Every topic points to the section and page in the coursebook, so screen and paper stay together.', key: 'book' }
+};
+
+function itemHtml(it, cls) {
+  const meta = [it.voice, it.mins, it.note].filter(Boolean).join(' · ');
+  return `<a class="item ${cls || ''}" href="${esc(it.href)}"><b>${esc(it.title)}</b>${meta ? `<small>${esc(meta)}</small>` : ''}${it.pilot ? `<small>${esc(it.pilot)}</small>` : ''}</a>`;
+}
+function crossLinks(t, tab) {
+  const out = [];
+  if (tab !== 'watch' && t.watch.length) out.push(`<a href="${esc(t.watch[0].href)}">▶ Watch first: ${esc(t.watch[0].title)}</a>`);
+  if (tab === 'watch' && t.train.length) out.push(`<a href="${esc(t.train[0].href)}">▲ Now train this: ${esc(t.train[0].title)}</a>`);
+  if (tab === 'train' && t.check.length) out.push(`<a href="${esc(t.check[0].href)}">✓ Then check it: ${esc(t.check[0].title)}</a>`);
+  return out.length ? `<div class="cross">${out.join('')}</div>` : '';
+}
+function gradeData() { return CAT.grades.find(g => g.id === grade) || CAT.grades[0]; }
+
+function moduleBlock(m, inner) {
+  return `<section class="module" style="--mc:${esc(m.colour || '')}"><div class="mh"><span class="num">${esc(m.num)}</span><div><h2>${esc(m.title)}</h2><small>${esc(m.book)}</small></div></div>${inner}</section>`;
+}
+function tabView(tab) {
+  const g = gradeData(), T = TABS[tab];
+  let body = '';
+  if (!g.modules.length) body = `<p class="note">${esc(g.coming || 'Coming soon.')}</p>`;
+  for (const m of g.modules) {
+    const topics = m.topics.map(t => {
+      if (tab === 'book') return `<div class="topic"><div class="th"><h3>${esc(t.title)}</h3><small>Section ${esc(t.section)}${t.page ? ' · p. ' + esc(t.page) : ''}</small></div></div>`;
+      const list = t[T.key] || [];
+      if (!list.length) return '';
+      return `<div class="topic"><div class="th"><h3>${esc(t.title)}</h3><small>Section ${esc(t.section)}${t.page ? ' · p. ' + esc(t.page) : ''}</small></div><div class="items">${list.map(i => itemHtml(i, tab === 'watch' ? 'watch' : '')).join('')}</div>${crossLinks(t, tab)}</div>`;
+    }).join('');
+    if (topics) body += moduleBlock(m, topics);
+  }
+  if (!body) body = `<p class="note">Nothing here for ${esc(g.label)} yet. Try another tab.</p>`;
+  const bookNote = tab === 'book' ? `<p class="note">The coursebook PDFs will be linked here once they are cleared for sharing. Until then, use your printed book: the section and page are listed for each topic.</p>` : '';
+  return `<div><h1>${esc(T.title)} · ${esc(g.label)}</h1><p class="lede">${esc(T.lede)}</p></div>${bookNote}${body}`;
+}
+function homeView() {
+  const g = gradeData();
+  const count = k => g.modules.reduce((n, m) => n + m.topics.reduce((a, t) => a + (t[k] || []).length, 0), 0);
+  return `<div><h1>${esc(g.label)} physical sciences</h1><p class="lede">Built from Mr Robert's coursebooks, the ${esc(g.syllabus)} syllabus and real exam questions. Free to use, with no sign-in.</p></div>
+  <div class="home-actions">
+    <a href="#watch"><span class="pill">${count('watch')} lessons</span><b>▶ Watch</b><small>Short lessons that stop for you to think</small></a>
+    <a href="#train"><span class="pill">${count('train')} activities</span><b>▲ Train</b><small>Fresh numbers, fading help, labs</small></a>
+    <a href="#check"><span class="pill">${count('check')} checks</span><b>✓ Check</b><small>No help switched on. Did it stick?</small></a>
+  </div>
+  ${g.modules.length ? g.modules.map(m => moduleBlock(m, m.topics.map(t => `<div class="topic"><div class="th"><h3>${esc(t.title)}</h3><small>Section ${esc(t.section)}</small></div>${crossLinks(Object.assign({}, t), 'home')}<div class="cross">${t.watch[0] ? `<a href="${esc(t.watch[0].href)}">▶ Watch</a>` : ''}${t.train[0] ? `<a href="${esc(t.train[0].href)}">▲ Train</a>` : ''}${t.check[0] ? `<a href="${esc(t.check[0].href)}">✓ Check</a>` : ''}</div></div>`).join(''))).join('') : `<p class="note">${esc(g.coming || 'Coming soon.')}</p>`}`;
+}
+function aboutView() {
+  return `<div><h1>About Mr R Science</h1><p class="lede">Physical sciences, the way Noel Robert teaches it: SAGS wording, worked methods that earn the marks, and practice that makes you think before it shows you.</p></div>
+  <div class="note"><b>Free and open.</b> Any learner can use it, at any school. There's no sign-in and no account. Your practice record is kept only on this device.</div>
+  <div class="note"><b>Teachers.</b> A school can open Mr R Science inside its own signed-in page, so its learners' results reach their teacher. The app itself never collects names or marks.</div>
+  <p class="empty">© Noel Robert. Past exam questions are used with acknowledgement to their examining body.</p>`;
+}
+function render() {
+  const route = (location.hash.slice(1) || 'home');
+  document.querySelectorAll('[data-tab]').forEach(a => a.toggleAttribute('aria-current', a.dataset.tab === route) || a.dataset.tab === route && a.setAttribute('aria-current', 'page'));
+  document.querySelectorAll('[data-tab]').forEach(a => { if (a.dataset.tab === route) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  $('#grades').innerHTML = CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}">${esc(g.label.replace('Grade ', 'Gr '))}</button>`).join('');
+  $('#main').innerHTML = TABS[route] ? tabView(route) : route === 'about' ? aboutView() : homeView();
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { grade = b.dataset.g; store.set('grade', grade); render(); } });
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); })
+  .catch(() => { $('#main').innerHTML = '<p class="note">The lesson list could not load. Check your connection, then reopen the app.</p>'; });
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>
