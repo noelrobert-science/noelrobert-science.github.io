@@ -220,16 +220,33 @@ const COVER = {
   'limiting-purity': { t: 'Which runs out?', s: 'Limiting reagent' }, table4: { t: 'Table 4', s: 'Who is oxidised?' },
   'will-it-react': { t: 'Zn + Cu²⁺ → ?', s: 'Will it react?' }, faraday: { t: 'Q = It', s: 'Counting electrons' },
   guides: { t: '90+', s: 'Revision guides' },
+  current: { t: 'I = Q ÷ Δt', s: 'Current' }, meters: { t: 'A in series, V across', s: 'Meters' },
+  'series-parallel': { t: 'Series or parallel?', s: 'Resistors' }, combos: { t: 'Total first', s: 'Combinations' },
+  explain: { t: 'Brighter or dimmer?', s: 'Reasoning' }, networks: { t: 'Follow the volts', s: 'Networks' },
+  'emf-r': { t: 'ε = I(R + r)', s: 'Internal resistance' }, 'with-r': { t: 'Lost volts = Ir', s: 'Solving with r' },
+  'graph-r': { t: 'Real meters', s: 'Two readings' },
   galvanic: { img: 'img/topics/galvanic.jpg' }, 'salt-bridge': { img: 'img/topics/salt-bridge.jpg' }, electrolysis: { img: 'img/topics/electrolysis.jpg' }
 };
 
 function gradeData() { return CAT.grades.find(g => g.id === grade) || CAT.grades[0]; }
 function allTopics(g) { return (g || gradeData()).modules.flatMap(m => m.topics.map(t => ({ t, m }))); }
-function findTopic(id) { for (const g of CAT.grades) for (const m of g.modules) for (const t of m.topics) if (t.id === id) return { t, m, g }; return null; }
+// Topic ids can repeat across grades (circuits), so the app keys topics by grade/id.
+function findTopic(id) {
+  const all = CAT.grades.flatMap(g => g.modules.flatMap(m => m.topics.map(t => ({ t, m, g }))));
+  return all.find(x => x.t._k === id) || all.find(x => x.t.id === id && x.g.id === grade) || all.find(x => x.t.id === id) || null;
+}
+function keyTopics() {
+  for (const g of CAT.grades) for (const m of g.modules) for (const t of m.topics) t._k = g.id + '/' + t.id;
+  // ticks saved before keys had a grade: move them to the grade that has that topic
+  let moved = false;
+  for (const k of Object.keys(prog)) if (!k.includes('/')) { const f = findTopic(k); if (f) { prog[f.t._k] = Object.assign({}, prog[k], prog[f.t._k]); } delete prog[k]; moved = true; }
+  if (moved) store.set('progress', prog);
+  const last = store.get('last', null); if (last && !last.includes('/')) { const f = findTopic(last); store.set('last', f ? f.t._k : null); }
+}
 function st(tid, k) { return (prog[tid] || {})[k] || 0; }
 function has(t, k) { return (t[k] || []).length > 0; }
-function nextStep(t) { return STEPS.find(s => has(t, s.k) && st(t.id, s.k) < 2) || null; }
-function isDone(t) { return STEPS.every(s => !has(t, s.k) || st(t.id, s.k) === 2) && STEPS.some(s => has(t, s.k)); }
+function nextStep(t) { return STEPS.find(s => has(t, s.k) && st(t._k, s.k) < 2) || null; }
+function isDone(t) { return STEPS.every(s => !has(t, s.k) || st(t._k, s.k) === 2) && STEPS.some(s => has(t, s.k)); }
 function where(t, m) { return t.page ? `Book p. ${t.page}` : (t.section && /^\d/.test(t.section) ? `Section ${t.section}` : (m.num && /^\d/.test(m.num) ? `Module ${m.num}` : '')); }
 
 function cover(t, m) {
@@ -240,13 +257,13 @@ function cover(t, m) {
 }
 function dots(t) {
   return `<span class="dots" aria-label="Progress">${STEPS.map(s => {
-    const v = st(t.id, s.k), cls = !has(t, s.k) ? 'na' : v === 2 ? 's2' : v === 1 ? 's1' : '';
+    const v = st(t._k, s.k), cls = !has(t, s.k) ? 'na' : v === 2 ? 's2' : v === 1 ? 's1' : '';
     return `<span class="dot ${cls}" title="${s.name}${!has(t, s.k) ? ': none yet' : v === 2 ? ': done' : v === 1 ? ': started' : ''}">${v === 2 ? '✓' : s.name[0]}</span>`;
   }).join('')}</span>`;
 }
 function card(t, m) {
   const w = where(t, m);
-  return `<a class="card" href="#t/${esc(t.id)}" style="--mc:${esc(m.colour || '#334155')}">${cover(t, m)}<div class="body"><h3>${esc(t.title)}</h3><div class="meta">${w ? `<span class="tag">${esc(w)}</span>` : '<span></span>'}${dots(t)}</div></div></a>`;
+  return `<a class="card" href="#t/${esc(t._k)}" style="--mc:${esc(m.colour || '#334155')}">${cover(t, m)}<div class="body"><h3>${esc(t.title)}</h3><div class="meta">${w ? `<span class="tag">${esc(w)}</span>` : '<span></span>'}${dots(t)}</div></div></a>`;
 }
 function itemLink(it, tid, k, first) {
   const meta = [it.voice, it.note].filter(Boolean).join(' · ');
@@ -257,13 +274,13 @@ function homeView() {
   const g = gradeData(), list = allTopics(g);
   let next = '';
   if (list.length) {
-    const last = store.get('last', null), hit = last && list.find(x => x.t.id === last);
-    const cand = (hit && !isDone(hit.t)) ? hit : list.find(x => !isDone(x.t) && STEPS.some(s => st(x.t.id, s.k) > 0)) || null;
+    const last = store.get('last', null), hit = last && list.find(x => x.t._k === last);
+    const cand = (hit && !isDone(hit.t)) ? hit : list.find(x => !isDone(x.t) && STEPS.some(s => st(x.t._k, s.k) > 0)) || null;
     if (cand) {
       const s = nextStep(cand.t), it = s && cand.t[s.k][0];
       next = `<section class="next" aria-label="Next up"><div><p class="kicker">Next up</p><h2>${esc(cand.t.title)}</h2></div>
         <p>${s ? `Step ${STEPS.indexOf(s) + 1} of 3: <b>${s.name}</b>. ${esc(s.what)}` : 'All steps done.'}</p>
-        <div class="acts">${it ? `<a class="btn" href="${esc(it.href)}" data-topic="${esc(cand.t.id)}" data-step="${s.k}">${ICON[s.k].replace('<svg', '<svg width="18" height="18"')} ${s.verb}</a>` : ''}<a class="btn ghost" href="#t/${esc(cand.t.id)}">See the topic</a></div></section>`;
+        <div class="acts">${it ? `<a class="btn" href="${esc(it.href)}" data-topic="${esc(cand.t._k)}" data-step="${s.k}">${ICON[s.k].replace('<svg', '<svg width="18" height="18"')} ${s.verb}</a>` : ''}<a class="btn ghost" href="#t/${esc(cand.t._k)}">See the topic</a></div></section>`;
     } else {
       next = `<section class="next" aria-label="Start here"><div><p class="kicker">Start here</p><h2>Pick a topic you're doing in class.</h2></div>
         <p>Each topic has three steps. Do them in order, and tick each one off when you're done.</p></section>`;
@@ -280,14 +297,14 @@ function topicView(id) {
   if (!f) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">That topic isn't here any more.</p>`;
   const { t, m, g } = f;
   if (g.id !== grade) { grade = g.id; store.set('grade', grade); }
-  store.set('last', t.id);
+  store.set('last', t._k);
   const ns = nextStep(t);
   const steps = STEPS.map((s, i) => {
-    const list = t[s.k] || [], v = st(t.id, s.k);
+    const list = t[s.k] || [], v = st(t._k, s.k);
     const cls = !list.length ? '' : v === 2 ? 'is-done' : (ns && ns.k === s.k ? 'is-next' : '');
-    const tick = list.length ? `<button class="tick" type="button" data-tick="${esc(t.id)}" data-k="${s.k}" aria-pressed="${v === 2}"><i>✓</i>${v === 2 ? 'Done' : "I've done this"}</button>` : '';
+    const tick = list.length ? `<button class="tick" type="button" data-tick="${esc(t._k)}" data-k="${s.k}" aria-pressed="${v === 2}"><i>✓</i>${v === 2 ? 'Done' : "I've done this"}</button>` : '';
     return `<section class="step ${cls}"><div class="step-h"><span class="n">${v === 2 ? '✓' : i + 1}</span><div><h2>${s.name}</h2><small>${esc(s.what)}</small></div></div>
-      ${list.length ? `<div class="items">${list.map((it, j) => itemLink(it, t.id, s.k, j === 0 && cls === 'is-next')).join('')}</div>` : `<p class="none">Nothing here yet for this topic. ${s.k === 'check' ? 'Use the Check tab for a mixed check.' : ''}</p>`}${tick ? `<div class="step-f">${tick}</div>` : ''}</section>`;
+      ${list.length ? `<div class="items">${list.map((it, j) => itemLink(it, t._k, s.k, j === 0 && cls === 'is-next')).join('')}</div>` : `<p class="none">Nothing here yet for this topic. ${s.k === 'check' ? 'Use the Check tab for a mixed check.' : ''}</p>`}${tick ? `<div class="step-f">${tick}</div>` : ''}</section>`;
   }).join('');
   const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Come back to the Check in a few days to see if it stuck.</p></div></div>` : '';
   const w = where(t, m);
@@ -306,10 +323,10 @@ function tabView(tab) {
   const g = gradeData(), T = TABS[tab];
   const rows = g.modules.flatMap(m => m.topics.map(t => {
     const w = where(t, m);
-    if (tab === 'book') return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t.id)}">${esc(t.title)}</a><span class="tag">${esc(m.num)} · ${esc(t.section || '')}${t.page ? ' · p. ' + esc(t.page) : ''}</span></div></div>`;
+    if (tab === 'book') return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t._k)}">${esc(t.title)}</a><span class="tag">${esc(m.num)} · ${esc(t.section || '')}${t.page ? ' · p. ' + esc(t.page) : ''}</span></div></div>`;
     const list = t[tab] || [];
     if (!list.length) return '';
-    return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t.id)}">${esc(t.title)} ›</a>${w ? `<span class="tag">${esc(w)}</span>` : ''}</div><div class="items">${list.map(it => itemLink(it, t.id, tab, false)).join('')}</div></div>`;
+    return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t._k)}">${esc(t.title)} ›</a>${w ? `<span class="tag">${esc(w)}</span>` : ''}</div><div class="items">${list.map(it => itemLink(it, t._k, tab, false)).join('')}</div></div>`;
   })).join('');
   const body = !g.modules.length ? `<p class="note">${esc(g.coming || 'Coming soon.')}</p>` : rows ? `<div class="list">${rows}</div>` : `<p class="note">Nothing here for ${esc(g.label)} yet.</p>`;
   const bookNote = tab === 'book' ? `<p class="note">Use your printed coursebook: the section and page are listed for each topic.</p>` : '';
@@ -370,7 +387,7 @@ setTheme(store.get('theme', null));
 $('#theme').addEventListener('click', () => { const dark = document.documentElement.getAttribute('data-theme') ? document.documentElement.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; const v = dark ? 'light' : 'dark'; store.set('theme', v); setTheme(v); });
 try { sessionStorage.removeItem('mrr-return'); } catch {}
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
-fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); })
+fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; keyTopics(); if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); })
   .catch(() => { $('#main').innerHTML = '<p class="note">The lesson list could not load. Check your connection, then reopen the app.</p>'; });
 </script>
 </body>

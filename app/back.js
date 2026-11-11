@@ -9,7 +9,7 @@
     if (document.getElementById('mrr-back')) return;
     var a = document.createElement('a');
     a.id = 'mrr-back'; a.href = to;
-    a.innerHTML = '<span aria-hidden="true" style="font-size:20px;line-height:1">‹</span><span>Back to Mr R Science</span>' +
+    a.innerHTML = '<span aria-hidden="true" style="font-size:20px;line-height:1">‹</span><span style="white-space:nowrap;flex:none">Back to Mr R Science</span>' +
       (title ? '<small style="opacity:.75;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0">· ' + title.replace(/[<>&]/g, '') + '</small>' : '');
     a.setAttribute('style', 'display:flex;align-items:center;gap:8px;min-height:44px;padding:6px max(16px, env(safe-area-inset-left, 0px));' +
       'padding-top:max(6px, env(safe-area-inset-top, 0px));background:#151b28;color:#fff;font:600 15px/1.2 Lexend,system-ui,sans-serif;text-decoration:none;position:relative;z-index:2147483000');
