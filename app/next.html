@@ -167,6 +167,9 @@ h2 { font: 800 21px/1.2 var(--font-display); margin: 0; text-wrap: balance }
 .rowx a.t small { color: var(--muted); font-size: 13.5px }
 .rowx .btn { min-height: 44px; padding: 0 16px; font-size: 15px; flex: none }
 .rowx .btn { background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink) }
+.quick { background: var(--hero); color: var(--hero-ink); border-radius: 20px; padding: 18px; display: grid; gap: 10px }
+.quick .kicker { color: var(--hero-kick); margin: 0 }
+.quick b { font: 800 21px/1.25 var(--font-display) }
 .rowx.done .btn { border-color: var(--ok); color: var(--ok) }
 
 footer { max-width: 760px; margin: 0 auto; padding-block: 0 30px; color: var(--muted); font-size: 13px }
@@ -279,7 +282,7 @@ function startView() {
     <div class="tiles">
       ${tile('#home', ICON.learn, 'Learn a topic', 'Go through it step by step, in the same order as your book.', true)}
       ${tile('#practise', ICON.practise, 'Practise for a test', 'Pick a topic and get fresh questions.')}
-      ${tile('#test', ICON.test, 'Quick check', 'A few questions, no help. See what you know.')}
+      ${tile('#test', ICON.test, 'Quick check', 'Five mixed questions, no help. See what you know.')}
     </div>
     <p class="quiet">Free for every learner. No sign-in, nothing to install.</p>`;
 }
@@ -343,7 +346,11 @@ function listView(k) {
     }).join('');
     return rows ? `<section class="mod" style="--mc:${esc(m.colour || '#334155')}"><div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div><div class="rows">${rows}</div></section>` : '';
   }).join('');
-  return `<div><p class="kicker">${esc(g.label)}</p><h1>${H.h}</h1><p class="lede">${H.p}</p></div>${mods || `<p class="note">${esc(g.coming || 'Nothing here yet.')}</p>`}`;
+  // Quick check: the mixed "daily" checks sit at the top of Test myself (the first screen's Quick check tile lands here).
+  const quick = k === 'test' ? g.modules.flatMap(m => m.topics.flatMap(t => (t.check || []).filter(it => /daily/.test(it.href)).map(it => ({ it, t, m })))) : [];
+  const qc = quick.length ? `<section class="quick"><p class="kicker">Quick check</p><b>Five mixed questions from what you've done</b><div class="acts">${quick.map(({ it, t, m }) =>
+    `<a class="btn" href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(/circuits/.test(it.href) ? 'Circuits' : 'Momentum and chemistry')}</a>`).join('')}</div></section>` : '';
+  return `<div><p class="kicker">${esc(g.label)}</p><h1>${H.h}</h1><p class="lede">${H.p}</p></div>${qc}${mods || `<p class="note">${esc(g.coming || 'Nothing here yet.')}</p>`}`;
 }
 
 function aboutView() {
