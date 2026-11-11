@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<title>Go · Mr R Science</title>
+<style>
+:root { --ink:#17324d; --muted:#52677a; --acc:#0b7285; --line:#d3dee4; }
+body { margin:0; font:17px/1.55 'Segoe UI', system-ui, -apple-system, sans-serif; color:var(--ink); background:#f6f8f9; }
+.wrap { max-width:640px; margin:0 auto; padding:32px 16px; }
+h1 { font-size:1.6rem; margin:0 0 .5em; }
+a { color:var(--acc); }
+.card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; }
+input { font:inherit; min-height:44px; padding:6px 10px; border:1px solid var(--line); border-radius:8px; width:9em; }
+button { font:inherit; min-height:44px; padding:6px 14px; border-radius:8px; border:1px solid var(--acc); background:var(--acc); color:#fff; font-weight:600; cursor:pointer; }
+ul { padding-left:1.2em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="h">Opening…</h1>
+  <div id="out" class="card"><p>One moment.</p></div>
+</div>
+<script src="../circuits/data/book-links.js"></script>
+<script>
+/* Short codes printed in the books (e.g. /go/?m11-3 or /go/#m11-3) forward to the studio route. */
+(function () {
+  var L = (window.STUDIO && window.STUDIO.links) || { links: [] };
+  var code = (location.search.replace(/^\?/, '').split('&')[0] || location.hash.replace(/^#/, '')).toLowerCase().trim();
+  var hit = L.links.filter(function (x) { return x.code === code; })[0];
+  if (hit) { location.replace('../circuits/' + hit.route); return; }
+  document.getElementById('h').textContent = code ? 'That code is not on the list' : 'Type a code from your book';
+  var out = document.getElementById('out');
+  out.innerHTML = '<form id="f"><label for="c">Code</label> <input id="c" autocomplete="off" autocapitalize="none" placeholder="m11-3"> <button>Go</button></form>' +
+    '<p style="margin-top:14px">Or pick one:</p><ul>' + L.links.map(function (x) {
+      return '<li><a href="../circuits/' + x.route + '">' + x.code + '</a>: ' + x.opens + ' (' + x.place + ')</li>'; }).join('') + '</ul>' +
+    '<p><a href="../circuits/">Circuits Studio</a></p>';
+  document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); location.href = '?' + document.getElementById('c').value.trim(); });
+})();
+</script>
+</body>
+</html>

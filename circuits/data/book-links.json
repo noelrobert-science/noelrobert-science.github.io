@@ -1,0 +1,91 @@
+{
+ "note": "One route table for every printed studio link (book Appendix D; studio_design.md 1.4-1.5). The studio and the go page read this file too.",
+ "studio_base": "https://noelrobert-science.github.io/circuits/",
+ "go_base": "https://noelrobert-science.github.io/go/",
+ "links": [
+  {
+   "code": "m10-1",
+   "place": "10.1",
+   "route": "#lab/A?view=height&r=0&gmin=11",
+   "opens": "the height view of the potential model, probe voltmeter, ideal battery"
+  },
+  {
+   "code": "m10-2",
+   "place": "10.2",
+   "route": "#exp/ohm?r=0&gmin=11",
+   "opens": "the Ohm's law experiment, I against V"
+  },
+  {
+   "code": "m10-3",
+   "place": "10.3",
+   "route": "#exp/rules?r=0&gmin=11",
+   "opens": "the series and parallel rules experiment"
+  },
+  {
+   "code": "m10-3v",
+   "place": "10.3 virtual-lab box",
+   "route": "#lab/meters?r=0&gmin=11",
+   "opens": "preset meters, the WE 10.4 circuit, with the box's three tasks"
+  },
+  {
+   "code": "m10-4",
+   "place": "10.4",
+   "route": "#exp/power?r=0&gmin=11",
+   "opens": "power and brightness"
+  },
+  {
+   "code": "m10-5",
+   "place": "10.5",
+   "route": "#exp/kwh?r=0&gmin=11",
+   "opens": "kWh and cost"
+  },
+  {
+   "code": "m10-rev",
+   "place": "Module 10 Revise",
+   "route": "#later?r=0&gmin=11",
+   "opens": "the come-back checks after 2 and 7 days"
+  },
+  {
+   "code": "m11-1",
+   "place": "11.1",
+   "route": "#lab/B2?view=potential&gmin=11",
+   "opens": "a network preset in the potential view"
+  },
+  {
+   "code": "m11-2",
+   "place": "11.2",
+   "route": "#lab/B?gmin=11",
+   "opens": "preset B, the battery story"
+  },
+  {
+   "code": "m11-3",
+   "place": "11.3",
+   "route": "#lab/A?gmin=11",
+   "opens": "preset A, the anchor network with r"
+  },
+  {
+   "code": "m11-4",
+   "place": "11.4",
+   "route": "#graph/vi-term?gmin=11",
+   "opens": "the V-I graph tool"
+  },
+  {
+   "code": "m11-4v",
+   "place": "11.4 virtual-lab box",
+   "route": "#exp/emf-r?box=S&gmin=11",
+   "opens": "the emf and r experiment, box S"
+  },
+  {
+   "code": "m11-5",
+   "place": "11.5",
+   "route": "#chain/E1?gmin=11",
+   "opens": "Explain a change, event E1"
+  },
+  {
+   "code": "m11-rev",
+   "place": "Module 11 Revise",
+   "route": "#later?gmin=11",
+   "opens": "the come-back checks after 2 and 7 days"
+  }
+ ]
+}
