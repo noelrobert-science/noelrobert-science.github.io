@@ -128,3 +128,51 @@ svg.circ .vpill text { font: 600 11px var(--font); fill: #212529; text-anchor: m
   .canvas { padding: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { svg.circ .drift { animation: none; display: none; } }
+
+/* experiments */
+.tag { display: inline-block; background: var(--warml); border: 1px solid #f3c89b; color: #7a3d08; border-radius: 8px; padding: 3px 10px; font-weight: 600; }
+.dmms { display: flex; gap: 10px; flex-wrap: wrap; }
+.dmm { flex: 1 1 130px; background: #1f2a30; color: #d9ffe1; border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; }
+.dmm .small { color: #9fb4bd; }
+.dmm b { font: 700 1.6rem/1.2 ui-monospace, 'Cascadia Mono', Menlo, monospace; font-variant-numeric: tabular-nums; }
+.steady { color: var(--tick); font-weight: 700; }
+.steady.off { visibility: hidden; }
+.btn.big { min-height: 56px; min-width: 140px; font-size: 1.1rem; }
+table.rec { border-collapse: collapse; width: 100%; font-size: .95rem; }
+table.rec th, table.rec td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; }
+table.rec td.n { font-variant-numeric: tabular-nums; }
+table.rec select { max-width: 100%; font-size: .85rem; }
+table.rec tr.unsteady td { background: var(--warml); }
+ul.checks { list-style: none; padding: 0; margin: 10px 0 0; }
+ul.checks li { padding: 2px 0; }
+ul.checks li.ok { color: var(--tick); }
+ul.checks li.no { color: var(--wrong); }
+ul.checks li.adv { color: var(--muted); }
+.ebars { display: grid; gap: 6px; margin: 8px 0; }
+.ebar { display: grid; grid-template-columns: 9.5em 1fr 4.5em; gap: 8px; align-items: center; }
+.ebar .track { height: 12px; background: var(--soft); border-radius: 99px; overflow: hidden; border: 1px solid var(--line); }
+.ebar .track i { display: block; height: 100%; background: var(--q-power); }
+/* graph tool */
+.gcanvas { position: relative; touch-action: none; }
+.gsvg { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+.gsvg .g1 { stroke: #c9e3d6; stroke-width: .5; }
+.gsvg .g5 { stroke: #9ccbb3; stroke-width: .9; }
+.gsvg .g10 { stroke: #5e9e80; stroke-width: 1.4; }
+.gsvg .tl { font: 600 13px var(--font); fill: var(--ink); }
+.gsvg .at { font: 600 14px var(--font); fill: var(--ink); }
+.gsvg .cross { stroke: #1D5FD1; stroke-width: 1.6; fill: none; }
+.gsvg .cross.sel { stroke: #C2410C; stroke-width: 2.2; }
+.gsvg .bline { stroke: var(--ink); stroke-width: 1.6; }
+.gsvg .handle { fill: rgba(11,114,133,.18); stroke: var(--acc); stroke-width: 1.5; cursor: grab; }
+.gsvg .gpt { fill: #C2410C; }
+.gsvg .gl { font: 700 13px var(--font); fill: #C2410C; }
+.gsvg .cons { stroke: #C2410C; stroke-width: 1; stroke-dasharray: 4 3; }
+.loupe { position: absolute; width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 3px solid var(--acc); background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.25); pointer-events: none; z-index: 5; }
+.stepnav .btn { min-width: 40px; }
+.tiles .tile.on { background: var(--ink); color: #fff; }
+.slots .slot { background: var(--accl); color: var(--acc2); border-color: var(--line); }
+
+.twrap { overflow-x: auto; max-width: 100%; }
+table.rec select { width: 100%; min-width: 8.5em; }
+@media (max-width: 640px) { .gsvg .tl { font-size: 21px; } .gsvg .at { font-size: 22px; } .gsvg .gl { font-size: 20px; } }
+main select { max-width: 100%; }

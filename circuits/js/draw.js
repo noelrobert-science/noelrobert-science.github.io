@@ -160,7 +160,7 @@
       } else if (p.kind === 'switch') {
         lines.push('<tspan class="nm">' + name(p.id, p.label === 'wire' ? null : p.label) + '</tspan> <tspan class="note">' + (p.closed ? 'closed' : 'open') + '</tspan>');
       } else {
-        var R = p.kind === 'bulb' && p.filament ? null : p.R;
+        var R = (p.kind === 'bulb' && p.filament) || p.secret ? null : p.R;
         var nm = p.label ? '<tspan class="nm">' + esc(p.label) + '</tspan>' : '<tspan class="nm">' + name(p.id) + '</tspan>';
         lines.push(nm + (R != null ? ' <tspan class="val">' + ohm(R) + '</tspan>' : ''));
         if (byp) lines.push('<tspan class="byp">no current: bypassed</tspan>');

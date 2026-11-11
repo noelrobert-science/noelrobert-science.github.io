@@ -52,12 +52,20 @@
     lockGrade = r.params.lock === '1';
     document.getElementById('gradeSeg').classList.toggle('hidden', lockGrade);
     stopTween();
+    while (stopFns.length) { try { stopFns.pop()(); } catch (e) { /* ignore */ } }
     main.innerHTML = '';
     if (r.view === 'lab' && r.arg) return lab(r.arg, r.params);
     if (r.view === 'home' || r.view === '' || r.view === 'start') return home();
     if (r.view === 'about') return about();
+    var V = window.StudioViews || {};
+    if (V[r.view]) return V[r.view](r.arg, r.params, ctx);
     return soon(r);
   }
+  /* what the experiment and graph views share with the lab */
+  var ctx = { h: h, store: store, main: main, say: say, clone: clone, route: route,
+    grade: function () { return grade; }, setGrade: setGrade,
+    stop: function (fn) { stopFns.push(fn); } };
+  var stopFns = [];
 
   /* ---------- home ---------- */
   function home() {
@@ -66,7 +74,8 @@
       h('p', { class: 'eyebrow', text: 'Physical Sciences · Grades 10 to 12' }),
       h('h1', { text: 'Circuits Studio' }),
       h('p', { class: 'muted', text: 'A virtual lab with IEB circuit symbols, ideal meters and the readings on the diagram. Change one thing and watch every reading change at the same instant.' }),
-      h('div', { class: 'note', html: 'This is the first part of the studio: the <b>virtual lab</b>. Experiments, the graph tool, Explain a change, lessons and practice come next.' }),
+      h('div', { class: 'note', html: 'Ready now: the <b>virtual lab</b>, the <b>experiments</b> and the <b>graph tool</b>. Explain a change, lessons and practice come next.' }),
+      (window.StudioViews && window.StudioViews._homeCards) ? window.StudioViews._homeCards(ctx) : null,
       h('h2', { text: 'Circuits for Grade ' + grade }),
       h('div', { class: 'grid' }, PR.list.filter(function (p) { return p.grades.indexOf(grade) >= 0; }).map(function (p) {
         return h('a', { class: 'card pcard', href: '#lab/' + p.id }, [
