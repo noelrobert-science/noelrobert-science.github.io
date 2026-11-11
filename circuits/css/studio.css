@@ -219,3 +219,28 @@ ul.marks li { margin: 8px 0; }
 ul.marks input { width: 20px; height: 20px; vertical-align: middle; }
 .card.inner { box-shadow: none; border: 1px solid var(--line); margin-top: 12px; }
 .mcq { margin: 12px 0 18px; }
+
+/* ---------- practice and checks (part E) ---------- */
+.pitem { margin-top: 12px; }
+.pitem .stem { font-size: 1.02rem; }
+.pcanvas { margin: 8px 0 4px; }
+.pcanvas svg { display: block; width: 100%; height: auto; max-height: 360px; }
+.ppart { border-top: 1px solid var(--line); padding: 10px 0 6px; margin-top: 8px; }
+.ppart.pok { border-left: 4px solid var(--tick); padding-left: 10px; background: var(--tickl); border-radius: 0 8px 8px 0; }
+.ppart.pbad { border-left: 4px solid var(--warm); padding-left: 10px; }
+.ppart .ask { margin: 0 0 6px; }
+.wk { display: grid; gap: 4px; margin: 6px 0; }
+.wk select, .wk input { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: var(--paper); box-sizing: border-box; }
+.ansrow { flex-wrap: nowrap; gap: 8px; }
+.ansrow .ansn { flex: 1 1 auto; min-width: 0; }
+.ansrow .unit { flex: 0 0 6.5em; width: 6.5em; }
+.pfb ul { margin: 6px 0 0; padding-left: 20px; }
+.worked .wlines { margin: 4px 0 8px; padding-left: 22px; }
+.ladder p { margin: 4px 0; }
+.slot { margin-top: 22px; }
+.slot > h2 { margin-bottom: 0; }
+.nextbar { display: inline-flex; align-items: center; }
+.tablewrap { overflow-x: auto; }
+.pitem .mcq { display: flex; flex-direction: column; gap: 8px; }
+.kinds { margin-top: 8px; }
+.kinds summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }

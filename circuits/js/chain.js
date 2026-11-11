@@ -569,5 +569,14 @@
     ]);
   };
   /* for the tests and for cards.js */
-  window.Chain = { EV: EV, CIRC: CIRC, FAM: FAM, evById: evById, solve: solve, snap: snap, Steps: Steps, WORD: WORD, dirOf: dirOf, load: load, save: save, levelOf: levelOf, PR: PR };
+  /* the event's circuit before the change, for the checks (js/checks.js) */
+  function setup(ev, g) {
+    var meta = CIRC[ev.c], pre = PR.byId(meta.preset(g)), spec = clone(pre.spec);
+    (ev.probes || []).forEach(function (p) { spec.parts.push(clone(p)); });
+    if (ev.probes && ev.probes[0].id === 'Vp') part(spec, 'V3').off = 1.6;
+    if (ev.c === 'A') part(spec, 'L').lx = 0.4;
+    if (ev.start) ev.start(spec, g);
+    return { spec: spec, pre: pre, meta: meta, res: solve(spec) };
+  }
+  window.Chain = { setup: setup, EV: EV, CIRC: CIRC, FAM: FAM, evById: evById, solve: solve, snap: snap, Steps: Steps, WORD: WORD, dirOf: dirOf, load: load, save: save, levelOf: levelOf, PR: PR };
 })();
