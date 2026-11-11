@@ -93,12 +93,14 @@
     function acrossGap(v) {
       return els.some(function (e) { return e.kind === 'switch' && !e.closed && ((e.a === v.a && e.b === v.b) || (e.a === v.b && e.b === v.a)); });
     }
+    /* a voltmeter straight across the battery's own terminals is not a voltmeter in series */
+    function acrossBat(v, bt) { return (v.a === bt.a && v.b === bt.b) || (v.a === bt.b && v.b === bt.a); }
     function closedPath(withVolt) {
       return bats.some(function (bt) {
         var U = uf(n);
         els.forEach(function (e) {
           if (e === bt) return;
-          if (conducts(e, real) || (withVolt && e.kind === 'voltmeter' && !acrossGap(e))) U.u(e.a, e.b);
+          if (conducts(e, real) || (withVolt && e.kind === 'voltmeter' && !acrossGap(e) && !acrossBat(e, bt))) U.u(e.a, e.b);
         });
         return U.f(bt.a) === U.f(bt.b);
       });

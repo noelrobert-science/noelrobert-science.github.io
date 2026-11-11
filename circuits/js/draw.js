@@ -94,9 +94,9 @@
           var n = Math.max(1, Math.min(8, Math.round(8 * Math.min(1, k))));
           for (var q = 0; q < n; q++) { var th = q * 2 * Math.PI / 8 + Math.PI / 8; g += '<line class="ray" x1="' + (18 * Math.cos(th)).toFixed(1) + '" y1="' + (18 * Math.sin(th)).toFixed(1) + '" x2="' + ((22 + 6 * k) * Math.cos(th)).toFixed(1) + '" y2="' + ((22 + 6 * k) * Math.sin(th)).toFixed(1) + '"/>'; }
         }
-        g += '<circle class="sym bulbc" r="14"/><path class="sym" d="M-10 -10 L10 10 M-10 10 L10 -10"/>';
+        g += '<circle class="sym bulbc" r="14"/>' + (p.broken ? '<path class="sym" d="M-10 -10 L-3 -3 M3 3 L10 10 M-10 10 L-3 3 M3 -3 L10 -10"/>' : '<path class="sym" d="M-10 -10 L10 10 M-10 10 L10 -10"/>');
       }
-      else if (p.kind === 'ammeter') g += '<circle class="sym meter" r="14"/><text class="mlet" transform="rotate(' + (-ang) + ')" y="5">A</text>';
+      else if (p.kind === 'ammeter') g += '<circle class="sym meter' + (p.letter ? ' swapped' : '') + '" r="14"/><text class="mlet" transform="rotate(' + (-ang) + ')" y="5">' + (p.letter || 'A') + '</text>';
       else if (p.kind === 'switch') {
         g += '<circle class="sw" cx="-17" r="3.2"/><circle class="sw" cx="17" r="3.2"/>';
         g += p.closed ? '<line class="sym swl" x1="-17" y1="0" x2="17" y2="0"/>' : '<line class="sym swl" x1="-17" y1="0" x2="13" y2="-15"/>';
@@ -156,17 +156,18 @@
         if (showR) lines.push('<tspan class="chip">r ' + (o.hideR ? '= ?' : nice(p.r) + ' Ω') + ' 🔒</tspan>');
         else if (grade === 10 || o.ideal || !(p.r > 0)) lines.push('<tspan class="note">' + (grade === 10 ? 'ideal battery' : 'ideal, r = 0') + '</tspan>');
       } else if (p.kind === 'ammeter') {
-        meterLine = meterPill(p.id, res ? res.read[p.id] : null, 'A');
+        meterLine = meterPill(p.id, res ? res.read[p.id] : null, p.unit || 'A');
       } else if (p.kind === 'switch') {
         lines.push('<tspan class="nm">' + name(p.id, p.label === 'wire' ? null : p.label) + '</tspan> <tspan class="note">' + (p.closed ? 'closed' : 'open') + '</tspan>');
       } else {
         var R = (p.kind === 'bulb' && p.filament) || p.secret ? null : p.R;
         var nm = p.label ? '<tspan class="nm">' + esc(p.label) + '</tspan>' : '<tspan class="nm">' + name(p.id) + '</tspan>';
         lines.push(nm + (R != null ? ' <tspan class="val">' + ohm(R) + '</tspan>' : ''));
-        if (byp) lines.push('<tspan class="byp">no current: bypassed</tspan>');
+        if (p.broken) lines.push('<tspan class="byp">failed: open</tspan>');
+        else if (byp) lines.push('<tspan class="byp">no current: bypassed</tspan>');
         else if (o.showPower && p.kind === 'bulb' && r) lines.push('<tspan class="pw">P = ' + F.num(r.p) + ' W</tspan>');
       }
-      var off = p.kind === 'battery' ? 34 : 26, x = mx, y = my, anchor = 'middle';
+      var off = p.kind === 'battery' ? 34 : 26, x = mx + (p.lx || 0) * U, y = my, anchor = 'middle';
       if (side === 'up') y = my - off - (lines.length - 1) * 15 - (meterLine ? 6 : 0);
       if (side === 'down') y = my + off + 8;
       if (side === 'left') { x = mx - off; anchor = 'end'; y = my + 4 - (lines.length - 1) * 7; }
@@ -194,20 +195,20 @@
     }
 
     function drawVoltmeter(p, r) {
-      var a = pt(p.a), b = pt(p.b), off = 0.78 * U, side = p.side || 'up';
+      var a = pt(p.a), b = pt(p.b), off = (p.off || 0.78) * U, side = p.side || 'up';
       var v = side === 'up' ? [0, -off] : side === 'down' ? [0, off] : side === 'left' ? [-off, 0] : [off, 0];
       var a2 = [a[0] + v[0], a[1] + v[1]], b2 = [b[0] + v[0], b[1] + v[1]], m = [(a2[0] + b2[0]) / 2, (a2[1] + b2[1]) / 2];
       addPt([a2[0] / U, a2[1] / U]); addPt([b2[0] / U, b2[1] / U]);
       var horiz = Math.abs(b2[0] - a2[0]) >= Math.abs(b2[1] - a2[1]);
       var g = '<g class="part k-voltmeter" data-id="' + esc(p.id) + '">';
       g += '<polyline class="vwire" points="' + [a, a2, b2, b].map(function (q) { return q.join(','); }).join(' ') + '"/>';
-      g += '<circle class="sym meter" cx="' + m[0] + '" cy="' + m[1] + '" r="14"/><text class="mlet" x="' + m[0] + '" y="' + (m[1] + 5) + '">V</text>';
+      g += '<circle class="sym meter' + (p.letter ? ' swapped' : '') + '" cx="' + m[0] + '" cy="' + m[1] + '" r="14"/><text class="mlet" x="' + m[0] + '" y="' + (m[1] + 5) + '">' + (p.letter || 'V') + '</text>';
       g += '<circle class="jdot" cx="' + a[0] + '" cy="' + a[1] + '" r="3.6"/><circle class="jdot" cx="' + b[0] + '" cy="' + b[1] + '" r="3.6"/></g>';
       out.push(g);
       var val = res ? res.read[p.id] : null, x = m[0], y = m[1], anchor = 'middle';
-      if (horiz) y = side === 'down' ? m[1] + 34 : m[1] - 22;
+      if (horiz) { y = side === 'down' ? m[1] + 34 : m[1] - 22; x += (p.lx || 0) * U; }
       else { x = side === 'left' ? m[0] - 22 : m[0] + 22; anchor = side === 'left' ? 'end' : 'start'; y = m[1] + 5; }
-      labels.push(meterPill(p.id, val, 'V')(x, y, anchor, horiz ? side : 'down'));
+      labels.push(meterPill(p.id, val, p.unit || 'V')(x, y, anchor, horiz ? side : 'down'));
       xs.push((x + (anchor === 'end' ? -90 : anchor === 'start' ? 90 : 0)) / U); ys.push(y / U + 0.4); ys.push(y / U - 0.4);
     }
 
