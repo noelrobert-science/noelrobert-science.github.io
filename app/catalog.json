@@ -232,6 +232,11 @@
        "watch": [],
        "train": [
         {
+         "title": "Explain a change",
+         "href": "../circuits/#explain/E1?r=0&g=10",
+         "kind": "lab"
+        },
+        {
          "title": "Identical bulbs and switches",
          "href": "../circuits/#lab/g10-bulbs?r=0&g=10",
          "kind": "lab"
@@ -500,6 +505,11 @@
          "title": "The battery story: headlamps, then the starter motor",
          "href": "../circuits/#lab/B?g=11",
          "kind": "lab"
+        },
+        {
+         "title": "Explain a change: open the switch",
+         "href": "../circuits/#explain/E3?g=11",
+         "kind": "lab"
         }
        ],
        "check": []
@@ -539,6 +549,26 @@
         {
          "title": "Find a hidden battery's emf and r",
          "href": "../circuits/#exp/emf-r?g=11",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "explain",
+       "title": "Explaining a change: the cause chain",
+       "section": "11.5",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Explain a change",
+         "href": "../circuits/#explain/E1?g=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Do the headlamps dim?",
+         "href": "../circuits/#explain/B-1?g=11",
          "kind": "lab"
         }
        ],
@@ -690,6 +720,11 @@
          "title": "The battery story: headlamps, then the starter motor",
          "href": "../circuits/#lab/B?g=12",
          "kind": "lab"
+        },
+        {
+         "title": "Explain a change: open the switch",
+         "href": "../circuits/#explain/E3?g=12",
+         "kind": "lab"
         }
        ],
        "check": []
@@ -734,6 +769,26 @@
         {
          "title": "A real voltmeter: meter loading",
          "href": "../circuits/#lab/loading?g=12",
+         "kind": "lab"
+        }
+       ],
+       "check": []
+      },
+      {
+       "id": "explain",
+       "title": "Explaining a change: the cause chain",
+       "section": "11.5",
+       "page": null,
+       "watch": [],
+       "train": [
+        {
+         "title": "Explain a change",
+         "href": "../circuits/#explain/E1?g=12",
+         "kind": "lab"
+        },
+        {
+         "title": "Do the headlamps dim?",
+         "href": "../circuits/#explain/B-1?g=12",
          "kind": "lab"
         }
        ],
