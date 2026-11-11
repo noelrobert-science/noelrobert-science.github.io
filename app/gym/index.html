@@ -228,7 +228,7 @@ function topicCard(k,t){return `<article class="card climbcard"><span class="tag
 function reviewBanner(){const due=dueReviews();if(!due.length)return '';return `<div class="notice spaced"><b>Come-back check due.</b> Three questions, no help: does it still stick? ${due.map(k=>`<button class="secondary" data-review="${k}">${esc(TOPICS[k].name)}</button>`).join(' ')}</div>`;}
 function extraCards(){const X=root.EXTRAS||{};return Object.entries(X).map(([k,x])=>`<article class="card climbcard extra"><span class="tag">${x.tag}</span><h3>${x.name}</h3><p>${x.blurb}</p><a class="btn" href="#climb/${k}">${x.cta||'Go'} →</a></article>`).join('');}
 function menu(){const groups=MODS.map(m=>{const list=Object.entries(TOPICS).filter(([,t])=>(t.mod||'14')===m.id);if(!list.length)return '';return `<h2 class="spaced" id="mod-${m.id}">${m.name}</h2>${m.extras?`<div class="grid">${extraCards()}</div>`:''}<div class="grid">${list.map(([k,t])=>topicCard(k,t)).join('')}</div>`;}).join('');
- return `<div class="eyebrow">Practice gym</div><h1>Climb the ladder</h1><p class="lede">Every question has fresh numbers. Start by watching the method, then do more of it yourself until you can go solo. Get two in a row with at most one hint and you move up a rung. Then <b>check it on your own</b>: three questions with help closed, and a come-back check a few days later.</p>${header()}${reviewBanner()}<div class="row">${MODS.map(m=>`<button class="secondary" data-jump="mod-${m.id}">${m.id==='14'?'Chemistry':'Momentum'}</button>`).join('')}</div>${groups}<p class="small spaced">Points come from doing the thinking yourself: 10 XP for a step right first time, 5 XP after a hint, plus a bonus for solo questions. Keep your working on paper as well; tests mark the method, not just the answer.</p>`;}
+ return `<div class="eyebrow">Practice gym</div><h1>Climb the ladder</h1><p class="lede">Every question has fresh numbers. Start by watching the method, then do more of it yourself until you can go solo. Get two in a row with at most one hint and you move up a rung. Then <b>check it on your own</b>: three questions with help closed, and a come-back check a few days later.</p>${header()}${reviewBanner()}<div class="row">${MODS.map(m=>`<button class="secondary" data-jump="mod-${m.id}">${m.id==='14'?'Chemistry':'Momentum'}</button>`).join('')}</div>${groups}<p class="small spaced">Keep your working on paper as well; tests mark the method, not just the answer.</p>`;}
 function stepHtml(st,i){const shown=i<S.cur&&!S.solo?true:false;const state=S.msg[i];
  if(S.solo&&!st.final&&!S.done)return '';
  if(i<S.cur||S.done&&!S.solo||S.done&&S.solo){return `<div class="lstep done"><small>${esc(st.label)}</small><span class="math">${st.model}</span>${i<shownSteps(S.rung,S.q.steps.length)&&!S.solo?'<em class="modelled">shown</em>':'<em class="you">✓ you</em>'}</div>`;}
@@ -239,7 +239,7 @@ function stepHtml(st,i){const shown=i<S.cur&&!S.solo?true:false;const state=S.ms
  const stuckPick=S.stuckOpen[i]&&!S.hintOpen[i]?`<div class="lstep"><small>Where are you stuck?</small><div class="row">${STUCK.map((s,j)=>`<button class="secondary" data-stuck="${j}">${esc(s)}</button>`).join('')}</div></div>`:'';
  return `<div class="lstep active"><small>${S.solo?'Final answer':'Step '+(i+1)+' · '+esc(st.label)}</small>${input}<div class="row"><button id="lcheck">Check</button>${helpBtn}</div>${stuckPick}${S.hintOpen[i]?`<p class="hint"><b>Hint.</b> ${st.hint}</p>`:''}${state?`<div class="feedback error"><p>${state}</p></div>`:''}</div>`;}
 function problem(){const q=S.q,t=TOPICS[S.topic];return `<div class="row spaced"><span class="tag">${t.tag}</span><span class="small">${ladderPips(S.topic)} Rung ${S.rung+1}: ${RUNGS[S.rung]}</span></div>${header()}<article class="card"><h2>${q.title}</h2><p>${q.prompt}</p><p class="small">${q.given} Final answers to two decimal places.</p>${S.solo?'<p class="notice">Solo rung: no hints. Work it out on paper, then enter only the final answer.</p>':''}<div class="lsteps">${q.steps.map(stepHtml).join('')}</div>${S.done?doneHtml():''}</article>`;}
-function doneHtml(){return `<div class="feedback good spaced"><p><b>${S.wrong===0&&S.hints===0?'Clean climb!':'Done.'}</b> +${S.gained} XP. ${S.promo}</p></div>${S.solo&&S.wrong?'<p>Compare the full method above with your paper.</p>':''}<div class="row spaced"><button id="lnext">Next question →</button><a class="btn secondary" href="#climb">Choose another topic</a></div>`;}
+function doneHtml(){return `<div class="feedback good spaced"><p><b>${S.wrong===0&&S.hints===0?'Clean climb!':'Done.'}</b> ${S.promo}</p></div>${S.solo&&S.wrong?'<p>Compare the full method above with your paper.</p>':''}<div class="row spaced"><button id="lnext">Next question →</button><a class="btn secondary" href="#climb">Choose another topic</a></div>`;}
 function extraKey(){const k=location.hash.slice(1).split('/')[1];return k&&root.EXTRAS&&root.EXTRAS[k]?k:null;}
 function render(){const x=extraKey();if(x)return root.EXTRAS[x].render();if(C&&location.hash==='#climb/'+C.topic+'/'+C.kind)return checkView();if(P&&S&&location.hash==='#climb/'+S.topic&&!L.prereq[S.topic])return prereqView();return S&&location.hash==='#climb/'+S.topic?problem():menu();}
 function finish(){S.done=true;const clean=S.hints<=1&&S.wrong<=1;const t=S.topic;if(S.solo){S.gained+=S.wrong?0:30;}
@@ -460,7 +460,7 @@ function crashBind(rerender){const $=id=>document.getElementById(id);
  if($('crun'))$('crun').onclick=()=>{const raw=$('cpred').value.trim().replace(',','.').replace('−','-');const g=Number(raw);
   if(raw===''||!Number.isFinite(g)){C.msg='Type a number first, with a minus sign if it points the negative way.';C.ok=false;rerender(false);return;}
   const t=crashTarget(),tol=Math.max(.011,Math.abs(t)*.01),ok=Math.abs(g-t)<=tol,slip=!ok&&t!==0&&Math.abs(g+t)<=tol;
-  C.ok=ok;C.msg=ok?`Spot on: ${cs(t)} m·s⁻¹. +20 XP. Watch it happen.`:slip?`Right size, wrong sign. With ${C.pos>0?'east':'west'} positive the answer is ${cs(t)} m·s⁻¹. Watch which way it goes.`:`Not quite: the answer is ${cs(t)} m·s⁻¹. Watch, then check the working.`;
+  C.ok=ok;C.msg=ok?`Spot on: ${cs(t)} m·s⁻¹. Watch it happen.`:slip?`Right size, wrong sign. With ${C.pos>0?'east':'west'} positive the answer is ${cs(t)} m·s⁻¹. Watch which way it goes.`:`Not quite: the answer is ${cs(t)} m·s⁻¹. Watch, then check the working.`;
   C.stage=1;L().addXP(ok?20:0,{source:'crash',topic:'crash-'+C.mode,id:C.mode,rung:'Crash Lab',hints:0,wrong:ok?0:1,correct:ok,signSlip:slip});rerender(false);
   setTimeout(()=>{crashResults();crashPlay();},0);};
  if($('cnext'))$('cnext').onclick=()=>{C=crashGen(C.mode);rerender(false);};
@@ -484,7 +484,7 @@ const plain=h=>String(h).replace(/<span class="fraction"><span>(.*?)<\/span><spa
 function fixRender(){if(!F)F=fixGen();const {q,err,picked}=F;
  const lines=q.steps.map((s,i)=>{const txt=i===err.i?err.line:plain(s.model);const cls=picked===null?'':i===err.i?'rightpick':i===picked?'wrongpick':'';return `<button class="xline ${cls}" data-fline="${i}" ${picked!==null?'disabled':''}><small>${esc(s.label)}</small>${esc(txt)}</button>`;}).join('');
  return STYLE+`${back}<div class="eyebrow">Modules 7–8 · Momentum</div><h1>Fix it</h1><p class="lede">This worked answer has <b>one</b> mistake, the kind that loses marks in a test. Tap the wrong line.</p>${L().header()}<article class="card"><p>${q.prompt}</p>${lines}
- ${picked===null?'':`<div class="feedback ${picked===err.i?'good':'error'}"><p><b>${picked===err.i?'Found it! +15 XP.':'Not that one.'}</b> ${err.why}</p><p class="small">Correct line: ${esc(plain(q.steps[err.i].model))}</p></div><div class="row spaced"><button id="fnext">Next one →</button></div>`}</article>`;}
+ ${picked===null?'':`<div class="feedback ${picked===err.i?'good':'error'}"><p><b>${picked===err.i?'Found it!':'Not that one.'}</b> ${err.why}</p><p class="small">Correct line: ${esc(plain(q.steps[err.i].model))}</p></div><div class="row spaced"><button id="fnext">Next one →</button></div>`}</article>`;}
 function fixBind(rerender){document.querySelectorAll('[data-fline]').forEach(b=>b.onclick=()=>{F.picked=+b.dataset.fline;const ok=F.picked===F.err.i;L().addXP(ok?15:0,{source:'fixit',topic:F.q.area,id:F.q.title,rung:'Fix it',hints:0,wrong:ok?0:1,correct:ok});rerender(false);});
  const n=document.getElementById('fnext');if(n)n.onclick=()=>{F=fixGen();rerender(false);};}
 
@@ -505,7 +505,7 @@ function realRender(){if(!R)R=realGen();const {c,n,stage,pick:pk}=R;
 function realBind(rerender){const $=id=>document.getElementById(id);
  document.querySelectorAll('[data-ropt]').forEach(b=>b.onclick=()=>{R.pick=+b.dataset.ropt;R.stage=1;R.ok=R.pick===R.c.a;R.msg=R.ok?'Yes. Now one number.':'Not quite: the green one is the physics. Now one number.';rerender(false);setTimeout(()=>{if($('rval'))$('rval').focus();},0);});
  if($('rval'))$('rval').onkeydown=e=>{if(e.key==='Enter')$('rcheck').click();};
- if($('rcheck'))$('rcheck').onclick=()=>{const v=$('rval').value;if(v===''){return;}const ok=L().stepCorrect(v,R.n.ans,true);const both=ok&&R.pick===R.c.a;R.stage=2;R.ok=ok;R.msg=ok?`Correct: ${f2(R.n.ans)} ${R.n.unit}. +${both?20:10} XP.`:`The answer is ${f2(R.n.ans)} ${R.n.unit}. Try the next one.`;
+ if($('rcheck'))$('rcheck').onclick=()=>{const v=$('rval').value;if(v===''){return;}const ok=L().stepCorrect(v,R.n.ans,true);const both=ok&&R.pick===R.c.a;R.stage=2;R.ok=ok;R.msg=ok?`Correct: ${f2(R.n.ans)} ${R.n.unit}.`:`The answer is ${f2(R.n.ans)} ${R.n.unit}. Try the next one.`;
   L().addXP(ok?(both?20:10):0,{source:'real',topic:'real',id:R.c.t,rung:'Real world',hints:0,wrong:(ok?0:1)+(R.pick===R.c.a?0:1),correct:both});rerender(false);};
  if($('rnext'))$('rnext').onclick=()=>{R=realGen();rerender(false);};}
 
@@ -514,14 +514,14 @@ let D=null;
 function dailyGen(){const T=L().TOPICS,keys=shuffle(Object.keys(T));const chem=keys.filter(k=>(T[k].mod||'14')==='14'),mom=keys.filter(k=>T[k].mod==='7-8');
  const chosen=shuffle([...mom.slice(0,3),...chem.slice(0,2)]);return {items:chosen.map(k=>({k,q:T[k].gen(Math.random)})),i:0,score:0,msg:'',ok:null,answered:false};}
 function dailyRender(){if(!D)D=dailyGen();const T=L().TOPICS;
- if(D.i>=D.items.length)return STYLE+`${back}<h1>Daily 5 done</h1>${L().header()}<article class="card"><p><b>${D.score} / 5</b> right first time.</p><p>${D.score>=4?'Strong. Come back tomorrow to keep the streak.':'Check the topics you missed on the ladder, then try again tomorrow.'}</p><div class="row"><button id="dagain">Another 5 →</button><a class="btn secondary" href="#climb">All practice</a></div></article>`;
+ if(D.i>=D.items.length)return STYLE+`${back}<h1>Daily 5 done</h1>${L().header()}<article class="card"><p><b>${D.score} / 5</b> right first time.</p><p>${D.score>=4?'Strong.':'Check the topics you missed on the ladder, then try again tomorrow.'}</p><div class="row"><button id="dagain">Another 5 →</button><a class="btn secondary" href="#climb">All practice</a></div></article>`;
  const {k,q}=D.items[D.i],st=q.steps[q.steps.length-1];
  const input=st.kind==='choice'?`<select id="dval" ${D.answered?'disabled':''}><option value="">Choose…</option>${st.options.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join('')}</select>`:`<div class="numrow"><input id="dval" inputmode="decimal" autocomplete="off" ${D.answered?'disabled':''}><span class="unit">${st.unit}</span></div>`;
  return STYLE+`${back}<div class="eyebrow">Daily 5 · mixed review · question ${D.i+1} of 5</div><h1>${esc(T[k].name)}</h1>${L().header()}<article class="card"><p>${q.prompt}</p><p class="small">${q.given} Final answer only: work on paper.</p><p><b>${esc(st.label)}</b></p>${input}<div class="row">${D.answered?'<button id="dnext">Next →</button>':'<button id="dcheck">Check</button>'}</div>${D.msg?`<div class="feedback ${D.ok?'good':'error'}"><p>${D.msg}</p></div>`:''}</article>`;}
 function dailyBind(rerender){const $=id=>document.getElementById(id);
  if($('dval'))$('dval').onkeydown=e=>{if(e.key==='Enter'&&$('dcheck'))$('dcheck').click();};
  if($('dcheck'))$('dcheck').onclick=()=>{const v=$('dval').value;if(v==='')return;const {k,q}=D.items[D.i],st=q.steps[q.steps.length-1];const ok=st.kind==='choice'?Number(v)===st.answer:L().stepCorrect(v,st.answer,true);
-  D.answered=true;D.ok=ok;if(ok)D.score++;D.msg=(ok?'<b>Right. +15 XP.</b> ':'<b>Not this time.</b> ')+'Model: '+st.model;L().addXP(ok?15:0,{source:'daily',topic:k,id:q.title,rung:'Daily 5',hints:0,wrong:ok?0:1,correct:ok});rerender(false);};
+  D.answered=true;D.ok=ok;if(ok)D.score++;D.msg=(ok?'<b>Right.</b> ':'<b>Not this time.</b> ')+'Model: '+st.model;L().addXP(ok?15:0,{source:'daily',topic:k,id:q.title,rung:'Daily 5',hints:0,wrong:ok?0:1,correct:ok});rerender(false);};
  if($('dnext'))$('dnext').onclick=()=>{D.i++;D.answered=false;D.msg='';D.ok=null;rerender(false);};
  if($('dagain'))$('dagain').onclick=()=>{D=dailyGen();rerender(false);};}
 
@@ -539,7 +539,7 @@ root.EXTRAS={
  crash:{tag:'Predict · watch',name:'Crash Lab',blurb:'Set up a collision, predict, then watch the momentum.',cta:'Open the lab',render:crashRender,bind:crashBind},
  fixit:{tag:'Spot the mistake',name:'Fix it',blurb:'One error in a worked answer. Can you find it?',cta:'Find the error',render:fixRender,bind:fixBind,enter:()=>{F=null;}},
  real:{tag:'30 seconds',name:'Real world',blurb:'Airbags, catches, crumple zones, recoil.',cta:'Try a case',render:realRender,bind:realBind,enter:()=>{R=null;}},
- daily:{tag:'All topics',name:'Daily 5',blurb:'Five mixed questions. Keep the streak.',cta:'Start today’s 5',render:dailyRender,bind:dailyBind,enter:()=>{D=null;}}};
+ daily:{tag:'All topics',name:'Daily 5',blurb:'Five mixed questions from what you have done.',cta:'Start today’s 5',render:dailyRender,bind:dailyBind,enter:()=>{D=null;}}};
 })(typeof window!=='undefined'?window:globalThis);
 
 </script>
@@ -626,5 +626,10 @@ window.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('
 
 </script>
 
+<style>/* No points, levels or streaks (house rule, 11 Nov 2026). Opened from the app: just the activity. */
+.xpbar{display:none!important}
+html.from-app body>header,html.from-app nav[aria-label="Main navigation"],html.from-app body>footer,html.from-app .backbar,html.from-app .skip{display:none!important}
+html.from-app .layout{display:block!important;max-width:980px;padding:22px 18px 40px!important}</style>
+<script>try{if(sessionStorage.getItem('mrr-return'))document.documentElement.classList.add('from-app')}catch(e){}</script>
 <script src="/app/back.js"></script>
 </body></html>
