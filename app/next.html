@@ -1,1 +1,417 @@
-<!doctype html><meta charset="utf-8"><title>Mr R Science</title><meta http-equiv="refresh" content="0; url=./"><script>location.replace("./"+location.hash)</script><a href="./">Mr R Science</a>
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mr R Science</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Learn, practise and test yourself: physical sciences by Noel Robert, free for every learner.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Lexend:wght@300;400;600&display=swap">
+<style>
+/* Mr R Science, v3 preview (11 Nov 2026).
+   First visit: one question ("What do you need today?") and three big tiles.
+   After that: your topics in book order, a "You are here" card and one Carry on button.
+   One topic = up to four steps: Learn it, Try it, Practise it, Test myself. Extra links are folded away. */
+:root {
+  --paper: #ffffff; --soft: #f4f6f9; --soft2: #eceff4; --ink: #151b28; --muted: #5a6475; --line: #dde2ea;
+  --accent: #e3121b; --accent-ink: #b80f17; --accent-soft: #fde8e9; --ok: #138a4a; --ok-soft: #e3f5ea;
+  --hero: #151b28; --hero-ink: #ffffff; --hero-muted: rgba(255,255,255,.8); --hero-kick: #ffb3b6;
+  --link: #1c64d6; --shadow: 0 1px 2px rgba(16,24,40,.06), 0 6px 18px rgba(16,24,40,.06);
+  --font-display: 'Bricolage Grotesque', 'Lexend', system-ui, sans-serif;
+  --font-body: 'Lexend', system-ui, sans-serif; --r: 18px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0d1320; --soft: #161e2f; --soft2: #1c2539; --ink: #e9edf4; --muted: #9ba6b9; --line: #283350;
+  --accent: #ff4a50; --accent-ink: #ff7a7e; --accent-soft: #3a1619; --ok: #3ccf7c; --ok-soft: #14301f;
+  --hero: #232f4d; --link: #85b4ff; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0d1320; --soft: #161e2f; --soft2: #1c2539; --ink: #e9edf4; --muted: #9ba6b9; --line: #283350;
+  --accent: #ff4a50; --accent-ink: #ff7a7e; --accent-soft: #3a1619; --ok: #3ccf7c; --ok-soft: #14301f;
+  --hero: #232f4d; --link: #85b4ff; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35); color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 300 16px/1.55 var(--font-body) }
+a { color: var(--link) }
+button { font: inherit; color: inherit }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.preview { background: #fff4d6; color: #5b4300; font-size: 13px; text-align: center; padding-block: 6px }
+.preview a { color: inherit; font-weight: 600 }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 6; background: var(--paper); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px) }
+.bar { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding-block: 10px }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto; min-width: 0 }
+.brand img { width: 34px; height: 34px; border-radius: 9px; flex: none }
+.brand b { font: 800 19px/1 var(--font-display); white-space: nowrap }
+.grades { display: flex; align-items: center; gap: 2px; background: var(--soft); border-radius: 99px; padding: 3px; flex: none }
+.grades .gl { font-size: 12px; font-weight: 600; color: var(--muted); padding: 0 4px 0 8px }
+.grades button { font-weight: 600; font-size: 14px; border: 0; background: transparent; border-radius: 99px; min-width: 36px; min-height: 34px; cursor: pointer; color: var(--muted) }
+.grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper) }
+.iconbtn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); cursor: pointer; display: grid; place-items: center; flex: none }
+.iconbtn svg { width: 18px; height: 18px }
+nav.tabs { display: flex; gap: 4px; max-width: 760px; margin: 0 auto; padding-bottom: 8px }
+nav.tabs a { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--muted); font-weight: 600; font-size: 13px; padding: 7px 4px; border-radius: 12px }
+nav.tabs svg { width: 22px; height: 22px }
+nav.tabs a[aria-current="page"] { color: var(--accent-ink); background: var(--accent-soft) }
+@media (max-width: 700px) {
+  nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; background: var(--paper); border-top: 1px solid var(--line); padding: 6px max(6px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px)); z-index: 6 }
+  main { padding-bottom: 110px !important }
+  .brand b { font-size: 17px }
+  .brand img { width: 32px; height: 32px }
+}
+@media (max-width: 360px) { .brand b { display: none } }
+body.bare nav.tabs { display: none }
+body.bare main { padding-bottom: 40px !important }
+
+main { max-width: 760px; margin: 0 auto; padding-block: 22px 48px; display: grid; gap: 22px }
+h1 { font: 800 clamp(28px, 7.5vw, 38px)/1.08 var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -.01em }
+h2 { font: 800 21px/1.2 var(--font-display); margin: 0; text-wrap: balance }
+.lede { color: var(--muted); margin: 8px 0 0; max-width: 56ch }
+.kicker { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px }
+.note { background: var(--soft); border-radius: var(--r); padding: 16px 18px; font-size: 15px; margin: 0 }
+.quiet { color: var(--muted); font-size: 14px; text-align: center; margin: 0 }
+.quiet a { color: var(--muted) }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 99px; border: 0; background: var(--accent); color: #fff; font-weight: 600; font-size: 17px; text-decoration: none; cursor: pointer; justify-self: start }
+.btn svg { width: 18px; height: 18px }
+.back { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 15px; background: var(--soft); border-radius: 99px; padding: 9px 16px 9px 10px; justify-self: start; min-height: 44px }
+.back svg { width: 18px; height: 18px }
+
+/* Start: "What do you need today?" */
+.pick { display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
+.pick span { font-size: 15px; color: var(--muted); margin-right: 4px }
+.pick button { min-width: 52px; min-height: 44px; border-radius: 99px; border: 1.5px solid var(--line); background: var(--paper); font-weight: 600; cursor: pointer }
+.pick button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper) }
+.tiles { display: grid; gap: 12px }
+.tile { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; text-decoration: none; color: var(--ink); background: var(--soft); border-radius: 20px; padding: 18px; min-height: 96px }
+.tile .ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; background: var(--paper); color: var(--accent) }
+.tile .ic svg { width: 26px; height: 26px }
+.tile b { display: block; font: 800 21px/1.2 var(--font-display) }
+.tile small { display: block; color: var(--muted); font-size: 14.5px; line-height: 1.4; margin-top: 2px }
+.tile .go { font-size: 26px; color: var(--muted) }
+.tile.main { background: var(--hero); color: var(--hero-ink) }
+.tile.main small, .tile.main .go { color: var(--hero-muted) }
+.tile.main .ic { background: var(--accent); color: #fff }
+
+/* Path: topics in book order */
+.mod { display: grid; gap: 4px }
+.mod-h { display: flex; align-items: center; gap: 10px; margin-bottom: 8px }
+.mod-h .num { font: 800 14px var(--font-display); color: #fff; background: var(--mc); border-radius: 8px; padding: 2px 8px; flex: none }
+.mod-h h2 { font-size: 18px }
+.path { list-style: none; margin: 0; padding: 0; display: grid }
+.stop { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px }
+.rail { display: flex; flex-direction: column; align-items: center }
+.rail i { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--line); display: grid; place-items: center; font-style: normal; font-weight: 600; font-size: 15px; color: #fff; flex: none; background: var(--paper) }
+.rail::after { content: ""; width: 4px; flex: 1; min-height: 16px; background: var(--line) }
+.stop:last-child .rail::after { visibility: hidden }
+.stop.done .rail i { background: var(--ok); border-color: var(--ok) }
+.stop.done .rail::after { background: var(--ok) }
+.stop.half .rail i { border-color: var(--ok); background: linear-gradient(90deg, var(--ok) 50%, var(--paper) 50%) }
+.stop.here .rail i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 6px var(--accent-soft) }
+.stop > a { text-decoration: none; color: var(--ink); padding: 4px 0 18px; display: block; min-height: 52px; min-width: 0 }
+.stop > a b { font-weight: 600; font-size: 17px; display: block; line-height: 1.3 }
+.stop > a small { color: var(--muted); font-size: 14px }
+.stop > a.herecard { background: var(--hero); color: var(--hero-ink); border-radius: 20px; padding: 16px 18px; margin-bottom: 16px; display: grid; gap: 8px; text-decoration: none }
+.herecard .kicker { color: var(--hero-kick); margin: 0 }
+.stop > a.herecard b { font: 800 22px/1.2 var(--font-display); color: var(--hero-ink) }
+.herecard p { margin: 0; color: var(--hero-muted); font-size: 15px }
+.herecard .btn { margin-top: 4px }
+.welcome { background: var(--soft); border-radius: 20px; padding: 18px; display: grid; gap: 6px }
+.welcome b { font: 800 20px/1.25 var(--font-display) }
+.welcome p { margin: 0; color: var(--muted); font-size: 15px }
+
+/* Topic page: four steps */
+.steps { display: grid; gap: 12px }
+.step { border: 1px solid var(--line); border-radius: 16px; background: var(--paper) }
+.step > summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 12px 14px; min-height: 60px; cursor: pointer }
+.step > summary::-webkit-details-marker { display: none }
+.step .n { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 3px solid var(--line); font-weight: 600; font-size: 14px; flex: none; color: var(--muted) }
+.step .nm { font-weight: 600; font-size: 17px; flex: 1; min-width: 0 }
+.step .st { font-size: 14px; color: var(--muted) }
+.step.done .n { background: var(--ok); border-color: var(--ok); color: #fff }
+.step.done .st { color: var(--ok) }
+.step .inner { padding: 0 16px 16px; display: grid; gap: 12px }
+.step .inner p { margin: 0; font-size: 15.5px; line-height: 1.45 }
+.step.now { background: var(--hero); color: var(--hero-ink); border-color: var(--hero) }
+.step.now .n { background: var(--accent); border-color: var(--accent); color: #fff }
+.step.now .st { color: var(--hero-kick); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: 12px }
+.step.now .inner p { color: var(--hero-muted) }
+.step.now .tick { color: var(--hero-ink); border-color: rgba(255,255,255,.4); background: transparent }
+.step.now .more summary, .step.now .more a { color: var(--hero-ink) }
+.acts { display: flex; gap: 10px; flex-wrap: wrap; align-items: center }
+.tick { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); background: var(--paper); border-radius: 99px; min-height: 44px; padding: 0 16px 0 10px; cursor: pointer; font-weight: 600; font-size: 14.5px }
+.tick i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(140,150,170,.75); display: grid; place-items: center; font-style: normal; font-size: 13px; color: transparent }
+.tick[aria-pressed="true"] { border-color: var(--ok); color: var(--ok) }
+.tick[aria-pressed="true"] i { background: var(--ok); border-color: var(--ok); color: #fff; opacity: 1 }
+.more summary { cursor: pointer; font-weight: 600; font-size: 14.5px; min-height: 40px; display: flex; align-items: center; color: var(--muted) }
+.more ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 6px }
+.more a { display: flex; min-height: 40px; align-items: center; font-size: 15px; color: var(--link) }
+.explore { border-top: 1px solid var(--line); padding-top: 6px }
+.explore summary { font-size: 15.5px; color: var(--ink) }
+.win { display: flex; gap: 14px; align-items: center; background: var(--ok-soft); border-radius: var(--r); padding: 16px 18px }
+.win b { font: 800 20px var(--font-display); color: var(--ok) }
+.win p { margin: 2px 0 0; font-size: 14.5px }
+.win .big { font-size: 34px; line-height: 1 }
+.where { font-size: 14.5px; color: var(--muted); margin: 0 0 4px }
+
+/* Practise / Test lists */
+.rows { display: grid; gap: 8px }
+.rowx { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-left: 5px solid var(--mc); border-radius: 14px; padding: 10px 12px 10px 14px; min-height: 64px }
+.rowx a.t { flex: 1; min-width: 0; text-decoration: none; color: var(--ink) }
+.rowx a.t b { display: block; font-weight: 600; font-size: 16px; line-height: 1.3 }
+.rowx a.t small { color: var(--muted); font-size: 13.5px }
+.rowx .btn { min-height: 44px; padding: 0 16px; font-size: 15px; flex: none }
+.rowx .btn { background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink) }
+.rowx.done .btn { border-color: var(--ok); color: var(--ok) }
+
+footer { max-width: 760px; margin: 0 auto; padding-block: 0 30px; color: var(--muted); font-size: 13px }
+footer a { color: var(--muted) }
+.pop { position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%); background: var(--ok); color: #fff; font-weight: 600; border-radius: 99px; padding: 10px 18px; box-shadow: var(--shadow); z-index: 9; pointer-events: none }
+@media (prefers-reduced-motion: no-preference) {
+  .tile, .step, .rowx { transition: background .2s, border-color .15s }
+  .pop { animation: pop 1.8s ease forwards }
+  @keyframes pop { 0% { opacity: 0; transform: translate(-50%, 16px) scale(.9) } 12% { opacity: 1; transform: translate(-50%, 0) scale(1) } 80% { opacity: 1 } 100% { opacity: 0; transform: translate(-50%, -8px) } }
+  .confetti i { position: fixed; top: -10px; width: 8px; height: 14px; border-radius: 2px; z-index: 8; pointer-events: none; animation: fall 1.6s ease-in forwards }
+  @keyframes fall { to { transform: translateY(105vh) rotate(540deg); opacity: .8 } }
+}
+</style>
+</head>
+<body>
+<div class="preview gut">Preview of the new start. <a href="./">Back to the current app</a></div>
+<header class="gut">
+  <div class="bar">
+    <a class="brand" href="#home"><img src="icons/icon.svg" alt=""><b>Mr R Science</b></a>
+    <div class="grades" role="group" aria-label="Grade" id="grades"></div>
+    <button class="iconbtn" id="theme" type="button" aria-label="Switch dark or light"></button>
+  </div>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#home" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="19" r="2"/><path d="M8 5h4a4 4 0 014 4v1M16 14v1a4 4 0 01-4 4H8"/></svg>Learn</a>
+    <a href="#practise" data-tab="practise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>Practise</a>
+    <a href="#test" data-tab="test"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>Test myself</a>
+  </nav>
+</header>
+<main class="gut" id="main" tabindex="-1"><p class="quiet">Loading…</p></main>
+<footer class="gut"><a href="#about">About</a> · Free, no sign-in. Your ticks stay on this phone.</footer>
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = { get(k, d) { try { const v = localStorage.getItem('mrr-' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+                set(k, v) { try { localStorage.setItem('mrr-' + k, JSON.stringify(v)); } catch {} } };
+let CAT = null, grade = store.get('grade', null);
+let prog = store.get('progress', {});   // { "grade/topic": { learn, try, practise, test } } 1 = opened, 2 = done (older keys watch/train/check still read)
+
+// The same four words everywhere. Each has one sentence and one button word.
+const STEPS = [
+  { k: 'learn',    name: 'Learn it',     say: 'A short lesson that stops so you can think first.', go: 'Watch the lesson' },
+  { k: 'try',      name: 'Try it',       say: 'Play with it. Guess first, then see what happens.', go: 'Open the lab' },
+  { k: 'practise', name: 'Practise it',  say: 'Fresh questions every time. Hints only after you try.', go: 'Start practising' },
+  { k: 'test',     name: 'Test myself',  say: 'A few questions, no help. Did it stick?', go: 'Test myself' }
+];
+const OLD = { learn: 'watch', try: 'train', practise: 'train', test: 'check' };
+const ICON = {
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  learn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg>',
+  practise: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>',
+  test: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>'
+};
+
+// ---- catalogue → four steps ----
+const isStudioHome = h => /^\.\.\/[a-z0-9-]+\/(\?[^#]*)?$/.test(h);
+const isLab = it => it.kind === 'lab' || /\blab\b/i.test(it.title) || /collision-carts/.test(it.href);
+function stepsOf(t, m) {
+  if (t._s) return t._s;
+  const s = { learn: [], try: [], practise: [], test: [], explore: [] };
+  for (const it of t.watch || []) s.learn.push(it);
+  for (const it of t.train || []) (isStudioHome(it.href) && !/guides/.test(it.href) ? s.explore : isLab(it) ? s.try : s.practise).push(it);
+  for (const it of t.check || []) (/#later/.test(it.href) && (t.check || []).length > 1 ? s.explore : s.test).push(it);
+  // no lesson yet: the book is the lesson
+  if (!s.learn.length && t.section && /^\d+[.–-]/.test(t.section)) s.learn.push({ book: true, title: `Read section ${t.section} in your coursebook${t.page ? ` (page ${t.page})` : ''}` });
+  return (t._s = s);
+}
+function live(t) { const s = stepsOf(t); return STEPS.filter(x => s[x.k].length); }
+function st(tid, k) { const p = prog[tid] || {}; return p[k] != null ? p[k] : (p[OLD[k]] || 0); }
+function nextStep(t) { return live(t).find(x => st(t._k, x.k) < 2) || null; }
+function doneCount(t) { return live(t).filter(x => st(t._k, x.k) === 2).length; }
+function isDone(t) { const l = live(t); return l.length > 0 && doneCount(t) === l.length; }
+function secText(t) { return !t.section || !/^\d/.test(t.section) ? '' : /^\d+$/.test(t.section) ? `Module ${t.section}` : `Section ${t.section}`; }
+
+function gradeData() { return CAT.grades.find(g => g.id === grade) || CAT.grades[0]; }
+function allTopics(g) { return (g || gradeData()).modules.flatMap(m => m.topics.map(t => ({ t, m }))); }
+function findTopic(id) {
+  const all = CAT.grades.flatMap(g => g.modules.flatMap(m => m.topics.map(t => ({ t, m, g }))));
+  return all.find(x => x.t._k === id) || null;
+}
+function keyTopics() {
+  for (const g of CAT.grades) for (const m of g.modules) for (const t of m.topics) t._k = g.id + '/' + t.id;
+  let moved = false;
+  for (const k of Object.keys(prog)) if (!k.includes('/')) {
+    const f = CAT.grades.flatMap(g => g.modules.flatMap(m => m.topics)).find(t => t.id === k);
+    if (f) prog[f._k] = Object.assign({}, prog[k], prog[f._k]); delete prog[k]; moved = true;
+  }
+  if (moved) store.set('progress', prog);
+}
+function firstTime() { return !store.get('seen', false) && !Object.keys(prog).length; }
+function hereTopic(g) {
+  const list = allTopics(g), last = store.get('last', null);
+  const hit = last && list.find(x => x.t._k === last);
+  if (hit && !isDone(hit.t)) return hit;
+  return list.find(x => !isDone(x.t) && live(x.t).some(s => st(x.t._k, s.k) > 0)) || null;
+}
+function goLink(it, tid, k, cls, label) {
+  if (it.book) return `<button class="${cls}" type="button" data-tick="${esc(tid)}" data-k="${k}" data-on="1">${ICON.learn}${esc(label || "I've read it")}</button>`;
+  return `<a class="${cls}" href="${esc(it.href)}" data-topic="${esc(tid)}" data-step="${k}">${esc(label)}</a>`;
+}
+
+// ---- views ----
+function startView() {
+  const chips = CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}">${esc(g.id)}</button>`).join('');
+  const ready = !!grade;
+  const tile = (href, ic, b, s, main) => `<a class="tile${main ? ' main' : ''}" href="${ready ? href : '#start'}" data-seen="1" ${ready ? '' : 'aria-disabled="true" data-need="1"'}><span class="ic">${ic}</span><span><b>${b}</b><small>${s}</small></span><span class="go" aria-hidden="true">›</span></a>`;
+  return `<div><h1>What do you need today?</h1></div>
+    <div class="pick" role="group" aria-label="Your grade"><span>I'm in Grade</span>${chips}</div>
+    ${ready ? '' : '<p class="quiet" id="needg" style="text-align:left;color:var(--accent-ink);font-weight:600">First, tap your grade.</p>'}
+    <div class="tiles">
+      ${tile('#home', ICON.learn, 'Learn a topic', 'Go through it step by step, in the same order as your book.', true)}
+      ${tile('#practise', ICON.practise, 'Practise for a test', 'Pick a topic and get fresh questions.')}
+      ${tile('#test', ICON.test, 'Quick check', 'A few questions, no help. See what you know.')}
+    </div>
+    <p class="quiet">Free for every learner. No sign-in, nothing to install.</p>`;
+}
+
+function homeView() {
+  const g = gradeData(), here = hereTopic(g);
+  if (!g.modules.length) return `<div><h1>${esc(g.label)}</h1></div><p class="note">${esc(g.coming || 'Coming soon.')}</p>`;
+  const top = here ? '' : `<div class="welcome"><b>Start with the topic you're doing in class.</b><p>Not sure? Start at the top and work down. Tap a topic to begin.</p></div>`;
+  const mods = g.modules.map(m => `<section class="mod" style="--mc:${esc(m.colour || '#334155')}">
+    <div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div>
+    <ol class="path">${m.topics.map(t => {
+      const isHere = here && here.t._k === t._k, d = doneCount(t), n = live(t).length;
+      const cls = isDone(t) ? 'done' : isHere ? 'here' : d ? 'half' : 'todo';
+      const sub = isDone(t) ? 'Done' : d ? `${d} of ${n} steps done` : secText(t);
+      const body = isHere
+        ? `<a class="herecard" href="#t/${esc(t._k)}"><span class="kicker">You are here</span><b>${esc(t.title)}</b><p>Next: ${esc(nextStep(t).name)}</p><span class="btn">Carry on</span></a>`
+        : `<a href="#t/${esc(t._k)}"><b>${esc(t.title)}</b><small>${esc(sub)}</small></a>`;
+      return `<li class="stop ${cls}"><span class="rail"><i>${isDone(t) ? '✓' : ''}</i></span>${body}</li>`;
+    }).join('')}</ol></section>`).join('');
+  return `<div><p class="kicker">${esc(g.label)}</p><h1>Your topics, in book order</h1></div>${top}${mods}
+    <p class="quiet"><a href="#start">Not here to learn a new topic? Pick something else</a></p>`;
+}
+
+function topicView(id) {
+  const f = findTopic(id);
+  if (!f) return `<a class="back" href="#home">${ICON.back}My topics</a><p class="note">That topic isn't here any more.</p>`;
+  const { t, m, g } = f;
+  if (g.id !== grade) { grade = g.id; store.set('grade', grade); }
+  store.set('last', t._k);
+  const s = stepsOf(t), ns = nextStep(t), steps = live(t);
+  const html = steps.map((x, i) => {
+    const list = s[x.k], v = st(t._k, x.k), now = ns && ns.k === x.k, done = v === 2;
+    const first = list[0], rest = list.slice(1);
+    const label = first.book ? null : (x.k === 'learn' ? 'Watch the lesson' : x.go);
+    const main = first.book ? `<p>${esc(first.title)}.</p>` : `<p>${esc(x.say)}</p>`;
+    const go = first.book ? '' : goLink(first, t._k, x.k, 'btn', label);
+    const tick = `<button class="tick" type="button" data-tick="${esc(t._k)}" data-k="${x.k}" aria-pressed="${done}"><i>✓</i>${done ? 'Done' : first.book ? "I've read it" : "I've done this"}</button>`;
+    const more = rest.length ? `<details class="more"><summary>More like this (${rest.length})</summary><ul>${rest.map(it => `<li>${goLink(it, t._k, x.k, '', it.title)}</li>`).join('')}</ul></details>` : '';
+    return `<details class="step${done ? ' done' : ''}${now ? ' now' : ''}"${now ? ' open' : ''}><summary><span class="n">${done ? '✓' : i + 1}</span><span class="nm">${x.name}</span><span class="st">${done ? 'Done' : now ? 'Next' : ''}</span></summary>
+      <div class="inner">${main}<div class="acts">${go}${tick}</div>${more}</div></details>`;
+  }).join('');
+  const explore = s.explore.length ? `<details class="more explore"><summary>More to explore</summary><ul>${s.explore.map(it => `<li><a href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(it.title)}</a></li>`).join('')}</ul></details>` : '';
+  const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Test yourself again in a few days to see if it stuck.</p></div></div>` : '';
+  const where = [secText(t) && `Coursebook ${secText(t).toLowerCase()}`, t.page && `page ${t.page}`].filter(Boolean).join(', ');
+  return `<a class="back" href="#home">${ICON.back}My topics</a>
+    <div>${where ? `<p class="where">${esc(where)}</p>` : `<p class="where">${esc(m.title)}</p>`}<h1>${esc(t.title)}</h1></div>
+    ${win}<div class="steps">${html}</div>${explore}`;
+}
+
+function listView(k) {
+  const g = gradeData();
+  const H = k === 'practise'
+    ? { h: 'Practise for a test', p: 'Pick a topic. Fresh questions every time, hints only after you try.', b: 'Practise' }
+    : { h: 'Test myself', p: 'A few questions, no help. Did it stick?', b: 'Test' };
+  const want = k === 'practise' ? ['practise', 'try'] : ['test'];
+  const mods = g.modules.map(m => {
+    const rows = m.topics.map(t => {
+      const s = stepsOf(t), key = want.find(w => s[w].length); if (!key) return '';
+      const it = s[key][0], done = st(t._k, key) === 2;
+      return `<div class="rowx${done ? ' done' : ''}" style="--mc:${esc(m.colour || '#334155')}"><a class="t" href="#t/${esc(t._k)}"><b>${esc(t.title)}</b><small>${esc(done ? 'Done ✓' : secText(t))}</small></a>${goLink(it, t._k, key, 'btn', H.b)}</div>`;
+    }).join('');
+    return rows ? `<section class="mod" style="--mc:${esc(m.colour || '#334155')}"><div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div><div class="rows">${rows}</div></section>` : '';
+  }).join('');
+  return `<div><p class="kicker">${esc(g.label)}</p><h1>${H.h}</h1><p class="lede">${H.p}</p></div>${mods || `<p class="note">${esc(g.coming || 'Nothing here yet.')}</p>`}`;
+}
+
+function aboutView() {
+  return `<a class="back" href="#home">${ICON.back}My topics</a><div><h1>About Mr R Science</h1><p class="lede">Physical sciences, taught the way Noel Robert teaches it. Free for every learner, at any school.</p></div>
+  <p class="note">There's no sign-in and no account. Your ticks are kept only on this phone or computer.</p>
+  <details class="more"><summary>For teachers</summary><p class="note">A school can open Mr R Science inside its own signed-in page, so its learners' results reach their teacher. The app itself never collects names or marks.</p></details>
+  <p class="quiet" style="text-align:left">© Noel Robert. Past exam questions are used with acknowledgement to their examining body.</p>`;
+}
+
+function render() {
+  if (!grade && location.hash !== '#start' && location.hash !== '#about') { location.replace('#start'); }
+  let route = location.hash.slice(1) || (firstTime() ? 'start' : 'home');
+  if (route === 'start' || !grade) route = route === 'about' ? 'about' : 'start';
+  document.body.classList.toggle('bare', route === 'start');
+  const tabKey = route.startsWith('t/') ? 'home' : route;
+  document.querySelectorAll('[data-tab]').forEach(a => a.dataset.tab === tabKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  $('#main').innerHTML = route.startsWith('t/') ? topicView(decodeURIComponent(route.slice(2)))
+    : route === 'start' ? startView() : route === 'practise' || route === 'test' ? listView(route)
+    : route === 'about' ? aboutView() : homeView();
+  $('#grades').hidden = route === 'start';
+  $('#grades').innerHTML = '<span class="gl" aria-hidden="true">Gr</span>' + CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}" aria-label="${esc(g.label)}">${esc(g.id)}</button>`).join('');
+}
+
+function celebrate(msg, big) {
+  const p = document.createElement('div'); p.className = 'pop'; p.textContent = msg; document.body.appendChild(p); setTimeout(() => p.remove(), 2000);
+  if (!big || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const box = document.createElement('div'); box.className = 'confetti';
+  const cols = ['#e3121b', '#1c64d6', '#138a4a', '#f59f00', '#7048e8'];
+  for (let i = 0; i < 40; i++) { const c = document.createElement('i'); c.style.left = Math.random() * 100 + 'vw'; c.style.background = cols[i % cols.length]; c.style.animationDelay = Math.random() * .4 + 's'; c.style.animationDuration = 1.2 + Math.random() * .8 + 's'; box.appendChild(c); }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 2600);
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-g]');
+  if (b) { grade = b.dataset.g; store.set('grade', grade); if (location.hash.startsWith('#t/')) location.hash = '#home'; else render(); return; }
+  const need = e.target.closest('[data-need]');
+  if (need) { e.preventDefault(); const n = $('#needg'); if (n) { n.style.color = 'var(--accent-ink)'; n.style.fontWeight = '600'; } return; }
+  if (e.target.closest('[data-seen]')) store.set('seen', true);
+  const tk = e.target.closest('[data-tick]');
+  if (tk) {
+    const tid = tk.dataset.tick, k = tk.dataset.k, f = findTopic(tid);
+    prog[tid] = prog[tid] || {}; const was = isDone(f.t);
+    prog[tid][k] = st(tid, k) === 2 ? 1 : 2; store.set('progress', prog); store.set('seen', true); render();
+    if (prog[tid][k] === 2) { const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${STEPS.find(s => s.k === k).name}: done ✓`, done && !was); }
+    return;
+  }
+  const it = e.target.closest('a[data-step]');
+  if (it) {
+    const tid = it.dataset.topic, k = it.dataset.step;
+    if (k !== 'explore') { prog[tid] = prog[tid] || {}; if (!st(tid, k)) prog[tid][k] = 1; store.set('progress', prog); }
+    store.set('last', tid); store.set('seen', true);
+    try { sessionStorage.setItem('mrr-return', location.pathname + '#t/' + tid); sessionStorage.setItem('mrr-return-title', findTopic(tid).t.title); } catch {}
+  }
+});
+function setTheme(v) {
+  if (v) document.documentElement.setAttribute('data-theme', v); else document.documentElement.removeAttribute('data-theme');
+  const dark = v ? v === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  $('#theme').innerHTML = dark ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+                               : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>';
+  $('#theme').setAttribute('aria-label', dark ? 'Switch to light' : 'Switch to dark');
+  document.querySelector('meta[name="theme-color"]').content = dark ? '#0d1320' : '#ffffff';
+}
+setTheme(store.get('theme', null));
+$('#theme').addEventListener('click', () => { const dark = document.documentElement.getAttribute('data-theme') ? document.documentElement.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; const v = dark ? 'light' : 'dark'; store.set('theme', v); setTheme(v); });
+try { sessionStorage.removeItem('mrr-return'); } catch {}
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; keyTopics(); if (grade && !CAT.grades.some(g => g.id === grade)) grade = null; render(); })
+  .catch(() => { $('#main').innerHTML = '<p class="note">The topic list could not load. Check your connection, then reopen the app.</p>'; });
+</script>
+</body>
+</html>
