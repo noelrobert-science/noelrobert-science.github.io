@@ -24,10 +24,15 @@
         {
          "title": "Lesson: momentum and impulse",
          "href": "../momentum/#lesson/momentum",
-         "note": "Worked example, then the impulse lab"
+         "note": "Two worked examples, step by step"
         }
        ],
        "train": [
+        {
+         "title": "Impulse lab: a softer stop",
+         "href": "../momentum/#lesson/impulse-lab",
+         "kind": "lab"
+        },
         {
          "title": "Momentum p = mv",
          "href": "gym/#climb/mp",
@@ -68,10 +73,15 @@
          "title": "Lesson: a sticking collision",
          "href": "../momentum/#lesson/conservation",
          "voice": "Studio video",
-         "note": "Stops so you can predict, then the collision lab"
+         "note": "Stops so you can predict, then the worked method"
         }
        ],
        "train": [
+        {
+         "title": "Collision lab: test your prediction",
+         "href": "../momentum/#lesson/collision-lab",
+         "kind": "lab"
+        },
         {
          "title": "Crash Lab: predict, then watch",
          "href": "gym/#climb/crash",

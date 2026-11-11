@@ -5,27 +5,39 @@
 (function () {
   var m = /^#lesson\/([a-z-]+)/.exec(location.hash);
   if (!m) return;
+  // Every topic has the same shape: Learn it = the explanation (lesson), Try it = one lab on its own screen.
+  // "noel" marks the place where a short Mr Robert face-and-voice clip will go later.
   var LESSONS = {
     momentum: {
-      title: 'Momentum, Δp and impulse', app: '10/momentum',
+      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'learn', label: 'Learn it',
       screens: [
-        { tab: 'learning', topic: 'momentum', h: 'What momentum is',
+        { tab: 'learning', topic: 'momentum', h: 'What momentum is', noel: 'walk through this example',
           say: 'Momentum is mass times velocity, p = mv. Direction matters, so pick a positive direction first. Read the worked example, then try the short "explain" question.' },
-        { tab: 'impulse', h: 'Try it: a softer stop',
-          say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the force get bigger or smaller?' },
-        { tab: 'learning', topic: 'impulse', h: 'Impulse and stopping force',
-          say: 'Now the numbers. Find Δp first, with its sign, then divide by the stopping time.' }
+        { tab: 'learning', topic: 'impulse', h: 'Impulse and stopping force', noel: 'walk through this example',
+          say: 'Impulse is the change in momentum, Δp. Find Δp first, with its sign, then divide by the stopping time to get the force.' }
       ]
     },
     conservation: {
-      title: 'Conservation of momentum', app: '10/conservation',
+      title: 'Conservation of momentum', app: '10/conservation', k: 'learn', label: 'Learn it',
       screens: [
         { tab: 'video', h: 'Watch and predict',
           say: 'A short lesson about two carts that stick together. It stops five times so you can predict first. Have paper and a calculator ready.' },
-        { tab: 'collisions', h: 'Try it: test your prediction',
-          say: 'Choose "Stick together". Set A to 2 kg at +3 m/s and B to 1 kg at rest. Predict the final velocity, then run it.' },
-        { tab: 'learning', topic: 'conservation', h: 'The worked method',
+        { tab: 'learning', topic: 'conservation', h: 'The worked method', noel: 'walk through this example',
           say: 'Total momentum before = total momentum after. Read the worked example, then try the "explain" question.' }
+      ]
+    },
+    'impulse-lab': {
+      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'try', label: 'Try it',
+      screens: [
+        { tab: 'impulse', h: 'A softer stop',
+          say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the force get bigger or smaller? Then try "Push a trolley from rest".' }
+      ]
+    },
+    'collision-lab': {
+      title: 'Conservation of momentum', app: '10/conservation', k: 'try', label: 'Try it',
+      screens: [
+        { tab: 'collisions', h: 'Test your prediction',
+          say: 'Choose "Stick together". Set A to 2 kg at +3 m/s and B to 1 kg at rest. Predict the final velocity, then run it. Then try "Bounce".' }
       ]
     }
   };
@@ -74,7 +86,7 @@
     hideIn('#collisions', ['#download-cart-top', ':scope > .section-head']);
     hideIn('#impulse', [':scope > .section-head']);
     var top = document.createElement('div'); top.id = 'ls-top';
-    top.innerHTML = '<div class="t"><span>Learn it · ' + L.title + '</span><a href="' + returnUrl() + '">✕ Close</a></div><div class="dots">' + L.screens.map(function () { return '<i></i>'; }).join('') + '</div>';
+    top.innerHTML = '<div class="t"><span>' + L.label + ' · ' + L.title + '</span><a href="' + returnUrl() + '">✕ Close</a></div><div class="dots"' + (L.screens.length > 1 ? '' : ' hidden') + '>' + L.screens.map(function () { return '<i></i>'; }).join('') + '</div>';
     document.body.insertBefore(top, document.body.firstChild);
     var card = document.createElement('div'); card.id = 'ls-card';
     document.querySelector('main').insertBefore(card, document.querySelector('main').firstChild);
@@ -84,7 +96,7 @@
     document.getElementById('ls-prev').onclick = function () { if (i > 0) show(i - 1); };
     document.getElementById('ls-next').onclick = function () {
       if (i < L.screens.length - 1) return show(i + 1);
-      try { sessionStorage.setItem('mrr-done', JSON.stringify({ t: L.app, k: 'learn' })); } catch (e) {}
+      try { sessionStorage.setItem('mrr-done', JSON.stringify({ t: L.app, k: L.k })); } catch (e) {}
       location.href = returnUrl();
     };
     show(0);
@@ -94,7 +106,7 @@
     var v = document.getElementById('momentum-video'); if (v && s.tab !== 'video') try { v.pause(); } catch (e) {}
     if (window.StudioBridge && window.StudioBridge.openTab) window.StudioBridge.openTab(s.tab);
     if (s.topic) { var b = document.querySelector('[data-learn-topic="' + s.topic + '"]'); if (b) b.click(); var me = document.getElementById('model-example'); if (me) me.open = true; }
-    document.getElementById('ls-card').innerHTML = '<small>Step ' + (n + 1) + ' of ' + L.screens.length + '</small><h2>' + s.h + '</h2><p>' + s.say + '</p>';
+    document.getElementById('ls-card').innerHTML = (L.screens.length > 1 ? '<small>Step ' + (n + 1) + ' of ' + L.screens.length + '</small>' : '<small>' + L.label + '</small>') + '<h2>' + s.h + '</h2><p>' + s.say + '</p>';
     document.querySelectorAll('#ls-top .dots i').forEach(function (d, k) { d.className = k <= n ? 'on' : ''; });
     document.getElementById('ls-prev').style.visibility = n ? 'visible' : 'hidden';
     document.getElementById('ls-next').textContent = n < L.screens.length - 1 ? 'Next ›' : "Done. Back to my topic ›";
