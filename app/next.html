@@ -208,7 +208,7 @@ let prog = store.get('progress', {});   // { "grade/topic": { learn, try, practi
 
 // The same four words everywhere. Each has one sentence and one button word.
 const STEPS = [
-  { k: 'learn',    name: 'Learn it',     say: 'A short lesson that stops so you can think first.', go: 'Watch the lesson' },
+  { k: 'learn',    name: 'Learn it',     say: 'A short lesson that stops so you can think first.', go: 'Start the lesson' },
   { k: 'try',      name: 'Try it',       say: 'Play with it. Guess first, then see what happens.', go: 'Open the lab' },
   { k: 'practise', name: 'Practise it',  say: 'Fresh questions every time. Hints only after you try.', go: 'Start practising' },
   { k: 'test',     name: 'Test myself',  say: 'A few questions, no help. Did it stick?', go: 'Test myself' }
@@ -313,7 +313,7 @@ function topicView(id) {
   const html = steps.map((x, i) => {
     const list = s[x.k], v = st(t._k, x.k), now = ns && ns.k === x.k, done = v === 2;
     const first = list[0], rest = list.slice(1);
-    const label = first.book ? null : (x.k === 'learn' ? 'Watch the lesson' : x.go);
+    const label = first.book ? null : x.go;
     const main = first.book ? `<p>${esc(first.title)}.</p>` : `<p>${esc(x.say)}</p>`;
     const go = first.book ? '' : goLink(first, t._k, x.k, 'btn', label);
     const tick = `<button class="tick" type="button" data-tick="${esc(t._k)}" data-k="${x.k}" aria-pressed="${done}"><i>✓</i>${done ? 'Done' : first.book ? "I've read it" : "I've done this"}</button>`;
@@ -354,9 +354,9 @@ function aboutView() {
 }
 
 function render() {
-  if (!grade && location.hash !== '#start' && location.hash !== '#about') { location.replace('#start'); }
+  if (!grade && !location.hash.startsWith('#t/') && location.hash !== '#start' && location.hash !== '#about') { location.replace('#start'); }
   let route = location.hash.slice(1) || (firstTime() ? 'start' : 'home');
-  if (route === 'start' || !grade) route = route === 'about' ? 'about' : 'start';
+  if (route === 'start' || (!grade && !route.startsWith('t/'))) route = route === 'about' ? 'about' : 'start';
   document.body.classList.toggle('bare', route === 'start');
   const tabKey = route.startsWith('t/') ? 'home' : route;
   document.querySelectorAll('[data-tab]').forEach(a => a.dataset.tab === tabKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
@@ -409,8 +409,15 @@ function setTheme(v) {
 setTheme(store.get('theme', null));
 $('#theme').addEventListener('click', () => { const dark = document.documentElement.getAttribute('data-theme') ? document.documentElement.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; const v = dark ? 'light' : 'dark'; store.set('theme', v); setTheme(v); });
 try { sessionStorage.removeItem('mrr-return'); } catch {}
+// Coming back from a studio lesson that was finished: tick that step.
+function doneFromStudio() {
+  let d = null; try { d = JSON.parse(sessionStorage.getItem('mrr-done') || 'null'); sessionStorage.removeItem('mrr-done'); } catch {}
+  const f = d && findTopic(d.t); if (!f || !STEPS.some(s => s.k === d.k)) return;
+  const was = isDone(f.t); prog[d.t] = prog[d.t] || {}; prog[d.t][d.k] = 2; store.set('progress', prog); store.set('seen', true); render();
+  const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${STEPS.find(s => s.k === d.k).name}: done ✓`, done && !was);
+}
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
-fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; keyTopics(); if (grade && !CAT.grades.some(g => g.id === grade)) grade = null; render(); })
+fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; keyTopics(); if (grade && !CAT.grades.some(g => g.id === grade)) grade = null; render(); doneFromStudio(); })
   .catch(() => { $('#main').innerHTML = '<p class="note">The topic list could not load. Check your connection, then reopen the app.</p>'; });
 </script>
 </body>

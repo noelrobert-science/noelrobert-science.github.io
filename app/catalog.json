@@ -22,10 +22,9 @@
        "page": 133,
        "watch": [
         {
-         "title": "A sticking collision, step by step",
-         "href": "../momentum/",
-         "voice": "Studio video",
-         "note": "In the Momentum Studio"
+         "title": "Lesson: momentum and impulse",
+         "href": "../momentum/#lesson/momentum",
+         "note": "Worked example, then the impulse lab"
         }
        ],
        "train": [
@@ -64,7 +63,14 @@
        "title": "Conservation of momentum",
        "section": "8.1–8.4",
        "page": 153,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: a sticking collision",
+         "href": "../momentum/#lesson/conservation",
+         "voice": "Studio video",
+         "note": "Stops so you can predict, then the collision lab"
+        }
+       ],
        "train": [
         {
          "title": "Crash Lab: predict, then watch",
