@@ -557,6 +557,8 @@
   }
 
   V.explain = function (arg, params, ctx) { if (arg) run(arg, params, ctx); else list(ctx); };
+  /* design §1.4 and the book's short code m11-5 write #chain/<event>: same page as #explain */
+  V.chain = function () { location.replace(location.hash.replace(/^#chain/, '#explain')); };
   var prevHome = V._homeCards;
   V._homeCards = function (c) {
     var H = c.h;
