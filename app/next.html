@@ -295,7 +295,7 @@ function homeView() {
       const cls = isDone(t) ? 'done' : isHere ? 'here' : d ? 'half' : 'todo';
       const sub = isDone(t) ? 'Done' : d ? `${d} of ${n} steps done` : secText(t);
       const body = isHere
-        ? `<a class="herecard" href="#t/${esc(t._k)}"><span class="kicker">You are here</span><b>${esc(t.title)}</b><p>Next: ${esc(nextStep(t).name)}</p><span class="btn">Carry on</span></a>`
+        ? `<a class="herecard" href="#t/${esc(t._k)}"><span class="kicker">Where you left off</span><b>${esc(t.title)}</b><p>You last opened this topic. Next step: ${esc(nextStep(t).name)}.</p><span class="btn">Carry on</span></a>`
         : `<a href="#t/${esc(t._k)}"><b>${esc(t.title)}</b><small>${esc(sub)}</small></a>`;
       return `<li class="stop ${cls}"><span class="rail"><i>${isDone(t) ? '✓' : ''}</i></span>${body}</li>`;
     }).join('')}</ol></section>`).join('');
