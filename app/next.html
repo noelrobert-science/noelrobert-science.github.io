@@ -143,6 +143,11 @@ h2 { font: 800 21px/1.2 var(--font-display); margin: 0; text-wrap: balance }
 .step.now .inner p { color: var(--hero-muted) }
 .step.now .tick { color: var(--hero-ink); border-color: rgba(255,255,255,.4); background: transparent }
 .step.now .more summary, .step.now .more a { color: var(--hero-ink) }
+.clipbox { margin: 0 0 12px; max-width: 520px }
+.clipbtn { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid var(--line); background: var(--paper); color: inherit; border-radius: 99px; min-height: 44px; padding: 0 16px 0 8px; cursor: pointer; font-weight: 600; font-size: 14.5px }
+.clipbtn i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent, #e3121b); color: #fff; font-style: normal; font-size: 12px }
+.clipbtn small { font-weight: 400; opacity: .75; white-space: nowrap }
+.step.now .clipbtn { color: var(--hero-ink); border-color: rgba(255,255,255,.4); background: transparent }
 .acts { display: flex; gap: 10px; flex-wrap: wrap; align-items: center }
 .tick { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); background: var(--paper); border-radius: 99px; min-height: 44px; padding: 0 16px 0 10px; cursor: pointer; font-weight: 600; font-size: 14.5px }
 .tick i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(140,150,170,.75); display: grid; place-items: center; font-style: normal; font-size: 13px; color: transparent }
@@ -320,9 +325,11 @@ function topicView(id) {
     const main = first.book ? `<p>${esc(first.title)}.</p>` : `<p>${esc(x.say)}</p>`;
     const go = first.book ? '' : goLink(first, t._k, x.k, 'btn', label);
     const tick = `<button class="tick" type="button" data-tick="${esc(t._k)}" data-k="${x.k}" aria-pressed="${done}"><i>✓</i>${done ? 'Done' : first.book ? "I've read it" : "I've done this"}</button>`;
+    const cl = t.clips && t.clips[x.k];
+    const clip = cl ? `<div class="clipbox"><button class="clipbtn" type="button" data-clip="${esc(cl.src)}"><i>▶</i>${esc(cl.title)} <small>${cl.sec} s</small></button></div>` : '';
     const more = rest.length ? `<details class="more"><summary>More like this (${rest.length})</summary><ul>${rest.map(it => `<li>${goLink(it, t._k, x.k, '', it.title)}</li>`).join('')}</ul></details>` : '';
     return `<details class="step${done ? ' done' : ''}${now ? ' now' : ''}"${now ? ' open' : ''}><summary><span class="n">${done ? '✓' : i + 1}</span><span class="nm">${x.name}</span><span class="st">${done ? 'Done' : now ? 'Next' : ''}</span></summary>
-      <div class="inner">${main}<div class="acts">${go}${tick}</div>${more}</div></details>`;
+      <div class="inner">${main}${clip}<div class="acts">${go}${tick}</div>${more}</div></details>`;
   }).join('');
   const explore = s.explore.length ? `<details class="more explore"><summary>More to explore</summary><ul>${s.explore.map(it => `<li><a href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(it.title)}</a></li>`).join('')}</ul></details>` : '';
   const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Test yourself again in a few days to see if it stuck.</p></div></div>` : '';
@@ -389,6 +396,13 @@ document.addEventListener('click', e => {
   const need = e.target.closest('[data-need]');
   if (need) { e.preventDefault(); const n = $('#needg'); if (n) { n.style.color = 'var(--accent-ink)'; n.style.fontWeight = '600'; } return; }
   if (e.target.closest('[data-seen]')) store.set('seen', true);
+  const cb = e.target.closest('[data-clip]');
+  if (cb) {
+    const src = cb.dataset.clip, box = cb.parentNode;
+    const go = () => MrrVideo.mount(box, { src: src + '.mp4', vtt: src + '.vtt', poster: src + '.jpg' }).v.play().catch(() => {});
+    if (window.MrrVideo) go(); else { const sc = document.createElement('script'); sc.src = 'mrr-video.js'; sc.onload = go; document.head.appendChild(sc); }
+    return;
+  }
   const tk = e.target.closest('[data-tick]');
   if (tk) {
     const tid = tk.dataset.tick, k = tk.dataset.k, f = findTopic(tid);

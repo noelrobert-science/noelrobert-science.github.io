@@ -11,6 +11,13 @@
     momentum: {
       title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'learn', label: 'Learn it',
       screens: [
+        { video: 'media/m7/lesson', h: 'Watch the lesson',
+          say: 'Mr Robert, about 8½ minutes. It stops 10 times so you can think first. Have paper, a pencil and a calculator ready. Prefer to read? <a href="?read#lesson/momentum-read">Read the worked examples instead</a>.' }
+      ]
+    },
+    'momentum-read': {
+      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'learn', label: 'Learn it',
+      screens: [
         { tab: 'learning', topic: 'momentum', h: 'What momentum is', noel: 'walk through this example',
           say: 'Momentum is mass times velocity, p = mv. Direction matters, so pick a positive direction first. Read the worked example, then try the short "explain" question.' },
         { tab: 'learning', topic: 'impulse', h: 'Impulse and stopping force', noel: 'walk through this example',
@@ -29,7 +36,7 @@
     'impulse-lab': {
       title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'try', label: 'Try it',
       screens: [
-        { tab: 'impulse', h: 'A softer stop',
+        { tab: 'impulse', h: 'A softer stop', clip: 'media/m7/clip-what-to-watch', clipTitle: 'Mr R: what to watch',
           say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the force get bigger or smaller? Then try "Push a trolley from rest".' }
       ]
     },
@@ -50,6 +57,12 @@
     'body.lesson header, body.lesson footer, body.lesson #feedback { display: none !important }' +
     'body.lesson main { padding-bottom: 120px }' +
     'body.lesson .ls-hide { display: none !important }' +
+    'body.ls-video main > *:not(#ls-card):not(#ls-video) { display: none !important }' +
+    '#ls-video { margin: 0 0 18px } #ls-video[hidden] { display: none }' +
+    '#ls-video .mv { max-width: min(100%, calc((100vh - 330px) * 1.778)); margin: 0 auto }' +
+    'body.ls-video #ls-card { padding: 12px 18px; margin: 12px 0 } body.ls-video #ls-card h2 { font-size: 22px; margin: 2px 0 4px } body.ls-video #ls-card p { font-size: 16px }' +
+    '#ls-clip { margin-top: 14px; max-width: 400px } #ls-clipk { margin: 14px 0 -6px; font: 700 14px Arial, sans-serif; color: #53665e } #ls-clip[hidden] { display: none }' +
+    '#ls-card a { color: #205747; font-weight: 700 }' +
     '#ls-top { position: sticky; top: 0; z-index: 50; background: #183c32; color: #fff; padding: 12px max(18px, env(safe-area-inset-left, 0px)); font: 600 15px/1.3 Arial, sans-serif }' +
     '#ls-top .t { display: flex; justify-content: space-between; gap: 12px; align-items: center; max-width: 1080px; margin: 0 auto }' +
     '#ls-top a { color: #d9efa0; text-decoration: none; white-space: nowrap }' +
@@ -68,6 +81,11 @@
     '#ls-next { background: #205747; color: #fff; border: 0; margin-left: auto }';
   document.head.appendChild(css);
 
+  function withPlayer(fn) {
+    if (window.MrrVideo) return fn();
+    var sc = document.createElement('script'); sc.src = '/app/mrr-video.js'; sc.onload = fn; document.head.appendChild(sc);
+  }
+  function getJSON(u, fn) { fetch(u).then(function (r) { return r.json(); }).then(fn, function () { fn({}); }); }
   function returnUrl() {
     var to = null; try { to = sessionStorage.getItem('mrr-return'); } catch (e) {}
     return (to && to.charAt(0) === '/' && to.indexOf('//') !== 0) ? to : '/app/next.html#t/' + L.app;
@@ -90,6 +108,7 @@
     document.body.insertBefore(top, document.body.firstChild);
     var card = document.createElement('div'); card.id = 'ls-card';
     document.querySelector('main').insertBefore(card, document.querySelector('main').firstChild);
+    var vbox = document.createElement('div'); vbox.id = 'ls-video'; vbox.hidden = true; card.after(vbox);
     var bot = document.createElement('div'); bot.id = 'ls-bot';
     bot.innerHTML = '<div class="b"><button id="ls-prev" type="button">‹ Back</button><button id="ls-next" type="button"></button></div>';
     document.body.appendChild(bot);
@@ -106,11 +125,14 @@
     var v = document.getElementById('momentum-video'); if (v && s.tab !== 'video') try { v.pause(); } catch (e) {}
     if (window.StudioBridge && window.StudioBridge.openTab) window.StudioBridge.openTab(s.tab);
     if (s.topic) { var b = document.querySelector('[data-learn-topic="' + s.topic + '"]'); if (b) b.click(); var me = document.getElementById('model-example'); if (me) me.open = true; }
-    document.getElementById('ls-card').innerHTML = (L.screens.length > 1 ? '<small>Step ' + (n + 1) + ' of ' + L.screens.length + '</small>' : '<small>' + L.label + '</small>') + '<h2>' + s.h + '</h2><p>' + s.say + '</p>';
+    document.getElementById('ls-card').innerHTML = (L.screens.length > 1 ? '<small>Step ' + (n + 1) + ' of ' + L.screens.length + '</small>' : '<small>' + L.label + '</small>') + '<h2>' + s.h + '</h2><p>' + s.say + '</p>' + (s.clip ? '<p id="ls-clipk">▶ ' + (s.clipTitle || 'Mr R explains') + ' (19 s). Watch this first.</p><div id="ls-clip"></div>' : '');
+    var vb = document.getElementById('ls-video'); document.body.classList.toggle('ls-video', !!s.video); vb.hidden = !s.video; vb.innerHTML = '';
+    if (s.video) withPlayer(function () { getJSON(s.video + '.json', function (meta) { MrrVideo.mount(vb, { src: s.video + '.mp4', vtt: s.video + '.vtt', poster: s.video + '.jpg', meta: meta, onDone: function () { var b = document.getElementById('ls-next'); b.style.boxShadow = '0 0 0 4px #d9efa0'; } }); }); });
+    if (s.clip) withPlayer(function () { MrrVideo.mount(document.getElementById('ls-clip'), { src: s.clip + '.mp4', vtt: s.clip + '.vtt', poster: s.clip + '.jpg' }); });
     document.querySelectorAll('#ls-top .dots i').forEach(function (d, k) { d.className = k <= n ? 'on' : ''; });
     document.getElementById('ls-prev').style.visibility = n ? 'visible' : 'hidden';
     document.getElementById('ls-next').textContent = n < L.screens.length - 1 ? 'Next ›' : "Done. Back to my topic ›";
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); setTimeout(function () { window.scrollTo(0, 0); }, 400);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(setup, 0); }); else setTimeout(setup, 0);
 })();

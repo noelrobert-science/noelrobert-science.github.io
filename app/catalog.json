@@ -22,9 +22,9 @@
        "page": 138,
        "watch": [
         {
-         "title": "Lesson: momentum and impulse",
+         "title": "Lesson: momentum and impulse (Mr Robert, video)",
          "href": "../momentum/#lesson/momentum",
-         "note": "Two worked examples, step by step"
+         "note": "About 8½ minutes. It stops so you can think first."
         }
        ],
        "train": [
@@ -73,7 +73,24 @@
          "kind": "gym",
          "note": "3 fresh questions, help off"
         }
-       ]
+       ],
+       "clips": {
+        "try": {
+         "title": "Mr R: what to watch",
+         "src": "../momentum/media/m7/clip-what-to-watch",
+         "sec": 19
+        },
+        "practise": {
+         "title": "Mr R: the bounce-back trick",
+         "src": "../momentum/media/m7/clip-bounce-back",
+         "sec": 15
+        },
+        "test": {
+         "title": "Mr R: 3 exam traps, before you start",
+         "src": "../momentum/media/m7/clip-exam-traps",
+         "sec": 46
+        }
+       }
       },
       {
        "id": "conservation",
