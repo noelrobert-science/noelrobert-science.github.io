@@ -1,0 +1,136 @@
+{
+  "lesson": "m7",
+  "title": "Momentum, Δp and impulse",
+  "studio": "momentum",
+  "version": "2026-11-14a",
+  "scenes": [
+    { "n": 1, "t": "Hook: truck or tennis ball?", "slug": "01-hook", "face": true,
+      "note": "Your face shows, full size. Lift your energy and look at the camera. After the question, stay quiet for 3 seconds.",
+      "lines": [
+        "A loaded truck and a tennis ball are both coming at you at 20 metres per second. Which one would you rather stop with your hands? Two things make the truck harder to stop. Pause, and say what they are.",
+        "Its mass, and how fast it's going. Today we turn 'hard to stop' into a number. It's called momentum."
+      ],
+      "pauseAfter": [0] },
+    { "n": 2, "t": "What momentum is", "slug": "02-what-momentum-is", "face": false,
+      "note": "Voice only. On screen: page 138, the definition box, then page 139, the formula box and the two arrows.",
+      "lines": [
+        "Learn this word for word. It comes straight from SAGS. Linear momentum is the product of the mass and velocity of the object.",
+        "p equals m v. Kilograms times metres per second, so the unit is the kilogram metre per second.",
+        "Same ball, same speed. One goes east, one goes west. Same momentum? No. Momentum is a vector. With east positive, one is plus 6,24 and the other is minus 6,24. Same size, opposite signs. Keep that in mind, because the signs matter for the rest of this module."
+      ] },
+    { "n": 3, "t": "I do: the cricket ball (worked example 7.1)", "slug": "03-i-do-cricket-ball", "face": true,
+      "note": "Small face circle. On screen: worked example 7.1 on page 139, each line appearing as you say it. Talk the way you would at the board.",
+      "lines": [
+        "Cricket ball, 156 grams, 135 kilometres an hour, due west. First, I choose east as positive.",
+        "Next I convert. 156 grams divided by 1 000 is 0,156 kilograms. 135 divided by 3,6 is 37,5 metres per second, but it's going west, so it's minus 37,5.",
+        "Then p equals m v. Substitute, and I get minus 5,85. The answer is 5,85 kilogram metres per second, west.",
+        "That's four marks. Watch where they come from: the conversion, the formula, the substitution, and the answer with its direction."
+      ] },
+    { "n": 4, "t": "Why west? Then your turn", "slug": "04-why-west-your-turn", "face": true,
+      "note": "Small face circle. Two stops: say the question, then stay quiet for 3 seconds each time. The lesson stops there for the learner.",
+      "lines": [
+        "Pause. Why must the answer say west?",
+        "Because momentum is a vector. A number without a direction loses the mark.",
+        "Your turn. Pause the video and do the cyclist on page 140: 65 kilograms, 8,5 metres per second north.",
+        "552,5 kilogram metres per second, north. Did you remember north?"
+      ],
+      "pauseAfter": [0, 2] },
+    { "n": 5, "t": "Change in momentum", "slug": "05-change-in-momentum", "face": false,
+      "note": "Voice only. On screen: page 141, the formula box, then the five-steps box with steps 2 and 3 highlighted.",
+      "lines": [
+        "When a net force acts, the momentum changes. Change in momentum is final minus initial. Always final minus initial.",
+        "Most marks are lost in two places. Step 2: say your positive direction. Step 3: give both velocities a sign."
+      ] },
+    { "n": 6, "t": "Predict: stop or bounce?", "slug": "06-predict-stop-or-bounce", "face": false,
+      "note": "Voice only. On screen: the impulse lab, first 'Stop a moving trolley', then 'rebound'. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "Predict. A ball hits a wall and stops. The same ball hits the wall and bounces back at the same speed. Which one has the bigger change in momentum? Pause and decide.",
+        "Look at the orange area. That's the change in momentum. Bouncing back makes it bigger. The ball has to stop, and then go the other way."
+      ],
+      "pauseAfter": [0] },
+    { "n": 7, "t": "I do: ball and bat (worked example 7.2)", "slug": "07-i-do-ball-and-bat", "face": true,
+      "note": "Small face circle. On screen: worked example 7.2 on page 142 with the before, during and after picture.",
+      "lines": [
+        "Ball, 200 grams, comes in at 12 to the right. The bat sends it back at 8 to the left.",
+        "Right is positive, so u is plus 12, and v is minus 8.",
+        "Delta p is 0,2 times, minus 8 minus 12. That's 0,2 times minus 20, which is minus 4,00.",
+        "So the change in momentum is 4,00 kilogram metres per second, to the left."
+      ] },
+    { "n": 8, "t": "Spot the mistake, then your turn", "slug": "08-mistake-your-turn", "face": true,
+      "note": "Small face circle. Two stops: stay quiet for 3 seconds after each question.",
+      "lines": [
+        "A learner wrote 0,2 times, 8 minus 12, and got minus 0,80. Pause. What went wrong?",
+        "She dropped the minus sign on the 8. The velocity didn't change by 4. It went from plus 12 to minus 8. That's a change of 20.",
+        "Your turn. The soccer ball on page 143. East is positive. Pause and work it out.",
+        "0,43 times, 14 minus minus 10. So 0,43 times 24. That's 10,32 kilogram metres per second, east."
+      ],
+      "pauseAfter": [0, 2] },
+    { "n": 9, "t": "I do: the force on the ball (worked example 7.3)", "slug": "09-i-do-force", "face": true,
+      "note": "Small face circle. On screen: page 144, the definition box, then worked example 7.3. One stop after the question.",
+      "lines": [
+        "Newton's second law, in SAGS words. The net force acting on an object is equal to the rate of change of momentum. So F net equals delta p over delta t.",
+        "Same ball, same bat. It's in contact with the bat for 0,020 seconds. Minus 4,00 divided by 0,020 is minus 200. So the force is 200 newtons, to the left.",
+        "Pause. The ball was moving right. Why is the force on it to the left?",
+        "The force points the same way as the change in momentum. It's the force that turns the ball around."
+      ],
+      "pauseAfter": [2] },
+    { "n": 10, "t": "Impulse, and the softer stop", "slug": "10-impulse-softer-stop", "face": false,
+      "note": "Voice only. On screen: page 145, then the impulse lab: 0,5 kg, 4,0 m/s, 0,20 s, then the time dragged to 0,80 s. Stay quiet for 3 seconds after the prediction.",
+      "lines": [
+        "Impulse is the product of the net force and the contact time. Impulse equals the change in momentum. Newton seconds and kilogram metres per second are the same unit.",
+        "This orange rectangle is the impulse: force times time. Right now it's minus 2 newton seconds, with a force of minus 10 newtons.",
+        "I'm going to make the stopping time four times longer. What happens to the force? Pause and predict.",
+        "The area stays the same, because it's the same stop. The force drops to a quarter: 2,5 newtons. Keep this picture in mind. It's the whole of the next part."
+      ],
+      "pauseAfter": [2] },
+    { "n": 11, "t": "Your turn: page 146", "slug": "11-your-turn-146", "face": false,
+      "note": "Voice only. On screen: the Now you box on page 146. Stay quiet for 3 seconds after the first line.",
+      "lines": [
+        "Your turn: page 146. A 0,25 kilogram ball, 40 newtons to the left, for 0,015 seconds. Find the change in momentum, then the final velocity. Pause and work it out.",
+        "Minus 40 times 0,015 is minus 0,60. So 0,60 kilogram metres per second, to the left. Then v is 0,60 divided by 0,25, which is 2,40 metres per second, to the left."
+      ],
+      "pauseAfter": [0] },
+    { "n": 12, "t": "Airbags: the three-mark answer", "slug": "12-airbags-three-marks", "face": true,
+      "note": "Face circle a little bigger. On screen: page 148, the catching picture, then the 3-mark box, then the memo quote. Exam voice: this is where the marks are.",
+      "lines": [
+        "Same ball, same speed, same stop. So the same change in momentum. The only thing you can change is the time it takes to stop.",
+        "This explanation is worth three marks in nearly every paper. Say these three things, in this order. One: the change in momentum is the same. Two: the stopping time increases, and name what does it. Three: F net is delta p over delta t, so the average force decreases.",
+        "Never say the airbag makes the change in momentum smaller. The November memo says it word for word: do not say that the change in momentum becomes smaller."
+      ] },
+    { "n": 13, "t": "Your turn: the goalkeeper", "slug": "13-your-turn-goalkeeper", "face": true,
+      "note": "Small face circle. On screen: worked example 7.5 on page 149, answer covered. Stay quiet for 3 seconds after the first line.",
+      "lines": [
+        "Your turn. A goalkeeper pulls her hands back as she catches a hard shot. Pause, and write the three-mark explanation.",
+        "Same delta p. Longer stopping time. So a smaller average force. Three ticks."
+      ],
+      "pauseAfter": [0] },
+    { "n": 14, "t": "Close", "slug": "14-close", "face": true,
+      "note": "Your face shows, full size. Warm finish.",
+      "lines": [
+        "That's momentum and impulse. Next, in the app: Try it, the impulse lab on its own. Then Practise. Then test yourself, with no help."
+      ] },
+    { "n": 15, "t": "Short clip: what to watch in the lab", "slug": "15-clip-what-to-watch", "face": true,
+      "note": "A separate 30-second clip. It plays on the Try it screen, above the impulse lab.",
+      "lines": [
+        "Before you start, watch the orange area, not the height. The area is the change in momentum. Make the stop softer and the area stays the same, but the force goes down.",
+        "Now see if you can get the force below 5 newtons, without changing the mass or the speed."
+      ] },
+    { "n": 16, "t": "Short clip: the bounce-back trick", "slug": "16-clip-bounce-back", "face": true,
+      "note": "A separate 30-second clip. It plays on the Practise it screen.",
+      "lines": [
+        "If something bounces back, the speeds add. In at 12, out at 8: that's a change of 20, not 4.",
+        "Put a minus sign on the velocity that goes the other way, and the maths does it for you."
+      ] },
+    { "n": 17, "t": "Short clip: exam traps", "slug": "17-clip-exam-traps", "face": true,
+      "note": "A separate 60-second clip. It plays just before Test myself. Exam voice.",
+      "lines": [
+        "Three traps catch Grade 10s every year. Here they are, so they don't catch you.",
+        "One: no direction. Momentum, change in momentum, impulse and force all need a direction, or a sign with your positive direction stated.",
+        "Two: the bounce. If it comes back, the two velocities have opposite signs. Final minus initial: minus 8 minus 12, not 8 minus 12.",
+        "Three: the airbag. The change in momentum does not get smaller. The time gets longer, so the force gets smaller.",
+        "And a bonus: milliseconds. 20 milliseconds is 0,020 seconds. Convert before you divide."
+      ] }
+  ],
+  "roomTone": { "slug": "00-room-tone", "secs": 10,
+    "note": "Sit still and say nothing for 10 seconds. I use this to take out the background hum." }
+}
