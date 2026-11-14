@@ -2942,6 +2942,28 @@ html&gt;body{padding:0}&lt;/style&gt;
   delete frame.dataset.srcdoc;
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a54b3c1d5cf0039a',t:'MTc5MzcwNzM5Ng=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a54b3c1d5cf0039a',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script src="/app/back.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a54b3c1d5cf0039a',t:'MTc5MzcwNzM5Ng=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a54b3c1d5cf0039a',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>/* One line of instruction above the lab. */(function(){var d=document.createElement('p');d.id='carts-task';d.textContent='Pick an experiment. Before you press Run collision, predict which way each cart moves afterwards, and how fast. Then run it and check: is the total momentum the same before and after?';d.setAttribute('style','margin:0;padding:10px max(16px, env(safe-area-inset-left, 0px));background:#fff4d6;color:#3d2c00;font:500 15px/1.4 system-ui,sans-serif;border-bottom:1px solid #ecd9a0');var f=document.getElementById('codex-visualization');if(f)f.parentNode.insertBefore(d,f);})();</script><script>/* copy of /app/back.js (this page cannot load site scripts) */
+/* Mr R Science: "back to the app" bar for studio pages.
+   The app saves where the pupil came from (sessionStorage, this tab only). If it's there, a slim bar at the top
+   of the studio page goes straight back to that topic. Pages opened any other way look exactly as before. */
+(function () {
+  var to, title;
+  try { to = sessionStorage.getItem('mrr-return'); title = sessionStorage.getItem('mrr-return-title'); } catch (e) { return; }
+  if (!to || to.charAt(0) !== '/' || to.indexOf('//') === 0) return;
+  // Studios can hide school-only or teacher-only parts with html.from-app.
+  document.documentElement.classList.add('from-app');
+  function add() {
+    if (document.getElementById('mrr-back')) return;
+    var a = document.createElement('a');
+    a.id = 'mrr-back'; a.href = to;
+    a.innerHTML = '<span aria-hidden="true" style="font-size:20px;line-height:1">‹</span><span style="white-space:nowrap;flex:none">Back to Mr R Science</span>' +
+      (title ? '<small style="opacity:.75;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0">· ' + title.replace(/[<>&]/g, '') + '</small>' : '');
+    a.setAttribute('style', 'display:flex;align-items:center;gap:8px;min-height:44px;padding:6px max(16px, env(safe-area-inset-left, 0px));' +
+      'padding-top:max(6px, env(safe-area-inset-top, 0px));background:#151b28;color:#fff;font:600 15px/1.2 Lexend,system-ui,sans-serif;text-decoration:none;position:relative;z-index:2147483000');
+    document.body.insertBefore(a, document.body.firstChild);
+  }
+  if (document.body) add(); else document.addEventListener('DOMContentLoaded', add);
+})();
+</script>
 </body>
 </html>

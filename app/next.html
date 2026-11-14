@@ -162,6 +162,13 @@ h2 { font: 800 21px/1.2 var(--font-display); margin: 0; text-wrap: balance }
 .win b { font: 800 20px var(--font-display); color: var(--ok) }
 .win p { margin: 2px 0 0; font-size: 14.5px }
 .win .big { font-size: 34px; line-height: 1 }
+.win .btn { margin-top: 10px }
+.shelf { margin: 10px 0 0 4px; border: 1.5px dashed var(--line); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px }
+.shelf b { font: 700 16px var(--font-display) }
+.shelf p { margin: 0; font-size: 14.5px; color: var(--muted) }
+.shelf ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px }
+.shelf a { font-weight: 600 }
+.shelf small { display: block; color: var(--muted); font-size: 13.5px }
 .where { font-size: 14.5px; color: var(--muted); margin: 0 0 4px }
 
 /* Practise / Test lists */
@@ -236,7 +243,7 @@ function stepsOf(t, m) {
   if (t._s) return t._s;
   const s = { learn: [], try: [], practise: [], test: [], explore: [] };
   for (const it of t.watch || []) s.learn.push(it);
-  for (const it of t.train || []) (isStudioHome(it.href) && !/guides/.test(it.href) ? s.explore : isLab(it) ? s.try : s.practise).push(it);
+  for (const it of t.train || []) (it.kind === 'explore' || (isStudioHome(it.href) && !/guides/.test(it.href)) ? s.explore : isLab(it) ? s.try : s.practise).push(it);
   for (const it of t.check || []) (/#later/.test(it.href) && (t.check || []).length > 1 ? s.explore : s.test).push(it);
   // no lesson yet: the book is the lesson
   if (!s.learn.length && t.section && /^\d+[.–-]/.test(t.section)) s.learn.push({ book: true, title: `Read section ${t.section} in your coursebook${t.page ? ` (page ${t.page})` : ''}` });
@@ -250,7 +257,7 @@ function isDone(t) { const l = live(t); return l.length > 0 && doneCount(t) === 
 function secText(t) { return !t.section || !/^\d/.test(t.section) ? '' : /^\d+$/.test(t.section) ? `Module ${t.section}` : `Section ${t.section}`; }
 
 function gradeData() { return CAT.grades.find(g => g.id === grade) || CAT.grades[0]; }
-function allTopics(g) { return (g || gradeData()).modules.flatMap(m => m.topics.map(t => ({ t, m }))); }
+function allTopics(g) { return (g || gradeData()).modules.flatMap(m => m.topics.filter(t => !t.extra).map(t => ({ t, m }))); }
 function findTopic(id) {
   const all = CAT.grades.flatMap(g => g.modules.flatMap(m => m.topics.map(t => ({ t, m, g }))));
   return all.find(x => x.t._k === id) || null;
@@ -287,7 +294,7 @@ function startView() {
     <div class="tiles">
       ${tile('#home', ICON.learn, 'Learn a topic', 'Go through it step by step, in the same order as your book.', true)}
       ${tile('#practise', ICON.practise, 'Practise for a test', 'Pick a topic and get fresh questions.')}
-      ${tile('#test', ICON.test, 'Quick check', 'Five mixed questions, no help. See what you know.')}
+      ${tile('#test', ICON.test, 'Test myself', "Pick a topic you've done. A few questions, no help.")}
     </div>
     <p class="quiet">Free for every learner. No sign-in, nothing to install.</p>`;
 }
@@ -298,7 +305,7 @@ function homeView() {
   const top = here ? '' : `<div class="welcome"><b>Start with the topic you're doing in class.</b><p>Not sure? Start at the top and work down. Tap a topic to begin.</p></div>`;
   const mods = g.modules.map(m => `<section class="mod" style="--mc:${esc(m.colour || '#334155')}">
     <div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div>
-    <ol class="path">${m.topics.map(t => {
+    ${m.topics.some(t => !t.extra) ? `<ol class="path">${m.topics.filter(t => !t.extra).map(t => {
       const isHere = here && here.t._k === t._k, d = doneCount(t), n = live(t).length;
       const cls = isDone(t) ? 'done' : isHere ? 'here' : d ? 'half' : 'todo';
       const sub = isDone(t) ? 'Done' : d ? `${d} of ${n} steps done` : secText(t);
@@ -306,9 +313,19 @@ function homeView() {
         ? `<a class="herecard" href="#t/${esc(t._k)}"><span class="kicker">Where you left off</span><b>${esc(t.title)}</b><p>You last opened this topic. Next step: ${esc(nextStep(t).name)}.</p><span class="btn">Carry on</span></a>`
         : `<a href="#t/${esc(t._k)}"><b>${esc(t.title)}</b><small>${esc(sub)}</small></a>`;
       return `<li class="stop ${cls}"><span class="rail"><i>${isDone(t) ? '✓' : ''}</i></span>${body}</li>`;
-    }).join('')}</ol></section>`).join('');
-  return `<div><p class="kicker">${esc(g.label)}</p><h1>Your topics, in book order</h1></div>${top}${mods}
+    }).join('')}</ol>` : ''}${m.topics.filter(t => t.extra).map(shelf).join('')}</section>`).join('');
+  return `<div><p class="kicker">${esc(g.label)}</p><h1>Your topics, in book order</h1><p class="lede">More topics are being added. These are ready now.</p></div>${top}${mods}
     <p class="quiet"><a href="#start">Not here to learn a new topic? Pick something else</a></p>`;
+}
+
+// Not a topic: a shelf of extras under a module (come-back checks, revision booklets). Each link says what it opens.
+function shelf(t) {
+  const items = [...(t.watch || []), ...(t.train || []), ...(t.check || [])];
+  return `<div class="shelf"><b>${esc(t.title)}</b>${t.say ? `<p>${esc(t.say)}</p>` : ''}<ul>${items.map(it => `<li><a href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(it.title)} ›</a>${it.note ? `<small>${esc(it.note)}</small>` : ''}</li>`).join('')}</ul></div>`;
+}
+function nextTopic(t, g) {
+  const list = allTopics(g), i = list.findIndex(x => x.t._k === t._k);
+  return list.slice(i + 1).concat(list.slice(0, Math.max(i, 0))).find(x => !isDone(x.t)) || null;
 }
 
 function topicView(id) {
@@ -332,7 +349,8 @@ function topicView(id) {
       <div class="inner">${main}${clip}<div class="acts">${go}${tick}</div>${more}</div></details>`;
   }).join('');
   const explore = s.explore.length ? `<details class="more explore"><summary>More to explore</summary><ul>${s.explore.map(it => `<li><a href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(it.title)}</a></li>`).join('')}</ul></details>` : '';
-  const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Test yourself again in a few days to see if it stuck.</p></div></div>` : '';
+  const nx = isDone(t) ? nextTopic(t, g) : null;
+  const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>${s.test.length ? 'Test yourself again in a few days to see if it stuck.' : 'Nice work.'}</p>${nx ? `<a class="btn" href="#t/${esc(nx.t._k)}">Next: ${esc(nx.t.title)}</a>` : `<a class="btn" href="#home">Back to my topics</a>`}</div></div>` : '';
   const where = [secText(t) && `Coursebook ${secText(t).toLowerCase()}`, t.page && `page ${t.page}`].filter(Boolean).join(', ');
   return `<a class="back" href="#home">${ICON.back}My topics</a>
     <div>${where ? `<p class="where">${esc(where)}</p>` : `<p class="where">${esc(m.title)}</p>`}<h1>${esc(t.title)}</h1></div>
@@ -346,17 +364,15 @@ function listView(k) {
     : { h: 'Test myself', p: 'A few questions, no help. Did it stick?', b: 'Test' };
   const want = k === 'practise' ? ['practise', 'try'] : ['test'];
   const mods = g.modules.map(m => {
-    const rows = m.topics.map(t => {
+    const rows = m.topics.filter(t => !t.extra).map(t => {
       const s = stepsOf(t), key = want.find(w => s[w].length); if (!key) return '';
       const it = s[key][0], done = st(t._k, key) === 2;
       return `<div class="rowx${done ? ' done' : ''}" style="--mc:${esc(m.colour || '#334155')}"><a class="t" href="#t/${esc(t._k)}"><b>${esc(t.title)}</b><small>${esc(done ? 'Done ✓' : secText(t))}</small></a>${goLink(it, t._k, key, 'btn', H.b)}</div>`;
     }).join('');
     return rows ? `<section class="mod" style="--mc:${esc(m.colour || '#334155')}"><div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div><div class="rows">${rows}</div></section>` : '';
   }).join('');
-  // Quick check: the mixed "daily" checks sit at the top of Test myself (the first screen's Quick check tile lands here).
-  const quick = k === 'test' ? g.modules.flatMap(m => m.topics.flatMap(t => (t.check || []).filter(it => /daily/.test(it.href)).map(it => ({ it, t, m })))) : [];
-  const qc = quick.length ? `<section class="quick"><p class="kicker">Quick check</p><b>Five mixed questions from what you've done</b><div class="acts">${quick.map(({ it, t, m }) =>
-    `<a class="btn" href="${esc(it.href)}" data-topic="${esc(t._k)}" data-step="explore">${esc(/circuits/.test(it.href) ? 'Circuits' : 'Momentum and chemistry')}</a>`).join('')}</div></section>` : '';
+  // Quick check is off for now: its mixed checks only work after a learner has tested a few topics (audit 14 Nov).
+  const qc = '';
   return `<div><p class="kicker">${esc(g.label)}</p><h1>${H.h}</h1><p class="lede">${H.p}</p></div>${qc}${mods || `<p class="note">${esc(g.coming || 'Nothing here yet.')}</p>`}`;
 }
 
@@ -415,8 +431,10 @@ document.addEventListener('click', e => {
   if (it) {
     const tid = it.dataset.topic, k = it.dataset.step;
     if (k !== 'explore') { prog[tid] = prog[tid] || {}; if (!st(tid, k)) prog[tid][k] = 1; store.set('progress', prog); }
-    store.set('last', tid); store.set('seen', true);
-    try { sessionStorage.setItem('mrr-return', location.pathname + '#t/' + tid); sessionStorage.setItem('mrr-return-title', findTopic(tid).t.title); } catch {}
+    if (k !== 'explore') store.set('last', tid); store.set('seen', true);
+    const h = location.hash, onTopic = h.startsWith('#t/'), fromList = h === '#practise' || h === '#test';
+    const back = onTopic ? '#t/' + tid : fromList ? h : '#home', title = onTopic ? findTopic(tid).t.title : h === '#practise' ? 'Practise for a test' : h === '#test' ? 'Test myself' : 'My topics';
+    try { sessionStorage.setItem('mrr-return', location.pathname + back); sessionStorage.setItem('mrr-return-title', title); } catch {}
   }
 });
 function setTheme(v) {

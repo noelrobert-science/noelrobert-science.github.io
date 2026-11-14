@@ -60,6 +60,9 @@
     'body.ls-video main > *:not(#ls-card):not(#ls-video) { display: none !important }' +
     '#ls-video { margin: 0 0 18px } #ls-video[hidden] { display: none }' +
     '#ls-video .mv { max-width: min(100%, calc((100vh - 330px) * 1.778)); margin: 0 auto }' +
+    /* a phone turned sideways: the picture fills the screen height (audit A4) */
+    '@media (orientation: landscape) and (max-height: 520px) { #ls-video .mv { max-width: min(100%, calc((100vh - 12px) * 1.778)) } body.ls-video #ls-top, body.ls-video #ls-bot { position: static } }' +
+    '#ls-turn { display: none; margin: 8px 2px 0; font-size: 14px; color: #53665e } @media (orientation: portrait) and (max-width: 600px) { #ls-turn { display: block } }' +
     'body.ls-video #ls-card { padding: 12px 18px; margin: 12px 0 } body.ls-video #ls-card h2 { font-size: 22px; margin: 2px 0 4px } body.ls-video #ls-card p { font-size: 16px }' +
     '#ls-clip { margin-top: 14px; max-width: 400px } #ls-clipk { margin: 14px 0 -6px; font: 700 14px Arial, sans-serif; color: #53665e } #ls-clip[hidden] { display: none }' +
     '#ls-card a { color: #205747; font-weight: 700 }' +
@@ -127,12 +130,15 @@
     if (s.topic) { var b = document.querySelector('[data-learn-topic="' + s.topic + '"]'); if (b) b.click(); var me = document.getElementById('model-example'); if (me) me.open = true; }
     document.getElementById('ls-card').innerHTML = (L.screens.length > 1 ? '<small>Step ' + (n + 1) + ' of ' + L.screens.length + '</small>' : '<small>' + L.label + '</small>') + '<h2>' + s.h + '</h2><p>' + s.say + '</p>' + (s.clip ? '<p id="ls-clipk">▶ ' + (s.clipTitle || 'Mr R explains') + ' (19 s). Watch this first.</p><div id="ls-clip"></div>' : '');
     var vb = document.getElementById('ls-video'); document.body.classList.toggle('ls-video', !!s.video); vb.hidden = !s.video; vb.innerHTML = '';
-    if (s.video) withPlayer(function () { getJSON(s.video + '.json', function (meta) { MrrVideo.mount(vb, { src: s.video + '.mp4', vtt: s.video + '.vtt', poster: s.video + '.jpg', meta: meta, onDone: function () { var b = document.getElementById('ls-next'); b.style.boxShadow = '0 0 0 4px #d9efa0'; } }); }); });
+    if (s.video) withPlayer(function () { getJSON(s.video + '.json', function (meta) { vb.innerHTML = '<div></div><p id="ls-turn">Tip: turn your phone sideways for a bigger picture.</p>'; MrrVideo.mount(vb.firstChild, { src: s.video + '.mp4', vtt: s.video + '.vtt', poster: s.video + '.jpg', meta: meta, onDone: function () { var b = document.getElementById('ls-next'); b.style.boxShadow = '0 0 0 4px #d9efa0'; } }); }); });
     if (s.clip) withPlayer(function () { MrrVideo.mount(document.getElementById('ls-clip'), { src: s.clip + '.mp4', vtt: s.clip + '.vtt', poster: s.clip + '.jpg' }); });
     document.querySelectorAll('#ls-top .dots i').forEach(function (d, k) { d.className = k <= n ? 'on' : ''; });
     document.getElementById('ls-prev').style.visibility = n ? 'visible' : 'hidden';
     document.getElementById('ls-next').textContent = n < L.screens.length - 1 ? 'Next ›' : "Done. Back to my topic ›";
-    window.scrollTo(0, 0); setTimeout(function () { window.scrollTo(0, 0); }, 400);
+    window.scrollTo(0, 0); setTimeout(function () { if (s.video && SIDE.matches) toVideo(); else window.scrollTo(0, 0); }, 400);
   }
+  var SIDE = matchMedia('(orientation: landscape) and (max-height: 520px)');
+  function toVideo() { var vb = document.getElementById('ls-video'); if (vb && !vb.hidden) vb.scrollIntoView({ block: 'start' }); }
+  try { SIDE.addEventListener('change', function () { if (SIDE.matches && document.body.classList.contains('ls-video')) setTimeout(toVideo, 250); }); } catch (e) {}
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(setup, 0); }); else setTimeout(setup, 0);
 })();

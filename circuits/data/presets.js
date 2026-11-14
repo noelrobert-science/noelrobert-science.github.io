@@ -29,6 +29,7 @@
     id: 'A', title: 'Circuit A: the anchor network', grades: [11, 12], book: '11.3',
     intro: 'A battery with internal resistance, a rheostat in the main line, and a bulb in parallel with a resistor.',
     spec: anchor(1, 3), r0: 'A10',
+    tasks: ['Predict: when you open S2, does A1 go up, go down or stay the same? Write it down.', 'Open S2. Were you right? Now look at V3: did it go up or down?', 'Close S2 again. Turn the rheostat up. Predict A1 first, then check.'],
     expect: {
       start: { A1: 1.5, A2: 1.0, V1: 10.5, V2: 4.5, V3: 6.0, P_L: 6.0, I_R3: 0.5, lost_B: 1.5 },
       events: [
@@ -40,6 +41,7 @@
     id: 'A10', title: 'Circuit A on an ideal battery', grades: [10, 11, 12], book: '10.3',
     intro: 'Circuit A with an ideal battery (no internal resistance) and the rheostat at 4 Ω.',
     spec: anchor(0, 4),
+    tasks: ['Predict: when you open S2, does A1 go up, go down or stay the same? Write it down.', 'Open S2. Were you right? Now look at V3: did it go up or down?', 'Close S2 again. Turn the rheostat up. Predict A1 first, then check.'],
     expect: {
       start: { A1: 1.5, A2: 1.0, V1: 12.0, V2: 6.0, V3: 6.0, P_L: 6.0 },
       events: [{ label: 'Open S2', set: { S2: { closed: false } }, expect: { A1: 1.2, V2: 4.8, V3: 7.2 } }]

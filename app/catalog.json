@@ -1,6 +1,6 @@
 {
  "name": "Mr R Science",
- "updated": "2026-11-11",
+ "updated": "2026-11-14",
  "note": "One list of everything learners can use, by grade, module and topic. The app, the studio hub and school pages all read this file. Paths are relative to /app/.",
  "grades": [
   {
@@ -34,13 +34,13 @@
          "kind": "lab"
         },
         {
-         "title": "Momentum p = mv",
-         "href": "gym/#climb/mp",
+         "title": "Δp and force",
+         "href": "gym/#climb/mdp",
          "kind": "gym"
         },
         {
-         "title": "Δp and force",
-         "href": "gym/#climb/mdp",
+         "title": "Momentum p = mv",
+         "href": "gym/#climb/mp",
          "kind": "gym"
         },
         {
@@ -202,7 +202,7 @@
        "train": [
         {
          "title": "The potential map lab",
-         "href": "../circuits/#lab/A10?view=height&r=0&g=10",
+         "href": "../circuits/#lab/A10?r=0&g=10",
          "kind": "lab"
         },
         {
@@ -424,7 +424,7 @@
       },
       {
        "id": "review",
-       "title": "Review: come-back checks, papers and mistakes",
+       "title": "Come back later: circuits review",
        "section": "Revise",
        "page": 230,
        "watch": [],
@@ -434,15 +434,17 @@
          "title": "Come-back checks",
          "href": "../circuits/#later?r=0&g=10",
          "kind": "studio",
-         "note": "After 2 and 7 days"
+         "note": "Questions on topics you tested 2 and 7 days ago"
         },
         {
-         "title": "Daily mixed check",
+         "title": "Mixed check",
          "href": "../circuits/#check/daily?r=0&g=10",
          "kind": "studio",
-         "note": "5 questions from topics you have checked, help off"
+         "note": "5 questions from topics you have tested, help off"
         }
-       ]
+       ],
+       "extra": true,
+       "say": "These fill up once you have tested yourself on a few circuits topics."
       }
      ]
     },
@@ -594,7 +596,7 @@
        "train": [
         {
          "title": "The potential map lab",
-         "href": "../circuits/#lab/A?view=height&r=0&g=11",
+         "href": "../circuits/#lab/A?r=0&g=11",
          "kind": "lab"
         },
         {
@@ -921,7 +923,7 @@
       },
       {
        "id": "review",
-       "title": "Review: come-back checks, papers and mistakes",
+       "title": "Come back later: circuits review",
        "section": "Revise (M10, M11)",
        "page": null,
        "watch": [],
@@ -931,15 +933,17 @@
          "title": "Come-back checks",
          "href": "../circuits/#later?g=11",
          "kind": "studio",
-         "note": "After 2 and 7 days"
+         "note": "Questions on topics you tested 2 and 7 days ago"
         },
         {
-         "title": "Daily mixed check",
+         "title": "Mixed check",
          "href": "../circuits/#check/daily?g=11",
          "kind": "studio",
-         "note": "5 questions from topics you have checked, help off"
+         "note": "5 questions from topics you have tested, help off"
         }
-       ]
+       ],
+       "extra": true,
+       "say": "These fill up once you have tested yourself on a few circuits topics."
       }
      ]
     }
@@ -966,7 +970,7 @@
        "train": [
         {
          "title": "The potential map lab",
-         "href": "../circuits/#lab/A?view=height&r=0&g=12",
+         "href": "../circuits/#lab/A?r=0&g=12",
          "kind": "lab"
         },
         {
@@ -1303,7 +1307,7 @@
       },
       {
        "id": "review",
-       "title": "Review: come-back checks, papers and mistakes",
+       "title": "Come back later: circuits review",
        "section": "Revise (M10, M11)",
        "page": null,
        "watch": [],
@@ -1313,15 +1317,17 @@
          "title": "Come-back checks",
          "href": "../circuits/#later?g=12",
          "kind": "studio",
-         "note": "After 2 and 7 days"
+         "note": "Questions on topics you tested 2 and 7 days ago"
         },
         {
-         "title": "Daily mixed check",
+         "title": "Mixed check",
          "href": "../circuits/#check/daily?g=12",
          "kind": "studio",
-         "note": "5 questions from topics you have checked, help off"
+         "note": "5 questions from topics you have tested, help off"
         }
-       ]
+       ],
+       "extra": true,
+       "say": "These fill up once you have tested yourself on a few circuits topics."
       }
      ]
     },
@@ -1369,13 +1375,31 @@
          "title": "Spectator spotter",
          "href": "../electrochemistry/#lab/spectators",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 27.1: the two agents",
+         "href": "../electrochemistry/#practise?s=27.1",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 27.2: half-reactions",
+         "href": "../electrochemistry/#practise?s=27.2",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Mistake museum",
+         "href": "../electrochemistry/#museum",
+         "kind": "explore"
         }
        ],
        "check": [
         {
-         "title": "Mistake museum",
-         "href": "../electrochemistry/#museum",
-         "kind": "studio"
+         "title": "Test myself: Module 27, Redox and Table 4",
+         "href": "../electrochemistry/#check?m=27",
+         "kind": "check",
+         "note": "8 questions, help off"
         }
        ]
       },
@@ -1394,21 +1418,40 @@
        "train": [
         {
          "title": "Test-tube lab",
-         "href": "../electrochemistry/#lab/testtube",
+         "href": "../electrochemistry/#lab/testtube?v=predict",
          "kind": "lab"
         },
         {
          "title": "Live Table 4: pair and build",
-         "href": "../electrochemistry/#lab/table4",
+         "href": "../electrochemistry/#lab/table4?v=predict",
          "kind": "lab"
         },
         {
          "title": "Zinc in copper(II) sulfate, up close",
-         "href": "../electrochemistry/#lab/zinc",
+         "href": "../electrochemistry/#lab/zinc?v=predict",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 27.3: will it react?",
+         "href": "../electrochemistry/#practise?s=27.3",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 27.4: spectator ions",
+         "href": "../electrochemistry/#practise?s=27.4",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Test myself: Module 27, Redox and Table 4",
+         "href": "../electrochemistry/#check?m=27",
+         "kind": "check",
+         "note": "8 questions, help off"
+        }
+       ]
       }
      ]
     },
@@ -1434,7 +1477,7 @@
        "train": [
         {
          "title": "Build a cell",
-         "href": "../electrochemistry/#lab/cell",
+         "href": "../electrochemistry/#lab/cell?v=predict",
          "kind": "lab"
         },
         {
@@ -1444,16 +1487,41 @@
         },
         {
          "title": "The emf ruler",
-         "href": "../electrochemistry/#lab/ruler",
+         "href": "../electrochemistry/#lab/ruler?v=predict",
          "kind": "lab"
         },
         {
          "title": "Standard hydrogen electrode explorer",
-         "href": "../electrochemistry/#lab/she",
+         "href": "../electrochemistry/#lab/she?v=predict",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 28.1: how a cell works",
+         "href": "../electrochemistry/#practise?s=28.1",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 28.4: cell notation",
+         "href": "../electrochemistry/#practise?s=28.4",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 28.6: calculating emf",
+         "href": "../electrochemistry/#practise?s=28.6",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Test myself: Module 28, Galvanic cells",
+         "href": "../electrochemistry/#check?m=28",
+         "kind": "check",
+         "note": "8 questions, help off"
+        }
+       ]
       },
       {
        "id": "salt-bridge",
@@ -1471,21 +1539,40 @@
        "train": [
         {
          "title": "Build a cell (change the salt bridge)",
-         "href": "../electrochemistry/#lab/cell",
+         "href": "../electrochemistry/#lab/cell?v=predict",
          "kind": "lab"
         },
         {
          "title": "When a cell runs down",
-         "href": "../electrochemistry/#lab/rundown",
+         "href": "../electrochemistry/#lab/rundown?v=predict",
          "kind": "lab"
         },
         {
          "title": "Internal resistance bench",
-         "href": "../electrochemistry/#lab/resistance",
+         "href": "../electrochemistry/#lab/resistance?v=predict",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 28.2: the salt bridge",
+         "href": "../electrochemistry/#practise?s=28.2",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 28.7: when a cell runs down",
+         "href": "../electrochemistry/#practise?s=28.7",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Test myself: Module 28, Galvanic cells",
+         "href": "../electrochemistry/#check?m=28",
+         "kind": "check",
+         "note": "8 questions, help off"
+        }
+       ]
       }
      ]
     },
@@ -1511,26 +1598,51 @@
        "train": [
         {
          "title": "Electrolysis lab",
-         "href": "../electrochemistry/#lab/electrolysis",
+         "href": "../electrochemistry/#lab/electrolysis?v=predict",
          "kind": "lab"
         },
         {
          "title": "One cell, two directions",
-         "href": "../electrochemistry/#lab/twoway",
+         "href": "../electrochemistry/#lab/twoway?v=predict",
          "kind": "lab"
         },
         {
          "title": "The membrane cell",
-         "href": "../electrochemistry/#lab/membrane",
+         "href": "../electrochemistry/#lab/membrane?v=predict",
          "kind": "lab"
         },
         {
          "title": "Plating and refining",
-         "href": "../electrochemistry/#lab/plating",
+         "href": "../electrochemistry/#lab/plating?v=predict",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 29.3: which reaction wins?",
+         "href": "../electrochemistry/#practise?s=29.3",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 29.1: how electrolysis works",
+         "href": "../electrochemistry/#practise?s=29.1",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Practise 29.4: plating, refining, membrane cell",
+         "href": "../electrochemistry/#practise?s=29.4",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
         }
        ],
-       "check": []
+       "check": [
+        {
+         "title": "Test myself: Module 29, Electrolytic cells and Faraday",
+         "href": "../electrochemistry/#check?m=29",
+         "kind": "check",
+         "note": "8 questions, help off"
+        }
+       ]
       },
       {
        "id": "faraday",
@@ -1547,20 +1659,32 @@
        "train": [
         {
          "title": "The Faraday machine",
-         "href": "../electrochemistry/#lab/faraday",
+         "href": "../electrochemistry/#lab/faraday?v=predict",
          "kind": "lab"
         },
         {
          "title": "Hydrate and ion-ratio trainer",
          "href": "../electrochemistry/#lab/hydrate",
          "kind": "lab"
+        },
+        {
+         "title": "Practise 29.5: Faraday calculations",
+         "href": "../electrochemistry/#practise?s=29.5",
+         "kind": "practise",
+         "note": "Fresh questions, hints in steps"
+        },
+        {
+         "title": "Mini-papers A, B and C (all three modules)",
+         "href": "../electrochemistry/#minipaper",
+         "kind": "explore"
         }
        ],
        "check": [
         {
-         "title": "Mini-papers A, B and C (all three modules)",
-         "href": "../electrochemistry/#minipaper",
-         "kind": "studio"
+         "title": "Test myself: Module 29, Electrolytic cells and Faraday",
+         "href": "../electrochemistry/#check?m=29",
+         "kind": "check",
+         "note": "8 questions, help off"
         }
        ]
       }
@@ -1575,7 +1699,7 @@
      "topics": [
       {
        "id": "guides",
-       "title": "All revision guides",
+       "title": "Revision booklets (PDF)",
        "section": "Papers 1 and 2",
        "watch": [],
        "train": [
@@ -1596,7 +1720,9 @@
          "href": "../gr12-guides/90-plus/",
          "kind": "studio"
         }
-       ]
+       ],
+       "extra": true,
+       "say": "Printable booklets for Papers 1 and 2. They open as PDFs to read or print, not as questions in the app."
       }
      ]
     }

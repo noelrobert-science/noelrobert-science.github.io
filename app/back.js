@@ -5,6 +5,8 @@
   var to, title;
   try { to = sessionStorage.getItem('mrr-return'); title = sessionStorage.getItem('mrr-return-title'); } catch (e) { return; }
   if (!to || to.charAt(0) !== '/' || to.indexOf('//') === 0) return;
+  // Studios can hide school-only or teacher-only parts with html.from-app.
+  document.documentElement.classList.add('from-app');
   function add() {
     if (document.getElementById('mrr-back')) return;
     var a = document.createElement('a');
