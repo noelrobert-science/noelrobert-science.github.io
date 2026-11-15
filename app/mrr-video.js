@@ -9,12 +9,28 @@
     '.mv-stage{position:relative;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9;max-width:100%}' +
     '.mv video{display:block;width:100%;height:100%;background:#000}' +
     '.mv video::cue{font-size:clamp(14px,2.4vw,22px);background:rgba(0,0,0,.72)}' +
-    '.mv-stop{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;background:rgba(18,40,33,.88);color:#fff}' +
+    /* "Pause and think" is a strip under the picture, so it never covers the question on the slide */
+    '.mv-stop{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 14px;margin-top:-10px;padding-top:20px;border-radius:0 0 14px 14px;background:#183c32;color:#fff}' +
+    '.mv-stop .txt{flex:1 1 220px;min-width:0}' +
     '.mv-stop[hidden]{display:none}' +
     '.mv-stop .k{font:700 13px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#d9efa0;margin:0}' +
-    '.mv-stop h3{margin:0;font-size:clamp(22px,4vw,34px)}' +
-    '.mv-stop p{margin:0;font-size:clamp(15px,2.2vw,19px);max-width:34em}' +
-    '.mv-stop .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}' +
+    '.mv-stop h3{margin:2px 0 0;font-size:19px}' +
+    '.mv-stop p{margin:0;font-size:15px}' +
+    '.mv-stop .row{display:flex;gap:8px;flex-wrap:wrap}' +
+    '.mv-stage{z-index:1}' +
+    '.mv-fs{background:transparent;color:var(--mv-ink);border:1.5px solid var(--mv-line)}' +
+    '.mv-fs[hidden]{display:none}' +
+    /* our own full screen keeps the strip: picture on top, strip underneath */
+    '.mv:fullscreen{background:#000;display:flex;flex-direction:column;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}' +
+    '.mv:-webkit-full-screen{background:#000;display:flex;flex-direction:column;justify-content:center}' +
+    '.mv:fullscreen .mv-stage{flex:1 1 auto;min-height:0;aspect-ratio:auto;border-radius:0}' +
+    '.mv:-webkit-full-screen .mv-stage{flex:1 1 auto;min-height:0;aspect-ratio:auto;border-radius:0}' +
+    '.mv:fullscreen video{object-fit:contain}' +
+    '.mv:fullscreen .mv-stop{margin:0;border-radius:0;padding:12px max(16px,env(safe-area-inset-left,0px))}' +
+    '.mv:fullscreen .mv-bar{margin:0;padding:8px 16px;color:#cfd8d3}' +
+    '.mv:fullscreen .mv-bar kbd{background:#222;color:#fff;border-color:#555}' +
+    '.mv:fullscreen .mv-ch,.mv:fullscreen .mv-resume{display:none}' +
+    '.mv:fullscreen .mv-fs{color:#fff;border-color:rgba(255,255,255,.5)}' +
     '.mv button{font:700 16px Arial,sans-serif;border-radius:99px;min-height:46px;padding:0 20px;cursor:pointer}' +
     '.mv-go{background:#d9efa0;color:#183c32;border:0}' +
     '.mv-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}' +
@@ -50,14 +66,32 @@
 
   function mount(el, o) {
     css(); o = o || {}; var meta = o.meta || {}, chapters = meta.chapters || [], stops = (meta.stops || []).map(function (s) { return { t: s.t, done: false }; });
-    el.innerHTML = '<div class="mv"><div class="mv-stage"><video controls playsinline preload="metadata"' + (o.poster ? ' poster="' + o.poster + '"' : '') + '>' +
-      '<source src="' + o.src + '" type="video/mp4">' + (o.vtt ? '<track kind="captions" srclang="en" label="Captions" src="' + o.vtt + '" default>' : '') + '</video>' +
-      '<div class="mv-stop" hidden role="dialog" aria-live="polite"><p class="k">Pause and think</p><h3>Your turn</h3><p>Answer it on paper first. Then see if you were right.</p>' +
-      '<div class="row"><button type="button" class="mv-go">I\'ve had a go: show me ▶</button><button type="button" class="mv-ghost">Hear the question again</button></div></div></div>' +
-      '<div class="mv-bar"><button type="button" class="mv-resume" hidden></button><span><span class="mv-keys"><kbd>→</kbd> skip 5 s &nbsp;<kbd>←</kbd> back 5 s &nbsp;<kbd>Space</kbd> pause' + (stops.length ? ' &nbsp;·&nbsp; ' : '') + '</span>' + (stops.length ? 'It stops ' + stops.length + ' times for you to think.' : '') + '</span></div>' +
+    el.innerHTML = '<div class="mv"><div class="mv-stage"><video controls controlslist="nofullscreen" playsinline preload="metadata"' + (o.poster ? ' poster="' + o.poster + '"' : '') + '>' +
+      '<source src="' + o.src + '" type="video/mp4">' + (o.vtt ? '<track kind="captions" srclang="en" label="Captions" src="' + o.vtt + '" default>' : '') + '</video></div>' +
+      '<div class="mv-stop" hidden role="group" aria-live="polite" aria-label="Pause and think"><div class="txt"><p class="k">Pause and think</p><h3>Your turn. Answer it on paper first.</h3></div>' +
+      '<div class="row"><button type="button" class="mv-go">I\'ve had a go: show me ▶</button><button type="button" class="mv-ghost">Hear it again</button></div></div>' +
+      '<div class="mv-bar"><button type="button" class="mv-resume" hidden></button><button type="button" class="mv-fs" hidden>⛶ Full screen</button><span><span class="mv-keys"><kbd>→</kbd> skip 5 s &nbsp;<kbd>←</kbd> back 5 s &nbsp;<kbd>Space</kbd> pause' + (stops.length ? ' &nbsp;·&nbsp; ' : '') + '</span>' + (stops.length ? 'It stops ' + stops.length + ' times for you to think.' : '') + '</span></div>' +
       (chapters.length ? '<ol class="mv-ch" aria-label="Chapters"></ol>' : '') + '</div>';
     var v = el.querySelector('video'), stopEl = el.querySelector('.mv-stop'), list = el.querySelector('.mv-ch'), resume = el.querySelector('.mv-resume');
     var P = { el: el, v: v, stopEl: stopEl }; active = P;
+    var box = el.querySelector('.mv'), fsb = el.querySelector('.mv-fs');
+    var canFs = !!(box.requestFullscreen || box.webkitRequestFullscreen);
+    function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
+    if (canFs) {
+      fsb.hidden = false;
+      fsb.onclick = function () {
+        if (fsEl()) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+        var r = (box.requestFullscreen || box.webkitRequestFullscreen).call(box); if (r && r.catch) r.catch(function () {});
+      };
+      ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (ev) { document.addEventListener(ev, function () { fsb.textContent = fsEl() === box ? '✕ Leave full screen' : '⛶ Full screen'; }); });
+    }
+    // At a stop, leave the phone's own video-only full screen (iPhone), so the learner sees the strip.
+    function showStop() {
+      try { if (v.webkitDisplayingFullscreen && v.webkitExitFullscreen) v.webkitExitFullscreen(); } catch (e) {}
+      try { if (fsEl() === v) (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (e) {}
+      stopEl.hidden = false;
+      if (fsEl() !== box) { var r = stopEl.getBoundingClientRect(); if (r.bottom > innerHeight || r.top < 0) stopEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    }
     el.addEventListener('pointerdown', function () { active = P; });
     if (list) {
       list.innerHTML = chapters.map(function (c, i) {
@@ -84,7 +118,7 @@
       if (!v.paused && !v.seeking) {
         for (var k = 0; k < stops.length; k++) {
           var s = stops[k];
-          if (!s.done && last <= s.t && t >= s.t && t - s.t < 1.2) { v.pause(); v.currentTime = s.t; waitStop = s; stopEl.hidden = false; var b = stopEl.querySelector('.mv-go'); try { b.focus({ preventScroll: true }); } catch (e) {} break; }
+          if (!s.done && last <= s.t && t >= s.t && t - s.t < 1.2) { v.pause(); v.currentTime = s.t; waitStop = s; showStop(); var b = stopEl.querySelector('.mv-go'); try { b.focus({ preventScroll: true }); } catch (e) {} break; }
         }
         last = t;
       }

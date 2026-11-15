@@ -112,7 +112,7 @@
          "kind": "lab"
         },
         {
-         "title": "Crash Lab: predict, then watch",
+         "title": "Crash questions: predict the speed after",
          "href": "gym/#climb/crash",
          "kind": "gym"
         },
@@ -142,7 +142,7 @@
          "kind": "gym"
         },
         {
-         "title": "Collision carts lab",
+         "title": "Two carts: bounce or stick? (free play)",
          "href": "../momentum/collision-carts.html",
          "kind": "studio"
         },
@@ -178,7 +178,7 @@
          "note": "3 fresh questions, help off"
         },
         {
-         "title": "Daily 5 (mixed retrieval)",
+         "title": "Mixed check: 5 questions",
          "href": "gym/#climb/daily",
          "kind": "gym"
         }
@@ -319,7 +319,7 @@
        "watch": [],
        "train": [
         {
-         "title": "The anchor circuit",
+         "title": "Rheostat, bulb and resistor: find every reading",
          "href": "../circuits/#lab/A10?r=0&g=10",
          "kind": "lab"
         },
@@ -329,7 +329,7 @@
          "kind": "lab"
         },
         {
-         "title": "From one branch current to the emf",
+         "title": "Work back from one branch current to the battery",
          "href": "../circuits/#lab/g10-C?r=0&g=10",
          "kind": "lab"
         },
@@ -500,7 +500,7 @@
          "note": "3 fresh questions, help off"
         },
         {
-         "title": "Exam-style questions, help off",
+         "title": "Exam-style questions (mixed topics, help off)",
          "href": "gym/#practice",
          "kind": "gym"
         }
@@ -527,7 +527,7 @@
          "note": "3 fresh questions, help off"
         },
         {
-         "title": "Exam-style questions, help off",
+         "title": "Exam-style questions (mixed topics, help off)",
          "href": "gym/#practice",
          "kind": "gym"
         }
@@ -565,7 +565,7 @@
          "note": "3 fresh questions, help off"
         },
         {
-         "title": "Exam-style questions, help off",
+         "title": "Exam-style questions (mixed topics, help off)",
          "href": "gym/#practice",
          "kind": "gym"
         }
@@ -664,7 +664,7 @@
          "kind": "lab"
         },
         {
-         "title": "The meters lab (the WE 10.4 circuit)",
+         "title": "Meters: where they go and what they read",
          "href": "../circuits/#lab/meters?r=0&g=11",
          "kind": "lab"
         },
@@ -764,7 +764,7 @@
        "watch": [],
        "train": [
         {
-         "title": "A network in the potential view",
+         "title": "A network: see the potential in every wire",
          "href": "../circuits/#lab/B2?view=potential&g=11",
          "kind": "lab"
         },
@@ -823,7 +823,7 @@
        "watch": [],
        "train": [
         {
-         "title": "The anchor network with r",
+         "title": "Rheostat, bulb and resistor, with a real battery (r)",
          "href": "../circuits/#lab/A?g=11",
          "kind": "lab"
         },
@@ -1038,7 +1038,7 @@
          "kind": "lab"
         },
         {
-         "title": "The meters lab (the WE 10.4 circuit)",
+         "title": "Meters: where they go and what they read",
          "href": "../circuits/#lab/meters?r=0&g=12",
          "kind": "lab"
         },
@@ -1138,7 +1138,7 @@
        "watch": [],
        "train": [
         {
-         "title": "A network in the potential view",
+         "title": "A network: see the potential in every wire",
          "href": "../circuits/#lab/B2?view=potential&g=12",
          "kind": "lab"
         },
@@ -1197,7 +1197,7 @@
        "watch": [],
        "train": [
         {
-         "title": "The anchor network with r",
+         "title": "Rheostat, bulb and resistor, with a real battery (r)",
          "href": "../circuits/#lab/A?g=12",
          "kind": "lab"
         },
@@ -1389,7 +1389,7 @@
          "note": "Fresh questions, hints in steps"
         },
         {
-         "title": "Mistake museum",
+         "title": "Spot the mistake: real exam errors",
          "href": "../electrochemistry/#museum",
          "kind": "explore"
         }
@@ -1491,7 +1491,7 @@
          "kind": "lab"
         },
         {
-         "title": "Standard hydrogen electrode explorer",
+         "title": "The standard hydrogen electrode: lab",
          "href": "../electrochemistry/#lab/she?v=predict",
          "kind": "lab"
         },
@@ -1548,7 +1548,7 @@
          "kind": "lab"
         },
         {
-         "title": "Internal resistance bench",
+         "title": "Internal resistance of a cell: lab",
          "href": "../electrochemistry/#lab/resistance?v=predict",
          "kind": "lab"
         },
@@ -1663,7 +1663,7 @@
          "kind": "lab"
         },
         {
-         "title": "Hydrate and ion-ratio trainer",
+         "title": "Faraday with hydrates and ion ratios: practice",
          "href": "../electrochemistry/#lab/hydrate",
          "kind": "lab"
         },
@@ -1674,7 +1674,7 @@
          "note": "Fresh questions, hints in steps"
         },
         {
-         "title": "Mini-papers A, B and C (all three modules)",
+         "title": "Mini exam papers: Modules 27 to 29",
          "href": "../electrochemistry/#minipaper",
          "kind": "explore"
         }
@@ -1709,14 +1709,14 @@
          "kind": "studio"
         },
         {
-         "title": "Challenge banks",
+         "title": "Challenge question banks",
          "href": "../gr12-guides/challenge/",
          "kind": "studio"
         }
        ],
        "check": [
         {
-         "title": "90-plus booklets",
+         "title": "90%+ challenge booklets",
          "href": "../gr12-guides/90-plus/",
          "kind": "studio"
         }

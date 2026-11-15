@@ -438,3 +438,7 @@ table.wraptbl td { min-width: 0; }
 .lesson-face.on { width: clamp(96px, 24vw, 150px); height: clamp(96px, 24vw, 150px); opacity: 1; transform: none; }
 body.present .lesson-face.on { width: 180px; height: 180px; }
 @media (prefers-reduced-motion: reduce) { .lesson-face { transition: none; } }
+
+/* Opened from the Mr R Science app (app/back.js sets html.from-app): the app is the path, so the studio header, menu and footer step aside. */
+html.from-app body > header.top, html.from-app body > nav.nav, html.from-app body > footer { display: none !important }
+html.from-app .save-pic { display: none !important }

@@ -244,3 +244,6 @@ ul.marks input { width: 20px; height: 20px; vertical-align: middle; }
 .pitem .mcq { display: flex; flex-direction: column; gap: 8px; }
 .kinds { margin-top: 8px; }
 .kinds summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+
+/* Opened from the Mr R Science app (app/back.js sets html.from-app): the studio header, grade switch and footer step aside. */
+html.from-app body > header.top, html.from-app body > footer.foot { display: none !important }

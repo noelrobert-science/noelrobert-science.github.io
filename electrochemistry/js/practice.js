@@ -568,7 +568,7 @@
       let q = null;
       for (let k = 0; k < 60; k++) { const c = makeQ(pick(pool()).id); if (!stars || c.stars === stars) { q = c; break; } }
       if (!q) { area.appendChild(notice('', `There are no ${'★'.repeat(stars)} questions in this choice yet. Choose another level, or All levels.`)); return; }
-      renderQ(area, q, { mode: 'supported', onNext: next, onAnswer: ok => { n++; if (ok) { right++; streak++; } else streak = 0; score.textContent = `This session: ${right} of ${n} right${streak > 2 ? ' · ' + streak + ' in a row' : ''}.`; } });
+      renderQ(area, q, { mode: 'supported', onNext: next, onAnswer: ok => { n++; if (ok) { right++; streak++; if (right === 5 && window.MrrApp) window.MrrApp.goal('5 right. That will do for now. Next: Test myself.'); } else streak = 0; score.textContent = `This session: ${right} of ${n} right${streak > 2 ? ' · ' + streak + ' in a row' : ''}.`; } });
       area.appendChild(h('div', { class: 'row', style: { marginTop: '12px' } }, h('button', { class: 'btn', type: 'button', onclick: () => { next(); const b = area.querySelector('.choice, input'); if (b) b.focus({ preventScroll: true }); } }, 'Next question')));
     }
     links(); next();
@@ -731,6 +731,7 @@
         h('p', { class: 'small muted' }, 'Each section you tried is scheduled in Return later (after 1, 3, 7 and 21 days). Use the browser’s Back button to come back to this set.'));
       body.insertBefore(sum, body.children[1]);
       if (log) { window.scrollTo(0, 0); sum.focus({ preventScroll: true }); S.say(`You scored ${got} out of ${of} marks.`); }
+      if (log && window.MrrApp) window.MrrApp.goal(got >= of * 0.6 ? 'Good work on your own. Tick it off.' : 'Done for now. Practise the weak sections, then test yourself again.');
     }
     if (S.lastCheck && (S.lastCheck.scope === scope)) build(); else fresh();
   };

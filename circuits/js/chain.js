@@ -238,7 +238,7 @@
           S.X('Notice: the lost volts decreased, ' + ft(b.Ir, a.Ir, 'V') + ', although the current increased, because r changed too.')];
       } },
     { id: 'E8', fam: 'emf', c: 'A', grades: [10, 11, 12], title: 'A battery with a larger emf', ask: 'L', bat: true,
-      banner: function () { return 'The battery is replaced by one with an emf of 18 V and the same internal resistance. How will this affect the readings?'; },
+      banner: function (g) { return 'The battery is replaced by one with an emf of 18 V' + (+g === 10 ? '' : ' and the same internal resistance') + '. How will this affect the readings?'; },
       control: 'Change the emf from 12 V to 18 V', change: function (s) { part(s, 'B').emf = 18; },
       steps: function (S, g, b, a) {
         return [S.Fbat('the emf increases, from 12 V to 18 V'), S.X('The total resistance stays the same, at ' + n(a.Rt, 'Ω') + '.'), S.Ibat(), S.VF(PAIR, 'R3', 'V3', 'the pair'), S.P('L', 'the bulb', 'P = I²R')];
@@ -380,7 +380,7 @@
     var side = h('div', {}), panel = h('div', {}), more = h('div', {});
     canvas.appendChild(capt);
     main.appendChild(h('div', { class: 'wrap' }, [
-      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#explain', text: '← Explain a change' }), h('span', { class: 'chip', text: FAM[ev.fam] }), h('span', { class: 'chip', text: 'Book ' + pre.book })]),
+      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#explain', text: '← Explain a change' }), h('span', { class: 'chip', text: FAM[ev.fam] }), h('span', { class: 'chip', text: 'Book ' + PR.book(pre.id, pre.book, g) })]),
       h('h1', { text: ev.title, style: 'margin-top:10px' }),
       h('div', { class: 'note banner', text: ev.banner(g) }),
       pre.note ? h('p', { class: 'small muted', text: pre.note }) : null

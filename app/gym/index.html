@@ -248,7 +248,7 @@ function problem(){const q=S.q,t=TOPICS[S.topic];return `<div class="row spaced"
 function doneHtml(){return `<div class="feedback good spaced"><p><b>${S.wrong===0&&S.hints===0?'Clean climb!':'Done.'}</b> ${S.promo}</p></div>${S.solo&&S.wrong?'<p>Compare the full method above with your paper.</p>':''}<div class="row spaced"><button id="lnext">Next question →</button><a class="btn secondary" href="#climb">Choose another topic</a></div>`;}
 function extraKey(){const k=location.hash.slice(1).split('/')[1];return k&&root.EXTRAS&&root.EXTRAS[k]?k:null;}
 function render(){const x=extraKey();if(x)return root.EXTRAS[x].render();if(C&&location.hash==='#climb/'+C.topic+'/'+C.kind)return checkView();if(P&&S&&location.hash==='#climb/'+S.topic&&!L.prereq[S.topic])return prereqView();return S&&location.hash==='#climb/'+S.topic?problem():menu();}
-function finish(){S.done=true;const clean=S.hints<=1&&S.wrong<=1;const t=S.topic;if(S.solo){S.gained+=S.wrong?0:30;}
+function finish(){S.done=true;const clean=S.hints<=1&&S.wrong<=1;const t=S.topic;if(!S.wrong&&root.MrrApp&&(root.MrrApp.right=(root.MrrApp.right||0)+1)===3)root.MrrApp.goal('3 right. That will do for now. Next: Test myself.');if(S.solo){S.gained+=S.wrong?0:30;}
  if(clean){L.clean[t]=(L.clean[t]||0)+1;if(L.clean[t]>=2&&(L.rungs[t]||0)<3){L.rungs[t]=(L.rungs[t]||0)+1;L.clean[t]=0;S.promo=`You moved up to <b>${RUNGS[L.rungs[t]]}</b>.`;}else if(L.clean[t]>=2&&L.rungs[t]===3){S.promo='Solo mastered on this topic. Try another topic, or come back in a few days to check it stuck.';L.clean[t]=0;}else S.promo='One more like that and you move up a rung.';}
  else{L.clean[t]=0;S.promo='Next one: try with fewer hints to move up.';}
  L.xp+=S.gained;if(!L.days.includes(today()))L.days.push(today());L.days=L.days.slice(-120);L.log.push({t:Date.now(),topic:t,rung:S.rung,hints:S.hints,wrong:S.wrong,xp:S.gained});persist();if(root.SYNC)root.SYNC.log({source:'ladder',topic:t,id:S.q.title,rung:RUNGS[S.rung],hints:S.hints,wrong:S.wrong,xp:S.gained,correct:!(S.solo&&S.wrong)});}
@@ -258,7 +258,7 @@ function bind(rerender){const xk=extraKey();if(xk){root.EXTRAS[xk].bind(rerender
  const el=id=>document.getElementById(id);
  if(el('cagain'))el('cagain').onclick=()=>{startCheck(C.topic,C.kind==='review'?'review':'check');rerender(true);};
  if(el('capp'))el('capp').onclick=()=>{let to=null;try{to=sessionStorage.getItem('mrr-return');}catch(e){}if(!to||to.charAt(0)!=='/'||to.indexOf('//')===0){location.hash='climb/'+C.topic;return;}
-  const t=(to.split('#t/')[1]||'');if(el('capp').dataset.pass&&t){try{sessionStorage.setItem('mrr-done',JSON.stringify({t:decodeURIComponent(t),k:'test'}));}catch(e){}}location.href=to;};
+  let st=null;try{st=JSON.parse(sessionStorage.getItem('mrr-step')||'null');}catch(e){}const t=st&&st.t||decodeURIComponent(to.split('#t/')[1]||'');if(el('capp').dataset.pass&&t){try{sessionStorage.setItem('mrr-done',JSON.stringify({t,k:'test'}));}catch(e){}}location.href=to;};
  if(el('csubmit'))el('csubmit').onclick=()=>{document.querySelectorAll('[data-cval]').forEach(f=>C.vals[f.dataset.cval]=f.value);if(C.qs.some((_,i)=>C.vals[i]===undefined||C.vals[i]==='')){if(!confirm('Some answers are empty. Submit anyway?'))return;}finishCheck();rerender(true);};
  document.querySelectorAll('[data-cval]').forEach(f=>f.oninput=f.onchange=()=>{C.vals[f.dataset.cval]=f.value;});
  document.querySelectorAll('[data-pval]').forEach(f=>f.onchange=()=>{P.vals[f.dataset.pval]=f.value;});
@@ -640,7 +640,7 @@ window.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('
 html.from-app body>header,html.from-app nav[aria-label="Main navigation"],html.from-app body>footer,html.from-app .backbar,html.from-app .skip{display:none!important}
 .app-only{display:none!important}html.from-app .app-only{display:inline-flex!important}
 html.from-app a[href="#climb"],html.from-app a[href="#today"],html.from-app a[href="#course"]{display:none!important}
-html.from-app .layout{display:block!important;max-width:980px;padding:22px 18px 40px!important}</style>
+html.from-app .xpbar{display:none!important}html.from-app .layout{display:block!important;max-width:980px;padding:22px 18px 40px!important}</style>
 <script>try{if(sessionStorage.getItem('mrr-return'))document.documentElement.classList.add('from-app')}catch(e){}</script>
 <script src="/app/back.js"></script>
 </body></html>

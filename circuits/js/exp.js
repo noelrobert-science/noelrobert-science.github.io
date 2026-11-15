@@ -21,7 +21,7 @@
     var box = H('div', {}, [
       H('h2', { text: 'Experiments' }),
       H('div', { class: 'grid' }, EXPS.filter(function (e) { return e.grades.indexOf(g) >= 0; }).map(function (e) {
-        return H('a', { class: 'card pcard', href: '#exp/' + e.id }, [H('h3', { text: e.title }), H('p', { class: 'small muted', text: e.intro }), H('span', { class: 'chip', text: 'Book ' + e.book })]);
+        return H('a', { class: 'card pcard', href: '#exp/' + e.id }, [H('h3', { text: e.title }), H('p', { class: 'small muted', text: e.intro }), H('span', { class: 'chip', text: 'Book ' + BK(e, g) })]);
       })),
       H('h2', { text: 'Graph tool', style: 'margin-top:18px' }),
       H('div', { class: 'grid' }, (window.GraphTasks || []).filter(function (t) { return t.grades.indexOf(g) >= 0; }).map(function (t) {
@@ -50,17 +50,20 @@
     var g = ctx.grade();
     ctx.main.appendChild(h('div', { class: 'wrap' }, [h('h1', { text: 'Experiments' }), h('p', { class: 'muted', text: TAG }),
       h('div', { class: 'grid' }, EXPS.filter(function (e) { return e.grades.indexOf(g) >= 0; }).map(function (e) {
-        return h('a', { class: 'card pcard', href: '#exp/' + e.id }, [h('h3', { text: e.title }), h('p', { class: 'small muted', text: e.intro }), h('span', { class: 'chip', text: 'Book ' + e.book })]);
+        return h('a', { class: 'card pcard', href: '#exp/' + e.id }, [h('h3', { text: e.title }), h('p', { class: 'small muted', text: e.intro }), h('span', { class: 'chip', text: 'Book ' + BK(e, g) })]);
       }))]));
   }
 
   /* ---------- shared pieces ---------- */
+  /* the section in the learner's own book (Grade 10 numbers differ) */
+  function BK(e, g) { return window.STUDIO.presets.book(e.id, e.book, g); }
   function header(e, extra) {
+    var g = ctx.grade();
     return h('div', { class: 'wrap' }, [
-      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#home', text: '← Studio home' }), h('a', { class: 'chip', href: '#exp', text: 'All experiments' }), h('span', { class: 'chip', text: 'Book ' + e.book })]),
+      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#home', text: '← Studio home' }), h('a', { class: 'chip', href: '#exp', text: 'All experiments' }), h('span', { class: 'chip', text: 'Book ' + BK(e, g) })]),
       h('h1', { text: e.title, style: 'margin-top:10px' }),
       h('p', { text: e.intro }),
-      h('p', { class: 'tag small', text: TAG + ' See the practical on page ' + e.book + ' of your book.' })
+      h('p', { class: 'tag small', text: TAG + ' See the practical in section ' + BK(e, g) + ' of your book.' })
     ].concat(extra || []));
   }
   function drawInto(canvas, spec, res, o) {

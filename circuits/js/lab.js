@@ -80,7 +80,7 @@
       h('div', { class: 'grid' }, PR.list.filter(function (p) { return p.grades.indexOf(grade) >= 0; }).map(function (p) {
         return h('a', { class: 'card pcard', href: '#lab/' + p.id }, [
           h('h3', { text: p.title }), h('p', { class: 'small muted', text: p.intro }),
-          h('span', { class: 'chip', text: 'Book ' + p.book })
+          h('span', { class: 'chip', text: 'Book ' + PR.book(p.id, p.book, grade) })
         ]);
       }))
     ]));
@@ -145,7 +145,7 @@
     var canvas = h('div', { class: 'canvas', id: 'canvas' }), cap = h('div', { class: 'caption off', 'aria-hidden': 'true', text: 'All readings change at the same instant' });
     var stateBox = h('div', { id: 'stateBox' }), readBox = h('div', { id: 'readBox' }), ctrls = h('div', { class: 'card ctrls' });
     var head = h('div', { class: 'wrap' }, [
-      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#home', text: '← All circuits' }), h('span', { class: 'chip', text: 'Book ' + p.book }),
+      h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#home', text: '← All circuits' }), h('span', { class: 'chip', text: 'Book ' + PR.book(p.id, p.book, grade) }),
         ideal && grade >= 11 ? h('span', { class: 'chip', text: 'ideal battery (r = 0)' }) : null]),
       h('h1', { text: p.title, style: 'margin-top:10px' }),
       h('p', { text: p.intro }),

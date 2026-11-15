@@ -221,6 +221,8 @@
         msg.innerHTML = '';
         msg.appendChild(h('div', { class: 'okc' }, [h('b', { text: 'All right. ' }), document.createTextNode(got < of ? 'Studio marks ' + got + '/' + of + ': write the formula and the substitution too, as in the paper.' : 'Studio marks ' + got + '/' + of + '.')]));
         log({ g: g, topic: it.topic, gen: it.gen, src: 'help', ok: wrong === 0, rung: rung });
+        /* opened from the app: five right ends the practice for now (the app's Done bar lights up) */
+        if (window.MrrApp && (window.MrrApp.right = (window.MrrApp.right || 0) + 1) === 5) window.MrrApp.goal('5 right. That will do for now. Next: Test myself.');
       } else if (!shown) log({ g: g, topic: it.topic, gen: it.gen, src: 'help', ok: false, rung: rung });
       if (opts.onDone) opts.onDone(ok && wrong === 0, rung);
     }

@@ -34,14 +34,24 @@
   .grades button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
   .empty { color: var(--muted); background: var(--paper); border: 1px dashed var(--line); border-radius: var(--radius); padding: 16px; margin: 0; }
   section[hidden] { display: none; }
+  a.start { display: flex; align-items: center; gap: 16px; margin: 1.6rem 0 .4rem; padding: 18px 20px; border-radius: var(--radius);
+           background: var(--ink); color: var(--paper); text-decoration: none; }
+  a.start b { display: block; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.2; }
+  a.start small { display: block; opacity: .85; margin-top: 4px; }
+  a.start .go { margin-left: auto; font-size: 2rem; line-height: 1; flex: none; }
+  a.start:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+  .or { margin: 1.8rem 0 0; color: var(--muted); font-weight: 600; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kicker, :root:not([data-theme="light"]) h1 span { color: #7fb0ff; } }
 </style>
 </head>
 <body>
 <main>
   <p class="kicker">Learning spaces</p>
-  <h1>Learn it. <span>Practise it.</span> Check it.</h1>
-  <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and come back in a few days to check it stuck.</p>
+  <h1>Learn it. <span>Practise it.</span> Test yourself.</h1>
+  <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and test yourself again a few days later.</p>
+
+  <a class="start" href="app/"><span><b>Start here: open Mr R Science</b><small>Pick your grade and a topic. It takes you step by step, in the same order as your book.</small></span><span class="go" aria-hidden="true">›</span></a>
+  <p class="or">Or go straight to a studio:</p>
 
   <div class="grades" role="group" aria-label="Choose your grade">
     <button type="button" data-g="all" aria-pressed="true">All studios</button>
@@ -63,7 +73,6 @@
   <h2>Grade 10 Business Studies</h2>
   <div class="grid">
     <a class="card" href="business-ch5/" style="--bc: var(--exam)"><b>Business environments</b><small>Chapter 5: micro, market and macro environments, PESTLE and SWOT.</small></a>
-    <a class="card" href="business-ch5-rhd/" style="--bc: var(--exam)"><b>Business environments · Reddam House edition</b><small>Chapter 5 with the Reddam House Durbanville crest.</small></a>
   </div>
   </section>
 
@@ -81,7 +90,7 @@
   </div>
   </section>
 
-  <footer>Made by Mr N. Robert for his learners. No sign-in needed. Your progress is saved only in this browser.</footer>
+  <footer>Made by Mr N. Robert. Free for every learner, at any school. No sign-in needed. Your progress is saved only in this browser.</footer>
 </main>
 <script>
 (function () {

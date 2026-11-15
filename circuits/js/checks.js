@@ -1,6 +1,6 @@
 /* Circuits Studio: Check independently and Return later (studio_design.md §9.1, §9.3).
    #check/<topic>: 3 fresh items, help off, Sure or Unsure on each, marks only after submitting. 2 of 3 or more books
-   come-back checks 2 and 7 days later (the gym's rule); below that nothing is booked and the learner goes back to Train.
+   come-back checks 2 and 7 days later (the gym's rule); below that the learner practises, then tests again.
    #check/<topic>?full=1: 8 items. #later: the come-back checks due today, one topic at a time, and the record table.
    #check/daily: 5 mixed items from topics already checked; logged as after a delay; changes no schedule.
    Device only: nothing is sent anywhere. */
@@ -176,11 +176,12 @@
       res.forEach(function (r, i) { d.log.push({ d: P.today(), g: g, topic: t, src: 'own', ok: right[i], sure: sure[i] }); });
       if (pass) { d.rev = d.rev || {}; d.rev[g + '/' + t] = [P.today(params.review === 'long' ? 1 : 2), P.today(params.review === 'long' ? 3 : 7)].concat(params.review === 'long' ? [P.today(7), P.today(21)] : []); }
       P.save(d);
-      var c = h('div', { class: pass ? 'okc' : 'warnc' }, [h('p', {}, [h('b', { text: n + ' of ' + right.length + ' right. ' }), document.createTextNode(pass ? 'You can do this on your own. Come-back checks are booked for ' + (params.review === 'long' ? '1, 3, 7 and 21' : '2 and 7') + ' days from now.' : 'Not yet on your own, and that is useful to know. Nothing is booked yet.')]), verdictLines(h, res, right, sure)]);
+      var c = h('div', { class: pass ? 'okc' : 'warnc' }, [h('p', {}, [h('b', { text: n + ' of ' + right.length + ' right. ' }), document.createTextNode(pass ? 'You can do this on your own. A few more questions on it will be ready in ' + (params.review === 'long' ? '1, 3, 7 and 21' : '2 and 7') + ' days, under My come-back checks.' : 'Not on your own yet, and that is useful to know.')]), verdictLines(h, res, right, sure)]);
       msg.appendChild(c);
+      if (pass && window.MrrApp) window.MrrApp.goal('You passed on your own. Tick it off.');
       var trainHref = TOP[t].train === 'T9' ? '#explain' : '#practise/' + TOP[t].train;
       if (pass) msg.appendChild(h('div', { class: 'row', style: 'margin-top:10px' }, [h('span', { class: 'btn nextbar', text: 'Write it in your book: ' + bk }), h('a', { class: 'btn ghost', href: '#later', text: 'My come-back checks' })]));
-      else msg.appendChild(h('div', { class: 'row', style: 'margin-top:10px' }, [h('a', { class: 'btn nextbar', href: trainHref, text: 'Go back to Train, then check again ›' }), h('span', { class: 'small muted', text: 'Reread Book ' + bk + ' first.' })]));
+      else msg.appendChild(h('div', { class: 'row', style: 'margin-top:10px' }, [h('a', { class: 'btn nextbar', href: trainHref, text: 'Practise it, then test yourself again ›' }), h('span', { class: 'small muted', text: 'Reread Book ' + bk + ' first.' })]));
     });
   };
 
@@ -217,7 +218,7 @@
         dd.rev[key] = r; dd.log = dd.log || [];
         res.forEach(function (x, i) { dd.log.push({ d: P.today(), g: g, topic: t, src: 'delay', ok: right[i], sure: sure[i] }); });
         P.save(dd);
-        msg.appendChild(h('div', { class: n >= 2 ? 'okc' : 'warnc' }, [h('p', {}, [h('b', { text: n + ' of 3 right. ' }), document.createTextNode(n >= 2 ? (r.length ? 'Next come-back: ' + r[0] + '.' : 'That topic is done for now.') : 'Another come-back is booked in 2 days.')]), verdictLines(h, res, right, sure)]));
+        msg.appendChild(h('div', { class: n >= 2 ? 'okc' : 'warnc' }, [h('p', {}, [h('b', { text: n + ' of 3 right. ' }), document.createTextNode(n >= 2 ? (r.length ? 'Your next few: ' + r[0] + '.' : 'That topic is done for now.') : 'You will get three more on this in 2 days.')]), verdictLines(h, res, right, sure)]));
         msg.appendChild(h('div', { class: 'row', style: 'margin-top:10px' }, [list.length > 1 ? h('button', { class: 'btn', text: 'More: the next topic', onclick: function () { ctx.route(); window.scrollTo(0, 0); } }) : null]));
       });
     }

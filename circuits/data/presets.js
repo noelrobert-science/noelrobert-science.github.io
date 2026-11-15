@@ -419,7 +419,12 @@
     expect: { start: { V: 6.0 } }
   });
 
-  var api = { list: P, IDEAL: IDEAL, byId: function (id) { for (var i = 0; i < P.length; i++) if (P[i].id === id) return P[i]; return null; } };
+  /* The Grade 10 coursebook numbers its circuit sections differently from the Grade 11-12 book (audit 14 Nov, B6).
+     book(id, section, grade) gives the section a learner should open in their own book. */
+  var G10 = { '10.1': '10.1', '10.2': '10.3', '10.3': '10.4', '10.4': '10.7', '10.5': '10.7' };
+  var G10_ID = { meters: '10.2', A10: '10.5', 'g10-B': '10.5', 'g10-C': '10.5', 'g10-bulbs': '10.6' };
+  function book(id, section, grade) { return +grade === 10 ? (G10_ID[id] || G10[section] || section) : section; }
+  var api = { book: book, list: P, IDEAL: IDEAL, byId: function (id) { for (var i = 0; i < P.length; i++) if (P[i].id === id) return P[i]; return null; } };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else { root.STUDIO = root.STUDIO || {}; root.STUDIO.presets = api; }
 })(this);
