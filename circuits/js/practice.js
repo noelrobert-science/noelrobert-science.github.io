@@ -258,7 +258,8 @@
     var bk = bookOf(t, g);
     var head = h('div', { class: 'wrap' }, [
       h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#practise', text: '← Practise' }), bk ? h('span', { class: 'chip', text: 'Book ' + bk }) : null]),
-      h('h1', { text: 'Practise: ' + Gx.TOPIC_NAME[t], style: 'margin-top:10px' })
+      h('h1', { text: 'Practise: ' + Gx.TOPIC_NAME[t], style: 'margin-top:10px' }),
+      (window.Clips ? window.Clips.slot('pr-working') : null)
     ]);
     main.appendChild(head);
     if (!all.length) {

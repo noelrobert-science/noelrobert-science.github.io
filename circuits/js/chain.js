@@ -383,6 +383,7 @@
       h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#explain', text: '← Explain a change' }), h('span', { class: 'chip', text: FAM[ev.fam] }), h('span', { class: 'chip', text: 'Book ' + PR.book(pre.id, pre.book, g) })]),
       h('h1', { text: ev.title, style: 'margin-top:10px' }),
       h('div', { class: 'note banner', text: ev.banner(g) }),
+      (window.Clips ? window.Clips.slot('ex-answer') : null),
       pre.note ? h('p', { class: 'small muted', text: pre.note }) : null
     ]));
     main.appendChild(h('div', { class: 'wrap' }, [h('div', { class: 'lab' }, [h('div', {}, [canvas, h('p', { class: 'small muted', style: 'margin-top:8px', text: PR.IDEAL })]), h('div', {}, [side])]), panel, more]));

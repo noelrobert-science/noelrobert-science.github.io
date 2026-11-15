@@ -351,6 +351,7 @@
       steps.innerHTML = ''; fb.innerHTML = '';
       steps.appendChild(h('div', { class: 'row stepnav' }, STEPS.map(function (s, k) { return h('button', { class: 'btn small ' + (k === i ? '' : 'ghost'), 'aria-current': k === i ? 'step' : null, text: String(k + 1), 'aria-label': s.t, onclick: function () { show(k); } }); })));
       steps.appendChild(h('h3', { text: STEPS[i].t, style: 'margin-top:10px' }));
+      if (window.Clips) steps.appendChild(window.Clips.slot(['g-axes', 'g-scale', 'g-plot', 'g-line', 'g-grad', 'g-ymxc'][i]));
       STEPS[i].build().forEach(function (el) { steps.appendChild(el); });
       if (bulb && i === 3) steps.appendChild(h('div', { class: 'note', text: 'Look at your points first: for a filament bulb they lie on a curve, not a straight line. Draw a smooth curve on paper; here, compare with a straight line to see how far the points bend away. The bulb is non-ohmic: its resistance increases as the current increases, because the filament heats up.' }));
       steps.appendChild(h('div', { class: 'row', style: 'margin-top:10px' }, [h('button', { class: 'btn', text: 'Check', onclick: function () { runCheck(i); } }),

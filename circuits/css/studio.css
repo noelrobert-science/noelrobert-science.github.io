@@ -247,3 +247,11 @@ ul.marks input { width: 20px; height: 20px; vertical-align: middle; }
 
 /* Opened from the Mr R Science app (app/back.js sets html.from-app): the studio header, grade switch and footer step aside. */
 html.from-app body > header.top, html.from-app body > footer.foot { display: none !important }
+/* "Mr R explains" clip slots */
+.clipslot { margin: 8px 0; }
+.clipbtn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line, #cfd8dc); background: var(--card, #fff); font: inherit; font-weight: 600; cursor: pointer; text-align: left; }
+.clipplayicon { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #c62828; color: #fff; font-size: 12px; flex: none; }
+.clipplay { margin-top: 8px; max-width: 640px; }
+.clipplay video { width: 100%; border-radius: 10px; background: #000; display: block; }
+.clipplay .btn { margin-top: 6px; }
+.clipplan { font-size: 13px; padding: 6px 10px; border: 1px dashed #c62828; border-radius: 8px; color: #8e1c1c; background: #fff5f5; }

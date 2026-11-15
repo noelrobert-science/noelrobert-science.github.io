@@ -63,6 +63,7 @@
       h('div', { class: 'row' }, [h('a', { class: 'chip', href: '#home', text: '← Studio home' }), h('a', { class: 'chip', href: '#exp', text: 'All experiments' }), h('span', { class: 'chip', text: 'Book ' + BK(e, g) })]),
       h('h1', { text: e.title, style: 'margin-top:10px' }),
       h('p', { text: e.intro }),
+      (window.Clips ? window.Clips.slot('exp-' + e.id) : null),
       h('p', { class: 'tag small', text: TAG + ' See the practical in section ' + BK(e, g) + ' of your book.' })
     ].concat(extra || []));
   }

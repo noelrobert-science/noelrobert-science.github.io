@@ -74,7 +74,7 @@
       h('p', { class: 'eyebrow', text: 'Physical Sciences · Grades 10 to 12' }),
       h('h1', { text: 'Circuits Studio' }),
       h('p', { class: 'muted', text: 'A virtual lab with IEB circuit symbols, ideal meters and the readings on the diagram. Change one thing and watch every reading change at the same instant.' }),
-      h('div', { class: 'note', html: 'Ready now: the <b>virtual lab</b>, the <b>experiments</b> and the <b>graph tool</b>. Explain a change, lessons and practice come next.' }),
+      h('div', { class: 'note', html: 'Ready now: the <b>virtual lab</b>, the <b>experiments</b>, the <b>graph tool</b>, <b>Explain a change</b>, and <b>Practise and check</b>. Lessons come next.' }),
       (window.StudioViews && window.StudioViews._homeCards) ? window.StudioViews._homeCards(ctx) : null,
       h('h2', { text: 'Circuits for Grade ' + grade }),
       h('div', { class: 'grid' }, PR.list.filter(function (p) { return p.grades.indexOf(grade) >= 0; }).map(function (p) {
@@ -149,6 +149,7 @@
         ideal && grade >= 11 ? h('span', { class: 'chip', text: 'ideal battery (r = 0)' }) : null]),
       h('h1', { text: p.title, style: 'margin-top:10px' }),
       h('p', { text: p.intro }),
+      (window.Clips ? window.Clips.slot('lab-meters') : null), (window.Clips ? window.Clips.slot('lab-change') : null),
       p.note ? h('p', { class: 'small muted', text: p.note }) : null,
       params.view === 'height' ? h('div', { class: 'note small', text: 'The height view is coming soon. The potential view below shades every wire by its potential: darker is higher.' }) : null,
       p.tasks ? h('div', { class: 'note' }, [h('b', { text: 'Predict first, then check' }), h('ol', {}, p.tasks.map(function (t) { return h('li', { text: t }); }))]) : null
