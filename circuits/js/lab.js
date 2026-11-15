@@ -101,10 +101,10 @@
     if (id && grade === 10 && PR.byId(id).grades.indexOf(10) < 0) id = id === 'A' ? 'A10' : 'E10';
     var names = { exp: 'Experiments', graph: 'the graph tool', chain: 'Explain a change', later: 'come-back checks', learn: 'topic pages', listen: 'lessons', practise: 'practice', check: 'checks', paper: 'Mini-papers', museum: 'the Mistake museum', words: 'Words that win marks', we: 'worked examples' };
     main.appendChild(h('div', { class: 'wrap' }, [
-      h('h1', { text: 'Coming soon' }),
-      h('p', { text: 'This part of the studio (' + (names[r.view] || r.view) + ') is still being built. The virtual lab is ready now.' }),
-      id ? h('p', {}, [h('a', { class: 'btn', href: '#lab/' + id + (r.params.r === '0' ? '?r=0' : '') }, ['Open a circuit in the lab'])]) : null,
-      h('p', {}, [h('a', { class: 'btn ghost', href: '#home' }, ['All circuits'])])
+      h('h1', { text: 'On its way' }),
+      h('p', { text: 'We are still making this part (' + (names[r.view] || r.view) + '). Everything else is ready: the virtual lab, experiments, practice and checks.' }),
+      id ? h('p', {}, [h('a', { class: 'btn', href: '#lab/' + id + (r.params.r === '0' ? '?r=0' : '') }, ['Try it in the lab'])]) : null,
+      h('p', {}, [h('a', { class: 'btn ghost', href: '#home' }, ['Back to Circuits Studio'])])
     ]));
   }
 
