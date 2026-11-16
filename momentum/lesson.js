@@ -91,7 +91,7 @@
   function getJSON(u, fn) { fetch(u).then(function (r) { return r.json(); }).then(fn, function () { fn({}); }); }
   function returnUrl() {
     var to = null; try { to = sessionStorage.getItem('mrr-return'); } catch (e) {}
-    return (to && to.charAt(0) === '/' && to.indexOf('//') !== 0) ? to : '/app/next.html#t/' + L.app;
+    return (to && to.charAt(0) === '/' && to.indexOf('//') !== 0) ? to : '/app/#t/' + L.app;
   }
   function hideIn(sel, list) { var p = document.querySelector(sel); if (!p) return; list.forEach(function (q) { p.querySelectorAll(q).forEach(function (el) { el.classList.add('ls-hide'); }); }); }
 
