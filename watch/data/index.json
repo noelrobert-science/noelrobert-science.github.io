@@ -1,0 +1,92 @@
+[
+ {
+  "id": "table4",
+  "file": "table4.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 27,
+  "sec": "27.1–27.2",
+  "title": "Reading Table 4",
+  "book": "Module 27, sections 27.1 and 27.2",
+  "minutes": 14,
+  "stops": 9,
+  "screens": 12
+ },
+ {
+  "id": "will-it-react",
+  "file": "will-it-react.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 27,
+  "sec": "27.3–27.4",
+  "title": "Will it react?",
+  "book": "Module 27, sections 27.3 and 27.4",
+  "minutes": 13,
+  "stops": 6,
+  "screens": 10
+ },
+ {
+  "id": "galvanic",
+  "file": "galvanic.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 28,
+  "sec": "28.1–28.6",
+  "title": "The galvanic cell",
+  "book": "Module 28, sections 28.1, 28.3, 28.4 and 28.6",
+  "minutes": 14,
+  "stops": 7,
+  "screens": 11
+ },
+ {
+  "id": "salt-bridge",
+  "file": "salt-bridge.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 28,
+  "sec": "28.2, 28.7–28.8",
+  "title": "The salt bridge, and when a cell runs down",
+  "book": "Module 28, sections 28.2, 28.7 and 28.8",
+  "minutes": 13,
+  "stops": 7,
+  "screens": 11
+ },
+ {
+  "id": "electrolysis",
+  "file": "electrolysis.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 29,
+  "sec": "29.1–29.4",
+  "title": "Electrolysis: the two contests",
+  "book": "Module 29, sections 29.1 to 29.4",
+  "minutes": 16,
+  "stops": 8,
+  "screens": 13
+ },
+ {
+  "id": "faraday",
+  "file": "faraday.json",
+  "grades": [
+   12
+  ],
+  "subject": "Electrochemistry",
+  "mod": 29,
+  "sec": "29.5",
+  "title": "Counting electrons: Faraday",
+  "book": "Module 29, section 29.5",
+  "minutes": 13,
+  "stops": 8,
+  "screens": 9
+ }
+]
