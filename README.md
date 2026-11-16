@@ -11,7 +11,12 @@ Public practice pages for learners, published with GitHub Pages at https://noelr
 | `business-ch5-rhd/` | Business environments Ch 5, school edition with the crest (linked from the All studios page) | same folder as `business-ch5/` |
 | `ai-pd/` | Built with AI: a teacher's journey (staff PD pages and demos) | this repository |
 | `gr12-guides/` | Grade 12 IEB Physical Sciences revision guides (90-plus, challenge banks, walkthroughs) | this repository |
-| `index.html` | All studios page, with a Grade 10 / 11 / 12 choice | this repository |
+| `index.html` | Front door: who Mr R is, three routes (learner, teacher, books), what is built today | this repository |
+| `studios/` | All studios page, with a Grade 10 / 11 / 12 choice (was `index.html` until 15 Nov 2026) | this repository |
 | `assets/` | house style tokens and fonts | `G:\My Drive\Classroom\00 Teaching Hub\House style` |
+
+Fonts are hosted here, not loaded from Google, so the pages call no outside service. `assets/fonts/` holds Lexend (variable), Bricolage Grotesque 800 (headings), Outfit 800 (older pages) and Patrick Hand (worked answers).
+
+The front door links only pages that are finished: `app/`, `momentum/`, `chemical-calculations/`, `circuits/`, `electrochemistry/`, `go/`, `business-ch5/` (through `studios/`) and `gr12-guides/`. Pages kept off it on purpose: `ai-pd/`, `business-ch5-rhd/`, `app/next.html`, `recorder/`.
 
 Rules: no learner names, marks or sign-in on these pages (POPIA). Anything that records learner data lives in the school's Apps Script app instead. Follow `G:\My Drive\Classroom\00 Teaching Hub\CLAUDE.md`.

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The studios · Mr R Science</title>
+<meta name="description" content="Interactive practice studios for Physical Sciences and Business Studies, free for every learner.">
+<link rel="icon" href="../app/icons/icon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: 'Lexend'; font-weight: 100 900; src: url(../assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; src: url(../assets/fonts/BricolageGrotesque-800.woff2) format('woff2'); font-display: swap; }
+</style>
+<link rel="stylesheet" href="../assets/tokens.css">
+<style>
+  body { margin: 0; background: var(--soft); line-height: 1.55; }
+  main { max-width: 760px; margin: 0 auto;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+         padding-block: 32px 64px; }
+  .home { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--muted); font-size: .9rem; font-weight: 600; min-height: 44px; }
+  .home:hover { color: var(--ink); }
+  .kicker { font-variant: small-caps; letter-spacing: .08em; font-weight: 600; color: var(--acc); margin: 1rem 0 0; }
+  h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.05; margin: .2em 0 .3em; }
+  h1 span { color: var(--acc); }
+  .lead { color: var(--muted); max-width: 36em; }
+  h2 { margin: 2rem 0 .6rem; font-size: 1.15rem; color: var(--muted); }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  a.card { display: block; text-decoration: none; color: var(--ink); background: var(--paper);
+           border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--acc));
+           border-radius: var(--radius); padding: 16px; min-width: 0; }
+  a.card:hover, a.card:focus-visible { border-color: var(--bc, var(--acc)); outline: none; }
+  .card b { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+  .card small { color: var(--muted); }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+  .grades { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.4rem 0 .4rem; }
+  .grades button { font: inherit; font-weight: 600; min-height: 44px; padding: 8px 18px; border-radius: 999px;
+           border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .grades button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
+  section[hidden] { display: none; }
+  a.start { display: flex; align-items: center; gap: 16px; margin: 1.6rem 0 .4rem; padding: 18px 20px; border-radius: var(--radius);
+           background: var(--ink); color: var(--paper); text-decoration: none; }
+  a.start b { display: block; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.2; }
+  a.start small { display: block; opacity: .85; margin-top: 4px; }
+  a.start .go { margin-left: auto; font-size: 2rem; line-height: 1; flex: none; }
+  a.start:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+  .or { margin: 1.8rem 0 0; color: var(--muted); font-weight: 600; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kicker, :root:not([data-theme="light"]) h1 span { color: #7fb0ff; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="home" href="../"><span aria-hidden="true">&lsaquo;</span> Mr R Science</a>
+  <p class="kicker">Learning spaces</p>
+  <h1>Learn it. <span>Practise it.</span> Test yourself.</h1>
+  <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and test yourself again a few days later.</p>
+
+  <a class="start" href="../app/"><span><b>Start here: open Mr R Science</b><small>Pick your grade and a topic. It takes you step by step, in the same order as your book.</small></span><span class="go" aria-hidden="true">&rsaquo;</span></a>
+  <p class="or">Or go straight to a studio:</p>
+
+  <div class="grades" role="group" aria-label="Choose your grade">
+    <button type="button" data-g="all" aria-pressed="true">All studios</button>
+    <button type="button" data-g="10" aria-pressed="false">Grade 10</button>
+    <button type="button" data-g="11" aria-pressed="false">Grade 11</button>
+    <button type="button" data-g="12" aria-pressed="false">Grade 12</button>
+  </div>
+
+  <section data-grade="10">
+  <h2>Grade 10 Physical Sciences</h2>
+  <div class="grid">
+    <a class="card" href="../momentum/" style="--bc: var(--mom)"><b>Momentum Studio</b><small>Momentum, impulse and collisions, with a crash simulation.</small></a>
+    <a class="card" href="../chemical-calculations/" style="--bc: var(--mole)"><b>Chemical Calculations Studio</b><small>Moles, molar mass, concentration and yields.</small></a>
+    <a class="card" href="../circuits/?g=10" style="--bc: #5F3DC4"><b>Circuits Studio</b><small>Electric circuits: a virtual lab with bulbs, switches and meters. Change one thing and watch every reading.</small></a>
+  </div>
+  </section>
+
+  <section data-grade="10">
+  <h2>Grade 10 Business Studies</h2>
+  <div class="grid">
+    <a class="card" href="../business-ch5/" style="--bc: var(--exam)"><b>Business environments</b><small>Chapter 5: micro, market and macro environments, PESTLE and SWOT.</small></a>
+  </div>
+  </section>
+
+  <section data-grade="11">
+  <h2>Grade 11 Physical Sciences</h2>
+  <div class="grid">
+    <a class="card" href="../circuits/?g=11" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11: a virtual lab with IEB symbols. Change one thing and watch every reading change. Grades 10 to 12.</small></a>
+  </div>
+  </section>
+
+  <section data-grade="12">
+  <h2>Grade 12 Physical Sciences</h2>
+  <div class="grid">
+    <a class="card" href="../electrochemistry/" style="--bc: #00646b"><b>Electrochemistry Studio</b><small>Modules 27 to 29: a live Table 4, galvanic and electrolytic cell labs, Faraday calculations and IEB past-paper questions.</small></a>
+    <a class="card" href="../circuits/?g=12" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11: internal resistance and networks, with a virtual lab you can change.</small></a>
+    <a class="card" href="../gr12-guides/" style="--bc: var(--exam)"><b>Revision guides</b><small>90%+ challenge booklets, challenge banks and visual walkthroughs, as PDFs.</small></a>
+  </div>
+  </section>
+
+  <footer>Made by Mr N. Robert. Free for every learner, at any school. No sign-in needed. Your progress is saved only in this browser.</footer>
+</main>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.grades button'), secs = document.querySelectorAll('section[data-grade]');
+  function show(g) {
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.g === g)); });
+    secs.forEach(function (s) {
+      var gr = s.dataset.grade;
+      s.hidden = !(g === 'all' || gr === g);
+    });
+    try { localStorage.setItem('ls-grade', g); } catch (e) {}
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.g); }); });
+  var start = 'all'; try { start = localStorage.getItem('ls-grade') || 'all'; } catch (e) {}
+  if (['all','10','11','12'].indexOf(start) < 0) start = 'all';
+  show(start);
+})();
+</script>
+</body>
+</html>

@@ -1,111 +1,460 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mr Robert's Learning Spaces</title>
-<meta name="description" content="Interactive practice spaces for Physical Sciences and Business Studies.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c64d6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial' font-weight='700' font-size='16' fill='%23fff'%3ER%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mr R Science</title>
+<meta name="description" content="Free Physical Sciences lessons, practice and books for Grades 10 to 12 (IEB), made by Noel Robert. No sign-in. Works on a phone.">
+<meta name="theme-color" content="#151b28">
+<link rel="icon" href="app/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="app/icons/apple-touch-icon-180.png">
 <style>
-@font-face { font-family: 'Lexend'; font-weight: 100 900; src: url(assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap; } /* one variable font file covers every weight */
-@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; src: url(assets/fonts/Outfit-800.woff2) format('woff2'); font-display: swap; } /* Outfit stands in until Bricolage is added */
-</style>
-<link rel="stylesheet" href="assets/tokens.css">
-<style>
-  body { margin: 0; background: var(--soft); line-height: 1.55; }
-  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
-  .kicker { font-variant: small-caps; letter-spacing: .08em; font-weight: 600; color: var(--acc); margin: 0; }
-  h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.05; margin: .2em 0 .3em; }
-  h1 span { color: var(--acc); }
-  .lead { color: var(--muted); max-width: 36em; }
-  h2 { margin: 2rem 0 .6rem; font-size: 1.15rem; color: var(--muted); }
-  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  a.card { display: block; text-decoration: none; color: var(--ink); background: var(--paper);
-           border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--acc));
-           border-radius: var(--radius); padding: 16px; }
-  a.card:hover, a.card:focus-visible { border-color: var(--bc, var(--acc)); outline: none; }
-  .card b { display: block; font-family: var(--font-display); font-size: 1.15rem; }
-  .card small { color: var(--muted); }
-  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
-  .grades { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.4rem 0 .4rem; }
-  .grades button { font: inherit; font-weight: 600; min-height: 44px; padding: 8px 18px; border-radius: 999px;
-           border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
-  .grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .grades button:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; }
-  .empty { color: var(--muted); background: var(--paper); border: 1px dashed var(--line); border-radius: var(--radius); padding: 16px; margin: 0; }
-  section[hidden] { display: none; }
-  a.start { display: flex; align-items: center; gap: 16px; margin: 1.6rem 0 .4rem; padding: 18px 20px; border-radius: var(--radius);
-           background: var(--ink); color: var(--paper); text-decoration: none; }
-  a.start b { display: block; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.2; }
-  a.start small { display: block; opacity: .85; margin-top: 4px; }
-  a.start .go { margin-left: auto; font-size: 2rem; line-height: 1; flex: none; }
-  a.start:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
-  .or { margin: 1.8rem 0 0; color: var(--muted); font-weight: 600; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kicker, :root:not([data-theme="light"]) h1 span { color: #7fb0ff; } }
+/* Fonts are hosted on this site: no outside font service, so the page calls nobody. */
+@font-face { font-family: 'Lexend'; font-weight: 100 900; src: url(assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap }
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; src: url(assets/fonts/BricolageGrotesque-800.woff2) format('woff2'); font-display: swap }
+@font-face { font-family: 'Patrick Hand'; font-weight: 400; src: url(assets/fonts/PatrickHand-400.woff2) format('woff2'); font-display: swap }
+
+/* The front door. One dark opening panel that says who this is and holds three doors
+   (learner, teacher, books) beside a sheet of worked paper; then one calm band per door. */
+:root {
+  --paper: #ffffff; --soft: #f4f6f9; --soft2: #eceff4; --ink: #151b28; --muted: #5a6475; --line: #dde2ea;
+  --accent: #e3121b; --accent-ink: #b80f17; --accent-soft: #fde8e9;
+  --hero: #151b28; --hero-ink: #ffffff; --hero-muted: rgba(255,255,255,.78); --hero-line: rgba(255,255,255,.16);
+  --hero-tile: rgba(255,255,255,.07); --hero-grid: rgba(255,255,255,.045); --hero-kick: #ffb3b6; --orbit: rgba(255,255,255,.2);
+  --link: #1c64d6; --dot: #1c64d6;
+  --sheet: #ffffff; --sheet-ink: #1b2230; --sheet-rule: #dfe5ee; --sheet-muted: #596273; --hand: #1d5fd1; --tick: #0f9d58;
+  --cover: #ffffff; --cover-ink: #141c33; --cover-blue: #1c64d6; --cover-muted: #68718a; --cover-edge: #cfd6e2;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 10px 28px rgba(16,24,40,.09);
+  --font-display: 'Bricolage Grotesque', 'Lexend', system-ui, sans-serif;
+  --font-body: 'Lexend', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Patrick Hand', 'Comic Sans MS', cursive;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0d1320; --soft: #161e2f; --soft2: #1c2539; --ink: #e9edf4; --muted: #9ba6b9; --line: #283350;
+  --accent: #ff4a50; --accent-ink: #ff8a8e; --accent-soft: #3a1619;
+  --hero: #1b2540; --link: #85b4ff; --on-accent: #1a0506; --cover-edge: #3a4664;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0d1320; --soft: #161e2f; --soft2: #1c2539; --ink: #e9edf4; --muted: #9ba6b9; --line: #283350;
+  --accent: #ff4a50; --accent-ink: #ff8a8e; --accent-soft: #3a1619;
+  --hero: #1b2540; --link: #85b4ff; --on-accent: #1a0506; --cover-edge: #3a4664;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4); color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 300 16px/1.55 var(--font-body) }
+img { max-width: 100% }
+a { color: var(--link) }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px }
+.wrap { max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; margin: 0; text-wrap: balance; letter-spacing: -.01em }
+p { margin: 0 }
+.kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--paper); color: var(--ink); padding: 12px 18px; border-radius: 0 0 12px 0; z-index: 20 }
+.skip:focus { left: 0 }
+
+/* ---------- Opening panel ---------- */
+.hero { background: var(--hero); color: var(--hero-ink); position: relative; overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  background-image: linear-gradient(var(--hero-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hero-grid) 1px, transparent 1px);
+  background-size: 28px 28px }
+.orbits { position: absolute; right: -150px; top: -110px; width: 640px; height: 640px; pointer-events: none; z-index: 0 }
+.hero > .wrap { position: relative; z-index: 1 }
+@media (max-width: 760px) { .orbits { width: 420px; height: 420px; right: -170px; top: -150px; opacity: .45 } }
+.orbits ellipse { fill: none; stroke: var(--orbit); stroke-width: 2 }
+.orbits .e { fill: var(--dot) }
+.orbits .still { display: none }
+@media (prefers-reduced-motion: reduce) { .orbits .moving { display: none } .orbits .still { display: block } }
+
+.top { position: relative; display: flex; align-items: center; gap: 18px; padding-block: 16px }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--hero-ink); margin-right: auto }
+.brand .mk { width: 40px; height: 40px; border-radius: 11px; background: #ffffff; display: grid; place-items: center; flex: none }
+.brand .mk svg { width: 32px; height: 32px }
+.brand b { font: 800 20px/1 var(--font-display) }
+.top nav { display: flex; gap: 4px }
+.top nav a { color: var(--hero-muted); text-decoration: none; font-weight: 400; font-size: 15px; padding: 9px 13px; border-radius: 99px }
+.top nav a:hover { color: var(--hero-ink); background: var(--hero-tile) }
+@media (max-width: 640px) { .top nav { display: none } }
+
+.hero-grid { position: relative; display: grid; gap: 34px; padding-block: 18px 44px; align-items: center }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: 56px; padding-block: 40px 76px } }
+.hero-grid > * { min-width: 0 }
+.hero .kicker { color: var(--hero-kick) }
+.hero h1 { font-size: clamp(31px, 8.2vw, 52px); line-height: 1.04; margin-top: 10px; text-wrap: wrap }
+.hero h1 em { font-style: normal; color: var(--hero-kick); display: block }
+.hero .lede { color: var(--hero-muted); font-size: clamp(16px, 2.2vw, 18.5px); max-width: 34em; margin-top: 16px }
+.hero .lede b { color: var(--hero-ink); font-weight: 600 }
+
+.doors { display: grid; gap: 10px; margin-top: 26px; max-width: 34em }
+.door { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; text-decoration: none;
+  color: var(--hero-ink); background: var(--hero-tile); border: 1px solid var(--hero-line); border-radius: var(--r); padding: 14px 16px; min-height: 78px }
+.door .ic { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,255,255,.1) }
+.door .ic svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.door b { display: block; font: 800 20px/1.2 var(--font-display) }
+.door small { display: block; color: var(--hero-muted); font-size: 14.5px; line-height: 1.4; margin-top: 2px }
+.door .go { font-size: 26px; line-height: 1; color: var(--hero-muted) }
+.door:hover { border-color: rgba(255,255,255,.4) }
+.door.main { background: var(--accent); border-color: var(--accent); color: var(--on-accent) }
+.door.main small, .door.main .go { color: inherit; opacity: .9 }
+.door.main .ic { background: rgba(255,255,255,.2) }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; color: var(--hero-muted); font-size: 14px; list-style: none; padding: 0 }
+.facts li { display: flex; align-items: center; gap: 7px }
+.facts li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--hero-kick); flex: none }
+
+/* A worked answer in the house style, instead of a stock picture */
+.sheetbox { justify-self: center; width: 100%; max-width: 400px }
+.sheet { background: var(--sheet); color: var(--sheet-ink); border-radius: 6px; padding: 22px 22px 18px;
+  box-shadow: 0 22px 50px rgba(0,0,0,.4); transform: rotate(1.6deg) }
+.sheet .q { font-size: 15px; line-height: 1.5 }
+.sheet .q b { font-weight: 600 }
+.sheet .marks { float: right; font-weight: 600; margin-left: 8px }
+.work { margin-top: 14px; display: grid; grid-template-columns: auto auto auto 1fr; column-gap: 10px; row-gap: 6px; align-items: center;
+  font: 400 27px/1.1 var(--font-hand); color: var(--hand) }
+.work .frac { display: inline-grid; justify-items: center; line-height: 1.05 }
+.work .frac i { font-style: normal; padding: 0 8px }
+.work .frac i + i { border-top: 2px solid var(--hand); padding-top: 2px; margin-top: 2px }
+.work .tk { color: var(--tick); font-size: 30px; justify-self: end }
+.sheet .cap { margin-top: 16px; font-size: 12.5px; color: var(--sheet-muted); letter-spacing: .02em; border-top: 1px solid var(--sheet-rule); padding-top: 10px }
+.sheetnote { color: var(--hero-muted); font-size: 14px; margin-top: 22px; text-align: center }
+
+/* ---------- Bands ---------- */
+.band { padding-block: 56px }
+.band.soft { background: var(--soft) }
+.band .kicker { color: var(--accent-ink) }
+.band h2 { font-size: clamp(27px, 5vw, 38px); line-height: 1.08; margin-top: 8px }
+.band .intro { color: var(--muted); max-width: 40em; margin-top: 12px; font-size: 17px }
+.cols { display: grid; gap: 28px; margin-top: 30px }
+@media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: start } }
+.cols > * { min-width: 0 }
+
+.built h3 { font-size: 20px }
+.gradepick { display: inline-flex; gap: 2px; background: var(--soft2); border-radius: 99px; padding: 4px; margin-top: 14px }
+.gradepick button { font: 600 15px var(--font-body); color: var(--muted); border: 0; background: transparent; border-radius: 99px; min-height: 42px; padding: 0 18px; cursor: pointer }
+.gradepick button[aria-pressed="true"] { background: var(--ink); color: var(--paper) }
+.mods { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px }
+.mods a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; text-decoration: none; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; min-height: 58px }
+.mods a:hover { border-color: var(--ink) }
+.mods .num { font: 800 14px var(--font-display); color: #ffffff; background: var(--mc, var(--ink)); border-radius: 8px; padding: 3px 9px; min-width: 38px; text-align: center }
+.mods b { font-weight: 600; font-size: 16px; line-height: 1.3; display: block }
+.mods small { color: var(--muted); font-size: 13.5px; white-space: nowrap }
+.fine { color: var(--muted); font-size: 14.5px; margin-top: 14px }
+.fine a { color: var(--link) }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 99px; background: var(--accent); color: var(--on-accent);
+  font-weight: 600; font-size: 17px; text-decoration: none; margin-top: 18px }
+
+.how { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px }
+.how li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px }
+.how svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px }
+.how b { font-weight: 600; display: block }
+.how span { color: var(--muted); font-size: 15.5px }
+.trap { margin-top: 26px; background: var(--hero); color: var(--hero-ink); border-radius: var(--r); padding: 20px }
+.trap .kicker { color: var(--hero-kick) }
+.trap p { margin-top: 8px; color: var(--hero-muted); font-size: 15.5px }
+.trap blockquote { margin: 14px 0 0; padding: 0 0 0 16px; border-left: 3px solid var(--hero-kick); font: 700 20px/1.3 var(--font-display); color: var(--hero-ink) }
+.trap cite { display: block; font: 300 13px/1.4 var(--font-body); color: var(--hero-muted); margin-top: 8px }
+
+.cards { display: grid; gap: 14px; margin-top: 30px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)) }
+.card { display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; text-decoration: none; color: var(--ink); background: var(--soft); border-radius: var(--r); padding: 22px }
+.band.soft .card { background: var(--paper) }
+.card .tag { font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted) }
+.card h3 { font-size: 22px; line-height: 1.15 }
+.card p { color: var(--muted); font-size: 15.5px }
+.card .more { font-weight: 600; color: var(--link); margin-top: 6px }
+.card:hover .more { text-decoration: underline }
+
+/* Books: small covers drawn in the style of the real ones, with no school name */
+.shelf { display: grid; gap: 22px 18px; margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(min(46%, 170px), 1fr)) }
+.book { display: grid; gap: 10px; align-content: start; min-width: 0 }
+.cover { aspect-ratio: 210 / 297; max-width: 100%; background: var(--cover); color: var(--cover-ink); border: 1px solid var(--cover-edge); border-radius: 4px;
+  box-shadow: var(--shadow); padding: 11% 10% 9%; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 5%; overflow: hidden }
+.cover .ck { font-size: 8.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--cover-muted) }
+.cover .ct { font: 800 clamp(19px, 3.4vw, 25px)/1 var(--font-display); letter-spacing: -.02em }
+.cover .cg { font: 800 clamp(15px, 2.6vw, 19px)/1 var(--font-display); color: var(--bc, var(--cover-blue)); display: flex; align-items: center; gap: 7px; flex-wrap: wrap }
+.cover .pill { font: 700 10px var(--font-display); color: var(--cover-ink); border: 1.5px solid var(--cover-ink); border-radius: 5px; padding: 1px 5px }
+.cover .art { border-top: 3px solid var(--cover-ink); padding-top: 9%; display: grid; place-items: center }
+.cover .art svg { width: 78%; height: auto; stroke: var(--bc, var(--cover-blue)); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round }
+.cover .cf { font-size: 8.5px; color: var(--cover-muted) }
+.book b { font-weight: 600; font-size: 15.5px; line-height: 1.3; display: block }
+.book small { color: var(--muted); font-size: 14px; display: block }
+.status { display: inline-block; font-size: 12.5px; font-weight: 600; border-radius: 99px; padding: 3px 10px; margin-top: 6px; background: var(--soft2); color: var(--muted) }
+a.status.free { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none }
+.band.soft .status { background: var(--paper) }
+
+.about { display: grid; gap: 26px; align-items: center }
+@media (min-width: 760px) { .about { grid-template-columns: 200px minmax(0, 1fr); gap: 48px } }
+.about > * { min-width: 0 }
+.about .big { width: 150px; height: 150px; border-radius: 36px; background: #ffffff; border: 1px solid var(--line); display: grid; place-items: center }
+.about .big svg { width: 118px; height: 118px }
+.about p { max-width: 38em; margin-top: 14px; font-size: 17px }
+.about p.sig { font: 400 30px/1.1 var(--font-hand); color: var(--link); margin-top: 18px }
+.wont { margin: 30px 0 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); list-style: none; padding: 0 }
+.wont li { border-top: 3px solid var(--ink); padding-top: 12px }
+.wont b { font: 800 18px/1.2 var(--font-display); display: block }
+.wont span { color: var(--muted); font-size: 15px }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px }
+footer .wrap { padding-block: 26px 40px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between }
 </style>
 </head>
 <body>
-<main>
-  <p class="kicker">Learning spaces</p>
-  <h1>Learn it. <span>Practise it.</span> Test yourself.</h1>
-  <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and test yourself again a few days later.</p>
+<a class="skip" href="#learners">Skip to the topics</a>
 
-  <a class="start" href="app/"><span><b>Start here: open Mr R Science</b><small>Pick your grade and a topic. It takes you step by step, in the same order as your book.</small></span><span class="go" aria-hidden="true">›</span></a>
-  <p class="or">Or go straight to a studio:</p>
+<div class="hero">
+  <svg class="orbits" viewBox="0 0 640 640" aria-hidden="true">
+    <g transform="rotate(-32 320 320)">
+      <ellipse cx="320" cy="320" rx="290" ry="118"/>
+      <circle class="e moving" r="10"><animateMotion dur="26s" repeatCount="indefinite" path="M30,320 a290,118 0 1,0 580,0 a290,118 0 1,0 -580,0"/></circle>
+      <circle class="e still" cx="610" cy="320" r="10"/>
+    </g>
+    <g transform="rotate(32 320 320)">
+      <ellipse cx="320" cy="320" rx="290" ry="118"/>
+      <circle class="e moving" r="10"><animateMotion dur="34s" repeatCount="indefinite" path="M610,320 a290,118 0 1,1 -580,0 a290,118 0 1,1 580,0"/></circle>
+      <circle class="e still" cx="30" cy="320" r="10"/>
+    </g>
+  </svg>
 
-  <div class="grades" role="group" aria-label="Choose your grade">
-    <button type="button" data-g="all" aria-pressed="true">All studios</button>
-    <button type="button" data-g="10" aria-pressed="false">Grade 10</button>
-    <button type="button" data-g="11" aria-pressed="false">Grade 11</button>
-    <button type="button" data-g="12" aria-pressed="false">Grade 12</button>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="#top" aria-label="Mr R Science, top of the page">
+        <span class="mk"><svg viewBox="30 40 452 440" aria-hidden="true"><g fill="none" stroke="#1b2230" stroke-width="14"><ellipse cx="256" cy="262" rx="214" ry="86" transform="rotate(-32 256 262)"/><ellipse cx="256" cy="262" rx="214" ry="86" transform="rotate(32 256 262)"/></g><circle cx="437" cy="148" r="20" fill="#1c64d6"/><circle cx="75" cy="376" r="20" fill="#1c64d6"/><path transform="translate(160.0 352) scale(0.3 -0.3)" d="M22 0V10L43 17Q63 24 69.0 35.5Q75 47 75 68V591Q75 611 69.5 622.5Q64 634 45 641L22 650V660H308Q426 660 489.0 615.5Q552 571 552 492Q552 448 519.0 404.0Q486 360 415 336L554 60Q563 43 574.5 32.5Q586 22 605 14L618 9V0H439L291 315H223V68Q223 49 229.0 37.0Q235 25 254 19L278 10V0ZM223 335H271Q343 335 375.0 373.5Q407 412 407 488Q407 565 377.0 602.5Q347 640 276 640H223Z" fill="#e3121b" stroke="#ffffff" stroke-width="73" stroke-linejoin="round" paint-order="stroke"/></svg></span>
+        <b>Mr R Science</b>
+      </a>
+      <nav aria-label="On this page">
+        <a href="#learners">Learners</a>
+        <a href="#teachers">Teachers</a>
+        <a href="#books">Books</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <div class="hero-grid" id="top">
+      <div>
+        <p class="kicker">Physical Sciences · Grades 10 to 12 · IEB</p>
+        <h1>Learn it. Practise it. <em>Then do it on your own.</em></h1>
+        <p class="lede">I'm <b>Noel Robert</b>, a Physical Sciences teacher. These are the lessons, practice and books I make for my own classes. They are free for every learner, at any school.</p>
+
+        <div class="doors">
+          <a class="door main" href="app/">
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9l7-4 7 4v10"/><path d="M9 19v-6h6v6"/></svg></span>
+            <span><b>I'm a learner</b><small>Pick your grade and a topic, and start.</small></span>
+            <span class="go" aria-hidden="true">›</span>
+          </a>
+          <a class="door" href="#teachers">
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+            <span><b>I'm a teacher</b><small>Studios for your classroom and guides to print.</small></span>
+            <span class="go" aria-hidden="true">›</span>
+          </a>
+          <a class="door" href="#books">
+            <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 21H20"/></svg></span>
+            <span><b>The books</b><small>Coursebooks, answer books and revision guides.</small></span>
+            <span class="go" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <ul class="facts">
+          <li>Free</li>
+          <li>No sign-in</li>
+          <li>Works on a phone</li>
+        </ul>
+      </div>
+
+      <div class="sheetbox">
+        <div class="sheet" role="img" aria-label="A worked answer written by hand. R equals V over I, equals 12 over 0,50, equals 24,00 ohms. Each of the three lines has a tick.">
+          <p class="q"><span class="marks">(3)</span><b>Your turn.</b> The potential difference across a resistor is 12 V and the current in it is 0,50 A. Calculate its resistance.</p>
+          <div class="work" aria-hidden="true">
+            <span>R</span><span>=</span><span class="frac"><i>V</i><i>I</i></span><span class="tk">&#10003;</span>
+            <span></span><span>=</span><span class="frac"><i>12</i><i>0,50</i></span><span class="tk">&#10003;</span>
+            <span></span><span>=</span><span>24,00 &#937;</span><span class="tk">&#10003;</span>
+          </div>
+          <p class="cap">formula · substitution · answer with unit</p>
+        </div>
+        <p class="sheetnote">Pen and paper first. One step on each line.</p>
+      </div>
+    </div>
   </div>
+</div>
 
-  <section data-grade="10">
-  <h2>Grade 10 Physical Sciences</h2>
-  <div class="grid">
-    <a class="card" href="momentum/" style="--bc: var(--mom)"><b>Momentum Studio</b><small>Momentum, impulse and collisions, with a crash simulation.</small></a>
-    <a class="card" href="chemical-calculations/" style="--bc: var(--mole)"><b>Chemical Calculations Studio</b><small>Moles, molar mass, concentration and yields.</small></a>
-    <a class="card" href="circuits/?g=10" style="--bc: #5F3DC4"><b>Circuits Studio</b><small>Electric circuits: a virtual lab with bulbs, switches and meters. Change one thing and watch every reading.</small></a>
+<section class="band" id="learners">
+  <div class="wrap">
+    <p class="kicker">For learners</p>
+    <h2>Pick a topic. Finish it on your own.</h2>
+    <p class="intro">Each topic takes you through the same steps: learn it, try it, practise it, test yourself. Have a pen and paper next to you.</p>
+
+    <div class="cols">
+      <div class="built">
+        <h3>What is built today</h3>
+        <div class="gradepick" role="group" aria-label="Choose your grade">
+          <button type="button" id="pick10" data-g="10" aria-pressed="true">Grade 10</button>
+          <button type="button" id="pick11" data-g="11" aria-pressed="false">Grade 11</button>
+          <button type="button" id="pick12" data-g="12" aria-pressed="false">Grade 12</button>
+        </div>
+        <ul class="mods" data-grade="10">
+          <li><a href="app/" style="--mc:#c2410c"><span class="num">7&ndash;8</span><b>Momentum and impulse</b><small>2 topics</small></a></li>
+          <li><a href="app/" style="--mc:#5f3dc4"><span class="num">10</span><b>Electric circuits</b><small>8 topics</small></a></li>
+          <li><a href="app/" style="--mc:#d9480f"><span class="num">14</span><b>Chemical calculations</b><small>3 topics</small></a></li>
+        </ul>
+        <ul class="mods" data-grade="11" hidden>
+          <li><a href="app/" style="--mc:#0b7285"><span class="num">10</span><b>Electric circuits 1: Ohm's law, power and energy</b><small>5 topics</small></a></li>
+          <li><a href="app/" style="--mc:#0b7285"><span class="num">11</span><b>Electric circuits 2: internal resistance and networks</b><small>6 topics</small></a></li>
+        </ul>
+        <ul class="mods" data-grade="12" hidden>
+          <li><a href="app/" style="--mc:#0b7285"><span class="num">10&ndash;11</span><b>Electric circuits 1 and 2</b><small>11 topics</small></a></li>
+          <li><a href="app/" style="--mc:#0b7285"><span class="num">27</span><b>Redox and Table 4</b><small>2 topics</small></a></li>
+          <li><a href="app/" style="--mc:#7048e8"><span class="num">28</span><b>Galvanic cells</b><small>2 topics</small></a></li>
+          <li><a href="app/" style="--mc:#e8590c"><span class="num">29</span><b>Electrolytic cells and Faraday</b><small>2 topics</small></a></li>
+          <li><a href="gr12-guides/" style="--mc:#334155"><span class="num">&#9733;</span><b>Revision guides for Paper 1 and Paper 2</b><small>PDFs</small></a></li>
+        </ul>
+        <p class="fine">This list shows only what is finished. More modules are being built, one at a time.</p>
+        <a class="btn" href="app/">Open Mr R Science <span aria-hidden="true">&rsaquo;</span></a>
+        <p class="fine">Got a code printed in one of my books? <a href="go/">Type it in here</a>.</p>
+      </div>
+
+      <div>
+        <ul class="how">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg>
+            <div><b>Work on paper</b><span>Exam marks are earned in pen. Try each question before you look at the answer.</span></div></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>
+            <div><b>A tick means you did it alone</b><span>In Test myself the help is switched off and the numbers are new each time.</span></div></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M10 18h4"/></svg>
+            <div><b>Nothing to sign up for</b><span>Your progress is saved only in the browser you are using.</span></div></li>
+        </ul>
+
+        <div class="trap">
+          <p class="kicker">In the Grade 12 Electrochemistry Studio</p>
+          <p>Get a past-paper question wrong and you read what the IEB examiners wrote about that same mistake. On one question, many candidates named potassium as the reducing agent in KBr.</p>
+          <blockquote>&ldquo;KBr does not contain any potassium atoms, only potassium ions.&rdquo;
+            <cite>IEB Examiners' Report 2025, Paper 2, Question 6.1</cite></blockquote>
+        </div>
+      </div>
+    </div>
   </div>
-  </section>
+</section>
 
-  <section data-grade="10">
-  <h2>Grade 10 Business Studies</h2>
-  <div class="grid">
-    <a class="card" href="business-ch5/" style="--bc: var(--exam)"><b>Business environments</b><small>Chapter 5: micro, market and macro environments, PESTLE and SWOT.</small></a>
+<section class="band soft" id="teachers">
+  <div class="wrap">
+    <p class="kicker">For teachers</p>
+    <h2>Use it in your own classroom.</h2>
+    <p class="intro">Everything here was made for my IEB classes and is open to yours. There are no accounts to set up and nothing to install.</p>
+    <div class="cards">
+      <a class="card" href="studios/">
+        <span class="tag">Grades 10 to 12</span>
+        <h3>The studios</h3>
+        <p>Virtual labs and practice for momentum, chemical calculations, electric circuits and electrochemistry. Open one on your board, or send learners the link.</p>
+        <span class="more">See the studios &rsaquo;</span>
+      </a>
+      <a class="card" href="gr12-guides/">
+        <span class="tag">Grade 12 · Paper 1 and Paper 2</span>
+        <h3>Revision guides to print</h3>
+        <p>90%+ challenge booklets with worked answer books, challenge question banks and visual walkthroughs. Each one opens as a PDF.</p>
+        <span class="more">Open the guides &rsaquo;</span>
+      </a>
+    </div>
   </div>
-  </section>
+</section>
 
-  <section data-grade="11">
-  <h2>Grade 11 Physical Sciences</h2>
-  <div class="grid">
-    <a class="card" href="circuits/?g=11" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11: a virtual lab with IEB symbols. Change one thing and watch every reading change. Grades 10 to 12.</small></a>
+<section class="band" id="books">
+  <div class="wrap">
+    <p class="kicker">The books</p>
+    <h2>Written backward from the exam guidelines.</h2>
+    <p class="intro">Each coursebook is also the workbook, with a worked answer book that matches it page for page. The Grade 12 revision guides are free to open. The coursebooks are shared with teachers on request.</p>
+    <div class="shelf">
+      <div class="book">
+        <div class="cover" style="--bc:#1c64d6">
+          <span class="ck">Physical Sciences</span>
+          <span class="ct">Physical Sciences</span>
+          <span class="cg">Grade 10 <span class="pill">IEB</span></span>
+          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M8 52h86M8 52V6"/><path d="M8 52C30 50 34 34 50 26S78 10 92 9"/></svg></span>
+          <span class="cf">Coursebook · Workbook</span>
+        </div>
+        <div><b>Grade 10 Physical Sciences</b><small>Coursebook and worked answer book. Edition 1.</small><span class="status">View copy on request</span></div>
+      </div>
+      <div class="book">
+        <div class="cover" style="--bc:#0b7285">
+          <span class="ck">Physical Sciences</span>
+          <span class="ct">Physical Sciences</span>
+          <span class="cg">Grade 11 and 12 <span class="pill">IEB</span></span>
+          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M14 30V10h72v40H14V38"/><path d="M6 30h16M9 38h10"/><rect x="40" y="5" width="20" height="10" fill="#ffffff"/><circle cx="86" cy="30" r="7" fill="#ffffff"/></svg></span>
+          <span class="cf">Coursebook · Workbook</span>
+        </div>
+        <div><b>Grade 11 and 12 Physical Sciences</b><small>A module at a time. Circuits and electrochemistry are done.</small><span class="status">Being written</span></div>
+      </div>
+      <div class="book">
+        <div class="cover" style="--bc:#c2410c">
+          <span class="ck">Physics</span>
+          <span class="ct">Physics</span>
+          <span class="cg">Grade 9</span>
+          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M6 46h88"/><rect x="18" y="26" width="26" height="20"/><path d="M44 36h26M62 29l8 7-8 7"/></svg></span>
+          <span class="cf">Coursebook · Workbook</span>
+        </div>
+        <div><b>Grade 9 Physics</b><small>Coursebook and worked answer book. Edition 1.</small><span class="status">View copy on request</span></div>
+      </div>
+      <div class="book">
+        <div class="cover" style="--bc:#2b8a3e">
+          <span class="ck">Physics</span>
+          <span class="ct">Physics Field Guide</span>
+          <span class="cg">Grade 7</span>
+          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><circle cx="50" cy="30" r="12"/><path d="M50 6v6M50 48v6M26 30h-6M80 30h-6M33 13l4 4M63 43l4 4M67 13l-4 4M37 43l-4 4"/></svg></span>
+          <span class="cf">Edition 2</span>
+        </div>
+        <div><b>Grade 7 Physics Field Guide</b><small>Edition 2.</small><span class="status">View copy on request</span></div>
+      </div>
+      <div class="book">
+        <div class="cover" style="--bc:#5f3dc4">
+          <span class="ck">Grade 12 · IEB</span>
+          <span class="ct">Revision guides</span>
+          <span class="cg">Paper 1 and Paper 2</span>
+          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M10 50l20-18 16 10 22-26 22 12"/><circle cx="68" cy="16" r="4"/></svg></span>
+          <span class="cf">90%+ · Challenge banks · Walkthroughs</span>
+        </div>
+        <div><b>Grade 12 revision guides</b><small>Booklets, answer books and walkthroughs.</small><a class="status free" href="gr12-guides/">Free PDFs: open &rsaquo;</a></div>
+      </div>
+    </div>
   </div>
-  </section>
+</section>
 
-  <section data-grade="12">
-  <h2>Grade 12 Physical Sciences</h2>
-  <div class="grid">
-    <a class="card" href="electrochemistry/" style="--bc: #00646b"><b>Electrochemistry Studio</b><small>Modules 27 to 29: a live Table 4, galvanic and electrolytic cell labs, Faraday calculations and IEB past-paper questions.</small></a>
+<section class="band soft" id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="big"><svg viewBox="30 40 452 440" aria-hidden="true"><g fill="none" stroke="#1b2230" stroke-width="14"><ellipse cx="256" cy="262" rx="214" ry="86" transform="rotate(-32 256 262)"/><ellipse cx="256" cy="262" rx="214" ry="86" transform="rotate(32 256 262)"/></g><circle cx="437" cy="148" r="20" fill="#1c64d6"/><circle cx="75" cy="376" r="20" fill="#1c64d6"/><path transform="translate(160.0 352) scale(0.3 -0.3)" d="M22 0V10L43 17Q63 24 69.0 35.5Q75 47 75 68V591Q75 611 69.5 622.5Q64 634 45 641L22 650V660H308Q426 660 489.0 615.5Q552 571 552 492Q552 448 519.0 404.0Q486 360 415 336L554 60Q563 43 574.5 32.5Q586 22 605 14L618 9V0H439L291 315H223V68Q223 49 229.0 37.0Q235 25 254 19L278 10V0ZM223 335H271Q343 335 375.0 373.5Q407 412 407 488Q407 565 377.0 602.5Q347 640 276 640H223Z" fill="#e3121b" stroke="#ffffff" stroke-width="73" stroke-linejoin="round" paint-order="stroke"/></svg></div>
+      <div>
+        <p class="kicker">About</p>
+        <h2>Who is Mr R?</h2>
+        <p>I'm Noel Robert. I teach Physical Sciences to Grades 10 to 12, and I write the textbooks my classes use. Everything on this site started as something my own learners needed.</p>
+        <p>It is here for any learner who wants to get better at science, and for any teacher who can use it.</p>
+        <p class="sig">Mr R</p>
+      </div>
+    </div>
+    <ul class="wont">
+      <li><b>No predicted marks</b><span>The site tells you what you did on your own. It never tells you what mark you will get.</span></li>
+      <li><b>Not tied to one school</b><span>It was made for my classes and it is open to yours.</span></li>
+      <li><b>No sign-in, no adverts</b><span>Open a topic and start.</span></li>
+    </ul>
   </div>
-  </section>
+</section>
 
-  <footer>Made by Mr N. Robert. Free for every learner, at any school. No sign-in needed. Your progress is saved only in this browser.</footer>
-</main>
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Noel Robert · mrrscience.co.za</span>
+    <span>Free for every learner, at any school.</span>
+  </div>
+</footer>
+
 <script>
 (function () {
-  var btns = document.querySelectorAll('.grades button'), secs = document.querySelectorAll('section[data-grade]');
+  var btns = document.querySelectorAll('.gradepick button');
+  var lists = document.querySelectorAll('.mods');
   function show(g) {
     btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.g === g)); });
-    secs.forEach(function (s) {
-      var gr = s.dataset.grade;
-      s.hidden = !(g === 'all' || gr === g || (g === '11' && gr === '12'));
-      var empty = s.querySelector('.empty'); if (empty) s.hidden = s.hidden || g === 'all';
-    });
-    try { localStorage.setItem('ls-grade', g); } catch (e) {}
+    lists.forEach(function (l) { l.hidden = l.dataset.grade !== g; });
+    try { localStorage.setItem('mrr-grade', g); } catch (e) {}
   }
   btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.g); }); });
-  var start = 'all'; try { start = localStorage.getItem('ls-grade') || 'all'; } catch (e) {}
+  var start = '10';
+  try { var s = localStorage.getItem('mrr-grade'); if (s === '10' || s === '11' || s === '12') start = s; } catch (e) {}
   show(start);
 })();
 </script>
