@@ -130,7 +130,7 @@
     document.title = p.title + ' · Circuits Studio';
     var spec = clone(p.spec);
     if (ideal) spec.parts.forEach(function (q) { if (q.kind === 'battery') q.r = 0; });
-    var view = params.view === 'potential' || params.view === 'height' ? 'potential' : 'circuit';
+    var view = 'circuit'; /* plain circuits only (Noel, 16 Nov): old ?view=potential|height links open the plain circuit */
     var real = false, showPower = false;
     var res = S.solve(spec, { real: real }), shown = res, ghosts = {};
     /* fixed scales at load (D2, §4.10): glow reference per bulb, the largest current, the largest emf */
@@ -151,7 +151,6 @@
       h('p', { text: p.intro }),
       (window.Clips ? window.Clips.slot('lab-meters') : null), (window.Clips ? window.Clips.slot('lab-change') : null),
       p.note ? h('p', { class: 'small muted', text: p.note }) : null,
-      params.view === 'height' ? h('div', { class: 'note small', text: 'The height view is coming soon. The potential view below shades every wire by its potential: darker is higher.' }) : null,
       p.tasks ? h('div', { class: 'note' }, [h('b', { text: 'Predict first, then check' }), h('ol', {}, p.tasks.map(function (t) { return h('li', { text: t }); }))]) : null
     ]);
     canvas.appendChild(cap);
@@ -271,18 +270,12 @@
         } }));
         ctrls.appendChild(h('details', { class: 'grp' }, [h('summary', { text: 'Change the battery 🔒' }), h('div', { class: 'row', style: 'margin-top:8px' }, kids)]));
       });
-      ctrls.appendChild(h('h3', { text: 'View' }));
-      var vs = h('div', { class: 'seg grp', role: 'group', 'aria-label': 'View' }, [['circuit', 'Circuit'], ['potential', 'Potential']].map(function (v) {
-        return h('button', { 'aria-pressed': String(view === v[0]), text: v[1], onclick: function () { view = v[0]; box = null; controls(); draw(res); } });
-      }));
-      ctrls.appendChild(vs);
       var extra = h('div', { class: 'row grp' }, [
         h('button', { class: 'btn ghost small' + (showPower ? ' on' : ''), 'aria-pressed': String(showPower), text: 'Show bulb power', onclick: function () { showPower = !showPower; box = null; controls(); draw(res); } }),
         grade === 12 ? h('button', { class: 'btn ghost small' + (real ? ' on' : ''), 'aria-pressed': String(real), text: real ? 'Real meters: on' : 'Real meters: off', onclick: function () { real = !real; change(function () {}, real ? 'Real meters on.' : 'Ideal meters.'); } }) : null,
         h('button', { class: 'btn ghost small', text: 'Reset', onclick: function () { route(); } })
       ]);
       ctrls.appendChild(extra);
-      if (view === 'potential') ctrls.appendChild(h('p', { class: 'small muted', text: 'Every wire is shaded by its potential: darker is higher, 0 V at the battery’s negative terminal. A voltmeter reads the difference between the levels at its two ends.' }));
     }
     function toggle(id) {
       var q = spec.parts.find(function (x) { return x.id === id; });

@@ -8,8 +8,8 @@ window.STUDIO = window.STUDIO || {}; window.STUDIO.links =
   {
    "code": "m10-1",
    "place": "10.1",
-   "route": "#lab/A?view=height&r=0&gmin=11",
-   "opens": "the height view of the potential model, probe voltmeter, ideal battery"
+   "route": "#lab/A?r=0&gmin=11",
+   "opens": "preset A on an ideal battery: probe any two points with a voltmeter"
   },
   {
    "code": "m10-2",
@@ -50,8 +50,8 @@ window.STUDIO = window.STUDIO || {}; window.STUDIO.links =
   {
    "code": "m11-1",
    "place": "11.1",
-   "route": "#lab/B2?view=potential&gmin=11",
-   "opens": "a network preset in the potential view"
+   "route": "#lab/B2?gmin=11",
+   "opens": "a network preset: probe it with a voltmeter"
   },
   {
    "code": "m11-2",

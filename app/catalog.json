@@ -201,7 +201,7 @@
        "watch": [],
        "train": [
         {
-         "title": "The potential map lab",
+         "title": "Probe a circuit with meters",
          "href": "../circuits/#lab/A10?r=0&g=10",
          "kind": "lab"
         },
@@ -601,7 +601,7 @@
        ],
        "train": [
         {
-         "title": "The potential map lab",
+         "title": "Probe a circuit with meters",
          "href": "../circuits/#lab/A?r=0&g=11",
          "kind": "lab"
         },
@@ -800,8 +800,8 @@
        ],
        "train": [
         {
-         "title": "A network: see the potential in every wire",
-         "href": "../circuits/#lab/B2?view=potential&g=11",
+         "title": "A network: read every meter",
+         "href": "../circuits/#lab/B2?g=11",
          "kind": "lab"
         },
         {
@@ -1035,7 +1035,7 @@
        ],
        "train": [
         {
-         "title": "The potential map lab",
+         "title": "Probe a circuit with meters",
          "href": "../circuits/#lab/A?r=0&g=12",
          "kind": "lab"
         },
@@ -1234,8 +1234,8 @@
        ],
        "train": [
         {
-         "title": "A network: see the potential in every wire",
-         "href": "../circuits/#lab/B2?view=potential&g=12",
+         "title": "A network: read every meter",
+         "href": "../circuits/#lab/B2?g=12",
          "kind": "lab"
         },
         {

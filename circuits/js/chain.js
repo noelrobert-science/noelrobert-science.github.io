@@ -84,7 +84,7 @@
           : { t: 'So there are no lost volts (Ir = 0): the voltmeter across the battery reads the emf. ' + cap(Vt) + ' rises ' + ft(b.term, a.term, 'V') + '.', hl: [Vt], code: 'O2' };
       },
       O3: function (id, where) {
-        return { t: 'No current flows anywhere, so there is no pd across any resistor (V = IR with I = 0). The two ends of the voltmeter across ' + where + ' are at the potentials of the two terminals, so it reads the emf. Its reading ' + dirOf(b.read[id], a.read[id]).replace('increases', 'rises').replace('decreases', 'falls') + ', ' + ft(b.read[id], a.read[id], 'V') + '.', hl: [id], code: 'O3' };
+        return { t: 'No current flows anywhere, so there is no pd across any resistor (V = IR with I = 0). So the voltmeter across ' + where + ' reads the pd across the battery’s terminals: the emf. Its reading ' + dirOf(b.read[id], a.read[id]).replace('increases', 'rises').replace('decreases', 'falls') + ', ' + ft(b.read[id], a.read[id], 'V') + '.', hl: [id], code: 'O3' };
       },
       O4: function (id, Y) {
         return { t: 'No current flows in the branch with the open switch, so the resistors in that branch have no pd (V = IR with I = 0). So the voltmeter across the switch reads the pd across the whole branch: ' + n(a.read[id], 'V') + ', the same as the pd across ' + Y + ', which is in parallel with it.', hl: [id], code: 'O4' };

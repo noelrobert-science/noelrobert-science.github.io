@@ -73,7 +73,7 @@
       rows: function () { return [{ opts: ['0,00 V', '10,50 V', '12,00 V'], v: '12,00 V', vm: 'V1 reads 12,00 V, the emf.', lines: [L('ZERO', null, 'No current flows, so there are no lost volts.')] }]; } },
     { id: 'E3-Vs', ev: 'E3', grades: [10, 11, 12], src: 'studio', srcNote: 'the slip in 19N-7.1.3 and 25N-8.1.7',
       stem: function () { return 'Switch S1 is opened. A voltmeter is connected across S1. What will it read? Explain your answer.'; },
-      rows: function (g) { return [{ opts: ['0,00 V', '6,00 V', '12,00 V'], v: '12,00 V', vm: 'It reads 12,00 V.', lines: [L('NOPD', null, g10(g, 'No current flows, so there is no pd across any resistor: the ends of the voltmeter are at the potentials of the battery’s terminals.', 'No current flows, so there is no pd across any resistor (or r): the ends of the voltmeter are at the potentials of the battery’s terminals.'))] }]; } },
+      rows: function (g) { return [{ opts: ['0,00 V', '6,00 V', '12,00 V'], v: '12,00 V', vm: 'It reads 12,00 V.', lines: [L('NOPD', null, g10(g, 'No current flows, so there is no pd across any resistor: the voltmeter reads the pd across the battery’s terminals.', 'No current flows, so there is no pd across any resistor (or r): the voltmeter reads the emf of the battery.'))] }]; } },
     { id: 'E3b-V1', ev: 'E3b', grades: [11, 12], src: 'inferred', srcNote: 'IEB NSC Nov 2019 Paper 1 memo, Q7.1.4',
       stem: function () { return 'Switch S1 is closed again. ' + stem('V1'); },
       rows: function () { return [{ opts: IDV, v: 'DECREASE', vm: 'V1 decreases.', lines: [L('I', '+', 'A current now flows: the current increases from zero.'), L('LV', null, 'So there are lost volts: Vload = emf − Ir is less than the emf.')] }]; } },
@@ -441,7 +441,7 @@
         : { q: 'V2 rose from 4,50 V to 6,00 V although the current fell. Which two facts explain it? Pick two.', two: true,
         o: [['V1 rose, because the current fell and so the lost volts fell.', 1], ['V3 fell, and V2 = V1 − V3.', 1], ['The change reached the rheostat before the bulb.', 0], ['The emf increased.', 0]] },
       main: g === 10 ? { q: 'A1 fell from 1,50 A to 0,00 A and the voltmeter across S1 rose from 0,00 V to 12,00 V. Why does that voltmeter now read the emf?',
-        o: [['No current flows, so no resistor has a pd, and the voltmeter’s ends sit at the potentials of the terminals.', 1], ['The open switch stores the voltage.', 0], ['The current through the voltmeter is now 12 A.', 0]] }
+        o: [['No current flows, so no resistor has a pd, and the voltmeter reads the pd across the battery’s terminals.', 1], ['The open switch stores the voltage.', 0], ['The current through the voltmeter is now 12 A.', 0]] }
         : { q: 'V1 rose from 10,50 V to 12,00 V. What happened to the current, and why does that raise V1?',
         o: [['The current fell to zero, so there are no lost volts and V1 equals the emf.', 1], ['The current rose, so V1 rose.', 0], ['The emf increased when the switch opened.', 0]] },
       branch: g === 10 ? { q: 'A1 rose from 1,20 A to 1,50 A and V3 fell from 7,20 V to 6,00 V. Was a branch added or removed? Pick the two links.', two: true,
