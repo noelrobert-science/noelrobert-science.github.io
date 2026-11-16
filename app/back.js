@@ -12,7 +12,8 @@
   } catch (e) { return; }
   if (!to || to.charAt(0) !== '/' || to.indexOf('//') === 0) return;
   document.documentElement.classList.add('from-app');
-  var STEP = { learn: 'Learn it', try: 'Try it', practise: 'Practise it', test: 'Test myself' };
+  // The app's three steps. The older four-step keys still map, so a page opened from either one works.
+  var STEP = { watch: 'Watch', train: 'Train', check: 'Check', learn: 'Watch', try: 'See it happen', practise: 'Train', test: 'Check' };
   var FONT = 'font:600 15px/1.2 Lexend,system-ui,sans-serif';
 
   function top() {
@@ -50,7 +51,7 @@
     goal: function (msg) {
       var s = document.getElementById('mrr-done-say'), bar = document.getElementById('mrr-done');
       if (!s || !bar) return;
-      s.textContent = msg || 'That will do for now. Next: Test myself.'; s.style.color = '#0f7a3d'; s.style.fontWeight = '700';
+      s.textContent = msg || 'That will do for now. Next: Check.'; s.style.color = '#0f7a3d'; s.style.fontWeight = '700';
       bar.querySelector('button').style.boxShadow = '0 0 0 4px #bfe8cc';
     }
   };
