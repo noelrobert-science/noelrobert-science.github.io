@@ -39,7 +39,7 @@
     s = String(s).trim().replace(/^R\s*/i, '').replace(/[\s   ]/g, '').replace(/[−–]/g, '-');
     s = s.replace(/(Ω|ohms?|[a-zA-Z·⁻¹²/%]+)$/i, '');
     if ((s.match(/,/g) || []).length === 1 && s.indexOf('.') < 0) s = s.replace(',', '.');
-    if (!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s)) return NaN;
+    if (!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(s)) return NaN;
     return parseFloat(s);
   }
   function fmt(x) {
@@ -49,12 +49,12 @@
     return (x < 0 ? '−' : '') + p.join(',');
   }
   function judge(v, spec) {
-    var a = spec.a, tol = Math.max(0.006, Math.abs(a) * 0.004);
+    var a = spec.a, tol = spec.exact ? 0.0045 : Math.max(0.006, Math.abs(a) * 0.004);
     if (Math.abs(v - a) <= tol) return { ok: true };
     var tr = (spec.traps || []).filter(function (t) { return Math.abs(v - t[0]) <= Math.max(0.006, Math.abs(t[0]) * 0.01); })[0];
     if (tr) return { ok: false, msg: tr[1] };
     if (a !== 0 && Math.abs(v + a) <= tol) return { ok: false, msg: 'Check the sign.' };
-    if (a !== 0 && Math.abs(v - a) <= Math.abs(a) * 0.03) return { ok: false, msg: 'Close. Check your rounding: keep the unrounded value in the calculator and give 2 decimal places.' };
+    if (!spec.exact && a !== 0 && Math.abs(v - a) <= Math.abs(a) * 0.03) return { ok: false, msg: 'Close. Check your rounding: keep the unrounded value in the calculator and give 2 decimal places.' };
     return { ok: false, msg: spec.hint || 'Not yet. Check each line of your working.' };
   }
 
