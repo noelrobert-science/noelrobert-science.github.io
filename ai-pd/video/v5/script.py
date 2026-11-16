@@ -1,0 +1,71 @@
+"""v5 narration script (script v2, approved for build 5 Nov 2026). One entry per phrase, so visuals can cue on the exact phrase.
+(scene, cue, text, pause_after_seconds)"""
+S = [
+ (1, 'honest', "Be honest.", 0.35),
+ (1, 'how', "How do your pupils use AI?", 0.5),
+ (1, 'search', "For most, it's a search box:", 0.15),
+ (1, 'copy', "type the question, copy the answer.", 0.5),
+ (1, 'anthropic', "When Anthropic looked at university students' chats,", 0.1),
+ (1, 'half', "almost half asked straight for an answer, or finished work.", 0.0),
+
+ (2, 'matter', "Does that matter?", 0.45),
+ (2, 'tested', "Researchers tested it with nearly a thousand high-school maths pupils in Türkiye.", 0.4),
+ (2, 'practice', "While they practised with an open chatbot, their scores jumped by 48 percent.", 0.5),
+ (2, 'taken', "Then the AI was taken away for the exam.", 0.45),
+ (2, 'lower', "They scored 17 percent lower than pupils who never had AI.", 0.6),
+ (2, 'soared', "Practice soared.", 0.3),
+ (2, 'sank', "Learning sank.", 0.7),
+ (2, 'tutor', "But a tutor version, which gave hints instead of answers, did no harm.", 0.0),
+
+ (3, 'why', "Why does it go wrong?", 0.3),
+ (3, 'four', "Four traps.", 0.45),
+ (3, 'up', "It makes things up:", 0.15),
+ (3, 'court', "a South African court could trace only two of the nine cases a legal team had cited, probably invented by AI.", 0.5),
+ (3, 'agrees', "It agrees with you:", 0.15),
+ (3, 'twelve', "say, I think the answer is 12, right? and many chatbots will agree, even when 12 is wrong.", 0.5),
+ (3, 'unfair', "It can be unfair, because it learnt from human writing, bias included.", 0.4),
+ (3, 'date', "And it can be out of date.", 0.0),
+
+ (4, 'brain', "So keep your brain doing the work.", 0.35),
+ (4, 'five', "Five power-ups, all backed by research:", 0.25),
+ (4, 'p1', "test yourself,", 0.12), (4, 'p2', "space it out,", 0.12), (4, 'p3', "mix it up,", 0.12), (4, 'p4', "explain it,", 0.12), (4, 'p5', "make it yourself.", 0.45),
+ (4, 'quiz', "AI can power every one, if you ask it to quiz you, not tell you.", 0.0),
+
+ (5, 'routine', "Both booklets teach one routine.", 0.35),
+ (5, 'r1', "Attempt it first.", 0.2), (5, 'r2', "Name where you're stuck.", 0.2), (5, 'r3', "Ask for one hint.", 0.2), (5, 'r4', "Check the reply.", 0.2),
+ (5, 'r5', "Then close the AI, and solve a fresh question alone.", 0.5),
+ (5, 'ladder', "Need help? Climb the hint ladder only as high as you need.", 0.3),
+ (5, 'last', "The full answer is the last resort.", 0.0),
+
+ (6, 'pro', "Prompt like a pro.", 0.3),
+ (6, 'words', "Google found the best prompts average about 21 words;", 0.15),
+ (6, 'nine', "most people type fewer than nine.", 0.4),
+ (6, 's1', "Say who you are,", 0.1), (6, 's2', "the topic,", 0.1), (6, 's3', "what you tried,", 0.1), (6, 's4', "the help you want,", 0.1),
+ (6, 's5', "and the rules: Don't give me the answer.", 0.0),
+
+ (7, 'check', "Then check it.", 0.25),
+ (7, 'c1', "Does it match your book?", 0.15), (7, 'c2', "Does it make sense?", 0.2),
+ (7, 'itself', "Never use AI to check itself.", 0.5),
+ (7, 'private', "Keep your private details private.", 0.25),
+ (7, 'friend', "AI is not a friend.", 0.3),
+ (7, 'fake', "And never fake a real person:", 0.2),
+ (7, 'deepfake', "deepfake abuse is abuse.", 0.0),
+
+ (8, 'moved', "The world has already moved.", 0.3),
+ (8, 'uct', "U C T has stopped using AI-detection scores.", 0.3),
+ (8, 'aloud', "Students must explain their work out loud,", 0.1),
+ (8, 'declare', "and declare their AI use.", 0.45),
+ (8, 'build', "What should they build?", 0.25),
+ (8, 'b1', "Deep knowledge,", 0.1), (8, 'b2', "thinking out loud,", 0.1), (8, 'b3', "and AI fluency.", 0.35),
+ (8, 'expertise', "Expertise is what makes AI useful.", 0.0),
+
+ (9, 'wrote', "So I wrote two booklets, built on this research, with AI as my co-pilot.", 0.4),
+ (9, 'junior', "For Grades 7 to 9: Brain On, AI On.", 0.25),
+ (9, 'jtag', "AI is a power tool. Your brain is the power.", 0.45),
+ (9, 'senior', "For Grades 10 to 12: Co-Pilot, Not Autopilot.", 0.25),
+ (9, 'stag', "You fly the plane. AI helps you navigate.", 0.45),
+ (9, 'ready', "They're ready to try.", 0.6),
+ (9, 'measure', "Because the measure that counts is what you can do when the AI is switched off.", 0.0),
+]
+CAPTION = {'uct': "UCT has stopped using AI-detection scores.", 'twelve': "Say “I think the answer is 12, right?” and many chatbots will agree, even when 12 is wrong.",
+           's5': "and the rules: “Don’t give me the answer.”"}

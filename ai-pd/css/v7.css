@@ -1,0 +1,125 @@
+/* v0.7: one deck, six parts. Loaded after v6.css. */
+
+/* Part openers: no minutes, no lanes */
+.opener .op-num { font-size: 220px; }
+.opener .op-name { font-size: 96px; max-width: 1600px; }
+.opener .op-line { font-size: 42px; }
+.opener .minimap { bottom: 90px; }
+.opener .mm .mlab { font-size: 22px; }
+
+/* Links that look like hub cards but jump to a slide */
+.hublink-a { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 8px; background: var(--stage-2); border: 2px solid var(--line); border-radius: 18px; padding: 18px 20px; min-height: 240px; box-sizing: border-box; }
+.hublink-a:hover, .hublink-a:focus-visible { border-color: var(--red); background: #1d2028; }
+.hublink-a .hl-t { font: 800 38px/1.1 var(--font-display); color: var(--text); }
+.hublink-a .hl-d { font-size: 28px; line-height: 1.3; color: var(--dim); }
+.hublink-a .hl-u { margin-top: auto; font: 600 24px var(--font-body); color: #fff; background: var(--red); padding: 6px 16px; border-radius: 20px; width: max-content; }
+
+/* The "imagine" rows, read-alone */
+.im-rows .im-row .im-built small { display: block; font: 500 24px var(--font-mono); color: #ffd166; margin-top: 4px; }
+
+/* The foundation card without a date */
+#s-foundation .fd-card .when { color: var(--red-text); }
+
+/* Title byline without a school */
+#s-title .byline { margin-top: 56px; }
+
+/* Plain-words slide: the message with no pictures */
+.lx-only { margin-top: 120px; font-size: 40px; max-width: 1300px; text-align: center; line-height: 1.4; }
+
+/* Checking slide: four counts and one line */
+#s-bigbuilds .stats { grid-template-columns: repeat(4, 1fr); }
+#s-bigbuilds .stat2 .n { font-size: 96px; }
+#s-bigbuilds .stat2 .l { font-size: 30px; }
+#s-bigbuilds .tagline { margin-top: 36px; }
+
+/* Keep the bottom-left and top-right corners clear: the part map owns the top right */
+.gtag { bottom: 64px !important; }
+.ia-tag { top: auto !important; bottom: 40px !important; right: 120px !important; }
+#s-ailit .ia-tag { display: none; }
+.copy-mark { z-index: 1; }
+
+/* The routine slide: the chat sits beside the five steps, nothing else */
+.routine { grid-template-columns: 1fr 820px; align-items: start; }
+.r-right .chat { margin-top: 10px; }
+.r-right .msg { font-size: 32px; }
+.routine .r5 li { padding: 14px 24px; font-size: 34px; }
+.routine .r-measure { margin-top: 18px; font-size: 34px; }
+#s-ailit .headline.zh { font-size: 52px; white-space: nowrap; }
+#s-explode .src { bottom: 60px; font-size: 28px; right: 120px; line-height: 1.3; }
+#s-onehub .hubgrid { grid-template-columns: repeat(4, 1fr); }
+.opener .mm .mlab { white-space: normal; line-height: 1.2; }
+.opener .mm .mtag { top: 84px; }
+.opener .minimap { bottom: 120px; }
+
+/* The first job: three cards, the output picture readable */
+.job3 { display: grid; grid-template-columns: 420px 420px 1fr; gap: 28px; height: 660px; }
+.job3 .jc { background: var(--stage-2); border: 2px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.job3 .jc.hot { border-color: var(--red); }
+.job3 .jn { font: 900 52px var(--font-display); color: var(--red-text); line-height: 1; }
+.job3 .jt { font-size: 34px; line-height: 1.25; }
+.job3 .jc img { width: 100%; flex: 1; min-height: 0; object-fit: contain; object-position: top; border-radius: 8px; background: #fff; }
+.job3 .prompt { font: 400 32px/1.45 var(--font-body); background: #2b5aa8; color: #fff; padding: 22px 24px; border-radius: 24px 24px 24px 6px; }
+
+/* What the check changed */
+.check2 .lead { max-width: 1640px; }
+.chlist { list-style: none; margin: 0; padding: 0; counter-reset: ch; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 44px; }
+.chlist li { counter-increment: ch; position: relative; padding-left: 76px; font-size: 34px; line-height: 1.3; }
+.chlist li::before { content: counter(ch); position: absolute; left: 0; top: -4px; width: 54px; height: 54px; border-radius: 50%;
+  background: var(--stage-3); color: var(--red-text); font: 900 32px/54px var(--font-display); text-align: center; }
+.chlist li b { font-weight: 600; }
+.chlist li em { font-style: normal; color: var(--red-text); }
+.chlist li code { font-family: var(--font-mono); font-size: 30px; color: #9fe3ff; }
+.check2 .tagline { margin-top: 36px; }
+
+/* Four tools: the labels sit on one line each */
+#s-system .sysc .t small { letter-spacing: 0; font-size: 28px; white-space: nowrap; }
+#s-system .sysimg { height: 200px; }
+#s-system .sysc .d { font-size: 30px; }
+#s-system .tagline { margin-top: 24px; font-size: 42px; }
+
+/* The film's five versions */
+#s-expert .lead { font-size: 34px; margin-bottom: 22px; max-width: 1680px; }
+#s-expert .xcalls { font-size: 32px; }
+#s-expert .xshot figcaption { font-size: 26px; letter-spacing: .04em; }
+
+/* Muscle memory */
+.mm4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.mm4 .mc { background: var(--stage-2); border: 2px solid var(--line); border-left: 10px solid var(--red); border-radius: 18px; padding: 26px 28px; min-height: 290px; }
+.mm4 .mc.hot { border-color: var(--red); border-left-width: 10px; }
+.mm4 .mc b { display: block; font: 800 40px/1.12 var(--font-display); margin-bottom: 14px; }
+.mm4 .mc span { font-size: 31px; line-height: 1.35; color: var(--dim); }
+#s-muscle .lead { max-width: 1680px; }
+#s-muscle .srcline { right: 120px; left: 120px; bottom: 26px; font-size: 24px; line-height: 1.35; text-align: right; }
+#s-muscle .srcline i { font-style: italic; }
+
+/* One address, three doors */
+.front2 { display: grid; grid-template-columns: 1fr 600px; gap: 56px; align-items: start; height: 100%; }
+.front2 .shot { width: 100%; border-radius: 14px; box-shadow: 0 30px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06); }
+.doors3 { display: flex; flex-direction: column; gap: 18px; }
+.dr { background: var(--stage-2); border-left: 8px solid var(--red); border-radius: 14px; padding: 20px 26px; }
+.dr b { display: block; font: 800 40px/1.1 var(--font-display); margin-bottom: 6px; }
+.dr span { font-size: 32px; line-height: 1.3; color: var(--dim); }
+.dr.last { border-left-color: #6fd08c; }
+.dr.last b { font-size: 31px; }
+
+/* A pupil's route */
+.route3 { display: grid; grid-template-columns: 420px 1fr; gap: 70px; align-items: start; height: 100%; }
+.phone-shot { width: 400px; border-radius: 18px; box-shadow: 0 30px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08); }
+.rsteps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 24px; }
+.rsteps li { display: grid; grid-template-columns: 86px 1fr; gap: 26px; align-items: start; background: var(--stage-2); border-radius: 18px; padding: 24px 30px; }
+.rsteps li.last { border: 2px solid var(--red); }
+.rsteps .rn { font: 900 60px/1 var(--font-display); color: var(--red-text); text-align: center; }
+.rsteps b { display: block; font: 800 46px/1.1 var(--font-display); margin-bottom: 8px; }
+.rsteps .rw { display: block; font-size: 34px; line-height: 1.3; color: var(--text); }
+.rsteps .rx { display: block; margin-top: 8px; font-size: 30px; line-height: 1.3; color: var(--dim); }
+
+/* Back to paper */
+.paper4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.paper4 .pc { background: var(--stage-2); border: 2px solid var(--line); border-radius: 18px; padding: 26px; min-height: 330px; }
+.paper4 .pc.hot { border-color: var(--red); }
+.paper4 .pn { display: inline-block; font: 600 26px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--red-text); margin-bottom: 14px; }
+.paper4 .pc b { display: block; font: 800 42px/1.12 var(--font-display); margin-bottom: 12px; }
+.paper4 .pc span:last-child { font-size: 30px; line-height: 1.35; color: var(--dim); }
+
+/* The six-question contents page */
+#s-qmap .qmap a .qg { font-size: 28px; }

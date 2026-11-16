@@ -1,0 +1,189 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>AI literacy Â· v5 narrated renderer (For moderation)</title>
+<style>html, body { margin: 0; background: #000; } canvas { display: block; width: 1920px; height: 1080px; }</style>
+</head>
+<body>
+<canvas id="out" width="1920" height="1080"></canvas>
+<script src="../v4/lib/mp4-muxer.js"></script>
+<script src="../v4/music.js"></script>
+<script src="manifest.js"></script>
+<script>
+/* AI literacy v5: narrated by an AI voice (Azure en-ZA Leah), music C under it, booklet pages with synced zooms and marks. */
+const W = 1920, H = 1080, FPS = 30, SUB = 6, SHUTTER = 0.5;
+const INK = '#0d0e11', PAPER = '#efece4', RED = '#e3121b', GREY = '#8b9099';
+const M = 120, GUT = 24, CW = (W - 2 * M - 11 * GUT) / 12;
+const col = (i) => M + i * (CW + GUT);
+
+/* ---------- easing ---------- */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  expoOut: (x) => (x >= 1 ? 1 : 1 - Math.pow(2, -10 * x)),
+  expoIn: (x) => (x <= 0 ? 0 : Math.pow(2, 10 * x - 10)),
+  expoInOut: (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2),
+  quartOut: (x) => 1 - Math.pow(1 - x, 4),
+  quartInOut: (x) => (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2),
+};
+function rng(seed) { let s = seed >>> 0 || 1; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+/* ---------- type ---------- */
+const F = {
+  g: (w, s) => `${w} ${s}px SG`,
+  serif: (s) => `italic 400 ${s}px NR`,
+  serifUp: (s) => `500 ${s}px NR`,
+  mono: (s) => `500 ${s}px JB`,
+};
+function setType(ctx, font, size, track) { ctx.font = font; ctx.letterSpacing = (track === undefined ? -0.03 * size : track) + 'px'; }
+/* A line that rises into a mask on the way in and lifts out of it on the way out. */
+function T(ctx, o) {
+  const { s, x, y, size, font, color, tin, tout = 1e9, din = 0.75, dout = 0.5, align = 'left', track } = o;
+  const t = o.t;
+  if (t < tin || t > tout + dout) return 0;
+  setType(ctx, font, size, track);
+  ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+  const w = ctx.measureText(s).width;
+  const pIn = E.expoOut(prog(t, tin, tin + din)), pOut = E.expoIn(prog(t, tout, tout + dout));
+  const dy = (1 - pIn) * size * 1.15 - pOut * size * 1.15;
+  const x0 = align === 'left' ? x : align === 'right' ? x - w : x - w / 2;
+  ctx.save(); ctx.beginPath(); ctx.rect(x0 - 40, y - size * 1.02, w + 80, size * 1.32); ctx.clip();
+  ctx.fillStyle = color; ctx.fillText(s, x, y + dy); ctx.restore();
+  return w;
+}
+/* Typewriter: characters appear one by one with a caret. */
+function typed(ctx, s, x, y, size, font, color, t, t0, cps = 26, caret = true, track) {
+  if (t < t0) return 0;
+  const n = Math.min(s.length, Math.floor((t - t0) * cps));
+  setType(ctx, font, size, track); ctx.textAlign = 'left'; ctx.fillStyle = color;
+  const part = s.slice(0, n); ctx.fillText(part, x, y);
+  const w = ctx.measureText(part).width;
+  if (caret && (n < s.length || Math.floor(t * 2.4) % 2 === 0)) { ctx.fillStyle = RED; ctx.fillRect(x + w + 6, y - size * 0.78, Math.max(3, size * 0.06), size * 0.92); }
+  return w;
+}
+function hair(ctx, x1, y, x2, color, p, lw = 2) { if (p <= 0) return; ctx.fillStyle = color; ctx.fillRect(x1, y - lw / 2, (x2 - x1) * p, lw); }
+
+
+const COVERS = {};
+</script>
+<script src="scenes.js"></script>
+<script>
+/* ---------- film grain ---------- */
+const grain = document.createElement('canvas'); grain.width = 512; grain.height = 512;
+{ const g = grain.getContext('2d'), d = g.createImageData(512, 512), R = rng(3); for (let i = 0; i < d.data.length; i += 4) { const v = 128 + (R() - 0.5) * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; } g.putImageData(d, 0, 0); }
+
+/* ---------- frame = motion-blurred average of sub-frames ---------- */
+const sceneC = document.createElement('canvas'); sceneC.width = W; sceneC.height = H;
+const accC = document.createElement('canvas'); accC.width = W; accC.height = H;
+
+function frame(f, outCtx, sub = SUB) {
+  const sc = sceneC.getContext('2d'), ac = accC.getContext('2d');
+  for (let k = 0; k < sub; k++) {
+    const t = f / FPS + (k / sub) * SHUTTER / FPS;
+    sc.setTransform(1, 0, 0, 1, 0, 0); sc.globalAlpha = 1;
+    scene(sc, t);
+    ac.globalAlpha = 1 / (k + 1); ac.drawImage(sceneC, 0, 0);
+  }
+  ac.globalAlpha = 1;
+  const R = rng(f + 101); ac.globalCompositeOperation = 'overlay'; ac.globalAlpha = 0.04;
+  const ox = Math.floor(R() * 512), oy = Math.floor(R() * 512);
+  for (let x = -ox; x < W; x += 512) for (let y = -oy; y < H; y += 512) ac.drawImage(grain, x, y);
+  ac.globalCompositeOperation = 'source-over'; ac.globalAlpha = 1;
+  if (outCtx) outCtx.drawImage(accC, 0, 0);
+  return accC;
+}
+
+/* ---------- sound: Leah over music C, which dips under her voice ---------- */
+const SR = 48000;
+let NARR_BUF = null;
+async function renderAudio(opts = {}) {
+  const ac = new OfflineAudioContext(2, Math.round(SR * DUR), SR);
+  const master = ac.createGain(); const comp = ac.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 2.5; comp.attack.value = 0.01; comp.release.value = 0.25;
+  master.connect(comp); comp.connect(ac.destination);
+  const noise = ac.createBuffer(1, SR * 2, SR); { const d = noise.getChannelData(0), R = rng(5); for (let i = 0; i < d.length; i++) d[i] = R() * 2 - 1; }
+  const MUSIC_LVL = opts.musicLvl || 1.0, DUCK = opts.duck || 0.28;   // 0.28 = -11 dB under the voice
+  const bus = ac.createGain(); bus.gain.value = MUSIC_LVL; bus.connect(master);
+  const segs = []; NARR.cues.forEach((c) => { const l = segs[segs.length - 1]; if (l && c.a - l[1] < 1.1) l[1] = c.b; else segs.push([c.a, c.b]); });
+  bus.gain.setValueAtTime(MUSIC_LVL, 0);
+  for (const [a, b] of segs) {
+    bus.gain.setValueAtTime(MUSIC_LVL, Math.max(0, a - 0.35)); bus.gain.linearRampToValueAtTime(MUSIC_LVL * DUCK, a - 0.05);
+    bus.gain.setValueAtTime(MUSIC_LVL * DUCK, b + 0.15); bus.gain.linearRampToValueAtTime(MUSIC_LVL, b + 0.75);
+  }
+  bus.gain.setValueAtTime(MUSIC_LVL, DUR - 3.2); bus.gain.linearRampToValueAtTime(0, DUR - 0.2);
+  MUSIC.C(ac, bus, { DUR, END: DUR - 0.3, CH: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => sceneA(k)).concat([ENDCARD]) }, noise);
+  { const tt = ENDCARD, o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(70, tt); o.frequency.exponentialRampToValueAtTime(41, tt + 0.4);
+    g.gain.setValueAtTime(0, tt); g.gain.linearRampToValueAtTime(0.35, tt + 0.01); g.gain.exponentialRampToValueAtTime(0.001, tt + 1.6); o.connect(g); g.connect(master); o.start(tt); o.stop(tt + 1.7); }
+  if (!NARR_BUF) { const ab = await (await fetch('narration.wav')).arrayBuffer(); NARR_BUF = await new OfflineAudioContext(1, SR, SR).decodeAudioData(ab); }
+  const ns = ac.createBufferSource(); ns.buffer = NARR_BUF; const ng = ac.createGain(); ng.gain.value = opts.voiceLvl || 1.0;
+  const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 80;
+  ns.connect(hp); hp.connect(ng); ng.connect(master); ns.start(0);
+  master.gain.setValueAtTime(0, 0); master.gain.linearRampToValueAtTime(1, 0.05);
+  let buf = await ac.startRendering();
+  let fixed = 0; for (let c = 0; c < 2; c++) { const d = buf.getChannelData(c); for (let i = 1; i < d.length - 1; i++) { const m = (d[i - 1] + d[i + 1]) / 2; if (Math.abs(d[i] - m) > 0.25 && Math.abs(d[i - 1] - d[i + 1]) < 0.03) { d[i] = m; fixed++; } } }
+  const kac = new OfflineAudioContext(2, buf.length, SR), src = kac.createBufferSource(); src.buffer = buf;
+  const sh = kac.createBiquadFilter(); sh.type = 'highshelf'; sh.frequency.value = 1681; sh.gain.value = 4;
+  const hp2 = kac.createBiquadFilter(); hp2.type = 'highpass'; hp2.frequency.value = 38; hp2.Q.value = 0.5;
+  src.connect(sh); sh.connect(hp2); hp2.connect(kac.destination); src.start();
+  const kb = await kac.startRendering();
+  const L = kb.getChannelData(0), Rr = kb.getChannelData(1), blk = 0.4 * SR, hop = 0.1 * SR, ms = [];
+  for (let s = 0; s + blk <= L.length; s += hop) { let a = 0; for (let i = s; i < s + blk; i++) a += L[i] * L[i] + Rr[i] * Rr[i]; ms.push(a / blk); }
+  const lufs = (m) => -0.691 + 10 * Math.log10(m);
+  const g1 = ms.filter((m) => lufs(m) > -70); const rel = lufs(g1.reduce((a, b) => a + b, 0) / g1.length) - 10;
+  const g2 = g1.filter((m) => lufs(m) > rel); const integrated = lufs(g2.reduce((a, b) => a + b, 0) / g2.length);
+  const gain = Math.pow(10, ((opts.lufs || -16) - integrated) / 20), ceil = Math.pow(10, -1 / 20);
+  const outB = [buf.getChannelData(0), buf.getChannelData(1)].map((ch) => { const o = new Float32Array(ch.length); for (let i = 0; i < ch.length; i++) { let v = ch[i] * gain; const a = Math.abs(v); if (a > ceil * 0.8) v = Math.sign(v) * (ceil * 0.8 + (ceil * 0.2) * Math.tanh((a - ceil * 0.8) / (ceil * 0.2))); o[i] = v; } return o; });
+  let peak = 0; outB.forEach((c) => c.forEach((v) => { if (Math.abs(v) > peak) peak = Math.abs(v); }));
+  window.__audioInfo = { integratedBefore: integrated.toFixed(2), gainDb: (20 * Math.log10(gain)).toFixed(2), peakDb: (20 * Math.log10(peak)).toFixed(2), spikes: fixed };
+  return outB;
+}
+
+/* ---------- export: H.264 + AAC in MP4, all in the browser ---------- */
+async function exportFilm(opts = {}) {
+  const fps = opts.fps || FPS, bitrate = opts.bitrate || 1_400_000, frames = Math.round((opts.dur || DUR) * fps), f0 = Math.round((opts.start || 0) * fps);
+  const chans = await renderAudio(opts);
+  const muxer = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), fastStart: 'in-memory',
+    video: { codec: 'avc', width: W, height: H, frameRate: fps }, audio: { codec: 'aac', numberOfChannels: 2, sampleRate: SR } });
+  const ve = new VideoEncoder({ output: (c, m) => muxer.addVideoChunk(c, m), error: (e) => { window.__err = String(e); } });
+  ve.configure({ codec: 'avc1.640032', width: W, height: H, bitrate, framerate: fps, bitrateMode: opts.mode || 'variable', avc: { format: 'avc' } });
+  const ae = new AudioEncoder({ output: (c, m) => muxer.addAudioChunk(c, m), error: (e) => { window.__err = String(e); } });
+  ae.configure({ codec: 'mp4a.40.2', sampleRate: SR, numberOfChannels: 2, bitrate: 160000 });
+  const N = chans[0].length;
+  for (let s = 0; s < N; s += 4800) {
+    const n = Math.min(4800, N - s), data = new Float32Array(n * 2); data.set(chans[0].subarray(s, s + n), 0); data.set(chans[1].subarray(s, s + n), n);
+    ae.encode(new AudioData({ format: 'f32-planar', sampleRate: SR, numberOfFrames: n, numberOfChannels: 2, timestamp: Math.round(s / SR * 1e6), data }));
+  }
+  const out = document.getElementById('out').getContext('2d');
+  for (let f = 0; f < frames; f++) {
+    const c = frame((f0 + f) * (FPS / fps), null, opts.sub || SUB);
+    if (f % 30 === 0) out.drawImage(c, 0, 0);
+    const vf = new VideoFrame(c, { timestamp: Math.round(f / fps * 1e6), duration: Math.round(1e6 / fps) });
+    ve.encode(vf, { keyFrame: f % (fps * 2) === 0 }); vf.close();
+    while (ve.encodeQueueSize > 6) await new Promise((r) => setTimeout(r, 2));
+    window.__progress = f / frames;
+  }
+  await ve.flush(); await ae.flush(); muxer.finalize();
+  window.__mp4 = new Uint8Array(muxer.target.buffer);
+  return window.__mp4.length;
+}
+window.getChunk = (i, size) => { let s = ''; const a = window.__mp4.subarray(i, i + size); for (let k = 0; k < a.length; k += 0x8000) s += String.fromCharCode.apply(null, a.subarray(k, k + 0x8000)); return btoa(s); };
+
+
+/* ---------- boot ---------- */
+async function boot() {
+  const fonts = [['SG', '../v4/lib/space-grotesk-latin-400-normal.woff2', '400', 'normal'], ['SG', '../v4/lib/space-grotesk-latin-500-normal.woff2', '500', 'normal'], ['SG', '../v4/lib/space-grotesk-latin-700-normal.woff2', '700', 'normal'],
+    ['NR', '../v4/lib/newsreader-latin-400-italic.woff2', '400', 'italic'], ['NR', '../v4/lib/newsreader-latin-500-normal.woff2', '500', 'normal'], ['JB', '../v4/lib/jetbrains-mono-latin-500-normal.woff2', '500', 'normal']];
+  await Promise.all(fonts.map(([fam, url, weight, style]) => new FontFace(fam, `url(${url})`, { weight, style }).load().then((f) => document.fonts.add(f))));
+  const load = (src) => new Promise((r) => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
+  for (const k of Object.keys(PG)) IMG[PG[k].f] = await load(`../v4/snips/${PG[k].f}.jpg`);
+  COVERS.junior = await load('../../demo/booklets/junior-cover.jpg'); COVERS.senior = await load('../../demo/booklets/senior-cover.jpg'); COVERS.qr = await load('../../img/qr-starter-kit.svg');
+  const q = new URLSearchParams(location.search); if (q.get('caps') === '0') CAPS_ON = false;
+  window.__ready = true;
+  if (q.has('t')) frame(Math.round(+q.get('t') * FPS), document.getElementById('out').getContext('2d'));
+}
+window.still = (t) => frame(Math.round(t * FPS), document.getElementById('out').getContext('2d'));
+boot();
+</script>
+</body>
+</html>
