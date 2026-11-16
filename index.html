@@ -168,7 +168,7 @@ p { margin: 0 }
 .card:hover .more { text-decoration: underline }
 
 /* Books: small covers drawn in the style of the real ones, with no school name */
-.shelf { display: grid; gap: 22px 18px; margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(min(46%, 170px), 1fr)) }
+.shelf { display: grid; gap: 22px 18px; margin-top: 32px; grid-template-columns: repeat(auto-fill, minmax(min(46%, 170px), 1fr)) }
 .book { display: grid; gap: 10px; align-content: start; min-width: 0 }
 .cover { aspect-ratio: 210 / 297; max-width: 100%; background: var(--cover); color: var(--cover-ink); border: 1px solid var(--cover-edge); border-radius: 4px;
   box-shadow: var(--shadow); padding: 11% 10% 9%; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 5%; overflow: hidden }
@@ -382,26 +382,6 @@ footer .wrap { padding-block: 26px 40px; display: flex; flex-wrap: wrap; gap: 8p
           <span class="cf">Coursebook · Workbook</span>
         </div>
         <div><b>Grade 11 and 12 Physical Sciences</b><small>A module at a time. Circuits and electrochemistry are done.</small><span class="status">Being written</span></div>
-      </div>
-      <div class="book">
-        <div class="cover" style="--bc:#c2410c">
-          <span class="ck">Physics</span>
-          <span class="ct">Physics</span>
-          <span class="cg">Grade 9</span>
-          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M6 46h88"/><rect x="18" y="26" width="26" height="20"/><path d="M44 36h26M62 29l8 7-8 7"/></svg></span>
-          <span class="cf">Coursebook · Workbook</span>
-        </div>
-        <div><b>Grade 9 Physics</b><small>Coursebook and worked answer book. Edition 1.</small><span class="status">View copy on request</span></div>
-      </div>
-      <div class="book">
-        <div class="cover" style="--bc:#2b8a3e">
-          <span class="ck">Physics</span>
-          <span class="ct">Physics Field Guide</span>
-          <span class="cg">Grade 7</span>
-          <span class="art"><svg viewBox="0 0 100 60" aria-hidden="true"><circle cx="50" cy="30" r="12"/><path d="M50 6v6M50 48v6M26 30h-6M80 30h-6M33 13l4 4M63 43l4 4M67 13l-4 4M37 43l-4 4"/></svg></span>
-          <span class="cf">Edition 2</span>
-        </div>
-        <div><b>Grade 7 Physics Field Guide</b><small>Edition 2.</small><span class="status">View copy on request</span></div>
       </div>
       <div class="book">
         <div class="cover" style="--bc:#5f3dc4">
