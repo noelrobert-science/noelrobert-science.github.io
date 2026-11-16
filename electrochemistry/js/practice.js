@@ -568,7 +568,7 @@
       let q = null;
       for (let k = 0; k < 60; k++) { const c = makeQ(pick(pool()).id); if (!stars || c.stars === stars) { q = c; break; } }
       if (!q) { area.appendChild(notice('', `There are no ${'★'.repeat(stars)} questions in this choice yet. Choose another level, or All levels.`)); return; }
-      renderQ(area, q, { mode: 'supported', onNext: next, onAnswer: ok => { n++; if (ok) { right++; streak++; if (right === 5 && window.MrrApp) window.MrrApp.goal('5 right. That will do for now. Next: Test myself.'); } else streak = 0; score.textContent = `This session: ${right} of ${n} right${streak > 2 ? ' · ' + streak + ' in a row' : ''}.`; } });
+      renderQ(area, q, { mode: 'supported', onNext: next, onAnswer: ok => { n++; if (ok) { right++; streak++; if (right === 5 && window.MrrApp) window.MrrApp.goal('5 right. That will do for now. Next: Check.'); } else streak = 0; score.textContent = `This session: ${right} of ${n} right${streak > 2 ? ' · ' + streak + ' in a row' : ''}.`; } });
       area.appendChild(h('div', { class: 'row', style: { marginTop: '12px' } }, h('button', { class: 'btn', type: 'button', onclick: () => { next(); const b = area.querySelector('.choice, input'); if (b) b.focus({ preventScroll: true }); } }, 'Next question')));
     }
     links(); next();

@@ -31,7 +31,7 @@
   function done() {
     if (!step || !STEP[step.k] || document.getElementById('mrr-done')) return;
     if (document.body.classList.contains('lesson')) return;
-    if (/^\/app\/gym\//.test(location.pathname) && step.k === 'test') return;
+    if (/^\/app\/gym\//.test(location.pathname) && (step.k === 'test' || step.k === 'check')) return;
     var bar = document.createElement('div'); bar.id = 'mrr-done';
     bar.setAttribute('style', 'position:fixed;left:0;right:0;bottom:0;z-index:2147483000;display:flex;align-items:center;justify-content:space-between;gap:10px;' +
       'background:#fff;border-top:1px solid #d9dee8;box-shadow:0 -4px 16px rgba(20,27,40,.08);padding:10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));' + FONT);

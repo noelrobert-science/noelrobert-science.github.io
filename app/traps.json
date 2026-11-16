@@ -1,0 +1,5 @@
+{
+ "note": "Exam trap cards shown in the app, one per topic, just before Check. Built by build_app_traps.py from the trap list. Only cards cleared by the science check are here.",
+ "updated": "2026-11-15",
+ "cards": {}
+}

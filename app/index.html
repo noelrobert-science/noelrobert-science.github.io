@@ -166,6 +166,53 @@ footer { max-width: 1000px; margin: 0 auto; padding-block: 0 30px; color: var(--
 .preview { background: #fff4d6; color: #5b4300; font-size: 13px; text-align: center; padding: 6px 12px }
 .preview a { color: inherit; font-weight: 600 }
 
+/* Walk me through it (one step per screen) */
+.walk { display: grid; gap: 10px; border-radius: var(--r); padding: 16px; background: var(--hero); color: #fff; box-shadow: var(--shadow) }
+.walk p { margin: 0; color: rgba(255,255,255,.82); font-size: 14.5px }
+.walk .kicker { color: #ffb3b6; margin: 0 }
+.walk .btn { justify-self: start }
+.flow { display: grid; gap: 18px; max-width: 640px; width: 100% }
+.fbar { display: grid; gap: 6px }
+.fbar .track { height: 8px; border-radius: 99px; background: var(--soft2); overflow: hidden }
+.fbar .track i { display: block; height: 100%; background: var(--accent); border-radius: 99px }
+.fbar small { color: var(--muted); font-size: 13.5px; font-weight: 600 }
+.fcard { border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: grid; gap: 14px; background: var(--paper); box-shadow: var(--shadow) }
+.fcard h1 { font-size: clamp(28px, 7vw, 36px) }
+.fcard p { margin: 0 }
+.fcard .say { font-size: 17px }
+.fcard .what { color: var(--muted); font-size: 14.5px }
+.fcard ol, .fcard ul { margin: 0; padding-left: 22px; display: grid; gap: 6px }
+.facts { display: grid; gap: 10px }
+.facts .btn { justify-content: center; width: 100% }
+.btn.quiet { background: var(--soft); color: var(--ink) }
+.paper { background: #fffbea; color: #3d3100; border-radius: 14px; padding: 14px 16px; font-size: 15px; display: grid; gap: 6px }
+.paper b { font-weight: 600 }
+:root[data-theme="dark"] .paper { background: #2b2610; color: #f3e7b3 }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper { background: #2b2610; color: #f3e7b3 } }
+body.focus nav.tabs, body.focus #grades { display: none }
+body.focus main { padding-bottom: 48px !important }
+body.focus .pop { bottom: auto; top: calc(76px + env(safe-area-inset-top, 0px)) }
+/* Exam trap card */
+.trapcard { display: grid; gap: 4px; text-decoration: none; color: var(--ink); border: 2px dashed color-mix(in srgb, var(--accent) 55%, var(--line)); border-radius: var(--r); padding: 14px 16px; background: color-mix(in srgb, var(--accent-soft) 45%, var(--paper)) }
+.trapcard .kicker { margin: 0 }
+.trapcard b { font: 800 18px/1.2 var(--font-display) }
+.trapcard small { color: var(--muted); font-size: 13px }
+.trapcard .go { color: var(--accent-ink); font-weight: 600; font-size: 14.5px; margin-top: 4px }
+.trapcard.done { border-style: solid; border-color: var(--ok); background: color-mix(in srgb, var(--ok-soft) 55%, var(--paper)) }
+.q { font-size: 17px; font-weight: 400; background: var(--soft); border-radius: 14px; padding: 14px 16px }
+.src { color: var(--muted); font-size: 13px }
+.wrong { border-left: 5px solid var(--accent); background: var(--accent-soft); border-radius: 0 12px 12px 0; padding: 12px 14px; display: grid; gap: 4px }
+.right { border-left: 5px solid var(--ok); background: var(--ok-soft); border-radius: 0 12px 12px 0; padding: 12px 14px; display: grid; gap: 4px }
+.lbl { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted) }
+.wrong .lbl { color: var(--accent-ink) }
+.right .lbl { color: var(--ok) }
+blockquote.exam { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--soft); display: grid; gap: 4px }
+blockquote.exam p { font-style: italic }
+.clipbox { display: grid; gap: 8px }
+.clipbtn { display: inline-flex; align-items: center; gap: 8px; justify-self: start; border: 1.5px solid var(--line); background: var(--paper); border-radius: 99px; min-height: 42px; padding: 0 16px 0 10px; cursor: pointer; font-weight: 600; font-size: 14.5px }
+.clipbtn i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 11px }
+.clipbtn small { color: var(--muted); font-weight: 400 }
+
 /* Small celebration */
 .pop { position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%); background: var(--ok); color: #fff; font-weight: 600; border-radius: 99px; padding: 10px 18px; box-shadow: var(--shadow); z-index: 9; pointer-events: none }
 @media (prefers-reduced-motion: no-preference) {
@@ -282,7 +329,7 @@ function homeView() {
       const s = nextStep(cand.t), it = s && cand.t[s.k][0];
       next = `<section class="next" aria-label="Next up"><div><p class="kicker">Next up</p><h2>${esc(cand.t.title)}</h2></div>
         <p>${s ? `Step ${STEPS.indexOf(s) + 1} of 3: <b>${s.name}</b>. ${esc(s.what)}` : 'All steps done.'}</p>
-        <div class="acts">${it ? `<a class="btn" href="${esc(it.href)}" data-topic="${esc(cand.t._k)}" data-step="${s.k}">${ICON[s.k].replace('<svg', '<svg width="18" height="18"')} ${s.verb}</a>` : ''}<a class="btn ghost" href="#t/${esc(cand.t._k)}">See the topic</a></div></section>`;
+        <div class="acts">${canWalk(cand.m) && walkAt(cand.t._k) ? `<a class="btn" href="#go/${esc(cand.t._k)}/${walkAt(cand.t._k)}">Carry on, step by step</a>` : it ? `<a class="btn" href="${esc(it.href)}" data-topic="${esc(cand.t._k)}" data-step="${s.k}">${ICON[s.k].replace('<svg', '<svg width="18" height="18"')} ${s.verb}</a>` : ''}<a class="btn ghost" href="#t/${esc(cand.t._k)}">See the topic</a></div></section>`;
     } else {
       next = `<section class="next" aria-label="Start here"><div><p class="kicker">Start here</p><h2>Pick a topic you're doing in class.</h2></div>
         <p>Each topic has three steps. Do them in order, and tick each one off when you're done.</p></section>`;
@@ -307,12 +354,14 @@ function topicView(id) {
     const tick = list.length ? `<button class="tick" type="button" data-tick="${esc(t._k)}" data-k="${s.k}" aria-pressed="${v === 2}"><i>✓</i>${v === 2 ? 'Done' : "I've done this"}</button>` : '';
     return `<section class="step ${cls}"><div class="step-h"><span class="n">${v === 2 ? '✓' : i + 1}</span><div><h2>${s.name}</h2><small>${esc(s.what)}</small></div></div>
       ${list.length ? `<div class="items">${list.map((it, j) => itemLink(it, t._k, s.k, j === 0 && cls === 'is-next')).join('')}</div>` : `<p class="none">Nothing here yet for this topic. ${s.k === 'check' ? 'Use the Check tab for a mixed check.' : ''}</p>`}${tick ? `<div class="step-f">${tick}</div>` : ''}</section>`;
-  }).join('');
+  }).map((h, i) => STEPS[i].k === 'check' ? trapLink(t) + h : h).join('');
+  const at = walkAt(t._k);
+  const walk = canWalk(m) ? `<div class="walk"><p class="kicker">${at ? 'You stopped part way' : 'New to this topic?'}</p><p>${at ? 'Carry on where you left off, one screen at a time.' : 'Go through it one screen at a time: Watch, See it happen, Train, On paper, then Check.'}</p><a class="btn" href="#go/${esc(t._k)}${at ? '/' + at : '/0'}">${at ? 'Carry on ›' : 'Walk me through it ›'}</a></div>` : '';
   const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Come back to the Check in a few days to see if it stuck.</p></div></div>` : '';
   const w = where(t, m);
   return `<a class="back" href="#home">${ICON.back}Home</a>
     <div class="thero" style="--mc:${esc(m.colour || '#334155')}"><div><p class="kicker">${esc(m.num)} · ${esc(m.title)}</p><h1>${esc(t.title)}</h1><p class="lede">${esc(m.book)}${t.section && /^\d/.test(t.section) ? ` · Section ${esc(t.section)}` : ''}${t.page ? ` · p. ${esc(t.page)}` : ''}</p><div class="meta" style="margin-top:12px;justify-content:flex-start">${dots(t)}</div></div>${cover(t, m)}</div>
-    ${win}<div class="steps">${steps}</div>`;
+    ${win}${walk}<div class="steps">${steps}</div>`;
 }
 
 const TABS = {
@@ -341,12 +390,126 @@ function aboutView() {
   <p class="none">© Noel Robert. Past exam questions are used with acknowledgement to their examining body.</p>`;
 }
 
+// ---- Exam trap cards (app/traps.json: only cards the science check has cleared) ----
+let TRAPS = {};
+const trapOf = t => TRAPS[t._k] || null;
+const trapPhase = {};   // tid -> 0 question, 1 the trap, 2 twin, 3 twin answer (this visit only)
+function trapClip(card, t) {
+  const c = card.clip || (card.clip_from_topic && t.clips && (t.clips.check || t.clips.test)) || null;
+  return c && c.src ? `<div class="clipbox"><button class="clipbtn" type="button" data-clip="${esc(c.src)}"><i>▶</i>${esc(c.title)} <small>${esc(c.sec)} s</small></button></div>` : '';
+}
+function trapBody(t, inFlow) {
+  const c = trapOf(t), ph = trapPhase[t._k] || 0, tid = esc(t._k);
+  const head = `<p class="kicker">Exam trap</p><h1>${esc(c.title)}</h1>`;
+  const q = `<div class="q">${esc(c.question)}</div><p class="src">${esc(c.built_on)}</p>`;
+  if (ph === 0) return `${head}${q}
+    <div class="paper"><b>On paper first.</b><span>Write your full answer, with working, before you look.</span></div>
+    <div class="facts"><button class="btn" type="button" data-trap="${tid}" data-ph="1">I've written mine. Show me the trap</button></div>`;
+  const reveal = `<div class="wrong"><span class="lbl">The usual wrong answer</span><p>${esc(c.usual_wrong)}</p></div>
+    <p><b>What went wrong.</b> ${esc(c.what_went_wrong)}</p>
+    <div class="right"><span class="lbl">The memo</span><p>${esc(c.memo)}</p></div>
+    ${c.examiner ? `<blockquote class="exam"><span class="lbl">${esc(c.examiner.intro)}</span><p>“${esc(c.examiner.quote)}”</p><span class="src">${esc(c.examiner.source)}</span></blockquote>` : ''}
+    ${trapClip(c, t)}`;
+  if (ph === 1) return `${head}${q}${reveal}
+    <div class="facts"><button class="btn" type="button" data-trap="${tid}" data-ph="2">Now try the twin</button></div>`;
+  const twin = `<p class="kicker">The twin</p><div class="q">${esc(c.twin.question)}</div>`;
+  if (ph === 2) return `${twin}<div class="paper"><b>On paper first.</b><span>Same trap, new numbers. Don't fall in this time.</span></div>
+    <div class="facts"><button class="btn" type="button" data-trap="${tid}" data-ph="3">Show the answer</button></div>`;
+  return `${twin}<div class="right"><span class="lbl">Answer</span><p>${esc(c.twin.answer)}</p></div>
+    <p>Mark it yourself. Wrong? Read the trap again, then redo the twin on paper.</p>
+    <div class="facts"><button class="btn" type="button" data-trapdone="${tid}">${inFlow ? 'Done. Next ›' : 'Done. Back to my topic'}</button></div>`;
+}
+function trapView(id) {
+  const f = findTopic(id);
+  if (!f || !trapOf(f.t)) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">There's no exam trap for this topic yet.</p>`;
+  return `<a class="back" href="#t/${esc(f.t._k)}">${ICON.back}The topic page</a><div class="flow"><div class="fcard">${trapBody(f.t, false)}</div></div>`;
+}
+function trapLink(t) {
+  const c = trapOf(t); if (!c) return '';
+  const done = st(t._k, 'trap') === 2;
+  return `<a class="trapcard${done ? ' done' : ''}" href="#trap/${esc(t._k)}"><span class="kicker">${done ? 'Exam trap ✓' : 'Before you Check'}</span><b>Exam trap: ${esc(c.title)}</b><small>${esc(c.built_on)}</small><span class="go">${done ? 'See it again ›' : 'Spot the trap ›'}</span></a>`;
+}
+
+// ---- Walk me through it: one tool per screen, Next from the app (circuits modules first) ----
+const WALK_MODS = /^g1[0-2]-m1[01]$/;
+const canWalk = m => WALK_MODS.test(m.id);
+const NAME = { watch: 'Watch', try: 'See it happen', train: 'Train', paper: 'On paper', trap: 'Exam trap', check: 'Check' };
+const NORM = { learn: 'watch', practise: 'train', test: 'check' };
+const isHome = h => /\/(\?[^#]*)?$/.test(h);
+function walkOf(t) {
+  const F = [{ k: 'ready' }];
+  const w = (t.watch || [])[0]; F.push(w ? { k: 'watch', it: w } : { k: 'watch', book: true });
+  const lab = (t.train || []).find(it => it.kind === 'lab'); if (lab) F.push({ k: 'try', it: lab });
+  const pr = (t.train || []).find(it => it.kind !== 'lab' && it.kind !== 'explore' && !isHome(it.href)); if (pr) F.push({ k: 'train', it: pr });
+  F.push({ k: 'paper' });
+  if (trapOf(t)) F.push({ k: 'trap' });
+  const c = (t.check || [])[0]; if (c) F.push({ k: 'check', it: c });
+  F.push({ k: 'end' });
+  return F;
+}
+function walkAt(tid) { const g = store.get('walk', {}); return g[tid] || 0; }
+function bookRef(t, m) { return t.section && /^\d/.test(t.section) ? `section ${t.section}${t.page ? `, page ${t.page}` : ''}` : (m.book || 'your coursebook'); }
+function walkView(id, n) {
+  const f = findTopic(id);
+  if (!f) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">That topic isn't here any more.</p>`;
+  const { t, m, g } = f, tid = esc(t._k), F = walkOf(t);
+  if (g.id !== grade) { grade = g.id; store.set('grade', grade); }
+  n = Math.max(0, Math.min(F.length - 1, n || 0));
+  const s = F[n], real = F.filter(x => NAME[x.k]), i = real.indexOf(s);
+  store.set('last', t._k);
+  const w = store.get('walk', {}); if (s.k === 'end') delete w[t._k]; else w[t._k] = n; store.set('walk', w);
+  const bar = i >= 0 ? `<div class="fbar"><small>Step ${i + 1} of ${real.length} · ${NAME[s.k]}</small><span class="track"><i style="width:${Math.round((i + 1) / real.length * 100)}%"></i></span></div>` : '';
+  const nextBtn = (lbl, cls) => `<button class="btn ${cls == null ? 'quiet' : cls}" type="button" data-walk="${tid}" data-n="${n}" data-k="${s.k}"${/^I've/.test(lbl) ? ' data-done="1"' : ''}>${lbl}</button>`;
+  const open = (lbl) => `<a class="btn" href="${esc(s.it.href)}" data-topic="${tid}" data-step="${s.k}" data-walkn="${n}">${lbl}</a>`;
+  const what = it => `<p class="what">${esc(it.title)}${it.note ? ` · ${esc(it.note)}` : ''}</p>`;
+  let body = '';
+  if (s.k === 'ready') body = `<p class="kicker">${esc(t.title)}</p><h1>One step at a time</h1>
+    <p class="say">Each screen has one thing to do. Do it, then tap Next.</p>
+    <ol>${real.map(x => `<li>${NAME[x.k]}</li>`).join('')}</ol>
+    <div class="paper"><b>Before you start</b><span>Have your coursebook open at ${esc(bookRef(t, m))}, with paper, a pencil and a calculator. Write as you go.</span></div>
+    <div class="facts">${nextBtn('Start ›', '')}</div>`;
+  else if (s.k === 'watch' && s.book) body = `<h1>Watch</h1>
+    <p class="say">There's no lesson on screen for this topic yet. Your coursebook is the lesson.</p>
+    <div class="paper"><b>Read ${esc(bookRef(t, m))}.</b><span>Copy each worked example into your notes, line by line.</span></div>
+    <div class="facts">${nextBtn("I've read it. Next ›", '')}</div>`;
+  else if (s.k === 'watch') body = `<h1>Watch</h1>
+    <p class="say">A short lesson. It stops so you answer first. Copy each worked example onto paper as it builds.</p>${what(s.it)}
+    <div class="facts">${open('Start the lesson')}${nextBtn("I've done it. Next ›")}</div>`;
+  else if (s.k === 'try') body = `<h1>See it happen</h1>
+    <p class="say">One lab. Say what you think will happen first, then see if you were right.</p>${what(s.it)}
+    <div class="facts">${open('Open the lab')}${nextBtn("I've done it. Next ›")}</div>`;
+  else if (s.k === 'train') body = `<h1>Train</h1>
+    <p class="say">Fresh numbers every time. Work each one on paper, then type your answer. Help only opens after you try.</p>${what(s.it)}
+    <div class="facts">${open('Start training')}${nextBtn("I've done it. Next ›")}</div>`;
+  else if (s.k === 'paper') body = `<h1>Pen to paper</h1>
+    <p class="say">Put the screen down. In your own notes, from memory:</p>
+    <ol><li>Write the key words and what they mean.</li><li>Write the equations, with their units.</li><li>Redo one worked example, line by line.</li></ol>
+    <div class="paper"><b>Then check.</b><span>Open your coursebook at ${esc(bookRef(t, m))} and fix your notes in a different colour. That's muscle memory: your hand learns the method.</span></div>
+    <div class="facts">${nextBtn("I've written it. Next ›", '')}</div>`;
+  else if (s.k === 'trap') body = trapBody(t, true);
+  else if (s.k === 'check') body = `<h1>Check</h1>
+    <p class="say">A few questions with no help switched on. Work on paper first, then answer.</p>${what(s.it)}
+    <div class="facts">${open('Check now')}${nextBtn('Skip for now ›')}</div>`;
+  else {
+    const nx = allTopics(g).find((x, j, a) => j > a.findIndex(y => y.t._k === t._k) && !isDone(x.t));
+    body = `<p class="kicker">${esc(t.title)}</p><h1>${isDone(t) ? 'Topic done 🎉' : 'You got to the end'}</h1>
+      <p class="say">${isDone(t) ? 'Check it again in a few days to see if it stuck.' : 'Some steps are not ticked yet. You can do them from the topic page.'}</p>
+      <div class="facts">${nx ? `<a class="btn" href="#t/${esc(nx.t._k)}">Next: ${esc(nx.t.title)}</a>` : ''}<a class="btn quiet" href="#t/${tid}">Back to the topic</a></div>`;
+  }
+  const back = n > 0 && s.k !== 'end' ? `<a class="back" href="#go/${tid}/${n - 1}">${ICON.back}Back</a>` : `<a class="back" href="#t/${tid}">${ICON.back}The topic page</a>`;
+  return `${back}<div class="flow">${bar}<div class="fcard">${body}</div></div>`;
+}
+
 function render() {
   const route = location.hash.slice(1) || 'home';
-  const tabKey = route.startsWith('t/') ? 'home' : route;
+  const tabKey = /^(t|go|trap)\//.test(route) ? 'home' : route;
   document.querySelectorAll('[data-tab]').forEach(a => a.dataset.tab === tabKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
   $('#grades').innerHTML = '<span class="gl" aria-hidden="true">Gr</span>' + CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}" aria-label="${esc(g.label)}">${esc(g.id)}</button>`).join('');
-  $('#main').innerHTML = route.startsWith('t/') ? topicView(decodeURIComponent(route.slice(2))) : TABS[route] ? tabView(route) : route === 'about' ? aboutView() : homeView();
+  const gm = /^go\/(.+?)(?:\/(\d+))?$/.exec(route);
+  document.body.classList.toggle('focus', !!gm || route.startsWith('trap/'));
+  $('#main').innerHTML = gm ? walkView(decodeURIComponent(gm[1]), gm[2] != null ? +gm[2] : walkAt(decodeURIComponent(gm[1])))
+    : route.startsWith('trap/') ? trapView(decodeURIComponent(route.slice(5)))
+    : route.startsWith('t/') ? topicView(decodeURIComponent(route.slice(2))) : TABS[route] ? tabView(route) : route === 'about' ? aboutView() : homeView();
   if (route.startsWith('t/')) $('#grades').innerHTML = '<span class="gl" aria-hidden="true">Gr</span>' + CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}" aria-label="${esc(g.label)}">${esc(g.id)}</button>`).join('');
 }
 
@@ -370,13 +533,50 @@ document.addEventListener('click', e => {
     if (prog[tid][k] === 2) { const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${STEPS.find(s => s.k === k).name} done ✓`, done && !was); }
     return;
   }
+  const cb = e.target.closest('[data-clip]');
+  if (cb) {
+    const src = cb.dataset.clip, box = cb.parentNode;
+    const go = () => MrrVideo.mount(box, { src: src + '.mp4', vtt: src + '.vtt', poster: src + '.jpg' }).v.play().catch(() => {});
+    if (window.MrrVideo) go(); else { const sc = document.createElement('script'); sc.src = 'mrr-video.js'; sc.onload = go; document.head.appendChild(sc); }
+    return;
+  }
+  const tp = e.target.closest('[data-trap]');
+  if (tp) { trapPhase[tp.dataset.trap] = +tp.dataset.ph; render(); window.scrollTo(0, 0); return; }
+  const td = e.target.closest('[data-trapdone]');
+  if (td) {
+    const tid = td.dataset.trapdone; prog[tid] = prog[tid] || {}; prog[tid].trap = 2; store.set('progress', prog); delete trapPhase[tid];
+    const gm = /^#go\/(.+)\/(\d+)$/.exec(location.hash);
+    celebrate('Exam trap: done ✓'); location.hash = gm ? '#go/' + gm[1] + '/' + (+gm[2] + 1) : '#t/' + tid; return;
+  }
+  const wk = e.target.closest('[data-walk]');
+  if (wk) {
+    const tid = wk.dataset.walk, k = wk.dataset.k, n = +wk.dataset.n;
+    if (NAME[k] && wk.dataset.done) {
+      const f = findTopic(tid), was = isDone(f.t); prog[tid] = prog[tid] || {}; prog[tid][k] = 2; store.set('progress', prog);
+      const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${NAME[k]}: done ✓`, done && !was);
+    }
+    location.hash = '#go/' + tid + '/' + (n + 1); return;
+  }
   const it = e.target.closest('a[data-step]');
   if (it) {
-    const tid = it.dataset.topic, k = it.dataset.step;
-    prog[tid] = prog[tid] || {}; if (!prog[tid][k]) prog[tid][k] = 1; store.set('progress', prog); store.set('last', tid);
-    try { sessionStorage.setItem('mrr-return', location.pathname + '#t/' + tid); sessionStorage.setItem('mrr-return-title', findTopic(tid).t.title); } catch {}
+    const tid = it.dataset.topic, k = it.dataset.step, wn = it.dataset.walkn;
+    const pk = k === 'try' ? 'train' : k;   // the lab counts as starting Train
+    prog[tid] = prog[tid] || {}; if (!prog[tid][pk]) prog[tid][pk] = 1; store.set('progress', prog); store.set('last', tid);
+    const back = wn != null ? '#go/' + tid + '/' + wn : '#t/' + tid;
+    try { sessionStorage.setItem('mrr-return', location.pathname + back); sessionStorage.setItem('mrr-return-title', findTopic(tid).t.title); sessionStorage.setItem('mrr-step', JSON.stringify({ t: tid, k })); } catch {}
   }
 });
+// Coming back from a lesson or studio with "Done": tick that step, and in a walk-through move to the next screen.
+function doneFromStudio() {
+  let d = null; try { d = JSON.parse(sessionStorage.getItem('mrr-done') || 'null'); sessionStorage.removeItem('mrr-done'); } catch {}
+  const f = d && findTopic(d.t), k = d && (NORM[d.k] || d.k);
+  if (!f || !NAME[k]) return;
+  const was = isDone(f.t); prog[d.t] = prog[d.t] || {}; prog[d.t][k] = 2; store.set('progress', prog);
+  const gm = /^#go\/(.+)\/(\d+)$/.exec(location.hash);
+  if (gm && decodeURIComponent(gm[1]) === d.t) { const F = walkOf(f.t), n = +gm[2]; if (F[n] && F[n].k === k) location.replace('#go/' + gm[1] + '/' + (n + 1)); }
+  render();
+  const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${NAME[k]}: done ✓`, done && !was);
+}
 function setTheme(v) {
   if (v) document.documentElement.setAttribute('data-theme', v); else document.documentElement.removeAttribute('data-theme');
   const dark = v ? v === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -389,7 +589,8 @@ setTheme(store.get('theme', null));
 $('#theme').addEventListener('click', () => { const dark = document.documentElement.getAttribute('data-theme') ? document.documentElement.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; const v = dark ? 'light' : 'dark'; store.set('theme', v); setTheme(v); });
 try { sessionStorage.removeItem('mrr-return'); } catch {}
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
-fetch('catalog.json').then(r => r.json()).then(c => { CAT = c; keyTopics(); if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); })
+const trapsLoad = fetch('traps.json').then(r => r.ok ? r.json() : { cards: {} }).then(d => { TRAPS = d.cards || {}; }).catch(() => {});
+fetch('catalog.json').then(r => r.json()).then(c => trapsLoad.then(() => { CAT = c; keyTopics(); if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); doneFromStudio(); }))
   .catch(() => { $('#main').innerHTML = '<p class="note">The lesson list could not load. Check your connection, then reopen the app.</p>'; });
 </script>
 </body>

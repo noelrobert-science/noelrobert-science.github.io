@@ -255,3 +255,5 @@ html.from-app body > header.top, html.from-app body > footer.foot { display: non
 .clipplay video { width: 100%; border-radius: 10px; background: #000; display: block; }
 .clipplay .btn { margin-top: 6px; }
 .clipplan { font-size: 13px; padding: 6px 10px; border: 1px dashed #c62828; border-radius: 8px; color: #8e1c1c; background: #fff5f5; }
+/* From the app, one tool per screen: the chips that lead back into the studio's own menus step aside too (the app's Done bar takes the learner on). */
+html.from-app a.chip[href="#home"], html.from-app a.chip[href="#exp"], html.from-app a.chip[href="#explain"], html.from-app a.chip[href="#practise"], html.from-app a.chip[href="#check"] { display: none !important }
