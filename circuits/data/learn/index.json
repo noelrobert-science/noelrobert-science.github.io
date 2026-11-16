@@ -1,0 +1,102 @@
+[
+ {
+  "id": "current",
+  "mod": 10,
+  "sec": "10.1",
+  "title": "Potential difference and current",
+  "book": "Module 10, section 10.1",
+  "minutes": 12,
+  "stops": 6,
+  "screens": 10
+ },
+ {
+  "id": "ohm",
+  "mod": 10,
+  "sec": "10.2",
+  "title": "Ohm’s law; ohmic and non-ohmic conductors",
+  "book": "Module 10, section 10.2",
+  "minutes": 12,
+  "stops": 6,
+  "screens": 10
+ },
+ {
+  "id": "series-parallel",
+  "mod": 10,
+  "sec": "10.3",
+  "title": "Series and parallel resistors",
+  "book": "Module 10, section 10.3",
+  "minutes": 15,
+  "stops": 9,
+  "screens": 8
+ },
+ {
+  "id": "power",
+  "mod": 10,
+  "sec": "10.4",
+  "title": "Electrical power and energy",
+  "book": "Module 10, section 10.4",
+  "minutes": 14,
+  "stops": 8,
+  "screens": 9
+ },
+ {
+  "id": "kwh",
+  "mod": 10,
+  "sec": "10.5",
+  "title": "Paying for electricity: the kWh",
+  "book": "Module 10, section 10.5",
+  "minutes": 10,
+  "stops": 6,
+  "screens": 8
+ },
+ {
+  "id": "networks",
+  "mod": 11,
+  "sec": "11.1",
+  "title": "Series–parallel networks",
+  "book": "Module 11, section 11.1",
+  "minutes": 14,
+  "stops": 6,
+  "screens": 9
+ },
+ {
+  "id": "emf-r",
+  "mod": 11,
+  "sec": "11.2",
+  "title": "emf and internal resistance",
+  "book": "Module 11, section 11.2",
+  "minutes": 13,
+  "stops": 7,
+  "screens": 8
+ },
+ {
+  "id": "with-r",
+  "mod": 11,
+  "sec": "11.3",
+  "title": "Solving circuits with internal resistance",
+  "book": "Module 11, section 11.3",
+  "minutes": 14,
+  "stops": 8,
+  "screens": 8
+ },
+ {
+  "id": "graph-r",
+  "mod": 11,
+  "sec": "11.4",
+  "title": "emf and r from two readings or a graph",
+  "book": "Module 11, section 11.4",
+  "minutes": 14,
+  "stops": 8,
+  "screens": 8
+ },
+ {
+  "id": "explain",
+  "mod": 11,
+  "sec": "11.5",
+  "title": "Explaining a change: the cause chain",
+  "book": "Module 11, section 11.5",
+  "minutes": 13,
+  "stops": 8,
+  "screens": 8
+ }
+]
