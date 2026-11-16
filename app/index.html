@@ -430,8 +430,8 @@ function trapLink(t) {
   return `<a class="trapcard${done ? ' done' : ''}" href="#trap/${esc(t._k)}"><span class="kicker">${done ? 'Exam trap ✓' : 'Before you Check'}</span><b>Exam trap: ${esc(c.title)}</b><small>${esc(c.built_on)}</small><span class="go">${done ? 'See it again ›' : 'Spot the trap ›'}</span></a>`;
 }
 
-// ---- Walk me through it: one tool per screen, Next from the app (circuits modules first) ----
-const WALK_MODS = /^g1[0-2]-m1[01]$/;
+// ---- Walk me through it: one tool per screen, Next from the app (circuits and Gr 12 electrochemistry) ----
+const WALK_MODS = /^(g1[0-2]-m1[01]|g12-m2[7-9])$/;   // circuits (Gr 10-12) and Gr 12 electrochemistry
 const canWalk = m => WALK_MODS.test(m.id);
 const NAME = { watch: 'Watch', try: 'See it happen', train: 'Train', paper: 'On paper', trap: 'Exam trap', check: 'Check' };
 const NORM = { learn: 'watch', practise: 'train', test: 'check' };
