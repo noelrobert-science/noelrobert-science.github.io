@@ -1,6 +1,6 @@
 {
  "name": "Mr R Science",
- "updated": "2026-11-14",
+ "updated": "2026-11-16",
  "note": "One list of everything learners can use, by grade, module and topic. The app, the studio hub and school pages all read this file. Paths are relative to /app/.",
  "grades": [
   {
@@ -592,7 +592,13 @@
        "title": "Potential difference and current",
        "section": "10.1",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Potential difference and current (step through)",
+         "href": "../circuits/learn.html#current?g=11",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The potential map lab",
@@ -624,7 +630,13 @@
        "title": "Ohm's law; ohmic and non-ohmic conductors",
        "section": "10.2",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
+         "href": "../circuits/learn.html#ohm?g=11",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Ohm's law experiment",
@@ -656,7 +668,13 @@
        "title": "Series and parallel resistors",
        "section": "10.3",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Series and parallel resistors (step through)",
+         "href": "../circuits/learn.html#series-parallel?g=11",
+         "note": "About 15 minutes. 9 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Series and parallel rules",
@@ -698,7 +716,13 @@
        "title": "Electrical power and energy",
        "section": "10.4",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Electrical power and energy (step through)",
+         "href": "../circuits/learn.html#power?g=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Power and brightness",
@@ -725,7 +749,13 @@
        "title": "Paying for electricity: the kWh",
        "section": "10.5",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Paying for electricity: the kWh (step through)",
+         "href": "../circuits/learn.html#kwh?g=11",
+         "note": "About 10 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "kWh and cost",
@@ -761,7 +791,13 @@
        "title": "Series–parallel networks",
        "section": "11.1",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Series–parallel networks (step through)",
+         "href": "../circuits/learn.html#networks?g=11",
+         "note": "About 14 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "A network: see the potential in every wire",
@@ -788,7 +824,13 @@
        "title": "emf and internal resistance",
        "section": "11.2",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: emf and internal resistance (step through)",
+         "href": "../circuits/learn.html#emf-r?g=11",
+         "note": "About 13 minutes. 7 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The battery story: headlamps, then the starter motor",
@@ -820,7 +862,13 @@
        "title": "Solving circuits with internal resistance",
        "section": "11.3",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Solving circuits with internal resistance (step through)",
+         "href": "../circuits/learn.html#with-r?g=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Rheostat, bulb and resistor, with a real battery (r)",
@@ -857,7 +905,13 @@
        "title": "emf and r from two readings or a graph",
        "section": "11.4",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: emf and r from two readings or a graph (step through)",
+         "href": "../circuits/learn.html#graph-r?g=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The terminal pd graph",
@@ -894,7 +948,13 @@
        "title": "Explaining a change: the cause chain",
        "section": "11.5",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Explaining a change: the cause chain (step through)",
+         "href": "../circuits/learn.html#explain?g=11",
+         "note": "About 13 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Explain a change",
@@ -966,7 +1026,13 @@
        "title": "Potential difference and current",
        "section": "10.1",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Potential difference and current (step through)",
+         "href": "../circuits/learn.html#current?g=12",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The potential map lab",
@@ -998,7 +1064,13 @@
        "title": "Ohm's law; ohmic and non-ohmic conductors",
        "section": "10.2",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
+         "href": "../circuits/learn.html#ohm?g=12",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Ohm's law experiment",
@@ -1030,7 +1102,13 @@
        "title": "Series and parallel resistors",
        "section": "10.3",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Series and parallel resistors (step through)",
+         "href": "../circuits/learn.html#series-parallel?g=12",
+         "note": "About 15 minutes. 9 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Series and parallel rules",
@@ -1072,7 +1150,13 @@
        "title": "Electrical power and energy",
        "section": "10.4",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Electrical power and energy (step through)",
+         "href": "../circuits/learn.html#power?g=12",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Power and brightness",
@@ -1099,7 +1183,13 @@
        "title": "Paying for electricity: the kWh",
        "section": "10.5",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Paying for electricity: the kWh (step through)",
+         "href": "../circuits/learn.html#kwh?g=12",
+         "note": "About 10 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "kWh and cost",
@@ -1135,7 +1225,13 @@
        "title": "Series–parallel networks",
        "section": "11.1",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Series–parallel networks (step through)",
+         "href": "../circuits/learn.html#networks?g=12",
+         "note": "About 14 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "A network: see the potential in every wire",
@@ -1162,7 +1258,13 @@
        "title": "emf and internal resistance",
        "section": "11.2",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: emf and internal resistance (step through)",
+         "href": "../circuits/learn.html#emf-r?g=12",
+         "note": "About 13 minutes. 7 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The battery story: headlamps, then the starter motor",
@@ -1194,7 +1296,13 @@
        "title": "Solving circuits with internal resistance",
        "section": "11.3",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Solving circuits with internal resistance (step through)",
+         "href": "../circuits/learn.html#with-r?g=12",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Rheostat, bulb and resistor, with a real battery (r)",
@@ -1231,7 +1339,13 @@
        "title": "emf and r from two readings or a graph",
        "section": "11.4",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: emf and r from two readings or a graph (step through)",
+         "href": "../circuits/learn.html#graph-r?g=12",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "The terminal pd graph",
@@ -1278,7 +1392,13 @@
        "title": "Explaining a change: the cause chain",
        "section": "11.5",
        "page": null,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: Explaining a change: the cause chain (step through)",
+         "href": "../circuits/learn.html#explain?g=12",
+         "note": "About 13 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Explain a change",
