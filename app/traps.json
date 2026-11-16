@@ -1,5 +1,681 @@
 {
  "note": "Exam trap cards shown in the app, one per topic, just before Check. Built by build_app_traps.py from the trap list. Only cards cleared by the science check are here.",
  "updated": "2026-11-15",
- "cards": {}
+ "cards": {
+  "11/current": {
+   "key": "m10/current",
+   "title": "The missing word in a definition",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.1",
+   "question": "Define potential difference. (2)",
+   "usual_wrong": "Potential difference is the work done per unit charge.",
+   "what_went_wrong": "One word is missing: positive. The SAGS sentence is the only one that earns both marks.",
+   "memo": "Potential difference is the work done per unit positive charge.",
+   "twin": {
+    "question": "Define current. (2)",
+    "answer": "Current is the rate of flow of charge. (Not \"the flow of electrons\" and not \"charge per component\".)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Candidates must learn definitions as stated in the SAGs",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7"
+   }
+  },
+  "12/current": {
+   "key": "m10/current",
+   "title": "The missing word in a definition",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.1",
+   "question": "Define potential difference. (2)",
+   "usual_wrong": "Potential difference is the work done per unit charge.",
+   "what_went_wrong": "One word is missing: positive. The SAGS sentence is the only one that earns both marks.",
+   "memo": "Potential difference is the work done per unit positive charge.",
+   "twin": {
+    "question": "Define current. (2)",
+    "answer": "Current is the rate of flow of charge. (Not \"the flow of electrons\" and not \"charge per component\".)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Candidates must learn definitions as stated in the SAGs",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7"
+   }
+  },
+  "11/ohm": {
+   "key": "m10/ohm",
+   "title": "Ohm's law, back to front",
+   "built_on": "IEB Nov 2020, Paper 1, Question 7.2.2",
+   "question": "State Ohm's law. (2)",
+   "usual_wrong": "The potential difference across a conductor is directly proportional to the current through it.",
+   "what_went_wrong": "It is back to front. The current depends on the pd, so the current comes first. And it leaves out \"at constant temperature\".",
+   "memo": "The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.",
+   "twin": {
+    "question": "Fill in the gaps: \"The ______ through a conductor is directly proportional to the ______ across the conductor at constant ______.\" Then say which quantity depends on which.",
+    "answer": "current; potential difference; temperature. The current depends on the potential difference."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "In Ohm's law it should be stressed that current is directly proportional to potential difference and not vice versa. Current depends on potential difference.",
+    "source": "IEB Examiners' Report 2020, Paper 1, Question 7.2.2"
+   }
+  },
+  "12/ohm": {
+   "key": "m10/ohm",
+   "title": "Ohm's law, back to front",
+   "built_on": "IEB Nov 2020, Paper 1, Question 7.2.2",
+   "question": "State Ohm's law. (2)",
+   "usual_wrong": "The potential difference across a conductor is directly proportional to the current through it.",
+   "what_went_wrong": "It is back to front. The current depends on the pd, so the current comes first. And it leaves out \"at constant temperature\".",
+   "memo": "The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.",
+   "twin": {
+    "question": "Fill in the gaps: \"The ______ through a conductor is directly proportional to the ______ across the conductor at constant ______.\" Then say which quantity depends on which.",
+    "answer": "current; potential difference; temperature. The current depends on the potential difference."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "In Ohm's law it should be stressed that current is directly proportional to potential difference and not vice versa. Current depends on potential difference.",
+    "source": "IEB Examiners' Report 2020, Paper 1, Question 7.2.2"
+   }
+  },
+  "11/series-parallel": {
+   "key": "m10/series-parallel",
+   "title": "Forgetting to invert",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.5",
+   "question": "A 6 Ω resistor and a 12 Ω resistor are connected in parallel. Calculate the effective resistance of the resistors in parallel. (3)",
+   "usual_wrong": "1/RP = 1/6 + 1/12 = 0,25 Ω   (or: 1/RP = 1/6 + 1/12 = 4 Ω)",
+   "what_went_wrong": "1/6 + 1/12 is 1/RP, not RP. The first answer never inverts. The second gets the number right, but the line says 1/RP = 4 Ω, which is false, and the memo needs a true line.",
+   "memo": "1/RP = 1/R1 + 1/R2 = 1/6 + 1/12 = 0,25, so RP = 4,00 Ω. (Or in one line: RP = (1/6 + 1/12)⁻¹ = 4,00 Ω.) Check: 4 Ω is less than the smallest branch, 6 Ω.",
+   "twin": {
+    "question": "Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. Calculate the effective resistance. Write each line so that it is true.",
+    "answer": "1/RP = 1/4 + 1/6 + 1/12 = 0,5, so RP = 2,00 Ω. (Less than 4 Ω, the smallest branch.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Candidates must calculate resistance for resistors in parallel carefully and use correct mathematics.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.5"
+   }
+  },
+  "12/series-parallel": {
+   "key": "m10/series-parallel",
+   "title": "Forgetting to invert",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.5",
+   "question": "A 6 Ω resistor and a 12 Ω resistor are connected in parallel. Calculate the effective resistance of the resistors in parallel. (3)",
+   "usual_wrong": "1/RP = 1/6 + 1/12 = 0,25 Ω   (or: 1/RP = 1/6 + 1/12 = 4 Ω)",
+   "what_went_wrong": "1/6 + 1/12 is 1/RP, not RP. The first answer never inverts. The second gets the number right, but the line says 1/RP = 4 Ω, which is false, and the memo needs a true line.",
+   "memo": "1/RP = 1/R1 + 1/R2 = 1/6 + 1/12 = 0,25, so RP = 4,00 Ω. (Or in one line: RP = (1/6 + 1/12)⁻¹ = 4,00 Ω.) Check: 4 Ω is less than the smallest branch, 6 Ω.",
+   "twin": {
+    "question": "Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. Calculate the effective resistance. Write each line so that it is true.",
+    "answer": "1/RP = 1/4 + 1/6 + 1/12 = 0,5, so RP = 2,00 Ω. (Less than 4 Ω, the smallest branch.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Candidates must calculate resistance for resistors in parallel carefully and use correct mathematics.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.5"
+   }
+  },
+  "11/power": {
+   "key": "m10/power",
+   "title": "A rate of energy dissipation is a power",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.2.5 (here for a bulb, not the battery)",
+   "question": "A current of 1,6 A flows through a 7 Ω bulb. Calculate the rate of energy dissipation in the bulb. (3)",
+   "usual_wrong": "W = I²Rt ... \"I can't do it, there's no time given.\"   (or an answer in joules)",
+   "what_went_wrong": "\"Rate of energy dissipation\" means energy per second, which is power. No time is needed, and the unit is the watt.",
+   "memo": "P = I²R = (1,6)²(7) = 17,92 W",
+   "twin": {
+    "question": "A current of 0,5 A flows through a 20 Ω resistor. (a) Calculate the rate at which energy is dissipated in it. (b) Calculate the energy dissipated in 2 minutes.",
+    "answer": "(a) P = I²R = (0,5)²(20) = 5,00 W. (b) W = Pt = (5)(120) = 600,00 J. Rate means power, in W; \"in 2 minutes\" means energy, in J."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about the same mistake on IEB Nov 2021, Paper 1, Question 7.2.5:",
+    "quote": "The rate of energy dissipation was not recognised as power.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.2.5"
+   }
+  },
+  "12/power": {
+   "key": "m10/power",
+   "title": "A rate of energy dissipation is a power",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.2.5 (here for a bulb, not the battery)",
+   "question": "A current of 1,6 A flows through a 7 Ω bulb. Calculate the rate of energy dissipation in the bulb. (3)",
+   "usual_wrong": "W = I²Rt ... \"I can't do it, there's no time given.\"   (or an answer in joules)",
+   "what_went_wrong": "\"Rate of energy dissipation\" means energy per second, which is power. No time is needed, and the unit is the watt.",
+   "memo": "P = I²R = (1,6)²(7) = 17,92 W",
+   "twin": {
+    "question": "A current of 0,5 A flows through a 20 Ω resistor. (a) Calculate the rate at which energy is dissipated in it. (b) Calculate the energy dissipated in 2 minutes.",
+    "answer": "(a) P = I²R = (0,5)²(20) = 5,00 W. (b) W = Pt = (5)(120) = 600,00 J. Rate means power, in W; \"in 2 minutes\" means energy, in J."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about the same mistake on IEB Nov 2021, Paper 1, Question 7.2.5:",
+    "quote": "The rate of energy dissipation was not recognised as power.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.2.5"
+   }
+  },
+  "11/kwh": {
+   "key": "m10/kwh",
+   "title": "Watts and minutes in a cost",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.1.2",
+   "question": "A pump is rated 750 W. The cost of electricity is R1,20 per kilowatt hour. Calculate the cost of using the pump continuously for 20 minutes. (3)",
+   "usual_wrong": "Cost = 750 × 20 × R1,20 = R18 000",
+   "what_went_wrong": "The tariff is per kWh, so the power must be in kW and the time in hours. 750 W is 0,75 kW, and 20 minutes is 20/60 h.",
+   "memo": "Cost = (0,75 kW)(20/60 h)(R1,20 per kWh) = 0,25 kWh × R1,20 = R0,30",
+   "twin": {
+    "question": "A 2 000 W heater is used for 45 minutes. Electricity costs R2,60 per kWh. Calculate the cost.",
+    "answer": "Cost = (2 kW)(0,75 h)(R2,60 per kWh) = 1,5 kWh × R2,60 = R3,90"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Cost calculations should be easy marks, but errors were made with conversion from minutes to hours and candidates confused kWh, Wh and kW/h.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.1.2"
+   }
+  },
+  "12/kwh": {
+   "key": "m10/kwh",
+   "title": "Watts and minutes in a cost",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.1.2",
+   "question": "A pump is rated 750 W. The cost of electricity is R1,20 per kilowatt hour. Calculate the cost of using the pump continuously for 20 minutes. (3)",
+   "usual_wrong": "Cost = 750 × 20 × R1,20 = R18 000",
+   "what_went_wrong": "The tariff is per kWh, so the power must be in kW and the time in hours. 750 W is 0,75 kW, and 20 minutes is 20/60 h.",
+   "memo": "Cost = (0,75 kW)(20/60 h)(R1,20 per kWh) = 0,25 kWh × R1,20 = R0,30",
+   "twin": {
+    "question": "A 2 000 W heater is used for 45 minutes. Electricity costs R2,60 per kWh. Calculate the cost.",
+    "answer": "Cost = (2 kW)(0,75 h)(R2,60 per kWh) = 1,5 kWh × R2,60 = R3,90"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Cost calculations should be easy marks, but errors were made with conversion from minutes to hours and candidates confused kWh, Wh and kW/h.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.1.2"
+   }
+  },
+  "11/networks": {
+   "key": "m11/networks",
+   "title": "The ratio shortcut that flips",
+   "built_on": "IEB May 2025, Paper 1, Question 7.2 (the branch current)",
+   "question": "A branch of 10 Ω and 4 Ω in series (14 Ω) is in parallel with a 10 Ω resistor. The current into the pair is 1,32 A. Calculate the current in the 14 Ω branch. (3)",
+   "usual_wrong": "I = (14/24)(1,32) = 0,77 A",
+   "what_went_wrong": "The ratio is upside down: the smaller resistance takes the larger current. The safe route is the pd across the pair, then I = V/R for the branch.",
+   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A.)",
+   "twin": {
+    "question": "A 6 Ω and a 12 Ω resistor are in parallel, and the current into the pair is 3 A. Calculate the current in the 12 Ω resistor, by the pd route.",
+    "answer": "RP = 4,00 Ω. Vpair = (3)(4) = 12,00 V. I12Ω = 12/12 = 1,00 A. (The ratio slip gives 2 A.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about the same shortcut on IEB Nov 2017, Paper 1, Question 7.1:",
+    "quote": "Most candidates who attempted to answer the question using ratios based on the values of the resistors made errors.",
+    "source": "IEB Examiners' Report 2017, Paper 1, Question 7.1"
+   }
+  },
+  "12/networks": {
+   "key": "m11/networks",
+   "title": "The ratio shortcut that flips",
+   "built_on": "IEB May 2025, Paper 1, Question 7.2 (the branch current)",
+   "question": "A branch of 10 Ω and 4 Ω in series (14 Ω) is in parallel with a 10 Ω resistor. The current into the pair is 1,32 A. Calculate the current in the 14 Ω branch. (3)",
+   "usual_wrong": "I = (14/24)(1,32) = 0,77 A",
+   "what_went_wrong": "The ratio is upside down: the smaller resistance takes the larger current. The safe route is the pd across the pair, then I = V/R for the branch.",
+   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A.)",
+   "twin": {
+    "question": "A 6 Ω and a 12 Ω resistor are in parallel, and the current into the pair is 3 A. Calculate the current in the 12 Ω resistor, by the pd route.",
+    "answer": "RP = 4,00 Ω. Vpair = (3)(4) = 12,00 V. I12Ω = 12/12 = 1,00 A. (The ratio slip gives 2 A.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about the same shortcut on IEB Nov 2017, Paper 1, Question 7.1:",
+    "quote": "Most candidates who attempted to answer the question using ratios based on the values of the resistors made errors.",
+    "source": "IEB Examiners' Report 2017, Paper 1, Question 7.1"
+   }
+  },
+  "11/emf-r": {
+   "key": "m11/emf-r",
+   "title": "The emf across the wrong thing",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.2.2",
+   "question": "A battery (emf 12 V, internal resistance 0,5 Ω) is connected to a bulb through switch S1. A voltmeter V is connected across the bulb. Switch S1 is open, so no current flows. What does V read? (2)",
+   "usual_wrong": "12 V, because with no current there are no lost volts, so it reads the emf.",
+   "what_went_wrong": "That reasoning is right for a voltmeter across the battery. This voltmeter is across the bulb. No current flows through the bulb, so the pd across it is V = IR = 0.",
+   "memo": "0 V. (A voltmeter across the battery would read the emf, 12 V.)",
+   "twin": {
+    "question": "A battery of emf 9 V and r = 1 Ω is in series with a switch S and a lamp. V1 is across the battery and V2 is across the lamp. S is open. Write down the reading on V1 and on V2, with a reason for each.",
+    "answer": "V1 = 9 V: no current, so no lost volts, and the terminal pd equals the emf. V2 = 0 V: no current through the lamp, so no pd across it (V = IR = 0)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Many candidates confused the emf and the voltage across the bulb.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.2"
+   }
+  },
+  "12/emf-r": {
+   "key": "m11/emf-r",
+   "title": "The emf across the wrong thing",
+   "built_on": "IEB Nov 2021, Paper 1, Question 7.2.2",
+   "question": "A battery (emf 12 V, internal resistance 0,5 Ω) is connected to a bulb through switch S1. A voltmeter V is connected across the bulb. Switch S1 is open, so no current flows. What does V read? (2)",
+   "usual_wrong": "12 V, because with no current there are no lost volts, so it reads the emf.",
+   "what_went_wrong": "That reasoning is right for a voltmeter across the battery. This voltmeter is across the bulb. No current flows through the bulb, so the pd across it is V = IR = 0.",
+   "memo": "0 V. (A voltmeter across the battery would read the emf, 12 V.)",
+   "twin": {
+    "question": "A battery of emf 9 V and r = 1 Ω is in series with a switch S and a lamp. V1 is across the battery and V2 is across the lamp. S is open. Write down the reading on V1 and on V2, with a reason for each.",
+    "answer": "V1 = 9 V: no current, so no lost volts, and the terminal pd equals the emf. V2 = 0 V: no current through the lamp, so no pd across it (V = IR = 0)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Many candidates confused the emf and the voltage across the bulb.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.2"
+   }
+  },
+  "11/with-r": {
+   "key": "m11/with-r",
+   "title": "The whole emf across one branch",
+   "built_on": "IEB Nov 2020, Paper 1, Question 7.2.4",
+   "question": "A battery (emf 24 V, r = 3 Ω) drives a heater (10 Ω) in parallel with a 30 Ω resistor, and this pair is in series with a 4,5 Ω resistor. Rext = 12 Ω and the battery current is 1,60 A. Calculate the current in the heater. (5)",
+   "usual_wrong": "I = V/R = 24/10 = 2,40 A",
+   "what_went_wrong": "The 24 V is the emf of the whole circuit. Part of it is lost inside the battery and part goes to the 4,5 Ω. The heater only gets the pd across the parallel pair.",
+   "memo": "RP = (1/10 + 1/30)⁻¹ = 7,50 Ω. Vpair = I × RP = (1,6)(7,5) = 12,00 V. Iheater = 12/10 = 1,20 A.",
+   "twin": {
+    "question": "A battery (emf 12 V, r = 1 Ω) is connected to a 3 Ω resistor in series with a pair: 6 Ω in parallel with 3 Ω. Calculate the current in the 6 Ω resistor.",
+    "answer": "RP = 2,00 Ω, Rext = 5,00 Ω. 12 = I(5 + 1), so I = 2,00 A. Vpair = (2)(2) = 4,00 V. I6Ω = 4/6 = 0,67 A. (The slip gives 12/6 = 2 A.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Learners must write the formula they are trying to use and apply it correctly to the part of the circuit they are dealing with.",
+    "source": "IEB Examiners' Report 2020, Paper 1, Question 7.2"
+   }
+  },
+  "12/with-r": {
+   "key": "m11/with-r",
+   "title": "The whole emf across one branch",
+   "built_on": "IEB Nov 2020, Paper 1, Question 7.2.4",
+   "question": "A battery (emf 24 V, r = 3 Ω) drives a heater (10 Ω) in parallel with a 30 Ω resistor, and this pair is in series with a 4,5 Ω resistor. Rext = 12 Ω and the battery current is 1,60 A. Calculate the current in the heater. (5)",
+   "usual_wrong": "I = V/R = 24/10 = 2,40 A",
+   "what_went_wrong": "The 24 V is the emf of the whole circuit. Part of it is lost inside the battery and part goes to the 4,5 Ω. The heater only gets the pd across the parallel pair.",
+   "memo": "RP = (1/10 + 1/30)⁻¹ = 7,50 Ω. Vpair = I × RP = (1,6)(7,5) = 12,00 V. Iheater = 12/10 = 1,20 A.",
+   "twin": {
+    "question": "A battery (emf 12 V, r = 1 Ω) is connected to a 3 Ω resistor in series with a pair: 6 Ω in parallel with 3 Ω. Calculate the current in the 6 Ω resistor.",
+    "answer": "RP = 2,00 Ω, Rext = 5,00 Ω. 12 = I(5 + 1), so I = 2,00 A. Vpair = (2)(2) = 4,00 V. I6Ω = 4/6 = 0,67 A. (The slip gives 12/6 = 2 A.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Learners must write the formula they are trying to use and apply it correctly to the part of the circuit they are dealing with.",
+    "source": "IEB Examiners' Report 2020, Paper 1, Question 7.2"
+   }
+  },
+  "11/graph-r": {
+   "key": "m11/graph-r",
+   "title": "The gradient from the table",
+   "built_on": "IEB Nov 2022, Paper 1, Question 8.1.2",
+   "question": "You have plotted the terminal pd (y-axis) against the current (x-axis) for a battery and drawn the best-fit line. It passes through (1,0 A; 18,25 V) and (6,0 A; 9,50 V). The table's first and last rows are (0,8 A; 18,7 V) and (6,3 A; 9,0 V). Calculate the gradient, and then the internal resistance. (4 + 3)",
+   "usual_wrong": "Gradient = (9,0 − 18,7)/(6,3 − 0,8) = −1,76 V·A⁻¹, using two rows of the table.",
+   "what_went_wrong": "The gradient belongs to the line, not to the readings. Read two points far apart on your line, mark them on the graph, and use those.",
+   "memo": "Gradient = (9,50 − 18,25)/(6,0 − 1,0) = −1,75 V·A⁻¹. V = (−r)I + emf, so r = −gradient = 1,75 Ω.",
+   "twin": {
+    "question": "A battery's V–I best-fit line passes through (0,2 A; 11,5 V) and (1,2 A; 9,0 V). Find the gradient, r and the emf.",
+    "answer": "Gradient = (9,0 − 11,5)/(1,2 − 0,2) = −2,50 V·A⁻¹, so r = 2,50 Ω. emf = 11,5 + (2,5)(0,2) = 12,00 V (the y-intercept)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Use points that lie on the best-fit straight line, rather than points from the table.",
+    "source": "IEB Examiners' Report 2022, Paper 1, Question 8.1.2"
+   }
+  },
+  "12/graph-r": {
+   "key": "m11/graph-r",
+   "title": "The gradient from the table",
+   "built_on": "IEB Nov 2022, Paper 1, Question 8.1.2",
+   "question": "You have plotted the terminal pd (y-axis) against the current (x-axis) for a battery and drawn the best-fit line. It passes through (1,0 A; 18,25 V) and (6,0 A; 9,50 V). The table's first and last rows are (0,8 A; 18,7 V) and (6,3 A; 9,0 V). Calculate the gradient, and then the internal resistance. (4 + 3)",
+   "usual_wrong": "Gradient = (9,0 − 18,7)/(6,3 − 0,8) = −1,76 V·A⁻¹, using two rows of the table.",
+   "what_went_wrong": "The gradient belongs to the line, not to the readings. Read two points far apart on your line, mark them on the graph, and use those.",
+   "memo": "Gradient = (9,50 − 18,25)/(6,0 − 1,0) = −1,75 V·A⁻¹. V = (−r)I + emf, so r = −gradient = 1,75 Ω.",
+   "twin": {
+    "question": "A battery's V–I best-fit line passes through (0,2 A; 11,5 V) and (1,2 A; 9,0 V). Find the gradient, r and the emf.",
+    "answer": "Gradient = (9,0 − 11,5)/(1,2 − 0,2) = −2,50 V·A⁻¹, so r = 2,50 Ω. emf = 11,5 + (2,5)(0,2) = 12,00 V (the y-intercept)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Use points that lie on the best-fit straight line, rather than points from the table.",
+    "source": "IEB Examiners' Report 2022, Paper 1, Question 8.1.2"
+   }
+  },
+  "11/explain": {
+   "key": "m11/explain",
+   "title": "Blaming the battery",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.4",
+   "question": "A battery (emf 15 V) has a voltmeter V1 across it. When switch S is closed, the reading on V1 drops from 15 V to 10,5 V. Use a suitable equation to explain why the reading on V1 drops. (3)",
+   "usual_wrong": "The internal resistance increases when the switch is closed, so the voltmeter reading drops.",
+   "what_went_wrong": "The emf and r belong to the battery and do not change. What changes is the current: it rises from zero, so the lost volts (Ir) rise and the terminal pd falls.",
+   "memo": "Vload = emf − Ir. Closing S lets a current flow, so I increases (from zero). The lost volts (Ir) increase, while the emf and r stay the same. So V1, the terminal pd, decreases.",
+   "twin": {
+    "question": "A lamp is connected to a battery with internal resistance. A second lamp is now switched on in parallel with the first. A voltmeter is across the battery. Will its reading INCREASE, DECREASE or STAY THE SAME? Explain in point form.",
+    "answer": "DECREASE. • The emf and r stay the same. • A branch is added in parallel, so the external resistance decreases. • The battery current increases. • The lost volts (Ir) increase. • The terminal pd (emf − Ir), which the voltmeter reads, decreases."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "When explaining the decrease in potential difference across the battery, candidates were not careful with their explanation. E.g. many spoke about internal resistance increasing or emf decreasing rather than linking the increase in current to the increase in lost volts and hence the decrease in terminal potential difference.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.4"
+   }
+  },
+  "12/explain": {
+   "key": "m11/explain",
+   "title": "Blaming the battery",
+   "built_on": "IEB Nov 2019, Paper 1, Question 7.1.4",
+   "question": "A battery (emf 15 V) has a voltmeter V1 across it. When switch S is closed, the reading on V1 drops from 15 V to 10,5 V. Use a suitable equation to explain why the reading on V1 drops. (3)",
+   "usual_wrong": "The internal resistance increases when the switch is closed, so the voltmeter reading drops.",
+   "what_went_wrong": "The emf and r belong to the battery and do not change. What changes is the current: it rises from zero, so the lost volts (Ir) rise and the terminal pd falls.",
+   "memo": "Vload = emf − Ir. Closing S lets a current flow, so I increases (from zero). The lost volts (Ir) increase, while the emf and r stay the same. So V1, the terminal pd, decreases.",
+   "twin": {
+    "question": "A lamp is connected to a battery with internal resistance. A second lamp is now switched on in parallel with the first. A voltmeter is across the battery. Will its reading INCREASE, DECREASE or STAY THE SAME? Explain in point form.",
+    "answer": "DECREASE. • The emf and r stay the same. • A branch is added in parallel, so the external resistance decreases. • The battery current increases. • The lost volts (Ir) increase. • The terminal pd (emf − Ir), which the voltmeter reads, decreases."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "When explaining the decrease in potential difference across the battery, candidates were not careful with their explanation. E.g. many spoke about internal resistance increasing or emf decreasing rather than linking the increase in current to the increase in lost volts and hence the decrease in terminal potential difference.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.4"
+   }
+  },
+  "12/table4": {
+   "key": "m27/table4",
+   "title": "The arrow copied from Table 4",
+   "built_on": "IEB Nov 2023, Paper 2, Question 6.4",
+   "question": "A galvanic cell has an iron half-cell (Fe in Fe³⁺(aq)) and a chlorine half-cell (Cℓ₂(g) bubbled through Cℓ⁻(aq)). Write down the net ionic equation for the reaction that takes place when this cell operates.",
+   "usual_wrong": "2Fe + 3Cℓ₂ ⇌ 2Fe³⁺ + 6Cℓ⁻",
+   "what_went_wrong": "The double arrow is copied from Table 4. A half-reaction or a redox equation for a working cell takes a single arrow (→).",
+   "memo": "2Fe + 3Cℓ₂ → 2Fe³⁺ + 6Cℓ⁻",
+   "twin": {
+    "question": "Magnesium metal is placed in silver nitrate solution. Write the balanced net ionic equation for the reaction.",
+    "answer": "Mg + 2Ag⁺ → Mg²⁺ + 2Ag (single arrow; two silver ions for each magnesium atom)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Candidates were penalised for use of a double arrow in 6.4 and a single arrow in 5.2.2(b).",
+    "source": "IEB Examiners' Report 2023, Paper 2, general comments"
+   }
+  },
+  "12/will-it-react": {
+   "key": "m27/will-it-react",
+   "title": "The spectator that was not there",
+   "built_on": "IEB Nov 2025, Paper 2, Questions 6.1 and 6.2",
+   "question": "Chlorine gas is bubbled through an aqueous solution of potassium bromide. Write the balanced net ionic equation for the redox reaction that occurs.",
+   "usual_wrong": "Cℓ₂ + 2K → 2K⁺ + 2Cℓ⁻",
+   "what_went_wrong": "Potassium is a spectator: KBr(aq) holds K⁺ ions, not K atoms. The bromide ions are the reducing agent.",
+   "memo": "Cℓ₂ + 2Br⁻ → 2Cℓ⁻ + Br₂",
+   "twin": {
+    "question": "Bromine water is added to a solution of potassium iodide. Name the reducing agent, and write the balanced net ionic equation.",
+    "answer": "The reducing agent is I⁻ (the iodide ion), not K. Br₂ + 2I⁻ → 2Br⁻ + I₂"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "More than half the candidates chose potassium as the reducing agent, although KBr does not contain any potassium atoms, only potassium ions.",
+    "source": "IEB Examiners' Report 2025, Paper 2, Question 6.1"
+   }
+  },
+  "12/galvanic": {
+   "key": "m28/galvanic",
+   "title": "The missing platinum",
+   "built_on": "IEB Nov 2025, Paper 2, Question 6.3.2",
+   "question": "A galvanic cell is set up using the reaction Cℓ₂ + 2Br⁻ → 2Cℓ⁻ + Br₂. Write the cell notation. Assume that both products are in aqueous solution. Conditions and state symbols are not required.",
+   "usual_wrong": "Br⁻ | Br₂ || Cℓ₂ | Cℓ⁻",
+   "what_went_wrong": "Neither half-cell has a solid conductor, so each needs an inert Pt electrode on the outside. Br⁻ and Br₂ are in the same phase, so a comma separates them.",
+   "memo": "Pt | Br⁻, Br₂ || Cℓ₂ | Cℓ⁻ | Pt",
+   "twin": {
+    "question": "A galvanic cell uses the reaction 2Fe³⁺ + 2I⁻ → 2Fe²⁺ + I₂, with every species in aqueous solution. Write the cell notation (no conditions or state symbols).",
+    "answer": "Pt | I⁻, I₂ || Fe³⁺, Fe²⁺ | Pt  (the anode, where I⁻ is oxidised, on the left; both half-cells need Pt; commas inside each half-cell because each pair is in one phase)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Many candidates omitted the two Pt electrodes, needed because the cell does not involve any solid conductor.",
+    "source": "IEB Examiners' Report 2025, Paper 2, Question 6.3.2"
+   }
+  },
+  "12/salt-bridge": {
+   "key": "m28/salt-bridge",
+   "title": "Electrons in the salt bridge",
+   "built_on": "IEB Nov 2018, Paper 2, Question 7.5.4",
+   "question": "In a nickel and chlorine galvanic cell, the nickel electrode is the anode. Explain how the salt bridge maintains electrical neutrality, with reference to the changing ionic conditions in the nickel half-cell. (2)",
+   "usual_wrong": "Electrons travel through the salt bridge into the nickel half-cell to cancel the extra positive charge.",
+   "what_went_wrong": "Electrons never pass through the salt bridge or the electrolyte: they go through the external wire. Only ions move in the salt bridge.",
+   "memo": "• Ni²⁺ ions are being produced in the nickel half-cell. • Anions enter the electrolyte from the salt bridge, • and Ni²⁺ cations leave the electrolyte into the salt bridge. (IEB 2018 Paper 2 memo, Question 7.5.4)",
+   "twin": {
+    "question": "In a zinc and copper cell, Cu²⁺ ions are reduced at the copper cathode. The salt bridge holds KNO₃. Explain how the salt bridge keeps the copper half-cell neutral.",
+    "answer": "• Cu²⁺ ions are removed from the copper half-cell (reduced to Cu), so positive charge is lost. • K⁺ cations from the salt bridge enter the copper half-cell, • and anions (SO₄²⁻ or NO₃⁻) leave the half-cell into the salt bridge."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this paper:",
+    "quote": "The functioning of the salt bridge is still not well understood and it is important for candidates to understand and be able to explain the relevant movement of ions into and out of the salt bridge in each half-cell.",
+    "source": "IEB Examiners' Report 2018, Paper 2, Question 7"
+   }
+  },
+  "12/electrolysis": {
+   "key": "m29/electrolysis",
+   "title": "Swapped products",
+   "built_on": "IEB Nov 2024, Paper 2, Question 7.7.3",
+   "question": "Molten MgCℓ₂ is electrolysed at 750 °C with graphite electrodes. Electrode T is joined to the positive terminal and electrode U to the negative terminal. Identify the substances that form at T and at U.",
+   "usual_wrong": "T: magnesium   U: chlorine",
+   "what_went_wrong": "Swapped. T (positive) is the anode, where Cℓ⁻ is oxidised to Cℓ₂. U (negative) is the cathode, where Mg²⁺ is reduced to Mg.",
+   "memo": "T: Cℓ₂ (chlorine gas)   U: Mg (magnesium)",
+   "twin": {
+    "question": "Molten lead(II) bromide, PbBr₂, is electrolysed with inert electrodes. Name the product at the electrode joined to the positive terminal and at the one joined to the negative terminal. Write the half-reaction at each.",
+    "answer": "Positive (anode): bromine, 2Br⁻ → Br₂ + 2e⁻. Negative (cathode): lead, Pb²⁺ + 2e⁻ → Pb."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Products were often swopped – candidates should know that the ions are attracted to the oppositely charged electrodes.",
+    "source": "IEB Examiners' Report 2024, Paper 2, Question 7.7.3"
+   }
+  },
+  "12/faraday": {
+   "key": "m29/faraday",
+   "title": "One electron or two?",
+   "built_on": "IEB Nov 2025, Paper 2, Question 7.10.2",
+   "question": "0,2 mol of electrons passes through an electrorefining cell. Calculate the mass of copper deposited on the pure copper electrode.",
+   "usual_wrong": "n(Cu) = n(e⁻) = 0,2 mol, so m = (0,2)(63,5) = 12,70 g",
+   "what_went_wrong": "No ratio from the half-reaction. Cu²⁺ + 2e⁻ → Cu: each copper atom needs two electrons, so n(Cu) is half of n(e⁻).",
+   "memo": "Cu²⁺ + 2e⁻ → Cu. n(Cu) = 0,2 ÷ 2 = 0,1 mol. m = nM = (0,1)(63,5) = 6,35 g",
+   "twin": {
+    "question": "In the electrolysis of molten aluminium oxide, 0,6 mol of electrons passes through the cell. Calculate the mass of aluminium produced.",
+    "answer": "Aℓ³⁺ + 3e⁻ → Aℓ. n(Aℓ) = 0,6 ÷ 3 = 0,2 mol. m = (0,2)(27) = 5,40 g"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about this question:",
+    "quote": "Many candidates are still neglecting to use the ratio in the half-reaction.",
+    "source": "IEB Examiners' Report 2025, Paper 2, Question 7.10.2"
+   }
+  },
+  "10/momentum": {
+   "key": "g10-m7-8/momentum",
+   "title": "The bounce",
+   "built_on": "Grade 10 question. Built on IEB Nov 2023, Paper 1, Question 6.2.",
+   "question": "A 0,6 kg ball hits a wall at 5 m·s⁻¹ and bounces straight back at 3 m·s⁻¹. Calculate the change in momentum of the ball, and give its direction. (4)",
+   "usual_wrong": "Δp = m(v − u) = 0,6(3 − 5) = −1,20 kg·m·s⁻¹",
+   "what_went_wrong": "The ball changed direction, so its two velocities have opposite signs. With \"towards the wall\" as positive, u = +5 and v = −3.",
+   "memo": "Towards the wall positive. Δp = m(v − u) = 0,6(−3 − 5) = −4,80 kg·m·s⁻¹, so 4,80 kg·m·s⁻¹ away from the wall.",
+   "twin": {
+    "question": "A 0,15 kg ball moving at 8 m·s⁻¹ is hit straight back at 6 m·s⁻¹. Calculate the change in momentum and its direction.",
+    "answer": "Original direction positive: Δp = 0,15(−6 − 8) = −2,10 kg·m·s⁻¹, so 2,10 kg·m·s⁻¹ opposite to the original direction."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "The change in direction of the ball was often disregarded in the mathematics of Question 6.2 and candidates are encouraged to draw a sketch diagram to help them to remember to assign a positive direction.",
+    "source": "IEB Examiners' Report 2023, Paper 1, Question 6.2"
+   },
+   "clip_from_topic": true
+  },
+  "10/conservation": {
+   "key": "g10-m7-8/conservation",
+   "title": "The minus sign that went missing",
+   "built_on": "Grade 10 question. Built on IEB Nov 2024, Paper 1, Question 5.2.2.",
+   "question": "Trolley A (2 kg) moves at 3 m·s⁻¹ to the right. Trolley B (1 kg) moves at 2 m·s⁻¹ to the left. They collide on a frictionless track, and A stops. Calculate the velocity of B after the collision. (4)",
+   "usual_wrong": "(2)(3) + (1)(2) = (2)(0) + (1)v, so v = 8 m·s⁻¹",
+   "what_went_wrong": "B was moving left, so its velocity is −2 m·s⁻¹ with right as positive. Momentum is a vector: the sign carries the direction.",
+   "memo": "Right positive. Σp before = Σp after: (2)(3) + (1)(−2) = (2)(0) + (1)vB, so 4 = vB. vB = 4,00 m·s⁻¹ to the right.",
+   "twin": {
+    "question": "A 0,5 kg trolley moving at 4 m·s⁻¹ right collides with a 1,5 kg trolley moving at 1 m·s⁻¹ left. After the collision the 0,5 kg trolley moves at 2 m·s⁻¹ left. Find the velocity of the 1,5 kg trolley.",
+    "answer": "Right positive: (0,5)(4) + (1,5)(−1) = (0,5)(−2) + 1,5v, so 0,5 = −1 + 1,5v, v = 1,00 m·s⁻¹ to the right."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Candidates must remember that momentum is a vector quantity and use of signs to deal with momentum in opposite directions is important.",
+    "source": "IEB Examiners' Report 2017, Paper 1, Question 5.2.4"
+   }
+  },
+  "10/current": {
+   "key": "g10-m10/current",
+   "title": "The current that gets used up",
+   "built_on": "Grade 10 question (series circuit, ideal battery).",
+   "question": "A battery, ammeter A1, a bulb and ammeter A2 are connected in series in that order. A1 reads 0,40 A. What does A2 read? Explain. (2)",
+   "usual_wrong": "Less than 0,40 A, because the bulb uses up some of the current.",
+   "what_went_wrong": "Charge is not used up. In a series circuit the same current flows everywhere. The bulb transfers energy from the charges, not the charges themselves.",
+   "memo": "0,40 A. Current is the same at every point in a series circuit: the bulb transfers energy, not charge.",
+   "twin": {
+    "question": "Three bulbs are in series with a battery. An ammeter between bulbs 2 and 3 reads 0,25 A. What does an ammeter placed after bulb 3 read? What does each bulb use up?",
+    "answer": "0,25 A. The bulbs use up (transfer) energy, not current."
+   }
+  },
+  "10/meters": {
+   "key": "g10-m10/meters",
+   "title": "The open switch reads zero (it doesn't)",
+   "built_on": "Grade 10 question. Built on IEB Nov 2019, Paper 1, Question 7.1.3 (an ideal battery here).",
+   "question": "A 6 V battery, a switch S, a 3 Ω resistor and a 9 Ω resistor are in series. A voltmeter V1 is across the 9 Ω resistor and a voltmeter V2 is across the open switch S. Write down the reading on V1 and on V2. (4)",
+   "usual_wrong": "V1 = 0 V and V2 = 0 V, because no current flows.",
+   "what_went_wrong": "V1 is right: no current through the 9 Ω means no pd across it. But V2 is across the gap. With no current, the resistors take no pd, so the whole 6 V appears across the open switch.",
+   "memo": "V1 = 0 V (no current, so V = IR = 0 for the 9 Ω). V2 = 6 V (the whole supply pd is across the open switch).",
+   "twin": {
+    "question": "In the same circuit, S is now closed. Calculate the reading on V1, and write down the reading on V2.",
+    "answer": "I = 6/(3 + 9) = 0,50 A. V1 = (0,5)(9) = 4,50 V. V2 = 0 V: a closed switch has (almost) no resistance."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Candidates need to understand what a voltmeter across an open switch will measure. Many candidates incorrectly answered 7.1.3 as 0V.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.3"
+   }
+  },
+  "10/ohm": {
+   "key": "g10-m10/ohm",
+   "title": "The gradient is not the resistance",
+   "built_on": "Grade 10 question (an Ohm's law graph, I on the y-axis).",
+   "question": "A learner plots current I (y-axis) against potential difference V (x-axis) for a resistor. The straight line passes through the origin and through (6,0 V; 0,40 A). Calculate the resistance of the resistor. (3)",
+   "usual_wrong": "R = gradient = 0,40/6,0 = 0,07 Ω",
+   "what_went_wrong": "With I on the y-axis, the gradient is ΔI/ΔV, which is 1/R. Read the axes before you decide what the gradient means.",
+   "memo": "Gradient = ΔI/ΔV = 0,40/6,0 = 0,0667 A·V⁻¹ = 1/R, so R = 1/gradient = 15,00 Ω (keep the full gradient in the calculator; the rounded 0,0667 gives 14,99). (Or R = V/I = 6,0/0,40 = 15,00 Ω.)",
+   "twin": {
+    "question": "A different resistor is plotted with V on the y-axis and I on the x-axis. The line passes through the origin and (0,50 A; 10,0 V). What is the resistance?",
+    "answer": "Now the gradient is ΔV/ΔI = 10,0/0,50 = 20,00 V·A⁻¹ = R, so R = 20,00 Ω."
+   }
+  },
+  "10/series-parallel": {
+   "key": "g10-m10/series-parallel",
+   "title": "Forgetting to invert",
+   "built_on": "Grade 10 question. Built on IEB Nov 2019, Paper 1, Question 7.1.5.",
+   "question": "A 3 Ω resistor and a 6 Ω resistor are connected in parallel. Calculate their effective resistance. (3)",
+   "usual_wrong": "1/RP = 1/3 + 1/6 = 0,50 Ω",
+   "what_went_wrong": "1/3 + 1/6 = 0,5 is 1/RP, not RP. Turn it upside down on a new line.",
+   "memo": "1/RP = 1/3 + 1/6 = 0,5, so RP = 2,00 Ω. Check: 2 Ω is less than the smallest branch, 3 Ω.",
+   "twin": {
+    "question": "Two 10 Ω resistors and a 5 Ω resistor are connected in parallel. Calculate the effective resistance.",
+    "answer": "1/RP = 1/10 + 1/10 + 1/5 = 0,4, so RP = 2,50 Ω (less than 5 Ω)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Candidates must calculate resistance for resistors in parallel carefully and use correct mathematics.",
+    "source": "IEB Examiners' Report 2019, Paper 1, Question 7.1.5"
+   }
+  },
+  "10/combos": {
+   "key": "g10-m10/combos",
+   "title": "Numbers from different places",
+   "built_on": "Grade 10 question. Built on IEB Nov 2021, Paper 1, Question 7.2 (an ideal battery here).",
+   "question": "A 12 V battery (no internal resistance) is connected to a 4 Ω resistor in series with a pair: 6 Ω in parallel with 12 Ω. Calculate the current in the 6 Ω resistor. (5)",
+   "usual_wrong": "I = V/R = 12/6 = 2,00 A",
+   "what_went_wrong": "12 V is the battery's pd, but the 6 Ω does not get all of it: the 4 Ω takes a share first. V = IR must use the 6 Ω's own pd.",
+   "memo": "RP = (1/6 + 1/12)⁻¹ = 4,00 Ω. Rtotal = 4 + 4 = 8,00 Ω. Itotal = 12/8 = 1,50 A. Vpair = (1,5)(4) = 6,00 V. I6Ω = 6/6 = 1,00 A.",
+   "twin": {
+    "question": "A 9 V battery (no internal resistance) is connected to a 2 Ω resistor in series with a pair: 3 Ω in parallel with 6 Ω. Calculate the current in the 3 Ω resistor.",
+    "answer": "RP = 2,00 Ω, Rtotal = 4,00 Ω, Itotal = 2,25 A. Vpair = (2,25)(2) = 4,50 V. I3Ω = 4,5/3 = 1,50 A. (The slip gives 9/3 = 3 A.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Candidates struggled to match the relevant current, voltage and resistance values in each calculation.",
+    "source": "IEB Examiners' Report 2021, Paper 1, Question 7.2"
+   }
+  },
+  "10/explain": {
+   "key": "g10-m10/explain",
+   "title": "Arrows are not an explanation",
+   "built_on": "Grade 10 question. Built on IEB May 2025, Paper 1, Question 7.1.2.",
+   "question": "Two identical bulbs, L1 and L2, are in series with a 12 V battery (no internal resistance). A switch S is connected across L1. How does the brightness of L2 change when S is closed? Explain, using a formula. (4)",
+   "usual_wrong": "R↓ ∴ I↑ ∴ P↑ so L2 is brighter.",
+   "what_went_wrong": "The physics is right, but arrows and symbols are not accepted in an explanation. Each link must be written in words.",
+   "memo": "• Closing S gives a path of zero resistance around L1, so the total resistance decreases. • The battery's pd stays the same, so the current increases. • For L2, P = I²R: the current increases and L2's resistance stays the same. • So L2's power increases and L2 is brighter.",
+   "twin": {
+    "question": "Three identical bulbs are connected in parallel to a battery with no internal resistance. One bulb is unscrewed. What happens to the brightness of the other two? Explain in words.",
+    "answer": "They stay the same. • Each bulb is connected directly across the battery, so each still has the full battery pd. • Each bulb's resistance is the same. • P = V²/R is unchanged, so the brightness is unchanged. (The battery current decreases.)"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Words must be used when an explanation is required and the use of shorthand or symbols (e.g. ∝ and ↑ or =) is not acceptable in explanations or definitions.",
+    "source": "IEB Examiners' Report 2024, Paper 1, general comments"
+   }
+  },
+  "10/power": {
+   "key": "g10-m10/power",
+   "title": "Power is not energy",
+   "built_on": "Grade 10 question. Built on IEB May 2023, Paper 1, Question 7.8.",
+   "question": "A bulb has a pd of 6 V across it and a current of 0,5 A through it. Calculate the energy it transfers in 2 minutes. (4)",
+   "usual_wrong": "P = VI = (6)(0,5) = 3,00 W, so the energy is 3 W.   (or W = (6)(0,5)(2) = 6 J)",
+   "what_went_wrong": "3 W is the power: energy per second. The question asks for energy, in joules, over 2 minutes, and the time must be in seconds.",
+   "memo": "W = VIt = (6)(0,5)(2 × 60) = 360,00 J",
+   "twin": {
+    "question": "A 1 200 W kettle is switched on for 5 minutes. (a) What is its power? (b) Calculate the energy it transfers.",
+    "answer": "(a) 1 200 W. (b) W = Pt = (1 200)(5 × 60) = 360 000,00 J (3,6 × 10⁵ J)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Energy and power were frequently confused.",
+    "source": "IEB Examiners' Report 2022, Paper 1, Question 8.2"
+   }
+  },
+  "10/mass-moles": {
+   "key": "g10-m14/mass-moles",
+   "title": "The forgotten water",
+   "built_on": "Grade 10 question. Built on IEB Nov 2024, Paper 2, Question 7.4.",
+   "question": "Calculate the number of moles in 25,0 g of copper(II) sulfate crystals, CuSO₄·5H₂O. (3)",
+   "usual_wrong": "M(CuSO₄) = 159,5 g·mol⁻¹, so n = 25,0/159,5 = 0,16 mol",
+   "what_went_wrong": "The crystals include five waters of crystallisation. Their mass is part of the molar mass of CuSO₄·5H₂O.",
+   "memo": "M(CuSO₄·5H₂O) = 63,5 + 32 + 4(16) + 5(18) = 249,5 g·mol⁻¹. n = m/M = 25,0/249,5 = 0,10 mol",
+   "twin": {
+    "question": "Calculate the number of moles in 10,0 g of MgCℓ₂·6H₂O.",
+    "answer": "M = 24,3 + 2(35,5) + 6(18) = 203,3 g·mol⁻¹. n = 10,0/203,3 = 0,05 mol (0,0492 in the calculator)."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "The overwhelming majority of learners did not know what to do with the 6H₂O waters of crystallisation.",
+    "source": "IEB Examiners' Report 2024, Paper 2, Question 7.4"
+   }
+  },
+  "10/mixtures": {
+   "key": "g10-m14/mixtures",
+   "title": "One formula, two chloride ions",
+   "built_on": "Grade 10 question. Built on IEB Nov 2024, Paper 2, Question 7.4.",
+   "question": "A solution of calcium chloride, CaCℓ₂, has a concentration of 0,2 mol·dm⁻³. What is the concentration of the chloride ions? (2)",
+   "usual_wrong": "[Cℓ⁻] = 0,2 mol·dm⁻³",
+   "what_went_wrong": "Each CaCℓ₂ gives one Ca²⁺ and two Cℓ⁻ ions when it dissolves. Use the ratio from the formula.",
+   "memo": "CaCℓ₂ → Ca²⁺ + 2Cℓ⁻, so [Cℓ⁻] = 2 × 0,2 = 0,40 mol·dm⁻³",
+   "twin": {
+    "question": "100 cm³ of 0,2 mol·dm⁻³ NaCℓ is mixed with 100 cm³ of 0,1 mol·dm⁻³ CaCℓ₂. Calculate the concentration of chloride ions in the mixture.",
+    "answer": "n(Cℓ⁻) from NaCℓ = (0,2)(0,1) = 0,02 mol. From CaCℓ₂ = 2(0,1)(0,1) = 0,02 mol. Total 0,04 mol in 0,2 dm³, so [Cℓ⁻] = 0,20 mol·dm⁻³."
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "Again, many learners did not make use of the ionic ratio to calculate the chloride ion concentration, which is the relevant consideration in this question.",
+    "source": "IEB Examiners' Report 2024, Paper 2, Question 7.4"
+   }
+  },
+  "10/limiting-purity": {
+   "key": "g10-m14/limiting-purity",
+   "title": "Calculating from the excess",
+   "built_on": "Grade 10 question. Built on IEB Nov 2017, Paper 2, Question 4.4.",
+   "question": "5,0 g of calcium carbonate (in excess) reacts with 100 cm³ of 0,1 mol·dm⁻³ hydrochloric acid: CaCO₃ + 2HCℓ → CaCℓ₂ + H₂O + CO₂. Calculate the volume of CO₂ produced at STP. (5)",
+   "usual_wrong": "n(CaCO₃) = 5,0/100 = 0,05 mol = n(CO₂), so V = (0,05)(22,4) = 1,12 dm³",
+   "what_went_wrong": "CaCO₃ is in excess, so some of it is left over. The limiting reagent, HCℓ, runs out first and decides how much CO₂ forms.",
+   "memo": "n(HCℓ) = cV = (0,1)(0,1) = 0,01 mol. HCℓ : CO₂ = 2 : 1, so n(CO₂) = 0,005 mol. V = nVm = (0,005)(22,4) = 0,11 dm³ (112 cm³)",
+   "twin": {
+    "question": "Excess zinc reacts with 50 cm³ of 2 mol·dm⁻³ HCℓ: Zn + 2HCℓ → ZnCℓ₂ + H₂. Calculate the volume of H₂ produced at STP.",
+    "answer": "n(HCℓ) = (2)(0,05) = 0,1 mol. HCℓ : H₂ = 2 : 1, so n(H₂) = 0,05 mol. V = (0,05)(22,4) = 1,12 dm³"
+   },
+   "examiner": {
+    "intro": "The examiners wrote this about matric candidates:",
+    "quote": "The reactant in excess (CaCO₃) was incorrectly used in the calculation indicating a lack of understanding that the limiting reagent (HCℓ) would determine the volume of CO₂ gas produced.",
+    "source": "IEB Examiners' Report 2017, Paper 2, Question 4"
+   }
+  }
+ }
 }
