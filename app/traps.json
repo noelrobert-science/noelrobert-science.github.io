@@ -189,7 +189,7 @@
    "question": "A branch of 10 Ω and 4 Ω in series (14 Ω) is in parallel with a 10 Ω resistor. The current into the pair is 1,32 A. Calculate the current in the 14 Ω branch. (3)",
    "usual_wrong": "I = (14/24)(1,32) = 0,77 A",
    "what_went_wrong": "The ratio is upside down: the smaller resistance takes the larger current. The safe route is the pd across the pair, then I = V/R for the branch.",
-   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A.)",
+   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A. The flipped answers add up to 1,32 A too, so also check that the bigger resistance, 14 Ω, has the smaller current.)",
    "twin": {
     "question": "A 6 Ω and a 12 Ω resistor are in parallel, and the current into the pair is 3 A. Calculate the current in the 12 Ω resistor, by the pd route.",
     "answer": "RP = 4,00 Ω. Vpair = (3)(4) = 12,00 V. I12Ω = 12/12 = 1,00 A. (The ratio slip gives 2 A.)"
@@ -207,7 +207,7 @@
    "question": "A branch of 10 Ω and 4 Ω in series (14 Ω) is in parallel with a 10 Ω resistor. The current into the pair is 1,32 A. Calculate the current in the 14 Ω branch. (3)",
    "usual_wrong": "I = (14/24)(1,32) = 0,77 A",
    "what_went_wrong": "The ratio is upside down: the smaller resistance takes the larger current. The safe route is the pd across the pair, then I = V/R for the branch.",
-   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A.)",
+   "memo": "RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A. The flipped answers add up to 1,32 A too, so also check that the bigger resistance, 14 Ω, has the smaller current.)",
    "twin": {
     "question": "A 6 Ω and a 12 Ω resistor are in parallel, and the current into the pair is 3 A. Calculate the current in the 12 Ω resistor, by the pd route.",
     "answer": "RP = 4,00 Ω. Vpair = (3)(4) = 12,00 V. I12Ω = 12/12 = 1,00 A. (The ratio slip gives 2 A.)"

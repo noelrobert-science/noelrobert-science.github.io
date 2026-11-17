@@ -231,6 +231,7 @@
     blurb: 'Choose any two half-cells. Electrons flow in the wire, ions drift in the salt bridge, and the anode, cathode, half-reactions, notation and Eθcell build alongside. Then try to break it.',
     render(el, params) {
       const st = { L: HC.find(c => c.id === (params.l || 'Zn')), R: HC.find(c => c.id === (params.r || 'Cu')), running: false, p: 0, elapsed: 0, predict: params.predict === '1', guess: {}, bridge: ['KNO₃', 'KCℓ', 'none'].includes(params.bridge) ? params.bridge : 'KNO₃', electrode: {}, revealed: false };
+      if (params.build === 'zinc') st.build = { a: 1, c: 0, flow: 0.7, dist: 0, phase: 1, stopped: false }; // a lesson scene that starts with the zinc side already charged
       const stage = h('div', { class: 'stage' }), svgBox = h('div'), cap = h('div', { class: 'cap', 'aria-live': 'polite' }), bar = h('div', { class: 'bar' });
       add(stage, [svgBox, cap, bar]);
       const ctl = h('div', { class: 'card', style: { marginTop: '14px' } }), side = h('div');

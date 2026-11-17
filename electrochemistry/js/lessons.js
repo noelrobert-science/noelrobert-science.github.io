@@ -49,8 +49,13 @@
         'Pause and predict': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 1, word: 'nitrate', event: { spot: 'anion' } }, { cue: 2, word: 'potassium', event: { spot: 'both' } }], board: ['Salt bridge: KNO₃', 'Which ions move into the zinc half-cell?'], after: ['NO₃⁻ moves from the bridge into the zinc half-cell', 'Zn²⁺ moves from the zinc half-cell into the bridge', 'K⁺ moves from the bridge into the copper half-cell; NO₃⁻ moves from it into the bridge', 'Ions move both ways: out of the bridge and into it'] },
         'What the memo wants': { board: ['Completes the circuit ✓', 'Maintains electrical neutrality in the half-cells ✓', 'Name the ions and the half-cells'] },
         'The trap': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 0, word: 'electrons', event: { spot: 'trap' } }], board: ['✗ Electrons flow through the salt bridge.', '✓ Electrons flow only in the wire and electrodes; ions carry the charge in the bridge.'] },
-        'Choosing the salt': { lab: ['cell', { l: 'Cu', r: 'Ag', run: '1' }], beats: [{ cue: 1, word: 'chloride', event: { bridge: 'KCℓ' } }, { cue: 2, word: 'permanganate', event: { r: 'MnO4' } }], board: ['The bridge ions must not react with either half-cell', 'KNO₃: nitrates form no precipitates', 'KCℓ next to Ag⁺: white AgCℓ precipitate', 'KCℓ next to MnO₄⁻: Cℓ⁻ is oxidised'] },
-        'Your turn': { lab: ['cell', { l: 'Cu', r: 'Ag' }], board: ['Now try: change the salt bridge', 'Watch what each choice does to the voltage'], links: [['#lab/cell', 'Galvanic cell lab'], ['#section/28.2', 'Learn › 28.2']] }
+        'Choosing the salt': { lab: ['cell', { l: 'Cu', r: 'Ag', run: '1' }], beats: [{ cue: 1, word: 'chloride', strict: true, event: { bridge: 'KCℓ' } }, { cue: 2, word: 'permanganate', strict: true, event: { r: 'MnO4' } }], board: ['The bridge ions must not react with either half-cell', 'KNO₃: nitrates form no precipitates', 'KCℓ next to Ag⁺: white AgCℓ precipitate', 'KCℓ next to MnO₄⁻: Cℓ⁻ is oxidised'] },
+        'Your turn': { lab: ['cell', { l: 'Cu', r: 'Ag' }], board: ['Now try: change the salt bridge', 'Watch what each choice does to the voltage'], links: [['#lab/cell', 'Build a cell lab'], ['#section/28.2', 'Learn › 28.2']] },
+        /* the ten-scene script (recorder L4, 17 Nov). The seven titles above serve the current recording; the shared titles serve both. */
+        'Charge builds up: the zinc side': { lab: ['cell', { l: 'Zn', r: 'Cu', bridge: 'none' }], beats: [{ cue: 1, word: 'zinc', event: { build: 'start' } }], board: ['Suppose the current kept flowing with no bridge', 'Zinc half-cell: Zn²⁺ forms, + charge builds up'] },
+        'Charge builds up: the copper side': { lab: ['cell', { l: 'Zn', r: 'Cu', bridge: 'none', build: 'zinc' }], beats: [{ cue: 0, word: 'copper', event: { build: 'cathode' } }, { cue: 1, word: 'within', event: { build: 'slow' } }, { cue: 1, word: 'stop', event: { build: 'stop' } }], board: ['Copper half-cell: Cu²⁺ removed, − charge builds up', 'The build-up would stop the flow', 'The salt bridge stops the build-up'] },
+        'Ions move both ways': { lab: ['cell', { l: 'Zn', r: 'Cu', run: '1' }], beats: [{ cue: 0, word: 'potassium', event: { spot: 'both' } }], board: ['K⁺ moves from the bridge into the copper half-cell', 'Zn²⁺ moves from the zinc half-cell into the bridge; NO₃⁻ moves from the copper half-cell into the bridge', 'Ions move both ways: out of the bridge and into it'] },
+        'When potassium chloride fails': { lab: ['cell', { l: 'Cu', r: 'Ag', run: '1' }], beats: [{ cue: 0, word: 'chloride', event: { bridge: 'KCℓ' } }, { cue: 1, word: 'permanganate', event: { r: 'MnO4' } }], board: ['KCℓ next to Ag⁺: white AgCℓ precipitate, so Ag⁺ is removed', 'KCℓ next to acidified MnO₄⁻: MnO₄⁻ is a stronger oxidising agent than Cℓ₂, so Cℓ⁻ is oxidised'] }
       } },
     { id: 'L5', title: 'Electrolysis: the two contests', sections: ['29.1', '29.2', '29.3'], mod: 29,
       blurb: 'Pushing the electrons the other way: the cathode and anode contests, water as a player, concentration and active anodes.',
@@ -240,7 +245,8 @@
     const beatTime = (sc, bt) => {
       const cs = A.cues.filter(c => c.s === sc.t), c = cs[bt.cue || 0]; if (!c) return Infinity;
       const ws = c.x.toLowerCase().split(/\s+/), words = [].concat(bt.word); let i = -1; for (const wd of words) { i = ws.findIndex(w => w.replace(/[^a-z']/g, '').startsWith(wd)); if (i >= 0) break; }
-      return i < 0 ? c.a : c.a + (c.b - c.a) * i / ws.length;
+      if (i < 0) return bt.strict ? Infinity : c.a; // strict: only at that word (a script without it skips the beat)
+      return c.a + (c.b - c.a) * i / ws.length;
     };
     let fired = new Set();
     function runBeats(meta, sc, t) {
