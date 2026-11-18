@@ -167,6 +167,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
 (function () {
   'use strict';
   const $ = (id) => document.getElementById(id);
+  let keyBase = '';
   const lessonId = (new URLSearchParams(location.search).get('l') || 'L4').replace(/[^A-Za-z0-9-]/g, '');
   let lineIdx = 0, script = null, items = [], cur = 0, stream = null, rec = null, chunks = [], recStart = 0, tick = null, armed = false, clearArmed = false;
   const takes = {};   // slug -> { blob, mime, secs }
@@ -191,17 +192,19 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
   async function load() {
     const r = await fetch(lessonId + '.json', { cache: 'no-store' });
     script = await r.json();
-    const saved = await dbGet(lessonId + ':script');
+    // saved edits and takes are kept per script version, so a new version never picks up old lines or old takes
+    keyBase = lessonId + ':' + (script.version || '') + ':';
+    const saved = await dbGet(keyBase + 'script');
     if (saved) script.scenes.forEach((s) => { if (saved[s.slug]) s.lines = saved[s.slug]; });
     items = [{ slug: script.roomTone.slug, t: 'Room tone', note: script.roomTone.note, lines: [], tone: true }].concat(script.scenes);
     $('lessonName').textContent = script.lesson + ' · ' + script.title + (script.voiceOnly ? ' · voice only, no camera' : '');
     if (script.voiceOnly) { $('startCam').textContent = 'Turn on the mic'; const cam = document.querySelector('.cam'); if (cam) cam.hidden = true; $('setBtn').textContent = 'Mic settings'; }
-    for (const it of items) { const t = await dbGet(lessonId + ':' + it.slug); if (t) takes[it.slug] = t; }
+    for (const it of items) { const t = await dbGet(keyBase + it.slug); if (t) takes[it.slug] = t; }
     cur = 1; render();
   }
   async function saveScript() {
     const out = {}; script.scenes.forEach((s) => { out[s.slug] = s.lines; });
-    await dbPut(lessonId + ':script', out);
+    await dbPut(keyBase + 'script', out);
   }
 
   function render() {
@@ -218,7 +221,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
         const p = document.createElement('div'); p.className = 'line'; p.contentEditable = 'true'; p.spellcheck = false; p.textContent = txt;
         p.addEventListener('input', () => { it.lines[i] = p.textContent.replace(/\s+/g, ' ').trim(); saveScript(); });
         p.dataset.i = i; box.append(p);
-        if ((it.pauseAfter || []).includes(i)) { const q = document.createElement('div'); q.className = 'pause'; q.dataset.i = i; q.textContent = 'PAUSE · stay quiet for 3 seconds, then give the answer'; box.append(q); }
+        if ((it.pauseAfter || []).includes(i)) { const q = document.createElement('div'); q.className = 'pause'; q.dataset.i = i; q.textContent = (i === it.lines.length - 1) ? 'PAUSE · stay quiet for 3 seconds' : 'PAUSE · stay quiet for 3 seconds, then give the answer'; box.append(q); }
       });
     }
     showLine();
@@ -328,7 +331,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
       const blob = new Blob(chunks, { type });
       const secs = (performance.now() - recStart) / 1000;
       const take = { blob, mime: type, secs, at: new Date().toISOString() };
-      takes[it.slug] = take; await dbPut(lessonId + ':' + it.slug, take);
+      takes[it.slug] = take; await dbPut(keyBase + it.slug, take);
       rec = null; armed = false; clearInterval(tick); $('recBadge').hidden = true;
       render(); showPlayback(true);
       say('Saved. Play it back, retake it, or go to the next scene.');
@@ -402,7 +405,7 @@ video.playback { width: 100%; max-width: 420px; border-radius: 10px; background:
     if (!clearArmed) { clearArmed = true; $('clearBtn').textContent = 'Tap again to delete every take'; setTimeout(() => { clearArmed = false; $('clearBtn').textContent = 'Clear all takes'; }, 4000); return; }
     clearArmed = false; $('clearBtn').textContent = 'Clear all takes';
     // only this script's takes: other lessons recorded in this browser stay safe
-    for (const it of items) await dbDel(lessonId + ':' + it.slug);
+    for (const it of items) await dbDel(keyBase + it.slug);
     Object.keys(takes).forEach((k) => delete takes[k]); showPlayback(false); render(); $('zipMsg').textContent = 'All takes deleted. Your script edits are kept.';
   };
   document.addEventListener('keydown', (e) => {

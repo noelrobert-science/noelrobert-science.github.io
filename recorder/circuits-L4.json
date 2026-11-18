@@ -1,0 +1,262 @@
+{
+  "lesson": "circuits-L4",
+  "title": "Inside the battery: emf, internal resistance and the V–I line",
+  "studio": "circuits",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Hook",
+      "slug": "ch0-hook",
+      "face": true,
+      "note": "FACE, full size, camera at eye level, light on your face. Hold two AA batteries and a multimeter. Smile before the first word. Say it to the lens, from memory if you can. One notch more energy than feels normal. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "A new battery and an old one. Nothing connected, and the meter reads almost the same on both. Put the old one in a torch, and it hardly glows.",
+        "Pause. How can the meter say 'fine' when the battery can't light a torch?",
+        "With nothing connected, no current flows. But an old battery has a much bigger resistance inside it. As soon as a current flows, it loses most of its volts inside itself. Here's how that works."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 2,
+      "t": "The battery box (1 of 3)",
+      "slug": "ch1a-the-battery-box",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 11, the emf definition box. Then M11 p. 11, the figure (12 V, 0,5 Ω, 5,5 Ω). Left side first. Say it your way, but keep the numbers, units and SAGS wording exactly.",
+      "lines": [
+        "The emf is the total energy supplied per coulomb of charge by the cell. And SAGS says it plainly: a real battery has internal resistance.",
+        "Draw the battery as a box: an ideal cell, and r inside it.",
+        "Switch open: no current, so no volts are lost inside. The voltmeter reads the emf, 12 volts."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "The battery box (2 of 3)",
+      "slug": "ch1b-the-battery-box",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: the right side of the M11 p. 11 figure. Write 2,00 A and 11,00 V. Then the emf definition box again, then note 2 under the figure (Lost volts = Ir = (2)(0,5) = 1,00 V; 12 − 1 = 11 V).",
+      "lines": [
+        "Switch closed. 12 equals the current, times: 5,5 plus 0,5. So the current is 2 amps.",
+        "Inside the battery, I times r is 1 volt lost. So the voltmeter reads 11 volts. That's the terminal pd.",
+        "Each coulomb gets 12 joules. It loses 1 joule inside the battery, which warms it. It delivers 11 joules to the circuit."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "The battery box (3 of 3)",
+      "slug": "ch1c-the-battery-box",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 11, the padlocks on the battery box (and the third bullet on M11 p. 12).",
+      "lines": [
+        "The padlocks mean the emf and r belong to the battery. Change the circuit and they stay the same. Only the current, the lost volts and the terminal pd change."
+      ]
+    },
+    {
+      "n": 5,
+      "t": "I DO: Worked example 11.4 (1 of 3)",
+      "slug": "ch2a-i-do-worked-example-11-4",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 15, WE 11.4, the circuit. Then write (a).",
+      "lines": [
+        "Worked example 11.4. The emf is 15 volts, and r is unknown. V1 is across the battery. V2 is across the open switch S.",
+        "Switch open, so no current flows. No lost volts. V1 reads the emf: 15 volts."
+      ]
+    },
+    {
+      "n": 6,
+      "t": "I DO: Worked example 11.4 (2 of 3)",
+      "slug": "ch2b-i-do-worked-example-11-4",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 15, WE 11.4, zoomed in on the circuit so the printed answer \"(B) V2 = 15 V\" is off screen. Stay quiet for 3 seconds after the question. Then write (b) as you give the answer.",
+      "lines": [
+        "Pause. What does V2 read, across the open switch?",
+        "Also 15 volts. With no current, nothing inside the battery or the resistors takes any pd, so the whole emf is across the gap. In 2019 many candidates wrote zero here."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 7,
+      "t": "I DO: Worked example 11.4 (3 of 3)",
+      "slug": "ch2c-i-do-worked-example-11-4",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 15. Write (c).",
+      "lines": [
+        "Close S, and V1 drops to 10,5 volts. Why?",
+        "V equals emf minus I r. A current now flows, so I goes up from zero. The lost volts go up, and the terminal pd goes down.",
+        "The emf and r did not change."
+      ]
+    },
+    {
+      "n": 8,
+      "t": "YOU DO: Now you",
+      "slug": "ch3-you-do-now-you",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 16, Now you, the two small circuits. Do not write anything yet. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn, on page 16: parts b, c and d. Give the readings with the switches open. Then use an equation to explain the drop in part d. Pause and work it out."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 9,
+      "t": "YOU DO: Now you: the answer",
+      "slug": "ch3-you-do-now-you-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 16, Now you. Write each answer as you say it.",
+      "lines": [
+        "Part b: 10 volts, the emf. No current, so no lost volts.",
+        "Part c: zero volts. No current through the bulb, so there's no pd across it.",
+        "Part d: V equals emf minus I r. Close S1, and a current flows. The lost volts rise from zero, so V1 falls below 10 volts."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "I DO: Worked example 11.7 (1 of 4)",
+      "slug": "ch4a-i-do-worked-example-11-7",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 18, the four-equations figure.",
+      "lines": [
+        "Four equations. Point at the part of the circuit before you choose.",
+        "The whole loop: emf equals I, times: R external plus r.",
+        "Across the battery: emf minus I r. Across r alone: I r.",
+        "One resistor: V equals I R."
+      ]
+    },
+    {
+      "n": 11,
+      "t": "I DO: Worked example 11.7 (2 of 4)",
+      "slug": "ch4b-i-do-worked-example-11-7",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 22, WE 11.7 (a).",
+      "lines": [
+        "Worked example 11.7. The emf is unknown. The internal resistance, small r, is 1 ohm. A1 reads 1,32 amps. And R external is 5,83 ohms.",
+        "The whole loop: emf equals 1,32, times: 5,83 plus 1. That's 9,02 volts."
+      ]
+    },
+    {
+      "n": 12,
+      "t": "I DO: Worked example 11.7 (3 of 4)",
+      "slug": "ch4c-i-do-worked-example-11-7",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 22, WE 11.7 (b).",
+      "lines": [
+        "Now V2. First, the terminal pd. 9,02, take away 1,32 times 1. That's 7,70 volts.",
+        "The top branch is 14 ohms. Its current is 7,70 divided by 14. That's 0,55 amps.",
+        "V2 is across the 4-ohm resistor. 0,55 times 4. That's 2,20 volts."
+      ]
+    },
+    {
+      "n": 13,
+      "t": "I DO: Worked example 11.7 (4 of 4)",
+      "slug": "ch4d-i-do-worked-example-11-7",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 22, the \"Explain\" line under WE 11.7. Stay quiet for 3 seconds after the question. Then give the answer.",
+      "lines": [
+        "Pause. Why is the whole 7,70 volts across the top branch?",
+        "Both branches join the battery's two terminals, so each branch has the full terminal pd. Not the emf: some of the emf was lost inside."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 14,
+      "t": "I DO: Worked example 11.8, and the line (1 of 3)",
+      "slug": "ch5a-i-do-worked-example-11-8-and-the",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 27, WE 11.8, both diagrams. Then write (a) and (b).",
+      "lines": [
+        "One battery. Its emf is 6 volts. Its internal resistance, small r, is unknown.",
+        "Two equal resistors, each one big R, are in series. They take 0,6 amps.",
+        "The same two resistors in parallel take 1,5 amps.",
+        "Series: emf equals I1, times: 2 big R, plus small r.",
+        "Parallel: two equal resistors give big R over 2. So emf equals I2, times: big R over 2, plus small r."
+      ]
+    },
+    {
+      "n": 15,
+      "t": "I DO: Worked example 11.8, and the line (2 of 3)",
+      "slug": "ch5b-i-do-worked-example-11-8-and-the",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 27, write (c).",
+      "lines": [
+        "Series: 6 divided by 0,6 is 10. So 2 big R, plus small r, is 10.",
+        "Parallel: 6 divided by 1,5 is 4. So big R over 2, plus small r, is 4.",
+        "Subtract. 1,5 big R equals 6.",
+        "So big R is 4,00 ohms.",
+        "And small r is 2,00 ohms.",
+        "Check. 6 divided by 10 is 0,6. And 6 divided by 4 is 1,5."
+      ]
+    },
+    {
+      "n": 16,
+      "t": "I DO: Worked example 11.8, and the line (3 of 3)",
+      "slug": "ch5c-i-do-worked-example-11-8-and-the",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: a blank grid. Plot the two points as you say them, with no line yet. Keep the printed graph on M11 p. 25 covered. Stay quiet for 3 seconds after the question: the answer is the next scene.",
+      "lines": [
+        "Now plot those two states: terminal pd against current.",
+        "In series, the voltmeter reads 4,8 volts at 0,6 amps.",
+        "In parallel, it reads 3,0 volts at 1,5 amps.",
+        "Pause. Where does the line through them cross the V-axis? And why there?"
+      ],
+      "pauseAfter": [
+        3
+      ]
+    },
+    {
+      "n": 17,
+      "t": "I DO: Worked example 11.8, and the line (3 of 3): the answer",
+      "slug": "ch5c-i-do-worked-example-11-8-and-the-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: your grid. Extend the line to I = 0. Label emf = 6,00 V and gradient = −2,00 V·A⁻¹ (so r = 2,00 Ω). Then uncover the printed graph on M11 p. 25 to compare.",
+      "lines": [
+        "At 6 volts. That's the emf. At zero current there are no lost volts.",
+        "And the gradient is negative 2 volts per amp.",
+        "The gradient is negative r. So the internal resistance, small r, is 2,00 ohms.",
+        "So V equals negative r times I, plus the emf. It's y equals m x plus c.",
+        "The gradient gives you r, and the intercept gives you the emf."
+      ]
+    },
+    {
+      "n": 18,
+      "t": "YOU DO (lesson's own)",
+      "slug": "ch6-you-do-lesson-s-own-stop",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: write the readings on a blank grid. Stay quiet for 3 seconds after the question. Then give the answer.",
+      "lines": [
+        "Your turn. A battery is tested twice.",
+        "First: 0,5 amps, at a terminal pd of 5,5 volts.",
+        "Then: 1,5 amps, at 4,5 volts.",
+        "Find r and the emf. Pause and work it out.",
+        "The pd drops by 1 volt as the current rises by 1 amp. So the gradient is negative 1 volt per amp, and r is 1,00 ohm.",
+        "The emf is 5,5, plus 0,5 times 1. That's 6,00 volts.",
+        "Check: 6, take away 1,5, is 4,5."
+      ],
+      "pauseAfter": [
+        3
+      ]
+    },
+    {
+      "n": 19,
+      "t": "Close",
+      "slug": "ch7-close",
+      "face": false,
+      "note": "Voice only. On screen: the topic page in the app. Warm finish: smile as you say it (people can hear a smile).",
+      "lines": [
+        "Next in the app is See it happen. It's the battery story, and the V I graph tool. Then Train. Then Check."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}

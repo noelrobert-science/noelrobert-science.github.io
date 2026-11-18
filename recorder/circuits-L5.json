@@ -1,0 +1,192 @@
+{
+  "lesson": "circuits-L5",
+  "title": "Explaining a change: the cause chain",
+  "studio": "circuits",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Hook",
+      "slug": "ch0-hook",
+      "face": true,
+      "note": "FACE, full size, camera at eye level, light on your face. A photo of a car's headlights at night goes beside you in the edit. Smile before the first word. Say it to the lens, from memory if you can. One notch more energy than feels normal. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "Sit in a car at night with the headlights on, and turn the key. While the starter motor turns, the headlights dip. Nobody touched the headlights.",
+        "Pause. Why do they dim?",
+        "The answer is a chain of seven steps. Miss a step and you can lose a mark. This lesson is that chain."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 2,
+      "t": "The chain card (1 of 2)",
+      "slug": "ch1a-the-chain-card",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 35, the seven-row chain table. Say it your way, but keep the numbers, units and SAGS wording exactly.",
+      "lines": [
+        "Seven steps. One: the emf and r stay the same, because they belong to the battery. Two: what changed. Three: the external resistance. Four: the battery current. Five: the lost volts, I r. Six: the terminal pd. Seven: the part they asked about."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "The chain card (2 of 2)",
+      "slug": "ch1b-the-chain-card",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 35: circle \"the order we reason in\" (the table heading). Then M11 p. 36, the one-change rule.",
+      "lines": [
+        "This is the order we reason in, not the order things happen. In the circuit, everything changes at the same instant.",
+        "And the one-change rule: decide each direction with an equation where only one thing changes.",
+        "For the terminal pd, use emf minus I r. The emf and r are fixed, so only I moves."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "I DO: the starter motor, with numbers (1 of 2)",
+      "slug": "ch2a-i-do-the-starter-motor-with-numb",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 38, the before and after circuits. Then M11 p. 38, the table. Tick down the rows.",
+      "lines": [
+        "The battery has an emf of 12 volts, and an internal resistance of half an ohm. The lamps are 5,5 ohms. Now switch on a motor in parallel.",
+        "The motor adds a branch. So the external resistance drops, from 5,5 ohms to 3,5.",
+        "The current rises, from 2 amps to 3.",
+        "The lost volts rise, from 1 volt to 1,5.",
+        "The terminal pd falls, from 11 volts to 10,5."
+      ]
+    },
+    {
+      "n": 5,
+      "t": "I DO: the starter motor, with numbers (2 of 2)",
+      "slug": "ch2b-i-do-the-starter-motor-with-numb",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 38, the last row of the table, then the two voltmeter readings on the circuits: 11,00 V and 10,50 V. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "Pause at this row. The battery current went up. So why do the lamps get less power?",
+        "Because the lamps sit across the terminals. Their pd is the terminal pd, and it fell.",
+        "P equals V squared over R, with the lamp's R fixed. So the power drops from 22 watts to 20,05 watts. They dim. That's the headlights."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 6,
+      "t": "I DO: Worked example 11.12 (1 of 3)",
+      "slug": "ch3a-i-do-worked-example-11-12",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 21, the WE 11.6 circuit (WE 11.12 on M11 p. 41 has no circuit of its own). Draw V1 across the battery. Then M11 p. 41, WE 11.12.",
+      "lines": [
+        "Worked example 11.12. The emf is 30 volts. The internal resistance, small r, is 0,9 ohms.",
+        "A 12-ohm resistor is in series with a pair. The pair is worth 2,1 ohms.",
+        "A wire is put where the voltmeter V2 was. What happens to V1, across the battery?"
+      ]
+    },
+    {
+      "n": 7,
+      "t": "I DO: Worked example 11.12 (2 of 3)",
+      "slug": "ch3b-i-do-worked-example-11-12",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 41, WE 11.12. Write 7.9 and 7.10 as bullets.",
+      "lines": [
+        "It decreases. The wire short-circuits the pair, so the external resistance falls, from 14,1 ohms to 12.",
+        "So the current increases, and the lost volts increase.",
+        "V terminal is emf minus I r, with the emf and r constant. So V1 decreases."
+      ]
+    },
+    {
+      "n": 8,
+      "t": "I DO: Worked example 11.12 (3 of 3)",
+      "slug": "ch3c-i-do-worked-example-11-12",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 41, the \"Explain\" line under WE 11.12. Stay quiet for 3 seconds after the question. Then show the note: 28,20 V to 27,91 V.",
+      "lines": [
+        "Pause. Why can't you just write: the bulb is shorted, so V1 falls?",
+        "Because the marks are on the links: the resistance, the current, the lost volts.",
+        "And the change is tiny: from 28,20 volts to 27,91. Only the chain shows why it happens at all."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 9,
+      "t": "I DO: Worked example 11.11, the point-form table (1 of 3)",
+      "slug": "ch4a-i-do-worked-example-11-11-the-po",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 60, the May 2026 Question 8 circuit (WE 11.11 on M11 p. 40 has no circuit of its own). Then M11 p. 40, WE 11.11, row 8.6.1.",
+      "lines": [
+        "This is from the May 2026 paper. A bulb is in parallel with a 32-ohm branch, and that branch has a switch in it. The switch is opened.",
+        "There are three rows, and each one gets a word and two bullets.",
+        "A1: decrease. Opening S removes the 32-ohm branch, so the total resistance increases. The emf stays the same, so the current decreases."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "I DO: Worked example 11.11, the point-form table (2 of 3)",
+      "slug": "ch4b-i-do-worked-example-11-11-the-po",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 40, row 8.6.2. Then row 8.6.3.",
+      "lines": [
+        "V: increase. Less current, so fewer lost volts. So the terminal pd, emf minus I r, increases.",
+        "The bulb: increase. Its pd is the terminal pd, which went up. So its current and its power go up."
+      ]
+    },
+    {
+      "n": 11,
+      "t": "I DO: Worked example 11.11, the point-form table (3 of 3)",
+      "slug": "ch4c-i-do-worked-example-11-11-the-po",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 40, the \"Explain\" line under WE 11.11. Stay quiet for 3 seconds after the question. Then show the check line.",
+      "lines": [
+        "Pause. A1 fell, but the bulb's current rose. How can both be true?",
+        "A1 is the total. The current in the 32-ohm branch has gone completely.",
+        "The bulb's share grew a little, because it now has a bigger pd. The total still fell, from 1,96 amps to 1,48."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 12,
+      "t": "YOU DO: Now you",
+      "slug": "ch5-you-do-now-you",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 42, Now you. Do not write anything yet. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn. This is from the May 2025 paper. Points A and B are joined by a wire. What happens to V1? Write the word, then the chain, one link per bullet. Pause and write it."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 13,
+      "t": "YOU DO: Now you: the answer",
+      "slug": "ch5-you-do-now-you-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 42, Now you. Write the word, then one bullet for each link as you say it.",
+      "lines": [
+        "Decreases. The emf and r stay the same.",
+        "The wire short-circuits the 10-ohm resistor in the top branch, so the external resistance decreases.",
+        "The battery current increases. The lost volts increase.",
+        "So the terminal pd, which V1 reads, decreases."
+      ]
+    },
+    {
+      "n": 14,
+      "t": "Close",
+      "slug": "ch6-close",
+      "face": false,
+      "note": "Voice only. On screen: the topic page in the app. Warm finish: smile as you say it (people can hear a smile).",
+      "lines": [
+        "Next in the app is See it happen. Explain a change in the Circuits Studio. Then Train. Then Check."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}

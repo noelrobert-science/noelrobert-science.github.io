@@ -1,0 +1,251 @@
+{
+  "lesson": "circuits-L2",
+  "title": "Series, parallel and networks",
+  "studio": "circuits",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Hook",
+      "slug": "ch0-hook",
+      "face": true,
+      "note": "FACE, full size, camera at eye level, light on your face. Hold up a string of fairy lights with one bulb loose, if you have one. Smile before the first word. Say it to the lens, from memory if you can. One notch more energy than feels normal. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "On a cheap string of fairy lights, one bulb dies and the whole string goes dark. In your house, one bulb dies and every other light stays on.",
+        "Pause. Which one is wired in series and which in parallel? Why does it matter?",
+        "The fairy lights are in series: one break stops every bulb. Your house is in parallel: each branch keeps its own full pd. Here are the two rules behind that."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 2,
+      "t": "The two rules (1 of 3)",
+      "slug": "ch1a-the-two-rules",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 17, the series figure. Then M10 p. 17, the parallel figure. Say it your way, but keep the numbers, units and SAGS wording exactly.",
+      "lines": [
+        "Series: one path. The same current, 1 amp, flows through both resistors, so the two ammeters agree.",
+        "The pds add up to the supply pd. 4 volts plus 8 volts is 12 volts.",
+        "Parallel: every branch is connected across the same two points. So every branch has the same pd: 12 volts each.",
+        "The currents add. 3 amps plus 1 amp is 4 amps."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "The two rules (2 of 3)",
+      "slug": "ch1b-the-two-rules",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 17, the data-sheet box. Write RP = 3 Ω.",
+      "lines": [
+        "The two parallel branches are 4 ohms and 12 ohms.",
+        "1 over RP is: 1 over 4, plus 1 over 12. That adds up to 1 over 3.",
+        "Now invert, on a new line. RP is 3 ohms.",
+        "And the sense check: RP is always smaller than the smallest branch. 3 is less than 4."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "The two rules (3 of 3)",
+      "slug": "ch1c-the-two-rules",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 20, the \"Who is right?\" box (the headlamp and the radio). Stay quiet for 3 seconds after the question. Then circle the middle answer.",
+      "lines": [
+        "Pause. The headlamp and the radio are both connected straight across an ideal battery. Switch on the radio. What happens to the headlamp?",
+        "It stays the same. It's still directly across the battery, so its pd and its current don't change. The battery just supplies more current."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 5,
+      "t": "I DO: Worked example 10.5 (1 of 3)",
+      "slug": "ch2a-i-do-worked-example-10-5",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 23, the recipe box. Then Worked example 10.5. Write 0,6 A beside the 7 Ω.",
+      "lines": [
+        "The routine for any part of a circuit: write every value on the diagram. Then V equals I R, for one component at a time, with its own V, I and R.",
+        "A 3-ohm bulb is in parallel with a 7-ohm resistor. Only one current is given: 0,6 amps, in the 7-ohm resistor."
+      ]
+    },
+    {
+      "n": 6,
+      "t": "I DO: Worked example 10.5 (2 of 3)",
+      "slug": "ch2b-i-do-worked-example-10-5",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 23, the \"Explain\" line under Worked example 10.5. Stay quiet for 3 seconds after the question. Then write (a) line by line.",
+      "lines": [
+        "Pause. Why do I find V2 first?",
+        "Because the pd is the one thing both branches share. V equals I R. 0,6 times 7. That's 4,20 volts across the pair."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 7,
+      "t": "I DO: Worked example 10.5 (3 of 3)",
+      "slug": "ch2c-i-do-worked-example-10-5",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 23, Worked example 10.5. Write (b) and (c). Then write the check line.",
+      "lines": [
+        "Now RP. 1 over 3, plus 1 over 7. Then invert. RP is 2,10 ohms.",
+        "Now the bulb. Its pd is 4,2 volts. 4,2 divided by 3. That's 1,40 amps.",
+        "A1 reads the total. 1,40 plus 0,60. That's 2,00 amps.",
+        "Now the check. 4,2 divided by RP. That's 4,2 divided by 2,1. It gives 2,00 amps.",
+        "Two routes, one answer."
+      ]
+    },
+    {
+      "n": 8,
+      "t": "YOU DO: Now you",
+      "slug": "ch3-you-do-now-you",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 24, Now you. Do not write anything yet. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn. A 6-ohm resistor and a 4-ohm resistor are in parallel. The ammeter in the 6-ohm branch reads 0,5 amps.",
+        "Find the pd across the pair. Then RP. Then the main-line current, and check it. Pause and work it out."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 9,
+      "t": "YOU DO: Now you: the answer",
+      "slug": "ch3-you-do-now-you-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 24, Now you. Write each line of the answer as you say it.",
+      "lines": [
+        "The pd is 0,5 times 6. That's 3,00 volts.",
+        "RP is 2,40 ohms.",
+        "The 4-ohm branch takes 3 divided by 4. That's 0,75 amps.",
+        "Add the 0,5 amps in the other branch. The total is 1,25 amps.",
+        "Check: 3 divided by 2,4 is 1,25 amps. It matches."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "Networks: in, then back out (1 of 3)",
+      "slug": "ch4a-networks-in-then-back-out",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 4, the figure (10 Ω ∥ 30 Ω, then 4,5 Ω).",
+      "lines": [
+        "A network is a parallel group in series with something else. Work from the inside out.",
+        "The group first. 10 ohms and 30 ohms in parallel give 7,5 ohms.",
+        "Then add the series part. 7,5 plus 4,5 is 12 ohms. That's the external resistance.",
+        "The 3 ohms inside the battery box is for a later lesson."
+      ]
+    },
+    {
+      "n": 11,
+      "t": "Networks: in, then back out (2 of 3)",
+      "slug": "ch4b-networks-in-then-back-out",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 4, the same figure. With the pen, go to badges 3, 4 and 5 in turn (total current, pd across the group, branch current).",
+      "lines": [
+        "Then work back out. First, the total current.",
+        "Next, the pd across the group: that current times RP.",
+        "Last, each branch current: the group's pd, divided by that branch's resistance."
+      ]
+    },
+    {
+      "n": 12,
+      "t": "Networks: in, then back out (3 of 3)",
+      "slug": "ch4c-networks-in-then-back-out",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 5, the voltmeter figure (7,70 V across P and Q; 5,50 V and 2,20 V).",
+      "lines": [
+        "Every branch between P and Q has the same pd: 7,70 volts.",
+        "Along the lower branch, the pds add up to that 7,70 volts. They split in the ratio of the resistances.",
+        "5,50 volts across that branch's 10-ohm resistor. 2,20 volts across its 4-ohm resistor."
+      ]
+    },
+    {
+      "n": 13,
+      "t": "I DO: Worked example 11.2 (1 of 3)",
+      "slug": "ch5a-i-do-worked-example-11-2",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 8, Worked example 11.2, the circuit. Write 24 V and 60 W on it. Then write (a) and (b).",
+      "lines": [
+        "The battery is 24 volts, and ideal. It supplies 60 watts.",
+        "A 7-ohm resistor is in series with a parallel pair. The pair is a 3-ohm resistor and an unknown R.",
+        "P equals V I. So 60 equals 24 times the current.",
+        "60 divided by 24. The current is 2,50 amps.",
+        "Now the 7-ohm resistor. V equals I R. 2,5 times 7. That's 17,50 volts."
+      ]
+    },
+    {
+      "n": 14,
+      "t": "I DO: Worked example 11.2 (2 of 3)",
+      "slug": "ch5b-i-do-worked-example-11-2",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 8, the \"Explain\" line under Worked example 11.2. Stay quiet for 3 seconds after the question. Then write (c).",
+      "lines": [
+        "Pause. Why does the voltmeter across the pair read 24, take away 17,5?",
+        "The 7-ohm resistor and the pair are in series across the battery. So their pds add up to 24 volts. That leaves 6,50 volts for the pair."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 15,
+      "t": "I DO: Worked example 11.2 (3 of 3)",
+      "slug": "ch5c-i-do-worked-example-11-2",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 8. Write (d) and (e). Box \"keep 1/3 A\". Then circle the \"Memo slips\" note.",
+      "lines": [
+        "The 3-ohm resistor takes 6,5 divided by 3. That's 2,1667 amps. Keep it in the calculator.",
+        "R gets the rest. 2,5, take away 2,1667. That's a third of an amp.",
+        "So R is 6,5, divided by a third. That's 19,50 ohms.",
+        "The IEB memo rounds to 0,33 amps first. It prints 19,70 ohms.",
+        "Keep the full value and you get 19,50 ohms. Round only at the end."
+      ]
+    },
+    {
+      "n": 16,
+      "t": "YOU DO: Now you",
+      "slug": "ch6-you-do-now-you",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 9, Now you. Do not write anything yet. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn. This one is from the IEB May 2024 paper. The switch is closed. V2 is across the 18-ohm resistor. It reads 6 volts.",
+        "Find the reading on A1. Then the resistance of the parallel pair. Then the reading on A2. You don't need the battery's internal resistance. Pause and work it out."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 17,
+      "t": "YOU DO: Now you: the answer",
+      "slug": "ch6-you-do-now-you-m11-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M11 p. 9, Now you. Write each line of the answer as you say it.",
+      "lines": [
+        "A1 is 6 divided by 18. That's a third of an amp. Keep it exact.",
+        "The parallel pair is 14 ohms and 12 ohms. Its RP is 6,46 ohms. Keep 6,4615 in the calculator.",
+        "The pd across the pair is a third, times 6,4615. That's 2,15 volts.",
+        "A2 is that pd, divided by 12. That's 0,18 amps."
+      ]
+    },
+    {
+      "n": 18,
+      "t": "Close",
+      "slug": "ch7-close",
+      "face": false,
+      "note": "Voice only. On screen: the topic page in the app. Warm finish: smile as you say it (people can hear a smile).",
+      "lines": [
+        "Next in the app is See it happen. Probe a network with a voltmeter in the Circuits Studio. Then Train. Then Check."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}

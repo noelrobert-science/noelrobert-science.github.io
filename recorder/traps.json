@@ -1,0 +1,429 @@
+{
+  "lesson": "traps",
+  "title": "Exam trap clips (27 of the 28 cards; card 17, Momentum, is scene 28 of the Momentum script). Go by the card number in each title, not the scene number.",
+  "studio": "app",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Card 1 · Gr 11-12 · Potential difference and current: The missing word in a definition",
+      "slug": "01-the-missing-word-in-a-definition",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Here's a trap that costs you marks before you've even picked up your calculator.",
+        "\"Define potential difference.\" Most people write: the work done per unit charge. That sounds right. It's one word short.",
+        "The SAGS sentence is: potential difference is the work done per unit POSITIVE charge. Leave out \"positive\" and it isn't the SAGS definition any more, so the marks go.",
+        "The examiners keep saying it: learn definitions as they are stated in the SAGS. Not your version. Not close enough. Word for word.",
+        "So here's what to do. Say the definition out loud, then write it from memory, then check it against the book, word by word. Do the same for every definition in this topic.",
+        "Now try the twin on the card."
+      ]
+    },
+    {
+      "n": 2,
+      "t": "Card 2 · Gr 11-12 · Ohm's law; ohmic and non-ohmic conductors: Ohm's law, back to front",
+      "slug": "02-ohm-s-law-back-to-front",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Ohm's law. Two marks, and lots of people lose one of them.",
+        "Here's the usual answer: the potential difference is directly proportional to the current. It's back to front.",
+        "The examiners spell it out: current is directly proportional to potential difference, not the other way round. The current depends on the pd. You change the pd, and the current follows.",
+        "So learn it in this order. The current, through a conductor, is directly proportional to the potential difference across the conductor, at constant temperature.",
+        "And don't drop \"at constant temperature\". That's the whole reason a hot filament bulb doesn't obey the law.",
+        "Do the twin on the card, and say the sentence out loud before you write it."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "Card 3 · Gr 11-12 · Series and parallel resistors: Forgetting to invert",
+      "slug": "03-forgetting-to-invert",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Two resistors in parallel: 6 ohms and 12 ohms. Easy marks, and still people lose them.",
+        "Trap number one. You add 1 over 6 and 1 over 12. You get 0,25. And you write 0,25 ohms. You never turned it upside down. That 0,25 is 1 over RP.",
+        "Trap number two is sneakier. You write 1 over RP equals, then the two fractions, then equals 4 ohms. The number's right, but the line is false. 1 over RP isn't 4. The examiners want correct mathematics, so they take the mark.",
+        "Fix: write 1 over RP on one line. Then on a NEW line, RP equals 4,00 ohms. Or use the one-line form with the minus-one power.",
+        "Then a sense check: RP must be smaller than the smallest branch. 4 is less than 6. Good.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "Card 4 · Gr 11-12 · Electrical power and energy: A rate of energy dissipation is a power",
+      "slug": "04-a-rate-of-energy-dissipation-is-a-power",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Listen for one word: \"rate\".",
+        "\"Calculate the rate of energy dissipation in the bulb.\" Lots of people go looking for a time. There's no time in the question, so they freeze, or they write an answer in joules.",
+        "The examiners noticed: the rate of energy dissipation was not recognised as power.",
+        "A rate is per second. Energy per second is power. So it's P equals I squared R, and the answer is in watts. No time needed.",
+        "Here's the rule. If the question says rate of energy, rate of heating, or how fast energy is transferred, it wants power, in watts. If it says energy in 3 minutes, or heat produced in 2 minutes, it wants energy, in joules. Then the time must be in seconds.",
+        "Try the twin. It has one of each."
+      ]
+    },
+    {
+      "n": 5,
+      "t": "Card 5 · Gr 11-12 · Paying for electricity: the kWh: Watts and minutes in a cost",
+      "slug": "05-the-kwh-watts-and-minutes-in-a-cost",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "A pump is rated 750 watts. It runs for 20 minutes. Electricity costs R1,20 a kilowatt hour. What does it cost?",
+        "Here's the trap answer: 750, times 20, times 1,20. Eighteen thousand rand. For twenty minutes of a pump! If your answer could buy a car, stop and look again.",
+        "The examiners call cost calculations easy marks, and they still see the same two slips. Minutes not changed to hours. And kilowatt hours mixed up with watt hours, and with kilowatts per hour.",
+        "The tariff is rand per kilowatt hour. So the power goes in kilowatts: 0,75. The time goes in hours: 20 over 60. Multiply: 0,25 kilowatt hours. Times R1,20 is 30 cents.",
+        "And never write kilowatts per hour. A kilowatt hour is kilowatts times hours.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 6,
+      "t": "Card 6 · Gr 11-12 · Series-parallel networks: The ratio shortcut that flips",
+      "slug": "06-the-ratio-shortcut-that-flips",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Current splits between two branches: 14 ohms and 10 ohms. Together they share 1,32 amps. How much goes through the 14?",
+        "The shortcut people grab: 14 over 24 of the current. 0,77 amps. Wrong, and it's wrong backwards. The BIGGER resistance takes the SMALLER current.",
+        "The examiners saw it: most candidates who used ratios based on the resistors made errors.",
+        "So don't guess the ratio. Use the pd route. Find RP: 5,83 ohms. The pd across the pair is the current times RP: 7,70 volts. Both branches get that same 7,70. Then the 14-ohm branch: 7,70 over 14. 0,55 amps.",
+        "Then check. The 10-ohm branch gets 0,77 amps. Add the 0,55, and you're back at 1,32. But the flipped answers add up too. So also check that the bigger resistance has the smaller current.",
+        "Twin on the card."
+      ]
+    },
+    {
+      "n": 7,
+      "t": "Card 7 · Gr 11-12 · emf and internal resistance: The emf across the wrong thing",
+      "slug": "07-the-emf-across-the-wrong-thing",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Before you answer any voltmeter question, put your finger on the two points the voltmeter touches.",
+        "Here, the switch is open and the voltmeter is across the bulb. Lots of people write 12 volts, the emf, and they give a lovely reason: no current, no lost volts.",
+        "That reason is true... for a voltmeter across the battery. This one's across the bulb. No current flows through the bulb, so the pd across it is I R, and I is zero. Zero volts.",
+        "The examiners wrote: many candidates confused the emf and the voltage across the bulb.",
+        "So: across the battery with no current, you read the emf. Across a resistor or a bulb with no current, you read zero. Same circuit, two different answers, because the meter touches two different places.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 8,
+      "t": "Card 8 · Gr 11-12 · Solving circuits with internal resistance: The whole emf across one branch",
+      "slug": "08-the-whole-emf-across-one-branch",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "The heater is 10 ohms. The battery says 24 volts. So it's 24 divided by 10. That's 2,4 amps. Done?",
+        "No. That's the trap. The 24 volts is the emf of the whole circuit. Some of it is lost inside the battery. Some of it goes across the 4,5-ohm resistor. The heater only gets what's left across the parallel pair.",
+        "The examiners' advice: write the formula, and apply it to the part of the circuit you're dealing with.",
+        "So V equals I R, but with the heater's own numbers. The heater and the 30-ohm resistor in parallel make 7,5 ohms. The battery current is 1,6 amps. 1,6 times 7,5 gives 12 volts across the pair. Then the heater: 12 over 10. That's 1,20 amps.",
+        "Label the values on the diagram: V-pair, I-heater.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 9,
+      "t": "Card 9 · Gr 11-12 · emf and r from two readings or a graph: The gradient from the table",
+      "slug": "09-the-gradient-from-the-table",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "You've drawn your best-fit line. Now the gradient. This is where people throw a mark away.",
+        "They go back to the table and use the first and last readings. But the marks are for the line, not for the readings.",
+        "The examiners wrote: use points that lie on the best-fit straight line, rather than points from the table.",
+        "Why? The line averages all your readings. Any single reading has its own error.",
+        "So pick two points on the line, far apart, where it crosses grid lines cleanly. Mark them, and write their values.",
+        "Then rise over run, with the unit: volts per amp. On this card that gives negative 1,75. The gradient is negative r. So r is 1,75 ohms.",
+        "And extend the line back to the y-axis. That intercept is the emf.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "Card 10 · Gr 11-12 · Explaining a change: the cause chain: Blaming the battery",
+      "slug": "10-the-cause-chain-blaming-the-battery",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "The voltmeter across the battery reads 15 volts. You close the switch, and it drops to 10,5 volts. Why?",
+        "The answer nearly everyone wants to write: the internal resistance went up. Or the emf went down. Neither one happened.",
+        "The examiners put it plainly: many spoke about internal resistance increasing or emf decreasing, rather than linking the increase in current to the increase in lost volts.",
+        "The emf and r belong to the battery. You didn't touch the battery. You closed a switch.",
+        "So the chain goes: closing S lets a current flow. More current means more lost volts, I times r. And the terminal pd is emf minus I r, so it drops.",
+        "Write it in words, one link per bullet. No arrows.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 11,
+      "t": "Card 11 · Gr 12 · Reading Table 4: The arrow copied from Table 4",
+      "slug": "11-the-arrow-copied-from-table-4",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Table 4 is your best friend in electrochemistry. But it has one habit you must not copy: the double arrow.",
+        "The table writes every half-reaction with a double arrow, because it lists them as equilibria. When a cell is actually running, the reaction goes one way. So your half-reactions and your overall equation get a single arrow.",
+        "The examiners took marks for it: candidates were penalised for use of a double arrow.",
+        "So for iron and chlorine. On the left: 2 iron atoms, plus 3 chlorine molecules. Single arrow. On the right: 2 iron-three-plus ions, plus 6 chloride ions. And check the charges balance on both sides.",
+        "The double arrow belongs in other modules: equilibrium reactions, the ionisation of a weak acid or of ammonia, and hydrolysis.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 12,
+      "t": "Card 12 · Gr 12 · Will it react?: The spectator that was not there",
+      "slug": "12-the-spectator-that-was-not-there",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Chlorine bubbled through potassium bromide solution. What's the reducing agent?",
+        "More than half of the IEB candidates in 2025 said potassium. Here's the problem: there's no potassium metal in that beaker. Potassium bromide solution is potassium ions and bromide ions. The potassium ions are already oxidised. They're spectators. They just watch.",
+        "So before you look up anything in Table 4, write the solution as its ions: K-plus, Br-minus. Cross out the spectator. Then ask: who can actually give electrons to chlorine? The bromide ions.",
+        "Chlorine, plus 2 bromide ions. Single arrow. 2 chloride ions, plus bromine.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 13,
+      "t": "Card 13 · Gr 12 · The galvanic cell: The missing platinum",
+      "slug": "13-the-missing-platinum",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Cell notation for chlorine and bromide. Here's the answer that loses marks. Bromide ions, bar, bromine. Double bar. Chlorine, bar, chloride ions. Looks neat. It's missing two things.",
+        "First: where are the electrodes? Electrons need a solid conductor to leave and enter. Nothing in this cell is a metal. So each end gets an inert electrode, platinum, written on the outside.",
+        "The examiners wrote: many candidates omitted the two platinum electrodes.",
+        "Second: the bromide ions and the bromine are both in the same solution, the same phase. So it's a comma between them, not a bar.",
+        "So the full notation is: platinum, bar. Bromide ions, comma, bromine. Double bar. Chlorine, bar, chloride ions. Bar, platinum.",
+        "Quick test for every cell: is there a solid metal at each end? If not, add platinum.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 14,
+      "t": "Card 14 · Gr 12 · The salt bridge: Electrons in the salt bridge",
+      "slug": "14-electrons-in-the-salt-bridge",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "The salt bridge. One idea fixes most salt-bridge answers: electrons never go through it.",
+        "Electrons go round the outside, through the wire. In the solutions and the salt bridge, only ions move.",
+        "The examiners say the salt bridge is still not well understood, and they want the movement of ions into and out of the bridge, in each half-cell.",
+        "So think about the charge. At the nickel anode, nickel atoms become nickel-two-plus ions, so that solution is getting more positive. Negative ions come in from the bridge, and positive ions go out into it.",
+        "At the cathode it's the opposite. Chlorine molecules become chloride ions, so that solution is getting more negative. Positive ions come in from the bridge, and negative ions go out into it.",
+        "Say which half-cell, which ions, and which direction.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 15,
+      "t": "Card 15 · Gr 12 · Electrolysis: the two contests: Swapped products",
+      "slug": "15-the-two-contests-swapped-products",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Molten magnesium chloride, two electrodes. Which product forms where?",
+        "Lots of matric candidates swap them. The examiners say it straight: candidates should know that the ions are attracted to the oppositely charged electrodes.",
+        "So start with the ions: magnesium-two-plus and chloride-minus. The positive electrode attracts the negative ions. Chloride ions arrive, give up electrons, and become chlorine gas. That's oxidation, so the positive electrode is the anode.",
+        "The negative electrode attracts magnesium ions. They take electrons and become magnesium metal. Reduction, the cathode.",
+        "A memory hook that works for electrolysis: positive pulls negative. Then write the half-reaction to prove it.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 16,
+      "t": "Card 16 · Gr 12 · Counting electrons: Faraday: One electron or two?",
+      "slug": "16-faraday-one-electron-or-two",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "In the electrorefining of copper, 0,2 moles of electrons are transferred. What mass of copper is deposited?",
+        "The trap: 0,2 moles of electrons, so 0,2 moles of copper. That's twice too much.",
+        "Write the half-reaction first, every time. Copper-two-plus, plus 2 electrons, gives copper. Two electrons for every copper atom. So the moles of copper are half the moles of electrons: 0,1 moles. Multiply by the molar mass of copper, 63,5 grams per mole. That gives 6,35 grams of copper.",
+        "The examiners say many candidates are STILL neglecting to use the ratio in the half-reaction. That word, still, tells you this has been going on for years.",
+        "Silver needs one electron. Copper needs two. Aluminium needs three. The half-reaction tells you which.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 17,
+      "t": "Card 18 · Gr 10 · Conservation of momentum: The minus sign that went missing",
+      "slug": "18-the-minus-sign-that-went-missing",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Trolley A is 2 kilograms. It moves right at 3 metres per second. Trolley B is 1 kilogram. It moves left at 2 metres per second. They collide, and A stops. How fast does B go?",
+        "The trap answer is 8 metres per second. It treats every velocity as positive. But B was going left.",
+        "The examiners remind matric candidates: momentum is a vector, and the signs for opposite directions are important.",
+        "So first, choose a positive direction. Right is positive. Then A's velocity is positive 3. B's velocity is negative 2.",
+        "Total momentum before equals total momentum after. A has 2 times 3. That's 6. B has 1 times negative 2. That's negative 2. Together, 4.",
+        "After, A has nothing, so B has all 4. B moves right, at 4 metres per second.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 18,
+      "t": "Card 19 · Gr 10 · Current, potential difference and emf: The current that gets used up",
+      "slug": "19-the-current-that-gets-used-up",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "An ammeter before a bulb reads 0,4 amps. What does the ammeter after the bulb read?",
+        "Lots of people say less, because the bulb uses some of the current up. It feels right. It's wrong.",
+        "Charge isn't used up. Think of a bicycle chain: the chain doesn't get shorter as it goes round. The pedals put energy in, the wheel takes energy out, but every link of chain keeps going round.",
+        "So the current after the bulb is the same as before: 0,4 amps. What the bulb does use is energy. That's what the voltmeter across it measures: energy per coulomb.",
+        "Series circuit: same current everywhere. Write that on your page and put a box around it.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 19,
+      "t": "Card 20 · Gr 10 · Circuit diagrams and meters: The open switch reads zero (it doesn't)",
+      "slug": "20-the-open-switch-reads-zero-it-doesn-t",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "A switch is open, so no current flows. A voltmeter sits across the open switch. What does it read?",
+        "Most people say zero. No current, no potential difference. And for a resistor, that's true. But a switch isn't a resistor.",
+        "The battery's emf is 6 volts. With no current, V equals I R gives zero volts across each resistor.",
+        "In a series loop the pds add up to the emf. So the whole 6 volts is across the gap.",
+        "The voltmeter across the open switch reads the full 6 volts.",
+        "In 2019, many matric candidates answered zero here. The examiners wrote that candidates need to understand what a voltmeter across an open switch measures.",
+        "So: resistor, no current, zero volts. Open switch in the only loop: the full emf of the battery.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 20,
+      "t": "Card 21 · Gr 10 · Resistance and Ohm's law: The gradient is not the resistance",
+      "slug": "21-the-gradient-is-not-the-resistance",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Your Ohm's law graph is a lovely straight line. You find the gradient: 0,07. So the resistance is 0,07 ohms? Stop.",
+        "Look at the axes first. Current is on the y-axis and potential difference is on the x-axis. So the gradient is I over V. And resistance is V over I. The gradient is one over R.",
+        "So R is one over the gradient. Don't round first: keep the full gradient in your calculator. You get 15 ohms. That makes sense: 6 volts divided by 0,4 amps is 15 ohms.",
+        "If the graph had V on the y-axis, the gradient would be R itself. That's why you read the axis titles before anything else.",
+        "And a sense check: a tiny resistance like 0,07 ohms would let a huge current through. Does your answer match the graph?",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 21,
+      "t": "Card 22 · Gr 10 · Resistors in series and in parallel: Forgetting to invert",
+      "slug": "22-forgetting-to-invert",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "3 ohms and 6 ohms in parallel. You add one-third and one-sixth and get 0,5. So it's 0,5 ohms?",
+        "Not yet. That 0,5 is one over RP. You've done the hard part and stopped one step early. Flip it: RP is 2 ohms.",
+        "The examiners keep telling matric candidates the same thing: calculate parallel resistance carefully, and use correct mathematics. That means every line you write must be true. Write \"1 over RP equals 0,5\", then on a new line, \"RP equals 2,00 ohms\".",
+        "Then check: the total in parallel is always smaller than the smallest resistor. 2 is smaller than 3. Good.",
+        "But careful: 0,5 is also smaller than 3. So this check will not catch a missing flip.",
+        "Look at your last line. It must start with RP equals, not 1 over RP equals.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 22,
+      "t": "Card 23 · Gr 10 · Series–parallel combinations and the chain: Numbers from different places",
+      "slug": "23-numbers-from-different-places",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "A 12-volt battery. A 4-ohm resistor. Then a parallel pair: 6 ohms and 12 ohms. What's the current in the 6-ohm resistor?",
+        "The quick answer: 12 volts over 6 ohms, 2 amps. It mixes a pd from one place with a resistance from another.",
+        "The examiners wrote that matric candidates struggled to match the current, voltage and resistance in each calculation.",
+        "V equals I R works for one resistor at a time, with its own pd, its own current, its own resistance.",
+        "So: the pair makes 4 ohms. Add the 4-ohm resistor: 8 ohms in total. Total current: 1,5 amps. The 4-ohm takes 6 volts, so the pair gets the other 6. Now the 6-ohm: 6 volts over 6 ohms. 1 amp.",
+        "Write every value on the diagram, next to its own resistor.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 23,
+      "t": "Card 24 · Gr 10 · Switches and identical bulbs: reasoning without numbers: Arrows are not an explanation",
+      "slug": "24-reasoning-without-numbers-arrows-are-not",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Two identical bulbs in series, L1 and L2. A switch across L1 is closed. What happens to L2? You know the answer. Resistance down, current up, power up, brighter. You write it with arrows, and you lose marks.",
+        "The matric examiners are firm: words must be used when an explanation is required. Shorthand and symbols, like arrows and the proportional sign, are not accepted.",
+        "So turn every arrow into a sentence. Closing the switch gives a path with no resistance around L1, so the total resistance decreases.",
+        "The battery's emf stays the same, so the current increases.",
+        "L2's resistance stays the same, and P equals I squared R. So L2's power increases. L2 is brighter.",
+        "One link per bullet. Say what changes and what stays the same.",
+        "Arrows for thinking. Words for the answer.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 24,
+      "t": "Card 25 · Gr 10 · Electrical power, energy and the cost of electricity: Power is not energy",
+      "slug": "25-power-is-not-energy",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "A bulb runs on 6 volts with half an amp. How much energy does it transfer in 2 minutes?",
+        "Two traps. The first: you work out V times I, get 3 watts, and call that the energy. But watts are joules PER SECOND. That's power, not energy.",
+        "The second: you multiply by 2, for 2 minutes. The time must be in seconds: 120.",
+        "The examiners wrote that energy and power were frequently confused. In matric, still.",
+        "So keep them apart. Power is how fast: watts. Energy is how much: joules. Energy is power times time, in seconds. 3 watts for 120 seconds: 360 joules.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 25,
+      "t": "Card 26 · Gr 10 · Mass, molar mass and moles: The forgotten water",
+      "slug": "26-the-forgotten-water",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "25 grams of blue copper sulfate crystals. How many moles?",
+        "The trap: you use the molar mass of CuSO4, 159,5, and stop. But look at the formula: dot 5 H2O. Those crystals have five water molecules locked into every unit. That water has mass, so it belongs in the molar mass.",
+        "The examiners wrote that the overwhelming majority of matric learners didn't know what to do with the waters of crystallisation. Learn it now, in Grade 10.",
+        "So add it up. Copper sulfate is 159,5. The water is 5 times 18: that's 90. Together, 249,5 grams per mole. 25 grams over 249,5 is 0,10 moles.",
+        "Whenever you see a dot and some H2O, add the water.",
+        "Twin's on the card."
+      ]
+    },
+    {
+      "n": 26,
+      "t": "Card 27 · Gr 10 · Ions in mixed solutions: One formula, two chloride ions",
+      "slug": "27-one-formula-two-chloride-ions",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Calcium chloride solution, 0,2 moles per cubic decimetre. How concentrated are the chloride ions?",
+        "The trap answer is 0,2. Same as the salt. But look at the formula: Ca Cl2. One calcium and TWO chlorides. When it dissolves, every unit of calcium chloride lets go of two chloride ions.",
+        "So the chloride concentration is double: 0,40 moles per cubic decimetre.",
+        "The examiners wrote that many matric learners didn't use the ionic ratio. It's one small step, and it's worth the marks.",
+        "So, every time: write the dissociation equation first. Calcium chloride gives one calcium ion and 2 chloride ions. The number in front of the ion is your ratio.",
+        "Twin's on the card: two solutions mixed. Count the chloride from each one."
+      ]
+    },
+    {
+      "n": 27,
+      "t": "Card 28 · Gr 10 · Limiting reagents and purity: Calculating from the excess",
+      "slug": "28-calculating-from-the-excess",
+      "face": true,
+      "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
+      "lines": [
+        "Calcium carbonate in excess, reacting with some acid. How much carbon dioxide forms at STP?",
+        "The trap: you're given 5 grams of calcium carbonate, so you use it. 0,05 moles, so 0,05 moles of CO2. But the question told you calcium carbonate is in EXCESS. There's some left over at the end. It can't decide how much gas you get.",
+        "The acid runs out first. The acid is the limiting reagent, and it decides.",
+        "The examiners wrote that matric candidates used the reactant in excess in the calculation. The word \"excess\" is a gift: it tells you which one NOT to use.",
+        "So: concentration times volume. 0,1 times 0,1 is 0,01 moles of HCl. The ratio is 2 to 1, so 0,005 moles of CO2. Times the molar volume, 22,4: 0,11 cubic decimetres.",
+        "Twin's on the card."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}

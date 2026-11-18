@@ -1,0 +1,252 @@
+{
+  "lesson": "circuits-L3",
+  "title": "Power, energy and paying for it",
+  "studio": "circuits",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Hook",
+      "slug": "ch0-hook",
+      "face": true,
+      "note": "FACE, full size, camera at eye level, light on your face. Hold up a kettle and an iron, or photos of their labels. Smile before the first word. Say it to the lens, from memory if you can. One notch more energy than feels normal. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "Here's a kettle, and here's an iron. Both are plugged in at home, on 220 volts. The kettle is rated 1 500 watts. The iron is rated 1 800 watts.",
+        "Pause and pick: which one has the bigger resistance?",
+        "Most people pick the iron, because it's more powerful. It's the kettle. Let's see why."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 2,
+      "t": "Three forms of one formula (1 of 2)",
+      "slug": "ch1a-three-forms-of-one-formula",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 27, the definition box. Then M10 p. 27, the series figure (8 W and 16 W). Say it your way, but keep the numbers, units and SAGS wording exactly.",
+      "lines": [
+        "Electrical power dissipated in a device is equal to the product of the potential difference across the device and current flowing through it. In symbols, P equals V I.",
+        "Put in V equals I R, and you get two more forms: I squared R, and V squared over R.",
+        "In series, the current is the same, so use I squared R. The bigger resistance gets more power: 16 watts against 8."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "Three forms of one formula (2 of 2)",
+      "slug": "ch1b-three-forms-of-one-formula",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 27, the parallel figure (72 W and 36 W). Then M10 p. 27, the rating line.",
+      "lines": [
+        "In parallel, the pd is the same, so use V squared over R. Now the smaller resistance gets more power: 72 watts against 36. Brightness is power.",
+        "And a rating. Take a kettle marked 220 volts, 1 500 watts. On 220 volts, it transfers 1 500 joules of electrical energy every second."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "I DO: Worked example 10.8 (1 of 3)",
+      "slug": "ch2a-i-do-worked-example-10-8",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 31, WE 10.8 (a). Then WE 10.8 (b), line by line.",
+      "lines": [
+        "Part a. Explain 1 500 watts in terms of energy.",
+        "The kettle transfers 1 500 joules of electrical energy per second, when it's connected to 220 volts.",
+        "Part b. The total current, with both in parallel. I equals P over V, for each one.",
+        "The kettle: 1 500 divided by 220. That's 6,82 amps.",
+        "The iron: 1 800 divided by 220. That's 8,18 amps.",
+        "Parallel currents add. 6,82 plus 8,18. That's 15,00 amps."
+      ]
+    },
+    {
+      "n": 5,
+      "t": "I DO: Worked example 10.8 (2 of 3)",
+      "slug": "ch2b-i-do-worked-example-10-8",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 31, WE 10.8 (c).",
+      "lines": [
+        "Which has the higher resistance, without calculating? R equals V squared over P.",
+        "V is the same for both: 220 volts. So the smaller power means the bigger resistance. The kettle."
+      ]
+    },
+    {
+      "n": 6,
+      "t": "I DO: Worked example 10.8 (3 of 3)",
+      "slug": "ch2c-i-do-worked-example-10-8",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 31, the \"Explain\" line under WE 10.8. Stay quiet for 3 seconds after the question. Then write the answer.",
+      "lines": [
+        "Pause. Why is more power, more resistance, wrong here?",
+        "Because the pd is fixed. With the same V, P equals V squared over R. So a bigger R gives a smaller power. More resistance, more power, only works when the current is the same: in series."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 7,
+      "t": "I DO: Worked example 10.9, an explanation (1 of 3)",
+      "slug": "ch3a-i-do-worked-example-10-9-an-expl",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 33, WE 10.9: the question and the circuit only. Keep the four answer lines covered. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "Two bulbs in series on an ideal 12-volt battery. A switch S is connected across L1. What happens to L2 when S closes?",
+        "Pause and predict: brighter, dimmer or the same?"
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 8,
+      "t": "I DO: Worked example 10.9, an explanation (1 of 3): the answer",
+      "slug": "ch3a-i-do-worked-example-10-9-an-expl-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 33, WE 10.9. Uncover the four answer lines one at a time as you say them.",
+      "lines": [
+        "First, what changed. Closing S puts a path of zero resistance across L1. So the total resistance decreases.",
+        "Next, the battery's pd stays the same. So the current increases.",
+        "Then L2. P equals I squared R. The current goes up, and L2's resistance stays the same.",
+        "So L2's power increases. It's brighter.",
+        "That's four links and four marks."
+      ]
+    },
+    {
+      "n": 9,
+      "t": "I DO: Worked example 10.9, an explanation (2 of 3)",
+      "slug": "ch3b-i-do-worked-example-10-9-an-expl",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 34, the before-and-after table.",
+      "lines": [
+        "With numbers. Each bulb is 6 ohms.",
+        "The total resistance halves, from 12 ohms to 6.",
+        "The current doubles, from 1 amp to 2.",
+        "And L2's power goes from 6 watts to 24.",
+        "Every reading changes at the same instant. The table is just the order we reason in."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "I DO: Worked example 10.9, an explanation (3 of 3)",
+      "slug": "ch3c-i-do-worked-example-10-9-an-expl",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 33, the \"Explain\" line under WE 10.9. Stay quiet for 3 seconds after the question. Then give the answer.",
+      "lines": [
+        "Pause. Why does L1 go out?",
+        "All the current takes the zero-resistance path through the switch. None goes through L1, so its power is zero."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 11,
+      "t": "YOU DO: Now you",
+      "slug": "ch4-you-do-now-you",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 34, Now you, with the blanks left empty. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn. A 10-ohm heater is in parallel with a 30-ohm resistor. This pair is in series with a variable resistor, on an ideal 24-volt battery.",
+        "The variable resistor's resistance is increased. Does the heater give more heat, less heat, or the same? Explain with an equation. Pause and work it out."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 12,
+      "t": "YOU DO: Now you: the answer",
+      "slug": "ch4-you-do-now-you-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 34, Now you. Fill in the blanks as you say each line.",
+      "lines": [
+        "Less heat. The total resistance increases, so the current decreases.",
+        "The pd across the pair is I times RP, so it decreases.",
+        "The heater's power is V squared over R, with its R fixed. So it decreases."
+      ]
+    },
+    {
+      "n": 13,
+      "t": "I DO: the kilowatt hour",
+      "slug": "ch5a-i-do-the-kilowatt-hour-and-worke",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 37, the definition box and the flow figure.",
+      "lines": [
+        "The kilowatt hour is a unit of energy. 1 kilowatt hour is the amount of energy used when 1 kilowatt of electricity is used for 1 hour.",
+        "That's 3,6 million joules.",
+        "To work out a cost: watts to kilowatts, minutes to hours, multiply to get kilowatt hours, then times the tariff.",
+        "And never write kilowatts per hour. A kilowatt hour is kilowatts times hours."
+      ]
+    },
+    {
+      "n": 14,
+      "t": "I DO: Worked example 10.11 (1 of 3)",
+      "slug": "ch5a2-i-do-worked-example-10-11-power",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 39, WE 10.11 (a).",
+      "lines": [
+        "Worked example 10.11. A 50-ohm heater on 220 volts.",
+        "Power is V squared over R. 220 squared, divided by 50. That's 968,00 watts."
+      ]
+    },
+    {
+      "n": 15,
+      "t": "I DO: Worked example 10.11 (2 of 3)",
+      "slug": "ch5b-i-do-the-kilowatt-hour-and-worke",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 39, WE 10.11 (b). Box \"0,968\".",
+      "lines": [
+        "You buy R80 of prepaid electricity. It costs R1,24 a kilowatt hour. How long will the heater run?",
+        "Cost equals power, times time, times the tariff.",
+        "The power must be in kilowatts. 968 watts is 0,968 kilowatts.",
+        "So 80 equals 0,968, times t, times 1,24.",
+        "That gives t as 66,65 hours."
+      ]
+    },
+    {
+      "n": 16,
+      "t": "I DO: Worked example 10.11 (3 of 3)",
+      "slug": "ch5c-i-do-the-kilowatt-hour-and-worke",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 39, the \"Explain\" line under WE 10.11. Stay quiet for 3 seconds after the question. Then give the answer.",
+      "lines": [
+        "Pause. What goes wrong if you use 968 instead of 0,968?",
+        "You'd get a thousand times too little. About 0,07 hours. That's four minutes of heat for R80.",
+        "If your answer doesn't make sense in real life, look at the units."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 17,
+      "t": "YOU DO: the lesson's own question",
+      "slug": "ch6-you-do-lesson-s-own-stop",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: write the question under WE 10.11. Stay quiet for 3 seconds after the question. Then write the answer.",
+      "lines": [
+        "Your turn. A heater is rated 1 500 watts. Electricity costs R2,60 a kilowatt hour. For how long can R20 run it? Pause and work it out.",
+        "Energy bought: 20 divided by 2,60. That's 7,69 kilowatt hours. Keep 7,6923 in the calculator.",
+        "The power is 1 500 watts. That's 1,5 kilowatts.",
+        "Time is energy divided by power. 7,6923 divided by 1,5. That's 5,13 hours."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 18,
+      "t": "Close",
+      "slug": "ch7-close",
+      "face": false,
+      "note": "Voice only. On screen: the topic page in the app. Warm finish: smile as you say it (people can hear a smile).",
+      "lines": [
+        "Next in the app is See it happen. It's brightness and power in the Circuits Studio. Then Train. Then Check."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}

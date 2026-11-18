@@ -1,0 +1,259 @@
+{
+  "lesson": "circuits-L1",
+  "title": "Current, potential difference and Ohm's law",
+  "studio": "circuits",
+  "version": "2026-11-17a",
+  "scenes": [
+    {
+      "n": 1,
+      "t": "Hook",
+      "slug": "ch0-hook",
+      "face": true,
+      "note": "FACE, full size, camera at eye level, light on your face. Hold a torch and click it on as you say the first sentence. Smile before the first word. Say it to the lens, from memory if you can. One notch more energy than feels normal. Stay quiet for 3 seconds after the question.",
+      "lines": [
+        "The bulb lights the instant I press the switch. But the charges in this wire drift slower than an ant walks.",
+        "Pause. How can the light come on at once? Where were the charges before I pressed the switch?",
+        "They were already there, in every bit of the wire. The battery doesn't make charge. It pushes on charge that's already everywhere in the loop. Let's see what that means."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 2,
+      "t": "Current (1 of 3)",
+      "slug": "ch1a-current",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 5, the \"Definition to learn\" box. Underline it. Say it your way, but keep the numbers, units and SAGS wording exactly.",
+      "lines": [
+        "Current is the rate of flow of charge. That's the SAGS sentence, word for word.",
+        "I equals q over t. Coulombs per second. That's the ampere."
+      ]
+    },
+    {
+      "n": 3,
+      "t": "Current (2 of 3)",
+      "slug": "ch1b-current",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 6, the rope-loop figure.",
+      "lines": [
+        "Picture one loop of rope. Your hand is the battery and pulls it round.",
+        "A gloved grip is the bulb, and it gets warm.",
+        "The whole rope moves at once, and no rope gets used up.",
+        "Energy goes in at the hand and comes out at the grip.",
+        "That's a circuit: charge goes all the way round, and the energy is transferred."
+      ]
+    },
+    {
+      "n": 4,
+      "t": "Current (3 of 3)",
+      "slug": "ch1c-current",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 6, circle \"Where the model breaks\".",
+      "lines": [
+        "Every model breaks somewhere. A rope can't split into two branches. So from here on we draw the circuit and write each meter reading on it."
+      ]
+    },
+    {
+      "n": 5,
+      "t": "Potential difference (1 of 3)",
+      "slug": "ch2a-potential-difference",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 7, the pd definition box. Circle \"positive\". Then M10 p. 7, the meter figure.",
+      "lines": [
+        "Potential difference is the work done per unit positive charge. Volts are joules per coulomb.",
+        "And don't drop the word positive. Without it, this isn't the SAGS sentence.",
+        "The ammeter goes in series, so the charge flows through it.",
+        "The voltmeter goes across the part, in parallel. It reads the pd between its two contact points."
+      ]
+    },
+    {
+      "n": 6,
+      "t": "Potential difference (2 of 3)",
+      "slug": "ch2b-potential-difference",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 8, the series circuit (ideal 12 V, 4 Ω and 8 Ω). Cover the V2 reading and rule ④. Trace the loop with the pen.",
+      "lines": [
+        "The battery keeps a pd of 12 volts across its terminals.",
+        "The ammeter reads 1 amp. In one series loop, the current is the same everywhere.",
+        "V1 is across the 4-ohm resistor. V equals I R. 1 times 4. That's 4 volts."
+      ]
+    },
+    {
+      "n": 7,
+      "t": "Potential difference (3 of 3)",
+      "slug": "ch2c-potential-difference",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 8, the series circuit, with the V2 reading and rule ④ still covered. Stay quiet for 3 seconds after the question. Then uncover the V2 reading and rule ④ as you give the answer.",
+      "lines": [
+        "Pause. V2 is across the 8-ohm resistor. What does it read?",
+        "8 volts. That's 1 times 8.",
+        "And the two readings add up to the battery's pd. 4 plus 8 is 12.",
+        "In the Circuits Studio you can probe any two points yourself. The QR code is on page 9."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 8,
+      "t": "Ohm's law (1 of 3)",
+      "slug": "ch3a-ohm-s-law",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 11, the \"Definitions to learn\" box (resistance and Ohm's law).",
+      "lines": [
+        "Resistance is a material's opposition to the flow of electric charge.",
+        "And Ohm's law: the current through a conductor is directly proportional to the potential difference across the conductor, at constant temperature.",
+        "Current first. The current depends on the pd."
+      ]
+    },
+    {
+      "n": 9,
+      "t": "Ohm's law (2 of 3)",
+      "slug": "ch3b-ohm-s-law",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 11, the rheostat circuit.",
+      "lines": [
+        "To test it, change the pd with a rheostat. Read V and I, and plot.",
+        "Use small currents, and switch off between readings, so the temperature stays constant."
+      ]
+    },
+    {
+      "n": 10,
+      "t": "Ohm's law (3 of 3)",
+      "slug": "ch3c-ohm-s-law",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 11, zoomed in on the rheostat circuit only. Keep the text beside and below it out of view, and don't show p. 12 yet. Stay quiet for 3 seconds after the question. Then M10 p. 12, the four small graphs, for the answer.",
+      "lines": [
+        "Pause and sketch it. On axes of current against pd, what shape will a resistor give? And a hot filament bulb?",
+        "The resistor gives a straight line through the origin. That's ohmic.",
+        "The bulb curves over, because its resistance rises as it heats up. That's non-ohmic.",
+        "And look at the axes. With I on the y-axis, the gradient is 1 over R, not R."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 11,
+      "t": "I DO: Practical 10.1, the resistor (1 of 6)",
+      "slug": "ch4a-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 13, the resistor row of the table. Then a blank grid (M10 p. 14, question b).",
+      "lines": [
+        "Practical 10.1, the resistor readings.",
+        "Five things earn marks on a plotted graph. A heading. The y-axis title and unit. A scale that spreads the points over more than half the paper. The points. And the line."
+      ]
+    },
+    {
+      "n": 12,
+      "t": "I DO: Practical 10.1, the resistor (2 of 6)",
+      "slug": "ch4b-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: write the heading and the axes. Take the current scale to 0,60 A, so the bulb's 0,51 A fits later. Try the scale on the p. 14 grid before you record.",
+      "lines": [
+        "The heading: graph of current against potential difference, for resistor X.",
+        "Current, in amps, goes up the side. The biggest reading is 0,49. The bulb's readings go on this grid too.",
+        "So my scale goes up in steps of 0,05. It ends at 0,60. My points still cover more than half the grid.",
+        "Potential difference goes across the bottom, in volts. From 0 to 8."
+      ]
+    },
+    {
+      "n": 13,
+      "t": "I DO: Practical 10.1, the resistor (3 of 6)",
+      "slug": "ch4c-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: plot the six crosses, then rule the line.",
+      "lines": [
+        "Six small crosses. Then one ruled line of best fit.",
+        "It runs through four of the crosses, with one just above and one just below. It goes through the origin."
+      ]
+    },
+    {
+      "n": 14,
+      "t": "I DO: Practical 10.1, the resistor (4 of 6)",
+      "slug": "ch4d-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: Mark (0; 0) and (7,5 V; 0,50 A) on the line. Write: gradient = (0,50 − 0)/(7,5 − 0) = 0,0667 A·V⁻¹.",
+      "lines": [
+        "For the gradient, I take two points on my line, far apart, and mark them.",
+        "The first is the origin.",
+        "The second is at 7,5 volts. There my line reads 0,50 amps.",
+        "The table says 0,49. But the point must come from my line.",
+        "The gradient is: 0,50 take away 0, divided by: 7,5 take away 0.",
+        "That's 0,0667 amps per volt.",
+        "The zeros must be in the substitution, because I used the origin as a point."
+      ]
+    },
+    {
+      "n": 15,
+      "t": "I DO: Practical 10.1, the resistor (5 of 6)",
+      "slug": "ch4e-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: Write R = 1/gradient = 7,5/0,50 = 15,00 Ω.",
+      "lines": [
+        "With current on the y-axis, the gradient is 1 over R. So R is 1 over the gradient.",
+        "That's 7,5 over 0,50. 15,00 ohms.",
+        "Your answer book's line gives 15,27 ohms. Best-fit lines differ a little, so a gradient within 5 per cent of the book's earns the marks."
+      ]
+    },
+    {
+      "n": 16,
+      "t": "I DO: Practical 10.1, the resistor (6 of 6)",
+      "slug": "ch4f-i-do-practical-10-1-the-resistor",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: your finished graph and the gradient working. Stay quiet for 3 seconds after the question. Then circle the two marked points on your line as you give the answer.",
+      "lines": [
+        "Pause. Why did I use 0,50 from my line and not 0,49 from the table?",
+        "The line is the best average of all six readings. Gradient points come from the line, never from the table. The examiners keep saying so."
+      ],
+      "pauseAfter": [
+        0
+      ]
+    },
+    {
+      "n": 17,
+      "t": "YOU DO: the bulb",
+      "slug": "ch5-you-do-the-bulb",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 13, the bulb row of the table, and your grid. Do not show the answer in this clip. Stay quiet for 3 seconds after the last word: the answer is the next scene.",
+      "lines": [
+        "Your turn. On the same grid, plot the bulb readings.",
+        "Then decide: is each component ohmic? Work out the bulb's resistance at 1 volt and at 6 volts. Pause and work it out."
+      ],
+      "pauseAfter": [
+        1
+      ]
+    },
+    {
+      "n": 18,
+      "t": "YOU DO: the bulb: the answer",
+      "slug": "ch5-you-do-the-bulb-answer",
+      "face": false,
+      "note": "Voice and pen in GoodNotes. On screen: M10 p. 13, the bulb row. Then show the answer: the bulb's curve on your grid, plus \"5,56 Ω at 1 V; 11,76 Ω at 6 V\".",
+      "lines": [
+        "The resistor gives a straight line through the origin, so it's ohmic.",
+        "The bulb curves towards the V-axis. That's non-ohmic.",
+        "At 1 volt the bulb's current is 0,18 amps. 1 divided by 0,18. That's about 5,56 ohms.",
+        "At 6 volts the current is 0,51 amps. 6 divided by 0,51. That's 11,76 ohms.",
+        "The resistance goes up as the filament heats.",
+        "On a curve, R is V over I at the point. It is not the gradient of the curve."
+      ]
+    },
+    {
+      "n": 19,
+      "t": "Close",
+      "slug": "ch6-close",
+      "face": false,
+      "note": "Voice only. On screen: the topic page in the app. Warm finish: smile as you say it (people can hear a smile).",
+      "lines": [
+        "Next in the app is See it happen. It's the Ohm's law experiment in the Circuits Studio. Then Train. Then Check."
+      ]
+    }
+  ],
+  "roomTone": {
+    "slug": "00-room-tone",
+    "secs": 10,
+    "note": "Dog out, door shut, phone silent, fan off. Sit still and say nothing for 10 seconds. I use this to take out the background hum."
+  }
+}
