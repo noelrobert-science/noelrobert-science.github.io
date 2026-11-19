@@ -1,13 +1,14 @@
 WEBVTT
 
-00:00:00.430 --> 00:00:03.430
+00:00:00.000 --> 00:00:03.950
 If something bounces back, the speeds add.
 
-00:00:04.010 --> 00:00:08.910
-In at 12, out at 8: that's a change of 20, not 4.
+00:00:04.680 --> 00:00:10.510
+In at 12 metres per second, out at 8, that's a change of 20, not 4.
 
-00:00:09.240 --> 00:00:12.660
-Put a minus sign on the velocity that goes the other way,
+00:00:11.080 --> 00:00:15.170
+Put a negative sign on the velocity that goes the other way, and the maths
 
-00:00:12.960 --> 00:00:14.600
-and the maths does it for you.
+00:00:15.180 --> 00:00:16.390
+does it for you.
+
