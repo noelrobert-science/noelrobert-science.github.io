@@ -29,12 +29,12 @@
     var bits = path.split('/');
     return { view: bits[0] || 'home', arg: bits.slice(1).join('/'), params: params };
   }
-  /* grade: the link's g for this visit, else the stored mrr-grade, else 11; then the book floor gmin */
+  /* grade: the link's g for this visit, else the stored mrr-grade (not 10: Grade 10 mode opens only from a g=10 link), else 11; then the book floor gmin */
   var grade = 11, lockGrade = false;
   function pickGrade(params) {
     var g = parseInt(params.g, 10);
     if (!(g >= 10 && g <= 12)) g = parseInt(store.get('mrr-grade'), 10);
-    if (!(g >= 10 && g <= 12)) g = 11;
+    if (!(g >= 11 && g <= 12) && params.g !== '10') g = 11;
     var gmin = parseInt(params.gmin, 10);
     if (gmin >= 10 && gmin <= 12 && g < gmin) g = gmin;
     return g;
@@ -50,7 +50,7 @@
     var r = parseHash();
     setGrade(pickGrade(r.params), false);
     lockGrade = r.params.lock === '1';
-    document.getElementById('gradeSeg').classList.toggle('hidden', lockGrade);
+    document.getElementById('gradeSeg').classList.add('hidden');   // one library: no grade switch on screen
     stopTween();
     while (stopFns.length) { try { stopFns.pop()(); } catch (e) { /* ignore */ } }
     main.innerHTML = '';
@@ -71,12 +71,12 @@
   function home() {
     document.title = 'Circuits Studio · Mr R Science';
     main.appendChild(h('div', { class: 'wrap' }, [
-      h('p', { class: 'eyebrow', text: 'Physical Sciences · Grades 10 to 12' }),
+      h('p', { class: 'eyebrow', text: 'Physical Sciences · Modules 10 and 11' }),
       h('h1', { text: 'Circuits Studio' }),
       h('p', { class: 'muted', text: 'A virtual lab with IEB circuit symbols, ideal meters and the readings on the diagram. Change one thing and watch every reading change at the same instant.' }),
       h('div', { class: 'note', html: 'Ready now: the <b>virtual lab</b>, the <b>experiments</b>, the <b>graph tool</b>, <b>Explain a change</b>, and <b>Practise and check</b>. Lessons come next.' }),
       (window.StudioViews && window.StudioViews._homeCards) ? window.StudioViews._homeCards(ctx) : null,
-      h('h2', { text: 'Circuits for Grade ' + grade }),
+      h('h2', { text: grade === 10 ? 'Circuits for Grade 10' : 'The circuits' }),
       h('div', { class: 'grid' }, PR.list.filter(function (p) { return p.grades.indexOf(grade) >= 0; }).map(function (p) {
         return h('a', { class: 'card pcard', href: '#lab/' + p.id }, [
           h('h3', { text: p.title }), h('p', { class: 'small muted', text: p.intro }),

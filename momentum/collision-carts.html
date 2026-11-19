@@ -1827,7 +1827,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/style&gt;
 &lt;div id=&quot;momentum-lab&quot;&gt;
   &lt;h2 class=&quot;lab-heading&quot;&gt;Collision carts&lt;/h2&gt;
-  &lt;div class=&quot;text-small text-muted&quot;&gt;Grade 10 · Two-cart system · No external horizontal force&lt;/div&gt;
+  &lt;div class=&quot;text-small text-muted&quot;&gt;Two-cart system · No external horizontal force&lt;/div&gt;
 
   &lt;div class=&quot;viz-controls lab-section&quot;&gt;
     &lt;label class=&quot;form-label&quot;&gt;Experiment
@@ -2029,7 +2029,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   function save() {
     if(typeof window.openai?.setWidgetState===&#x27;function&#x27;) {
-      window.openai.setWidgetState({modelContent:{simulation:&#x27;Grade 10 collision carts&#x27;,...config,initialMomentum:result.total,finalVelocities:result.approaching?[result.v1,result.v2]:null},privateContent:{revealed}}).catch(()=&gt;{});
+      window.openai.setWidgetState({modelContent:{simulation:&#x27;Collision carts&#x27;,...config,initialMomentum:result.total,finalVelocities:result.approaching?[result.v1,result.v2]:null},privateContent:{revealed}}).catch(()=&gt;{});
     }
   }
   function tick(now) {
@@ -2059,7 +2059,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   controls.preset.addEventListener(&#x27;change&#x27;,()=&gt;{config.preset=controls.preset.value;if(presets[config.preset])Object.assign(config,presets[config.preset]);restart();save();});
   function restore(state) {
     const c=state?.modelContent;
-    if(!c || c.simulation!==&#x27;Grade 10 collision carts&#x27;)return false;
+    if(!c || c.simulation!==&#x27;Collision carts&#x27;)return false;
     config={...defaults};
     for(const key of [&#x27;m1&#x27;,&#x27;m2&#x27;,&#x27;u1&#x27;,&#x27;u2&#x27;])if(Number.isFinite(c[key]))config[key]=Math.round(Math.max(key[0]===&#x27;m&#x27;?0.5:-4,Math.min(key[0]===&#x27;m&#x27;?5:4,c[key]))*2)/2;
     if([&#x27;elastic&#x27;,&#x27;stick&#x27;].includes(c.mode))config.mode=c.mode;

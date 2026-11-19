@@ -241,7 +241,7 @@
       'Set the rheostat to its largest value and close the switch.', 'Wait for the steady tick, then Record. Open the switch.',
       'Repeat for at least six settings spread over the range.', 'Plot your readings, find the gradient and write the conclusion.',
       'Then choose the filament bulb and repeat.'].map(function (s) { return h('li', { text: s }); }))]),
-      h('p', { class: 'small muted', text: g === 10 ? 'Grade 10: plot V against I, so the gradient is R.' : 'Grades 11 and 12: plot I against V, as in the book, so the gradient is 1/R.' })]));
+      h('p', { class: 'small muted', text: g === 10 ? 'Grade 10: plot V against I, so the gradient is R.' : 'Plot I against V, as in the book, so the gradient is 1/R.' })]));
     ctx.main.appendChild(h('div', { class: 'wrap' }, [b.el]));
   };
 

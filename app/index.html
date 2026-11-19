@@ -42,10 +42,6 @@ header { position: sticky; top: 0; z-index: 6; background: var(--paper); border-
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto; min-width: 0 }
 .brand img { width: 36px; height: 36px; border-radius: 9px; flex: none }
 .brand b { font: 800 20px/1 var(--font-display); white-space: nowrap }
-.grades { display: flex; align-items: center; gap: 2px; background: var(--soft); border-radius: 99px; padding: 3px; flex: none }
-.grades .gl { font-size: 12px; font-weight: 600; color: var(--muted); padding: 0 4px 0 8px }
-.grades button { font-weight: 600; font-size: 14px; border: 0; background: transparent; border-radius: 99px; padding: 0 8px; min-width: 36px; min-height: 34px; cursor: pointer; color: var(--muted); white-space: nowrap }
-.grades button[aria-pressed="true"] { background: var(--ink); color: var(--paper) }
 .iconbtn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); cursor: pointer; display: grid; place-items: center; flex: none }
 .iconbtn svg { width: 18px; height: 18px }
 nav.tabs { display: flex; gap: 4px; max-width: 1000px; margin: 0 auto; padding-bottom: 8px }
@@ -119,6 +115,19 @@ h3 { font-size: 16px; font-weight: 600; margin: 0 }
 .dot.s1 { border-color: var(--accent); color: var(--accent-ink) }
 .dot.s2 { border-color: var(--ok); background: var(--ok); color: #fff }
 .dot.na { opacity: .35 }
+.count { font-size: 12.5px; font-weight: 600; color: var(--muted) }
+.count.all { color: var(--ok) }
+
+/* The whole library: all 33 SAGS topics in book order, compact */
+.lib { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px 22px }
+.lib h3 { font-size: 13px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px }
+.lib ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px }
+.lib li > * { display: flex; gap: 10px; align-items: baseline; padding: 6px 10px; border-radius: 10px; font-size: 14.5px; line-height: 1.35; text-decoration: none }
+.lib li i { font: 800 13px var(--font-display); font-style: normal; min-width: 22px; text-align: right; flex: none }
+.lib li span { color: var(--muted); opacity: .75 }
+.lib li a { color: var(--ink); font-weight: 600; background: color-mix(in srgb, var(--mc) 9%, var(--paper)) }
+.lib li a i { color: var(--mc) }
+.lib li a:hover { background: color-mix(in srgb, var(--mc) 18%, var(--paper)) }
 
 /* Topic page */
 .back { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 15px; background: var(--soft); border-radius: 99px; padding: 8px 14px 8px 10px; justify-self: start }
@@ -189,7 +198,7 @@ footer { max-width: 1000px; margin: 0 auto; padding-block: 0 30px; color: var(--
 .paper b { font-weight: 600 }
 :root[data-theme="dark"] .paper { background: #2b2610; color: #f3e7b3 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .paper { background: #2b2610; color: #f3e7b3 } }
-body.focus nav.tabs, body.focus #grades { display: none }
+body.focus nav.tabs { display: none }
 body.focus main { padding-bottom: 48px !important }
 body.focus .pop { bottom: auto; top: calc(76px + env(safe-area-inset-top, 0px)) }
 /* Exam trap card */
@@ -228,7 +237,6 @@ blockquote.exam p { font-style: italic }
 <header class="gut">
   <div class="bar">
     <a class="brand" href="#home"><img src="icons/icon.svg" alt=""><b>Mr R Science</b></a>
-    <div class="grades" role="group" aria-label="Grade" id="grades"></div>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch dark or light"></button>
   </div>
   <nav class="tabs" aria-label="Sections">
@@ -247,8 +255,8 @@ const $ = s => document.querySelector(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const store = { get(k, d) { try { const v = localStorage.getItem('mrr-' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
                 set(k, v) { try { localStorage.setItem('mrr-' + k, JSON.stringify(v)); } catch {} } };
-let CAT = null, grade = store.get('grade', '10');
-let prog = store.get('progress', {});          // { topicId: { watch: 0|1|2, train: …, check: … } } 1 = opened, 2 = done
+let CAT = null, MODS = [], PARTS = [];
+let prog = store.get('progress', {});          // { 'm10/current': { watch: 0|1|2, train: …, check: … } } 1 = opened, 2 = done
 const STEPS = [
   { k: 'watch', name: 'Watch', verb: 'Watch now', what: 'A short lesson that stops so you can think first.' },
   { k: 'train', name: 'Train', verb: 'Train now', what: 'Practise with fresh numbers. Help only opens after you try.' },
@@ -263,7 +271,7 @@ const ICON = {
 // Covers: a real lab diagram where there is one; otherwise the topic's key idea in type.
 const COVER = {
   momentum: { t: 'p = mv', s: 'Momentum' }, conservation: { t: 'Σp before = Σp after', s: 'Collisions' },
-  'mass-moles': { t: 'n = m ÷ M', s: 'Moles' }, mixtures: { t: 'Na⁺ Cl⁻ Ca²⁺', s: 'Ions in solution' },
+  'mass-moles': { t: 'n = m ÷ M', s: 'Moles' }, mixtures: { t: 'Na⁺ Cℓ⁻ Ca²⁺', s: 'Ions in solution' },
   'limiting-purity': { t: 'Which runs out?', s: 'Limiting reagent' }, table4: { t: 'Table 4', s: 'Who is oxidised?' },
   'will-it-react': { t: 'Zn + Cu²⁺ → ?', s: 'Will it react?' }, faraday: { t: 'Q = It', s: 'Counting electrons' },
   guides: { t: '90+', s: 'Revision guides' },
@@ -277,29 +285,31 @@ const COVER = {
   galvanic: { img: 'img/topics/galvanic.jpg' }, 'salt-bridge': { img: 'img/topics/salt-bridge.jpg' }, electrolysis: { img: 'img/topics/electrolysis.jpg' }
 };
 
-function gradeData() { return CAT.grades.find(g => g.id === grade) || CAT.grades[0]; }
-function allTopics(g) { return (g || gradeData()).modules.flatMap(m => m.topics.map(t => ({ t, m }))); }
-// Topic ids can repeat across grades (circuits), so the app keys topics by grade/id.
-function findTopic(id) {
-  const all = CAT.grades.flatMap(g => g.modules.flatMap(m => m.topics.map(t => ({ t, m, g }))));
-  return all.find(x => x.t._k === id) || all.find(x => x.t.id === id && x.g.id === grade) || all.find(x => x.t.id === id) || null;
-}
+// The library: 33 SAGS topics (modules) in book order. A built module has parts, keyed "m<num>/<part id>".
+const MCOVER = {
+  m7: { t: 'p = mv', s: 'Momentum' }, m10: { t: 'R = V ÷ I', s: 'Circuits 1' }, m11: { t: 'ε = I(R + r)', s: 'Circuits 2' },
+  m17: { t: 'n = m ÷ M', s: 'Moles' }, m27: { t: 'Table 4', s: 'Redox' }, m28: { img: 'img/topics/galvanic.jpg' }, m29: { img: 'img/topics/electrolysis.jpg' }
+};
 function keyTopics() {
-  for (const g of CAT.grades) for (const m of g.modules) for (const t of m.topics) t._k = g.id + '/' + t.id;
-  // ticks saved before keys had a grade: move them to the grade that has that topic
-  let moved = false;
-  for (const k of Object.keys(prog)) if (!k.includes('/')) { const f = findTopic(k); if (f) { prog[f.t._k] = Object.assign({}, prog[k], prog[f.t._k]); } delete prog[k]; moved = true; }
-  if (moved) store.set('progress', prog);
-  const last = store.get('last', null); if (last && !last.includes('/')) { const f = findTopic(last); store.set('last', f ? f.t._k : null); }
+  MODS = CAT.papers.flatMap(p => p.modules.map(m => Object.assign(m, { _p: p })));
+  PARTS = MODS.filter(m => m.built).flatMap(m => (m.parts || []).map(t => { t._k = m.id + '/' + t.id; return { t, m }; }));
+}
+function allTopics() { return PARTS; }
+function findMod(n) { return MODS.find(m => String(m.num) === String(n) || m.id === n) || null; }
+// "m10/current" is the key. Part ids are unique, so an old key ("12/current", "11/ohm", "current") finds its part by id.
+function findTopic(id) {
+  id = String(id || '');
+  return PARTS.find(x => x.t._k === id) || PARTS.find(x => x.t.id === id.split('/').pop()) || null;
 }
 function st(tid, k) { return (prog[tid] || {})[k] || 0; }
 function has(t, k) { return (t[k] || []).length > 0; }
 function nextStep(t) { return STEPS.find(s => has(t, s.k) && st(t._k, s.k) < 2) || null; }
 function isDone(t) { return STEPS.every(s => !has(t, s.k) || st(t._k, s.k) === 2) && STEPS.some(s => has(t, s.k)); }
-function where(t, m) { return t.page ? `Book p. ${t.page}` : (t.section && /^\d/.test(t.section) ? `Section ${t.section}` : (m.num && /^\d/.test(m.num) ? `Module ${m.num}` : '')); }
+function where(t, m) { return t.page ? `Book p. ${t.page}` : (t.section && /^\d/.test(t.section) ? `Section ${t.section}` : `Module ${m.num}`); }
+function modParts(m) { return (m.parts || []).filter(t => !t.extra); }
 
-function cover(t, m) {
-  const c = COVER[t.id] || { t: m.title, s: '' };
+function cover(t, m, c0) {
+  const c = c0 || COVER[t.id] || { t: m.title, s: '' };
   const badge = isDone(t) ? '<span class="done-badge">Done ✓</span>' : '';
   if (c.img) return `<div class="cover"><img src="${esc(c.img)}" alt="" loading="lazy">${badge}</div>`;
   return `<div class="cover"><span class="pat"></span><span class="ty">${esc(c.t)}${c.s ? `<small>${esc(c.s)}</small>` : ''}</span>${badge}</div>`;
@@ -319,8 +329,25 @@ function itemLink(it, tid, k, first) {
   return `<a class="item${first ? ' first' : ''}" href="${esc(it.href)}" data-topic="${esc(tid)}" data-step="${k}">${ICON[k]}<span><b>${esc(it.title)}</b>${meta ? `<small>${esc(meta)}</small>` : ''}</span></a>`;
 }
 
+function modCard(m) {
+  const c = MCOVER[m.id] || COVER[(m.parts[0] || {}).id] || { t: m.title, s: '' }, ps = modParts(m), d = ps.filter(isDone).length;
+  const all = ps.length && d === ps.length;
+  const img = c.img ? `<img src="${esc(c.img)}" alt="" loading="lazy">` : `<span class="pat"></span><span class="ty">${esc(c.t)}${c.s ? `<small>${esc(c.s)}</small>` : ''}</span>`;
+  return `<a class="card" href="#m/${esc(m.num)}" style="--mc:${esc(m.colour || '#334155')}"><div class="cover">${img}${all ? '<span class="done-badge">Done ✓</span>' : ''}</div><div class="body"><h3>${esc(m.title)}</h3><div class="meta"><span class="tag">Module ${esc(m.num)}</span><span class="count${all ? ' all' : ''}">${d} of ${ps.length} done</span></div></div></a>`;
+}
+function libList() {
+  return `<div class="lib">${CAT.papers.map(p => `<div><h3>${esc(p.label)} · ${esc(p.title)}</h3><ol>${p.modules.map(m => `<li>${m.built
+    ? `<a href="#m/${esc(m.num)}" style="--mc:${esc(m.colour || '#334155')}"><i>${esc(m.num)}</i>${esc(m.title)}</a>`
+    : `<span><i>${esc(m.num)}</i>${esc(m.title)}</span>`}</li>`).join('')}</ol></div>`).join('')}</div>`;
+}
+function shelf() {
+  const r = CAT.revision; if (!r || !(r.items || []).length) return '';
+  return `<section class="mod" style="--mc:${esc(r.colour || '#334155')}"><div class="mod-h"><span class="num">★</span><h2>${esc(r.title)}</h2></div>${r.say ? `<p class="lede" style="margin:0">${esc(r.say)}</p>` : ''}
+    <div class="items">${r.items.map(it => `<a class="item" href="${esc(it.href)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 5v16"/></svg><span><b>${esc(it.title)}</b>${it.note ? `<small>${esc(it.note)}</small>` : ''}</span></a>`).join('')}</div></section>`;
+}
+
 function homeView() {
-  const g = gradeData(), list = allTopics(g);
+  const list = allTopics();
   let next = '';
   if (list.length) {
     const last = store.get('last', null), hit = last && list.find(x => x.t._k === last);
@@ -336,16 +363,27 @@ function homeView() {
     }
   }
   const how = `<div class="how">${STEPS.map((s, i) => `<div><b><i>${i + 1}</i>${s.name}</b><span>${esc(s.what)}</span></div>`).join('')}</div>`;
-  const mods = g.modules.length ? g.modules.map(m => `<section class="mod" style="--mc:${esc(m.colour || '#334155')}"><div class="mod-h"><span class="num">${esc(m.num)}</span><h2>${esc(m.title)}</h2></div><div class="cards">${m.topics.map(t => card(t, m)).join('')}</div></section>`).join('')
-    : `<p class="note">${esc(g.coming || 'Coming soon.')}</p>`;
-  return `<div><p class="kicker">${esc(g.label)} · ${esc(g.syllabus || 'Physical sciences')}</p><h1>Physical sciences, one topic at a time.</h1></div>${next}${how}${mods}`;
+  const ready = MODS.filter(m => m.built);
+  const mods = `<section class="mod"><div class="mod-h"><h2>Ready to use</h2></div><div class="cards">${ready.map(modCard).join('')}</div></section>
+    <section class="mod"><div class="mod-h"><h2>All 33 topics</h2><small>In the order of the coursebook</small></div>${libList()}</section>${shelf()}`;
+  return `<div><p class="kicker">IEB Physical Sciences · SAGS</p><h1>Physical sciences, one topic at a time.</h1></div>${next}${how}${mods}`;
+}
+
+function modView(n) {
+  const m = findMod(n);
+  if (!m || !m.built) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">${m ? `${esc(m.title)} isn't in the app yet.` : "That topic isn't here."}</p>`;
+  const c = MCOVER[m.id] || { t: m.title, s: '' };
+  const img = c.img ? `<img src="${esc(c.img)}" alt="" loading="lazy">` : `<span class="pat"></span><span class="ty">${esc(c.t)}${c.s ? `<small>${esc(c.s)}</small>` : ''}</span>`;
+  return `<a class="back" href="#home">${ICON.back}Home</a>
+    <div class="thero" style="--mc:${esc(m.colour || '#334155')}"><div><p class="kicker">${esc(m._p.label)} · Module ${esc(m.num)}</p><h1>${esc(m.title)}</h1><p class="lede">${esc(m.book || '')}</p></div><div class="cover">${img}</div></div>
+    ${m.say ? `<p class="note">${esc(m.say)}</p>` : ''}
+    <section class="mod" style="--mc:${esc(m.colour || '#334155')}"><div class="mod-h"><h2>The parts</h2><small>${modParts(m).length} to work through</small></div><div class="cards">${m.parts.map(t => card(t, m)).join('')}</div></section>`;
 }
 
 function topicView(id) {
   const f = findTopic(id);
   if (!f) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">That topic isn't here any more.</p>`;
-  const { t, m, g } = f;
-  if (g.id !== grade) { grade = g.id; store.set('grade', grade); }
+  const { t, m } = f;
   store.set('last', t._k);
   const ns = nextStep(t);
   const steps = STEPS.map((s, i) => {
@@ -359,7 +397,7 @@ function topicView(id) {
   const walk = canWalk(m) ? `<div class="walk"><p class="kicker">${at ? 'You stopped part way' : 'New to this topic?'}</p><p>${at ? 'Carry on where you left off, one screen at a time.' : 'Go through it one screen at a time: Watch, See it happen, Train, On paper, then Check.'}</p><a class="btn" href="#go/${esc(t._k)}${at ? '/' + at : '/0'}">${at ? 'Carry on ›' : 'Walk me through it ›'}</a></div>` : '';
   const win = isDone(t) ? `<div class="win"><span class="big">🎉</span><div><b>Topic done.</b><p>Come back to the Check in a few days to see if it stuck.</p></div></div>` : '';
   const w = where(t, m);
-  return `<a class="back" href="#home">${ICON.back}Home</a>
+  return `<a class="back" href="#m/${esc(m.num)}">${ICON.back}Module ${esc(m.num)}</a>
     <div class="thero" style="--mc:${esc(m.colour || '#334155')}"><div><p class="kicker">${esc(m.num)} · ${esc(m.title)}</p><h1>${esc(t.title)}</h1><p class="lede">${esc(m.book)}${t.section && /^\d/.test(t.section) ? ` · Section ${esc(t.section)}` : ''}${t.page ? ` · p. ${esc(t.page)}` : ''}</p><div class="meta" style="margin-top:12px;justify-content:flex-start">${dots(t)}</div></div>${cover(t, m)}</div>
     ${win}${walk}<div class="steps">${steps}</div>`;
 }
@@ -371,17 +409,17 @@ const TABS = {
   book:  { title: 'Book', lede: 'Where each topic is in your coursebook, so screen and paper stay together.' }
 };
 function tabView(tab) {
-  const g = gradeData(), T = TABS[tab];
-  const rows = g.modules.flatMap(m => m.topics.map(t => {
+  const T = TABS[tab];
+  const rows = PARTS.map(({ t, m }) => {
     const w = where(t, m);
-    if (tab === 'book') return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t._k)}">${esc(t.title)}</a><span class="tag">${esc(m.num)} · ${esc(t.section || '')}${t.page ? ' · p. ' + esc(t.page) : ''}</span></div></div>`;
+    if (tab === 'book') return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t._k)}">${esc(t.title)}</a><span class="tag">Module ${esc(m.num)} · ${t.section ? esc(t.section) : esc(m.book || '')}${t.page ? ' · p. ' + esc(t.page) : ''}</span></div></div>`;
     const list = t[tab] || [];
     if (!list.length) return '';
     return `<div class="row" style="--mc:${esc(m.colour)}"><div class="row-h"><a href="#t/${esc(t._k)}">${esc(t.title)} ›</a>${w ? `<span class="tag">${esc(w)}</span>` : ''}</div><div class="items">${list.map(it => itemLink(it, t._k, tab, false)).join('')}</div></div>`;
-  })).join('');
-  const body = !g.modules.length ? `<p class="note">${esc(g.coming || 'Coming soon.')}</p>` : rows ? `<div class="list">${rows}</div>` : `<p class="note">Nothing here for ${esc(g.label)} yet.</p>`;
-  const bookNote = tab === 'book' ? `<p class="note">Use your printed coursebook: the section and page are listed for each topic.</p>` : '';
-  return `<div><p class="kicker">${esc(g.label)}</p><h1>${esc(T.title)}</h1><p class="lede">${esc(T.lede)}</p></div>${bookNote}${body}`;
+  }).join('');
+  const body = rows ? `<div class="list">${rows}</div>` : `<p class="note">Nothing here yet.</p>`;
+  const bookNote = tab === 'book' ? `<p class="note">Use your printed coursebook: the module and section are listed for each topic.</p>` : '';
+  return `<div><p class="kicker">All topics</p><h1>${esc(T.title)}</h1><p class="lede">${esc(T.lede)}</p></div>${bookNote}${body}`;
 }
 function aboutView() {
   return `<a class="back" href="#home">${ICON.back}Home</a><div><h1>About Mr R Science</h1><p class="lede">Physical sciences, the way Noel Robert teaches it: SAGS wording, worked methods that earn the marks, and practice that makes you think before it shows you.</p></div>
@@ -430,8 +468,8 @@ function trapLink(t) {
   return `<a class="trapcard${done ? ' done' : ''}" href="#trap/${esc(t._k)}"><span class="kicker">${done ? 'Exam trap ✓' : 'Before you Check'}</span><b>Exam trap: ${esc(c.title)}</b><small>${esc(c.built_on)}</small><span class="go">${done ? 'See it again ›' : 'Spot the trap ›'}</span></a>`;
 }
 
-// ---- Walk me through it: one tool per screen, Next from the app (circuits and Gr 12 electrochemistry) ----
-const WALK_MODS = /^(g1[0-2]-m1[01]|g12-m2[7-9])$/;   // circuits (Gr 10-12) and Gr 12 electrochemistry
+// ---- Walk me through it: one tool per screen, Next from the app (circuits and electrochemistry) ----
+const WALK_MODS = /^m(1[01]|2[7-9])$/;   // Modules 10 and 11 (circuits) and 27 to 29 (electrochemistry)
 const canWalk = m => WALK_MODS.test(m.id);
 const NAME = { watch: 'Watch', try: 'See it happen', train: 'Train', paper: 'On paper', trap: 'Exam trap', check: 'Check' };
 const NORM = { learn: 'watch', practise: 'train', test: 'check' };
@@ -448,13 +486,12 @@ function walkOf(t) {
   return F;
 }
 function walkAt(tid) { const g = store.get('walk', {}); return g[tid] || 0; }
-function bookRef(t, m) { return t.section && /^\d/.test(t.section) ? `section ${t.section}${t.page ? `, page ${t.page}` : ''}` : (m.book || 'your coursebook'); }
+function bookRef(t, m) { return t.section && /^\d/.test(t.section) ? `section ${t.section}${t.page ? `, page ${t.page}` : ''}` : `Module ${m.num}`; }
 function walkView(id, n) {
   const f = findTopic(id);
   if (!f) return `<a class="back" href="#home">${ICON.back}Home</a><p class="note">That topic isn't here any more.</p>`;
-  const { t, m, g } = f, tid = esc(t._k), F = walkOf(t);
-  if (g.id !== grade) { grade = g.id; store.set('grade', grade); }
-  n = Math.max(0, Math.min(F.length - 1, n || 0));
+  const { t, m } = f, tid = esc(t._k), F = walkOf(t);
+  n =Math.max(0, Math.min(F.length - 1, n || 0));
   const s = F[n], real = F.filter(x => NAME[x.k]), i = real.indexOf(s);
   store.set('last', t._k);
   const w = store.get('walk', {}); if (s.k === 'end') delete w[t._k]; else w[t._k] = n; store.set('walk', w);
@@ -491,7 +528,7 @@ function walkView(id, n) {
     <p class="say">A few questions with no help switched on. Work on paper first, then answer.</p>${what(s.it)}
     <div class="facts">${open('Check now')}${nextBtn('Skip for now ›')}</div>`;
   else {
-    const nx = allTopics(g).find((x, j, a) => j > a.findIndex(y => y.t._k === t._k) && !isDone(x.t));
+    const nx = allTopics().find((x, j, a) => j > a.findIndex(y => y.t._k === t._k) && !isDone(x.t));
     body = `<p class="kicker">${esc(t.title)}</p><h1>${isDone(t) ? 'Topic done 🎉' : 'You got to the end'}</h1>
       <p class="say">${isDone(t) ? 'Check it again in a few days to see if it stuck.' : 'Some steps are not ticked yet. You can do them from the topic page.'}</p>
       <div class="facts">${nx ? `<a class="btn" href="#t/${esc(nx.t._k)}">Next: ${esc(nx.t.title)}</a>` : ''}<a class="btn quiet" href="#t/${tid}">Back to the topic</a></div>`;
@@ -500,17 +537,25 @@ function walkView(id, n) {
   return `${back}<div class="flow">${bar}<div class="fcard">${body}</div></div>`;
 }
 
+// An old link (#t/12/current, #go/11/ohm/2, #trap/10/momentum) becomes the new key, so the address matches the page.
+function canon(route) {
+  const x = /^(t|trap|go)\/(.+)$/.exec(route); if (!x) return route;
+  let key = decodeURIComponent(x[2]), n = '';
+  if (x[1] === 'go') { const d = /^(.+)\/(\d+)$/.exec(key); if (d) { key = d[1]; n = '/' + d[2]; } }
+  const f = findTopic(key);
+  return f ? x[1] + '/' + f.t._k + n : route;
+}
 function render() {
-  const route = location.hash.slice(1) || 'home';
-  const tabKey = /^(t|go|trap)\//.test(route) ? 'home' : route;
+  let route = location.hash.slice(1) || 'home';
+  const c = canon(route); if (c !== route) { history.replaceState(null, '', '#' + c); route = c; }
+  const tabKey = /^(t|go|trap|m)\//.test(route) ? 'home' : route;
   document.querySelectorAll('[data-tab]').forEach(a => a.dataset.tab === tabKey ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
-  $('#grades').innerHTML = '<span class="gl" aria-hidden="true">Gr</span>' + CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}" aria-label="${esc(g.label)}">${esc(g.id)}</button>`).join('');
   const gm = /^go\/(.+?)(?:\/(\d+))?$/.exec(route);
   document.body.classList.toggle('focus', !!gm || route.startsWith('trap/'));
   $('#main').innerHTML = gm ? walkView(decodeURIComponent(gm[1]), gm[2] != null ? +gm[2] : walkAt(decodeURIComponent(gm[1])))
     : route.startsWith('trap/') ? trapView(decodeURIComponent(route.slice(5)))
+    : route.startsWith('m/') ? modView(decodeURIComponent(route.slice(2)))
     : route.startsWith('t/') ? topicView(decodeURIComponent(route.slice(2))) : TABS[route] ? tabView(route) : route === 'about' ? aboutView() : homeView();
-  if (route.startsWith('t/')) $('#grades').innerHTML = '<span class="gl" aria-hidden="true">Gr</span>' + CAT.grades.map(g => `<button type="button" data-g="${esc(g.id)}" aria-pressed="${g.id === grade}" aria-label="${esc(g.label)}">${esc(g.id)}</button>`).join('');
 }
 
 function celebrate(msg, big) {
@@ -523,8 +568,6 @@ function celebrate(msg, big) {
 }
 
 document.addEventListener('click', e => {
-  const b = e.target.closest('[data-g]');
-  if (b) { grade = b.dataset.g; store.set('grade', grade); if (location.hash.startsWith('#t/')) location.hash = '#home'; else render(); return; }
   const tk = e.target.closest('[data-tick]');
   if (tk) {
     const tid = tk.dataset.tick, k = tk.dataset.k, f = findTopic(tid);
@@ -569,11 +612,11 @@ document.addEventListener('click', e => {
 // Coming back from a lesson or studio with "Done": tick that step, and in a walk-through move to the next screen.
 function doneFromStudio() {
   let d = null; try { d = JSON.parse(sessionStorage.getItem('mrr-done') || 'null'); sessionStorage.removeItem('mrr-done'); } catch {}
-  const f = d && findTopic(d.t), k = d && (NORM[d.k] || d.k);
+  const f = d && findTopic(d.t), k = d && (NORM[d.k] || d.k);   // an old key ({t:"11/ohm"}) finds its part by id
   if (!f || !NAME[k]) return;
-  const was = isDone(f.t); prog[d.t] = prog[d.t] || {}; prog[d.t][k] = 2; store.set('progress', prog);
+  const tk = f.t._k, was = isDone(f.t); prog[tk] = prog[tk] || {}; prog[tk][k] = 2; store.set('progress', prog);
   const gm = /^#go\/(.+)\/(\d+)$/.exec(location.hash);
-  if (gm && decodeURIComponent(gm[1]) === d.t) { const F = walkOf(f.t), n = +gm[2]; if (F[n] && F[n].k === k) location.replace('#go/' + gm[1] + '/' + (n + 1)); }
+  if (gm && decodeURIComponent(gm[1]) === tk) { const F = walkOf(f.t), n = +gm[2]; if (F[n] && F[n].k === k) location.replace('#go/' + gm[1] + '/' + (n + 1)); }
   render();
   const done = isDone(f.t); celebrate(done && !was ? 'Topic done! 🎉' : `${NAME[k]}: done ✓`, done && !was);
 }
@@ -590,7 +633,7 @@ $('#theme').addEventListener('click', () => { const dark = document.documentElem
 try { sessionStorage.removeItem('mrr-return'); } catch {}
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
 const trapsLoad = fetch('traps.json').then(r => r.ok ? r.json() : { cards: {} }).then(d => { TRAPS = d.cards || {}; }).catch(() => {});
-fetch('catalog.json').then(r => r.json()).then(c => trapsLoad.then(() => { CAT = c; keyTopics(); if (!CAT.grades.some(g => g.id === grade)) grade = CAT.grades[0].id; render(); doneFromStudio(); }))
+fetch('catalog.json').then(r => r.json()).then(c => trapsLoad.then(() => { CAT = c; keyTopics(); render(); doneFromStudio(); }))
   .catch(() => { $('#main').innerHTML = '<p class="note">The lesson list could not load. Check your connection, then reopen the app.</p>'; });
 </script>
 </body>

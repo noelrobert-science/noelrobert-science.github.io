@@ -9,14 +9,14 @@
   // "noel" marks the place where a short Mr Robert face-and-voice clip will go later.
   var LESSONS = {
     momentum: {
-      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'watch', label: 'Watch',
+      title: 'Momentum, Δp and impulse', app: 'm7/momentum', k: 'watch', label: 'Watch',
       screens: [
         { video: 'media/m7/lesson', h: 'Watch the lesson',
           say: 'Mr Robert, about 10 minutes. It stops 11 times so you can think first. Have paper, a pencil and a calculator ready. Prefer to read? <a href="?read#lesson/momentum-read">Read the worked examples instead</a>.' }
       ]
     },
     'momentum-read': {
-      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'watch', label: 'Watch',
+      title: 'Momentum, Δp and impulse', app: 'm7/momentum', k: 'watch', label: 'Watch',
       screens: [
         { tab: 'learning', topic: 'momentum', h: 'What momentum is', noel: 'walk through this example',
           say: 'Momentum is mass times velocity, p = mv. Direction matters, so pick a positive direction first. Read the worked example, then try the short "explain" question.' },
@@ -25,7 +25,7 @@
       ]
     },
     conservation: {
-      title: 'Conservation of momentum', app: '10/conservation', k: 'watch', label: 'Watch',
+      title: 'Conservation of momentum', app: 'm7/conservation', k: 'watch', label: 'Watch',
       screens: [
         { tab: 'video', h: 'Watch and predict',
           say: 'A short lesson about two carts that stick together. It stops five times so you can predict first. Have paper and a calculator ready.' },
@@ -34,14 +34,14 @@
       ]
     },
     'impulse-lab': {
-      title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'train', label: 'Train',
+      title: 'Momentum, Δp and impulse', app: 'm7/momentum', k: 'train', label: 'Train',
       screens: [
         { tab: 'impulse', h: 'A softer stop', clip: 'media/m7/clip-what-to-watch', clipTitle: 'Mr R: what to watch',
           say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the force get bigger or smaller? Then try "Push a trolley from rest".' }
       ]
     },
     'collision-lab': {
-      title: 'Conservation of momentum', app: '10/conservation', k: 'train', label: 'Train',
+      title: 'Conservation of momentum', app: 'm7/conservation', k: 'train', label: 'Train',
       screens: [
         { tab: 'collisions', h: 'Test your prediction',
           say: 'Choose "Stick together". Set A to 2 kg at +3 m/s and B to 1 kg at rest. Predict the final velocity, then run it. Then try "Bounce".' }

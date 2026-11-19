@@ -38,12 +38,12 @@ h1 { font-size: clamp(22px, 4vw, 32px); line-height: 1.2; margin: 4px 0 8px }
 </main>
 <script>
 var LESSONS = {
-  L1: { kick: 'Grade 11 · Module 10 · 10.1 to 10.2', title: 'Current, potential difference and Ohm’s law', src: 'media/circuits-L1/lesson',
+  L1: { kick: 'Module 10 · 10.1 to 10.2', title: 'Current, potential difference and Ohm’s law', src: 'media/circuits-L1/lesson',
         say: 'Mr Robert, about 7 minutes. It stops 5 times so you can think first.',
-        more: [['The step-through lesson: current and pd', 'learn.html#current?g=11'], ['The step-through lesson: Ohm’s law', 'learn.html#ohm?g=11'], ['Ohm’s law experiment', 'index.html#exp/ohm?r=0&gmin=11']] },
-  L2: { kick: 'Grade 11 · Modules 10 and 11 · 10.3 and 11.1', title: 'Series, parallel and networks', src: 'media/circuits-L2/lesson',
+        more: [['The step-through lesson: current and pd', 'learn.html#current?gmin=11'], ['The step-through lesson: Ohm’s law', 'learn.html#ohm?gmin=11'], ['Ohm’s law experiment', 'index.html#exp/ohm?r=0&gmin=11']] },
+  L2: { kick: 'Modules 10 and 11 · 10.3 and 11.1', title: 'Series, parallel and networks', src: 'media/circuits-L2/lesson',
         say: 'Mr Robert, about 7½ minutes. It stops 6 times so you can think first.',
-        more: [['The step-through lesson: series and parallel', 'learn.html#series-parallel?g=11'], ['The step-through lesson: networks', 'learn.html#networks?g=11'], ['Probe a network with a voltmeter', 'index.html#lab/B2?gmin=11']] }
+        more: [['The step-through lesson: series and parallel', 'learn.html#series-parallel?gmin=11'], ['The step-through lesson: networks', 'learn.html#networks?gmin=11'], ['Probe a network with a voltmeter', 'index.html#lab/B2?gmin=11']] }
 };
 function show() {
   var id = (location.hash.slice(1) || 'L1').split('?')[0], L = LESSONS[id] || LESSONS.L1;

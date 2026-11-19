@@ -1,25 +1,61 @@
 {
  "name": "Mr R Science",
  "updated": "2026-11-19",
- "note": "One list of everything learners can use, by grade, module and topic. The app, the studio hub and school pages all read this file. Paths are relative to /app/.",
- "grades": [
+ "note": "One library of the 33 IEB SAGS topics, in the order of the coursebook. Each module is one topic; the topics inside a module are its parts, keyed \"m<num>/<part id>\" (part ids are unique). The app, the studio hub and school pages read this file. Paths are relative to /app/.",
+ "papers": [
   {
-   "id": "10",
-   "label": "Grade 10",
-   "syllabus": "IEB Physical Sciences",
+   "id": "p1",
+   "label": "Paper 1",
+   "title": "Physics",
    "modules": [
     {
-     "id": "g10-m7-8",
-     "num": "7–8",
+     "id": "m1",
+     "num": 1,
+     "title": "Physics toolkit",
+     "built": false
+    },
+    {
+     "id": "m2",
+     "num": 2,
+     "title": "Vectors and motion in one dimension",
+     "built": false
+    },
+    {
+     "id": "m3",
+     "num": 3,
+     "title": "Equations of motion and vertical projectile motion",
+     "built": false
+    },
+    {
+     "id": "m4",
+     "num": 4,
+     "title": "Graphs of motion",
+     "built": false
+    },
+    {
+     "id": "m5",
+     "num": 5,
+     "title": "Forces and free-body diagrams",
+     "built": false
+    },
+    {
+     "id": "m6",
+     "num": 6,
+     "title": "Newton's laws in action",
+     "built": false
+    },
+    {
+     "id": "m7",
+     "num": 7,
      "title": "Momentum and impulse",
+     "built": true,
      "colour": "#c2410c",
-     "book": "Coursebook Modules 7 and 8 (p. 137 and p. 158)",
-     "topics": [
+     "book": "Book module coming",
+     "say": "Past-paper questions are not here yet.",
+     "parts": [
       {
        "id": "momentum",
        "title": "Momentum, Δp and impulse",
-       "section": "7.1–7.4",
-       "page": 138,
        "watch": [
         {
          "title": "Lesson: momentum and impulse (Mr Robert, video)",
@@ -88,15 +124,13 @@
         "test": {
          "title": "Mr R: 3 exam traps, before you start",
          "src": "../momentum/media/m7/clip-exam-traps",
-         "sec": 46
+         "sec": 70
         }
        }
       },
       {
        "id": "conservation",
        "title": "Conservation of momentum",
-       "section": "8.1–8.4",
-       "page": 159,
        "watch": [
         {
          "title": "Lesson: a sticking collision",
@@ -187,61 +221,67 @@
      ]
     },
     {
-     "id": "g10-m10",
-     "num": "10",
-     "title": "Electric circuits",
-     "colour": "#5f3dc4",
-     "book": "Coursebook Module 10 (pp. 200–230)",
-     "topics": [
+     "id": "m8",
+     "num": 8,
+     "title": "Work, energy and power",
+     "built": false
+    },
+    {
+     "id": "m9",
+     "num": 9,
+     "title": "Gravitational and electric fields",
+     "built": false
+    },
+    {
+     "id": "m10",
+     "num": 10,
+     "title": "Electric circuits 1: Ohm's law, power and energy",
+     "built": true,
+     "colour": "#0b7285",
+     "book": "Coursebook Module 10",
+     "parts": [
       {
        "id": "current",
-       "title": "Current, potential difference and emf",
+       "title": "Potential difference and current",
        "section": "10.1",
-       "page": 201,
-       "watch": [],
+       "watch": [
+        {
+         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
+         "href": "../circuits/video.html#L1",
+         "note": "About 7 minutes. It stops so you can think first."
+        },
+        {
+         "title": "Lesson: Potential difference and current (step through)",
+         "href": "../circuits/learn.html#current?gmin=11",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Probe a circuit with meters",
-         "href": "../circuits/#lab/A10?r=0&g=10",
+         "href": "../circuits/#lab/A?r=0&gmin=11",
          "kind": "lab"
         },
         {
          "title": "Practise: charge, current and pd",
-         "href": "../circuits/#practise/T1?r=0&g=10",
+         "href": "../circuits/#practise/T1?r=0&gmin=11",
          "kind": "studio"
         },
         {
          "title": "Circuits Studio: all the labs",
-         "href": "../circuits/?g=10",
+         "href": "../circuits/?gmin=11",
          "kind": "studio"
-        }
-       ],
-       "check": [
+        },
         {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/current?r=0&g=10",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "meters",
-       "title": "Circuit diagrams and meters",
-       "section": "10.2",
-       "page": 205,
-       "watch": [],
-       "train": [
-        {
-         "title": "The meters lab",
-         "href": "../circuits/#lab/meters?r=0&g=10",
+         "title": "Circuit A on an ideal battery: probe it with meters",
+         "href": "../circuits/#lab/A10?r=0&gmin=11",
          "kind": "lab"
         }
        ],
        "check": [
         {
          "title": "Check it on my own",
-         "href": "../circuits/#check/meters?r=0&g=10",
+         "href": "../circuits/#check/current?r=0&gmin=11",
          "kind": "studio",
          "note": "3 fresh questions, help off"
         }
@@ -249,31 +289,41 @@
       },
       {
        "id": "ohm",
-       "title": "Resistance and Ohm's law",
-       "section": "10.3",
-       "page": 207,
-       "watch": [],
+       "title": "Ohm's law; ohmic and non-ohmic conductors",
+       "section": "10.2",
+       "watch": [
+        {
+         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
+         "href": "../circuits/video.html#L1",
+         "note": "About 7 minutes. It stops so you can think first."
+        },
+        {
+         "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
+         "href": "../circuits/learn.html#ohm?gmin=11",
+         "note": "About 12 minutes. 6 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Ohm's law experiment",
-         "href": "../circuits/#exp/ohm?r=0&g=10",
+         "href": "../circuits/#exp/ohm?r=0&gmin=11",
          "kind": "lab"
         },
         {
-         "title": "Plot the V–I graph",
-         "href": "../circuits/#graph/ohm?r=0&g=10",
+         "title": "Plot the I–V graph",
+         "href": "../circuits/#graph/ohm?r=0&gmin=11",
          "kind": "lab"
         },
         {
          "title": "Practise: Ohm's law",
-         "href": "../circuits/#practise/T2?r=0&g=10",
+         "href": "../circuits/#practise/T2?r=0&gmin=11",
          "kind": "studio"
         }
        ],
        "check": [
         {
          "title": "Check it on my own",
-         "href": "../circuits/#check/ohm?r=0&g=10",
+         "href": "../circuits/#check/ohm?r=0&gmin=11",
          "kind": "studio",
          "note": "3 fresh questions, help off"
         }
@@ -281,105 +331,51 @@
       },
       {
        "id": "series-parallel",
-       "title": "Resistors in series and in parallel",
-       "section": "10.4",
-       "page": 210,
-       "watch": [],
+       "title": "Series and parallel resistors",
+       "section": "10.3",
+       "watch": [
+        {
+         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
+         "href": "../circuits/video.html#L2",
+         "note": "About 7½ minutes. It stops so you can think first."
+        },
+        {
+         "title": "Lesson: Series and parallel resistors (step through)",
+         "href": "../circuits/learn.html#series-parallel?gmin=11",
+         "note": "About 15 minutes. 9 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Series and parallel rules",
-         "href": "../circuits/#exp/rules?r=0&g=10",
+         "href": "../circuits/#exp/rules?r=0&gmin=11",
          "kind": "lab"
         },
         {
-         "title": "Two resistors in parallel",
-         "href": "../circuits/#lab/par2?r=0&g=10",
+         "title": "Meters: where they go and what they read",
+         "href": "../circuits/#lab/meters?r=0&gmin=11",
          "kind": "lab"
         },
         {
-         "title": "Practise: series and parallel",
-         "href": "../circuits/#practise/T3?r=0&g=10",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/series-parallel?r=0&g=10",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "combos",
-       "title": "Series–parallel combinations and the chain",
-       "section": "10.5",
-       "page": 214,
-       "watch": [],
-       "train": [
-        {
-         "title": "Rheostat, bulb and resistor: find every reading",
-         "href": "../circuits/#lab/A10?r=0&g=10",
-         "kind": "lab"
-        },
-        {
-         "title": "A series resistor and a parallel pair",
-         "href": "../circuits/#lab/g10-B?r=0&g=10",
-         "kind": "lab"
-        },
-        {
-         "title": "Work back from one branch current to the battery",
-         "href": "../circuits/#lab/g10-C?r=0&g=10",
+         "title": "A lamp before the junction",
+         "href": "../circuits/#lab/D?r=0&gmin=11",
          "kind": "lab"
         },
         {
          "title": "Practise: from one branch current to the emf",
-         "href": "../circuits/#practise/T3?type=chain&r=0&g=10",
+         "href": "../circuits/#practise/T3?type=chain&r=0&gmin=11",
          "kind": "studio"
         },
         {
-         "title": "Practise: combinations",
-         "href": "../circuits/#practise/T6?r=0&g=10",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/combos?r=0&g=10",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "explain",
-       "title": "Switches and identical bulbs: reasoning without numbers",
-       "section": "10.6",
-       "page": 217,
-       "watch": [],
-       "train": [
-        {
-         "title": "Explain a change",
-         "href": "../circuits/#explain/E1?r=0&g=10",
-         "kind": "lab"
-        },
-        {
-         "title": "Identical bulbs and switches",
-         "href": "../circuits/#lab/g10-bulbs?r=0&g=10",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: explaining changes",
-         "href": "../circuits/#practise/T9?r=0&g=10",
+         "title": "Practise: series and parallel",
+         "href": "../circuits/#practise/T3?r=0&gmin=11",
          "kind": "studio"
         }
        ],
        "check": [
         {
          "title": "Check it on my own",
-         "href": "../circuits/#check/explain?r=0&g=10",
+         "href": "../circuits/#check/series-parallel?r=0&gmin=11",
          "kind": "studio",
          "note": "3 fresh questions, help off"
         }
@@ -387,36 +383,293 @@
       },
       {
        "id": "power",
-       "title": "Electrical power, energy and the cost of electricity",
-       "section": "10.7",
-       "page": 219,
-       "watch": [],
+       "title": "Electrical power and energy",
+       "section": "10.4",
+       "watch": [
+        {
+         "title": "Lesson: Electrical power and energy (step through)",
+         "href": "../circuits/learn.html#power?gmin=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
        "train": [
         {
          "title": "Power and brightness",
-         "href": "../circuits/#exp/power?r=0&g=10",
-         "kind": "lab"
-        },
-        {
-         "title": "kWh and cost",
-         "href": "../circuits/#exp/kwh?r=0&g=10",
+         "href": "../circuits/#exp/power?r=0&gmin=11",
          "kind": "lab"
         },
         {
          "title": "Practise: power and energy",
-         "href": "../circuits/#practise/T4?r=0&g=10",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: cost",
-         "href": "../circuits/#practise/T5?r=0&g=10",
+         "href": "../circuits/#practise/T4?r=0&gmin=11",
          "kind": "studio"
         }
        ],
        "check": [
         {
          "title": "Check it on my own",
-         "href": "../circuits/#check/power?r=0&g=10",
+         "href": "../circuits/#check/power?r=0&gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "kwh",
+       "title": "Paying for electricity: the kWh",
+       "section": "10.5",
+       "watch": [
+        {
+         "title": "Lesson: Paying for electricity: the kWh (step through)",
+         "href": "../circuits/learn.html#kwh?gmin=11",
+         "note": "About 10 minutes. 6 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "kWh and cost",
+         "href": "../circuits/#exp/kwh?r=0&gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: cost",
+         "href": "../circuits/#practise/T5?r=0&gmin=11",
+         "kind": "studio"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/kwh?r=0&gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "m11",
+     "num": 11,
+     "title": "Electric circuits 2: internal resistance and networks",
+     "built": true,
+     "colour": "#0b7285",
+     "book": "Coursebook Module 11",
+     "parts": [
+      {
+       "id": "networks",
+       "title": "Series–parallel networks",
+       "section": "11.1",
+       "watch": [
+        {
+         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
+         "href": "../circuits/video.html#L2",
+         "note": "About 7½ minutes. It stops so you can think first."
+        },
+        {
+         "title": "Lesson: Series–parallel networks (step through)",
+         "href": "../circuits/learn.html#networks?gmin=11",
+         "note": "About 14 minutes. 6 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "A network: read every meter",
+         "href": "../circuits/#lab/B2?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: networks",
+         "href": "../circuits/#practise/T6?gmin=11",
+         "kind": "studio"
+        },
+        {
+         "title": "A series resistor and a parallel pair (6 V)",
+         "href": "../circuits/#lab/g10-B?r=0&gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "A series resistor and a parallel pair (16 V)",
+         "href": "../circuits/#lab/g10-C?r=0&gmin=11",
+         "kind": "lab"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/networks?gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "emf-r",
+       "title": "emf and internal resistance",
+       "section": "11.2",
+       "watch": [
+        {
+         "title": "Lesson: emf and internal resistance (step through)",
+         "href": "../circuits/learn.html#emf-r?gmin=11",
+         "note": "About 13 minutes. 7 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "The battery story: headlamps, then the starter motor",
+         "href": "../circuits/#lab/B?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Explain a change: open the switch",
+         "href": "../circuits/#explain/E3?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: emf and internal resistance",
+         "href": "../circuits/#practise/T7?gmin=11",
+         "kind": "studio"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/emf-r?gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "with-r",
+       "title": "Solving circuits with internal resistance",
+       "section": "11.3",
+       "watch": [
+        {
+         "title": "Lesson: Solving circuits with internal resistance (step through)",
+         "href": "../circuits/learn.html#with-r?gmin=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "Rheostat, bulb and resistor, with a real battery (r)",
+         "href": "../circuits/#lab/A?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "A wire across a resistor",
+         "href": "../circuits/#lab/D2?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: from one branch current to the emf, with r",
+         "href": "../circuits/#practise/T6?type=chain&gmin=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: circuits with r",
+         "href": "../circuits/#practise/T8?gmin=11",
+         "kind": "studio"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/with-r?gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "graph-r",
+       "title": "emf and r from two readings or a graph",
+       "section": "11.4",
+       "watch": [
+        {
+         "title": "Lesson: emf and r from two readings or a graph (step through)",
+         "href": "../circuits/learn.html#graph-r?gmin=11",
+         "note": "About 14 minutes. 8 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "The terminal pd graph",
+         "href": "../circuits/#graph/vi-term?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Find a hidden battery's emf and r",
+         "href": "../circuits/#exp/emf-r?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: graphs",
+         "href": "../circuits/#practise/T10?gmin=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: practical skills",
+         "href": "../circuits/#practise/T11?gmin=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Practise: two readings, two equations",
+         "href": "../circuits/#practise/T8?type=simul&gmin=12",
+         "kind": "studio"
+        },
+        {
+         "title": "A real voltmeter: meter loading",
+         "href": "../circuits/#lab/loading?gmin=12",
+         "kind": "lab"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/graph-r?gmin=11",
+         "kind": "studio",
+         "note": "3 fresh questions, help off"
+        }
+       ]
+      },
+      {
+       "id": "explain",
+       "title": "Explaining a change: the cause chain",
+       "section": "11.5",
+       "watch": [
+        {
+         "title": "Lesson: Explaining a change: the cause chain (step through)",
+         "href": "../circuits/learn.html#explain?gmin=11",
+         "note": "About 13 minutes. 8 stops where you answer first."
+        }
+       ],
+       "train": [
+        {
+         "title": "Explain a change",
+         "href": "../circuits/#explain/E1?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Do the headlamps dim?",
+         "href": "../circuits/#explain/B-1?gmin=11",
+         "kind": "lab"
+        },
+        {
+         "title": "Practise: explaining changes",
+         "href": "../circuits/#practise/T9?gmin=11",
+         "kind": "studio"
+        },
+        {
+         "title": "Bulbs and two switched branches",
+         "href": "../circuits/#lab/g10-bulbs?r=0&gmin=11",
+         "kind": "lab"
+        }
+       ],
+       "check": [
+        {
+         "title": "Check it on my own",
+         "href": "../circuits/#check/explain?gmin=11",
          "kind": "studio",
          "note": "3 fresh questions, help off"
         }
@@ -425,41 +678,77 @@
       {
        "id": "review",
        "title": "Come back later: circuits review",
-       "section": "Revise",
-       "page": 230,
+       "section": "Revise (M10, M11)",
+       "extra": true,
+       "say": "These fill up once you have tested yourself on a few circuits topics.",
        "watch": [],
        "train": [],
        "check": [
         {
          "title": "Come-back checks",
-         "href": "../circuits/#later?r=0&g=10",
+         "href": "../circuits/#later?gmin=11",
          "kind": "studio",
          "note": "Questions on topics you tested 2 and 7 days ago"
         },
         {
          "title": "Mixed check",
-         "href": "../circuits/#check/daily?r=0&g=10",
+         "href": "../circuits/#check/daily?gmin=11",
          "kind": "studio",
          "note": "5 questions from topics you have tested, help off"
         }
-       ],
-       "extra": true,
-       "say": "These fill up once you have tested yourself on a few circuits topics."
+       ]
       }
      ]
     },
     {
-     "id": "g10-m14",
-     "num": "14",
-     "title": "Chemical calculations",
+     "id": "m12",
+     "num": 12,
+     "title": "Electromagnetism and DC motors",
+     "built": false
+    },
+    {
+     "id": "m13",
+     "num": 13,
+     "title": "Induction, generators, transformers and AC",
+     "built": false
+    },
+    {
+     "id": "m14",
+     "num": 14,
+     "title": "Photons and electrons",
+     "built": false
+    },
+    {
+     "id": "m15",
+     "num": 15,
+     "title": "Putting Paper 1 together",
+     "built": false
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "label": "Paper 2",
+   "title": "Chemistry",
+   "modules": [
+    {
+     "id": "m16",
+     "num": 16,
+     "title": "Chemistry toolkit",
+     "built": false
+    },
+    {
+     "id": "m17",
+     "num": 17,
+     "title": "Quantitative chemistry: follow the moles",
+     "built": true,
      "colour": "#d9480f",
-     "book": "Coursebook Module 14 (pp. 303–356)",
-     "topics": [
+     "book": "Book module coming",
+     "say": "Past-paper questions are not here yet.",
+     "parts": [
       {
        "id": "mass-moles",
        "title": "Mass, molar mass and moles",
-       "section": "14.1–14.2",
-       "page": 305,
        "watch": [
         {
          "title": "Mass, molar mass and moles",
@@ -509,8 +798,6 @@
       {
        "id": "mixtures",
        "title": "Ions in mixed solutions",
-       "section": "14.5",
-       "page": 318,
        "watch": [],
        "train": [
         {
@@ -536,8 +823,6 @@
       {
        "id": "limiting-purity",
        "title": "Limiting reagents and purity",
-       "section": "14.9–14.12",
-       "page": 337,
        "watch": [],
        "train": [
         {
@@ -572,912 +857,69 @@
        ]
       }
      ]
-    }
-   ]
-  },
-  {
-   "id": "11",
-   "label": "Grade 11",
-   "syllabus": "IEB Physical Sciences",
-   "modules": [
-    {
-     "id": "g11-m10",
-     "num": "10",
-     "title": "Electric circuits 1: Ohm's law, power and energy",
-     "colour": "#0b7285",
-     "book": "Grade 11–12 coursebook, Module 10",
-     "topics": [
-      {
-       "id": "current",
-       "title": "Potential difference and current",
-       "section": "10.1",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
-         "href": "../circuits/video.html#L1",
-         "note": "About 7 minutes. It stops so you can think first."
-        },
-        {
-         "title": "Lesson: Potential difference and current (step through)",
-         "href": "../circuits/learn.html#current?g=11",
-         "note": "About 12 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Probe a circuit with meters",
-         "href": "../circuits/#lab/A?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: charge, current and pd",
-         "href": "../circuits/#practise/T1?r=0&g=11",
-         "kind": "studio"
-        },
-        {
-         "title": "Circuits Studio: all the labs",
-         "href": "../circuits/?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/current?r=0&g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "ohm",
-       "title": "Ohm's law; ohmic and non-ohmic conductors",
-       "section": "10.2",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
-         "href": "../circuits/video.html#L1",
-         "note": "About 7 minutes. It stops so you can think first."
-        },
-        {
-         "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
-         "href": "../circuits/learn.html#ohm?g=11",
-         "note": "About 12 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Ohm's law experiment",
-         "href": "../circuits/#exp/ohm?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Plot the I–V graph",
-         "href": "../circuits/#graph/ohm?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: Ohm's law",
-         "href": "../circuits/#practise/T2?r=0&g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/ohm?r=0&g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "series-parallel",
-       "title": "Series and parallel resistors",
-       "section": "10.3",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
-         "href": "../circuits/video.html#L2",
-         "note": "About 7½ minutes. It stops so you can think first."
-        },
-        {
-         "title": "Lesson: Series and parallel resistors (step through)",
-         "href": "../circuits/learn.html#series-parallel?g=11",
-         "note": "About 15 minutes. 9 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Series and parallel rules",
-         "href": "../circuits/#exp/rules?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Meters: where they go and what they read",
-         "href": "../circuits/#lab/meters?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "A lamp before the junction",
-         "href": "../circuits/#lab/D?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: from one branch current to the emf",
-         "href": "../circuits/#practise/T3?type=chain&r=0&g=11",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: series and parallel",
-         "href": "../circuits/#practise/T3?r=0&g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/series-parallel?r=0&g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "power",
-       "title": "Electrical power and energy",
-       "section": "10.4",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Electrical power and energy (step through)",
-         "href": "../circuits/learn.html#power?g=11",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Power and brightness",
-         "href": "../circuits/#exp/power?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: power and energy",
-         "href": "../circuits/#practise/T4?r=0&g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/power?r=0&g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "kwh",
-       "title": "Paying for electricity: the kWh",
-       "section": "10.5",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Paying for electricity: the kWh (step through)",
-         "href": "../circuits/learn.html#kwh?g=11",
-         "note": "About 10 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "kWh and cost",
-         "href": "../circuits/#exp/kwh?r=0&g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: cost",
-         "href": "../circuits/#practise/T5?r=0&g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/kwh?r=0&g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      }
-     ]
     },
     {
-     "id": "g11-m11",
-     "num": "11",
-     "title": "Electric circuits 2: internal resistance and networks",
-     "colour": "#0b7285",
-     "book": "Grade 11–12 coursebook, Module 11",
-     "topics": [
-      {
-       "id": "networks",
-       "title": "Series–parallel networks",
-       "section": "11.1",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
-         "href": "../circuits/video.html#L2",
-         "note": "About 7½ minutes. It stops so you can think first."
-        },
-        {
-         "title": "Lesson: Series–parallel networks (step through)",
-         "href": "../circuits/learn.html#networks?g=11",
-         "note": "About 14 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "A network: read every meter",
-         "href": "../circuits/#lab/B2?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: networks",
-         "href": "../circuits/#practise/T6?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/networks?g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "emf-r",
-       "title": "emf and internal resistance",
-       "section": "11.2",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: emf and internal resistance (step through)",
-         "href": "../circuits/learn.html#emf-r?g=11",
-         "note": "About 13 minutes. 7 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "The battery story: headlamps, then the starter motor",
-         "href": "../circuits/#lab/B?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Explain a change: open the switch",
-         "href": "../circuits/#explain/E3?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: emf and internal resistance",
-         "href": "../circuits/#practise/T7?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/emf-r?g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "with-r",
-       "title": "Solving circuits with internal resistance",
-       "section": "11.3",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Solving circuits with internal resistance (step through)",
-         "href": "../circuits/learn.html#with-r?g=11",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Rheostat, bulb and resistor, with a real battery (r)",
-         "href": "../circuits/#lab/A?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "A wire across a resistor",
-         "href": "../circuits/#lab/D2?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: from one branch current to the emf, with r",
-         "href": "../circuits/#practise/T6?type=chain&g=11",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: circuits with r",
-         "href": "../circuits/#practise/T8?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/with-r?g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "graph-r",
-       "title": "emf and r from two readings or a graph",
-       "section": "11.4",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: emf and r from two readings or a graph (step through)",
-         "href": "../circuits/learn.html#graph-r?g=11",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "The terminal pd graph",
-         "href": "../circuits/#graph/vi-term?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Find a hidden battery's emf and r",
-         "href": "../circuits/#exp/emf-r?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: graphs",
-         "href": "../circuits/#practise/T10?g=11",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: practical skills",
-         "href": "../circuits/#practise/T11?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/graph-r?g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "explain",
-       "title": "Explaining a change: the cause chain",
-       "section": "11.5",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Explaining a change: the cause chain (step through)",
-         "href": "../circuits/learn.html#explain?g=11",
-         "note": "About 13 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Explain a change",
-         "href": "../circuits/#explain/E1?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Do the headlamps dim?",
-         "href": "../circuits/#explain/B-1?g=11",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: explaining changes",
-         "href": "../circuits/#practise/T9?g=11",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/explain?g=11",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "review",
-       "title": "Come back later: circuits review",
-       "section": "Revise (M10, M11)",
-       "page": null,
-       "watch": [],
-       "train": [],
-       "check": [
-        {
-         "title": "Come-back checks",
-         "href": "../circuits/#later?g=11",
-         "kind": "studio",
-         "note": "Questions on topics you tested 2 and 7 days ago"
-        },
-        {
-         "title": "Mixed check",
-         "href": "../circuits/#check/daily?g=11",
-         "kind": "studio",
-         "note": "5 questions from topics you have tested, help off"
-        }
-       ],
-       "extra": true,
-       "say": "These fill up once you have tested yourself on a few circuits topics."
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "12",
-   "label": "Grade 12",
-   "syllabus": "IEB Physical Sciences",
-   "modules": [
-    {
-     "id": "g12-m10",
-     "num": "10",
-     "title": "Electric circuits 1: Ohm's law, power and energy",
-     "colour": "#0b7285",
-     "book": "Grade 11–12 coursebook, Module 10",
-     "topics": [
-      {
-       "id": "current",
-       "title": "Potential difference and current",
-       "section": "10.1",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Potential difference and current (step through)",
-         "href": "../circuits/learn.html#current?g=12",
-         "note": "About 12 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Probe a circuit with meters",
-         "href": "../circuits/#lab/A?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: charge, current and pd",
-         "href": "../circuits/#practise/T1?r=0&g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "Circuits Studio: all the labs",
-         "href": "../circuits/?g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/current?r=0&g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "ohm",
-       "title": "Ohm's law; ohmic and non-ohmic conductors",
-       "section": "10.2",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
-         "href": "../circuits/learn.html#ohm?g=12",
-         "note": "About 12 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Ohm's law experiment",
-         "href": "../circuits/#exp/ohm?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Plot the I–V graph",
-         "href": "../circuits/#graph/ohm?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: Ohm's law",
-         "href": "../circuits/#practise/T2?r=0&g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/ohm?r=0&g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "series-parallel",
-       "title": "Series and parallel resistors",
-       "section": "10.3",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Series and parallel resistors (step through)",
-         "href": "../circuits/learn.html#series-parallel?g=12",
-         "note": "About 15 minutes. 9 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Series and parallel rules",
-         "href": "../circuits/#exp/rules?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Meters: where they go and what they read",
-         "href": "../circuits/#lab/meters?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "A lamp before the junction",
-         "href": "../circuits/#lab/D?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: from one branch current to the emf",
-         "href": "../circuits/#practise/T3?type=chain&r=0&g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: series and parallel",
-         "href": "../circuits/#practise/T3?r=0&g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/series-parallel?r=0&g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "power",
-       "title": "Electrical power and energy",
-       "section": "10.4",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Electrical power and energy (step through)",
-         "href": "../circuits/learn.html#power?g=12",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Power and brightness",
-         "href": "../circuits/#exp/power?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: power and energy",
-         "href": "../circuits/#practise/T4?r=0&g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/power?r=0&g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "kwh",
-       "title": "Paying for electricity: the kWh",
-       "section": "10.5",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Paying for electricity: the kWh (step through)",
-         "href": "../circuits/learn.html#kwh?g=12",
-         "note": "About 10 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "kWh and cost",
-         "href": "../circuits/#exp/kwh?r=0&g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: cost",
-         "href": "../circuits/#practise/T5?r=0&g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/kwh?r=0&g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      }
-     ]
+     "id": "m18",
+     "num": 18,
+     "title": "Chemical bonding and intermolecular forces",
+     "built": false
     },
     {
-     "id": "g12-m11",
-     "num": "11",
-     "title": "Electric circuits 2: internal resistance and networks",
-     "colour": "#0b7285",
-     "book": "Grade 11–12 coursebook, Module 11",
-     "topics": [
-      {
-       "id": "networks",
-       "title": "Series–parallel networks",
-       "section": "11.1",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Series–parallel networks (step through)",
-         "href": "../circuits/learn.html#networks?g=12",
-         "note": "About 14 minutes. 6 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "A network: read every meter",
-         "href": "../circuits/#lab/B2?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: networks",
-         "href": "../circuits/#practise/T6?g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/networks?g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "emf-r",
-       "title": "emf and internal resistance",
-       "section": "11.2",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: emf and internal resistance (step through)",
-         "href": "../circuits/learn.html#emf-r?g=12",
-         "note": "About 13 minutes. 7 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "The battery story: headlamps, then the starter motor",
-         "href": "../circuits/#lab/B?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Explain a change: open the switch",
-         "href": "../circuits/#explain/E3?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: emf and internal resistance",
-         "href": "../circuits/#practise/T7?g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/emf-r?g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "with-r",
-       "title": "Solving circuits with internal resistance",
-       "section": "11.3",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Solving circuits with internal resistance (step through)",
-         "href": "../circuits/learn.html#with-r?g=12",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Rheostat, bulb and resistor, with a real battery (r)",
-         "href": "../circuits/#lab/A?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "A wire across a resistor",
-         "href": "../circuits/#lab/D2?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: from one branch current to the emf, with r",
-         "href": "../circuits/#practise/T6?type=chain&g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: circuits with r",
-         "href": "../circuits/#practise/T8?g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/with-r?g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "graph-r",
-       "title": "emf and r from two readings or a graph",
-       "section": "11.4",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: emf and r from two readings or a graph (step through)",
-         "href": "../circuits/learn.html#graph-r?g=12",
-         "note": "About 14 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "The terminal pd graph",
-         "href": "../circuits/#graph/vi-term?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Find a hidden battery's emf and r",
-         "href": "../circuits/#exp/emf-r?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: graphs",
-         "href": "../circuits/#practise/T10?g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: practical skills",
-         "href": "../circuits/#practise/T11?g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "Practise: two readings, two equations",
-         "href": "../circuits/#practise/T8?type=simul&g=12",
-         "kind": "studio"
-        },
-        {
-         "title": "A real voltmeter: meter loading",
-         "href": "../circuits/#lab/loading?g=12",
-         "kind": "lab"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/graph-r?g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "explain",
-       "title": "Explaining a change: the cause chain",
-       "section": "11.5",
-       "page": null,
-       "watch": [
-        {
-         "title": "Lesson: Explaining a change: the cause chain (step through)",
-         "href": "../circuits/learn.html#explain?g=12",
-         "note": "About 13 minutes. 8 stops where you answer first."
-        }
-       ],
-       "train": [
-        {
-         "title": "Explain a change",
-         "href": "../circuits/#explain/E1?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Do the headlamps dim?",
-         "href": "../circuits/#explain/B-1?g=12",
-         "kind": "lab"
-        },
-        {
-         "title": "Practise: explaining changes",
-         "href": "../circuits/#practise/T9?g=12",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "Check it on my own",
-         "href": "../circuits/#check/explain?g=12",
-         "kind": "studio",
-         "note": "3 fresh questions, help off"
-        }
-       ]
-      },
-      {
-       "id": "review",
-       "title": "Come back later: circuits review",
-       "section": "Revise (M10, M11)",
-       "page": null,
-       "watch": [],
-       "train": [],
-       "check": [
-        {
-         "title": "Come-back checks",
-         "href": "../circuits/#later?g=12",
-         "kind": "studio",
-         "note": "Questions on topics you tested 2 and 7 days ago"
-        },
-        {
-         "title": "Mixed check",
-         "href": "../circuits/#check/daily?g=12",
-         "kind": "studio",
-         "note": "5 questions from topics you have tested, help off"
-        }
-       ],
-       "extra": true,
-       "say": "These fill up once you have tested yourself on a few circuits topics."
-      }
-     ]
+     "id": "m19",
+     "num": 19,
+     "title": "Structure and physical properties",
+     "built": false
     },
     {
-     "id": "g12-m27",
-     "num": "27",
+     "id": "m20",
+     "num": 20,
+     "title": "Energy changes and activation energy",
+     "built": false
+    },
+    {
+     "id": "m21",
+     "num": 21,
+     "title": "Rates of reaction",
+     "built": false
+    },
+    {
+     "id": "m22",
+     "num": 22,
+     "title": "Chemical equilibrium and Le Chatelier",
+     "built": false
+    },
+    {
+     "id": "m23",
+     "num": 23,
+     "title": "The equilibrium constant",
+     "built": false
+    },
+    {
+     "id": "m24",
+     "num": 24,
+     "title": "Acids and bases: strength and conjugate pairs",
+     "built": false
+    },
+    {
+     "id": "m25",
+     "num": 25,
+     "title": "Kw, Ka, Kb, pH and salt hydrolysis",
+     "built": false
+    },
+    {
+     "id": "m26",
+     "num": 26,
+     "title": "Acid-base reactions, titrations and indicators",
+     "built": false
+    },
+    {
+     "id": "m27",
+     "num": 27,
      "title": "Redox and Table 4",
+     "built": true,
      "colour": "#0b7285",
-     "book": "Grade 11–12 coursebook, Module 27",
-     "topics": [
+     "book": "Coursebook Module 27",
+     "parts": [
       {
        "id": "table4",
        "title": "Reading Table 4",
@@ -1485,7 +927,7 @@
        "watch": [
         {
          "title": "Lesson: Reading Table 4 (step through)",
-         "href": "../watch/#table4?g=12",
+         "href": "../watch/#table4",
          "note": "About 14 minutes. 9 stops where you answer first."
         },
         {
@@ -1555,7 +997,7 @@
        "watch": [
         {
          "title": "Lesson: Will it react? (step through)",
-         "href": "../watch/#will-it-react?g=12",
+         "href": "../watch/#will-it-react",
          "note": "About 13 minutes. 6 stops where you answer first."
         },
         {
@@ -1606,12 +1048,13 @@
      ]
     },
     {
-     "id": "g12-m28",
-     "num": "28",
+     "id": "m28",
+     "num": 28,
      "title": "Galvanic cells",
+     "built": true,
      "colour": "#7048e8",
-     "book": "Grade 11–12 coursebook, Module 28",
-     "topics": [
+     "book": "Coursebook Module 28",
+     "parts": [
       {
        "id": "galvanic",
        "title": "The galvanic cell",
@@ -1619,7 +1062,7 @@
        "watch": [
         {
          "title": "Lesson: The galvanic cell (step through)",
-         "href": "../watch/#galvanic?g=12",
+         "href": "../watch/#galvanic",
          "note": "About 14 minutes. 7 stops where you answer first."
         },
         {
@@ -1685,7 +1128,7 @@
        "watch": [
         {
          "title": "Lesson: The salt bridge, and when a cell runs down (step through)",
-         "href": "../watch/#salt-bridge?g=12",
+         "href": "../watch/#salt-bridge",
          "note": "About 13 minutes. 7 stops where you answer first."
         },
         {
@@ -1737,12 +1180,13 @@
      ]
     },
     {
-     "id": "g12-m29",
-     "num": "29",
+     "id": "m29",
+     "num": 29,
      "title": "Electrolytic cells and Faraday",
+     "built": true,
      "colour": "#e8590c",
-     "book": "Grade 11–12 coursebook, Module 29",
-     "topics": [
+     "book": "Coursebook Module 29",
+     "parts": [
       {
        "id": "electrolysis",
        "title": "Electrolysis: the two contests",
@@ -1750,7 +1194,7 @@
        "watch": [
         {
          "title": "Lesson: Electrolysis: the two contests (step through)",
-         "href": "../watch/#electrolysis?g=12",
+         "href": "../watch/#electrolysis",
          "note": "About 16 minutes. 8 stops where you answer first."
         },
         {
@@ -1816,7 +1260,7 @@
        "watch": [
         {
          "title": "Lesson: Counting electrons: Faraday (step through)",
-         "href": "../watch/#faraday?g=12",
+         "href": "../watch/#faraday",
          "note": "About 13 minutes. 8 stops where you answer first."
         },
         {
@@ -1861,42 +1305,53 @@
      ]
     },
     {
-     "id": "g12-revise",
-     "num": "★",
-     "title": "Revision guides",
-     "colour": "#334155",
-     "book": "Grade 12 revision guides, 90-plus booklets and challenge banks",
-     "topics": [
-      {
-       "id": "guides",
-       "title": "Revision booklets (PDF)",
-       "section": "Papers 1 and 2",
-       "watch": [],
-       "train": [
-        {
-         "title": "Revision guides by topic",
-         "href": "../gr12-guides/",
-         "kind": "studio"
-        },
-        {
-         "title": "Challenge question banks",
-         "href": "../gr12-guides/challenge/",
-         "kind": "studio"
-        }
-       ],
-       "check": [
-        {
-         "title": "90%+ challenge booklets",
-         "href": "../gr12-guides/90-plus/",
-         "kind": "studio"
-        }
-       ],
-       "extra": true,
-       "say": "Printable booklets for Papers 1 and 2. They open as PDFs to read or print, not as questions in the app."
-      }
-     ]
+     "id": "m30",
+     "num": 30,
+     "title": "Organic molecules and naming",
+     "built": false
+    },
+    {
+     "id": "m31",
+     "num": 31,
+     "title": "Isomers and physical properties",
+     "built": false
+    },
+    {
+     "id": "m32",
+     "num": 32,
+     "title": "Organic reactions",
+     "built": false
+    },
+    {
+     "id": "m33",
+     "num": 33,
+     "title": "Putting Paper 2 together",
+     "built": false
     }
    ]
   }
- ]
+ ],
+ "revision": {
+  "id": "revise",
+  "title": "Final exam revision",
+  "colour": "#334155",
+  "say": "Printable booklets for Papers 1 and 2. They open as PDFs to read or print.",
+  "items": [
+   {
+    "title": "Revision guides by topic",
+    "href": "../gr12-guides/",
+    "kind": "studio"
+   },
+   {
+    "title": "Challenge question banks",
+    "href": "../gr12-guides/challenge/",
+    "kind": "studio"
+   },
+   {
+    "title": "90%+ challenge booklets",
+    "href": "../gr12-guides/90-plus/",
+    "kind": "studio"
+   }
+  ]
+ }
 }

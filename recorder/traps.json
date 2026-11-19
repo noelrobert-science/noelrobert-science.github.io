@@ -6,7 +6,7 @@
   "scenes": [
     {
       "n": 1,
-      "t": "Card 1 · Gr 11-12 · Potential difference and current: The missing word in a definition",
+      "t": "Card 1 · Potential difference and current: The missing word in a definition",
       "slug": "01-the-missing-word-in-a-definition",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -21,7 +21,7 @@
     },
     {
       "n": 2,
-      "t": "Card 2 · Gr 11-12 · Ohm's law; ohmic and non-ohmic conductors: Ohm's law, back to front",
+      "t": "Card 2 · Ohm's law; ohmic and non-ohmic conductors: Ohm's law, back to front",
       "slug": "02-ohm-s-law-back-to-front",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -36,7 +36,7 @@
     },
     {
       "n": 3,
-      "t": "Card 3 · Gr 11-12 · Series and parallel resistors: Forgetting to invert",
+      "t": "Card 3 · Series and parallel resistors: Forgetting to invert",
       "slug": "03-forgetting-to-invert",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -51,7 +51,7 @@
     },
     {
       "n": 4,
-      "t": "Card 4 · Gr 11-12 · Electrical power and energy: A rate of energy dissipation is a power",
+      "t": "Card 4 · Electrical power and energy: A rate of energy dissipation is a power",
       "slug": "04-a-rate-of-energy-dissipation-is-a-power",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -66,7 +66,7 @@
     },
     {
       "n": 5,
-      "t": "Card 5 · Gr 11-12 · Paying for electricity: the kWh: Watts and minutes in a cost",
+      "t": "Card 5 · Paying for electricity: the kWh: Watts and minutes in a cost",
       "slug": "05-the-kwh-watts-and-minutes-in-a-cost",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -81,7 +81,7 @@
     },
     {
       "n": 6,
-      "t": "Card 6 · Gr 11-12 · Series-parallel networks: The ratio shortcut that flips",
+      "t": "Card 6 · Series-parallel networks: The ratio shortcut that flips",
       "slug": "06-the-ratio-shortcut-that-flips",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -96,7 +96,7 @@
     },
     {
       "n": 7,
-      "t": "Card 7 · Gr 11-12 · emf and internal resistance: The emf across the wrong thing",
+      "t": "Card 7 · emf and internal resistance: The emf across the wrong thing",
       "slug": "07-the-emf-across-the-wrong-thing",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -111,7 +111,7 @@
     },
     {
       "n": 8,
-      "t": "Card 8 · Gr 11-12 · Solving circuits with internal resistance: The whole emf across one branch",
+      "t": "Card 8 · Solving circuits with internal resistance: The whole emf across one branch",
       "slug": "08-the-whole-emf-across-one-branch",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -126,7 +126,7 @@
     },
     {
       "n": 9,
-      "t": "Card 9 · Gr 11-12 · emf and r from two readings or a graph: The gradient from the table",
+      "t": "Card 9 · emf and r from two readings or a graph: The gradient from the table",
       "slug": "09-the-gradient-from-the-table",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -143,7 +143,7 @@
     },
     {
       "n": 10,
-      "t": "Card 10 · Gr 11-12 · Explaining a change: the cause chain: Blaming the battery",
+      "t": "Card 10 · Explaining a change: the cause chain: Blaming the battery",
       "slug": "10-the-cause-chain-blaming-the-battery",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -159,7 +159,7 @@
     },
     {
       "n": 11,
-      "t": "Card 11 · Gr 12 · Reading Table 4: The arrow copied from Table 4",
+      "t": "Card 11 · Reading Table 4: The arrow copied from Table 4",
       "slug": "11-the-arrow-copied-from-table-4",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -174,7 +174,7 @@
     },
     {
       "n": 12,
-      "t": "Card 12 · Gr 12 · Will it react?: The spectator that was not there",
+      "t": "Card 12 · Will it react?: The spectator that was not there",
       "slug": "12-the-spectator-that-was-not-there",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -188,7 +188,7 @@
     },
     {
       "n": 13,
-      "t": "Card 13 · Gr 12 · The galvanic cell: The missing platinum",
+      "t": "Card 13 · The galvanic cell: The missing platinum",
       "slug": "13-the-missing-platinum",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -204,7 +204,7 @@
     },
     {
       "n": 14,
-      "t": "Card 14 · Gr 12 · The salt bridge: Electrons in the salt bridge",
+      "t": "Card 14 · The salt bridge: Electrons in the salt bridge",
       "slug": "14-electrons-in-the-salt-bridge",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -220,7 +220,7 @@
     },
     {
       "n": 15,
-      "t": "Card 15 · Gr 12 · Electrolysis: the two contests: Swapped products",
+      "t": "Card 15 · Electrolysis: the two contests: Swapped products",
       "slug": "15-the-two-contests-swapped-products",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -235,7 +235,7 @@
     },
     {
       "n": 16,
-      "t": "Card 16 · Gr 12 · Counting electrons: Faraday: One electron or two?",
+      "t": "Card 16 · Counting electrons: Faraday: One electron or two?",
       "slug": "16-faraday-one-electron-or-two",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -250,7 +250,7 @@
     },
     {
       "n": 17,
-      "t": "Card 18 · Gr 10 · Conservation of momentum: The minus sign that went missing",
+      "t": "Card 18 · Conservation of momentum: The minus sign that went missing",
       "slug": "18-the-minus-sign-that-went-missing",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -266,7 +266,7 @@
     },
     {
       "n": 18,
-      "t": "Card 19 · Gr 10 · Current, potential difference and emf: The current that gets used up",
+      "t": "Card 19 · Current, potential difference and emf: The current that gets used up",
       "slug": "19-the-current-that-gets-used-up",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -281,7 +281,7 @@
     },
     {
       "n": 19,
-      "t": "Card 20 · Gr 10 · Circuit diagrams and meters: The open switch reads zero (it doesn't)",
+      "t": "Card 20 · Circuit diagrams and meters: The open switch reads zero (it doesn't)",
       "slug": "20-the-open-switch-reads-zero-it-doesn-t",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -298,7 +298,7 @@
     },
     {
       "n": 20,
-      "t": "Card 21 · Gr 10 · Resistance and Ohm's law: The gradient is not the resistance",
+      "t": "Card 21 · Resistance and Ohm's law: The gradient is not the resistance",
       "slug": "21-the-gradient-is-not-the-resistance",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -313,7 +313,7 @@
     },
     {
       "n": 21,
-      "t": "Card 22 · Gr 10 · Resistors in series and in parallel: Forgetting to invert",
+      "t": "Card 22 · Resistors in series and in parallel: Forgetting to invert",
       "slug": "22-forgetting-to-invert",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -329,7 +329,7 @@
     },
     {
       "n": 22,
-      "t": "Card 23 · Gr 10 · Series–parallel combinations and the chain: Numbers from different places",
+      "t": "Card 23 · Series–parallel combinations and the chain: Numbers from different places",
       "slug": "23-numbers-from-different-places",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -345,7 +345,7 @@
     },
     {
       "n": 23,
-      "t": "Card 24 · Gr 10 · Switches and identical bulbs: reasoning without numbers: Arrows are not an explanation",
+      "t": "Card 24 · Switches and identical bulbs: reasoning without numbers: Arrows are not an explanation",
       "slug": "24-reasoning-without-numbers-arrows-are-not",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -362,7 +362,7 @@
     },
     {
       "n": 24,
-      "t": "Card 25 · Gr 10 · Electrical power, energy and the cost of electricity: Power is not energy",
+      "t": "Card 25 · Electrical power, energy and the cost of electricity: Power is not energy",
       "slug": "25-power-is-not-energy",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -377,14 +377,14 @@
     },
     {
       "n": 25,
-      "t": "Card 26 · Gr 10 · Mass, molar mass and moles: The forgotten water",
+      "t": "Card 26 · Mass, molar mass and moles: The forgotten water",
       "slug": "26-the-forgotten-water",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
       "lines": [
         "25 grams of blue copper sulfate crystals. How many moles?",
         "The trap: you use the molar mass of CuSO4, 159,5, and stop. But look at the formula: dot 5 H2O. Those crystals have five water molecules locked into every unit. That water has mass, so it belongs in the molar mass.",
-        "The examiners wrote that the overwhelming majority of matric learners didn't know what to do with the waters of crystallisation. Learn it now, in Grade 10.",
+        "The examiners wrote that the overwhelming majority of matric learners didn't know what to do with the waters of crystallisation. Learn it now.",
         "So add it up. Copper sulfate is 159,5. The water is 5 times 18: that's 90. Together, 249,5 grams per mole. 25 grams over 249,5 is 0,10 moles.",
         "Whenever you see a dot and some H2O, add the water.",
         "Twin's on the card."
@@ -392,7 +392,7 @@
     },
     {
       "n": 26,
-      "t": "Card 27 · Gr 10 · Ions in mixed solutions: One formula, two chloride ions",
+      "t": "Card 27 · Ions in mixed solutions: One formula, two chloride ions",
       "slug": "27-one-formula-two-chloride-ions",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",
@@ -407,7 +407,7 @@
     },
     {
       "n": 27,
-      "t": "Card 28 · Gr 10 · Limiting reagents and purity: Calculating from the excess",
+      "t": "Card 28 · Limiting reagents and purity: Calculating from the excess",
       "slug": "28-calculating-from-the-excess",
       "face": true,
       "note": "FACE, to the lens. Exam voice, but smile at the start and the end. About 60 seconds; say it your way, but keep the numbers, units, SAGS wording and the examiners' words exactly. If you trip, breathe and say that sentence again.",

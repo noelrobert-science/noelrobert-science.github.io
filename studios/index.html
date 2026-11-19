@@ -54,59 +54,33 @@
   <h1>See it happen. <span>Then do it on your own.</span></h1>
   <p class="lead">Interactive practice that goes with your coursebook. Work on paper alongside, try before you look at the answer, and come back to it a few days later.</p>
 
-  <a class="start" href="../app/"><span><b>Start here: open Mr R Science</b><small>Pick your grade and a topic. It takes you step by step, in the same order as your book.</small></span><span class="go" aria-hidden="true">&rsaquo;</span></a>
+  <a class="start" href="../app/"><span><b>Start here: open Mr R Science</b><small>Pick a topic. It takes you step by step, in the same order as your book.</small></span><span class="go" aria-hidden="true">&rsaquo;</span></a>
   <p class="or">Or go straight to a studio:</p>
 
-  <div class="grades" role="group" aria-label="Choose your grade">
-    <button type="button" data-g="all" aria-pressed="true">All studios</button>
-    <button type="button" data-g="10" aria-pressed="false">Grade 10</button>
-    <button type="button" data-g="11" aria-pressed="false">Grade 11</button>
-    <button type="button" data-g="12" aria-pressed="false">Grade 12</button>
-  </div>
-
-  <section data-grade="10">
-  <h2>Grade 10 Physical Sciences</h2>
+  <section>
+  <h2>Paper 1 · Physics</h2>
   <div class="grid">
-    <a class="card" href="../momentum/" style="--bc: var(--mom)"><b>Momentum Studio</b><small>Momentum, impulse and collisions, with a crash simulation.</small></a>
-    <a class="card" href="../chemical-calculations/" style="--bc: var(--mole)"><b>Chemical Calculations Studio</b><small>Moles, molar mass, concentration and yields.</small></a>
-    <a class="card" href="../circuits/?g=10" style="--bc: #5F3DC4"><b>Circuits Studio</b><small>Electric circuits: a virtual lab with bulbs, switches and meters. Change one thing and watch every reading.</small></a>
+    <a class="card" href="../momentum/" style="--bc: var(--mom)"><b>Momentum Studio</b><small>Module 7, Momentum and impulse: impulse, collisions and a crash simulation.</small></a>
+    <a class="card" href="../circuits/" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11, Electric circuits 1 and 2: a virtual lab with IEB symbols. Change one thing and watch every reading change.</small></a>
   </div>
   </section>
 
-  <section data-grade="11">
-  <h2>Grade 11 Physical Sciences</h2>
+  <section>
+  <h2>Paper 2 · Chemistry</h2>
   <div class="grid">
-    <a class="card" href="../circuits/?g=11" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11: a virtual lab with IEB symbols. Change one thing and watch every reading change. Grades 10 to 12.</small></a>
+    <a class="card" href="../chemical-calculations/" style="--bc: var(--mole)"><b>Chemical Calculations Studio</b><small>Module 17, Quantitative chemistry: moles, molar mass, concentration and yields.</small></a>
+    <a class="card" href="../electrochemistry/" style="--bc: #00646b"><b>Electrochemistry Studio</b><small>Modules 27 to 29, Redox, galvanic cells and electrolytic cells: a live Table 4, cell labs, Faraday calculations and IEB past-paper questions.</small></a>
   </div>
   </section>
 
-  <section data-grade="12">
-  <h2>Grade 12 Physical Sciences</h2>
+  <section>
+  <h2>Final exam revision</h2>
   <div class="grid">
-    <a class="card" href="../electrochemistry/" style="--bc: #00646b"><b>Electrochemistry Studio</b><small>Modules 27 to 29: a live Table 4, galvanic and electrolytic cell labs, Faraday calculations and IEB past-paper questions.</small></a>
-    <a class="card" href="../circuits/?g=12" style="--bc: #0b7285"><b>Circuits Studio</b><small>Modules 10 and 11: internal resistance and networks, with a virtual lab you can change.</small></a>
     <a class="card" href="../gr12-guides/" style="--bc: var(--exam)"><b>Revision guides</b><small>90%+ challenge booklets, challenge banks and visual walkthroughs, as PDFs.</small></a>
   </div>
   </section>
 
   <footer>Made by Mr N. Robert. Free for every learner, at any school. No sign-in needed. Your progress is saved only in this browser.</footer>
 </main>
-<script>
-(function () {
-  var btns = document.querySelectorAll('.grades button'), secs = document.querySelectorAll('section[data-grade]');
-  function show(g) {
-    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.g === g)); });
-    secs.forEach(function (s) {
-      var gr = s.dataset.grade;
-      s.hidden = !(g === 'all' || gr === g);
-    });
-    try { localStorage.setItem('ls-grade', g); } catch (e) {}
-  }
-  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.g); }); });
-  var start = 'all'; try { start = localStorage.getItem('ls-grade') || 'all'; } catch (e) {}
-  if (['all','10','11','12'].indexOf(start) < 0) start = 'all';
-  show(start);
-})();
-</script>
 </body>
 </html>

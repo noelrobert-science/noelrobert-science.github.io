@@ -13,6 +13,8 @@
   var params = new URLSearchParams(m[2] || location.search.slice(1));
   var grade = /^1[12]$/.test(params.get('g') || '') ? params.get('g') : '12';
   var L = null, i = 0, st = [];
+  // the app keys a part by its module: m10/current, m11/networks
+  var appKey = (/^(networks|emf-r|with-r|graph-r|explain)$/.test(id) ? 'm11/' : 'm10/') + id;
 
   // ---------------------------------------------------------------- text
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -28,7 +30,7 @@
     var to = ss('mrr-return');
     if (to && to.charAt(0) === '/' && to.indexOf('//') !== 0) return to;
     // on the site: the topic in the app; anywhere else (a preview copy): this page's lesson list
-    return location.pathname.indexOf('/circuits/') === 0 ? '/app/#t/' + grade + '/' + id : location.pathname + location.search;
+    return location.pathname.indexOf('/circuits/') === 0 ? '/app/#t/' + appKey : location.pathname + location.search;
   }
 
   // ---------------------------------------------------------------- numbers (decimal comma or point, spaces, units)
@@ -202,7 +204,7 @@
     var s = L.screens[i], S = st[i] || {};
     if (s.t === 'we' && (S.rev || 0) < s.lines.length) { S.rev = (S.rev || 0) + 1; renderWE(s, S, header(s, i)); return; }
     if (i < L.screens.length - 1) return show(i + 1);
-    ss('mrr-done', JSON.stringify({ t: grade + '/' + id, k: 'watch' }));
+    ss('mrr-done', JSON.stringify({ t: appKey, k: 'watch' }));
     var pos = store('circ-learn-pos') || {}; delete pos[id]; store('circ-learn-pos', pos);
     location.href = returnUrl();
   }
@@ -216,7 +218,7 @@
   // ---------------------------------------------------------------- list (no topic) and start
   function list() {
     fetch('data/learn/index.json').then(function (r) { return r.json(); }).then(function (ix) {
-      $('#ttl').textContent = 'Watch · Circuits, Grades 11 and 12';
+      $('#ttl').textContent = 'Watch · Circuits';
       $('#close').href = returnUrl().replace(/#t\/.*$/, '');
       main.innerHTML = '<h1>Circuits lessons</h1><p>Each lesson is one section of Mr R’s coursebook, a step at a time. It stops so you can answer first.</p>' +
         [10, 11].map(function (mod) {

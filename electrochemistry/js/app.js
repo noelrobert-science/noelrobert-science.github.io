@@ -323,7 +323,7 @@
     add(el, [
       h('section', { class: 'hero' },
         h('div', null,
-          h('div', { class: 'eyebrow' }, 'Physical Sciences · Grade 12 IEB · Modules 27 to 29'),
+          h('div', { class: 'eyebrow' }, 'Physical Sciences · IEB · Modules 27 to 29'),
           h('h1', null, 'Follow the electrons.'),
           h('p', { class: 'lede' }, 'Electrons always go from a stronger reducing agent to a stronger oxidising agent. Module 27 shows where they go (Table 4), Module 28 makes them go through a wire, and Module 29 pushes them the other way and counts them.'),
           h('div', { class: 'row' },
@@ -387,7 +387,7 @@
           h('p', null, 'One chemistry engine drives every screen. Before anything else was built, it had to reproduce every worked example in Modules 27 to 29 that has something to calculate, balance or predict (35 of the 38; WE 28.3, 28.9 and 28.10 are explained in words), and every pairing of Table 4 rows (1 901 set-ups, including electrolysis) is machine-checked for atom and charge balance. Each fix to the chemistry engine and the IEB bank added a test that fails on the old studio; the screens were checked in a browser at phone and laptop sizes and in Present mode.'),
           h('h3', null, 'Coming later'),
           h('p', null, 'For now the narrated audio lessons take the place of the planned MP4 videos. Short clips of real experiments will be added once they have been filmed and approved. Ideas planned for later: a mystery-metal investigation, catalyst or intermediate?, why electrolysis needs DC (with an AC animation), multiple-choice questions worked aloud and design challenges. Now built: the mistake museum, the mini-paper, and the coursebooks’ “Words that win marks” tables on the flip cards in Return later.'),
-          h('p', { class: 'muted small' }, 'Made by Mr N. Robert for his learners, to go with the Grade 11 and 12 IEB Physical Sciences coursebook, Modules 27 to 29. Status: for moderation.')))
+          h('p', { class: 'muted small' }, 'Made by Mr N. Robert for his learners, to go with the IEB Physical Sciences coursebook, Modules 27 to 29. Status: for moderation.')))
     ]);
   };
 

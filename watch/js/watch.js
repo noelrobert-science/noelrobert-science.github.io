@@ -13,6 +13,8 @@
   var id = m[1] || '';
   var params = new URLSearchParams(m[2] || location.search.slice(1));
   var grade = /^(1[0-2]|[7-9])$/.test(params.get('g') || '') ? params.get('g') : '12';
+  // the app keys a part by its module: m27/table4, m28/galvanic, m29/faraday
+  var appKey = ({ table4: 'm27/', 'will-it-react': 'm27/', galvanic: 'm28/', 'salt-bridge': 'm28/', electrolysis: 'm29/', faraday: 'm29/' }[id] || '') + id;
   var POS = 'watch-pos', IX = null;
   var L = null, i = 0, st = [];
 
@@ -31,7 +33,7 @@
     var to = ss('mrr-return');
     if (to && to.charAt(0) === '/' && to.indexOf('//') !== 0) return to;
     // on the site: the topic in the app; anywhere else (a preview copy): this page's lesson list
-    return location.pathname.indexOf('/watch/') === 0 ? '/app/#t/' + grade + '/' + id : location.pathname + location.search;
+    return location.pathname.indexOf('/watch/') === 0 ? '/app/#t/' + appKey : location.pathname + location.search;
   }
 
   // ---------------------------------------------------------------- numbers (decimal comma or point, spaces, units)
@@ -211,7 +213,7 @@
     var s = L.screens[i], S = st[i] || {};
     if (s.t === 'we' && (S.rev || 0) < s.lines.length) { S.rev = (S.rev || 0) + 1; renderWE(s, S, header(s, i)); return; }
     if (i < L.screens.length - 1) return show(i + 1);
-    ss('mrr-done', JSON.stringify({ t: grade + '/' + id, k: 'watch' }));
+    ss('mrr-done', JSON.stringify({ t: appKey, k: 'watch' }));
     var pos = store(POS) || {}; delete pos[id]; store(POS, pos);
     location.href = returnUrl();
   }
@@ -232,7 +234,7 @@
       groups.map(function (g) {
         return '<h2 style="margin-top:22px">' + esc(g) + '</h2><div class="list">' + IX.filter(function (x) { return x.subject + ' · Module ' + x.mod === g; }).map(function (x) {
           var gg = x.grades.indexOf(+grade) >= 0 ? grade : x.grades[0];
-          return '<a href="#' + x.id + '?g=' + gg + '"><b>' + esc(x.sec) + ' ' + esc(x.title) + '</b><small>Grade ' + x.grades.join(' and ') + ' · about ' + x.minutes + ' minutes · ' + x.stops + ' stops to answer</small></a>';
+          return '<a href="#' + x.id + '?g=' + gg + '"><b>' + esc(x.sec) + ' ' + esc(x.title) + '</b><small>About ' + x.minutes + ' minutes · ' + x.stops + ' stops to answer</small></a>';
         }).join('') + '</div>';
       }).join('');
   }
