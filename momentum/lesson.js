@@ -12,7 +12,7 @@
       title: 'Momentum, Δp and impulse', app: '10/momentum', k: 'watch', label: 'Watch',
       screens: [
         { video: 'media/m7/lesson', h: 'Watch the lesson',
-          say: 'Mr Robert, about 8½ minutes. It stops 10 times so you can think first. Have paper, a pencil and a calculator ready. Prefer to read? <a href="?read#lesson/momentum-read">Read the worked examples instead</a>.' }
+          say: 'Mr Robert, about 10 minutes. It stops 11 times so you can think first. Have paper, a pencil and a calculator ready. Prefer to read? <a href="?read#lesson/momentum-read">Read the worked examples instead</a>.' }
       ]
     },
     'momentum-read': {

@@ -1,6 +1,6 @@
 {
  "name": "Mr R Science",
- "updated": "2026-11-16",
+ "updated": "2026-11-19",
  "note": "One list of everything learners can use, by grade, module and topic. The app, the studio hub and school pages all read this file. Paths are relative to /app/.",
  "grades": [
   {
@@ -24,7 +24,7 @@
         {
          "title": "Lesson: momentum and impulse (Mr Robert, video)",
          "href": "../momentum/#lesson/momentum",
-         "note": "About 8½ minutes. It stops so you can think first."
+         "note": "About 10 minutes. It stops so you can think first."
         }
        ],
        "train": [
@@ -594,6 +594,11 @@
        "page": null,
        "watch": [
         {
+         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
+         "href": "../circuits/video.html#L1",
+         "note": "About 7 minutes. It stops so you can think first."
+        },
+        {
          "title": "Lesson: Potential difference and current (step through)",
          "href": "../circuits/learn.html#current?g=11",
          "note": "About 12 minutes. 6 stops where you answer first."
@@ -632,6 +637,11 @@
        "page": null,
        "watch": [
         {
+         "title": "Lesson: current, pd and Ohm’s law (Mr Robert, video)",
+         "href": "../circuits/video.html#L1",
+         "note": "About 7 minutes. It stops so you can think first."
+        },
+        {
          "title": "Lesson: Ohm’s law; ohmic and non-ohmic conductors (step through)",
          "href": "../circuits/learn.html#ohm?g=11",
          "note": "About 12 minutes. 6 stops where you answer first."
@@ -669,6 +679,11 @@
        "section": "10.3",
        "page": null,
        "watch": [
+        {
+         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
+         "href": "../circuits/video.html#L2",
+         "note": "About 7½ minutes. It stops so you can think first."
+        },
         {
          "title": "Lesson: Series and parallel resistors (step through)",
          "href": "../circuits/learn.html#series-parallel?g=11",
@@ -792,6 +807,11 @@
        "section": "11.1",
        "page": null,
        "watch": [
+        {
+         "title": "Lesson: series, parallel and networks (Mr Robert, video)",
+         "href": "../circuits/video.html#L2",
+         "note": "About 7½ minutes. It stops so you can think first."
+        },
         {
          "title": "Lesson: Series–parallel networks (step through)",
          "href": "../circuits/learn.html#networks?g=11",

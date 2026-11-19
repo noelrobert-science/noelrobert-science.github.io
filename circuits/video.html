@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watch · Circuits · Mr R Science</title>
+<meta name="description" content="Mr Robert's circuits lessons on video, with stops so you think before the answer.">
+<meta name="theme-color" content="#ffffff">
+<style>
+/* Circuits video lessons (Mr Robert's voice and pen over the coursebook pages). One page, #L1 or #L2. */
+@font-face { font-family: 'Lexend'; font-weight: 300 500; src: url(../assets/fonts/Lexend-400.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Lexend'; font-weight: 600 800; src: url(../assets/fonts/Lexend-600.woff2) format('woff2'); font-display: swap; }
+:root { --paper: #ffffff; --ink: #17242f; --muted: #556673; --line: #d6e0e5; --acc: #5f3dc4; --soft: #f3f6f8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #0d1720; --ink: #e8eef3; --muted: #9db0bd; --line: #284050; --acc: #a48cf0; --soft: #15222d; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #0d1720; --ink: #e8eef3; --muted: #9db0bd; --line: #284050; --acc: #a48cf0; --soft: #15222d; color-scheme: dark }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 Lexend, system-ui, sans-serif }
+main { max-width: 980px; margin: 0 auto; padding: 18px 16px 48px }
+.top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px }
+.top a { color: var(--acc); text-decoration: none; font-weight: 600 }
+.kick { color: var(--acc); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; margin: 6px 0 0 }
+h1 { font-size: clamp(22px, 4vw, 32px); line-height: 1.2; margin: 4px 0 8px }
+.say { color: var(--muted); margin: 0 0 14px }
+.paper { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-top: 16px }
+.more { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap }
+.more a { border: 1.5px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--ink); text-decoration: none }
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><a href="../app/" id="back">‹ Mr R Science</a></div>
+  <p class="kick" id="kick"></p>
+  <h1 id="title">Watch</h1>
+  <p class="say" id="say"></p>
+  <div id="player"></div>
+  <div class="paper"><b>Have paper, a pencil and a calculator ready.</b> When the video stops, answer first, then carry on. Copy each worked example as it builds.</div>
+  <div class="more" id="more"></div>
+</main>
+<script>
+var LESSONS = {
+  L1: { kick: 'Grade 11 · Module 10 · 10.1 to 10.2', title: 'Current, potential difference and Ohm’s law', src: 'media/circuits-L1/lesson',
+        say: 'Mr Robert, about 7 minutes. It stops 5 times so you can think first.',
+        more: [['The step-through lesson: current and pd', 'learn.html#current?g=11'], ['The step-through lesson: Ohm’s law', 'learn.html#ohm?g=11'], ['Ohm’s law experiment', 'index.html#exp/ohm?r=0&gmin=11']] },
+  L2: { kick: 'Grade 11 · Modules 10 and 11 · 10.3 and 11.1', title: 'Series, parallel and networks', src: 'media/circuits-L2/lesson',
+        say: 'Mr Robert, about 7½ minutes. It stops 6 times so you can think first.',
+        more: [['The step-through lesson: series and parallel', 'learn.html#series-parallel?g=11'], ['The step-through lesson: networks', 'learn.html#networks?g=11'], ['Probe a network with a voltmeter', 'index.html#lab/B2?gmin=11']] }
+};
+function show() {
+  var id = (location.hash.slice(1) || 'L1').split('?')[0], L = LESSONS[id] || LESSONS.L1;
+  document.title = L.title + ' · Watch · Mr R Science';
+  document.getElementById('kick').textContent = L.kick;
+  document.getElementById('title').textContent = L.title;
+  document.getElementById('say').textContent = L.say;
+  document.getElementById('more').innerHTML = L.more.map(function (m) { return '<a href="' + m[1] + '">' + m[0] + '</a>'; }).join('');
+  var box = document.getElementById('player'); box.innerHTML = '<div></div>';
+  fetch(L.src + '.json').then(function (r) { return r.json(); }).catch(function () { return {}; }).then(function (meta) {
+    MrrVideo.mount(box.firstChild, { src: L.src + '.mp4', vtt: L.src + '.vtt', poster: L.src + '.jpg', meta: meta, title: L.title });
+  });
+}
+if (document.referrer && /\/app\//.test(document.referrer)) document.getElementById('back').href = document.referrer;
+window.addEventListener('hashchange', show);
+</script>
+<script src="../app/mrr-video.js" onload="show()"></script>
+</body>
+</html>

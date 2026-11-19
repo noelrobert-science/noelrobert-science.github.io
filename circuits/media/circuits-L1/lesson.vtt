@@ -1,0 +1,329 @@
+WEBVTT
+
+00:00:00.620 --> 00:00:03.710
+The bulb lights the instant I press the switch.
+
+00:00:04.260 --> 00:00:08.890
+But the charges in this wire drift slower than an ant walks.
+
+00:00:09.980 --> 00:00:10.470
+Pause.
+
+00:00:10.780 --> 00:00:12.590
+How can the light come on at once?
+
+00:00:13.300 --> 00:00:15.370
+Where were the charges before I pressed the switch?
+
+00:00:19.180 --> 00:00:22.350
+They were already there, in every bit of the wire.
+
+00:00:22.640 --> 00:00:24.730
+The battery doesn't make charge.
+
+00:00:25.260 --> 00:00:28.770
+It pushes on charge that's already everywhere in the loop.
+
+00:00:28.780 --> 00:00:30.850
+Let's see what that means.
+
+00:00:32.280 --> 00:00:34.370
+Current is the rate of flow of charge.
+
+00:00:34.840 --> 00:00:36.810
+That's the SAGS sentence, word for word.
+
+00:00:37.060 --> 00:00:41.570
+I equals Q over T, coulombs per second, that's the ampere.
+
+00:00:43.040 --> 00:00:44.830
+Picture one loop of rope.
+
+00:00:45.300 --> 00:00:47.450
+Your hand is the battery and pulls it around.
+
+00:00:48.220 --> 00:00:50.810
+A gloved grip is the bulb and it gets warm.
+
+00:00:51.360 --> 00:00:54.950
+The whole rope moves at once and no rope gets used up.
+
+00:00:55.660 --> 00:00:58.530
+Energy goes in at the hand and comes out at the grip.
+
+00:00:59.300 --> 00:01:00.070
+That's a circuit.
+
+00:01:00.300 --> 00:01:03.590
+Charge goes all the way around and the energy is transferred.
+
+00:01:03.720 --> 00:01:05.990
+Every model breaks somewhere.
+
+00:01:06.560 --> 00:01:08.710
+A rope can't split into two branches.
+
+00:01:09.240 --> 00:01:13.910
+So from here on we draw the circuit and write each meter reading on it.
+
+00:01:15.630 --> 00:01:19.780
+Potential difference is the work done per unit positive charge.
+
+00:01:20.530 --> 00:01:22.560
+Volts are joules per coulomb.
+
+00:01:23.310 --> 00:01:25.420
+And don't drop the word positive.
+
+00:01:25.770 --> 00:01:28.240
+Without it, this isn't the SAGS sentence.
+
+00:01:28.870 --> 00:01:32.360
+The ammeter goes in series, so the charge flows through it.
+
+00:01:33.190 --> 00:01:36.120
+The voltmeter goes across the part in parallel.
+
+00:01:36.490 --> 00:01:40.340
+It reads the potential difference between its two contact points.
+
+00:01:41.090 --> 00:01:46.700
+The battery keeps a potential difference of 12 V across its terminals.
+
+00:01:47.550 --> 00:01:48.860
+The ammeter reads 1 A.
+
+00:01:49.290 --> 00:01:52.720
+In one series loop, the current is the same everywhere.
+
+00:01:53.750 --> 00:02:01.060
+V1 is across the 4 ohm resistor, V equals I times R, 1 times 4, that's
+
+00:02:01.070 --> 00:02:02.120
+4 V.
+
+00:02:02.950 --> 00:02:04.160
+Pause.
+
+00:02:04.790 --> 00:02:06.560
+V2 is across the 8 ohm resistor.
+
+00:02:07.030 --> 00:02:07.960
+What does it read?
+
+00:02:11.050 --> 00:02:11.920
+8 volts.
+
+00:02:12.310 --> 00:02:13.460
+That's 1 times 8.
+
+00:02:14.050 --> 00:02:17.380
+And the two readings add up to the battery's pd.
+
+00:02:18.050 --> 00:02:19.680
+4 plus 8 is 12.
+
+00:02:20.170 --> 00:02:23.460
+In the Circuits Studio you can probe any two points yourself.
+
+00:02:23.810 --> 00:02:25.640
+The QR code is on page 9.
+
+00:02:26.420 --> 00:02:31.010
+Resistance is the material's opposition to the flow of electric charge.
+
+00:02:31.700 --> 00:02:35.630
+And Ohm's law, the current through a conductor is directly proportional
+
+00:02:35.640 --> 00:02:40.710
+to the potential difference across the conductor at a constant temperature.
+
+00:02:41.460 --> 00:02:42.010
+Current first.
+
+00:02:42.380 --> 00:02:45.610
+The current depends on the potential difference.
+
+00:02:45.820 --> 00:02:52.910
+To test it, change the pd with a rheostat, read V and I and plot.
+
+00:02:53.680 --> 00:02:58.890
+Use small currents and switch off between readings so the temperature stays
+
+00:02:58.900 --> 00:02:59.490
+constant.
+
+00:02:59.890 --> 00:03:02.500
+Pause and sketch it.
+
+00:03:02.590 --> 00:03:07.540
+On axes of current against potential difference, what shape will a resistor
+
+00:03:07.550 --> 00:03:08.080
+give?
+
+00:03:09.050 --> 00:03:10.600
+And a hot filament bulb?
+
+00:03:13.450 --> 00:03:16.700
+The resistor gives a straight line through the origin.
+
+00:03:17.250 --> 00:03:18.040
+That's ohmic.
+
+00:03:19.350 --> 00:03:26.380
+The bulb curves over because its resistance rises as it heats up.
+
+00:03:26.690 --> 00:03:27.960
+That's a non-ohmic.
+
+00:03:28.870 --> 00:03:30.340
+And look at the axes.
+
+00:03:30.770 --> 00:03:35.600
+With i on the y-axis, the gradient is 1 over r, not r.
+
+00:03:35.970 --> 00:03:39.440
+Practical 10.1, the resistor readings.
+
+00:03:40.450 --> 00:03:45.380
+Five things earn marks on a plotted graph: a heading the y-axis title and
+
+00:03:45.390 --> 00:03:50.680
+unit, a scale that spreads the points over more than a half the paper, the
+
+00:03:50.690 --> 00:03:52.060
+points and the line.
+
+00:03:52.930 --> 00:03:57.940
+The heading, graph of current against potential difference for resistor
+
+00:03:57.950 --> 00:03:58.620
+X.
+
+00:03:59.090 --> 00:04:04.860
+Current in amps goes up the side, the biggest reading is 0,49, the bulb
+
+00:04:04.870 --> 00:04:07.320
+reading goes on this grid too.
+
+00:04:08.110 --> 00:04:11.160
+So my scale goes up in steps of 0,05.
+
+00:04:11.630 --> 00:04:15.880
+It ends at 0,6, my points will cover more than half the grid.
+
+00:04:16.670 --> 00:04:21.800
+Potential difference goes across the bottom in volts from 0 to 8.
+
+00:04:22.050 --> 00:04:28.680
+Six small crosses then one ruled line of best fit it runs through four of
+
+00:04:28.690 --> 00:04:35.360
+the crosses with one just above and one just below it goes through the origin
+
+00:04:36.480 --> 00:04:42.230
+For the gradient, I take two points on my line far apart and mark them.
+
+00:04:42.940 --> 00:04:44.350
+The first is the origin.
+
+00:04:45.500 --> 00:04:47.970
+The second is at 7,5 volts.
+
+00:04:48.780 --> 00:04:51.230
+There my line reads 0,5 amps.
+
+00:04:51.760 --> 00:04:55.410
+The table says 0,49, but the point must come from my line.
+
+00:04:56.020 --> 00:05:03.170
+The gradient is 0,5 take away 0 divided by 7,5 take away 0.
+
+00:05:03.800 --> 00:05:07.870
+That's 0,0667 amps per volt.
+
+00:05:09.020 --> 00:05:14.070
+The zeros must be in the substitution because I use the origin as a point.
+
+00:05:14.510 --> 00:05:18.900
+With current on the y-axis, the gradient is 1 over R.
+
+00:05:19.090 --> 00:05:21.420
+So R is 1 over the gradient.
+
+00:05:22.230 --> 00:05:26.540
+That's 7,5 over 0,5, 15 ohms.
+
+00:05:27.450 --> 00:05:31.460
+Your answer book's line gives 15,27 ohms.
+
+00:05:31.910 --> 00:05:33.400
+Best fit lines differ a little.
+
+00:05:33.730 --> 00:05:37.940
+So a gradient within 5 % of the book's earns the marks.
+
+00:05:38.780 --> 00:05:39.890
+Pause.
+
+00:05:40.320 --> 00:05:45.210
+Why did I use 0,5 from my line and not 0,4, 9 from the table?
+
+00:05:48.400 --> 00:05:51.630
+The line is the best average of all 6 readings.
+
+00:05:52.360 --> 00:05:56.350
+Gradient points come from the line, never from the table.
+
+00:05:56.740 --> 00:05:58.490
+The examiners keep saying so.
+
+00:05:58.890 --> 00:06:00.260
+Your turn.
+
+00:06:00.690 --> 00:06:03.020
+On the same grid, plot the bulb readings.
+
+00:06:04.190 --> 00:06:06.700
+Then decide, is each component ohmic?
+
+00:06:07.010 --> 00:06:11.940
+Work out the bulb's resistance at 1 volt and at 6 volts.
+
+00:06:12.410 --> 00:06:13.800
+Pause and work it out.
+
+00:06:18.040 --> 00:06:22.530
+The resistor gives a straight line through the origin, so it's ohmic.
+
+00:06:23.160 --> 00:06:26.790
+The bulb curves towards the V-axis, that's non-ohmic.
+
+00:06:27.320 --> 00:06:33.650
+At 1 volt, the bulb's current is 0,18 amps, 1 divided by 0,18, that's about
+
+00:06:33.660 --> 00:06:35.410
+5,56 ohms.
+
+00:06:36.320 --> 00:06:44.330
+At 6 volts, the current is 0,51 amps, 6 divided by 0,51, that's 11,76 ohms.
+
+00:06:44.830 --> 00:06:47.910
+The resistance goes up as the filament heats.
+
+00:06:49.140 --> 00:06:52.810
+On a curve, R is V over I at the point.
+
+00:06:53.140 --> 00:06:55.210
+It's not the gradient of the curve.
+
+00:06:56.160 --> 00:06:59.010
+Next in the app is See it happen.
+
+00:06:59.240 --> 00:07:01.670
+It's the Ohm's law experiment in the Circuits Studio.
+
+00:07:02.100 --> 00:07:03.550
+Then train, then check.
+
