@@ -54,7 +54,7 @@ function show() {
   document.getElementById('more').innerHTML = L.more.map(function (m) { return '<a href="' + m[1] + '">' + m[0] + '</a>'; }).join('');
   var box = document.getElementById('player'); box.innerHTML = '<div></div>';
   fetch(L.src + '.json').then(function (r) { return r.json(); }).catch(function () { return {}; }).then(function (meta) {
-    MrrVideo.mount(box.firstChild, { src: L.src + '.mp4', vtt: L.src + '.vtt', poster: L.src + '.jpg', meta: meta, title: L.title });
+    MrrVideo.mount(box.firstChild, { src: L.src + '.mp4', vtt: L.src + '.vtt', poster: L.src + '.jpg?v=2', meta: meta, title: L.title });
   });
 }
 if (document.referrer && /\/app\//.test(document.referrer)) document.getElementById('back').href = document.referrer;
