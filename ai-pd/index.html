@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/v5.css">
 <link rel="stylesheet" href="css/v6.css">
 <link rel="stylesheet" href="css/v7.css">
+<link rel="stylesheet" href="css/v8.css">
 </head>
 <body>
 <div class="turn" id="turn"><div class="ph"></div><b>Turn your phone sideways</b><span>This talk is made of wide slides. It reads best sideways, or on a laptop.</span><button id="turn-ok">Show it anyway</button></div>
@@ -776,6 +777,85 @@
   <aside class="notes">Open the demo and tap the red EMERGENCY button. Its school contacts and procedure are invented; only the national numbers are real. Every name, notice and duty in it is invented.</aside>
 </section>
 
+<section id="s-mark-pen" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · AI for marking <span class="illus">REAL SCRIPT, ANONYMISED</span></p>
+    <h2 class="headline">My red pen first. <em>Then a green moderator's pen.</em></h2>
+    <div class="body mk-pen">
+      <div class="mk-compare" id="mk-compare" aria-label="The same script page before and after moderation">
+        <img src="img/mark/p18-after.jpg" alt="The same page with green moderation marks added" draggable="false">
+        <div class="mk-before"><img src="img/mark/p18-before.jpg" alt="A script page with the teacher's red marks only" draggable="false"></div>
+        <div class="mk-handle"><span>◀ ▶</span></div>
+        <span class="mk-tag mk-tag-l">My marking</span><span class="mk-tag mk-tag-r">Moderated</span>
+      </div>
+      <div class="mk-side">
+        <ol class="mk-steps">
+          <li><b class="red">Red:</b> I mark every script myself.</li>
+          <li><b class="grn">Green:</b> AI moderates it, written straight onto the scan in a handwriting font.</li>
+          <li>A <b class="grn">tick</b> where it agrees. A <b class="grn">strike and a new mark</b> where it doesn't, with the reason under the answer.</li>
+          <li><b>I check every green change.</b> I still decide every mark.</li>
+        </ol>
+        <div class="mk-btns"><button data-mk="0">My marking</button><button data-mk="100">Moderated</button></div>
+        <p class="mk-priv">Name, class and school hidden. Only question marks show.</p>
+      </div>
+    </div>
+    <div class="ia-tag"><span>▶</span>Try it: drag the slider</div>
+  </div>
+  <aside class="notes">A real Grade 11 script page, anonymised: the cover with the pupil's name and class is not used, the school name in the footer is covered, and no total is shown. Drag the slider or click the two buttons. Red is my marking. Green is the moderation: the AI writes a small program that draws on top of the original scan, so the scan stays untouched underneath, then checks its own result.</aside>
+</section>
+
+<section id="s-mark-notes" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · AI for marking <span class="illus">REAL SCRIPT, ANONYMISED</span></p>
+    <h2 class="headline">The moderation is written <em>inside the script.</em></h2>
+    <div class="body mk-notes">
+      <figure class="mk-card fragment" data-fragment-index="0"><img src="img/mark/n-412.jpg" alt="Question 4.1.2: a green tick agreeing with the mark, and a note"><figcaption><b>Agrees.</b> A green tick, plus the right definition: force per unit <i>mass</i>, not charge.</figcaption></figure>
+      <figure class="mk-card fragment" data-fragment-index="1"><img src="img/mark/n-413.jpg" alt="Question 4.1.3: a green note about the unit deduction"><figcaption><b>Explains a deduction.</b> "No unit: the one unit deduction."</figcaption></figure>
+      <figure class="mk-card wide fragment" data-fragment-index="2"><img src="img/mark/n-414.jpg" alt="Question 4.1.4: the mark 2 struck through and changed to 3, with a reason and the correct method"><figcaption><b>Changes a mark, and says why.</b> 2 becomes 3: formula and substitution were correct. Then the right method, so the pupil can learn without the memo.</figcaption></figure>
+    </div>
+  </div>
+  <aside class="notes">Three close-ups from the same page. Every green note sits next to the answer it belongs to, never on top of the pupil's writing. I check each one before the script goes back.</aside>
+</section>
+
+<section id="s-mark-feedback" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · AI for marking <span class="illus">REAL SCRIPT, ANONYMISED</span></p>
+    <h2 class="headline">Where marks were lost, <em>feedback on the spot.</em></h2>
+    <div class="body mk-fb">
+      <figure class="mk-page"><img src="img/mark/p20-after.jpg" alt="A script page where marks were lost, with green notes on direction and a carried error"><figcaption>In the script: an error carried forward is not punished twice, and each lost mark gets its reason.</figcaption></figure>
+      <figure class="mk-page fb fragment" data-fragment-index="0"><img src="img/mark/feedback.jpg" alt="A handwritten-style feedback page: what is already working, where marks went and why, with small sketches"><figcaption>At the end: one feedback page for this pupil. What is working, where the marks went, why, and what to do next time.</figcaption></figure>
+    </div>
+  </div>
+  <aside class="notes">The feedback page is drafted by AI from the moderated marks, and I check it before it goes back. The pupil's name and total are covered here; the per-question marks stay because they identify no one.</aside>
+</section>
+
+<section id="s-mark-analysis" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · AI for marking <span class="illus">INVENTED CLASS</span></p>
+    <h2 class="headline">Raw marks in a spreadsheet <em>unlock the analysis.</em></h2>
+    <div class="body mk-an">
+      <div class="mk-chart">
+        <div class="mk-tabs" role="tablist">
+          <button class="on" data-mkview="paper">Whole paper</button>
+          <button data-mkview="q">Question by question</button>
+        </div>
+        <svg id="mk-svg" viewBox="0 0 980 560" aria-label="Chart of invented marks"></svg>
+        <p class="mk-hint" id="mk-hint">Click a bar for more.</p>
+      </div>
+      <div class="mk-side an">
+        <p class="mk-read" id="mk-read">An invented class of 24 pupils, one 135-mark paper.</p>
+        <ul class="mk-unlock">
+          <li>Whole paper: who needs help first.</li>
+          <li>Question by question: what to <b>reteach</b>, not just who.</li>
+          <li>Per pupil: the feedback page you just saw.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ia-tag"><span>▶</span>Try it: switch views, click a bar</div>
+  </div>
+  <aside class="notes">Every pupil and mark here is invented. In real life the marks come straight off the moderated scripts into a spreadsheet; from there the analysis is one prompt away.</aside>
+</section>
+
 <section id="s-samemonth" data-part="4">
   <div class="frame">
     <p class="kicker">Part 4 · The same lens, for everything else too</p>
@@ -1094,6 +1174,7 @@
 <script src="js/ail-cues.js"></script>
 <script src="js/v5.js"></script>
 <script src="js/deck7.js"></script>
+<script src="js/v8.js"></script>
 <script src="js/count.js"></script>
 <script src="js/count-deck.js"></script>
 </body>
