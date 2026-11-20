@@ -21,7 +21,7 @@
         { tab: 'learning', topic: 'momentum', h: 'What momentum is', noel: 'walk through this example',
           say: 'Momentum is mass times velocity, p = mv. Direction matters, so pick a positive direction first. Read the worked example, then try the short "explain" question.' },
         { tab: 'learning', topic: 'impulse', h: 'Impulse and stopping force', noel: 'walk through this example',
-          say: 'Impulse is the change in momentum, Δp. Find Δp first, with its sign, then divide by the stopping time to get the force.' }
+          say: 'Impulse (J) is the product of the net force and the contact time: J = FnetΔt. It is equal to the change in momentum, J = Δp. Find Δp first, with its sign, then divide by the stopping time to get the average net force.' }
       ]
     },
     conservation: {
@@ -37,14 +37,14 @@
       title: 'Momentum, Δp and impulse', app: 'm7/momentum', k: 'train', label: 'Train',
       screens: [
         { tab: 'impulse', h: 'A softer stop', clip: 'media/m7/clip-what-to-watch', clipTitle: 'Mr R: what to watch',
-          say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the force get bigger or smaller? Then try "Push a trolley from rest".' }
+          say: 'Same mass, same speed, same stop. Make the stopping time longer. Guess first: does the average net force get bigger or smaller? Then try "Push a trolley from rest".' }
       ]
     },
     'collision-lab': {
       title: 'Conservation of momentum', app: 'm7/conservation', k: 'train', label: 'Train',
       screens: [
         { tab: 'collisions', h: 'Test your prediction',
-          say: 'Choose "Stick together". Set A to 2 kg at +3 m/s and B to 1 kg at rest. Predict the final velocity, then run it. Then try "Bounce".' }
+          say: 'Choose "Stick together". Set A to 2 kg at +3 m·s⁻¹ and B to 1 kg at rest. Predict the final velocity, then run it. Then try "Bounce".' }
       ]
     }
   };
