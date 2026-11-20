@@ -24,7 +24,7 @@
       "t": "What momentum is",
       "slug": "02-what-momentum-is",
       "face": false,
-      "note": "Voice only. On screen: page 138, the definition box, then page 139, the formula box. Slow down on the definition: it is learnt word for word.",
+      "note": "Voice only. On screen: the definition box, then the formula box. Slow down on the definition: it is learnt word for word.",
       "lines": [
         "Learn this word for word. It comes straight from SAGS.",
         "Linear momentum is the product of the mass and velocity of the object.",
@@ -36,7 +36,7 @@
       "t": "Momentum is a vector",
       "slug": "02b-momentum-is-a-vector",
       "face": false,
-      "note": "Voice only. On screen: the two arrows on page 139. Stay quiet for 3 seconds after the question.",
+      "note": "Voice only. On screen: the two arrows. Stay quiet for 3 seconds after the question.",
       "lines": [
         "Same ball, same speed. One goes east. One goes west. Do they have the same momentum? Pause and decide.",
         "No. Momentum is a vector. Take east as positive. The ball going east has a momentum of positive 6,24 kilogram metres per second. The ball going west has negative 6,24.",
@@ -51,7 +51,7 @@
       "t": "I do: the cricket ball, set-up",
       "slug": "03-i-do-cricket-ball",
       "face": false,
-      "note": "Voice and pen. Write worked example 7.1 (page 139) as you talk. Talk it the way you would at the board; don't read it.",
+      "note": "Voice and pen. Write the worked example as you talk. Talk it the way you would at the board; don't read it.",
       "lines": [
         "Worked example 7.1. A cricket ball has a mass of 156 grams.",
         "It's bowled at 135 kilometres an hour, due west.",
@@ -64,7 +64,7 @@
       "t": "I do: the cricket ball, answer",
       "slug": "03b-cricket-ball-answer",
       "face": false,
-      "note": "Voice and pen. Keep writing on page 139.",
+      "note": "Voice and pen. Keep writing on the same page.",
       "lines": [
         "Now the speed. 135, divided by 3,6. That's 37,5 metres per second.",
         "It's going west, so the velocity is negative 37,5.",
@@ -92,9 +92,9 @@
       "t": "Your turn: the cyclist",
       "slug": "04b-your-turn-cyclist",
       "face": false,
-      "note": "Voice only. On screen: the Now you box on page 140, still blank. Stay quiet for 3 seconds after the question.",
+      "note": "Voice only. On screen: the Now you box, still blank. Stay quiet for 3 seconds after the question.",
       "lines": [
-        "Your turn, on page 140. A cyclist and her bicycle have a mass of 65 kilograms. She rides north at 8,5 metres per second. Pause, and work out her momentum.",
+        "Your turn. A cyclist and her bicycle have a mass of 65 kilograms. She rides north at 8,5 metres per second. Pause, and work out her momentum.",
         "552,50 kilogram metres per second, north. Did you remember north?"
       ],
       "pauseAfter": [
@@ -106,7 +106,7 @@
       "t": "Change in momentum",
       "slug": "05-change-in-momentum",
       "face": false,
-      "note": "Voice only. On screen: page 141, the formula box, then the five-steps box with steps 2 and 3 highlighted.",
+      "note": "Voice only. On screen: the formula box, then the five-steps box with steps 2 and 3 highlighted.",
       "lines": [
         "When a net force acts, the momentum changes.",
         "Change in momentum is final minus initial. Always final minus initial.",
@@ -132,7 +132,7 @@
       "t": "I do: ball and bat, set-up",
       "slug": "07-i-do-ball-and-bat",
       "face": false,
-      "note": "Voice and pen. Write worked example 7.2 (page 142) as you talk, with the before and after picture.",
+      "note": "Voice and pen. Write the worked example as you talk, with the before and after picture.",
       "lines": [
         "Worked example 7.2. A ball has a mass of 200 grams. It moves to the right at 12 metres per second.",
         "A bat sends it back to the left, at 8 metres per second.",
@@ -172,9 +172,9 @@
       "t": "Your turn: the soccer ball",
       "slug": "08b-your-turn-soccer",
       "face": false,
-      "note": "Voice only. On screen: the Now you box on page 143, still blank. Stay quiet for 3 seconds after the question.",
+      "note": "Voice only. On screen: the Now you box, still blank. Stay quiet for 3 seconds after the question.",
       "lines": [
-        "Your turn, on page 143. A soccer ball has a mass of 0,43 kilograms. It moves west at 10 metres per second. It's headed back east at 14 metres per second. Take east as positive. Pause and work it out.",
+        "Your turn. A soccer ball has a mass of 0,43 kilograms. It moves west at 10 metres per second. It's headed back east at 14 metres per second. Take east as positive. Pause and work it out.",
         "0,43 times: 14, take away negative 10. That's 0,43 times 24. So the change in momentum is 10,32 kilogram metres per second, east."
       ],
       "pauseAfter": [
@@ -186,7 +186,7 @@
       "t": "Newton's second law",
       "slug": "09-newtons-second-law",
       "face": false,
-      "note": "Voice only. On screen: page 144, the definition box. Slow down on the definition.",
+      "note": "Voice only. On screen: the definition box. Slow down on the definition.",
       "lines": [
         "Newton's second law, in SAGS words.",
         "The net force acting on an object is equal to the rate of change of momentum.",
@@ -198,7 +198,7 @@
       "t": "I do: the force on the ball",
       "slug": "09b-i-do-force",
       "face": false,
-      "note": "Voice and pen. Write worked example 7.3 (page 144) as you talk. Stay quiet for 3 seconds after the question.",
+      "note": "Voice and pen. Write the worked example as you talk. Stay quiet for 3 seconds after the question.",
       "lines": [
         "Same ball, same bat. The contact time is 0,020 seconds.",
         "Negative 4,00, divided by 0,020. That's negative 200. So the average net force is 200 newtons, to the left.",
@@ -214,7 +214,7 @@
       "t": "Impulse",
       "slug": "10-impulse",
       "face": false,
-      "note": "Voice only. On screen: page 145, the definition boxes.",
+      "note": "Voice only. On screen: the definition boxes.",
       "lines": [
         "Impulse is the product of the net force and the contact time.",
         "Impulse equals the change in momentum.",
@@ -249,12 +249,12 @@
     },
     {
       "n": 19,
-      "t": "Your turn: page 146",
+      "t": "Your turn: the stationary ball",
       "slug": "11-your-turn-146",
       "face": false,
-      "note": "Voice only. On screen: the Now you box on page 146, still blank. Stay quiet for 3 seconds after the question.",
+      "note": "Voice only. On screen: the Now you box, still blank. Stay quiet for 3 seconds after the question.",
       "lines": [
-        "Your turn, on page 146. A stationary ball has a mass of 0,25 kilograms.",
+        "Your turn. A stationary ball has a mass of 0,25 kilograms.",
         "An average net force of 40 newtons acts on it, to the left. It acts for 0,015 seconds.",
         "Find the change in momentum, then the final velocity. Pause and work it out."
       ],
@@ -278,7 +278,7 @@
       "t": "Catching: same change in momentum",
       "slug": "12-catching",
       "face": false,
-      "note": "Voice only. On screen: page 148, the catching picture and the two force-time sketches.",
+      "note": "Voice only. On screen: the catching picture and the two force-time sketches.",
       "lines": [
         "Same ball, same speed, same stop. So the same change in momentum.",
         "The only thing you can change is the time it takes to stop."
@@ -289,9 +289,9 @@
       "t": "The three-mark answer",
       "slug": "12b-three-marks",
       "face": false,
-      "note": "Voice only. On screen: the 3-mark box on page 148, each point appearing as you say it. Exam voice.",
+      "note": "Voice only. On screen: the 3-mark box, each point appearing as you say it. Exam voice.",
       "lines": [
-        "This explanation is worth three marks in nearly every paper. Say three things, in this order.",
+        "Say three things, in this order.",
         "One: the change in momentum is the same.",
         "Two: the stopping time increases. Name what does it.",
         "Three: F net is delta p, divided by delta t. So the average net force decreases."
@@ -305,7 +305,7 @@
       "note": "FACE. This is the exam trap: say it to the lens, from memory. Lean in a little.",
       "lines": [
         "Here's the trap. Never say the airbag makes the change in momentum smaller.",
-        "The November revision memo says it word for word: do not say that the change in momentum becomes smaller."
+        "Do not say that the change in momentum becomes smaller."
       ]
     },
     {
@@ -313,7 +313,7 @@
       "t": "Your turn: the goalkeeper",
       "slug": "13-your-turn-goalkeeper",
       "face": false,
-      "note": "Voice only. On screen: worked example 7.5 on page 149, answer covered. Stay quiet for 3 seconds after the question.",
+      "note": "Voice only. On screen: the worked example, answer covered. Stay quiet for 3 seconds after the question.",
       "lines": [
         "Your turn. A goalkeeper pulls her hands back as she catches a hard shot. Pause, and write the three-mark explanation.",
         "Same delta p. Longer stopping time. So a smaller average force. Three ticks."
