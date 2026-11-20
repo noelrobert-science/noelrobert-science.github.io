@@ -36,7 +36,7 @@
    "examiner": {
     "intro": "The examiners wrote this about matric candidates:",
     "quote": "Candidates must remember that momentum is a vector quantity and use of signs to deal with momentum in opposite directions is important.",
-    "source": "IEB Examiners' Report 2017, Paper 1, Question 5.2.4"
+    "source": "IEB Examiners' Report 2017, Paper 1, Question 5"
    }
   },
   "m10/current": {
@@ -232,7 +232,7 @@
     "answer": "M = 24,3 + 2(35,5) + 6(18) = 203,3 g·mol⁻¹. n = 10,0/203,3 = 0,05 mol (0,0492 in the calculator)."
    },
    "examiner": {
-    "intro": "The examiners wrote this about matric candidates:",
+    "intro": "The examiners wrote this about matric candidates (their salt was MgCℓ₂·6H₂O; the same slip happens with the 5H₂O here):",
     "quote": "The overwhelming majority of learners did not know what to do with the 6H₂O waters of crystallisation.",
     "source": "IEB Examiners' Report 2024, Paper 2, Question 7.4"
    }
