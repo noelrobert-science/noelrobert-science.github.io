@@ -460,7 +460,7 @@ function crashResults(){const s=C.pos,{mA,mB,uA,uB,vA,vB}=C;const pA=mA*uA*s,pB=
  let w=`Take ${s>0?'east':'west'} as positive.\nΣp before = Σp after\n`;
  w+=C.ask==='v'?`(${kg(mA)})(${S(uA)}) + (${kg(mB)})(${S(uB)}) = (${kg(mA+mB)})v\nv = ${S(vA)} m·s⁻¹ → ${dir(vA)}`:`(${kg(mA)})(${S(uA)}) + (${kg(mB)})(${S(uB)}) = (${kg(mA)})(${S(vA)}) + (${kg(mB)})v_B\nv_B = ${S(vB)} m·s⁻¹ → ${dir(vB)}`;
  const kb=.5*mA*uA*uA+.5*mB*uB*uB,ka=.5*mA*vA*vA+.5*mB*vB*vB;
- w+=C.mode==='explode'?'\n\nTotal momentum stays 0: equal size, opposite directions.':`\n\nEk before = ${f2(kb)} J   EK after = ${f2(ka)} J\n${f2(kb)===f2(ka)?'EK before = EK after, so the collision is elastic.':'EK after < EK before, so the collision is inelastic.'}`;
+ w+=C.mode==='explode'?'\n\nTotal momentum stays 0: equal size, opposite directions.':`\n\nEK before = ${f2(kb)} J   EK after = ${f2(ka)} J\n${f2(kb)===f2(ka)?'EK before = EK after, so the collision is elastic.':'EK after < EK before, so the collision is inelastic.'}`;
  document.getElementById('cwork').textContent=w;}
 function crashBind(rerender){const $=id=>document.getElementById(id);
  document.querySelectorAll('[data-cmode]').forEach(b=>b.onclick=()=>{C=crashGen(b.dataset.cmode);rerender(false);});
