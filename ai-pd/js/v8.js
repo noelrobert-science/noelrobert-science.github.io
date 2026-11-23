@@ -84,3 +84,17 @@
   }));
   paper();
 })();
+
+/* v0.8: the weekly loop. Step 6 opens "Assessment that builds mastery"; × , Esc or a click outside closes it. */
+(function () {
+  const card = document.getElementById('wl-card'), open = document.querySelector('#s-loop .wl-open');
+  if (!card || !open) return;
+  const show = (on) => { card.hidden = !on; card.parentNode.classList.toggle('card-on', on); if (on) document.getElementById('wl-x').focus(); };
+  open.addEventListener('click', (e) => { e.stopPropagation(); show(true); });
+  open.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); show(true); } });
+  document.getElementById('wl-x').addEventListener('click', (e) => { e.stopPropagation(); show(false); });
+  card.addEventListener('click', (e) => e.stopPropagation());
+  document.querySelector('#s-loop').addEventListener('click', () => { if (!card.hidden) show(false); });
+  window.addEventListener('keydown', (e) => { if (!card.hidden && (e.key === 'Escape' || e.keyCode === 27)) { e.preventDefault(); e.stopImmediatePropagation(); show(false); } }, true);
+  if (window.Reveal) Reveal.on('slidechanged', () => { if (!card.hidden) show(false); });
+})();
