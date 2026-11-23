@@ -1,7 +1,7 @@
 /* Mr R video player: one <video> with chapters, "pause and think" stops and keyboard skips.
    MrrVideo.mount(el, { src, vtt, poster, meta, title, onDone })
    meta = { dur, chapters: [{t, title}], stops: [{t}] }   (all optional)
-   Keys: → / ← skip 5 s, Space plays or pauses. School-independent: no sign-in, nothing leaves the device. */
+   Keys: → / ← skip o.skip seconds (default 5), Space plays or pauses. School-independent: no sign-in, nothing leaves the device. */
 (function () {
   if (window.MrrVideo) return;
   var CSS =
@@ -56,7 +56,7 @@
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
       e.preventDefault(); e.stopPropagation();
       if (!p.stopEl.hidden) return;
-      p.v.currentTime = Math.min(Math.max(0, p.v.currentTime + (e.key === 'ArrowRight' ? 5 : -5)), (p.v.duration || 1e9) - 0.1);
+      p.v.currentTime = Math.min(Math.max(0, p.v.currentTime + (e.key === 'ArrowRight' ? p.skip : -p.skip)), (p.v.duration || 1e9) - 0.1);
     } else if (e.key === ' ' && tg !== 'BUTTON' && tg !== 'A') {
       e.preventDefault(); e.stopPropagation();
       if (!p.stopEl.hidden) { p.go(); return; }
@@ -70,10 +70,10 @@
       '<source src="' + o.src + '" type="video/mp4">' + (o.vtt ? '<track kind="captions" srclang="en" label="Captions" src="' + o.vtt + '" default>' : '') + '</video></div>' +
       '<div class="mv-stop" hidden role="group" aria-live="polite" aria-label="Pause and think"><div class="txt"><p class="k">Pause and think</p><h3>Your turn. Answer it on paper first.</h3></div>' +
       '<div class="row"><button type="button" class="mv-go">I\'ve had a go: show me ▶</button><button type="button" class="mv-ghost">Hear it again</button></div></div>' +
-      '<div class="mv-bar"><button type="button" class="mv-resume" hidden></button><button type="button" class="mv-fs" hidden>⛶ Full screen</button><span><span class="mv-keys"><kbd>→</kbd> skip 5 s &nbsp;<kbd>←</kbd> back 5 s &nbsp;<kbd>Space</kbd> pause' + (stops.length ? ' &nbsp;·&nbsp; ' : '') + '</span>' + (stops.length ? 'It stops ' + stops.length + ' times for you to think.' : '') + '</span></div>' +
+      '<div class="mv-bar"><button type="button" class="mv-resume" hidden></button><button type="button" class="mv-fs" hidden>⛶ Full screen</button><span><span class="mv-keys"><kbd>→</kbd> skip ' + (o.skip || 5) + ' s &nbsp;<kbd>←</kbd> back ' + (o.skip || 5) + ' s &nbsp;<kbd>Space</kbd> pause' + (stops.length ? ' &nbsp;·&nbsp; ' : '') + '</span>' + (stops.length ? 'It stops ' + stops.length + ' times for you to think.' : '') + '</span></div>' +
       (chapters.length ? '<ol class="mv-ch" aria-label="Chapters"></ol>' : '') + '</div>';
     var v = el.querySelector('video'), stopEl = el.querySelector('.mv-stop'), list = el.querySelector('.mv-ch'), resume = el.querySelector('.mv-resume');
-    var P = { el: el, v: v, stopEl: stopEl }; active = P;
+    var P = { el: el, v: v, stopEl: stopEl, skip: o.skip || 5 }; active = P;
     var box = el.querySelector('.mv'), fsb = el.querySelector('.mv-fs');
     var canFs = !!(box.requestFullscreen || box.webkitRequestFullscreen);
     function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement || null; }

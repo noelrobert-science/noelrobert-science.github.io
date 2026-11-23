@@ -1,0 +1,262 @@
+{
+ "g7-m1l1": {
+  "title": "Safety rules and hazard symbols",
+  "module": "Module 1 · Lesson 1",
+  "src": "media/g7-m1l1.mp4",
+  "dur": 99.5,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Before you start"
+   },
+   {
+    "t": 20.9,
+    "title": "While you work"
+   },
+   {
+    "t": 30.2,
+    "title": "Waft, never sniff"
+   },
+   {
+    "t": 37.5,
+    "title": "If there is an accident"
+   },
+   {
+    "t": 45.7,
+    "title": "Hazard symbols"
+   },
+   {
+    "t": 73.8,
+    "title": "Careful with the exclamation mark"
+   },
+   {
+    "t": 82.3,
+    "title": "Your turn"
+   },
+   {
+    "t": 89.7,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m1l2": {
+  "title": "Reading a measuring cylinder",
+  "module": "Module 1 · Lesson 2",
+  "src": "media/g7-m1l2.mp4",
+  "dur": 102.3,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Volume and units"
+   },
+   {
+    "t": 24.0,
+    "title": "The meniscus"
+   },
+   {
+    "t": 33.1,
+    "title": "Eye level"
+   },
+   {
+    "t": 47.6,
+    "title": "Scale step"
+   },
+   {
+    "t": 67.1,
+    "title": "The reading"
+   },
+   {
+    "t": 84.7,
+    "title": "Your turn"
+   },
+   {
+    "t": 92.0,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m1l3": {
+  "title": "Displacement and the Bunsen burner",
+  "module": "Module 1 · Lesson 3",
+  "src": "media/g7-m1l3.mp4",
+  "dur": 90.1,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Displacement"
+   },
+   {
+    "t": 13.8,
+    "title": "Four steps"
+   },
+   {
+    "t": 35.4,
+    "title": "The Bunsen burner"
+   },
+   {
+    "t": 44.9,
+    "title": "Two flames"
+   },
+   {
+    "t": 56.1,
+    "title": "Lighting it"
+   },
+   {
+    "t": 74.1,
+    "title": "Your turn"
+   },
+   {
+    "t": 81.4,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m2l2": {
+  "title": "Changes of state",
+  "module": "Module 2 · Lesson 2",
+  "src": "media/g7-m2l2.mp4",
+  "dur": 106.4,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Heating and cooling"
+   },
+   {
+    "t": 20.1,
+    "title": "Six changes"
+   },
+   {
+    "t": 33.7,
+    "title": "Energy in or out"
+   },
+   {
+    "t": 45.4,
+    "title": "Boiling and evaporation"
+   },
+   {
+    "t": 58.4,
+    "title": "The kettle"
+   },
+   {
+    "t": 66.3,
+    "title": "Solid, liquid or gas"
+   },
+   {
+    "t": 85.8,
+    "title": "Your turn"
+   },
+   {
+    "t": 93.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m2l3": {
+  "title": "Diffusion, physical and chemical changes",
+  "module": "Module 2 · Lesson 3",
+  "src": "media/g7-m2l3.mp4",
+  "dur": 77.2,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Perfume"
+   },
+   {
+    "t": 12.7,
+    "title": "Diffusion"
+   },
+   {
+    "t": 21.5,
+    "title": "Fast or slow"
+   },
+   {
+    "t": 32.2,
+    "title": "Physical change"
+   },
+   {
+    "t": 39.7,
+    "title": "Chemical change"
+   },
+   {
+    "t": 57.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 64.4,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m3l2": {
+  "title": "Energy shells and Bohr diagrams",
+  "module": "Module 3 · Lesson 2",
+  "src": "media/g7-m3l2.mp4",
+  "dur": 96.7,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Energy shells"
+   },
+   {
+    "t": 18.8,
+    "title": "The 2-8-8 rule"
+   },
+   {
+    "t": 29.1,
+    "title": "Three steps"
+   },
+   {
+    "t": 48.1,
+    "title": "Aluminium"
+   },
+   {
+    "t": 67.5,
+    "title": "Careful with potassium"
+   },
+   {
+    "t": 79.5,
+    "title": "Your turn"
+   },
+   {
+    "t": 87.3,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m3l3": {
+  "title": "Valence electrons, groups and periods",
+  "module": "Module 3 · Lesson 3",
+  "src": "media/g7-m3l3.mp4",
+  "dur": 81.3,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Valence electrons"
+   },
+   {
+    "t": 11.3,
+    "title": "Sodium"
+   },
+   {
+    "t": 26.1,
+    "title": "Shells and valence"
+   },
+   {
+    "t": 41.8,
+    "title": "Group 8"
+   },
+   {
+    "t": 50.5,
+    "title": "Which atom"
+   },
+   {
+    "t": 64.9,
+    "title": "Your turn"
+   },
+   {
+    "t": 72.6,
+    "title": "Remember"
+   }
+  ]
+ }
+}

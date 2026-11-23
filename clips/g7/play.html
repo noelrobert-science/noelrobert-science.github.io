@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Watch</title>
+<style>
+html,body{margin:0;background:#fff;color:#183c32;font:16px/1.45 Arial,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:12px 12px 20px}
+.k{font:700 12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#0b7285;margin:0 0 2px}
+h1{font-size:22px;margin:0 0 10px}
+.mv{--mv-ink:#1d2433;--mv-acc:#0b7285;--mv-soft:#e3f4f6}
+@media (min-width:640px){.mv-ch{grid-template-columns:1fr 1fr}}
+.err{padding:20px;background:#fff5f5;border-radius:12px}
+</style></head><body><div class="wrap"><div id="hd"><p class="k" id="mod"></p><h1 id="ttl">Watch</h1></div><div id="player"></div></div>
+<script src="../../app/mrr-video.js"></script>
+<script>
+(function(){var q=new URLSearchParams(location.search),id=q.get('c');if(q.get('embed')){document.getElementById('hd').hidden=true;document.querySelector('.wrap').style.padding='0 2px 8px';}
+fetch('data.json').then(function(r){return r.json();}).then(function(d){var c=d[id];
+  if(!c){document.getElementById('player').innerHTML='<p class="err">Clip not found.</p>';return;}
+  document.title=c.title;document.getElementById('ttl').textContent=c.title;document.getElementById('mod').textContent='Grade 7 Chemistry · '+c.module;
+  MrrVideo.mount(document.getElementById('player'),{src:c.src,skip:10,meta:{dur:c.dur,chapters:c.chapters},title:c.title});
+});})();
+</script></body></html>
