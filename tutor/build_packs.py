@@ -99,7 +99,9 @@ MARKING = ["MR R'S MARKING (how the app and Mr R mark calculations)",
 VEC = ['- Vectors: the learner chooses the positive direction first. The answer is a size, a unit and a direction, even when it is positive. Never a negative and a direction on the same line: the negative result on its own line, then the size with what the negative means. (Mr R\'s marking)']
 
 def write(name, parts):
-    txt = '\n'.join(parts).strip() + '\n'
+    ex = os.path.join(ROOT, 'tutor', 'examiners-' + name.split('-')[0] + '.txt')
+    if os.path.exists(ex): parts = parts + ['', open(ex, encoding='utf-8').read()]
+    txt ='\n'.join(parts).strip() + '\n'
     open(os.path.join(ROOT, 'tutor', 'packs', name + '.txt'), 'w', encoding='utf-8', newline='\n').write(txt)
     return len(txt)
 
