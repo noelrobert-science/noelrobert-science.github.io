@@ -7,15 +7,18 @@
   'use strict';
   var V = window.StudioViews = window.StudioViews || {};
   var Gx = window.Gens, S = window.CircuitSolver, D = window.Draw, F = window.Fmt;
+  /* The engine serves more than one topic (25 Nov 2026: Momentum moved onto it). A "bank" brings a topic's question
+     makers, formulas, units, picture and record key; Circuits is the default bank, so Circuits pages are unchanged. */
   var KEY = 'circ-practice-v1';
-  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
-  function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { /* private window */ } }
+  function load(key) { try { return JSON.parse(localStorage.getItem(key || KEY)) || {}; } catch (e) { return {}; } }
+  function save(d, key) { try { localStorage.setItem(key || KEY, JSON.stringify(d)); } catch (e) { /* private window */ } }
   function today(off) { var t = new Date(); t.setHours(12, 0, 0, 0); if (off) t.setDate(t.getDate() + off); return t.toISOString().slice(0, 10); }
-  function log(entry) {
-    var d = load(); d.log = d.log || []; entry.d = today(); d.log.push(entry);
+  function log(entry, key) {
+    var d = load(key); d.log = d.log || []; entry.d = today(); d.log.push(entry);
     if (d.log.length > 800) d.log = d.log.slice(-800);
-    save(d);
+    save(d, key);
   }
+  var logTo = log;
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function n2(x) { return F.num(x, 2); }
   function close(a, b) { return a != null && b != null && isFinite(a) && isFinite(b) && Math.abs(a - b) <= Math.max(0.011, Math.abs(b) * 0.011); }
@@ -75,16 +78,28 @@
     return wrap;
   }
 
+  function circuitsBank() { return { gens: window.Gens, units: UNITS, unitName: UNIT_NAME, museum: MUSEUM, picture: picture, key: KEY }; }
+
   /* ---------- one item on screen. mode 'practice' (ladder) or 'check' (help closed until submitted) ---------- */
   function mountItem(host, it, ctx, opts) {
     opts = opts || {};
+    var B = opts.bank || circuitsBank(), Gx = B.gens, UNITS = B.units, UNIT_NAME = B.unitName || {}, MUSEUM = B.museum || {};
+    function log(entry) { return logTo(entry, B.key); }
     var h = ctx.h, g = it.g, mode = opts.mode || 'practice', L = 'abcdefgh';
     var box = h('div', { class: 'card pitem' });
     host.appendChild(box);
     box.appendChild(h('p', { class: 'stem', text: it.stem }));
-    var pic = picture(it, g); if (pic) box.appendChild(pic);
+    var pic = B.picture(it, g, h); if (pic) box.appendChild(pic);
     var forms = Gx.formsFor(g), state = it.parts.map(function () { return {}; }), wrong = 0, rung = -1, done = false;
     var ex = Gx.exact(it);
+    /* vectors (Noel's rule, 25 Nov 2026): the learner chooses the positive direction first; the answer is a size, a unit
+       and a direction, never a negative with a direction on one line. Exact values are signed with it.axis[0] positive. */
+    var axis = it.axis, posSel = null;
+    if (axis) {
+      posSel = h('select', { 'aria-label': 'Positive direction' }, [h('option', { value: '', text: 'choose' })].concat(axis.map(function (d, i) { return h('option', { value: String(i), text: d }); })));
+      box.appendChild(h('div', { class: 'wk posdir' }, [h('label', { class: 'small b', text: 'Take as positive' }), posSel]));
+    }
+    function sgn() { return posSel && posSel.value === '1' ? -1 : 1; }
 
     it.parts.forEach(function (p, k) {
       var st = state[k], pb = h('div', { class: 'ppart' });
@@ -94,14 +109,16 @@
       if (p.kind === 'calc') {
         if (p.forms.length) {
           var sel = h('select', { 'aria-label': 'Formula for (' + L[k] + ')' }, [h('option', { value: '', text: 'Choose the formula you start from' })].concat(forms.map(function (f) { return h('option', { value: f.id, text: Gx.formText(f, g) }); })));
-          var sub = h('input', { type: 'text', class: 'subs', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Substitution for (' + L[k] + ')', placeholder: 'numbers into the formula, e.g. 12/(4 + 4)' });
+          var sub = h('input', { type: 'text', class: 'subs', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Substitution for (' + L[k] + ')', placeholder: p.vec && axis ? 'numbers with their signs, e.g. 0,5 × (−4)' : 'numbers into the formula, e.g. 12/(4 + 4)' });
           pb.appendChild(h('div', { class: 'wk' }, [h('label', { class: 'small b', text: 'Formula' }), sel, h('label', { class: 'small b', text: 'Substitution' }), sub]));
           st.sel = sel; st.sub = sub;
         }
         var ans = h('input', { type: 'text', inputmode: 'decimal', class: 'ansn', autocomplete: 'off', 'aria-label': 'Answer for (' + L[k] + ')' });
         var un = h('select', { class: 'unit', 'aria-label': 'Unit for (' + L[k] + ')' }, [h('option', { value: '', text: 'unit' })].concat(UNITS.map(function (x) { return h('option', { value: x, text: UNIT_NAME[x] || x }); })));
-        pb.appendChild(h('div', { class: 'wk' }, [h('label', { class: 'small b', text: 'Answer' }), h('div', { class: 'row ansrow' }, [ans, un])]));
-        st.ans = ans; st.unit = un;
+        var dir = null;
+        if (p.vec && axis) dir = h('select', { class: 'unit dir', 'aria-label': 'Direction for (' + L[k] + ')' }, [h('option', { value: '', text: 'direction' })].concat(axis.map(function (d, i) { return h('option', { value: String(i), text: d }); })));
+        pb.appendChild(h('div', { class: 'wk' }, [h('label', { class: 'small b', text: p.vec ? 'Answer: size, unit, direction' : 'Answer' }), h('div', { class: 'row ansrow' }, [ans, un, dir])]));
+        st.ans = ans; st.unit = un; st.dir = dir;
       } else if (p.kind === 'mcq') {
         var order = p.opts.map(function (o, i) { return i; }).sort(function (a, b) { return ((a * 7 + it.seed) % 5) - ((b * 7 + it.seed) % 5); });
         var grp = h('div', { class: 'mcq', role: 'group', 'aria-label': 'Options for (' + L[k] + ')' });
@@ -115,7 +132,7 @@
       st.fb = h('div', { class: 'pfb' }); pb.appendChild(st.fb);
       st.box = pb; box.appendChild(pb);
     });
-    if (mode === 'practice') box.appendChild(h('p', { class: 'small muted', text: 'Studio marks: one for the formula with its substitution, one for the substitution, one for the answer with its unit. The memos rarely print the split.' }));
+    if (mode === 'practice') box.appendChild(h('p', { class: 'small muted', text: 'Studio marks: one for the formula with its substitution, one for the substitution, one for the answer with its unit' + (axis ? ' and direction' : '') + '. The memos rarely print the split.' }));
 
     var bar = h('div', { class: 'row', style: 'margin-top:10px' }), msg = h('div', {});
     box.appendChild(bar); box.appendChild(msg);
@@ -132,9 +149,10 @@
       r.answered = !a.empty;
       if (a.frac) r.notes.push('Write the answer as a decimal.');
       if (a.bad) r.notes.push('Type the answer as a number, for example 1,50.');
+      if (p.vec && axis) return markVec(p, st, v, r, a, unit, exp, ft);
       var val = a.v, valOk = val != null && (close(val, exp) || close(val, ft));
       if (val != null) v[p.key] = val;
-      var unitOk = unit === p.unit;
+      var unitOk = unit === p.unit || (p.unitAlt || []).indexOf(unit) >= 0;
       if (valOk && !unitOk) r.notes.push(unit ? 'The unit is ' + (UNIT_NAME[p.unit] || p.unit) + ', not ' + unit + '.' : 'Give the unit: ' + (UNIT_NAME[p.unit] || p.unit) + '.');
       if (valOk && a.dp > 2) r.notes.push('Round the final answer to 2 decimal places.');
       if (!valOk && val != null) p.traps.some(function (t) { if (close(val, t.v)) { r.trap = t; return true; } return false; });
@@ -154,6 +172,38 @@
       r.exp = exp;
       return r;
     }
+    /* a vector part: formula, substitution (signed in the learner's own convention), then size + unit + direction */
+    function markVec(p, st, v, r, a, unit, exp, ft) {
+      var chosen = posSel.value !== '', s = sgn(), val = a.v, negWord = axis[s === 1 ? 1 : 0];
+      if (!chosen) r.notes.push('Start by choosing the positive direction (“Take as positive”).');
+      var mag = val != null ? Math.abs(val) : null, useFt = !close(Math.abs(exp), mag) && close(Math.abs(ft), mag);
+      var target = useFt ? ft : exp, magOk = val != null && val >= 0 && (close(val, Math.abs(exp)) || close(val, Math.abs(ft)));
+      var want = target >= 0 ? 0 : 1, d = st.dir ? st.dir.value : '', dirOk = d !== '' && +d === want;
+      if (val != null && val < 0) r.notes.push(d !== '' ? 'Never a negative answer and a direction on the same line. Write the negative result on the line before; the answer is the size with its direction.'
+        : 'Never leave the answer negative. In your sign convention a negative means ' + negWord + ': write the size, then “' + negWord + '”.');
+      var unitOk = unit === p.unit || (p.unitAlt || []).indexOf(unit) >= 0;
+      if (val != null && close(mag, Math.abs(target)) && !unitOk) r.notes.push(unit ? 'The unit is ' + (UNIT_NAME[p.unit] || p.unit) + ', not ' + unit + '.' : 'Give the unit: ' + (UNIT_NAME[p.unit] || p.unit) + '.');
+      if (magOk && d === '') r.notes.push('Give the direction too, even when the answer is positive.');
+      if (magOk && d !== '' && !dirOk) r.notes.push('Check the direction: work out which way the ' + (p.qty || 'answer') + ' points from the sign of your result.');
+      if (magOk && a.dp > 2) r.notes.push('Round the final answer to 2 decimal places.');
+      if (val != null) v[p.key] = (d !== '' ? (+d === 0 ? 1 : -1) : (target >= 0 ? 1 : -1)) * mag;
+      if (!magOk && val != null) p.traps.some(function (t) { if (close(mag, Math.abs(t.v))) { r.trap = t; return true; } return false; });
+      var ansMark = magOk && unitOk && dirOk;
+      if (p.forms.length) {
+        var sv = st.sub.value.trim() ? evalExpr(st.sub.value) : null, fid = st.sel.value, fm = Gx.FORM.filter(function (f) { return f.id === fid; })[0];
+        var signs = chosen ? [s] : [1, -1];
+        var subsOk = sv != null && signs.some(function (q) { return close(sv, q * exp) || close(sv, q * ft) || p.inter.some(function (x) { return close(sv, q * x); }); });
+        var formOk = !!fm && p.forms.indexOf(fm.grp) >= 0;
+        if (st.sub.value.trim() && sv == null) r.notes.push('Put numbers into the substitution line, not symbols, with a sign on every velocity.');
+        if (fid && !formOk) r.notes.push('That formula does not lead to this answer: ' + Gx.formText(fm, it.g) + '.');
+        if (!fid && st.sub.value.trim()) r.notes.push('Start with the formula: “It is best practice to begin each calculation with an appropriate formula” (IEB Examiners’ Report 2024).');
+        if (sv != null && val != null && val >= 0 && !close(Math.abs(sv), val)) r.notes.push('Every line must be true: your substitution gives ' + n2(sv) + ', so the size is ' + n2(Math.abs(sv)) + ', but your answer says ' + n2(val) + '.');
+        if (!subsOk && sv != null && !r.trap) p.traps.some(function (t) { if (signs.some(function (q) { return close(sv, q * t.v); })) { r.trap = t; return true; } return false; });
+        r.got = (formOk && subsOk ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
+      } else r.got = ansMark ? 1 : 0;
+      r.right = ansMark; r.exp = exp;
+      return r;
+    }
     function markAll() { var v = {}; return it.parts.map(function (p, k) { return markPart(p, state[k], v); }); }
     function partName(p, k) { return '(' + L[k] + ')'; }
     function showPart(k, r, final) {
@@ -165,7 +215,7 @@
       if (lines.length) st.fb.appendChild(h('ul', { class: 'small' }, lines.map(function (x) { return h('li', { text: x }); })));
       if (p.kind === 'calc' && (r.got || final) && p.forms.length) st.fb.appendChild(h('p', { class: 'small muted', text: 'Studio marks: ' + r.got + '/' + r.of + '.' }));
     }
-    function lock() { state.forEach(function (st) { st.locked = true; [st.sel, st.sub, st.ans, st.unit].forEach(function (x) { if (x) x.disabled = true; }); if (st.grp) Array.prototype.forEach.call(st.grp.querySelectorAll('button'), function (b) { b.disabled = true; }); }); }
+    function lock() { if (posSel) posSel.disabled = true; state.forEach(function (st) { st.locked = true; [st.sel, st.sub, st.ans, st.unit, st.dir].forEach(function (x) { if (x) x.disabled = true; }); if (st.grp) Array.prototype.forEach.call(st.grp.querySelectorAll('button'), function (b) { b.disabled = true; }); }); }
     function worked() {
       var w = h('div', { class: 'card inner worked' }, [h('h3', { text: 'The worked answer' })]);
       it.parts.forEach(function (p, k) {
@@ -192,7 +242,7 @@
       var p = it.parts[firstBad], r = res[firstBad];
       var c = h('div', { class: 'warnc ladder' });
       if (rung >= 0) {
-        var rights = res.map(function (x, k) { return x.right ? partName(it.parts[k], k) + (it.parts[k].kind === 'calc' ? ' ' + n2(ex[it.parts[k].key]) + ' ' + it.parts[k].unit : '') : null; }).filter(Boolean);
+        var rights = res.map(function (x, k) { var pk = it.parts[k], e = ex[pk.key]; return x.right ? partName(pk, k) + (pk.kind === 'calc' ? ' ' + (pk.vec && axis ? n2(Math.abs(e)) + ' ' + pk.unit + ' ' + axis[e >= 0 ? 0 : 1] : n2(e) + ' ' + pk.unit) : '') : null; }).filter(Boolean);
         c.appendChild(h('p', {}, [h('b', { text: 'Right: ' }), document.createTextNode(rights.length ? rights.join('; ') + '.' : 'nothing yet, and that is fine.')]));
         c.appendChild(h('p', {}, [h('b', { text: 'First gap, ' + partName(p, firstBad) + ': ' }), document.createTextNode(r.trap ? r.trap.msg : r.notes[0] || (p.kind === 'mcq' ? 'That option is not right.' : 'Check the value and its unit.'))]));
         c.appendChild(h('p', {}, [h('b', { text: 'Next: ' }), document.createTextNode(r.trap ? 'fix that, then try again.' : 'look at ' + partName(p, firstBad) + ' again, then try again.')]));

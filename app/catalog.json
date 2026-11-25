@@ -70,19 +70,22 @@
          "kind": "lab"
         },
         {
-         "title": "Δp and force",
-         "href": "gym/#climb/mdp",
-         "kind": "gym"
+         "title": "Practise: Δp and force",
+         "href": "../momentum/practice.html#practise/dp",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
-         "title": "Momentum p = mv",
-         "href": "gym/#climb/mp",
-         "kind": "gym"
+         "title": "Practise: momentum p = mv",
+         "href": "../momentum/practice.html#practise/p",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
-         "title": "Impulse: airbags and catches",
-         "href": "gym/#climb/mstop",
-         "kind": "gym"
+         "title": "Practise: impulse, airbags and catches",
+         "href": "../momentum/practice.html#practise/stop",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
          "title": "Real world in 30 seconds",
@@ -92,21 +95,9 @@
        ],
        "check": [
         {
-         "title": "Test myself: Δp and force",
-         "href": "gym/#climb/mdp/check",
-         "kind": "gym",
-         "note": "3 fresh questions, help off"
-        },
-        {
-         "title": "Test myself: momentum p = mv",
-         "href": "gym/#climb/mp/check",
-         "kind": "gym",
-         "note": "3 fresh questions, help off"
-        },
-        {
-         "title": "Test myself: impulse, airbags and catches",
-         "href": "gym/#climb/mstop/check",
-         "kind": "gym",
+         "title": "Test myself: momentum, Δp and impulse",
+         "href": "../momentum/practice.html#check/M1",
+         "kind": "check",
          "note": "3 fresh questions, help off"
         }
        ],
@@ -151,24 +142,28 @@
          "kind": "gym"
         },
         {
-         "title": "Stick together",
-         "href": "gym/#climb/mstick",
-         "kind": "gym"
+         "title": "Practise: stick together",
+         "href": "../momentum/practice.html#practise/stick",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
-         "title": "Bounce apart",
-         "href": "gym/#climb/mbounce",
-         "kind": "gym"
+         "title": "Practise: bounce apart",
+         "href": "../momentum/practice.html#practise/bounce",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
-         "title": "Explosions and recoil",
-         "href": "gym/#climb/mexplode",
-         "kind": "gym"
+         "title": "Practise: explosions and recoil",
+         "href": "../momentum/practice.html#practise/explode",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
-         "title": "Elastic or inelastic?",
-         "href": "gym/#climb/melastic",
-         "kind": "gym"
+         "title": "Practise: elastic or inelastic?",
+         "href": "../momentum/practice.html#practise/elastic",
+         "kind": "practise",
+         "note": "Fresh questions, size, unit and direction"
         },
         {
          "title": "Fix it: find the mistake",
@@ -188,27 +183,9 @@
        ],
        "check": [
         {
-         "title": "Test myself: stick together",
-         "href": "gym/#climb/mstick/check",
-         "kind": "gym",
-         "note": "3 fresh questions, help off"
-        },
-        {
-         "title": "Test myself: bounce apart",
-         "href": "gym/#climb/mbounce/check",
-         "kind": "gym",
-         "note": "3 fresh questions, help off"
-        },
-        {
-         "title": "Test myself: explosions and recoil",
-         "href": "gym/#climb/mexplode/check",
-         "kind": "gym",
-         "note": "3 fresh questions, help off"
-        },
-        {
-         "title": "Test myself: elastic or inelastic?",
-         "href": "gym/#climb/melastic/check",
-         "kind": "gym",
+         "title": "Test myself: conservation of momentum",
+         "href": "../momentum/practice.html#check/M2",
+         "kind": "check",
          "note": "3 fresh questions, help off"
         },
         {
