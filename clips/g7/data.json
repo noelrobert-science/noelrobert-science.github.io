@@ -79,7 +79,7 @@
   "title": "Displacement and the Bunsen burner",
   "module": "Module 1 · Lesson 3",
   "src": "media/g7-m1l3.mp4",
-  "dur": 90.1,
+  "dur": 99.7,
   "chapters": [
    {
     "t": 0,
@@ -99,14 +99,14 @@
    },
    {
     "t": 56.1,
-    "title": "Lighting it"
+    "title": "Lighting it: 7 steps"
    },
    {
-    "t": 74.1,
+    "t": 83.8,
     "title": "Your turn"
    },
    {
-    "t": 81.4,
+    "t": 91.0,
     "title": "Remember"
    }
   ]
@@ -115,38 +115,38 @@
   "title": "Changes of state",
   "module": "Module 2 · Lesson 2",
   "src": "media/g7-m2l2.mp4",
-  "dur": 106.4,
+  "dur": 109.2,
   "chapters": [
    {
     "t": 0,
     "title": "Heating and cooling"
    },
    {
-    "t": 20.1,
+    "t": 22.1,
     "title": "Six changes"
    },
    {
-    "t": 33.7,
+    "t": 35.7,
     "title": "Energy in or out"
    },
    {
-    "t": 45.4,
+    "t": 47.4,
     "title": "Boiling and evaporation"
    },
    {
-    "t": 58.4,
+    "t": 60.4,
     "title": "The kettle"
    },
    {
-    "t": 66.3,
+    "t": 69.1,
     "title": "Solid, liquid or gas"
    },
    {
-    "t": 85.8,
+    "t": 88.7,
     "title": "Your turn"
    },
    {
-    "t": 93.8,
+    "t": 96.6,
     "title": "Remember"
    }
   ]
@@ -155,7 +155,7 @@
   "title": "Diffusion, physical and chemical changes",
   "module": "Module 2 · Lesson 3",
   "src": "media/g7-m2l3.mp4",
-  "dur": 77.2,
+  "dur": 86.8,
   "chapters": [
    {
     "t": 0,
@@ -178,11 +178,11 @@
     "title": "Chemical change"
    },
    {
-    "t": 57.2,
+    "t": 66.8,
     "title": "Your turn"
    },
    {
-    "t": 64.4,
+    "t": 74.1,
     "title": "Remember"
    }
   ]
@@ -191,7 +191,7 @@
   "title": "Energy shells and Bohr diagrams",
   "module": "Module 3 · Lesson 2",
   "src": "media/g7-m3l2.mp4",
-  "dur": 96.7,
+  "dur": 97.4,
   "chapters": [
    {
     "t": 0,
@@ -202,23 +202,23 @@
     "title": "The 2-8-8 rule"
    },
    {
-    "t": 29.1,
+    "t": 29.8,
     "title": "Three steps"
    },
    {
-    "t": 48.1,
+    "t": 48.8,
     "title": "Aluminium"
    },
    {
-    "t": 67.5,
+    "t": 68.3,
     "title": "Careful with potassium"
    },
    {
-    "t": 79.5,
+    "t": 80.3,
     "title": "Your turn"
    },
    {
-    "t": 87.3,
+    "t": 88.0,
     "title": "Remember"
    }
   ]
@@ -227,7 +227,7 @@
   "title": "Valence electrons, groups and periods",
   "module": "Module 3 · Lesson 3",
   "src": "media/g7-m3l3.mp4",
-  "dur": 81.3,
+  "dur": 86.7,
   "chapters": [
    {
     "t": 0,
@@ -250,11 +250,11 @@
     "title": "Which atom"
    },
    {
-    "t": 64.9,
+    "t": 68.2,
     "title": "Your turn"
    },
    {
-    "t": 72.6,
+    "t": 78.0,
     "title": "Remember"
    }
   ]
