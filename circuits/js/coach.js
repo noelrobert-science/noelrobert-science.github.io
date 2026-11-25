@@ -46,7 +46,7 @@
     function go(text) {
       if (text) { msgs.push({ role: 'user', text: text }); say('user', text); }
       turns++; send.disabled = true; box.value = '';
-      ask({ device: device(), messages: msgs, question: { code: info.code, stem: info.stem, worked: info.worked, learner: info.learner, feedback: info.feedback, rung: info.rung } }).then(function (out) {
+      ask({ device: device(), pack: info.pack, messages: msgs, question: { code: info.code, stem: info.stem, worked: info.worked, learner: info.learner, feedback: info.feedback, rung: info.rung } }).then(function (out) {
         var r = ((out && out.reply) || 'Use the hints on the page.').replace(/\*\*|__/g, '').replace(/^#+\s*/gm, '');
         msgs.push({ role: 'assistant', text: r }); say('assistant', r); send.disabled = false;
         if (turns >= MAX_TURNS) end('That is enough screen for this one. Close the screen and do this question in pen. Then try a fresh one.');

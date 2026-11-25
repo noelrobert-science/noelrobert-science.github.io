@@ -1,0 +1,50 @@
+TOPIC PACK circuits-T1 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Define potential difference as the work done per unit positive charge: V = W/q.
+- Define current as the rate of flow of charge: I = q/t.
+- Determine the relationship between current and potential difference at constant temperature.
+- State Ohm's Law: The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.
+- Distinguish between ohmic and non-ohmic conductors.
+- Know that resistance is a material's opposition to the flow of electric charge. Know that the unit of resistance is the ohm (Ω).
+- Calculate the effective resistance of resistors in series using RS = R1 + R2 + ...
+- Calculate the effective resistance of resistors in parallel using 1/RP = 1/R1 + 1/R2 + ...
+- Interpret circuit diagrams containing a source, switches, resistors, ammeters and voltmeters.
+- Solve problems using the mathematical expression of Ohm's Law, R = V/I, for series and parallel circuits, limited to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "Potential difference and current" (Module 10, section 10.1)
+- Current is charge on the move: Current is the rate of flow of charge: I = q/t. The unit is the ampere: 1 A = 1 C·s⁻¹. The battery does not make charge. It does work on charge that is already in every wire. The bulb transfers that energy to heat and light. (Module 10, section 10.1)
+- Check, "A₁ and A₂ are on either side of the bulb, and A₁ reads 0,30 A. What does A₂ read?": Zoe ✓. The same charge passes A₁ and A₂ each second, and the whole loop starts moving at the same instant, like a rope loop pulled round. (Module 10, section 10.1)
+- Potential difference: The potential difference between two points is the work done per unit positive charge: V = W/q. The unit is the volt: 1 V = 1 J·C⁻¹. An ammeter goes in series. A voltmeter goes across a component, in parallel. (Module 10, section 10.1)
+- Check, "Which sentence is the SAGS definition of potential difference?": “Definitions must be learnt strictly as they are in the SAGs.” (IEB Examiners’ Report 2022) (Module 10, section 10.1)
+- Common wrong idea: The word *positive* is missing. Without it, the definition is not the SAGS one.
+- In series, the pds add up: A voltmeter goes across one component and reads the pd across it. In series, the pds across the components add up to the battery’s pd: V₁ + V₂ = 12 V. The larger resistor takes the larger share of the pd. (Module 10, section 10.1)
+- Check, "In the circuit above, V₁ across the 4 Ω reads 4 V. What does V₂ across the 8 Ω read?": V₁ + V₂ = 12 V, so V₂ = 12 − 4 = 8 V. Check with V = IR: I = 12/12 = 1 A, so V₂ = (1)(8) = 8 V. (Module 10, section 10.1)
+- A three-line calculation: ① Write the formula from the data sheet (I = q/t or V = W/q). It earns a ✓. ② Substitute SI values with no units. Time in seconds. It earns a ✓, and the conversion shows here. ③ Give the answer to 2 decimal places, with its unit. An answer without a unit loses its ✓. (Module 10, section 10.1)
+- Worked example, Worked example 10.1: charge and energy in a torch bulb: A torch bulb is connected to a battery. The pd across the bulb is 3 V and the current in the bulb is 0,5 A. (a) Define potential difference. (2) (b) Calculate the charge that passes through the bulb in 10 minutes. (3) (c) Calculate the energy transferred in the bulb by this charge. (3) Answer: (a) Potential difference is the work done ✓ per unit positive charge ✓. | (b) I = q/t | 0,5 = q/(10 × 60) | q = 300,00 C | (c) V = W/q | 3 = W/300 | W = 900,00 J (Adapted from IEB Supplementary March 2016 P1 Q7.1)
+- Check, "A phone charger supplies a current of 1,2 A at a pd of 5 V for 45 minutes. Calculate the charge that flows.": I = q/t ✓; 1,2 = q/(45 × 60) ✓; q = 3 240,00 C ✓. Then W = Vq = 5 × 3 240 = 16 200,00 J. (Module 10, section 10.1)
+- By the end the learner can: Say what current and potential difference are, in the SAGS words.; Explain why A₁ and A₂ read the same: charge is not used up.; Use the rule that series pds add up to the battery’s pd.; Do a three-line calculation with time in seconds. (Module 10, section 10.1)
+
+EXAM TRAP: The missing word in a definition (IEB Nov 2019, Paper 1, Question 7.1.1)
+- Question: Define potential difference. (2)
+- The usual wrong answer: Potential difference is the work done per unit charge.
+- What went wrong: One word is missing: positive. The SAGS sentence is the only one that earns both marks.
+- The memo: Potential difference is the work done per unit positive charge.
+- The examiners, word for word: "Candidates must learn definitions as stated in the SAGs" (IEB Examiners' Report 2019, Paper 1, Question 7)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- Change minutes to seconds: × 60.
+- pd is energy per coulomb, so W = Vq.
+- pd is energy per coulomb: V = W/q, not q/W.
+- Divide: V = W/q.
+- q = It: multiply, do not divide.
+- pd is energy per coulomb, so W = VQ.
+- pd is energy per coulomb: V = W/Q, not Q/W.
+- Divide: V = W/Q.
+- Q = It: multiply, do not divide.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

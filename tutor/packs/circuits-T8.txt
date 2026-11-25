@@ -1,0 +1,40 @@
+TOPIC PACK circuits-T8 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems involving current, potential difference and resistance for circuits containing arrangements of resistors in series and in parallel for a maximum of three external resistors.
+- State that a real battery has internal resistance.
+- Define emf as the total energy supplied per coulomb of charge by the cell.
+- Know that the sum of the voltages across the external circuit plus the voltage across the internal resistance is equal to the emf: emf = Vload + Vinternal resistance or emf = I(Rext + r).
+- Solve circuit problems in which the internal resistance of the battery must be considered, including series-parallel networks of resistors to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "Solving circuits with internal resistance" (Module 11, section 11.3)
+- Four equations: point first: Point at the part of the circuit first, then choose the equation. Whole circuit: emf = I(R_{ext} + r). Terminal pd: V_{load} = emf − Ir = I × R_{ext}. Lost volts: Ir, across r only. One part outside: V = IR, with its own I and R. (Module 11, section 11.3)
+- The unknown in a circuit with r: ① Find R_{ext} (series + parallel), without r. ② Whole circuit: emf = I(R_{ext} + r). Solve for the one unknown. ③ Inside the network: the pd across each part, then each branch I = V/R. Do not round sub-answers. Keep full values in the calculator. (Module 11, section 11.3)
+- Worked example, Worked example 11.5: r known: the current, then a branch: The circuit of Worked example 11.1: emf 24 V, r = 3 Ω, heater 10 Ω, fixed resistor 30 Ω, R = 4,5 Ω, so R_{ext} = 12 Ω. (a) “Calculate the current measured by ammeter A₁.” (4) (b) “Calculate the current measured by ammeter A₂.” (5) A₂ is in series with the heater. Answer: (a) emf = I(R_{ext} + r) | 24 = I(12 + 3) | I = 1,60 A | (b) V_{P} = IR_{P} | V_{P} = (1,6)(7,5) | V_{P} = 12,00 V | 12 = I(10) | I_{heater} = 1,20 A | check The 30 Ω branch takes 12/30 = 0,40 A, and 1,20 + 0,40 = 1,60 A. (IEB 2020 P1 Q7.2.3 and 7.2.4)
+- Check, "A 12 Ω resistor is in series with a parallel pair whose effective resistance is 2,10 Ω. The battery has r = 0,90 Ω. What is the external resistance?": R_{ext} = 12 + 2,10 = 14,10 Ω. r appears only in emf = I(R_{ext} + r). (Module 11, section 11.3)
+- Worked example, Worked example 11.6: r unknown: two routes: “In the circuit represented below, the battery has an emf of 30 V and an unknown internal resistance. Ammeter A₂ reads 0,6 A.” Earlier parts gave R_{P} = 2,10 Ω, A₁ = 2,00 A and V₂ = 4,20 V. “Determine the internal resistance of the battery.” (4) Answer: route 1 emf = I(R_{ext} + r) | 30 = 2(12 + 2,1 + r) | r = 0,90 Ω | route 2 V_{12Ω} = (2)(12) = 24 V | V_{load} = 24 + 4,2 = 28,2 V | 28,2 = 30 − 2r | r = 0,90 Ω (IEB May 2023 P1 Q7.7)
+- Check, "A battery has an emf of 12 V and an internal resistance of 0,5 Ω. A bulb is the only external resistance, and the ammeter reads 1,6 A. Calculate the resistance of the bulb.": 12 = 1,6(R + 0,5) ✓; R = 7,00 Ω ✓. (IEB 2021 P1 Q7.2.3) (Module 11, section 11.3)
+- Check, "In the same circuit, at what rate is energy dissipated as heat in the battery?": P = I²r = (1,6)²(0,5) = 1,28 W. A *rate* of energy dissipation is a power. (Module 11, section 11.3)
+- By the end the learner can: Find the current from emf = I(R_{ext} + r).; Go back into the network with V = IR and matched values.; Find r by two routes.; Find the heating in the battery: P = I²r. (Module 11, section 11.3)
+
+EXAM TRAP: The whole emf across one branch (IEB Nov 2020, Paper 1, Question 7.2.4)
+- Question: A battery (emf 24 V, r = 3 Ω) drives a heater (10 Ω) in parallel with a 30 Ω resistor, and this pair is in series with a 4,5 Ω resistor. Rext = 12 Ω and the battery current is 1,60 A. Calculate the current in the heater. (5)
+- The usual wrong answer: I = V/R = 24/10 = 2,40 A
+- What went wrong: The 24 V is the emf of the whole circuit. Part of it is lost inside the battery and part goes to the 4,5 Ω. The heater only gets the pd across the parallel pair.
+- The memo: RP = (1/10 + 1/30)⁻¹ = 7,50 Ω. Vpair = I × RP = (1,6)(7,5) = 12,00 V. Iheater = 12/10 = 1,20 A.
+- The examiners, word for word: "Learners must write the formula they are trying to use and apply it correctly to the part of the circuit they are dealing with." (IEB Examiners' Report 2020, Paper 1, Question 7.2)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- V/I gives Rext, not r.
+- You forgot r: emf/I is Rext + r.
+- Subtract r: Rext = emf/I − r.
+- That is the terminal pd with a current flowing.
+- Divide by the current through r: the main-line current, not one branch’s.
+- Subtract whole equations: (V₂ − V₁) = −r(I₂ − I₁). r is positive.
+- That is the terminal pd at the first setting.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

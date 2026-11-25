@@ -254,7 +254,7 @@
       if (rung >= 0 && rung < 3 && window.Coach && window.Coach.on() && !box.querySelector('.coach')) {
         var cb = h('button', { class: 'btn ghost', text: 'Talk it through with the coach', onclick: function () {
           cb.remove();
-          window.Coach.open(box, { h: h, code: (it.gen || '') + ':' + (it.seed || ''), stem: it.stem, rung: rung, feedback: c.innerText,
+          window.Coach.open(box, { h: h, code: (it.gen || '') + ':' + (it.seed || ''), pack: (B.pack || 'circuits') + '-' + (it.topic || ''), stem: it.stem, rung: rung, feedback: c.innerText,
             worked: it.parts.map(function (pp, k) { return '(' + L[k] + ') ' + pp.ask + '\n' + (pp.kind === 'mcq' ? 'Right option: ' + pp.opts.filter(function (o) { return o.ok; })[0].t : (pp.work || []).join('\n')); }).join('\n\n'),
             learner: (posSel ? 'Positive direction: ' + (posSel.value === '' ? 'not chosen' : axis[+posSel.value]) + '\n' : '') + state.map(function (st, k) {
               var pp = it.parts[k];

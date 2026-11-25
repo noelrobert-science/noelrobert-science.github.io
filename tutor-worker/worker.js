@@ -16,8 +16,15 @@
 
 const ORIGINS = ['https://mrrscience.co.za', 'https://www.mrrscience.co.za', 'https://noelrobert-science.github.io', 'http://localhost:8765', 'http://127.0.0.1:8765'];
 const API = 'https://api.anthropic.com/v1/messages';
+const SITE = 'https://mrrscience.co.za/tutor/';   /* rules.txt and packs/<studio>-<topic>.txt live in the site repo, so updates need no Cloudflare clicks */
+const CACHE = {};
+async function siteText(path) {
+const hit = CACHE[path];
+if (hit && Date.now() - hit.t < 10 * 60 * 1000) return hit.v;
+try { const r = await fetch(SITE + path, { cf: { cacheTtl: 600 } }); const v = r.ok ? (await r.text()).slice(0, 60000) : ''; CACHE[path] = { t: Date.now(), v: v }; return v; } catch (e) { return hit ? hit.v : ''; }
+}
 
-/* The coach's standing rules. Stage 2 replaces this with the full version Noel approves (kept in tutor-worker/rules.md). */
+/* Fallback rules, used only if tutor/rules.txt on the site cannot be read. The approved rules live in tutor/rules.txt. */
 const RULES = `You are Mr R's study coach for IEB Physical Sciences, inside a practice question in the Mr R Science app.
 You are not Mr R and never claim to be. You help a high-school learner finish THIS question themselves, then send them back to paper.
 
@@ -72,12 +79,18 @@ export default {
     const msgs = (Array.isArray(body.messages) ? body.messages : []).slice(-12).map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: clip(m.text, 1200) })).filter(m => m.content);
     if (!msgs.length || msgs[0].role !== 'user') msgs.unshift({ role: 'user', content: 'I tried this and I am stuck. Help me find my mistake.' });
 
+    const rules = (await siteText('rules.txt')) || RULES;
+    const packName = /^[a-z]+-[A-Za-z0-9]+$/.test(String(body.pack || '')) ? body.pack : '';
+    const pack = packName ? await siteText('packs/' + packName + '.txt') : '';
+    const sys = [{ type: 'text', text: rules }];
+    if (pack) sys.push({ type: 'text', text: 'TOPIC PACK (' + packName + '): Mr R material for this topic. Use it and name its sources.\n\n' + pack, cache_control: { type: 'ephemeral' } });
+    sys.push({ type: 'text', text: material });
     const apiReq = {
       model: env.MODEL || 'claude-opus-5-5',
       max_tokens: 2000,
       output_config: { effort: 'medium' },
       fallbacks: 'default',
-      system: [{ type: 'text', text: RULES }, { type: 'text', text: material, cache_control: { type: 'ephemeral' } }],
+      system: sys,
       messages: msgs
     };
     let reply = '', stop = '', usage = null;
@@ -91,7 +104,7 @@ export default {
     } catch (e) { return json({ error: 'ai', reply: 'The coach could not answer just now. Use the hints on the page.' }, 200, origin); }
 
     try {
-      await kv.put('log:' + d + ':' + crypto.randomUUID(), JSON.stringify({ t: new Date().toISOString(), device: device, code: clip(q.code, 60), rung: q.rung, messages: msgs, reply: reply, stop: stop, usage: usage }), { expirationTtl: 60 * 60 * 24 * 30 });
+      await kv.put('log:' + d + ':' + crypto.randomUUID(), JSON.stringify({ t: new Date().toISOString(), device: device, code: clip(q.code, 60), pack: packName, rung: q.rung, messages: msgs, reply: reply, stop: stop, usage: usage }), { expirationTtl: 60 * 60 * 24 * 30 });
     } catch (e) { /* a missed log never blocks the learner */ }
     return json({ reply: reply }, 200, origin);
   }

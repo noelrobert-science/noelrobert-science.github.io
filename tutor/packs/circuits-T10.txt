@@ -1,0 +1,51 @@
+TOPIC PACK circuits-T10 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems involving current, potential difference and resistance for circuits containing arrangements of resistors in series and in parallel for a maximum of three external resistors.
+- State that a real battery has internal resistance.
+- Define emf as the total energy supplied per coulomb of charge by the cell.
+- Know that the sum of the voltages across the external circuit plus the voltage across the internal resistance is equal to the emf: emf = Vload + Vinternal resistance or emf = I(Rext + r).
+- Solve circuit problems in which the internal resistance of the battery must be considered, including series-parallel networks of resistors to a maximum of three external resistors.
+- Define potential difference as the work done per unit positive charge: V = W/q.
+- Define current as the rate of flow of charge: I = q/t.
+- Determine the relationship between current and potential difference at constant temperature.
+- State Ohm's Law: The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.
+- Distinguish between ohmic and non-ohmic conductors.
+- Know that resistance is a material's opposition to the flow of electric charge. Know that the unit of resistance is the ohm (Ω).
+- Calculate the effective resistance of resistors in series using RS = R1 + R2 + ...
+- Calculate the effective resistance of resistors in parallel using 1/RP = 1/R1 + 1/R2 + ...
+- Interpret circuit diagrams containing a source, switches, resistors, ammeters and voltmeters.
+- Solve problems using the mathematical expression of Ohm's Law, R = V/I, for series and parallel circuits, limited to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "emf and r from two readings or a graph" (Module 11, section 11.4)
+- A straight line: y = mx + c: emf = V_{load} + Ir can be written V = (−r)I + emf. Plot the terminal pd (y) against the current (x). The gradient is −r and the y-intercept is the emf. Each reading of one battery is one point on that line. (Module 11, section 11.4)
+- Check, "On a graph of terminal pd (y) against current (x) for one battery, what is the y-intercept?": The y-intercept is at I = 0: no lost volts, so it is the emf. (Module 11, section 11.4)
+- Check, "The line has a gradient of −2,00 V·A⁻¹. What is r?": gradient = −r, so r = 2,00 Ω. Its unit is V·A⁻¹ = Ω. (Module 11, section 11.4)
+- Reading the graph: Take the gradient from two points on the best-fit line, far apart and marked on the graph. Never from table values. Extend the line to the y-axis to read the emf. To read off: at a given current, read V from the line, then R = V/I. (Module 11, section 11.4)
+- Worked example, Worked example 11.9: the terminal pd against current graph: “A student varies the current through the circuit by varying the external resistance, R … and record the reading on the voltmeter across the battery.” Current (A): 0,8; 2,4; 3,2; 4,4; 5,5; 6,3. Voltmeter (V): 18,7; 15,8; 14,1; 12,6; 10,3; 9,0. 8.1.2 Calculate the gradient. (4) 8.1.3 Calculate the internal resistance. (3) 8.1.4 Without a calculation, determine the emf. (2) 8.1.5 What will R be when the current is 4,0 A? (3) Answer: 8.1.2 Two points on the line: (1,0 A; 18,25 V) and (6,0 A; 9,50 V) ✓ | gradient = Δy/Δx = (9,50 − 18,25)/(6,0 − 1,0) | gradient = −1,75 | unit: V·A⁻¹ (or Ω) ✓ | 8.1.3 V_{load} = emf − Ir, so V = (−r)I + emf | gradient = −r | r = 1,75 Ω | 8.1.4 emf = 20 V ✓. It is the y-intercept: at I = 0 there are no lost volts, so the terminal pd equals the emf ✓. | 8.1.5 emf = I(R + r) | 20 = 4(R + 1,75) | R = 3,25 Ω | Or read off V = 13 V at 4,0 A, so R = V/I = 13/4 = 3,25 Ω. (IEB 2022 P1 Q8.1)
+- Check, "A battery is connected first to a 2,0 Ω resistor (current 2,0 A), then to a 1,0 Ω resistor (current 3,0 A). So emf = 2,0(2,0 + r) and emf = 3,0(1,0 + r). Find r.": The same battery has the same emf and r. 4 + 2r = 3 + 3r, so r = 1,00 Ω. (Module 11, section 11.4)
+- Check, "Now put r = 1,00 Ω back in. What is the emf?": emf = 2,0(2,0 + 1,0) = 6,00 V. Check: 3,0(1,0 + 1,0) = 6,00 V. (Module 11, section 11.4)
+- By the end the learner can: Write V = (−r)I + emf and match it to y = mx + c.; Take a gradient from two points on the line, with its unit.; Read the emf at the y-intercept.; Solve two states of one battery for r and the emf. (Module 11, section 11.4)
+
+EXAM TRAP: The gradient from the table (IEB Nov 2022, Paper 1, Question 8.1.2)
+- Question: You have plotted the terminal pd (y-axis) against the current (x-axis) for a battery and drawn the best-fit line. It passes through (1,0 A; 18,25 V) and (6,0 A; 9,50 V). The table's first and last rows are (0,8 A; 18,7 V) and (6,3 A; 9,0 V). Calculate the gradient, and then the internal resistance. (4 + 3)
+- The usual wrong answer: Gradient = (9,0 − 18,7)/(6,3 − 0,8) = −1,76 V·A⁻¹, using two rows of the table.
+- What went wrong: The gradient belongs to the line, not to the readings. Read two points far apart on your line, mark them on the graph, and use those.
+- The memo: Gradient = (9,50 − 18,25)/(6,0 − 1,0) = −1,75 V·A⁻¹. V = (−r)I + emf, so r = −gradient = 1,75 Ω.
+- The examiners, word for word: "Use points that lie on the best-fit straight line, rather than points from the table." (IEB Examiners' Report 2022, Paper 1, Question 8.1.2)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- If a learner picks "V·A⁻¹": Gradient = Δy/Δx: here the y-unit is the ampere.
+- If a learner picks "Ω": This gradient is 1/R, so its unit is Ω⁻¹.
+- If a learner picks "no unit": A gradient keeps the units of its axes.
+- If a learner picks "A·V⁻¹": Gradient = Δy/Δx: the y-unit divided by the x-unit.
+- If a learner picks "V·A": Divide, do not multiply.
+- If a learner picks "A·V⁻¹; the gradient is r": Δy/Δx with V on y: V·A⁻¹. The line slopes down, so the gradient is −r.
+- If a learner picks "V; the gradient is the emf": The emf is the y-intercept, not the gradient.
+- If a learner picks "V·A⁻¹; the gradient is Rext": The gradient of this graph is −r.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

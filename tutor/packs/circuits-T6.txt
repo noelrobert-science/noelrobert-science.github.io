@@ -1,0 +1,54 @@
+TOPIC PACK circuits-T6 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems involving current, potential difference and resistance for circuits containing arrangements of resistors in series and in parallel for a maximum of three external resistors.
+- State that a real battery has internal resistance.
+- Define emf as the total energy supplied per coulomb of charge by the cell.
+- Know that the sum of the voltages across the external circuit plus the voltage across the internal resistance is equal to the emf: emf = Vload + Vinternal resistance or emf = I(Rext + r).
+- Solve circuit problems in which the internal resistance of the battery must be considered, including series-parallel networks of resistors to a maximum of three external resistors.
+- Define potential difference as the work done per unit positive charge: V = W/q.
+- Define current as the rate of flow of charge: I = q/t.
+- Determine the relationship between current and potential difference at constant temperature.
+- State Ohm's Law: The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.
+- Distinguish between ohmic and non-ohmic conductors.
+- Know that resistance is a material's opposition to the flow of electric charge. Know that the unit of resistance is the ohm (Ω).
+- Calculate the effective resistance of resistors in series using RS = R1 + R2 + ...
+- Calculate the effective resistance of resistors in parallel using 1/RP = 1/R1 + 1/R2 + ...
+- Interpret circuit diagrams containing a source, switches, resistors, ammeters and voltmeters.
+- Solve problems using the mathematical expression of Ohm's Law, R = V/I, for series and parallel circuits, limited to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "Series–parallel networks" (Module 11, section 11.1)
+- Work in, then back out: Reduce a network from the inside out: the parallel group to R_{P}, then add the series parts: R_{ext} = R_{P} + R_{series}. Then work back out: the total current, the pd across the group, and each branch. *External* means everything outside the battery, so r is not part of R_{ext}. (Module 11, section 11.1)
+- Worked example, Worked example 11.1: the external resistance of a network: “In the circuit represented below, the battery has an emf of 24 V and an internal resistance of 3 Ω. The heater has a resistance of 10 Ω and the fixed resistor has a resistance of 30 Ω. The variable resistor, R, can vary between 0 Ω and 15 Ω.” “When the variable resistor, R, has a resistance of 4,5 Ω:” “Calculate the effective resistance of the external circuit.” (5) Answer: 1/R_{P} = 1/R₁ + 1/R₂ | 1/R_{P} = 1/30 + 1/10 | R_{P} = 7,50 Ω | R_{ext} = R_{P} + R = 7,5 + 4,5 | R_{ext} = 12,00 Ω (IEB 2020 P1 Q7.2.1)
+- Back out: the group, then the branches: V_{group} = I_{total} × R_{P}. Every branch between the same two nodes has this pd. Then each branch current = V_{group}/R_{branch}. The branch currents add up to I_{total}. A voltmeter reads the pd across whatever lies between its two leads. (Module 11, section 11.1)
+- Check, "In the circuit above, the pd from P to Q is 7,70 V. The lower branch is a 10 Ω and a 4 Ω in series. Calculate the current in that branch.": I = 7,70/14 = 0,55 A. (Module 11, section 11.1)
+- Check, "That 0,55 A flows through the 10 Ω. What does the voltmeter across the 10 Ω read?": V = (0,55)(10) = 5,50 V. The other 2,20 V is across the 4 Ω: 5,50 + 2,20 = 7,70 V. (Module 11, section 11.1)
+- Brightness in a network: The current divides between branches in the inverse ratio of their resistances. For identical bulbs, power goes as I² (P = I²R). Bulb 1 carries I; bulb 2 carries 2I/3; bulbs 3 and 4 carry I/3. The powers are in the ratio 9 : 4 : 1 : 1. (Module 11, section 11.1)
+- Check, "The four bulbs above are identical. Bulb 3 burns out. What happens to bulb 4?": A lamp that burns out is a break in its path. In series one break stops every lamp in that path. (Module 11, section 11.1)
+- Check, "A 12 Ω resistor is in parallel with a 4 Ω resistor, and the pair is in series with a 2 Ω resistor. Calculate R_{ext}.": 1/R_{P} = 1/12 + 1/4, so R_{P} = 3,00 Ω; R_{ext} = 3 + 2 = 5,00 Ω. (Module 11, section 11.1)
+- By the end the learner can: Reduce a network to R_{ext}, leaving r out.; Work back out: V_{group} = I × R_{P}, then each branch current.; Compare brightness in a network with P = I²R. (Module 11, section 11.1)
+
+EXAM TRAP: The ratio shortcut that flips (IEB May 2025, Paper 1, Question 7.2 (the branch current))
+- Question: A branch of 10 Ω and 4 Ω in series (14 Ω) is in parallel with a 10 Ω resistor. The current into the pair is 1,32 A. Calculate the current in the 14 Ω branch. (3)
+- The usual wrong answer: I = (14/24)(1,32) = 0,77 A
+- What went wrong: The ratio is upside down: the smaller resistance takes the larger current. The safe route is the pd across the pair, then I = V/R for the branch.
+- The memo: RP = (1/14 + 1/10)⁻¹ = 5,83 Ω. Vpair = (1,32)(5,8333) = 7,70 V. I14Ω = 7,70/14 = 0,55 A. (Check: the 10 Ω takes 0,77 A, and 0,55 + 0,77 = 1,32 A. The flipped answers add up to 1,32 A too, so also check that the bigger resistance, 14 Ω, has the smaller current.)
+- The examiners, word for word: "Most candidates who attempted to answer the question using ratios based on the values of the resistors made errors." (IEB Examiners' Report 2017, Paper 1, Question 7.1)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- That is 1/RP. Now take the reciprocal.
+- That is the series rule.
+- A1 carries both branch currents.
+- R1 carries the total current, not the branch current.
+- R3 has the same pd as R2, but not the same current.
+- Include r: I = emf/(Rext + r).
+- Add the pd across R1 as well.
+- Some pd is lost inside the battery.
+- That is the lost volts. V1 = emf − Ir.
+- That is the terminal pd. Add the lost volts, Ir.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

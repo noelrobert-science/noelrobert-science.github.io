@@ -1,0 +1,60 @@
+TOPIC PACK circuits-T4 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems using electrical energy W = Pt. State that electrical energy is measured in joules (J).
+- Know that electrical power dissipated in a device is equal to the product of the potential difference across the device and current flowing through it.
+- Solve problems using P = VI or P = I²R or P = V²/R. Solve problems using W = VIt or W = I²Rt or W = V²t/R.
+- Know that the kilowatt hour (kWh) is a unit of energy and that 1 kWh is the amount of energy used when 1 kilowatt of electricity is used for 1 hour.
+- Perform calculations involving the cost of electricity usage when given relevant information.
+
+COURSEBOOK AND STUDIO LESSON: "Electrical power and energy" (Module 10, section 10.4)
+- Power is a rate: Power is the rate of energy transfer: P = W/t, in watt (1 W = 1 J·s⁻¹). For a device: P = VI. Put R = V/I into it to get P = I²R and P = V²/R. Choose the form that uses only what you know about that component. (Module 10, section 10.4)
+- Check, "A question asks for “the rate of energy dissipation” in a resistor. What is it asking for?": A rate of energy dissipation is a power: P = I²R, in W. “Energy and power were frequently confused.” (IEB Examiners’ Report 2022) (Module 10, section 10.4)
+- Common wrong idea: That is the trap in the Examiners’ Report 2021. A *rate* is per second: a power, in W.
+- Brightness means power: Same current (series): P = I²R. The larger resistance is brighter. Same pd (parallel, or a fixed supply): P = V²/R. The smaller resistance is brighter. The exam treats each bulb as a fixed resistance. Its brightness is its power. (Module 10, section 10.4)
+- Check, "A 2 Ω and a 4 Ω bulb are in series on a 12 V battery. Which is brighter?": Same current, so P = I²R with R larger for the 4 Ω: 16 W against 8 W. (Module 10, section 10.4)
+- Check, "Now the same two bulbs are in parallel on the 12 V battery. Which is brighter?": Same pd, so P = V²/R: 12²/2 = 72 W against 12²/4 = 36 W. (Module 10, section 10.4)
+- Energy in a time: Energy = power × time in seconds: W = Pt, W = VIt, W = I²Rt, W = V²t/R. Energy is in joules. A rating such as 220 V; 1 500 W means 1 500 J of electrical energy is transferred each second when the device is connected to 220 V. “Heat in a time” asks for an energy, in J. (Module 10, section 10.4)
+- Worked example, Worked example 10.6: a bulb with the wrong rating: “An electrician needs to replace a bulb that has a 220 V supply. Unfortunately, the only working light bulb in stock is rated 50 V, 100 W.” (a) “Calculate the resistance of the 50 V, 100 W light bulb.” (3) (b) “Calculate the current that should flow through the working light bulb.” (3) “The electrician uses the 50 V, 100 W light bulb and connects a resistor in series with the light bulb to ensure that the bulb operates at its correct rating when connected to the 220 V supply.” (c) “What should the resistance of the resistor be that the electrician connects in series with the light bulb?” (3) Answer: (a) P = V²/R | 100 = 50²/R | R = 25,00 Ω | (b) P = VI | 100 = 50I | I = 2,00 A | (c) V = R_{T}I | 220 = (R + 25)(2) | R = 85,00 Ω | (c) OR The resistor takes 220 − 50 = 170 V at 2 A, so R = 170/2 = 85,00 Ω. (IEB 2019 P1 Q7.2.1 to 7.2.3)
+- Worked example, Worked example 10.7: power and energy in one circuit: The 12 Ω resistor is in series in the main wire and carries the 2 A read on A₁. The 3 Ω bulb has a pd of 4,2 V across it and a current of 1,4 A through it. (a) “Calculate the power of the 12 Ω resistor.” (3) (b) “Calculate the amount of energy emitted by the 3 Ω bulb in 3 minutes.” (4) Answer: (a) P = I²R | P = (2)²(12) | P = 48,00 W | (b) W = VIt | W = (4,2)(1,4)(3 × 60) | W = 1 058,40 J | (b) OR W = V²t/R = (4,2)²(180)/3, or W = I²Rt = (1,4)²(3)(180): the same 1 058,40 J. (Adapted from IEB May 2023 P1 Q7.6 and 7.8)
+- By the end the learner can: Choose P = VI, I²R or V²/R from what you know about one component.; Say which bulb is brighter, in series and in parallel.; Turn a power into an energy with the time in seconds.; Explain a rating such as 220 V; 1 500 W. (Module 10, section 10.4)
+
+EXAM TRAP: A rate of energy dissipation is a power (IEB Nov 2021, Paper 1, Question 7.2.5 (here for a bulb, not the battery))
+- Question: A current of 1,6 A flows through a 7 Ω bulb. Calculate the rate of energy dissipation in the bulb. (3)
+- The usual wrong answer: W = I²Rt ... "I can't do it, there's no time given." (or an answer in joules)
+- What went wrong: "Rate of energy dissipation" means energy per second, which is power. No time is needed, and the unit is the watt.
+- The memo: P = I²R = (1,6)²(7) = 17,92 W
+- The examiners, word for word: "The rate of energy dissipation was not recognised as power." (IEB Examiners' Report 2021, Paper 1, Question 7.2.5)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- That is the power. Energy = power × time.
+- I = P/V: the power divided by the pd.
+- R1 takes part of the emf. Use the pd across this part.
+- Use the pd across this part, not the emf.
+- R3 does not carry the total current.
+- Change minutes to seconds: × 60.
+- Change hours to seconds: × 3 600.
+- That is the current.
+- P = VI.
+- Square the current; do not double it.
+- P = VI. V/I gives the resistance.
+- That is the pd. P = I²R: square the current.
+- If a learner picks "It uses 1200 W per second": Power is already energy per second: “watts per second” is not a power.
+- If a learner picks "It always transfers 1200 J, on any supply": The rating holds only at the rated pd.
+- If a learner picks "It needs 1200 A of current": Watts measure power, not current.
+- If a learner picks "It uses 750 W per second": Power is already energy per second: “watts per second” is not a power.
+- If a learner picks "It always transfers 750 J, on any supply": The rating holds only at the rated pd.
+- If a learner picks "It needs 750 A of current": Watts measure power, not current.
+- If a learner picks "It uses 2400 W per second": Power is already energy per second: “watts per second” is not a power.
+- If a learner picks "It always transfers 2400 J, on any supply": The rating holds only at the rated pd.
+- If a learner picks "It needs 2400 A of current": Watts measure power, not current.
+- If a learner picks "It uses 60 W per second": Power is already energy per second: “watts per second” is not a power.
+- If a learner picks "It always transfers 60 J, on any supply": The rating holds only at the rated pd.
+- If a learner picks "It needs 60 A of current": Watts measure power, not current.
+- If a learner picks "It uses 500 W per second": Power is already energy per second: “watts per second” is not a power.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

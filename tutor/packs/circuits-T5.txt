@@ -1,0 +1,36 @@
+TOPIC PACK circuits-T5 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems using electrical energy W = Pt. State that electrical energy is measured in joules (J).
+- Know that electrical power dissipated in a device is equal to the product of the potential difference across the device and current flowing through it.
+- Solve problems using P = VI or P = I²R or P = V²/R. Solve problems using W = VIt or W = I²Rt or W = V²t/R.
+- Know that the kilowatt hour (kWh) is a unit of energy and that 1 kWh is the amount of energy used when 1 kilowatt of electricity is used for 1 hour.
+- Perform calculations involving the cost of electricity usage when given relevant information.
+
+COURSEBOOK AND STUDIO LESSON: "Paying for electricity: the kWh" (Module 10, section 10.5)
+- The kilowatt hour: The kilowatt hour is a unit of energy: 1 kWh is the energy used when 1 kilowatt of electricity is used for 1 hour. 1 kWh = 3,6 × 10⁶ J. Energy in kWh = power in kW × time in h. Cost = energy in kWh × the price per kWh. Never write kW/h. Never mix Wh and kWh. (Module 10, section 10.5)
+- Check, "Which of these is NOT a unit of power?": The kWh is a unit of energy (kW × h). IEB May 2021 P1 Q1.2. (Module 10, section 10.5)
+- Check, "A heater is rated 2 500 W. Write its power in kW.": 2 500 ÷ 1 000 = 2,5 kW. (Module 10, section 10.5)
+- Check, "The heater runs for 45 minutes. Write the time in hours.": 45 ÷ 60 = 0,75 h. (“Errors were made with conversion from minutes to hours.” IEB Examiners’ Report 2021) (Module 10, section 10.5)
+- Worked example, Worked example 10.10: the cost of using an oven: “The cost of electricity is R2,60 per kWh. A 3 000 W electrical oven is used for 45 minutes.” “Calculate the cost of using the oven for 45 minutes.” (4) Answer: Cost = P × t × tariff | = (3 kW)(0,75 h)(R2,60 per kWh) | = R5,85 (IEB May 2024 P1 Q7.2)
+- Check, "“The cost of electricity is R1,20 per kilowatt hour. Calculate the cost of using the pump continuously for 20 minutes.” The pump is rated 750 W. (IEB 2021 P1 Q7.1.2)": Cost = R1,20/kWh × (0,75 kW)(20/60 h) = R1,20/kWh × 0,25 kWh = R0,30. (Module 10, section 10.5)
+- Check, "A 2 000 W kettle is used; electricity costs R2,60 per kWh. For how many hours can R45 of electricity run it?": Energy bought = 45 ÷ 2,60 = 17,31 kWh (keep 17,3077 in the calculator). t = 17,3077 ÷ 2 = 8,65 h. (Module 10, section 10.5)
+- By the end the learner can: Say what a kWh is: a unit of energy.; Change W to kW and minutes to hours before you multiply.; Work out a cost, and work backwards from money to time. (Module 10, section 10.5)
+
+EXAM TRAP: Watts and minutes in a cost (IEB Nov 2021, Paper 1, Question 7.1.2)
+- Question: A pump is rated 750 W. The cost of electricity is R1,20 per kilowatt hour. Calculate the cost of using the pump continuously for 20 minutes. (3)
+- The usual wrong answer: Cost = 750 × 20 × R1,20 = R18 000
+- What went wrong: The tariff is per kWh, so the power must be in kW and the time in hours. 750 W is 0,75 kW, and 20 minutes is 20/60 h.
+- The memo: Cost = (0,75 kW)(20/60 h)(R1,20 per kWh) = 0,25 kWh × R1,20 = R0,30
+- The examiners, word for word: "Cost calculations should be easy marks, but errors were made with conversion from minutes to hours and candidates confused kWh, Wh and kW/h." (IEB Examiners' Report 2021, Paper 1, Question 7.1.2)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- Change watts to kilowatts: ÷ 1 000.
+- Multiply the kWh by the tariff.
+- Change minutes to hours: ÷ 60.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

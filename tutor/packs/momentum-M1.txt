@@ -1,0 +1,31 @@
+TOPIC PACK momentum-M1 (Momentum practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, C. Momentum and Impulse, p. 29/31-29/32)
+- Define linear momentum as the product of the mass and velocity of the object. Linear momentum is a vector in the same direction as the velocity. Calculate it in one dimension using p = mv.
+- State Newton's second law in terms of momentum: The net force acting on an object is equal to the rate of change of momentum. Solve problems for constant mass using Fnet = Δp/Δt.
+- Define impulse (J) as the product of the net force and the contact time; J = FnetΔt. Impulse is a vector in the same direction as the net force. Impulse and change in momentum are equivalent: FnetΔt = Δp.
+- Apply the concept of impulse in everyday life (e.g. airbags, catching a hard ball).
+
+EXAM TRAP: The bounce (Built on IEB Nov 2023, Paper 1, Question 6.2.)
+- Question: A 0,6 kg ball hits a wall at 5 m·s⁻¹ and bounces straight back at 3 m·s⁻¹. Calculate the change in momentum of the ball, and give its direction. (4)
+- The usual wrong answer: Δp = m(v − u) = 0,6(3 − 5) = −1,20 kg·m·s⁻¹
+- What went wrong: The ball changed direction, so its two velocities have opposite signs. With "towards the wall" as positive, u = +5 and v = −3.
+- The memo: Towards the wall positive. Δp = m(v − u) = 0,6(−3 − 5) = −4,80 kg·m·s⁻¹, so 4,80 kg·m·s⁻¹ away from the wall.
+- The examiners, word for word: "The change in direction of the ball was often disregarded in the mathematics of Question 6.2 and candidates are encouraged to draw a sketch diagram to help them to remember to assign a positive direction." (IEB Examiners' Report 2023, Paper 1, Question 6.2)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- The ball changes direction: the rebound velocity has the opposite sign.
+- Force is Δp ÷ Δt: divide, do not multiply.
+- Change grams to kilograms first: ÷ 1 000.
+- Change km·h⁻¹ to m·s⁻¹ first: ÷ 3,6.
+- Change milliseconds to seconds first: ÷ 1 000.
+- If a learner picks "It is the same: the change in momentum is the same": Same Δp, but Fnet = Δp/Δt: less time means a larger force.
+- If a learner picks "It is smaller: the dummy stops more quickly": Stopping more quickly means a smaller Δt, so a larger force.
+- If a learner picks "It is zero: the dummy is at rest afterwards": The force acts while the momentum changes, not afterwards.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)
+- Vectors: the learner chooses the positive direction first. The answer is a size, a unit and a direction, even when it is positive. Never a negative and a direction on the same line: the negative result on its own line, then the size with what the negative means. (Mr R's marking)

@@ -1,0 +1,46 @@
+TOPIC PACK circuits-T7 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Solve problems involving current, potential difference and resistance for circuits containing arrangements of resistors in series and in parallel for a maximum of three external resistors.
+- State that a real battery has internal resistance.
+- Define emf as the total energy supplied per coulomb of charge by the cell.
+- Know that the sum of the voltages across the external circuit plus the voltage across the internal resistance is equal to the emf: emf = Vload + Vinternal resistance or emf = I(Rext + r).
+- Solve circuit problems in which the internal resistance of the battery must be considered, including series-parallel networks of resistors to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "emf and internal resistance" (Module 11, section 11.2)
+- A real battery: A real battery is an ideal source of emf in series with an internal resistance r. When a current flows, Ir volts are lost inside, so the terminal pd is emf − Ir. With no current, the terminal pd equals the emf. (Module 11, section 11.2)
+- Common wrong idea: Not the SAGS sentence: it does not say energy per coulomb.
+- Check, "A lamp is switched on, and the voltmeter across the battery now reads less than before.": Lerato ✓. The emf and r belong to the battery and stay the same ✓; only I, Ir and the terminal pd changed ✓. (Module 11, section 11.2)
+- Inside the battery: emf = V_{load} + V_{internal resistance} = I(R_{ext} + r) (data sheet). V_{internal resistance} = Ir, the lost volts. The memo form is V_{load} = emf − Ir. ① No current? A voltmeter across the battery reads the emf. ② Current flowing? Lost volts = Ir, and V_{load} = emf − Ir. ③ To find r: r = (emf − V_{load}) ÷ I. (Module 11, section 11.2)
+- Worked example, Worked example 11.3: two readings of one voltmeter: “In the circuit below, a battery with internal resistance is connected to a circuit with a 20 Ω resistor, an ammeter and a switch.” “When the switch is open, the voltmeter reads 12 V and when it is closed, it reads 10 V.” (a) Define emf. (2) (b) “Write down the emf of the battery.” (1) (c) “Calculate the internal resistance of the battery.” (5) Answer: (a) The emf is the total energy supplied ✓ per coulomb of charge by the cell ✓. | (b) emf = 12 V | (c) I = V_{load}/R = 10/20 | I = 0,50 A | emf = V_{load} + Ir | 12 = 10 + (0,5)r | r = 4,00 Ω (IEB May 2021 P1 Q7.2.1 to 7.2.3)
+- Check, "A battery of emf 12 V delivers a current of 2 A, and the voltmeter across its terminals reads 10 V. Calculate the internal resistance.": V_{load} = emf − Ir: 10 = 12 − 2r, so r = 1,00 Ω. (Module 11, section 11.2)
+- Check, "A voltmeter across a battery reads 9,0 V with the switch open, and 8,1 V when a current of 0,6 A flows. Calculate r.": emf = 9,0 V; lost volts = 0,9 V; r = 0,9/0,6 = 1,50 Ω. (Module 11, section 11.2)
+- By the end the learner can: Define emf in the SAGS words.; Say when a voltmeter across the battery reads the emf, and when it reads emf − Ir.; Find r from the lost volts.; Say what stays the same: the emf and r belong to the battery. (Module 11, section 11.2)
+
+EXAM TRAP: The emf across the wrong thing (IEB Nov 2021, Paper 1, Question 7.2.2)
+- Question: A battery (emf 12 V, internal resistance 0,5 Ω) is connected to a bulb through switch S1. A voltmeter V is connected across the bulb. Switch S1 is open, so no current flows. What does V read? (2)
+- The usual wrong answer: 12 V, because with no current there are no lost volts, so it reads the emf.
+- What went wrong: That reasoning is right for a voltmeter across the battery. This voltmeter is across the bulb. No current flows through the bulb, so the pd across it is V = IR = 0.
+- The memo: 0 V. (A voltmeter across the battery would read the emf, 12 V.)
+- The examiners, word for word: "Many candidates confused the emf and the voltage across the bulb." (IEB Examiners' Report 2021, Paper 1, Question 7.2)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- The switch is open: there is no complete path, so no current.
+- With no current there is no pd across a resistor: V = IR = 0.
+- An open switch is not “no pd”: with no current, the whole emf appears across the gap.
+- The battery still has its emf across its terminals: with no current there are no lost volts.
+- The current passes through R as well as r.
+- That is the lost volts.
+- That is the terminal pd.
+- V/I gives Rext, not r.
+- emf/I gives Rext + r.
+- That is the reading with the switch closed. With S open, I = 0, so Ir = 0.
+- Some pd is lost inside the battery: Vload = emf − Ir.
+- Include r: I = emf/(Rext + r).
+- That is the pd across R, the terminal pd.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

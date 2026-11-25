@@ -1,0 +1,63 @@
+TOPIC PACK circuits-T3 (Circuits Studio practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, E. Electric Circuits, p. 29/36-29/37)
+- Define potential difference as the work done per unit positive charge: V = W/q.
+- Define current as the rate of flow of charge: I = q/t.
+- Determine the relationship between current and potential difference at constant temperature.
+- State Ohm's Law: The current through a conductor is directly proportional to the potential difference across the conductor at constant temperature.
+- Distinguish between ohmic and non-ohmic conductors.
+- Know that resistance is a material's opposition to the flow of electric charge. Know that the unit of resistance is the ohm (Ω).
+- Calculate the effective resistance of resistors in series using RS = R1 + R2 + ...
+- Calculate the effective resistance of resistors in parallel using 1/RP = 1/R1 + 1/R2 + ...
+- Interpret circuit diagrams containing a source, switches, resistors, ammeters and voltmeters.
+- Solve problems using the mathematical expression of Ohm's Law, R = V/I, for series and parallel circuits, limited to a maximum of three external resistors.
+
+COURSEBOOK AND STUDIO LESSON: "Series and parallel resistors" (Module 10, section 10.3)
+- Series and parallel: Series: the same current flows through each resistor, and the pds add up. R_{S} = R₁ + R₂ + R₃. Parallel: every branch has the same pd, and the branch currents add. 1/R_{P} = 1/R₁ + 1/R₂ + 1/R₃. R_{P} is always smaller than the smallest branch. (Module 10, section 10.3)
+- Check, "A 4 Ω and an 8 Ω resistor are in series. Calculate the effective resistance.": R_{S} = 4 + 8 = 12,00 Ω. (Module 10, section 10.3)
+- Check, "A 6 Ω and a 12 Ω resistor are in parallel. Calculate R_{P}.": 1/R_{P} = 1/6 + 1/12 = 1/4 ✓, so R_{P} = 4,00 Ω ✓. It is smaller than the smallest branch, 6 Ω. (IEB Examiners’ Report 2019: many candidates wrote 1/R_{P} = 1/4 = 4 Ω rather than R_{P} = 4 Ω.) (Module 10, section 10.3)
+- Parallel resistance (3 marks): ① Formula line: 1/R_{P} = 1/R₁ + 1/R₂ (data sheet). ② Substitution. ③ R_{P} = … Ω, inverted before you write R_{P}. Sense check: R_{P} is smaller than the smallest branch. (Module 10, section 10.3)
+- Worked example, Worked example 10.3: three resistors in parallel: Resistors of 4 Ω, 8 Ω and 12 Ω are connected in parallel to a battery. A voltmeter across the battery reads 12 V. An ammeter in the main wire measures the total current. (a) Calculate the current in the 8 Ω resistor. (3) (b) Calculate the effective resistance of the resistors connected in parallel. (3) (c) Calculate the current measured by the ammeter. (3) Answer: (a) V = IR | 12 = I(8) | I_{8Ω} = 1,50 A | (b) 1/R_{P} = 1/R₁ + 1/R₂ + 1/R₃ | 1/R_{P} = 1/4 + 1/8 + 1/12 | R_{P} = 2,18 Ω | (c) V = IR | 12 = I(2,18) | I = 5,50 A | (c) OR I_{4Ω} = 3 A, I_{8Ω} = 1,5 A, I_{12Ω} = 1 A ✓; I_{total} = 3 + 1,5 + 1 ✓ = 5,50 A ✓ (Adapted from IEB 2017 P1 Q7.1)
+- An open switch: No current means no pd across a resistor (V = IR = 0). A voltmeter across an open switch reads the pd across its whole branch. With no current anywhere, that is the full supply pd. When current flows in another branch, it is the pd across that parallel branch: the full supply pd if the branches are directly across the ideal battery, less if a resistor comes first in series. A closed switch or a wire has 0 V across it. (Module 10, section 10.3)
+- Worked example, Worked example 10.4: what do the meters read when a switch opens?: A 9 V battery with negligible internal resistance, a switch S, a 4 Ω resistor and an 8 Ω resistor are connected in series with an ammeter A. Voltmeter V₁ is across the 8 Ω resistor. Voltmeter V₂ is across S. The meters are ideal. (a) S is open. Write down the reading on V₁ and on V₂, and explain each. (4) (b) S is closed. Calculate the reading on the ammeter. (3) (c) Calculate the reading on V₁, and write down the reading on V₂. (3) Answer: (a) V₁ 0 V ✓. No current flows, so there is no pd across the 8 Ω (V = IR = 0) ✓. | V₂ 9 V ✓. With no current the resistors have no pd, so the whole 9 V is across the gap ✓. | (b) R_{S} = 4 + 8 = 12 Ω | V = IR: 9 = I(12) | I = 0,75 A | (c) V₁ = IR = (0,75)(8) | V₁ = 6,00 V | V₂ 0 V, because a closed switch has no resistance ✓ (Mr R’s own question)
+- By the end the learner can: Find R_{S} and R_{P}, and invert 1/R_{P} on its own line.; Check R_{P} against the smallest branch.; Use V = IR for one component at a time, with its own V, I and R.; Say what a voltmeter across an open switch reads, and why. (Module 10, section 10.3)
+
+EXAM TRAP: Forgetting to invert (IEB Nov 2019, Paper 1, Question 7.1.5)
+- Question: A 6 Ω resistor and a 12 Ω resistor are connected in parallel. Calculate the effective resistance of the resistors in parallel. (3)
+- The usual wrong answer: 1/RP = 1/6 + 1/12 = 0,25 Ω (or: 1/RP = 1/6 + 1/12 = 4 Ω)
+- What went wrong: 1/6 + 1/12 is 1/RP, not RP. The first answer never inverts. The second gets the number right, but the line says 1/RP = 4 Ω, which is false, and the memo needs a true line.
+- The memo: 1/RP = 1/R1 + 1/R2 = 1/6 + 1/12 = 0,25, so RP = 4,00 Ω. (Or in one line: RP = (1/6 + 1/12)⁻¹ = 4,00 Ω.) Check: 4 Ω is less than the smallest branch, 6 Ω.
+- The examiners, word for word: "Candidates must calculate resistance for resistors in parallel carefully and use correct mathematics." (IEB Examiners' Report 2019, Paper 1, Question 7.1.5)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- That is 1/RP. Now take the reciprocal.
+- That is the parallel rule. In series, add.
+- In series, add the resistances: RS = R1 + R2 + …
+- Use the total resistance of the circuit, not one resistor.
+- That is the series rule. In parallel, add the reciprocals.
+- Not the average: add the reciprocals.
+- That is the total current. Each branch has the full pd across it.
+- That is the series rule. R2 and R3 are in parallel.
+- R1 is in series with the pair: add it.
+- Use RP for the pair, then add R1.
+- A ratio guess using all three resistors. Use V = IR with A1’s current.
+- R1 takes part of the emf.
+- A1 carries both branch currents.
+- R1 carries the total current, not the branch current.
+- That is the current in the main line.
+- Matched values: V3 belongs with R3’s own current, not A1’s.
+- R3’s pd is V3, not the emf.
+- The switch is open: there is no complete path, so no current.
+- With no current there is no pd across a resistor: V = IR = 0.
+- An open switch is not “no pd”: with no current, the whole emf appears across the gap.
+- The battery still has its emf across its terminals: with no current there are no lost volts.
+- The current does not split equally unless the branches are equal: use I = V/R for this branch.
+- R3 has the same pd as R2, but not the same current.
+- The pd does not split in half: the pds in series add up to the emf.
+- That is the current in R2.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)

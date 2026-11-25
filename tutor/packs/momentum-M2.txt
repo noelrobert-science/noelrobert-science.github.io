@@ -1,0 +1,48 @@
+TOPIC PACK momentum-M2 (Momentum practice). Built 25 Nov 2026 from Mr R's material.
+
+SAGS WORDING (IEB SAGS 2025 (updated Sept 2024), Physical Sciences, C. Momentum and Impulse, p. 29/31-29/32)
+- An isolated system is one that has no net external force acting on it; explain internal and external forces.
+- State the law of conservation of linear momentum: The total linear momentum of an isolated system remains constant (is conserved).
+- Solve problems by applying the law of conservation of momentum to interactions of two objects moving in one dimension, with the aid of an appropriate sign convention.
+- Define an elastic collision as a collision in which both momentum and kinetic energy are conserved. Define an inelastic collision as a collision in which only momentum is conserved. Identify elastic and inelastic collisions using calculations where necessary.
+
+EXAM TRAP: The minus sign that went missing (Built on IEB Nov 2024, Paper 1, Question 5.2.2.)
+- Question: Trolley A (2 kg) moves at 3 m·s⁻¹ to the right. Trolley B (1 kg) moves at 2 m·s⁻¹ to the left. They collide on a frictionless track, and A stops. Calculate the velocity of B after the collision. (4)
+- The usual wrong answer: (2)(3) + (1)(2) = (2)(0) + (1)v, so v = 8 m·s⁻¹
+- What went wrong: B was moving left, so its velocity is −2 m·s⁻¹ with right as positive. Momentum is a vector: the sign carries the direction.
+- The memo: Right positive. Σp before = Σp after: (2)(3) + (1)(−2) = (2)(0) + (1)vB, so 4 = vB. vB = 4,00 m·s⁻¹ to the right.
+- The examiners, word for word: "Candidates must remember that momentum is a vector quantity and use of signs to deal with momentum in opposite directions is important." (IEB Examiners' Report 2017, Paper 1, Question 5)
+
+COMMON SLIPS the practice engine names (Mr R's practice engine)
+- Ek = ½mv²: remember the ½.
+- After the collision the two move together: divide by the total mass.
+- Ek = ½mv²: square the speed.
+- Add the kinetic energy of both trolleys.
+- Keep each mass with its own velocity: mA × vA = mB × vB.
+- Different masses move off at different speeds.
+- Divide by car B’s mass, not car A’s.
+- Divide by trolley B’s mass, not trolley A’s.
+- Divide by trolley Q’s mass, not trolley P’s.
+- trolley A rebounds, so its final velocity is negative.
+- trolley P rebounds, so its final velocity is negative.
+- car A rebounds, so its final velocity is negative.
+- Use Σpi = Σpf with Σpi = 0, then solve for the mass.
+- mA × vA = mB × vB: keep each mass with its own velocity.
+- They move in opposite directions: give trolley Q’s velocity a negative sign.
+- trolley B starts moving west: its initial velocity is negative.
+- trolley Q starts moving west: its initial velocity is negative.
+- car B starts moving west: its initial velocity is negative.
+- They move in opposite directions: give trolley B’s velocity a negative sign.
+- They move in opposite directions: give car B’s velocity a negative sign.
+- If a learner picks "Inelastic: the total kinetic energy is not conserved": Compare (a) and (b): they are equal.
+- If a learner picks "Elastic: the total momentum is conserved": Momentum is conserved in every collision of an isolated system. Decide with kinetic energy.
+- If a learner picks "Inelastic: the total momentum is not conserved": Momentum is conserved in every collision of an isolated system.
+- If a learner picks "Elastic: the total kinetic energy is conserved": Compare (a) and (b): kinetic energy was lost.
+- If a learner picks "Inelastic: the total momentum is not conserved": Momentum is conserved in every collision of an isolated system. Decide with kinetic energy.
+
+MR R'S MARKING (how the app and Mr R mark calculations)
+- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R's marking)
+- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
+- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
+- Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)
+- Vectors: the learner chooses the positive direction first. The answer is a size, a unit and a direction, even when it is positive. Never a negative and a direction on the same line: the negative result on its own line, then the size with what the negative means. (Mr R's marking)
