@@ -8,7 +8,7 @@ const URL = 'https://mr-r-coach.ncrncr23.workers.dev/coach';
   for (let i = 0; i < cases.length; i++) {
     const c = cases[i];
     if (out[c.id] && out[c.id].reply && !out[c.id].error) continue;
-    const body = { device: 'dtestset' + Math.floor(i / 20), pack: c.pack, messages: c.messages, question: c.question };
+    const body = { device: (process.env.DEVPREFIX || 'dtestset') + Math.floor(i / 20), pack: c.pack, messages: c.messages, question: c.question };
     try {
       const r = await fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Origin': 'https://mrrscience.co.za' }, body: JSON.stringify(body) });
       const j = await r.json();
