@@ -13,7 +13,7 @@
 
 ## Setting it up (once)
 1. **Anthropic account** (Noel): add credit, set a monthly spend limit, create an API key named `mr-r-coach`. Copy it; don't paste it anywhere else.
-2. **Cloudflare** (Noel signs in; Claude does the rest): create a Worker named `mr-r-coach`, paste `worker.js`, create a KV namespace `COACH_KV` and bind it, set `COACH_ON` = `1`.
+2. **Cloudflare** (Noel signs in; Claude does the rest): create a Worker named `mr-r-coach` (live at mr-r-coach.ncrncr23.workers.dev), paste `worker.js`, create a KV namespace `COACH_KV` and bind it, set `COACH_ON` = `1`.
 3. **The key** (Noel only): Worker > Settings > Variables and secrets > add a **Secret** named `ANTHROPIC_API_KEY`, paste the key, save.
 4. Put the Worker's address into `SERVER` at the top of `circuits/js/coach.js`.
 

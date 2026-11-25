@@ -5,7 +5,7 @@
    never a name. ?coachurl=mock (with ?coach=1) uses a pretend coach for testing without the AI. */
 (function () {
   'use strict';
-  var SERVER = 'https://mrr-coach.REPLACE.workers.dev';   /* filled in once the Cloudflare Worker exists */
+  var SERVER = 'https://mr-r-coach.ncrncr23.workers.dev';
   var MAX_TURNS = 6;
   function q(name) { var m = (location.search + '&' + location.hash).match(new RegExp('[?&]' + name + '=([^&#]*)')); return m ? decodeURIComponent(m[1]) : null; }
   try {
@@ -47,7 +47,7 @@
       if (text) { msgs.push({ role: 'user', text: text }); say('user', text); }
       turns++; send.disabled = true; box.value = '';
       ask({ device: device(), messages: msgs, question: { code: info.code, stem: info.stem, worked: info.worked, learner: info.learner, feedback: info.feedback, rung: info.rung } }).then(function (out) {
-        var r = (out && out.reply) || 'Use the hints on the page.';
+        var r = ((out && out.reply) || 'Use the hints on the page.').replace(/\*\*|__/g, '').replace(/^#+\s*/gm, '');
         msgs.push({ role: 'assistant', text: r }); say('assistant', r); send.disabled = false;
         if (turns >= MAX_TURNS) end('That is enough screen for this one. Close the screen and do this question in pen. Then try a fresh one.');
       });
