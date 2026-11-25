@@ -250,6 +250,20 @@
       if (rung >= 1 && p.hint1) c.appendChild(h('p', {}, [h('b', { text: 'Look at this: ' }), document.createTextNode(p.hint1)]));
       if (rung >= 2 && p.hint2) c.appendChild(h('p', {}, [h('b', { text: 'The equation: ' }), document.createTextNode(p.hint2)]));
       msg.appendChild(c);
+      /* private test: Mr R's study coach, only after a real try and only in browsers that opened ?coach=1 */
+      if (rung >= 0 && rung < 3 && window.Coach && window.Coach.on() && !box.querySelector('.coach')) {
+        var cb = h('button', { class: 'btn ghost', text: 'Talk it through with the coach', onclick: function () {
+          cb.remove();
+          window.Coach.open(box, { h: h, code: (it.gen || '') + ':' + (it.seed || ''), stem: it.stem, rung: rung, feedback: c.innerText,
+            worked: it.parts.map(function (pp, k) { return '(' + L[k] + ') ' + pp.ask + '\n' + (pp.kind === 'mcq' ? 'Right option: ' + pp.opts.filter(function (o) { return o.ok; })[0].t : (pp.work || []).join('\n')); }).join('\n\n'),
+            learner: (posSel ? 'Positive direction: ' + (posSel.value === '' ? 'not chosen' : axis[+posSel.value]) + '\n' : '') + state.map(function (st, k) {
+              var pp = it.parts[k];
+              if (pp.kind === 'mcq') return '(' + L[k] + ') picked: ' + (st.pick != null ? pp.opts[st.pick].t : 'nothing');
+              return '(' + L[k] + ') formula: ' + (st.sel && st.sel.value ? Gx.formText(Gx.FORM.filter(function (f) { return f.id === st.sel.value; })[0], g) : 'none') + '; substitution: ' + (st.sub ? st.sub.value || 'none' : '-') + '; answer: ' + (st.ans.value || 'none') + ' ' + (st.unit.value || '') + (st.dir ? ' ' + (st.dir.value === '' ? '(no direction)' : axis[+st.dir.value]) : '');
+            }).join('\n') });
+        } });
+        msg.appendChild(h('div', { class: 'row', style: 'margin-top:8px' }, [cb]));
+      }
       if (rung >= 3) {
         lock(); msg.appendChild(worked());
         var q = h('div', { class: 'card inner' }, [h('p', { class: 'b', text: 'Which line was different in yours?' })]);
