@@ -261,7 +261,7 @@
   function picture(it, g, h) {
     if (!it.scene || !h) return null;
     var sc = it.scene, rows = sc.rows, W = 440, rowH = 96, H = rows.length * rowH + 12, out = [];
-    out.push('<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(it.stem) + '" style="max-width:100%;height:auto;font-family:inherit">');
+    out.push('<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(it.stem) + '" style="width:100%;max-width:520px;height:auto;display:block;margin:0 auto;font-family:inherit">');
     out.push('<defs><marker id="mar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b7285"/></marker></defs>');
     rows.forEach(function (r, i) {
       var y = 12 + i * rowH, base = y + 62, k = r.objs.length;
