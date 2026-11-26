@@ -258,5 +258,285 @@
     "title": "Remember"
    }
   ]
+ },
+ "g7-m4l1": {
+  "title": "Mendeleev and the order of the elements",
+  "module": "Module 4 · Lesson 1",
+  "src": "media/g7-m4l1.mp4",
+  "dur": 87.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The problem"
+   },
+   {
+    "t": 13.2,
+    "title": "The cards"
+   },
+   {
+    "t": 27.8,
+    "title": "The gaps"
+   },
+   {
+    "t": 43.8,
+    "title": "Today"
+   },
+   {
+    "t": 62.2,
+    "title": "Mendelevium"
+   },
+   {
+    "t": 68.3,
+    "title": "Your turn"
+   },
+   {
+    "t": 78.7,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l2": {
+  "title": "Reading the Periodic Table",
+  "module": "Module 4 · Lesson 2",
+  "src": "media/g7-m4l2.mp4",
+  "dur": 103.9,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "A tile"
+   },
+   {
+    "t": 15.7,
+    "title": "Which number"
+   },
+   {
+    "t": 26.4,
+    "title": "Rounding"
+   },
+   {
+    "t": 42.5,
+    "title": "Bromine"
+   },
+   {
+    "t": 68.0,
+    "title": "Exam eye"
+   },
+   {
+    "t": 81.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 92.0,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l3": {
+  "title": "Groups and periods",
+  "module": "Module 4 · Lesson 3",
+  "src": "media/g7-m4l3.mp4",
+  "dur": 88.1,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "An address"
+   },
+   {
+    "t": 14.7,
+    "title": "Magnesium"
+   },
+   {
+    "t": 27.5,
+    "title": "Numbering"
+   },
+   {
+    "t": 43.3,
+    "title": "Worked example"
+   },
+   {
+    "t": 57.6,
+    "title": "Count from the top"
+   },
+   {
+    "t": 69.0,
+    "title": "Your turn"
+   },
+   {
+    "t": 79.3,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l4": {
+  "title": "Metals, non-metals and metalloids",
+  "module": "Module 4 · Lesson 4",
+  "src": "media/g7-m4l4.mp4",
+  "dur": 108.4,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The zigzag line"
+   },
+   {
+    "t": 16.1,
+    "title": "Metals"
+   },
+   {
+    "t": 33.2,
+    "title": "Non-metals"
+   },
+   {
+    "t": 51.5,
+    "title": "Metalloids"
+   },
+   {
+    "t": 68.6,
+    "title": "Hydrogen"
+   },
+   {
+    "t": 85.6,
+    "title": "Your turn"
+   },
+   {
+    "t": 98.6,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l5": {
+  "title": "Families of elements",
+  "module": "Module 4 · Lesson 5",
+  "src": "media/g7-m4l5.mp4",
+  "dur": 109.3,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Five families"
+   },
+   {
+    "t": 9.4,
+    "title": "Groups 1 and 2"
+   },
+   {
+    "t": 26.8,
+    "title": "Transition metals"
+   },
+   {
+    "t": 45.2,
+    "title": "Groups 7 and 8"
+   },
+   {
+    "t": 64.4,
+    "title": "Group 1 in water"
+   },
+   {
+    "t": 85.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 97.9,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l6": {
+  "title": "Why elements in a group react alike",
+  "module": "Module 4 · Lesson 6",
+  "src": "media/g7-m4l6.mp4",
+  "dur": 93.0,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Same group"
+   },
+   {
+    "t": 21.1,
+    "title": "Same period"
+   },
+   {
+    "t": 25.3,
+    "title": "Period 3"
+   },
+   {
+    "t": 43.6,
+    "title": "Worked example"
+   },
+   {
+    "t": 62.4,
+    "title": "Noble gases"
+   },
+   {
+    "t": 73.7,
+    "title": "Your turn"
+   },
+   {
+    "t": 83.4,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l8": {
+  "title": "Symbols and names",
+  "module": "Module 4 · Lesson 8",
+  "src": "media/g7-m4l8.mp4",
+  "dur": 81.0,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Two letters at most"
+   },
+   {
+    "t": 19.8,
+    "title": "Old names"
+   },
+   {
+    "t": 33.1,
+    "title": "Spelling"
+   },
+   {
+    "t": 43.0,
+    "title": "The code breaker"
+   },
+   {
+    "t": 59.7,
+    "title": "Your turn"
+   },
+   {
+    "t": 72.7,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l9": {
+  "title": "The Periodic Table on a page",
+  "module": "Module 4 · Lesson 9",
+  "src": "media/g7-m4l9.mp4",
+  "dur": 90.1,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Order and tiles"
+   },
+   {
+    "t": 18.0,
+    "title": "Groups and periods"
+   },
+   {
+    "t": 28.6,
+    "title": "Metals and families"
+   },
+   {
+    "t": 45.8,
+    "title": "Exam tips"
+   },
+   {
+    "t": 63.1,
+    "title": "Your turn"
+   },
+   {
+    "t": 78.4,
+    "title": "Remember"
+   }
+  ]
  }
 }
