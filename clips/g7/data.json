@@ -34,7 +34,7 @@
     "title": "Your turn"
    },
    {
-    "t": 105.0,
+    "t": 105.1,
     "title": "Remember"
    }
   ]
@@ -43,7 +43,7 @@
   "title": "Reading a measuring cylinder",
   "module": "Module 1 · Lesson 2",
   "src": "media/g7-m1l2.mp4",
-  "dur": 102.3,
+  "dur": 102.5,
   "chapters": [
    {
     "t": 0,
@@ -70,7 +70,7 @@
     "title": "Your turn"
    },
    {
-    "t": 92.0,
+    "t": 92.2,
     "title": "Remember"
    }
   ]
@@ -79,7 +79,7 @@
   "title": "Displacement and the Bunsen burner",
   "module": "Module 1 · Lesson 3",
   "src": "media/g7-m1l3.mp4",
-  "dur": 116.1,
+  "dur": 116.4,
   "chapters": [
    {
     "t": 0,
@@ -106,7 +106,7 @@
     "title": "Your turn"
    },
    {
-    "t": 106.6,
+    "t": 106.9,
     "title": "Remember"
    }
   ]
@@ -115,7 +115,7 @@
   "title": "Changes of state",
   "module": "Module 2 · Lesson 2",
   "src": "media/g7-m2l2.mp4",
-  "dur": 126.8,
+  "dur": 126.0,
   "chapters": [
    {
     "t": 0,
@@ -146,7 +146,7 @@
     "title": "Your turn"
    },
    {
-    "t": 112.4,
+    "t": 111.5,
     "title": "Remember"
    }
   ]
@@ -155,7 +155,7 @@
   "title": "Diffusion, physical and chemical changes",
   "module": "Module 2 · Lesson 3",
   "src": "media/g7-m2l3.mp4",
-  "dur": 101.4,
+  "dur": 101.6,
   "chapters": [
    {
     "t": 0,
@@ -182,7 +182,7 @@
     "title": "Your turn"
    },
    {
-    "t": 86.4,
+    "t": 86.7,
     "title": "Remember"
    }
   ]
@@ -227,7 +227,7 @@
   "title": "Valence electrons, groups and periods",
   "module": "Module 3 · Lesson 3",
   "src": "media/g7-m3l3.mp4",
-  "dur": 101.1,
+  "dur": 99.3,
   "chapters": [
    {
     "t": 0,
@@ -254,7 +254,7 @@
     "title": "Your turn"
    },
    {
-    "t": 91.2,
+    "t": 89.4,
     "title": "Remember"
    }
   ]
@@ -263,7 +263,7 @@
   "title": "Mendeleev and the order of the elements",
   "module": "Module 4 · Lesson 1",
   "src": "media/g7-m4l1.mp4",
-  "dur": 87.8,
+  "dur": 85.8,
   "chapters": [
    {
     "t": 0,
@@ -290,7 +290,7 @@
     "title": "Your turn"
    },
    {
-    "t": 78.7,
+    "t": 76.7,
     "title": "Remember"
    }
   ]
@@ -299,7 +299,7 @@
   "title": "Reading the Periodic Table",
   "module": "Module 4 · Lesson 2",
   "src": "media/g7-m4l2.mp4",
-  "dur": 103.9,
+  "dur": 101.8,
   "chapters": [
    {
     "t": 0,
@@ -326,7 +326,7 @@
     "title": "Your turn"
    },
    {
-    "t": 92.0,
+    "t": 89.9,
     "title": "Remember"
    }
   ]
@@ -335,7 +335,7 @@
   "title": "Groups and periods",
   "module": "Module 4 · Lesson 3",
   "src": "media/g7-m4l3.mp4",
-  "dur": 88.1,
+  "dur": 87.6,
   "chapters": [
    {
     "t": 0,
@@ -362,7 +362,7 @@
     "title": "Your turn"
    },
    {
-    "t": 79.3,
+    "t": 78.8,
     "title": "Remember"
    }
   ]
@@ -371,7 +371,7 @@
   "title": "Metals, non-metals and metalloids",
   "module": "Module 4 · Lesson 4",
   "src": "media/g7-m4l4.mp4",
-  "dur": 108.4,
+  "dur": 106.1,
   "chapters": [
    {
     "t": 0,
@@ -398,7 +398,7 @@
     "title": "Your turn"
    },
    {
-    "t": 98.6,
+    "t": 96.3,
     "title": "Remember"
    }
   ]
@@ -407,7 +407,7 @@
   "title": "Families of elements",
   "module": "Module 4 · Lesson 5",
   "src": "media/g7-m4l5.mp4",
-  "dur": 109.3,
+  "dur": 105.2,
   "chapters": [
    {
     "t": 0,
@@ -426,15 +426,15 @@
     "title": "Groups 7 and 8"
    },
    {
-    "t": 64.4,
+    "t": 64.2,
     "title": "Group 1 in water"
    },
    {
-    "t": 85.2,
+    "t": 85.0,
     "title": "Your turn"
    },
    {
-    "t": 97.9,
+    "t": 93.8,
     "title": "Remember"
    }
   ]
@@ -443,34 +443,34 @@
   "title": "Why elements in a group react alike",
   "module": "Module 4 · Lesson 6",
   "src": "media/g7-m4l6.mp4",
-  "dur": 93.0,
+  "dur": 90.7,
   "chapters": [
    {
     "t": 0,
     "title": "Same group"
    },
    {
-    "t": 21.1,
+    "t": 21.0,
     "title": "Same period"
    },
    {
-    "t": 25.3,
+    "t": 25.2,
     "title": "Period 3"
    },
    {
-    "t": 43.6,
+    "t": 43.5,
     "title": "Worked example"
    },
    {
-    "t": 62.4,
+    "t": 62.3,
     "title": "Noble gases"
    },
    {
-    "t": 73.7,
+    "t": 73.6,
     "title": "Your turn"
    },
    {
-    "t": 83.4,
+    "t": 81.1,
     "title": "Remember"
    }
   ]
@@ -479,30 +479,30 @@
   "title": "Symbols and names",
   "module": "Module 4 · Lesson 8",
   "src": "media/g7-m4l8.mp4",
-  "dur": 81.0,
+  "dur": 75.7,
   "chapters": [
    {
     "t": 0,
     "title": "Two letters at most"
    },
    {
-    "t": 19.8,
+    "t": 19.4,
     "title": "Old names"
    },
    {
-    "t": 33.1,
+    "t": 31.0,
     "title": "Spelling"
    },
    {
-    "t": 43.0,
+    "t": 40.9,
     "title": "The code breaker"
    },
    {
-    "t": 59.7,
+    "t": 57.8,
     "title": "Your turn"
    },
    {
-    "t": 72.7,
+    "t": 67.4,
     "title": "Remember"
    }
   ]
@@ -511,7 +511,7 @@
   "title": "The Periodic Table on a page",
   "module": "Module 4 · Lesson 9",
   "src": "media/g7-m4l9.mp4",
-  "dur": 90.1,
+  "dur": 87.8,
   "chapters": [
    {
     "t": 0,
@@ -534,7 +534,7 @@
     "title": "Your turn"
    },
    {
-    "t": 78.4,
+    "t": 76.1,
     "title": "Remember"
    }
   ]
