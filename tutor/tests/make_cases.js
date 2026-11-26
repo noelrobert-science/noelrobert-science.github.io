@@ -16,21 +16,25 @@ function add(studio, G, topic, kinds) {
     for (let tries = 0; tries < 50; tries++) {
       const id = gens[(i + tries) % gens.length];
       try { it = G.make(id, seed++, 12, 2); } catch (e) { continue; }
-      p = it.parts.find(q => q.kind === 'calc' && q.forms.length && (kind !== 'trap' || q.traps.length) && (!['nodir', 'negdir'].includes(kind) || q.vec));
+      p = it.parts.find(q => q.kind === 'calc' && q.forms.length && (kind !== 'trap' || q.traps.length) && (!['nodir', 'negdir'].includes(kind) || q.vec) && (kind !== 'noformula' || !q.fp));
       if (p) break;
     }
     if (!p) return;
     ex = G.exact(it)[p.key];
     const axis = it.axis, vec = p.vec && axis, size = Math.abs(ex), dirWord = vec ? axis[ex >= 0 ? 0 : 1] : '';
-    /* a real substitution line, as a learner writes it: the first worked line with numbers in the formula */
-    const subLine = (p.work || []).find(l => /^\s*=/.test(l) && /[×\/(+−-]/.test(l.replace(/^\s*=\s*/, '')) && /\d/.test(l)) || (p.work || []).find(l => /\d.*[×\/]/.test(l));
-    const wForm = (p.work || []).find(l => !/^\s*=/.test(l) && !/^Take /.test(l) && /=/.test(l));
+    /* a real substitution line, as a learner writes it: the line straight after the formula (run 4: never a bare number) */
+    const W = (p.work || []).filter(l => !/^Take /.test(l));
+    const fi = W.findIndex(l => !/^\s*=/.test(l) && /=/.test(l) && /[A-Za-zΔ]/.test(l.split('=')[0]));
+    const wForm = fi >= 0 ? W[fi] : null;
+    const subLine = fi >= 0 && W[fi + 1] ? W[fi + 1] : null;
     let f = wForm || formOf(G, p, it.g), sub = subLine ? subLine.replace(/^\s*=\s*/, '') : n2(ex), ans = vec ? n2(size) : n2(ex), unit = p.unit, dir = dirWord, gap;
-    if (kind === 'trap') { const t = p.traps[0]; sub = n2(t.v); ans = n2(vec ? Math.abs(t.v) : t.v); gap = 'the named slip: ' + t.msg; }
+    if (kind === 'trap') { const t = p.traps[0]; ans = n2(vec ? Math.abs(t.v) : t.v); gap = 'the answer line, the named slip: ' + t.msg + ' (the formula and substitution lines are right)'; }
     if (kind === 'nounit') { unit = ''; gap = 'the unit is missing (' + p.unit + ')'; }
     if (kind === 'noformula') { f = 'none'; gap = 'no formula line: the memo gives a mark for the formula'; }
     if (kind === 'nodir') { dir = '(no direction)'; gap = 'the direction is missing although the size and unit are right'; }
     if (kind === 'negdir') { ans = '−' + n2(size); gap = 'a negative answer with a direction on the same line'; }
+    /* vectors with a negative result: the negative on its own, then the size with its direction (Mr R's rule) */
+    if (vec && ex < 0 && kind !== 'negdir') ans = '−' + n2(size) + ' ' + unit + '; then ' + ans;
     const learner = (vec ? 'Positive direction: ' + axis[0] + '\n' : '') + '(' + 'abcdefgh'[it.parts.indexOf(p)] + ') formula: ' + f + '; substitution: ' + sub + '; answer: ' + ans + ' ' + unit + (vec ? ' ' + dir : '');
     cases.push({ id: studio + '-' + topic + '-' + kind + '-' + i, kind: 'mistake', pack: studio + '-' + topic, expectGap: gap,
       question: { code: it.gen + ':' + it.seed, stem: it.stem, worked: worked(G, it), learner: learner, feedback: '', rung: 0 },
