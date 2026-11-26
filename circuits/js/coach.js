@@ -54,8 +54,9 @@
     }
     send.addEventListener('click', function () { var t = box.value.trim(); if (t) go(t); });
     paper.addEventListener('click', function () { end('Close the screen. Do this question in pen, line by line, then check it against the worked answer.'); });
-    msgs.push({ role: 'user', text: 'I tried this and I am stuck. Help me find my mistake.' });
-    say('user', 'I’m stuck. Help me find my mistake.');
+    var opening = info.start ? 'I do not know where to start.' : 'I tried this and I am stuck. Help me find my mistake.';
+    msgs.push({ role: 'user', text: opening });
+    say('user', info.start ? 'I don’t know where to start.' : 'I’m stuck. Help me find my mistake.');
     turns = 0; go(null);
     return panel;
   }

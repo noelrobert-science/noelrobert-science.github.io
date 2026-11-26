@@ -1,4 +1,5 @@
-/* node test/gens.test.js : every generator, every grade it serves, stars 1-3, 200 seeds each (§8.2 template test).
+/* node test/gens.test.js : (items marked roundedChain work each line from the rounded value printed before it, so a hidden meter may differ from the circuit by up to 3%)
+   every generator, every grade it serves, stars 1-3, 200 seeds each (§8.2 template test).
    Each item must: have finite exact values; keep currents 0,05-10 A in any solved circuit; match the solver for every
    meter a part asks about; never have a trap equal to the right answer; give Gr 10 no r; have 4 distinct MCQ options. */
 const S = require('../js/solver.js'), G = require('../js/gens.js'), F = require('../js/fmt.js');
@@ -41,7 +42,7 @@ for (const id of Object.keys(G.GEN)) {
         const m = p.ask.match(METER); if (!m) return;
         const mid = m[1] === 'the ammeter' ? (res.read.A != null ? 'A' : 'A1') : (m[1] || m[2]);
         if (!(mid in res.read)) return;
-        ok(close(res.read[mid], v[p.key]), id + ' meter ' + mid + ' vs solver: ' + tag + ' part ' + p.key + ' item ' + v[p.key] + ' solver ' + res.read[mid]);
+        ok(it.roundedChain ? Math.abs(res.read[mid] - v[p.key]) <= Math.max(0.03, Math.abs(res.read[mid]) * 0.03) : close(res.read[mid], v[p.key]), id + ' meter ' + mid + ' vs solver: ' + tag + ' part ' + p.key + ' item ' + v[p.key] + ' solver ' + res.read[mid]);
       });
       // the given readings on the drawing (not hidden) must agree with the stem
       (it.stem.match(/(A1|A2|V1) reads ([\d,]+) (A|V)/g) || []).forEach(s => { const mm = s.match(/(A1|A2|V1) reads ([\d,]+)/); ok(close(res.read[mm[1]], +mm[2].replace(',', '.')), id + ' stem reading vs solver: ' + tag + ' ' + s); });

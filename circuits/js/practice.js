@@ -132,7 +132,7 @@
       st.fb = h('div', { class: 'pfb' }); pb.appendChild(st.fb);
       st.box = pb; box.appendChild(pb);
     });
-    if (mode === 'practice') box.appendChild(h('p', { class: 'small muted', text: 'Studio marks: one for the formula with its substitution, one for the substitution, one for the answer with its unit' + (axis ? ' and direction' : '') + '. The memos rarely print the split.' }));
+    if (mode === 'practice') box.appendChild(h('p', { class: 'small muted', text: 'Studio marks: one for the formula, one for the substitution, one for the answer with its unit' + (axis ? ' and direction' : '') + '. The memos rarely print the split.' }));
 
     var bar = h('div', { class: 'row', style: 'margin-top:10px' }), msg = h('div', {});
     box.appendChild(bar); box.appendChild(msg);
@@ -163,12 +163,18 @@
         var formOk = !!fm && p.forms.indexOf(fm.grp) >= 0;
         if (st.sub.value.trim() && sv == null) r.notes.push('Put numbers into the substitution line, not symbols: for example 12/(4 + 4).');
         if (fid && !formOk) r.notes.push('That formula does not lead to this answer: ' + Gx.formText(fm, it.g) + '.');
-        if (!fid && st.sub.value.trim()) r.notes.push('Start with the formula: “It is best practice to begin each calculation with an appropriate formula” (IEB Examiners’ Report 2024).');
+        if (!fid && st.sub.value.trim() && !p.fp) r.notes.push('Start with the formula: “It is best practice to begin each calculation with an appropriate formula” (IEB Examiners’ Report 2024).');
         if (sv != null && val != null && !close(sv, val) && !(p.inter.some(function (x) { return close(sv, x); }) && valOk)) r.notes.push('Every line must be true: your substitution gives ' + n2(sv) + ', but your answer says ' + n2(val) + '.');
         if (!subsOk && sv != null && !r.trap) p.traps.some(function (t) { if (close(sv, t.v)) { r.trap = t; return true; } return false; });
-        r.got = (formOk && subsOk ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
+        /* Noel, 26 Nov 2026: a correct formula earns its mark on its own; on first-principles parts (adding currents or pds)
+           a blank formula costs nothing when the principle shows in a right substitution */
+        var fpBlank = p.fp && !fid && subsOk;
+        r.form = formOk ? 'ok' : fid ? 'bad' : p.fp ? 'fp' : 'none'; r.formMark = formOk || fpBlank;
+        r.subs = sv != null ? (subsOk ? 'ok' : 'bad') : (st.sub.value.trim() ? 'bad' : 'none');
+        r.got = (r.formMark ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
       } else r.got = ansMark ? 1 : 0;
-      r.right = ansMark;
+      r.ansMark = ansMark; r.right = ansMark;
+      r.carried = valOk && !close(val, exp) && close(val, ft);
       r.exp = exp;
       return r;
     }
@@ -196,12 +202,16 @@
         var formOk = !!fm && p.forms.indexOf(fm.grp) >= 0;
         if (st.sub.value.trim() && sv == null) r.notes.push('Put numbers into the substitution line, not symbols, with a sign on every velocity.');
         if (fid && !formOk) r.notes.push('That formula does not lead to this answer: ' + Gx.formText(fm, it.g) + '.');
-        if (!fid && st.sub.value.trim()) r.notes.push('Start with the formula: “It is best practice to begin each calculation with an appropriate formula” (IEB Examiners’ Report 2024).');
+        if (!fid && st.sub.value.trim() && !p.fp) r.notes.push('Start with the formula: “It is best practice to begin each calculation with an appropriate formula” (IEB Examiners’ Report 2024).');
         if (sv != null && val != null && val >= 0 && !close(Math.abs(sv), val)) r.notes.push('Every line must be true: your substitution gives ' + n2(sv) + ', so the size is ' + n2(Math.abs(sv)) + ', but your answer says ' + n2(val) + '.');
         if (!subsOk && sv != null && !r.trap) p.traps.some(function (t) { if (signs.some(function (q) { return close(sv, q * t.v); })) { r.trap = t; return true; } return false; });
-        r.got = (formOk && subsOk ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
+        var fpBlank = p.fp && !fid && subsOk;
+        r.form = formOk ? 'ok' : fid ? 'bad' : p.fp ? 'fp' : 'none'; r.formMark = formOk || fpBlank;
+        r.subs = sv != null ? (subsOk ? 'ok' : 'bad') : (st.sub.value.trim() ? 'bad' : 'none');
+        r.got = (r.formMark ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
       } else r.got = ansMark ? 1 : 0;
-      r.right = ansMark; r.exp = exp;
+      r.ansMark = ansMark; r.right = ansMark; r.exp = exp;
+      r.carried = magOk && !close(val, Math.abs(exp)) && close(val, Math.abs(ft));
       return r;
     }
     function markAll() { var v = {}; return it.parts.map(function (p, k) { return markPart(p, state[k], v); }); }
@@ -227,6 +237,7 @@
     }
 
     /* ---------- practice: the ladder ---------- */
+    var startMode = false;
     function submit() {
       var res = markAll();
       if (!res.some(function (r) { return r.answered; }) && !opts.allowBlank) { msg.innerHTML = ''; msg.appendChild(h('div', { class: 'warnc', text: 'Try it first. If you do not know where to start, tap “I don’t know where to start”.' })); return; }
@@ -235,17 +246,49 @@
       if (all) { finish(true, res); return; }
       wrong++; ladder(Math.min(wrong - 1, 3), res);
     }
-    function ladder(to, res) {
+    /* what the learner typed, for the "Right:" line (brief A4): never the memo value */
+    function typed(pk, st) {
+      if (pk.kind !== 'calc') return '';
+      var v = st.ans.value.trim(), u = st.unit.value, d = st.dir && st.dir.value !== '' ? ' ' + axis[+st.dir.value] : '';
+      return u === 'R' ? ' R' + v : ' ' + v + (u ? ' ' + u : '') + d;
+    }
+    /* the marks the page gave, line by line, for the coach (brief A3) */
+    function marksText(res, noStart) {
+      var out = ['MARKS THE PAGE GAVE (the answer, its unit and its direction share one mark)'];
+      if (noStart) out.push('No attempt yet: the learner tapped "I don\'t know where to start".');
+      res.forEach(function (x, k) {
+        var pk = it.parts[k], nm = partName(pk, k);
+        if (!x.answered && (pk.kind === 'mcq' || !(state[k].sub && state[k].sub.value.trim()))) { out.push(nm + ' Not attempted.'); return; }
+        if (pk.kind === 'mcq') { out.push(nm + ' Option picked: ' + (x.right ? 'right.' : 'not right.')); return; }
+        var line = nm + ' ' + x.got + ' of ' + x.of + '.';
+        if (pk.forms.length) {
+          line += ' Formula: ' + (x.form === 'ok' ? 'accepted, mark given.' : x.form === 'bad' ? 'not accepted, no mark.' : x.form === 'fp' ? (x.formMark ? 'first principles, no formula needed: mark given.' : 'not written (first principles allowed).') : 'not written.');
+          line += ' Substitution: ' + (x.subs === 'ok' ? 'right, mark given.' : x.subs === 'bad' ? 'not right, no mark.' : 'not written.');
+        }
+        line += ' Answer with unit' + (pk.vec && axis ? ' and direction' : '') + ': ' + (x.ansMark ? (x.carried ? 'mark given (follows correctly from an earlier answer).' : 'mark given.') : 'no mark.');
+        out.push(line);
+      });
+      var notes = [];
+      res.forEach(function (x, k) { var all = (x.trap ? [x.trap.msg] : []).concat(x.notes); if (all.length) notes.push(partName(it.parts[k], k) + ' ' + all.join(' ')); });
+      if (notes.length) out.push('', 'NOTES SHOWN UNDER EACH PART'), out.push.apply(out, notes);
+      return out.join('\n');
+    }
+    function ladder(to, res, noStart) {
       rung = Math.max(rung, to); msg.innerHTML = '';
       res = res || markAll();
+      noStart = (noStart || startMode) && !res.some(function (x) { return x.answered; });
       var firstBad = res.map(function (r, k) { return r.right ? -1 : k; }).filter(function (k) { return k >= 0; })[0];
       var p = it.parts[firstBad], r = res[firstBad];
       var c = h('div', { class: 'warnc ladder' });
       if (rung >= 0) {
-        var rights = res.map(function (x, k) { var pk = it.parts[k], e = ex[pk.key]; return x.right ? partName(pk, k) + (pk.kind === 'calc' ? ' ' + (pk.vec && axis ? n2(Math.abs(e)) + ' ' + pk.unit + ' ' + axis[e >= 0 ? 0 : 1] : n2(e) + ' ' + pk.unit) : '') : null; }).filter(Boolean);
-        c.appendChild(h('p', {}, [h('b', { text: 'Right: ' }), document.createTextNode(rights.length ? rights.join('; ') + '.' : 'nothing yet, and that is fine.')]));
-        c.appendChild(h('p', {}, [h('b', { text: 'First gap, ' + partName(p, firstBad) + ': ' }), document.createTextNode(r.trap ? r.trap.msg : r.notes[0] || (p.kind === 'mcq' ? 'That option is not right.' : 'Check the value and its unit.'))]));
-        c.appendChild(h('p', {}, [h('b', { text: 'Next: ' }), document.createTextNode(r.trap ? 'fix that, then try again.' : 'look at ' + partName(p, firstBad) + ' again, then try again.')]));
+        var rights = res.map(function (x, k) { var pk = it.parts[k]; return x.right ? (x.carried && k > 0 ? partName(pk, k) + ' follows correctly from your ' + partName(it.parts[k - 1], k - 1) : partName(pk, k) + typed(pk, state[k])) : null; }).filter(Boolean);
+        var partial = res.map(function (x, k) { if (x.right || !x.got || it.parts[k].kind !== 'calc') return null; var bits = []; if (x.formMark) bits.push('formula'); if (x.subs === 'ok') bits.push('substitution'); return bits.length ? 'your ' + bits.join(' and ') + ' in ' + partName(it.parts[k], k) : null; }).filter(Boolean);
+        var rightTxt = rights.length ? rights.join('; ') + '.' : partial.length ? null : 'nothing yet, and that is fine.';
+        if (rightTxt) c.appendChild(h('p', {}, [h('b', { text: 'Right: ' }), document.createTextNode(rightTxt)]));
+        if (partial.length) c.appendChild(h('p', {}, [h('b', { text: 'Right so far: ' }), document.createTextNode(partial.join('; ') + '.')]));
+        var gapTxt = noStart ? 'You have not started yet.' : r.trap ? r.trap.msg : r.notes[0] || (p.kind === 'mcq' ? 'That option is not right.' : 'Check the value and its unit.');
+        c.appendChild(h('p', {}, [h('b', { text: (noStart ? 'Where to start, ' : 'First gap, ') + partName(p, firstBad) + ': ' }), document.createTextNode(gapTxt)]));
+        c.appendChild(h('p', {}, [h('b', { text: 'Next: ' }), document.createTextNode(noStart ? 'use the hint below to write the first line, then try.' : r.trap ? 'fix that, then try again.' : 'look at ' + partName(p, firstBad) + ' again, then try again.')]));
       }
       if (rung >= 1 && p.hint1) c.appendChild(h('p', {}, [h('b', { text: 'Look at this: ' }), document.createTextNode(p.hint1)]));
       if (rung >= 2 && p.hint2) c.appendChild(h('p', {}, [h('b', { text: 'The equation: ' }), document.createTextNode(p.hint2)]));
@@ -254,7 +297,7 @@
       if (rung >= 0 && rung < 3 && window.Coach && window.Coach.on() && !box.querySelector('.coach')) {
         var cb = h('button', { class: 'btn ghost', text: 'Talk it through with the coach', onclick: function () {
           cb.remove();
-          window.Coach.open(box, { h: h, code: (it.gen || '') + ':' + (it.seed || ''), pack: (B.pack || 'circuits') + '-' + (it.topic || ''), stem: it.stem, rung: rung, feedback: c.innerText,
+          window.Coach.open(box, { h: h, code: (it.gen || '') + ':' + (it.seed || ''), pack: (B.pack || 'circuits') + '-' + (it.topic || ''), stem: it.stem, rung: rung, start: noStart, feedback: c.innerText + '\n\n' + marksText(res, noStart),
             worked: it.parts.map(function (pp, k) { return '(' + L[k] + ') ' + pp.ask + '\n' + (pp.kind === 'mcq' ? 'Right option: ' + pp.opts.filter(function (o) { return o.ok; })[0].t : (pp.work || []).join('\n')); }).join('\n\n'),
             learner: (posSel ? 'Positive direction: ' + (posSel.value === '' ? 'not chosen' : axis[+posSel.value]) + '\n' : '') + state.map(function (st, k) {
               var pp = it.parts[k];
@@ -292,7 +335,7 @@
     }
     if (mode === 'practice') {
       bar.appendChild(h('button', { class: 'btn', text: 'Check', onclick: submit }));
-      bar.appendChild(h('button', { class: 'btn ghost', text: 'I don’t know where to start', onclick: function () { wrong++; ladder(1); } }));
+      bar.appendChild(h('button', { class: 'btn ghost', text: 'I don’t know where to start', onclick: function () { wrong++; startMode = true; ladder(1, null, true); } }));
     }
     return {
       /* check mode: mark, show the marks and the worked answer; no ladder */

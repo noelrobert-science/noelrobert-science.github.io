@@ -48,6 +48,9 @@ MR R'S MARKING (how the app and Mr R mark calculations)
 - Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R's marking)
 - Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners' Report 2024, Paper 1)
 - Round final answers to 2 decimal places; use a decimal comma. (Mr R's marking)
+- A correct formula from the formula sheet earns the formula mark on its own, even before it is rearranged (R = V/I when V is asked) and even when the substitution is wrong. Never call it wrong. (Mr R's marking)
+- The answer, its unit and (for a vector) its direction share ONE mark. (Mr R's marking)
+- Adding or subtracting currents or pds is first principles: there is no formula-sheet formula for it, so a blank formula line costs nothing there. Full marks come from a correct principle, substitution and answer. RS = R1 + R2 chosen on such a part is accepted: never call it wrong. (Mr R's marking)
 
 EXAMINERS' COMMENTS, PAPER 1 (copied word for word from the IEB NSC Examiners' Reports 2017-2025; a few formulas did not copy cleanly from the PDFs: never quote a formula from this section, only the words)
 - IEB Examiners' Report 2017, Paper 1, Question 7 (word for word): ELECTRIC CIRCUITS This question was very well-answered by the majority of candidates. Candidates must learn definitions as stated in the SAGs and ensure they use the correct units for the quantities being calculated. Most candidates who attempted to answer the question using ratios based on the values of the resistors made errors. Please encourage candidates to work from first principles and use the equations supplied on the data sheet correctly.

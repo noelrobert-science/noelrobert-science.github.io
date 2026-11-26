@@ -95,7 +95,10 @@ MARKING = ["MR R'S MARKING (how the app and Mr R mark calculations)",
  '- Every calculation: formula ✓, substitution ✓, answer with unit ✓. A correct formula and substitution earn marks even when the answer is wrong. (Mr R\'s marking)',
  '- Follow-through: a wrong answer carried correctly into the next part is not punished twice. (Mr R\'s marking)',
  '- Start every calculation with a formula: "It is best practice to begin each calculation with an appropriate formula, which will be used to solve the problem." (IEB Examiners\' Report 2024, Paper 1)',
- '- Round final answers to 2 decimal places; use a decimal comma. (Mr R\'s marking)']
+ '- Round final answers to 2 decimal places; use a decimal comma. (Mr R\'s marking)',
+ '- A correct formula from the formula sheet earns the formula mark on its own, even before it is rearranged (R = V/I when V is asked) and even when the substitution is wrong. Never call it wrong. (Mr R\'s marking)',
+ '- The answer, its unit and (for a vector) its direction share ONE mark. (Mr R\'s marking)',
+ '- Adding or subtracting currents or pds is first principles: there is no formula-sheet formula for it, so a blank formula line costs nothing there. Full marks come from a correct principle, substitution and answer. RS = R1 + R2 chosen on such a part is accepted: never call it wrong. (Mr R\'s marking)']
 VEC = ['- Vectors: the learner chooses the positive direction first. The answer is a size, a unit and a direction, even when it is positive. Never a negative and a direction on the same line: the negative result on its own line, then the size with what the negative means. (Mr R\'s marking)']
 
 def write(name, parts):
