@@ -63,7 +63,7 @@
     var mTxt = grams ? nice(m * 1000) + ' g' : nice(m) + ' kg', vTxt = kmh ? nice(v * 3.6) + ' km·h⁻¹' : nice(v) + ' ' + VU;
     var traps = [];
     if (grams) traps.push(T(m * 1000 * v * (west ? -1 : 1), 'Change grams to kilograms first: ÷ 1 000.'));
-    if (kmh) traps.push(T(m * v * 3.6 * (west ? -1 : 1), 'Change km·h⁻¹ to m·s⁻¹ first: ÷ 3,6.'));
+    if (kmh) traps.push(T(m * v * 3.6 * (west ? -1 : 1), 'The formula needs m·s⁻¹: km·h⁻¹ ÷ 3,6 gives m·s⁻¹.'));
     return { stem: name + ' of mass ' + mTxt + ' moves at ' + vTxt + ' ' + (west ? 'west' : 'east') + '.', axis: EW,
       data: { k: 'p', m: m, v: v * (west ? -1 : 1) },
       scene: { rows: [{ label: 'Now', objs: [{ n: name.replace(/^An? /, ''), m: mTxt, v: vTxt, d: west ? -1 : 1 }] }] },
@@ -117,7 +117,7 @@
     var stem = 'A crash-test dummy of mass ' + nice(m) + ' kg moves forwards at ' + uTxt + '. In a crash it is brought to rest by an airbag in ' + nice(dt) + ' s.';
     var parts = [
       C('a', 'Calculate the change in momentum of the dummy.', PU, ['dp'], function () { return dp; }, {
-        vec: true, qty: 'change in momentum', unitAlt: ['N·s'], traps: [T(m * u, 'Δp = final − initial. The final momentum is zero, so Δp points backwards.')].concat(kmh ? [T(m * (0 - u * 3.6), 'Change km·h⁻¹ to m·s⁻¹ first: ÷ 3,6.')] : []),
+        vec: true, qty: 'change in momentum', unitAlt: ['N·s'], traps: [T(m * u, 'Δp = final − initial. The final momentum is zero, so Δp points backwards.')].concat(kmh ? [T(m * (0 - u * 3.6), 'The formula needs m·s⁻¹: km·h⁻¹ ÷ 3,6 gives m·s⁻¹.')] : []),
         hint1: 'The dummy ends at rest, so its final momentum is zero.',
         hint2: 'Δp = m(vf − vi) = ' + nice(m) + '(0 − ' + nice(u) + ') (forwards positive)',
         work: ['Take forwards as positive.', 'Δp = m(vf − vi)', '= ' + nice(m) + '(0 − ' + nice(u) + ')'].concat(vecEnd('Δp', dp, PU, ax)) }),

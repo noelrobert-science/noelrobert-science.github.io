@@ -17,7 +17,7 @@ COMMON SLIPS the practice engine names (Mr R's practice engine)
 - The ball changes direction: the rebound velocity has the opposite sign.
 - Force is Δp ÷ Δt: divide, do not multiply.
 - Change grams to kilograms first: ÷ 1 000.
-- Change km·h⁻¹ to m·s⁻¹ first: ÷ 3,6.
+- The formula needs m·s⁻¹: km·h⁻¹ ÷ 3,6 gives m·s⁻¹.
 - Change milliseconds to seconds first: ÷ 1 000.
 - If a learner picks "It is the same: the change in momentum is the same": Same Δp, but Fnet = Δp/Δt: less time means a larger force.
 - If a learner picks "It is smaller: the dummy stops more quickly": Stopping more quickly means a smaller Δt, so a larger force.

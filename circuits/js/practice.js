@@ -91,7 +91,7 @@
     box.appendChild(h('p', { class: 'stem', text: it.stem }));
     var pic = B.picture(it, g, h); if (pic) box.appendChild(pic);
     var forms = Gx.formsFor(g), state = it.parts.map(function () { return {}; }), wrong = 0, rung = -1, done = false;
-    var ex = Gx.exact(it);
+    var ex = Gx.exact(it), exR = Gx.exactRaw ? Gx.exactRaw(it) : ex;
     /* vectors (Noel's rule, 25 Nov 2026): the learner chooses the positive direction first; the answer is a size, a unit
        and a direction, never a negative with a direction on one line. Exact values are signed with it.axis[0] positive. */
     var axis = it.axis, posSel = null;
@@ -146,11 +146,14 @@
         return r;
       }
       var a = readNum(st.ans.value), unit = st.unit.value, exp = ex[p.key], ft = p.f(v);
+      /* a rounded or a full-precision chain both count (E1) */
+      var alt = [exR[p.key], Gx.raw ? Gx.raw(function () { return p.f(v); }) : ft];
+      function okv(x) { return close(x, exp) || close(x, ft) || alt.some(function (y) { return close(x, y); }); }
       r.answered = !a.empty;
       if (a.frac) r.notes.push('Write the answer as a decimal.');
       if (a.bad) r.notes.push('Type the answer as a number, for example 1,50.');
       if (p.vec && axis) return markVec(p, st, v, r, a, unit, exp, ft);
-      var val = a.v, valOk = val != null && (close(val, exp) || close(val, ft));
+      var val = a.v, valOk = val != null && okv(val);
       if (val != null) v[p.key] = val;
       var unitOk = unit === p.unit || (p.unitAlt || []).indexOf(unit) >= 0;
       if (valOk && !unitOk) r.notes.push(unit ? 'The unit is ' + (UNIT_NAME[p.unit] || p.unit) + ', not ' + unit + '.' : 'Give the unit: ' + (UNIT_NAME[p.unit] || p.unit) + '.');
@@ -159,7 +162,7 @@
       var ansMark = valOk && unitOk;
       if (p.forms.length) {
         var sv = st.sub.value.trim() ? evalExpr(st.sub.value) : null, fid = st.sel.value, fm = Gx.FORM.filter(function (f) { return f.id === fid; })[0];
-        var subsOk = sv != null && (close(sv, exp) || close(sv, ft) || p.inter.some(function (x) { return close(sv, x); }));
+        var subsOk = sv != null && (okv(sv) || p.inter.some(function (x) { return close(sv, x); }));
         var formOk = !!fm && p.forms.indexOf(fm.grp) >= 0;
         if (st.sub.value.trim() && sv == null) r.notes.push('Put numbers into the substitution line, not symbols: for example 12/(4 + 4).');
         if (fid && !formOk) r.notes.push('That formula does not lead to this answer: ' + Gx.formText(fm, it.g) + '.');
@@ -174,7 +177,7 @@
         r.got = (r.formMark ? 1 : 0) + (subsOk ? 1 : 0) + (ansMark ? 1 : 0);
       } else r.got = ansMark ? 1 : 0;
       r.ansMark = ansMark; r.right = ansMark;
-      r.carried = valOk && !close(val, exp) && close(val, ft);
+      r.carried = valOk && !close(val, exp) && !close(val, alt[0]);
       r.exp = exp;
       return r;
     }

@@ -1983,7 +1983,7 @@
   "id": "momentum-M1-trap-11",
   "kind": "mistake",
   "pack": "momentum-M1",
-  "expectGap": "the answer line, the named slip: Change km·h⁻¹ to m·s⁻¹ first: ÷ 3,6. (the formula and substitution lines are right)",
+  "expectGap": "the answer line, the named slip: The formula needs m·s⁻¹: km·h⁻¹ ÷ 3,6 gives m·s⁻¹. (the formula and substitution lines are right)",
   "question": {
    "code": "stop:1106",
    "stem": "A crash-test dummy of mass 65 kg moves forwards at 72 km·h⁻¹. In a crash it is brought to rest by an airbag in 0,2 s.",

@@ -11,6 +11,8 @@
   function nice(x) { return String(+(+x).toFixed(4)).replace('.', ',').replace('-', '−'); }
   function u(x, unit, dp) { return n(x, dp) + ' ' + unit; }
   function rngOf(seed) { var r = N.mulberry32(seed >>> 0); return { f: r, pick: function (a) { return a[Math.floor(r() * a.length)]; }, int: function (a, b) { return a + Math.floor(r() * (b - a + 1)); } }; }
+  var RAW = false;
+  function rd(x) { return RAW ? x : +F.round(x); }   /* the value as printed: later lines work from it (brief E1, 26 Nov 2026) */
   function sum(a) { return a.reduce(function (s, x) { return s + x; }, 0); }
   function par(a) { return 1 / sum(a.map(function (x) { return 1 / x; })); }
   /* a value is usable when it does not sit on a rounding half and does not round to zero */
@@ -102,6 +104,9 @@
 
   /* exact values of every calc part, in order, from the item's own functions */
   function exact(item) { var v = {}; item.parts.forEach(function (p) { if (p.kind === 'calc') v[p.key] = p.f(v); }); return v; }
+  /* the same chain without rounding between parts, so a learner who carries full precision is marked right too (E1) */
+  function raw(fn) { RAW = true; try { return fn(); } finally { RAW = false; } }
+  function exactRaw(item) { return raw(function () { return exact(item); }); }
 
   var E12 = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30];
   var EMF = [3, 4.5, 6, 9, 12, 18, 24];
@@ -158,26 +163,26 @@
   G('series', { topic: 'T3', grades: [10, 11, 12], title: 'Resistors in series', sags: ['P-E1.6'], make: function (R, g, s) {
     var k = s >= 2 ? R.pick([2, 3]) : 2, Rs = [], i;
     for (i = 0; i < k; i++) Rs.push(R.pick(E12.slice(0, 9)));
-    var emf = R.pick(EMF), RS = sum(Rs), I = emf / RS, V1 = I * Rs[0];
+    var emf = R.pick(EMF), RS = sum(Rs), I = emf / RS, V1 = rd(I) * Rs[0];
     if (!okI(I) || !clean(I) || !clean(V1)) return null;
     var list = Rs.map(nice).join(' Ω, ') + ' Ω';
     var parts = [
       C('a', 'Calculate the total resistance of the circuit.', 'Ω', ['ser'], function () { return RS; }, { traps: [T(par(Rs), 'That is the parallel rule. In series, add.'), T(1 / RS, 'In series, add the resistances: RS = R1 + R2 + …')], hint1: 'The same current passes through every resistor, one after the other.', hint2: 'RS = ' + Rs.map(nice).join(' + '), work: ['RS = R1 + R2' + (k > 2 ? ' + R3' : ''), '= ' + Rs.map(nice).join(' + '), '= ' + u(RS, 'Ω')] }),
       C('b', 'Calculate the reading on the ammeter.', 'A', ['ohm'], function (v) { return emf / v.a; }, { traps: [T(emf / Rs[0], 'Use the total resistance of the circuit, not one resistor.', 'X5')], hint1: 'The ammeter reads the current through the whole circuit.', hint2: 'I = V/R = ' + nice(emf) + '/RS', work: ['I = V/R', '= ' + nice(emf) + '/' + n(RS), '= ' + u(I, 'A')] })];
-    if (s >= 2) parts.push(C('c', 'Calculate the pd across R1.', 'V', ['ohm'], function (v) { return v.b * Rs[0]; }, { traps: [T(emf, 'The resistors share the emf: V1 = IR1.', 'X13')], hint1: 'R1 carries the circuit current.', hint2: 'V = IR = I × ' + nice(Rs[0]), work: ['V = IR', '= ' + n(I) + ' × ' + nice(Rs[0]), '= ' + u(V1, 'V')] }));
-    return { stem: 'Resistors of ' + list + ' are connected in series to a battery of emf ' + nice(emf) + ' V. ' + idealNote(g, 0), spec: seriesSpec(emf, 0, Rs), hide: { A: 1 }, parts: parts };
+    if (s >= 2) parts.push(C('c', 'Calculate the pd across R1.', 'V', ['ohm'], function (v) { return rd(v.b) * Rs[0]; }, { traps: [T(emf, 'The resistors share the emf: V1 = IR1.', 'X13')], hint1: 'R1 carries the circuit current.', hint2: 'V = IR = I × ' + nice(Rs[0]), work: ['V = IR', '= ' + n(I) + ' × ' + nice(Rs[0]), '= ' + u(V1, 'V')] }));
+    return { stem: 'Resistors of ' + list + ' are connected in series to a battery of emf ' + nice(emf) + ' V. ' + idealNote(g, 0), spec: seriesSpec(emf, 0, Rs), hide: { A: 1 }, roundedChain: true, parts: parts };
   } });
 
   G('parallel', { topic: 'T3', grades: [10, 11, 12], title: 'Resistors in parallel', sags: ['P-E1.6'], make: function (R, g, s) {
     var k = s >= 3 ? 3 : 2, Rs = [];
     for (var i = 0; i < k; i++) Rs.push(R.pick([3, 4, 6, 8, 10, 12, 15, 20, 30]));
-    var emf = R.pick(EMF), RP = par(Rs), I = emf / RP, I1 = emf / Rs[0];
+    var emf = R.pick(EMF), RP = par(Rs), I = emf / rd(RP), I1 = emf / Rs[0];
     if (!clean(RP) || !clean(1 / RP) || !okI(I) || !clean(I) || !clean(I1)) return null;
     var parts = [
       C('a', 'Calculate the total resistance of the resistors.', 'Ω', ['par'], function () { return RP; }, { inter: [1 / RP], traps: [T(1 / RP, 'That is 1/RP. Now take the reciprocal.'), T(sum(Rs), 'That is the series rule. In parallel, add the reciprocals.'), T(sum(Rs) / k, 'Not the average: add the reciprocals.')], hint1: 'Each resistor is another path for the current, so RP is smaller than the smallest resistor.', hint2: '1/RP = ' + Rs.map(function (x) { return '1/' + nice(x); }).join(' + '), work: ['1/RP = ' + Rs.map(function (x, j) { return '1/R' + (j + 1); }).join(' + '), '= ' + Rs.map(function (x) { return '1/' + nice(x); }).join(' + '), '1/RP = ' + n(1 / RP, 3) + ' Ω⁻¹, so RP = ' + u(RP, 'Ω')] }),
       C('b', 'Calculate the current through R1.', 'A', ['ohm'], function () { return emf / Rs[0]; }, { traps: [T(I / k, 'The current does not split equally unless the branches are equal: use I = V/R for this branch.'), T(I, 'That is the total current. Each branch has the full pd across it.', 'X5')], hint1: 'What is the pd across each branch?', hint2: 'I1 = V/R1 = ' + nice(emf) + '/' + nice(Rs[0]), work: ['I = V/R', '= ' + nice(emf) + '/' + nice(Rs[0]), '= ' + u(I1, 'A')] })];
-    if (s >= 2) parts.push(C('c', 'Calculate the reading on the ammeter.', 'A', ['ohm'], function (v) { return emf / v.a; }, { traps: [T(I1, 'The ammeter carries the current of every branch.', 'X5')], hint1: 'The ammeter is in the main line.', hint2: 'I = V/RP = ' + nice(emf) + '/RP', work: ['I = V/R', '= ' + nice(emf) + '/' + n(RP), '= ' + u(I, 'A')] }));
-    return { stem: 'Resistors of ' + Rs.map(nice).join(' Ω, ') + ' Ω are connected in parallel to a battery of emf ' + nice(emf) + ' V. ' + idealNote(g, 0), spec: parallelSpec(emf, 0, Rs), hide: { A: 1 }, parts: parts };
+    if (s >= 2) parts.push(C('c', 'Calculate the reading on the ammeter.', 'A', ['ohm'], function (v) { return emf / rd(v.a); }, { traps: [T(I1, 'The ammeter carries the current of every branch.', 'X5')], hint1: 'The ammeter is in the main line.', hint2: 'I = V/RP = ' + nice(emf) + '/RP', work: ['I = V/R', '= ' + nice(emf) + '/' + n(RP), '= ' + u(I, 'A')] }));
+    return { stem: 'Resistors of ' + Rs.map(nice).join(' Ω, ') + ' Ω are connected in parallel to a battery of emf ' + nice(emf) + ' V. ' + idealNote(g, 0), spec: parallelSpec(emf, 0, Rs), hide: { A: 1 }, roundedChain: true, parts: parts };
   } });
 
   function comboVals(R, g, withR) {
@@ -193,23 +198,24 @@
       C('b', 'Calculate the total resistance of the circuit.', 'Ω', ['ser'], function (v) { return c.Rs + v.a; }, { traps: [T(par([c.Rs, c.pr[0], c.pr[1]]), 'R1 is in series with the pair: add it.'), T(c.Rs + c.pr[0] + c.pr[1], 'Use RP for the pair, then add R1.')], hint1: 'Which resistor carries the whole current?', hint2: 'R = R1 + RP = ' + nice(c.Rs) + ' + RP', work: ['R = R1 + RP', '= ' + nice(c.Rs) + ' + ' + n(c.RP), '= ' + u(c.Rs + c.RP, 'Ω')] })];
     if (s >= 2) parts.push(C('c', 'Calculate the reading on A1.', 'A', ['ohm'], function (v) { return c.emf / v.b; }, { traps: [T(c.emf / c.Rs, 'You used only the series resistor. Use the total resistance.'), T(c.emf / c.RP, 'You used only the pair. Use the total resistance.')], hint1: 'A1 is in the main line: it carries the current from the battery.', hint2: 'I = V/R = ' + nice(c.emf) + '/R', work: ['I = V/R', '= ' + nice(c.emf) + '/' + n(c.Rs + c.RP), '= ' + u(c.I, 'A')] }));
     if (s >= 3) {
-      parts.push(C('d', 'Calculate the pd across R3.', 'V', ['ohm'], function (v) { return v.c * v.a; }, { traps: [T(c.emf, 'R1 takes part of the pd. Use V = IR for the pair.', 'X13'), T(c.I * c.Rs, 'That is the pd across R1.', 'X5')], hint1: 'R3 has the same pd as the pair. Which current passes through the pair as a whole?', hint2: 'Vpair = I × RP', work: ['V = IR', '= ' + n(c.I) + ' × ' + n(c.RP), '= ' + u(c.Vp, 'V')] }));
-      parts.push(C('e', 'Calculate the current through R3.', 'A', ['ohm'], function (v) { return v.d / c.pr[1]; }, { traps: [T(c.I / 2, 'The current splits in inverse ratio, not in half.'), T(c.I, 'That is the total current.', 'X5')], hint1: 'Use the pd across R3 and its own resistance.', hint2: 'I3 = V3/R3 = V3/' + nice(c.pr[1]), work: ['I = V/R', '= ' + n(c.Vp) + '/' + nice(c.pr[1]), '= ' + u(c.Ib, 'A')] }));
+      parts.push(C('d', 'Calculate the pd across R3.', 'V', ['ohm'], function (v) { return rd(v.c) * rd(v.a); }, { traps: [T(c.emf, 'R1 takes part of the pd. Use V = IR for the pair.', 'X13'), T(c.I * c.Rs, 'That is the pd across R1.', 'X5')], hint1: 'R3 has the same pd as the pair. Which current passes through the pair as a whole?', hint2: 'Vpair = I × RP', work: ['V = IR', '= ' + n(c.I) + ' × ' + n(c.RP), '= ' + u(rd(c.I) * rd(c.RP), 'V')] }));
+      parts.push(C('e', 'Calculate the current through R3.', 'A', ['ohm'], function (v) { return rd(v.d) / c.pr[1]; }, { traps: [T(c.I / 2, 'The current splits in inverse ratio, not in half.'), T(c.I, 'That is the total current.', 'X5')], hint1: 'Use the pd across R3 and its own resistance.', hint2: 'I3 = V3/R3 = V3/' + nice(c.pr[1]), work: ['I = V/R', '= ' + n(rd(c.I) * rd(c.RP)) + '/' + nice(c.pr[1]), '= ' + u(rd(rd(c.I) * rd(c.RP)) / c.pr[1], 'A')] }));
     }
-    return { stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel. The battery’s emf is ' + nice(c.emf) + ' V. ' + idealNote(g, 0), spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1]), hide: { A1: 1 }, parts: parts };
+    return { stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel. The battery’s emf is ' + nice(c.emf) + ' V. ' + idealNote(g, 0), spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1]), hide: { A1: 1 }, roundedChain: true, parts: parts };
   } });
 
   G('share', { topic: 'T3', grades: [10, 11, 12], title: 'Where the volts go', sags: ['P-E1.6'], make: function (R, g, s) {
     var c = comboVals(R, g, false); if (!c) return null;
-    return { stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel, on a ' + nice(c.emf) + ' V battery. ' + idealNote(g, 0) + ' A1 reads ' + u(c.I, 'A') + '.', spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1], { v2: 1, v3: 1 }), hide: { V2: 1, V3: 1 }, parts: [
-      C('a', 'Calculate the reading on V2 (across R1).', 'V', ['ohm'], function () { return c.I * c.Rs; }, { traps: [T(c.emf * c.Rs / (c.Rs + c.pr[0] + c.pr[1]), 'A ratio guess using all three resistors. Use V = IR with A1’s current.', 'X13')], hint1: 'R1 carries the whole current.', hint2: 'V2 = I × R1 = ' + n(c.I) + ' × ' + nice(c.Rs), work: ['V = IR', '= ' + n(c.I) + ' × ' + nice(c.Rs), '= ' + u(c.I * c.Rs, 'V')] }),
-      C('b', 'Calculate the reading on V3 (across the pair).', 'V', ['ohm', 'ser'], function (v) { return c.emf - v.a; }, { fp: true, traps: [T(c.emf, 'R1 takes part of the emf.', 'X13'), T(c.emf / 2, 'The pd does not split in half: the pds in series add up to the emf.', 'X13')], hint1: 'The pds around the loop add up to the emf.', hint2: 'V3 = emf − V2', work: ['emf = V2 + V3', 'V3 = ' + nice(c.emf) + ' − ' + n(c.I * c.Rs), '= ' + u(c.Vp, 'V')] })] };
+    var Ip = rd(c.I), V2 = rd(Ip * c.Rs), V3 = rd(c.emf - V2);
+    return { roundedChain: true, stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel, on a ' + nice(c.emf) + ' V battery. ' + idealNote(g, 0) + ' A1 reads ' + u(c.I, 'A') + '.', spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1], { v2: 1, v3: 1 }), hide: { V2: 1, V3: 1 }, parts: [
+      C('a', 'Calculate the reading on V2 (across R1).', 'V', ['ohm'], function () { return V2; }, { traps: [T(c.emf * c.Rs / (c.Rs + c.pr[0] + c.pr[1]), 'A ratio guess using all three resistors. Use V = IR with A1’s current.', 'X13')], hint1: 'R1 carries the whole current.', hint2: 'V2 = I × R1 = ' + n(c.I) + ' × ' + nice(c.Rs), work: ['V = IR', '= ' + n(Ip) + ' × ' + nice(c.Rs), '= ' + u(V2, 'V')] }),
+      C('b', 'Calculate the reading on V3 (across the pair).', 'V', ['ohm', 'ser'], function (v) { return c.emf - rd(v.a); }, { fp: true, traps: [T(c.emf, 'R1 takes part of the emf.', 'X13'), T(c.emf / 2, 'The pd does not split in half: the pds in series add up to the emf.', 'X13')], hint1: 'The pds around the loop add up to the emf.', hint2: 'V3 = emf − V2', work: ['emf = V2 + V3', 'V3 = ' + nice(c.emf) + ' − ' + n(V2), '= ' + u(V3, 'V')] })] };
   } });
 
   G('chainback', { topic: 'T3', grades: [10, 11, 12], title: 'From one branch current to the emf', sags: ['P-E1.6', 'P-E3.4'], make: function (R, g, s) {
     var withR = g >= 11 && s >= 2, c = comboVals(R, g, withR); if (!c) return null;
     /* every printed line is true: each step works from the rounded value printed on the line before (brief A6, 26 Nov 2026) */
-    var rd = function (x) { return +F.round(x); }, R2 = c.pr[0], R3 = c.pr[1];
+    var R2 = c.pr[0], R3 = c.pr[1];
     var Ia = rd(c.Ia), Va = rd(Ia * R2), Ib = rd(Va / R3), It = rd(Ia + Ib), Vd = rd(It * c.Rs), Ir = rd(It * c.r), E = withR ? rd(Vd + Va + Ir) : rd(Vd + Va);
     var parts = [
       C('a', 'Calculate the pd across R2.', 'V', ['ohm'], function () { return Va; }, { hint1: 'A2 tells you the current in R2.', hint2: 'V = IR = ' + n(Ia) + ' × ' + nice(R2), work: ['V = IR', '= ' + n(Ia) + ' × ' + nice(R2), '= ' + u(Va, 'V')] }),
@@ -245,9 +251,10 @@
   G('matched', { topic: 'T3', grades: [10, 11, 12], title: 'Matched values', sags: ['P-E1.6', 'P-E2.1'], make: function (R, g, s) {
     var c = comboVals(R, g, false); if (!c) return null;
     var spec = comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1], { a2: 1, v3: 1, v1: 1 });
-    return { stem: 'Use the meter readings on the circuit. ' + idealNote(g, 0), spec: spec, hideR: ['R3'], parts: [
-      C('a', 'Calculate the current through R3.', 'A', ['ser'], function () { return c.I - c.Ia; }, { fp: true, traps: [T(c.I, 'That is the current in the main line.', 'X5'), T(c.Ia, 'That is the current in R2.', 'X5')], hint1: 'The current in the main line splits between R2 and R3.', hint2: 'I3 = A1 − A2', work: ['I3 = I − I2', '= ' + n(c.I) + ' − ' + n(c.Ia), '= ' + u(c.Ib, 'A')] }),
-      C('b', 'Calculate the resistance of R3.', 'Ω', ['ohm'], function (v) { return c.Vp / v.a; }, { traps: [T(c.Vp / c.I, 'Matched values: V3 belongs with R3’s own current, not A1’s.', 'X5'), T(c.emf / c.Ib, 'R3’s pd is V3, not the emf.', 'X5')], hint1: 'Use the pd across R3 and the current through R3: both must belong to R3.', hint2: 'R3 = V3/I3 = ' + n(c.Vp) + '/I3', work: ['R = V/I', '= ' + n(c.Vp) + '/' + n(c.Ib), '= ' + u(c.pr[1], 'Ω')] })] };
+    var mI = rd(c.I), mIa = rd(c.Ia), mV = rd(c.Vp), mIb = rd(mI - mIa), mR = rd(mV / mIb);   /* from the meter readings as shown */
+    return { stem: 'Use the meter readings on the circuit. ' + idealNote(g, 0), spec: spec, hideR: ['R3'], roundedChain: true, parts: [
+      C('a', 'Calculate the current through R3.', 'A', ['ser'], function () { return mIb; }, { fp: true, traps: [T(c.I, 'That is the current in the main line.', 'X5'), T(c.Ia, 'That is the current in R2.', 'X5')], hint1: 'The current in the main line splits between R2 and R3.', hint2: 'I3 = A1 − A2', work: ['I3 = I − I2', '= ' + n(mI) + ' − ' + n(mIa), '= ' + u(mIb, 'A')] }),
+      C('b', 'Calculate the resistance of R3.', 'Ω', ['ohm'], function (v) { return mV / rd(v.a); }, { traps: [T(c.Vp / c.I, 'Matched values: V3 belongs with R3’s own current, not A1’s.', 'X5'), T(c.emf / c.Ib, 'R3’s pd is V3, not the emf.', 'X5')], hint1: 'Use the pd across R3 and the current through R3: both must belong to R3.', hint2: 'R3 = V3/I3 = ' + n(c.Vp) + '/I3', work: ['R = V/I', '= ' + n(mV) + '/' + n(mIb), '= ' + u(mR, 'Ω')] })] };
   } });
 
   G('openV', { topic: 'T7', grades: [10, 11, 12], title: 'Readings with a switch open', sags: ['P-E3.1'], make: function (R, g, s) {
@@ -267,9 +274,10 @@
       return { stem: 'A current of ' + nice(I) + ' A flows through a ' + nice(Rv) + ' Ω resistor.', parts: [C('a', 'Calculate the power of the resistor.', 'W', ['pow'], function () { return I * I * Rv; }, { traps: [T(I * Rv, 'That is the pd. P = I²R: square the current.'), T(2 * I * Rv, 'Square the current; do not double it.')], hint1: 'You know I and R: which power equation uses those?', hint2: 'P = I²R = ' + nice(I) + '² × ' + nice(Rv), work: ['P = I²R', '= (' + nice(I) + ')² × ' + nice(Rv), '= ' + u(P, 'W')] })] };
     }
     var c = comboVals(R, g, false); if (!c) return null;
-    return { stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel. A1 reads ' + u(c.I, 'A') + '. The emf is ' + nice(c.emf) + ' V. ' + idealNote(g, 0), spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1]), parts: [
-      C('a', 'Calculate the pd across R3.', 'V', ['ohm', 'ser'], function () { return c.Vp; }, { fp: true, traps: [T(c.emf, 'R1 takes part of the emf. Use the pd across this part.', 'X13')], hint1: 'First the pd across R1, then what is left for the pair.', hint2: 'Vpair = emf − I × R1', work: ['V1 = IR1 = ' + n(c.I) + ' × ' + nice(c.Rs) + ' = ' + u(c.I * c.Rs, 'V'), 'Vpair = ' + nice(c.emf) + ' − ' + n(c.I * c.Rs) + ' = ' + u(c.Vp, 'V')] }),
-      C('b', 'Calculate the power of R3.', 'W', ['pow'], function (v) { return v.a * v.a / c.pr[1]; }, { traps: [T(c.emf * c.emf / c.pr[1], 'Use the pd across this part, not the emf.'), T(c.I * c.I * c.pr[1], 'R3 does not carry the total current.', 'X5')], hint1: 'You know R3’s pd and its resistance.', hint2: 'P = V²/R = V²/' + nice(c.pr[1]), work: ['P = V²/R', '= (' + n(c.Vp) + ')²/' + nice(c.pr[1]), '= ' + u(c.Vp * c.Vp / c.pr[1], 'W')] })] };
+    var pI = rd(c.I), pV1 = rd(pI * c.Rs), pVp = rd(c.emf - pV1), pP = rd(pVp * pVp / c.pr[1]);
+    return { roundedChain: true, stem: 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel. A1 reads ' + u(c.I, 'A') + '. The emf is ' + nice(c.emf) + ' V. ' + idealNote(g, 0), spec: comboSpec(c.emf, 0, c.Rs, c.pr[0], c.pr[1]), parts: [
+      C('a', 'Calculate the pd across R3.', 'V', ['ohm', 'ser'], function () { return pVp; }, { fp: true, traps: [T(c.emf, 'R1 takes part of the emf. Use the pd across this part.', 'X13')], hint1: 'First the pd across R1, then what is left for the pair.', hint2: 'Vpair = emf − I × R1', work: ['V1 = IR1 = ' + n(pI) + ' × ' + nice(c.Rs) + ' = ' + u(pV1, 'V'), 'Vpair = ' + nice(c.emf) + ' − ' + n(pV1) + ' = ' + u(pVp, 'V')] }),
+      C('b', 'Calculate the power of R3.', 'W', ['pow'], function (v) { return rd(v.a) * rd(v.a) / c.pr[1]; }, { traps: [T(c.emf * c.emf / c.pr[1], 'Use the pd across this part, not the emf.'), T(c.I * c.I * c.pr[1], 'R3 does not carry the total current.', 'X5')], hint1: 'You know R3’s pd and its resistance.', hint2: 'P = V²/R = V²/' + nice(c.pr[1]), work: ['P = V²/R', '= (' + n(pVp) + ')²/' + nice(c.pr[1]), '= ' + u(pP, 'W')] })] };
   } });
 
   G('energy', { topic: 'T4', grades: [10, 11, 12], title: 'Electrical energy', sags: ['P-E2.2'], make: function (R, g, s) {
@@ -305,23 +313,24 @@
     if (shape === 0) { var c = comboVals(R, g, withR); if (!c) return null; Rext = c.Rs + c.RP; emf = c.emf; r = c.r; spec = comboSpec(c.emf, c.r, c.Rs, c.pr[0], c.pr[1], { v1: 1 }); stem = 'R1 = ' + nice(c.Rs) + ' Ω is in series with R2 = ' + nice(c.pr[0]) + ' Ω and R3 = ' + nice(c.pr[1]) + ' Ω in parallel.'; pr = c.pr; Rx = c.RP; }
     else if (shape === 1) { var a = R.pick([2, 4, 6]), b = R.pick([4, 6, 8, 10]), c3 = R.pick([6, 8, 12]); Rx = par([a + b, c3]); Rext = Rx; spec = pairBranchSpec(emf, r, a, b, c3); stem = 'R1 = ' + nice(a) + ' Ω and R2 = ' + nice(b) + ' Ω in series form one branch; R3 = ' + nice(c3) + ' Ω is the other branch.'; pr = [a + b, c3]; }
     else { var rs = [R.pick([4, 6, 12]), R.pick([6, 12, 3]), R.pick([12, 4, 6])]; Rx = par(rs); Rext = Rx; spec = parallelSpec(emf, r, rs, { v1: 1 }); stem = 'Three resistors, ' + rs.map(nice).join(' Ω, ') + ' Ω, are in parallel.'; pr = rs; }
-    I = emf / (Rext + r);
+    if (shape === 0) Rext = (Rext - Rx) + rd(Rx);   /* R1 + RP as printed */
+    I = emf / (rd(Rext) + r);
     if (!okI(I) || ![Rx, Rext, I, I * r].every(function (x) { return x === 0 || clean(x); })) return null;
     var parts = [
       C('a', 'Calculate the resistance of the parallel part.', 'Ω', ['par', 'ser'], function () { return Rx; }, { inter: [1 / Rx], traps: [T(1 / Rx, 'That is 1/RP. Now take the reciprocal.'), T(sum(pr), 'That is the series rule.')], hint1: 'Which resistors sit side by side between the same two junctions?' + (shape === 1 ? ' Add the series pair first.' : ''), hint2: '1/RP = ' + pr.map(function (x) { return '1/' + nice(x); }).join(' + '), work: [(shape === 1 ? 'R1 + R2 = ' + u(pr[0], 'Ω') + '; ' : '') + '1/RP = ' + pr.map(function (x) { return '1/' + nice(x); }).join(' + '), 'RP = ' + u(Rx, 'Ω')] })];
-    if (shape === 0) parts.push(C('b', 'Calculate the external resistance.', 'Ω', ['ser'], function (v) { return v.a + (Rext - Rx); }, { hint1: 'Add the series resistor.', hint2: 'Rext = R1 + RP', work: ['Rext = R1 + RP = ' + nice(Rext - Rx) + ' + ' + n(Rx) + ' = ' + u(Rext, 'Ω')] }));
-    parts.push(C('c', 'Calculate the current from the battery.', 'A', withR ? ['emf'] : ['ohm'], function (v) { return emf / ((shape === 0 ? v.b : v.a) + r); }, { traps: withR ? [T(emf / Rext, 'Include r: I = emf/(Rext + r).')] : [], hint1: withR ? 'The current passes through r as well.' : 'Use the total resistance.', hint2: withR ? 'I = emf/(Rext + r) = ' + nice(emf) + '/(Rext + ' + nice(r) + ')' : 'I = V/R = ' + nice(emf) + '/R', work: [withR ? 'I = emf/(Rext + r)' : 'I = V/R', '= ' + nice(emf) + '/' + (withR ? '(' + n(Rext) + ' + ' + nice(r) + ')' : n(Rext)), '= ' + u(I, 'A')] }));
-    if (withR && s >= 2) parts.push(C('d', 'Calculate the reading on V1.', 'V', ['emf', 'ohm'], function (v) { return emf - v.c * r; }, { traps: [T(emf, 'Some pd is lost inside the battery.'), T(I * r, 'That is the lost volts. V1 = emf − Ir.')], hint1: 'V1 reads the terminal pd.', hint2: 'Vload = emf − Ir', work: ['Vload = emf − Ir', '= ' + nice(emf) + ' − ' + n(I) + ' × ' + nice(r), '= ' + u(emf - I * r, 'V')] }));
-    return { stem: stem + ' ' + (withR ? 'The battery has an emf of ' + nice(emf) + ' V and an internal resistance of ' + nice(r) + ' Ω.' : 'The battery is ideal with an emf of ' + nice(emf) + ' V.'), spec: spec, hide: { A: 1, A1: 1, V1: 1 }, parts: parts };
+    if (shape === 0) parts.push(C('b', 'Calculate the external resistance.', 'Ω', ['ser'], function (v) { return rd(v.a) + (Rext - rd(Rx)); }, { hint1: 'Add the series resistor.', hint2: 'Rext = R1 + RP', work: ['Rext = R1 + RP = ' + nice(Rext - rd(Rx)) + ' + ' + n(Rx) + ' = ' + u(Rext, 'Ω')] }));
+    parts.push(C('c', 'Calculate the current from the battery.', 'A', withR ? ['emf'] : ['ohm'], function (v) { return emf / (rd(shape === 0 ? v.b : v.a) + r); }, { traps: withR ? [T(emf / Rext, 'Include r: I = emf/(Rext + r).')] : [], hint1: withR ? 'The current passes through r as well.' : 'Use the total resistance.', hint2: withR ? 'I = emf/(Rext + r) = ' + nice(emf) + '/(Rext + ' + nice(r) + ')' : 'I = V/R = ' + nice(emf) + '/R', work: [withR ? 'I = emf/(Rext + r)' : 'I = V/R', '= ' + nice(emf) + '/' + (withR ? '(' + n(Rext) + ' + ' + nice(r) + ')' : n(Rext)), '= ' + u(I, 'A')] }));
+    if (withR && s >= 2) parts.push(C('d', 'Calculate the reading on V1.', 'V', ['emf', 'ohm'], function (v) { return emf - rd(v.c) * r; }, { traps: [T(emf, 'Some pd is lost inside the battery.'), T(I * r, 'That is the lost volts. V1 = emf − Ir.')], hint1: 'V1 reads the terminal pd.', hint2: 'Vload = emf − Ir', work: ['Vload = emf − Ir', '= ' + nice(emf) + ' − ' + n(I) + ' × ' + nice(r), '= ' + u(emf - rd(I) * r, 'V')] }));
+    return { roundedChain: true, stem: stem + ' ' + (withR ? 'The battery has an emf of ' + nice(emf) + ' V and an internal resistance of ' + nice(r) + ' Ω.' : 'The battery is ideal with an emf of ' + nice(emf) + ' V.'), spec: spec, hide: { A: 1, A1: 1, V1: 1 }, parts: parts };
   } });
 
   G('emf-r', { topic: 'T7', grades: [11, 12], title: 'emf, lost volts and terminal pd', sags: ['P-E3.2', 'P-E3.3'], make: function (R, g, s) {
     var emf = R.pick([4.5, 6, 9, 12, 18, 24]), r = R.pick(RINT.concat([2.5, 3])), Rv = R.pick(E12.concat([16, 18])), I = emf / (Rv + r);
     if (!okI(I) || !clean(I) || !clean(I * r) || !clean(emf - I * r)) return null;
     var parts = [C('a', 'Calculate the reading on the ammeter.', 'A', ['emf'], function () { return I; }, { traps: [T(emf / Rv, 'Include r: I = emf/(Rext + r).'), T(emf / r, 'The current passes through R as well as r.')], hint1: 'The current passes through the external resistor and through r.', hint2: 'I = emf/(Rext + r) = ' + nice(emf) + '/(' + nice(Rv) + ' + ' + nice(r) + ')', work: ['emf = I(Rext + r)', nice(emf) + ' = I(' + nice(Rv) + ' + ' + nice(r) + ')', 'I = ' + u(I, 'A')] })];
-    if (s >= 2) parts.push(C('b', 'Calculate the lost volts.', 'V', ['ohm', 'emf'], function (v) { return v.a * r; }, { traps: [T(I * Rv, 'That is the pd across R, the terminal pd.')], hint1: 'The lost volts are the pd across r.', hint2: 'Vinternal resistance = Ir = I × ' + nice(r), work: ['V = Ir', '= ' + n(I) + ' × ' + nice(r), '= ' + u(I * r, 'V')] }));
-    parts.push(C('c', 'Calculate the reading on V1.', 'V', ['emf', 'ohm'], function (v) { return emf - (v.b != null ? v.b : v.a * r); }, { traps: [T(emf, 'Some pd is lost inside the battery: Vload = emf − Ir.'), T(I * r, 'That is the lost volts.')], hint1: 'V1 reads the terminal pd: the emf minus the lost volts.', hint2: 'Vload = emf − Ir = ' + nice(emf) + ' − I × ' + nice(r), work: ['Vload = emf − Ir', '= ' + nice(emf) + ' − ' + n(I) + ' × ' + nice(r), '= ' + u(emf - I * r, 'V')] }));
-    return { stem: 'A battery of emf ' + nice(emf) + ' V and internal resistance ' + nice(r) + ' Ω is connected to a ' + nice(Rv) + ' Ω resistor.', spec: seriesSpec(emf, r, [Rv], { v1: 1 }), hide: { A: 1, V1: 1 }, parts: parts };
+    if (s >= 2) parts.push(C('b', 'Calculate the lost volts.', 'V', ['ohm', 'emf'], function (v) { return rd(v.a) * r; }, { traps: [T(I * Rv, 'That is the pd across R, the terminal pd.')], hint1: 'The lost volts are the pd across r.', hint2: 'Vinternal resistance = Ir = I × ' + nice(r), work: ['V = Ir', '= ' + n(I) + ' × ' + nice(r), '= ' + u(rd(I) * r, 'V')] }));
+    parts.push(C('c', 'Calculate the reading on V1.', 'V', ['emf', 'ohm'], function (v) { return emf - (v.b != null ? rd(v.b) : rd(v.a) * r); }, { traps: [T(emf, 'Some pd is lost inside the battery: Vload = emf − Ir.'), T(I * r, 'That is the lost volts.')], hint1: 'V1 reads the terminal pd: the emf minus the lost volts.', hint2: 'Vload = emf − Ir = ' + nice(emf) + ' − I × ' + nice(r), work: ['Vload = emf − Ir', '= ' + nice(emf) + ' − ' + n(I) + ' × ' + nice(r), '= ' + u(emf - rd(I) * r, 'V')] }));
+    return { roundedChain: true, stem: 'A battery of emf ' + nice(emf) + ' V and internal resistance ' + nice(r) + ' Ω is connected to a ' + nice(Rv) + ' Ω resistor.', spec: seriesSpec(emf, r, [Rv], { v1: 1 }), hide: { A: 1, V1: 1 }, parts: parts };
   } });
 
   G('lostvolts', { topic: 'T7', grades: [11, 12], title: 'Find r from the readings', sags: ['P-E3.3'], make: function (R, g, s) {
@@ -396,7 +405,7 @@
     return it;
   }
 
-  var api = { GEN: GEN, STREAMS: STREAMS, TYPE: TYPE, TOPIC_NAME: TOPIC_NAME, FORM: FORM, formsFor: formsFor, formText: formText, make: make, exact: exact,
+  var api = { GEN: GEN, STREAMS: STREAMS, TYPE: TYPE, TOPIC_NAME: TOPIC_NAME, FORM: FORM, formsFor: formsFor, formText: formText, make: make, exact: exact, exactRaw: exactRaw, raw: raw,
     seriesSpec: seriesSpec, parallelSpec: parallelSpec, comboSpec: comboSpec, pairBranchSpec: pairBranchSpec, nice: nice };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Gens = api;
 })(typeof window !== 'undefined' ? window : this);
