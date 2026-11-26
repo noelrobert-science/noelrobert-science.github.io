@@ -34,7 +34,7 @@
     "title": "Your turn"
    },
    {
-    "t": 105.0,
+    "t": 105.1,
     "title": "Remember"
    }
   ]
@@ -43,7 +43,7 @@
   "title": "Reading a measuring cylinder",
   "module": "Module 1 · Lesson 2",
   "src": "media/g7-m1l2.mp4",
-  "dur": 102.3,
+  "dur": 102.5,
   "chapters": [
    {
     "t": 0,
@@ -70,7 +70,7 @@
     "title": "Your turn"
    },
    {
-    "t": 92.0,
+    "t": 92.2,
     "title": "Remember"
    }
   ]
@@ -79,7 +79,7 @@
   "title": "Displacement and the Bunsen burner",
   "module": "Module 1 · Lesson 3",
   "src": "media/g7-m1l3.mp4",
-  "dur": 116.1,
+  "dur": 116.4,
   "chapters": [
    {
     "t": 0,
@@ -106,7 +106,7 @@
     "title": "Your turn"
    },
    {
-    "t": 106.6,
+    "t": 106.9,
     "title": "Remember"
    }
   ]
@@ -115,7 +115,7 @@
   "title": "Changes of state",
   "module": "Module 2 · Lesson 2",
   "src": "media/g7-m2l2.mp4",
-  "dur": 126.8,
+  "dur": 126.0,
   "chapters": [
    {
     "t": 0,
@@ -146,7 +146,7 @@
     "title": "Your turn"
    },
    {
-    "t": 112.4,
+    "t": 111.5,
     "title": "Remember"
    }
   ]
@@ -155,7 +155,7 @@
   "title": "Diffusion, physical and chemical changes",
   "module": "Module 2 · Lesson 3",
   "src": "media/g7-m2l3.mp4",
-  "dur": 101.4,
+  "dur": 101.6,
   "chapters": [
    {
     "t": 0,
@@ -182,7 +182,7 @@
     "title": "Your turn"
    },
    {
-    "t": 86.4,
+    "t": 86.7,
     "title": "Remember"
    }
   ]
@@ -227,7 +227,7 @@
   "title": "Valence electrons, groups and periods",
   "module": "Module 3 · Lesson 3",
   "src": "media/g7-m3l3.mp4",
-  "dur": 101.1,
+  "dur": 99.3,
   "chapters": [
    {
     "t": 0,
@@ -254,7 +254,287 @@
     "title": "Your turn"
    },
    {
-    "t": 91.2,
+    "t": 89.4,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l1": {
+  "title": "Mendeleev and the order of the elements",
+  "module": "Module 4 · Lesson 1",
+  "src": "media/g7-m4l1.mp4",
+  "dur": 85.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The problem"
+   },
+   {
+    "t": 13.2,
+    "title": "The cards"
+   },
+   {
+    "t": 27.8,
+    "title": "The gaps"
+   },
+   {
+    "t": 43.8,
+    "title": "Today"
+   },
+   {
+    "t": 62.2,
+    "title": "Mendelevium"
+   },
+   {
+    "t": 68.3,
+    "title": "Your turn"
+   },
+   {
+    "t": 76.7,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l2": {
+  "title": "Reading the Periodic Table",
+  "module": "Module 4 · Lesson 2",
+  "src": "media/g7-m4l2.mp4",
+  "dur": 101.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "A tile"
+   },
+   {
+    "t": 15.7,
+    "title": "Which number"
+   },
+   {
+    "t": 26.4,
+    "title": "Rounding"
+   },
+   {
+    "t": 42.5,
+    "title": "Bromine"
+   },
+   {
+    "t": 68.0,
+    "title": "Exam eye"
+   },
+   {
+    "t": 81.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 89.9,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l3": {
+  "title": "Groups and periods",
+  "module": "Module 4 · Lesson 3",
+  "src": "media/g7-m4l3.mp4",
+  "dur": 87.6,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "An address"
+   },
+   {
+    "t": 14.7,
+    "title": "Magnesium"
+   },
+   {
+    "t": 27.5,
+    "title": "Numbering"
+   },
+   {
+    "t": 43.3,
+    "title": "Worked example"
+   },
+   {
+    "t": 57.6,
+    "title": "Count from the top"
+   },
+   {
+    "t": 69.0,
+    "title": "Your turn"
+   },
+   {
+    "t": 78.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l4": {
+  "title": "Metals, non-metals and metalloids",
+  "module": "Module 4 · Lesson 4",
+  "src": "media/g7-m4l4.mp4",
+  "dur": 106.1,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The zigzag line"
+   },
+   {
+    "t": 16.1,
+    "title": "Metals"
+   },
+   {
+    "t": 33.2,
+    "title": "Non-metals"
+   },
+   {
+    "t": 51.5,
+    "title": "Metalloids"
+   },
+   {
+    "t": 68.6,
+    "title": "Hydrogen"
+   },
+   {
+    "t": 85.6,
+    "title": "Your turn"
+   },
+   {
+    "t": 96.3,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l5": {
+  "title": "Families of elements",
+  "module": "Module 4 · Lesson 5",
+  "src": "media/g7-m4l5.mp4",
+  "dur": 105.2,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Five families"
+   },
+   {
+    "t": 9.4,
+    "title": "Groups 1 and 2"
+   },
+   {
+    "t": 26.8,
+    "title": "Transition metals"
+   },
+   {
+    "t": 45.2,
+    "title": "Groups 7 and 8"
+   },
+   {
+    "t": 64.2,
+    "title": "Group 1 in water"
+   },
+   {
+    "t": 85.0,
+    "title": "Your turn"
+   },
+   {
+    "t": 93.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l6": {
+  "title": "Why elements in a group react alike",
+  "module": "Module 4 · Lesson 6",
+  "src": "media/g7-m4l6.mp4",
+  "dur": 90.7,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Same group"
+   },
+   {
+    "t": 21.0,
+    "title": "Same period"
+   },
+   {
+    "t": 25.2,
+    "title": "Period 3"
+   },
+   {
+    "t": 43.5,
+    "title": "Worked example"
+   },
+   {
+    "t": 62.3,
+    "title": "Noble gases"
+   },
+   {
+    "t": 73.6,
+    "title": "Your turn"
+   },
+   {
+    "t": 81.1,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l8": {
+  "title": "Symbols and names",
+  "module": "Module 4 · Lesson 8",
+  "src": "media/g7-m4l8.mp4",
+  "dur": 75.7,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Two letters at most"
+   },
+   {
+    "t": 19.4,
+    "title": "Old names"
+   },
+   {
+    "t": 31.0,
+    "title": "Spelling"
+   },
+   {
+    "t": 40.9,
+    "title": "The code breaker"
+   },
+   {
+    "t": 57.8,
+    "title": "Your turn"
+   },
+   {
+    "t": 67.4,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m4l9": {
+  "title": "The Periodic Table on a page",
+  "module": "Module 4 · Lesson 9",
+  "src": "media/g7-m4l9.mp4",
+  "dur": 87.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Order and tiles"
+   },
+   {
+    "t": 18.0,
+    "title": "Groups and periods"
+   },
+   {
+    "t": 28.6,
+    "title": "Metals and families"
+   },
+   {
+    "t": 45.8,
+    "title": "Exam tips"
+   },
+   {
+    "t": 63.1,
+    "title": "Your turn"
+   },
+   {
+    "t": 76.1,
     "title": "Remember"
    }
   ]
