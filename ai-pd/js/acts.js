@@ -136,7 +136,8 @@ function goLive(slide) {
     if (box.dataset.tried || !navigator.onLine) return;
     box.dataset.tried = '1';
     // Only swap in the live page if it is reachable; otherwise the screenshot stays.
-    fetch(box.dataset.live, { mode: 'no-cors', cache: 'no-store' }).then(() => addFrame(box)).catch(() => {});
+    // If it fails, clear the flag so the next visit to the slide tries again.
+    fetch(box.dataset.live, { mode: 'no-cors', cache: 'no-store' }).then(() => addFrame(box)).catch(() => { delete box.dataset.tried; });
   });
 }
 
@@ -144,7 +145,6 @@ function addFrame(box) {
     const f = document.createElement('iframe');
     f.src = box.dataset.live;
     f.title = 'Live demo';
-    f.loading = 'lazy';
     f.style.opacity = '0';
     f.addEventListener('load', () => {
       f.style.transition = 'opacity .6s'; f.style.opacity = '1';
