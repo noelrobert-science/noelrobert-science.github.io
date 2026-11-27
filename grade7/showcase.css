@@ -8,9 +8,9 @@
 .tagline em { font-style: normal; color: var(--red-text); }
 
 /* cover */
-.cv-wrap1 { position: absolute; left: 120px; top: 150px; width: 1000px; }
-.cv-wrap1 .kicker { margin-bottom: 30px; }
-.cv-h1 { font-family: var(--font-display); font-weight: 900; font-size: 112px; line-height: 1.02; letter-spacing: -.02em; margin: 0; }
+.cv-wrap1 { position: absolute; left: 120px; top: 150px; width: 920px; }
+.cv-wrap1 .kicker { margin-bottom: 30px; white-space: nowrap; }
+.cv-h1 { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: 1.02; letter-spacing: -.02em; margin: 0; }
 .cv-h1 em { font-style: normal; color: var(--red-text); display: block; margin-top: 18px; }
 .cv-sub { margin-top: 46px; font-size: 38px; color: var(--dim); line-height: 1.35; max-width: 900px; }
 .cv-sub b { color: var(--text); font-weight: 600; }
@@ -118,3 +118,11 @@
 @keyframes tilt { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
 @media (orientation: portrait) and (max-width: 760px) { .turn:not(.off) { display: flex; } }
 @media (prefers-reduced-motion: reduce) { .turn .ph { animation: none; transform: rotate(-90deg); } }
+
+/* full-screen hint on the cover (hidden when already full screen or when the browser cannot do it) */
+.fs-hint { position: absolute; right: 110px; top: 54px; display: flex; align-items: center; gap: 18px; font-size: 26px; color: var(--faint); }
+.fs-hint kbd { font: 600 24px var(--font-mono); color: var(--text); border: 2px solid var(--line); border-radius: 8px; padding: 0 10px; background: var(--stage-2); }
+.fs-btn { border: 2px solid var(--line); background: var(--stage-2); color: var(--dim); font: 400 26px var(--font-body); padding: 8px 20px; border-radius: 30px; cursor: pointer; }
+.fs-btn:hover, .fs-btn:focus-visible { color: var(--text); border-color: var(--red-text); }
+.fs-hint.off { display: none; }
+@media (pointer: coarse) { .fs-key { display: none; } }

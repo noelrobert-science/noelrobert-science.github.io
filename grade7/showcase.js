@@ -30,6 +30,18 @@
     if (s && s.id !== 's-vid-play' && vf.getAttribute('src')) { try { vf.contentWindow.document.querySelectorAll('video').forEach(function (v) { v.pause(); }); } catch (e) {} }
   }
 
+  // full screen: button + F key hint on the cover; hidden when already full screen or not supported (e.g. iPhone)
+  var fsHint = document.querySelector('.fs-hint'), fsBtn = document.getElementById('fs-btn');
+  var root = document.documentElement;
+  var canFs = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled) && !!(root.requestFullscreen || root.webkitRequestFullscreen);
+  function fsSync() { if (fsHint) fsHint.classList.toggle('off', !canFs || !!(document.fullscreenElement || document.webkitFullscreenElement)); }
+  if (fsBtn) fsBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var p = root.requestFullscreen ? root.requestFullscreen() : root.webkitRequestFullscreen();
+    if (p && p.catch) p.catch(function () {});
+  });
+  document.addEventListener('fullscreenchange', fsSync); document.addEventListener('webkitfullscreenchange', fsSync); fsSync();
+
   var ok = document.getElementById('turn-ok');
   if (ok) ok.addEventListener('click', function () { document.getElementById('turn').classList.add('off'); });
 
