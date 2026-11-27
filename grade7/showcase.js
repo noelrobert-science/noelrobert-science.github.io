@@ -26,8 +26,8 @@
     });
   });
   function onSlide(s) {
-    if (s && s.id === 's-vid-play' && !vf.getAttribute('src')) loadClip(document.querySelector('.voices button.on').dataset.c);
-    if (s && s.id !== 's-vid-play' && vf.getAttribute('src')) { try { vf.contentWindow.document.querySelectorAll('video').forEach(function (v) { v.pause(); }); } catch (e) {} }
+    if (s && s.id === 's-try' && !vf.getAttribute('src')) loadClip(document.querySelector('.voices button.on').dataset.c);
+    if (s && s.id !== 's-try' && vf.getAttribute('src')) { try { vf.contentWindow.document.querySelectorAll('video').forEach(function (v) { v.pause(); }); } catch (e) {} }
   }
 
   // full screen: button + F key hint on the cover; hidden when already full screen or not supported (e.g. iPhone)
