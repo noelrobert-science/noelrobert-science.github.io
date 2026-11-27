@@ -131,6 +131,8 @@
 .g7p-mark rect { fill: rgba(227,18,27,.16); stroke: var(--red); stroke-width: 2; }
 .g7p-svg .g7p-mark text { font-size: 24px; font-weight: 600; fill: var(--red-text); text-anchor: middle; }
 .g7p-foot .tagline { margin: 0; }
+.g7p-voice { margin: 14px 0 0; font-size: 32px; line-height: 1.3; }
+.g7p-voice em { font-style: normal; color: var(--red-text); }
 .g7p-note { margin: 12px 0 0; font-size: 30px; color: var(--dim); }
 
 /* v0.9: on a phone held upright (reveal's scroll view, under 435px wide) the copyright mark was
