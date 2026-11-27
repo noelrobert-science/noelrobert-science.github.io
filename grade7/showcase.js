@@ -27,6 +27,7 @@
   });
   function onSlide(s) {
     if (s && s.id === 's-try' && !vf.getAttribute('src')) loadClip(document.querySelector('.voices button.on').dataset.c);
+    if (hearAudio && !hearAudio.paused && s && s.id !== 's-why') hearAudio.pause();
     if (s && s.id !== 's-try' && vf.getAttribute('src')) { try { vf.contentWindow.document.querySelectorAll('video').forEach(function (v) { v.pause(); }); } catch (e) {} }
   }
 
@@ -41,6 +42,19 @@
     if (p && p.catch) p.catch(function () {});
   });
   document.addEventListener('fullscreenchange', fsSync); document.addEventListener('webkitfullscreenchange', fsSync); fsSync();
+
+  // slide 5: "hear it" plays just the one sentence from the video
+  var hear = document.getElementById('hear-it'), hearAudio = null, hearStop = null;
+  if (hear) hear.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (!hearAudio) { hearAudio = new Audio(hear.dataset.src); hearAudio.preload = 'auto'; }
+    var from = +hear.dataset.from, to = +hear.dataset.to;
+    clearInterval(hearStop);
+    var go = function () { hearAudio.currentTime = from; hearAudio.play().catch(function () {}); hear.classList.add('playing');
+      hearStop = setInterval(function () { if (hearAudio.currentTime >= to || hearAudio.paused) { hearAudio.pause(); clearInterval(hearStop); hear.classList.remove('playing'); } }, 100); };
+    if (hearAudio.readyState >= 1) go(); else hearAudio.addEventListener('loadedmetadata', go, { once: true });
+    if (window.gcEvent) window.gcEvent('g7-showcase-hear-it');
+  });
 
   var ok = document.getElementById('turn-ok');
   if (ok) ok.addEventListener('click', function () { document.getElementById('turn').classList.add('off'); });
