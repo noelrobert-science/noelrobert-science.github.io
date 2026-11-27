@@ -3,38 +3,38 @@
   "title": "Safety rules and hazard symbols",
   "module": "Module 1 · Lesson 1",
   "src": "media/g7-m1l1.mp4",
-  "dur": 116.5,
+  "dur": 125.0,
   "chapters": [
    {
     "t": 0,
     "title": "Before you start"
    },
    {
-    "t": 23.9,
+    "t": 24.9,
     "title": "While you work"
    },
    {
-    "t": 34.8,
+    "t": 37.0,
     "title": "Waft, never sniff"
    },
    {
-    "t": 43.3,
+    "t": 46.3,
     "title": "If there is an accident"
    },
    {
-    "t": 52.8,
+    "t": 56.6,
     "title": "Hazard symbols"
    },
    {
-    "t": 86.6,
+    "t": 94.9,
     "title": "Careful with the exclamation mark"
    },
    {
-    "t": 96.7,
+    "t": 105.0,
     "title": "Your turn"
    },
    {
-    "t": 105.1,
+    "t": 113.5,
     "title": "Remember"
    }
   ]
@@ -43,34 +43,34 @@
   "title": "Reading a measuring cylinder",
   "module": "Module 1 · Lesson 2",
   "src": "media/g7-m1l2.mp4",
-  "dur": 102.5,
+  "dur": 93.8,
   "chapters": [
    {
     "t": 0,
     "title": "Volume and units"
    },
    {
-    "t": 24.0,
+    "t": 20.9,
     "title": "The meniscus"
    },
    {
-    "t": 33.1,
+    "t": 29.2,
     "title": "Eye level"
    },
    {
-    "t": 47.6,
+    "t": 42.7,
     "title": "Scale step"
    },
    {
-    "t": 67.1,
+    "t": 60.1,
     "title": "The reading"
    },
    {
-    "t": 84.7,
+    "t": 76.4,
     "title": "Your turn"
    },
    {
-    "t": 92.2,
+    "t": 83.5,
     "title": "Remember"
    }
   ]
@@ -79,34 +79,34 @@
   "title": "Displacement and the Bunsen burner",
   "module": "Module 1 · Lesson 3",
   "src": "media/g7-m1l3.mp4",
-  "dur": 116.4,
+  "dur": 122.0,
   "chapters": [
    {
     "t": 0,
     "title": "Displacement"
    },
    {
-    "t": 15.4,
+    "t": 16.8,
     "title": "Four steps"
    },
    {
-    "t": 41.0,
+    "t": 43.4,
     "title": "The Bunsen burner"
    },
    {
-    "t": 51.6,
+    "t": 54.8,
     "title": "Two flames"
    },
    {
-    "t": 65.7,
+    "t": 69.6,
     "title": "Lighting it: 7 steps"
    },
    {
-    "t": 98.3,
+    "t": 103.0,
     "title": "Your turn"
    },
    {
-    "t": 106.9,
+    "t": 112.5,
     "title": "Remember"
    }
   ]
@@ -115,38 +115,38 @@
   "title": "Changes of state",
   "module": "Module 2 · Lesson 2",
   "src": "media/g7-m2l2.mp4",
-  "dur": 126.0,
+  "dur": 131.1,
   "chapters": [
    {
     "t": 0,
     "title": "Heating and cooling"
    },
    {
-    "t": 24.5,
+    "t": 26.8,
     "title": "Six changes"
    },
    {
-    "t": 40.9,
+    "t": 43.6,
     "title": "Energy in or out"
    },
    {
-    "t": 53.8,
+    "t": 56.5,
     "title": "Boiling and evaporation"
    },
    {
-    "t": 69.7,
+    "t": 73.7,
     "title": "The kettle"
    },
    {
-    "t": 80.0,
+    "t": 84.5,
     "title": "Solid, liquid or gas"
    },
    {
-    "t": 103.3,
+    "t": 108.1,
     "title": "Your turn"
    },
    {
-    "t": 111.5,
+    "t": 116.6,
     "title": "Remember"
    }
   ]
@@ -155,34 +155,34 @@
   "title": "Diffusion, physical and chemical changes",
   "module": "Module 2 · Lesson 3",
   "src": "media/g7-m2l3.mp4",
-  "dur": 101.6,
+  "dur": 109.9,
   "chapters": [
    {
     "t": 0,
     "title": "Perfume"
    },
    {
-    "t": 13.6,
+    "t": 14.4,
     "title": "Diffusion"
    },
    {
-    "t": 23.8,
+    "t": 27.0,
     "title": "Fast or slow"
    },
    {
-    "t": 36.3,
+    "t": 40.8,
     "title": "Physical change"
    },
    {
-    "t": 45.2,
+    "t": 50.5,
     "title": "Chemical change"
    },
    {
-    "t": 78.1,
+    "t": 86.0,
     "title": "Your turn"
    },
    {
-    "t": 86.7,
+    "t": 94.9,
     "title": "Remember"
    }
   ]
@@ -191,34 +191,34 @@
   "title": "Energy shells and Bohr diagrams",
   "module": "Module 3 · Lesson 2",
   "src": "media/g7-m3l2.mp4",
-  "dur": 113.1,
+  "dur": 118.0,
   "chapters": [
    {
     "t": 0,
     "title": "Energy shells"
    },
    {
-    "t": 21.7,
+    "t": 22.5,
     "title": "The 2-8-8 rule"
    },
    {
-    "t": 34.0,
+    "t": 36.2,
     "title": "Three steps"
    },
    {
-    "t": 56.0,
+    "t": 59.4,
     "title": "Aluminium"
    },
    {
-    "t": 79.5,
+    "t": 83.8,
     "title": "Careful with potassium"
    },
    {
-    "t": 93.7,
+    "t": 98.1,
     "title": "Your turn"
    },
    {
-    "t": 102.5,
+    "t": 107.4,
     "title": "Remember"
    }
   ]
@@ -263,34 +263,34 @@
   "title": "Mendeleev and the order of the elements",
   "module": "Module 4 · Lesson 1",
   "src": "media/g7-m4l1.mp4",
-  "dur": 85.8,
+  "dur": 97.0,
   "chapters": [
    {
     "t": 0,
     "title": "The problem"
    },
    {
-    "t": 13.2,
+    "t": 13.5,
     "title": "The cards"
    },
    {
-    "t": 27.8,
+    "t": 32.0,
     "title": "The gaps"
    },
    {
-    "t": 43.8,
+    "t": 50.2,
     "title": "Today"
    },
    {
-    "t": 62.2,
+    "t": 72.3,
     "title": "Mendelevium"
    },
    {
-    "t": 68.3,
+    "t": 79.2,
     "title": "Your turn"
    },
    {
-    "t": 76.7,
+    "t": 87.9,
     "title": "Remember"
    }
   ]
@@ -335,34 +335,34 @@
   "title": "Groups and periods",
   "module": "Module 4 · Lesson 3",
   "src": "media/g7-m4l3.mp4",
-  "dur": 87.6,
+  "dur": 98.8,
   "chapters": [
    {
     "t": 0,
     "title": "An address"
    },
    {
-    "t": 14.7,
+    "t": 16.7,
     "title": "Magnesium"
    },
    {
-    "t": 27.5,
+    "t": 30.5,
     "title": "Numbering"
    },
    {
-    "t": 43.3,
+    "t": 49.7,
     "title": "Worked example"
    },
    {
-    "t": 57.6,
+    "t": 66.0,
     "title": "Count from the top"
    },
    {
-    "t": 69.0,
+    "t": 79.4,
     "title": "Your turn"
    },
    {
-    "t": 78.8,
+    "t": 90.0,
     "title": "Remember"
    }
   ]
@@ -371,34 +371,34 @@
   "title": "Metals, non-metals and metalloids",
   "module": "Module 4 · Lesson 4",
   "src": "media/g7-m4l4.mp4",
-  "dur": 106.1,
+  "dur": 112.2,
   "chapters": [
    {
     "t": 0,
     "title": "The zigzag line"
    },
    {
-    "t": 16.1,
+    "t": 16.4,
     "title": "Metals"
    },
    {
-    "t": 33.2,
+    "t": 34.0,
     "title": "Non-metals"
    },
    {
-    "t": 51.5,
+    "t": 54.3,
     "title": "Metalloids"
    },
    {
-    "t": 68.6,
+    "t": 72.8,
     "title": "Hydrogen"
    },
    {
-    "t": 85.6,
+    "t": 91.3,
     "title": "Your turn"
    },
    {
-    "t": 96.3,
+    "t": 102.4,
     "title": "Remember"
    }
   ]
@@ -407,14 +407,14 @@
   "title": "Families of elements",
   "module": "Module 4 · Lesson 5",
   "src": "media/g7-m4l5.mp4",
-  "dur": 105.2,
+  "dur": 108.2,
   "chapters": [
    {
     "t": 0,
     "title": "Five families"
    },
    {
-    "t": 9.4,
+    "t": 9.2,
     "title": "Groups 1 and 2"
    },
    {
@@ -422,19 +422,19 @@
     "title": "Transition metals"
    },
    {
-    "t": 45.2,
+    "t": 45.7,
     "title": "Groups 7 and 8"
    },
    {
-    "t": 64.2,
+    "t": 65.7,
     "title": "Group 1 in water"
    },
    {
-    "t": 85.0,
+    "t": 87.7,
     "title": "Your turn"
    },
    {
-    "t": 93.8,
+    "t": 96.7,
     "title": "Remember"
    }
   ]
@@ -479,30 +479,30 @@
   "title": "Symbols and names",
   "module": "Module 4 · Lesson 8",
   "src": "media/g7-m4l8.mp4",
-  "dur": 75.7,
+  "dur": 84.6,
   "chapters": [
    {
     "t": 0,
     "title": "Two letters at most"
    },
    {
-    "t": 19.4,
+    "t": 21.8,
     "title": "Old names"
    },
    {
-    "t": 31.0,
+    "t": 34.9,
     "title": "Spelling"
    },
    {
-    "t": 40.9,
+    "t": 47.4,
     "title": "The code breaker"
    },
    {
-    "t": 57.8,
+    "t": 66.0,
     "title": "Your turn"
    },
    {
-    "t": 67.4,
+    "t": 76.4,
     "title": "Remember"
    }
   ]
