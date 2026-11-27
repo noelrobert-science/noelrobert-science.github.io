@@ -105,3 +105,43 @@
 
 /* the yellow (c) mark stays above every slide, including slide 1 with its own background */
 .reveal .copy-mark { z-index: 45; }
+
+/* v2 (2026-11-27): simpler slides for any teacher */
+#s-bastani .bst { height: 470px; margin-top: 10px; }
+#s-bastani .bst-decide { top: 600px; }
+.bst-one { margin: 34px 0 0; font-size: 44px; line-height: 1.25; color: var(--dim); }
+.bst-one b { color: var(--text); font-family: var(--font-display); font-weight: 800; }
+.bst-one em { font-style: normal; color: var(--red-text); }
+#s-routine .r5 li { font-size: 38px; }
+#s-routine .r-right .msg { font-size: 34px; }
+#s-lenses .lens .ld { font-size: 32px; }
+#s-test .verb .d { font-size: 40px; }
+#s-test .cut { font-size: 40px; }
+
+.fj3 { display: grid; grid-template-columns: 1000px 1fr; gap: 70px; flex: 1; min-height: 0; }
+.fj3-left { display: flex; flex-direction: column; gap: 22px; min-height: 0; }
+.fj3 .who { display: block; font: 600 22px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--red-text); margin-bottom: 8px; }
+.fj3-ask { background: #2b5aa8; color: #fff; padding: 18px 26px 22px; border-radius: 24px 24px 24px 6px; font-size: 32px; line-height: 1.35; }
+.fj3-ask .who { color: #cfe0ff; }
+.fj3-gave { margin: 0; flex: 1; min-height: 0; display: flex; flex-direction: column; background: var(--stage-2); border: 2px solid var(--line); border-radius: 18px; padding: 16px 20px 20px; }
+.fj3-gave img { flex: 1; min-height: 0; width: 100%; object-fit: contain; object-position: top left; background: #fff; border-radius: 8px; }
+.fj3-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.fj3-checks li { display: flex; gap: 22px; align-items: flex-start; background: var(--stage-2); border-radius: 16px; padding: 22px 26px; font-size: 36px; line-height: 1.25; }
+.fj3-checks .k { font: 900 48px/1 var(--font-display); color: var(--red-text); flex: none; width: 36px; }
+.fj3-tag { position: absolute; left: 1190px; right: 120px; bottom: 110px; margin: 0; font: 800 58px/1.1 var(--font-display); color: var(--text); }
+.fj3-tag em { font-style: normal; color: var(--red-text); }
+
+#s-mark-pen .mk-steps li { font-size: 40px; }
+
+.cc-phone .cc-msg { font-size: 34px; }
+.cc-phone .cc-me { font-size: 38px; }
+
+.r3-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.r3-list li { display: flex; gap: 22px; align-items: center; background: var(--stage-2); border-radius: 16px; padding: 22px 28px; font: 800 42px/1.15 var(--font-display); }
+.r3-list .k { flex: none; width: 44px; font: 900 44px/1 var(--font-display); text-align: center; }
+.r3-bad li { border-left: 8px solid var(--red); } .r3-bad .k { color: var(--red-text); }
+.r3-good li { border-left: 8px solid #3ddc7a; } .r3-good .k { color: #3ddc7a; }
+
+.tk-ladder .rung { align-items: center; }
+.tk-ladder .rung b { margin-bottom: 0; font-size: 40px; }
+.tk-paste .pbox { font-size: 36px; }
