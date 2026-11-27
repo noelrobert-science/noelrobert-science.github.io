@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Expertise is what makes AI useful</title>
+<meta name="description" content="A 20-minute talk for teachers new to AI, by Noel Robert, Physical Sciences teacher. Fourteen slides. The full story is in the logbook.">
+<link rel="stylesheet" href="../ai-pd/vendor/reveal/reset.css">
+<link rel="stylesheet" href="../ai-pd/vendor/reveal/reveal.css">
+<link rel="stylesheet" href="../ai-pd/css/deck.css">
+<link rel="stylesheet" href="../ai-pd/css/acts.css">
+<link rel="stylesheet" href="../ai-pd/css/v3.css">
+<link rel="stylesheet" href="../ai-pd/css/v4.css">
+<link rel="stylesheet" href="../ai-pd/css/v5.css">
+<link rel="stylesheet" href="../ai-pd/css/v6.css">
+<link rel="stylesheet" href="../ai-pd/css/v7.css">
+<link rel="stylesheet" href="../ai-pd/css/v8.css">
+<link rel="stylesheet" href="../ai-pd/css/v9.css">
+<link rel="stylesheet" href="../ai-pd/css/v10.css">
+<link rel="stylesheet" href="css/talk.css">
+</head>
+<body>
+<div class="turn" id="turn"><div class="ph"></div><b>Turn your phone sideways</b><span>This talk is made of wide slides. It reads best sideways, or on a laptop.</span><button id="turn-ok">Show it anyway</button></div>
+<div class="reveal">
+<div class="copy-mark" aria-label="Copyright">© 2026 Noel Robert</div>
+<div class="slides">
+
+<!-- 1 · Theme -->
+<section id="s-theme0" class="theme0">
+  <div class="theme-line"><span class="tx-r">Expertise</span> is what makes AI useful.</div>
+  <p class="t-intro">A 20-minute talk for teachers.<br><b>Noel Robert</b>, Physical Sciences teacher</p>
+  <p class="t-full"><button class="tk-link" data-view="../ai-pd/index.html">The full story: the logbook ▸</button></p>
+  <p class="t-how">Press <kbd>→</kbd> or <kbd>Space</kbd>, or tap the right edge, to move on.</p>
+  <aside class="notes">[0:45] Leave the theme line up while people settle. One sentence: everything in the next 18 minutes is about one idea, that the AI is only as useful as the expertise you bring to it. The small link opens the logbook, the long version with everything I built, for anyone who wants the detail afterwards.</aside>
+</section>
+
+<!-- 2 · Two pages -->
+<section id="s-generic">
+  <div class="frame">
+    <p class="kicker">Is it any good?</p>
+    <h2 class="headline">Two pages on momentum. AI made both. <em>Which would you give your class?</em></h2>
+    <div class="body two-pages">
+      <div class="vs">
+        <div class="side">
+          <div class="mock" aria-label="Mock-up of a typical one-prompt chatbot page">
+            <div class="t">Momentum Made Easy!</div>
+            <div class="em">&#x1F680; &#x26A1; &#x1F3C0;</div>
+            <div class="p">Momentum is a super important concept in physics! It tells us how much "oomph" a moving object has. Let's dive in and explore this exciting topic together!</div>
+            <div class="g">&#x2728;</div>
+            <ul class="b"><li>Momentum = mass × velocity</li><li>Heavier things have more momentum</li><li>Fun fact: a truck has lots of momentum!</li><li>Remember: practice makes perfect!</li></ul>
+          </div>
+          <div class="vs-label"><span class="tag grey">Page A</span><br>Mock-up of a typical one-prompt result</div>
+        </div>
+        <div class="side">
+          <img class="page" src="../ai-pd/img/g10-p142-printlight.jpg" alt="Coursebook page 142: Worked example 7.2, a ball hit back by a bat, with diagrams, marked steps and a Common mistake box">
+          <div class="vs-label"><span class="tag red">Page B</span><br>Worked example 7.2, coursebook page 142</div>
+        </div>
+      </div>
+      <p class="decide fragment fade-out" data-fragment-index="0">Decide, then click</p>
+      <p class="after-why fragment" data-fragment-index="0"><b>Page A</b> is friendly and empty: there is nothing for a pupil to do. <b>Page B</b> uses the exam board's wording, sets out a worked example like a memo, and names a mistake pupils really make.</p>
+    </div>
+  </div>
+  <aside class="notes">[1:30] Ask the room to decide before you click. Give them ten seconds. Page A is a mock-up of a typical one-prompt result and is labelled as one. Page B is page 142 of the Grade 10 coursebook. Click: the reasons. Page A has nothing for a pupil to do. Page B uses the exam's words, sets out the working like a memo and names a real mistake.</aside>
+</section>
+
+<!-- 3 · The teacher -->
+<section id="s-teacher">
+  <div class="frame">
+    <p class="kicker">Is it any good?</p>
+    <h2 class="headline">Same AI. <em>The difference was the teacher.</em></h2>
+    <div class="body solo">
+      <img class="page" src="../ai-pd/img/g10-p142-printlight.jpg" alt="Coursebook page 142, Worked example 7.2">
+      <ul class="lines">
+        <li>The AI has read almost everything, so it can make something generic in seconds.</li>
+        <li class="fragment">It does not know your pupils, your curriculum or your exam. <b>You do.</b></li>
+        <li class="fragment">This talk is about getting that knowledge <em>onto the page</em>.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">[1:00] Both pages came from the same kind of AI. The only difference is what the teacher put in. Two clicks. Land the last line: the rest of the talk is how to get your knowledge onto the page.</aside>
+</section>
+
+<!-- 4 · Practice soared, learning sank -->
+<section id="s-bastani">
+  <div class="frame">
+    <p class="kicker">Will it harm learning?</p>
+    <h2 class="headline">Nearly a thousand pupils practised maths with AI. <em>Then the AI was taken away.</em></h2>
+    <div class="body">
+      <p class="bst-setup">Three groups of high-school pupils in Türkiye: no AI, an ordinary chatbot, and a tutor chatbot that gave hints, not answers. Every number is compared with the no-AI group.</p>
+      <svg class="bst" id="bst" viewBox="0 0 1680 470" role="img" aria-label="Bar chart: in practice, ordinary chatbot +48% and tutor +127%; in the exam without AI, ordinary chatbot −17% and tutor about the same as no AI.">
+        <line x1="0" x2="1680" y1="300" y2="300" stroke="#8b9099" stroke-width="3" stroke-dasharray="10 10"/>
+        <text x="0" y="286" class="bst-base">No AI = 0</text>
+        <text x="200" y="30" class="bst-phase">While practising, with AI</text>
+        <g class="bst-practice">
+          <rect x="200" y="116" width="150" height="184" rx="6" fill="#4f8cff"/><text x="275" y="100" class="bst-val" fill="#4f8cff">+127%</text>
+          <rect x="420" y="230" width="150" height="70" rx="6" fill="#4f8cff"/><text x="495" y="214" class="bst-val" fill="#4f8cff">+48%</text>
+        </g>
+        <text x="275" y="350" class="bst-lab">Tutor (hints)</text><text x="495" y="350" class="bst-lab">Ordinary chatbot</text>
+        <text x="1040" y="40" class="bst-phase">In the exam, without AI</text>
+        <g class="fragment fade-out" data-fragment-index="0">
+          <text x="1040" y="200" class="bst-predict">How did the</text>
+          <text x="1040" y="255" class="bst-predict">chatbot group do?</text>
+        </g>
+        <g class="bst-exam fragment" data-fragment-index="0" data-fx="bst">
+          <rect class="bst-drop" x="1040" y="300" width="150" height="25" rx="6" fill="#e3121b"/><text x="1115" y="371" class="bst-val" fill="#e3121b">−17%</text>
+          <rect x="1260" y="300" width="150" height="6" rx="6" fill="#8b9099"/><text x="1335" y="278" class="bst-val" fill="#8b9099">≈ 0</text>
+          <text x="1115" y="420" class="bst-lab">Ordinary chatbot</text><text x="1335" y="350" class="bst-lab">Tutor (hints)</text>
+          <path class="bst-arc" d="M 560 190 C 760 60, 1020 90, 1108 290" fill="none" stroke="#e3121b" stroke-width="5" stroke-linecap="round"/>
+          <path d="M 1100 294 l -22 -22 m 22 22 l 6 -30" stroke="#e3121b" stroke-width="5" stroke-linecap="round" fill="none"/>
+        </g>
+      </svg>
+      <p class="decide bst-decide fragment fade-out" data-fragment-index="0">Decide, then click</p>
+      <ul class="lines bst-lines">
+        <li class="fragment" data-fragment-index="1"><b>Practice soared. Learning sank.</b> The chatbot group scored <em>17% lower</em> in the exam than pupils who never had AI.</li>
+        <li class="fragment" data-fragment-index="2">The hint-only group did about the same as no AI. <b>Hints keep the thinking with the pupil.</b></li>
+      </ul>
+    </div>
+  </div>
+  <p class="srcline">Source: Bastani and others, 2025, PNAS</p>
+  <aside class="notes">[1:45] The one piece of research in the talk. Read the set-up, then ask: how did the chatbot group do in the exam, once the AI was taken away? Let people guess. Click 1: the exam bars drop in. The ordinary chatbot group scored 17% lower than pupils who never had AI. Click 2: the hint-only tutor group did about the same as no AI. Answers make practice easy and learning shallow. Hold on to the 17%: I ask for it again at the end. Source, checked against the published abstract: Bastani, H. et al. (2025) "Generative AI without guardrails can harm learning: Evidence from high school mathematics", PNAS. 48% and 127% while practising; 17% lower for the ordinary chatbot when access was removed; nearly a thousand students.</aside>
+</section>
+
+<!-- 5 · The routine -->
+<section id="s-routine">
+  <div class="frame">
+    <p class="kicker">Will it harm learning?</p>
+    <h2 class="headline">Attempt first, then one hint, <em>then solve one alone on paper.</em></h2>
+    <div class="body routine">
+      <div>
+        <ol class="r5">
+          <li><span class="k">1</span>Attempt it first.</li>
+          <li class="fragment"><span class="k">2</span>Name where you are stuck.</li>
+          <li class="fragment"><span class="k">3</span>Ask for one hint.</li>
+          <li class="fragment"><span class="k">4</span>Check the reply.</li>
+          <li class="fragment last"><span class="k">5</span>Close the AI and solve a fresh one alone, on paper.</li>
+        </ol>
+        <p class="r-measure fragment">The measure that counts is <b>what a pupil can do with the AI switched off.</b></p>
+      </div>
+      <div class="r-right">
+        <div class="chat">
+          <div class="msg ai"><span class="who">AI</span>Try it first, and show me your first line.</div>
+          <div class="msg me">Δp = 0,2(8 − 12)</div>
+          <div class="msg ai"><span class="who">AI</span>Check your signs: which way is the ball moving after the bounce?</div>
+        </div>
+        <p class="r-status"><span class="illus">ILLUSTRATION</span> A hint, not an answer.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[1:15] The routine that answers the research. One click per step. Step 5 is the one that matters most: close the AI and do a fresh question alone, on paper. The chat on the right is an illustration of a hint, not an answer. Last click: the measure that counts is what a pupil can do with the AI switched off.</aside>
+</section>
+
+<!-- 6 · The lens -->
+<section id="s-lenses">
+  <div class="frame">
+    <p class="kicker">What makes the output good?</p>
+    <h2 class="headline">There is no prompt. There is a page of rules: <em>my lens.</em></h2>
+    <p class="lens-why">The AI forgets everything when a chat ends. So I wrote my rules down once, and it reads that page before every job.</p>
+    <div class="body lens-stage">
+      <img class="page lens-page" src="../ai-pd/img/g10-p142-printlight.jpg" alt="">
+      <div class="focus-ring" id="focus-ring"></div>
+      <div class="lens l1 fragment dim-after" style="left:0;top:0"><div class="ring"></div><div class="ln">Curriculum</div><div class="ld">The exact syllabus wording, and what examiners reward</div></div>
+      <div class="lens l2 fragment dim-after" style="left:0;top:215px;bottom:auto"><div class="ring"></div><div class="ln">Learning science</div><div class="ld">Recall from memory, worked examples that fade, spaced review, feedback</div></div>
+      <div class="lens l3 fragment dim-after" style="left:0;top:430px;bottom:auto"><div class="ring"></div><div class="ln">The learner</div><div class="ld">Calm and clear for weaker readers, a stretch for the strong</div></div>
+      <div class="lens l4 fragment dim-after" style="right:0;top:0;bottom:auto"><div class="ring"></div><div class="ln">Print and design</div><div class="ld">Answer space sized from the real worked answer; works in black and white</div></div>
+      <div class="lens l5 fragment dim-after" style="right:0;top:215px;left:auto;bottom:auto;transform:none"><div class="ring"></div><div class="ln">House style</div><div class="ld">One look, clear version labels</div></div>
+      <div class="lens fragment" data-fx="focus" style="right:0;top:430px;border-color:var(--red)"><div class="ln" style="color:var(--red-text)">You</div><div class="ld">The teacher is the expert. That part cannot be handed over.</div></div>
+    </div>
+  </div>
+  <aside class="notes">[1:45] Colleagues ask me what prompt I used. There is no prompt. The AI forgets everything when a chat ends, so I wrote my rules down once, on one page, and the AI reads it before every job. I call that page my lens. One click per part: curriculum, learning science, the learner, print and design, house style. The last click is the one that matters: you. Your lens will be your own, and that part cannot be handed over.</aside>
+</section>
+
+<!-- 7 · One test -->
+<section id="s-test">
+  <div class="frame">
+    <p class="kicker">What makes the output good?</p>
+    <h2 class="test-quote">One test for every page: what must the pupil <span>recall</span>, <span>think about</span> or <span>produce</span>?</h2>
+    <div class="body">
+      <div class="tri">
+        <img class="page" src="../ai-pd/img/g10-p142-printlight.jpg" alt="Coursebook page 142">
+        <div class="verbs">
+          <div class="verb fragment dim-after"><span class="v">Recall</span><span class="d">p = mv, and that a rebound reverses the sign of the velocity</span></div>
+          <div class="verb fragment dim-after"><span class="v">Think</span><span class="d">Why a bounce changes momentum more than a stop</span></div>
+          <div class="verb fragment dim-after"><span class="v">Produce</span><span class="d">The change in momentum with formula, substitution, answer, unit and direction</span></div>
+          <div class="cut fragment dim-after">Anything that only decorates, entertains or keeps pupils clicking is cut.</div>
+          <div class="cut fragment" style="color:var(--text)">Try the test on a worksheet you used this week.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[1:00] The one test the lens applies to every page. Recall, think, produce, shown on page 142. Anything that only decorates or entertains is cut. Last click: invite people to try it on a worksheet they used this week.</aside>
+</section>
+
+<!-- 8 · Wow 1: a first job -->
+<section id="s-firstjob">
+  <div class="frame">
+    <p class="kicker">Wow 1 · A first job</p>
+    <h2 class="headline">One worked example became three questions and a memo. Every number was right. <em>Six other things were not.</em></h2>
+    <div class="body fj">
+      <div class="fj-left">
+        <div class="fj-pair">
+          <figure><img src="../ai-pd/img/g10-p142-printlight.jpg" alt="Worked example 7.2, the page the job started from"><figcaption>The page I gave it</figcaption></figure>
+          <figure class="hot"><img src="../ai-pd/img/job-out.png" alt="The first question and its memo, as the AI returned them"><figcaption>What came back</figcaption></figure>
+        </div>
+        <div class="prompt">"Write three practice questions like this worked example, with new numbers. Set out the memo the way this one is set out."</div>
+      </div>
+      <div class="fj-right">
+        <p class="fj-lead">I checked every answer. The physics and arithmetic were right. Then I changed:</p>
+        <ol class="chlist fj-list">
+          <li class="fragment"><b>Units.</b> <code>m.s^-1</code> became <em>m·s⁻¹</em>, as the book writes it.</li>
+          <li class="fragment"><b>No diagrams.</b> The before-and-after strip is half of what makes the page teach.</li>
+          <li class="fragment"><b>No Common mistake box.</b> The page ends with one.</li>
+          <li class="fragment"><b>Three rebounds.</b> I made question 3 a ball that <em>stops</em>, for the contrast.</li>
+          <li class="fragment"><b>One muddled line.</b> "Speed change" where it meant <em>velocity</em>.</li>
+          <li class="fragment"><b>"He" and "she"</b> for one learner. Both became <em>the learner</em>.</li>
+        </ol>
+        <p class="tagline fragment">It did the typing. <em>I did the judging.</em></p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[1:45] A real run on Worked example 7.2, done for this talk. I gave it one page and one sentence; it gave back three questions and a memo in about a minute. Every number was right. One click per change: the units, the missing diagrams, the missing Common mistake box, three questions that were all the same, one muddled explanation, and he and she for the same learner. None of these is a maths error. All of them needed a teacher who knows the book and the class. Last click: it did the typing, I did the judging.</aside>
+</section>
+
+<!-- 9 · Wow 2: marking -->
+<section id="s-mark-pen">
+  <div class="frame">
+    <p class="kicker">Wow 2 · Moderating my marking <span class="illus">REAL SCRIPT, ANONYMISED</span></p>
+    <h2 class="headline">My red pen first, then a green moderator's pen. <em>I decide every mark.</em></h2>
+    <div class="body mk-pen">
+      <div class="mk-compare" id="mk-compare" aria-label="The same script page before and after moderation">
+        <img src="../ai-pd/img/mark/p18-after.jpg" alt="The same page with green moderation marks added" draggable="false">
+        <div class="mk-before"><img src="../ai-pd/img/mark/p18-before.jpg" alt="A script page with the teacher's red marks only" draggable="false"></div>
+        <div class="mk-handle"><span>◀ ▶</span></div>
+        <span class="mk-tag mk-tag-l">My marking</span><span class="mk-tag mk-tag-r">Moderated</span>
+      </div>
+      <div class="mk-side">
+        <ol class="mk-steps">
+          <li><b class="red">Red:</b> I mark every script myself.</li>
+          <li><b class="grn">Green:</b> AI moderates it, written straight onto the scan.</li>
+          <li>A <b class="grn">tick</b> where it agrees. A <b class="grn">new mark and the reason</b> where it doesn't.</li>
+          <li><b>I check every green change.</b> I still decide every mark.</li>
+        </ol>
+        <div class="mk-btns"><button data-mk="0">My marking</button><button data-mk="100">Moderated</button></div>
+        <button class="tk-open" id="an-open">See the class analysis ▸</button>
+        <p class="mk-priv">Name, class and school hidden. Only question marks show.</p>
+      </div>
+    </div>
+  </div>
+  <div class="an-card" id="an-card" hidden role="dialog" aria-label="Class analysis, invented class">
+    <button class="an-x" id="an-x" aria-label="Close">×</button>
+    <p class="kicker">The marks, analysed <span class="illus">INVENTED CLASS</span></p>
+    <div class="body mk-an">
+      <div class="mk-chart">
+        <div class="mk-tabs" role="tablist">
+          <button class="on" data-mkview="paper">Whole paper</button>
+          <button data-mkview="q">Question by question</button>
+        </div>
+        <svg id="mk-svg" viewBox="0 0 980 560" aria-label="Chart of invented marks"></svg>
+        <p class="mk-hint" id="mk-hint">Click a bar for more.</p>
+      </div>
+      <div class="mk-side an">
+        <p class="mk-read" id="mk-read">An invented class of 24 pupils, one 135-mark paper.</p>
+        <ul class="mk-unlock">
+          <li>Whole paper: who needs help first.</li>
+          <li>Question by question: what to <b>reteach</b>, not just who.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="an-note">Esc or × to go back to the script</p>
+  </div>
+  <div class="ia-tag"><span>▶</span>Try it: drag the slider, open the analysis</div>
+  <aside class="notes">[1:45] A real Grade 11 script page, anonymised: no name, class, school or total. Drag the slider. Red is my marking, done first and by hand. Green is the AI moderating it, written onto the scan: a tick where it agrees, a new mark with the reason where it does not. I check every green change and I decide every mark. Then click "See the class analysis": the marks go into a spreadsheet and the analysis is one prompt away. Every pupil and mark in the chart is invented. Show both views, click a red bar, then Esc.</aside>
+</section>
+
+<!-- 10 · Wow 3: the study coach -->
+<section id="s-coach-chat">
+  <div class="frame">
+    <p class="kicker">Wow 3 · The study coach</p>
+    <h2 class="headline">The coach asks one question, <em>then hands the pen back.</em></h2>
+    <div class="body cc">
+      <div class="cc-phone" role="img" aria-label="A phone showing a made-up practice exchange with the study coach">
+        <div class="cc-notch"></div>
+        <div class="cc-q"><b>Q 2.2</b> A 4 Ω and a 6 Ω resistor are in series with a 12 V battery. Calculate the current. <span class="cc-mk">(3)</span></div>
+        <div class="cc-lines">R<sub>s</sub> = R<sub>1</sub> + R<sub>2</sub> = 4 + 6 = 10 Ω<br>I = V/R = 10/12 = 0,83 A</div>
+        <div class="cc-msg cc-coach"><span class="who">Study coach</span>Your total resistance line is right. The gap is in the substitution line for I. In I = V/R, which number from the question is V?</div>
+        <div class="cc-msg cc-me">oh. I = 12/10 = 1,20 A</div>
+        <div class="cc-msg cc-coach"><span class="who">Study coach</span>That's right. Formula, substitution and answer with unit: 3 of 3 (Mr R's marking). Close the screen. Do this one in pen.</div>
+      </div>
+      <div class="cc-right">
+        <ol class="cc-pts">
+          <li class="fragment"><span class="k">1</span>Says what is right first</li>
+          <li class="fragment"><span class="k">2</span>Names the first gap only, with one question</li>
+          <li class="fragment"><span class="k">3</span>Talks in memo marks and names its source</li>
+          <li class="fragment"><span class="k">4</span>Ends every session on paper</li>
+        </ol>
+        <div class="cl-gate tk-gate fragment">
+          <svg class="cl-lock" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 28v-8a12 12 0 0 1 24 0v8" fill="none" stroke="#FFD43B" stroke-width="6"/><rect x="12" y="28" width="40" height="30" rx="6" fill="#FFD43B"/><circle cx="32" cy="43" r="4" fill="#14171f"/></svg>
+          <div><b>The final answer stays locked</b> until two more real tries.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="srcline">A made-up attempt. Tested only with made-up attempts so far, not with classes.</p>
+  <aside class="notes">[1:15] This is the research slide turned into a tool. The coach sits on the Circuits practice pages. The pupil types their own working; the coach says what is right, then asks one question about the first gap. Four clicks for how it behaves, one for the lock: the final answer stays locked until two more real tries. It ends every session by sending the pupil back to pen and paper. Say plainly: this exchange is made up, and the coach has only been tested with made-up attempts, not with classes.</aside>
+</section>
+
+<!-- 11 · Scaled up -->
+<section id="s-scale">
+  <div class="frame">
+    <p class="kicker">Scaled up</p>
+    <h2 class="headline">The same lens, <em>at book size and on video.</em></h2>
+    <div class="body sc2">
+      <div class="sc-book">
+        <img class="cover" src="../ai-pd/img/g10-cover-noschool.jpg" alt="Coursebook cover">
+        <div>
+          <div class="sc-n"><b>469</b> pages of coursebook</div>
+          <div class="sc-n"><b>326</b> pages of matching answer book</div>
+          <ul class="sc-who">
+            <li><small>I decided</small>The design rules, the level, the exact curriculum wording</li>
+            <li class="fragment" data-fragment-index="0"><small>The AI</small>Built the pages</li>
+            <li class="fragment" data-fragment-index="0"><small>I</small>Checked them</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sc-vid">
+        <div class="g7-screen ours"><video id="g7-video" src="../ai-pd/video/g7/g7-m4l3-v2.mp4" poster="../ai-pd/video/g7/g7-m4l3-v2-poster.jpg" controls preload="metadata" playsinline aria-label="Grade 7 Chemistry, Module 4 Lesson 3: Groups and periods"></video></div>
+        <p class="sc-cap"><b>Grade 7 lesson videos, in our own words.</b> No adverts, nothing "up next", the book's words, and it ends by sending pupils to the page.</p>
+        <button class="tk-open" data-view="../grade7/index.html">See the Grade 7 showcase ▸</button>
+      </div>
+    </div>
+  </div>
+  <div class="ia-tag"><span>▶</span>Try it: play the video</div>
+  <aside class="notes">[1:15] The same method, much bigger. The Grade 10 coursebook is 469 pages, with a matching 326-page answer book. I decided the rules, the level and the exact curriculum wording; the AI built the pages; I checked them. Click: the split. On the right, a real Grade 7 lesson video, Module 4 Lesson 3, Groups and periods, made to replace YouTube clips: no adverts, the book's own words. Play ten seconds if there is time. The button opens the Grade 7 showcase for anyone who wants more.</aside>
+</section>
+
+<!-- 12 · What goes wrong, and my rules -->
+<section id="s-rules">
+  <div class="frame">
+    <p class="kicker">Is it safe?</p>
+    <h2 class="headline">AI goes wrong in four ways. <em>So I keep four rules.</em></h2>
+    <div class="body rules2">
+      <div class="r2-col">
+        <h3>What goes wrong</h3>
+        <div class="traps tk-traps">
+          <div class="trap4"><span class="tn">1</span><b>It makes things up</b><span>A South African court could trace only two of the nine cases a legal team had cited.</span></div>
+          <div class="trap4"><span class="tn">2</span><b>It agrees with you</b><span>"I think the answer is 12, right?" Many chatbots agree, even when 12 is wrong.</span></div>
+          <div class="trap4"><span class="tn">3</span><b>It can be unfair</b><span>It learnt from human writing, bias included.</span></div>
+          <div class="trap4"><span class="tn">4</span><b>It can be out of date</b><span>What it knows stops at some point. The world does not.</span></div>
+        </div>
+      </div>
+      <div class="r2-col">
+        <h3>My rules</h3>
+        <ul class="r2-rules">
+          <li class="fragment"><b>Nothing goes live without me.</b> The AI drafts; I check and approve every page.</li>
+          <li class="fragment"><b>Pupil data stays in the school's own systems.</b> Marks files stay put; the study coach never asks for a name.</li>
+          <li class="fragment"><b>Demos use invented data.</b> No real pupil, class or mark appears in this talk.</li>
+          <li class="fragment"><b>Check everything against what you know.</b> That goes for teachers too.</li>
+        </ul>
+        <p class="r2-school fragment">Before you start, check <em>your school's own rules on AI</em>.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[1:15] The four traps, all on screen at once: it makes things up, it agrees with you, it can be unfair, it can be out of date. Then my four rules, one click each. Nothing goes live without me. Pupil data stays in the school's own systems. Every demo in this talk uses invented data, and the marking script is anonymised. Check everything against what you know. Last click: before you start, check your school's own rules on AI.</aside>
+</section>
+
+<!-- 13 · Start Monday -->
+<section id="s-start">
+  <div class="frame">
+    <p class="kicker">Start Monday</p>
+    <h2 class="headline">Three rungs, each a fine place to stop. <em>Here are the words for the first.</em></h2>
+    <div class="body start2">
+      <div class="ladder tk-ladder">
+        <div class="rung r1"><span class="rk">First</span><div><b>One small job in an ordinary chat</b><span>From a page you already teach from. Check it against what you know.</span></div></div>
+        <div class="rung r2 fragment"><span class="rk">Next</span><div><b>Write one page of your own rules</b><span>Keep it where the AI reads it every time.</span></div></div>
+        <div class="rung r3 fragment"><span class="rk">When ready</span><div><b>Put the AI to work on your own computer</b><span>The Starter Kit walks you through it.</span></div></div>
+      </div>
+      <div class="paste tk-paste">
+        <div class="pbox" id="paste-text">"Here is a page I teach from. Write three practice questions like the worked example, with new numbers, and a memo set out the same way. Use only what is on my page. Ask me if anything is unclear."<button class="copy" data-copy="paste-text">Copy</button></div>
+        <div class="card2 hot"><div class="d"><b>Check every answer yourself</b> before a pupil sees it. It works the same way <b>in any subject.</b></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ia-tag"><span>▶</span>Try it: copy the words</div>
+  <aside class="notes">[1:00] Start small. The first rung is one small job in an ordinary chat, from a page you already teach from. The words are on screen; the Copy button puts them on your clipboard. Check every answer yourself. Two clicks for the next rungs: one page of your own rules, then, when you are ready, the AI on your own computer. Each rung is a fine place to stop.</aside>
+</section>
+
+<!-- 14 · Close -->
+<section id="s-close">
+  <div class="closing tk-close">
+    <div class="lookback">Without looking back: what happened in the exam to the pupils who practised with a chatbot?<span class="ans fragment">They scored 17% lower than pupils who never had AI.</span></div>
+    <div class="tk-links fragment">
+      <button class="tk-open" data-view="https://mrrscience.co.za/ai-pd/starter-kit/">Starter Kit ▸</button>
+      <button class="tk-open" data-view="film.html">The AI literacy film ▸</button>
+      <button class="tk-open" data-view="../ai-pd/index.html">The full story: the logbook ▸</button>
+      <img class="tk-qr" src="../ai-pd/img/qr-starter-kit.svg" alt="QR code for the Starter Kit">
+    </div>
+    <p class="licence">Noel Robert. Free to share. Not for sale, and not to be changed. <button class="tk-lic" data-view="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</button></p>
+    <div class="theme-line close fragment"><span class="tx-r">Expertise</span> is what makes AI useful.</div>
+  </div>
+  <div class="ia-tag"><span>▶</span>Try it: open the Starter Kit</div>
+  <aside class="notes">[0:45] Ask the recall question and wait for an answer from the room. Click: 17% lower. That is the whole talk in one number: the AI did the work, so the pupils did not learn. Click: the links. The Starter Kit, the AI literacy film, and the logbook, the full story. The QR code opens the Starter Kit. Last click: the theme line. Leave it up.</aside>
+</section>
+
+</div>
+</div>
+
+<script src="../ai-pd/vendor/reveal/reveal.js"></script>
+<script src="../ai-pd/vendor/reveal/plugin/notes/notes.js"></script>
+<script src="../ai-pd/vendor/reveal/plugin/zoom/zoom.js"></script>
+<script src="../ai-pd/vendor/gsap/gsap.min.js"></script>
+<script src="js/talk.js"></script>
+<script src="../ai-pd/js/v8.js"></script>
+<script src="../ai-pd/js/count.js"></script>
+</body>
+</html>

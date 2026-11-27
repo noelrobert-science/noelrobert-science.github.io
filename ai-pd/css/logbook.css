@@ -1,0 +1,9 @@
+/* The logbook (renamed from the talk, 2026-11-27): slide 1 names the logbook and links to the 20-minute talk. */
+#s-theme0 .theme-line { top: 40%; }
+#s-theme0 .t-logbook { position: absolute; left: 0; right: 0; top: 560px; margin: 0; text-align: center; font: 600 40px var(--font-body); letter-spacing: .02em; color: #efece4; }
+#s-theme0 .t-intro { top: 650px; font-size: 34px; }
+#s-theme0 .t-short { position: absolute; left: 0; right: 0; top: 820px; margin: 0; text-align: center; }
+.t-short-btn { all: unset; cursor: pointer; display: inline-block; background: #233e59; color: #fff; font: 600 30px var(--font-body); padding: 14px 30px; border-radius: 32px; }
+.t-short-btn:hover, .t-short-btn:focus-visible { background: #2f5479; }
+/* slide 1 has its own dark background, which hid the yellow (c) mark; lift the mark on that slide only */
+.cm-top .copy-mark { z-index: 40; }

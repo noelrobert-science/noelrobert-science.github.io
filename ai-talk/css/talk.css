@@ -1,0 +1,107 @@
+/* The light talk (/ai-talk/): layouts for the merged slides. Everything else comes from ../ai-pd/css. */
+
+.frame .kicker { padding-right: 0; }
+
+/* small, quiet links that open in place */
+.tk-link { all: unset; cursor: pointer; font: 500 28px var(--font-body); color: var(--dim); border-bottom: 2px solid var(--line); padding-bottom: 2px; }
+.tk-link:hover, .tk-link:focus-visible { color: var(--text); border-color: var(--red); }
+.tk-open { all: unset; cursor: pointer; display: inline-block; background: #233e59; color: #fff; font: 600 28px var(--font-body); padding: 14px 28px; border-radius: 32px; }
+.tk-open:hover, .tk-open:focus-visible { background: #2f5479; }
+
+/* 1 · theme */
+#s-theme0 .t-intro { top: 640px; }
+#s-theme0 .t-full { position: absolute; left: 0; right: 0; top: 820px; text-align: center; margin: 0; }
+
+/* 4 · practice soared, learning sank */
+#s-bastani .bst-setup { font-size: 28px; }
+#s-bastani .bst { height: 360px; }
+#s-bastani .bst-decide { position: absolute; right: 200px; top: 560px; }
+#s-bastani .bst-lines { margin-top: 14px; }
+#s-bastani .bst-lines li { font-size: 31px; margin-bottom: 6px; }
+#s-bastani .srcline { bottom: 22px; font-size: 22px; }
+
+/* 6 · the lens */
+#s-lenses .headline { margin-bottom: 10px; }
+.lens-why { font-size: 32px; line-height: 1.35; color: var(--dim); margin: 0 0 24px; max-width: 1600px; }
+#s-lenses .lens-stage { flex: 1; }
+
+/* 8 · wow 1: a first job */
+#s-firstjob .headline { font-size: 58px; margin-bottom: 30px; }
+.fj { display: grid; grid-template-columns: 700px 1fr; gap: 56px; flex: 1; min-height: 0; }
+.fj-left { display: flex; flex-direction: column; gap: 22px; min-height: 0; }
+.fj-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; min-height: 0; }
+.fj-pair figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-height: 0; background: var(--stage-2); border: 2px solid var(--line); border-radius: 16px; padding: 14px; }
+.fj-pair figure.hot { border-color: var(--red); }
+.fj-pair img { flex: 1; min-height: 0; width: 100%; object-fit: contain; object-position: top; background: #fff; border-radius: 6px; }
+.fj-pair figcaption { font-size: 24px; color: var(--dim); }
+.fj-left .prompt { font: 400 26px/1.4 var(--font-body); background: #2b5aa8; color: #fff; padding: 18px 22px; border-radius: 22px 22px 22px 6px; }
+.fj-lead { font-size: 30px; line-height: 1.3; color: var(--dim); margin: 0 0 18px; }
+.chlist.fj-list { grid-template-columns: 1fr; gap: 14px; }
+.chlist.fj-list li { font-size: 30px; padding-left: 70px; }
+#s-firstjob .tagline { margin-top: 22px; }
+
+/* 9 · wow 2: marking, with the class analysis in place */
+#s-mark-pen .tk-open { margin: 22px 0 6px; }
+#s-mark-pen.card-on .frame { opacity: .12; }
+.an-card { position: absolute; left: 50%; top: 60px; transform: translateX(-50%); width: 1680px; box-sizing: border-box; z-index: 50; background: #14171f; border: 3px solid #FFD43B; border-radius: 26px; padding: 36px 48px 30px; box-shadow: 0 40px 140px rgba(0,0,0,.7); }
+.an-card[hidden] { display: none; }
+.an-card .kicker { margin-bottom: 18px; }
+.an-x { all: unset; cursor: pointer; position: absolute; right: 22px; top: 18px; width: 56px; height: 56px; border-radius: 50%; background: #e3121b; color: #fff; font-size: 34px; text-align: center; line-height: 56px; }
+.an-note { margin: 10px 0 0; font-size: 20px; color: var(--faint); }
+.an-card #mk-svg { width: 980px; max-height: 620px; }
+
+/* 10 · wow 3: the study coach */
+.cc-right { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.cc-right .cc-pts { flex: none; }
+.cc-right .cc-pts li:last-child { border: 0; }
+.tk-gate .cl-lock { width: 64px; height: 64px; flex: none; }
+
+/* 11 · scaled up */
+.sc2 { display: grid; grid-template-columns: 1fr 820px; gap: 70px; align-items: start; }
+.sc-book { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; }
+.sc-book .cover { width: 300px; border-radius: 10px; box-shadow: 0 40px 120px rgba(0,0,0,.6); }
+.sc-n { font-size: 28px; white-space: nowrap; color: var(--dim); margin-bottom: 14px; line-height: 1.2; }
+.sc-n b { display: block; font: 900 68px/1 var(--font-display); color: var(--text); }
+.sc-who { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.sc-who li { background: var(--stage-2); border: 2px solid var(--line); border-radius: 16px; padding: 14px 22px; font-size: 30px; line-height: 1.25; }
+.sc-who li:first-child { border-color: var(--red); }
+.sc-who small { display: block; font: 600 22px var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--red-text); margin-bottom: 4px; }
+.sc-vid .g7-screen { max-height: 462px; }
+.sc-cap { font-size: 30px; line-height: 1.35; color: var(--dim); margin: 20px 0 22px; }
+.sc-cap b { color: var(--text); font-weight: 600; }
+
+/* 12 · what goes wrong, and my rules */
+.rules2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.r2-col h3 { font: 700 30px var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin: 0 0 20px; }
+.traps.tk-traps { grid-template-columns: 1fr 1fr; gap: 18px; }
+.tk-traps .trap4 { padding: 20px 22px 22px; gap: 8px; }
+.tk-traps .trap4 .tn { font-size: 40px; }
+.tk-traps .trap4 b { font-size: 34px; }
+.tk-traps .trap4 span { font-size: 25px; }
+.r2-rules { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.r2-rules li { background: var(--stage-2); border-left: 8px solid #3ddc7a; border-radius: 14px; padding: 18px 24px; font-size: 29px; line-height: 1.3; color: var(--dim); }
+.r2-rules li b { display: block; color: var(--text); font: 800 34px/1.15 var(--font-display); margin-bottom: 4px; }
+.r2-school { margin: 22px 0 0; font-size: 30px; color: var(--dim); }
+.r2-school em { font-style: normal; color: var(--text); font-weight: 600; }
+
+/* 13 · start Monday */
+.start2 { display: grid; grid-template-columns: 1fr 720px; gap: 56px; align-items: start; }
+.ladder.tk-ladder { height: 640px; }
+.tk-ladder .rung { width: 720px; padding: 20px 26px; box-sizing: border-box; }
+.tk-ladder .rung b { font-size: 34px; }
+.tk-ladder .rung span { font-size: 27px; }
+.tk-ladder .rung.r1 { left: 0; bottom: 0; } .tk-ladder .rung.r2 { left: 80px; bottom: 215px; } .tk-ladder .rung.r3 { left: 160px; bottom: 430px; }
+.paste.tk-paste { display: flex; flex-direction: column; gap: 26px; }
+.tk-paste .pbox { font-size: 33px; }
+
+/* 14 · close */
+.tk-close { padding-bottom: 60px; }
+.tk-close .lookback { margin-bottom: 40px; }
+.tk-links { display: flex; gap: 22px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.tk-qr { width: 130px; height: 130px; border-radius: 10px; margin-left: 20px; }
+.tk-close .theme-line.close { text-align: center; margin-top: 56px; font-size: 76px; }
+.tk-close .licence { position: absolute; left: 0; right: 0; bottom: 40px; text-align: center; margin: 0; }
+.tk-lic { all: unset; cursor: pointer; text-decoration: underline; }
+
+/* the yellow (c) mark stays above every slide, including slide 1 with its own background */
+.reveal .copy-mark { z-index: 45; }
