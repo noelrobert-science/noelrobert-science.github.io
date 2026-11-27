@@ -1,0 +1,47 @@
+/* Grade 7 showcase deck: reveal.js set-up (same canvas as the AI PD deck), page lightbox, video voice picker. */
+(function () {
+  var lb = document.getElementById('sc-lb'), lbImg = lb.querySelector('img');
+  function open(src, alt) { lbImg.src = src; lbImg.alt = alt || ''; lb.classList.add('on'); lb.querySelector('button').focus(); }
+  function close() { lb.classList.remove('on'); }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lb.classList.contains('on')) { e.preventDefault(); e.stopPropagation(); close(); }
+  }, true);
+  document.querySelectorAll('[data-full]').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var img = b.querySelector('img'); open(b.dataset.full, img ? img.alt : '');
+      if (window.gcEvent) window.gcEvent('g7-showcase-open-' + b.dataset.full.replace(/^img\//, ''));
+    });
+  });
+
+  // video: load the player only when its slide is shown; voice buttons swap the clip
+  var vf = document.getElementById('vframe');
+  function loadClip(c) { vf.src = '../clips/g7/play.html?c=' + c + '&embed=1'; }
+  document.querySelectorAll('.voices button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.voices button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      loadClip(b.dataset.c);
+      if (window.gcEvent) window.gcEvent('g7-showcase-voice-' + b.dataset.c);
+    });
+  });
+  function onSlide(s) {
+    if (s && s.id === 's-vid-play' && !vf.getAttribute('src')) loadClip(document.querySelector('.voices button.on').dataset.c);
+    if (s && s.id !== 's-vid-play' && vf.getAttribute('src')) { try { vf.contentWindow.document.querySelectorAll('video').forEach(function (v) { v.pause(); }); } catch (e) {} }
+  }
+
+  var ok = document.getElementById('turn-ok');
+  if (ok) ok.addEventListener('click', function () { document.getElementById('turn').classList.add('off'); });
+
+  Reveal.initialize({
+    width: 1920, height: 1080, margin: 0, minScale: 0.1, maxScale: 3,
+    center: false, hash: true, controls: true, controlsTutorial: false, progress: true,
+    transition: 'fade', transitionSpeed: 'default', backgroundTransition: 'fade', showNotes: false,
+    plugins: [RevealNotes]
+  }).then(function () {
+    onSlide(Reveal.getCurrentSlide());
+    Reveal.on('slidechanged', function (e) { onSlide(e.currentSlide); });
+    // scroll view (narrow phones): the player slide may never be "current", so load it when near
+    if (Reveal.isScrollView && Reveal.isScrollView()) loadClip(document.querySelector('.voices button.on').dataset.c);
+  });
+})();
