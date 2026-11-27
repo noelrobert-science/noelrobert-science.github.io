@@ -1,0 +1,42 @@
+/* v0.10: my voice, without the recording (s-voice-once, s-voice-jobs). Loaded after v9.css. */
+
+/* ---------- slide 39 · I recorded once (s-voice-once) ---------- */
+.vo { display: flex; flex-direction: column; gap: 26px; }
+.vo-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: stretch; }
+.vo-lane { border-radius: 18px; padding: 24px 28px; box-sizing: border-box; background: var(--stage-2); border: 2px solid var(--line); display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.vo-lane.new { border-color: #3ddc7a; }
+.vo-lane h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 38px; line-height: 1.1; color: var(--text); }
+.vo-lane.new h3 { color: #3ddc7a; }
+.vo-steps { display: flex; flex-wrap: wrap; gap: 10px 8px; align-items: center; font-size: 27px; }
+.vo-steps .st { background: var(--stage-3); border-radius: 10px; padding: 7px 14px; line-height: 1.2; }
+.vo-steps .st.me { border: 2px solid #FFD43B; color: #FFD43B; font-weight: 600; }
+.vo-steps i { font-style: normal; color: var(--dim); }
+.vo-rep { margin: 4px 0 0; font-size: 30px; line-height: 1.3; color: var(--red-text); font-weight: 600; }
+.vo-big { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.vo-big b { font-family: var(--font-display); font-weight: 900; font-size: 70px; line-height: 1; color: #3ddc7a; }
+.vo-big span { font-size: 28px; color: var(--dim); line-height: 1.3; flex: 1; min-width: 300px; }
+.vo-foot { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.vo-foot .tagline { margin: 0; font-size: 44px; }
+.vo-try { flex: none; width: 660px; display: flex; flex-wrap: wrap; gap: 12px; background: var(--stage-2); border: 2px dashed #FFD43B; border-radius: 16px; padding: 14px 18px; }
+.vo-say { flex-basis: 100%; font-size: 22px; line-height: 1.3; color: var(--dim); font-style: italic; }
+.vo-play { display: inline-flex; align-items: center; gap: 10px; font: 600 24px var(--font-body); padding: 9px 20px; border-radius: 999px; border: 2px solid #FFD43B; background: transparent; color: #FFD43B; cursor: pointer; }
+.vo-play:hover, .vo-play.on { background: #FFD43B; color: #15171c; }
+.vo-play .ic { font-size: 18px; width: 18px; text-align: center; }
+#s-voice-once .srcline { right: auto; left: 300px; font-size: 24px; bottom: 30px; }
+#s-voice-jobs .srcline { left: 300px; right: 120px; text-align: right; font-size: 24px; bottom: 30px; }
+
+/* ---------- slide 40 · each voice has a job (s-voice-jobs) ---------- */
+.vj { display: flex; flex-direction: column; gap: 34px; }
+.vj-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: stretch; }
+.vj-c { background: var(--stage-2); border-radius: 16px; border-top: 8px solid var(--line); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.vj-c .who { font-family: var(--font-display); font-weight: 800; font-size: 38px; line-height: 1.1; }
+.vj-c .lab { font: 500 22px var(--font-mono); color: var(--dim); }
+.vj-c .d { font-size: 28px; line-height: 1.3; margin-top: 6px; }
+.vj-c.mr { border-top-color: #FFD43B; }
+.vj-c.mix { border-top-color: #3ddc7a; }
+.vj-c.leah { border-top-color: #8fa0ff; }
+.vj-c.face { border-top-color: var(--red); }
+.vj-c img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; margin-bottom: 6px; }
+.vj-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.vj-rules div { border: 2px dashed #3a4256; border-radius: 14px; padding: 16px 20px; font-size: 27px; line-height: 1.3; color: var(--dim); }
+.vj-rules b { display: block; color: #FFD43B; font-weight: 600; font-size: 30px; margin-bottom: 4px; }
