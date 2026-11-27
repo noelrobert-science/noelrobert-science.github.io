@@ -1,0 +1,138 @@
+/* v0.9: the study coach (s-coach-*) and the Grade 7 lesson videos (s-g7-*). Loaded after v8.css. */
+
+/* shared: SVG text in the deck's fonts */
+.cl-svg text, .cw-svg text, .ct-svg text, .g7p-svg text { font-family: var(--font-body); fill: var(--text); }
+
+/* ---------- C1 · the coach's exchange (s-coach-chat) ---------- */
+.cc { display: flex; gap: 80px; align-items: flex-start; }
+.cc-phone { flex: none; width: 680px; box-sizing: border-box; background: var(--stage-2); border: 10px solid #2a3040; border-radius: 48px; padding: 16px 24px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 60px rgba(0,0,0,.5); }
+.cc-notch { align-self: center; width: 120px; height: 12px; border-radius: 6px; background: #3a4256; margin-bottom: 2px; }
+.cc-q { background: var(--stage-3); border-radius: 14px; padding: 10px 18px; font-size: 24px; line-height: 1.32; }
+.cc-q b { font-weight: 600; color: var(--red-text); margin-right: 6px; }
+.cc-mk { color: var(--dim); }
+.cc-lines { background: var(--paper); color: var(--ink); border-radius: 10px; padding: 10px 18px; font-family: 'Patrick Hand', cursive; font-size: 32px; line-height: 1.3;
+  background-image: repeating-linear-gradient(transparent 0 40px, #c9d6e4 40px 41px); background-position: 0 6px; }
+.cc-lines sub { font-size: .62em; }
+.cc-msg { max-width: 94%; padding: 8px 18px; border-radius: 18px; font-size: 24px; line-height: 1.32; }
+.cc-msg.cc-coach { align-self: flex-start; background: #262c3b; border-top-left-radius: 6px; }
+.cc-msg.cc-me { align-self: flex-end; background: #1d3a5c; border-top-right-radius: 6px; font-family: 'Patrick Hand', cursive; font-size: 32px; line-height: 1.2; }
+.cc-msg .who { display: block; font: 500 20px var(--font-mono); color: var(--red-text); margin-bottom: 2px; }
+.cc-pts { list-style: none; margin: 10px 0 0; padding: 0; flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.cc-pts li { display: flex; align-items: center; gap: 24px; background: var(--stage-2); border-radius: 16px; padding: 18px 26px; font-size: 36px; line-height: 1.22; }
+.cc-pts li:last-child { border: 2px solid var(--red); }
+.cc-pts .k { font: 900 48px var(--font-display); color: var(--red-text); width: 40px; text-align: center; flex: none; }
+
+/* ---------- C2 · the help ladder (s-coach-ladder) ---------- */
+.cl { display: flex; gap: 60px; align-items: center; }
+.cl-svg { flex: none; height: 640px; width: 1000px; overflow: visible; }
+.cl-rail { stroke: #3a4256; stroke-width: 10; stroke-linecap: round; }
+.cl-rung line { stroke: #3a4256; stroke-width: 10; stroke-linecap: round; transition: stroke .5s; }
+.cl-rung circle { fill: var(--stage-3); stroke: #3a4256; stroke-width: 3; transition: fill .5s, stroke .5s; }
+.cl-svg .cl-n { font: 900 34px var(--font-display); text-anchor: middle; fill: var(--dim); }
+.cl-svg .cl-t { font-family: var(--font-display); font-weight: 800; font-size: 40px; }
+.cl-svg .cl-d { font-size: 28px; fill: var(--dim); }
+/* rungs stay in view, dimmed, and light up one at a time from the bottom */
+.reveal .fragment.light { opacity: .28; visibility: inherit; transform: none; }
+.reveal .fragment.light.visible { opacity: 1; }
+.cl-rung.visible line { stroke: var(--red); }
+.cl-rung.visible circle { fill: var(--red); stroke: var(--red); }
+.cl-svg .cl-rung.visible .cl-n { fill: #fff; }
+.cl-rung.current-fragment circle { filter: drop-shadow(0 0 14px rgba(227,18,27,.7)); }
+.cl-side { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 34px; }
+.cl-gate { display: flex; gap: 24px; align-items: flex-start; background: var(--stage-2); border: 3px solid var(--red); border-radius: 20px; padding: 26px 28px; font-size: 32px; line-height: 1.3; }
+.cl-gate b { font-weight: 600; }
+.cl-lock { flex: none; width: 64px; height: 64px; }
+.cl-lock path { stroke: var(--red-text); }
+.cl-lock rect { fill: var(--red-text); }
+.cl-q { display: block; margin-top: 12px; font-family: var(--font-display); font-weight: 800; font-size: 34px; color: var(--red-text); }
+.cl-src { font-size: 28px; line-height: 1.4; color: var(--dim); }
+.cl-src b { display: block; color: var(--text); font-weight: 600; font-size: 30px; margin-bottom: 10px; }
+.cl-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.cl-tags i { font-style: normal; font: 500 22px var(--font-mono); padding: 5px 14px; border-radius: 999px; background: var(--stage-3); color: var(--text); }
+.cl-ask { color: var(--text); font-weight: 600; }
+
+/* ---------- C3 · the Worker in the middle (s-coach-worker) ---------- */
+.cw { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.cw-svg { display: block; width: 1560px; height: 501px; overflow: visible; }
+.cw-phone { fill: var(--stage-2); stroke: #2a3040; stroke-width: 10; }
+.cw-work { fill: var(--stage-2); stroke: var(--red); stroke-width: 4; }
+.cw-work + g path { stroke: var(--red-text); }
+.cw-work + g rect { fill: var(--red-text); }
+.cw-ai { fill: var(--paper); }
+.cw-svg .cw-h { font-family: var(--font-display); font-weight: 800; font-size: 40px; text-anchor: middle; }
+.cw-svg .cw-s { font-size: 26px; fill: var(--dim); text-anchor: middle; }
+.cw-svg .cw-k { font: 500 24px var(--font-mono); fill: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
+.cw-svg .cw-k.red { fill: var(--red-text); }
+.cw-svg .cw-l { font-size: 28px; }
+.cw-svg .ink { fill: var(--ink); }
+.cw-svg .ink2 { fill: #4a5468; }
+.cw-ln { stroke: #ff4a50; stroke-width: 8; stroke-linecap: round; marker-end: url(#cw-ah); stroke-dasharray: 160; stroke-dashoffset: 160; }
+.cw-a.back .cw-ln { stroke: #3ddc7a; marker-end: url(#cw-ah2); }
+.cw-a.visible .cw-ln { stroke-dashoffset: 0; transition: stroke-dashoffset .7s ease-out .1s; }
+.cw-nb { fill: #ff4a50; }
+.cw-a.back .cw-nb { fill: #3ddc7a; }
+.cw-svg .cw-nt { font: 900 30px var(--font-display); fill: #0b0d12; text-anchor: middle; }
+.cw-foot { align-self: stretch; text-align: center; }
+.cw-foot p { margin: 0; font-size: 32px; line-height: 1.35; }
+.cw-foot b { font-weight: 600; }
+.cw-foot .dim { color: var(--dim); font-size: 28px; margin-top: 6px; }
+
+/* ---------- C4 · 240 test conversations (s-coach-tests) ---------- */
+.ct { display: flex; flex-direction: column; gap: 40px; }
+.ct-svg { display: block; width: 1680px; height: 340px; overflow: visible; }
+.ct-svg .ct-lab { font-family: var(--font-display); font-weight: 800; font-size: 40px; }
+.ct-ok { fill: #3ddc7a; }
+.ct-slip { fill: #f0b429; }
+.ct-bad { fill: var(--red); }
+.ct-svg .ct-in { font-size: 30px; font-weight: 600; fill: #0b0d12; }
+.ct-svg .ct-out { font-size: 30px; font-weight: 600; fill: var(--red-text); }
+.ct-ax { stroke: #3a4256; stroke-width: 2; }
+.ct-svg .ct-tk { font-size: 24px; fill: var(--dim); }
+.ct-held { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; background: var(--stage-2); border-left: 8px solid #3ddc7a; border-radius: 12px; padding: 22px 28px; }
+.ct-held b { font-family: var(--font-display); font-weight: 800; font-size: 40px; color: #3ddc7a; }
+.ct-pills { display: flex; flex-wrap: wrap; gap: 12px; }
+.ct-pills i { font-style: normal; font-size: 28px; padding: 6px 18px; border-radius: 999px; background: var(--stage-3); }
+#s-coach-tests .srcline, #s-coach-chat .srcline { left: 260px; right: 120px; text-align: right; font-size: 24px; line-height: 1.35; bottom: 30px; }
+
+/* ---------- V1 · before and after (s-g7-videos) ---------- */
+.g7v { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.g7c { border-radius: 18px; padding: 20px 24px 22px; box-sizing: border-box; background: var(--stage-2); border: 2px solid var(--line); min-width: 0; }
+.g7c.g7-ours { border-color: #3ddc7a; }
+.g7c h3 { margin: 0 0 14px; font-family: var(--font-display); font-weight: 800; font-size: 38px; line-height: 1.1; color: var(--text); }
+.g7-ours h3 { color: #3ddc7a; }
+.g7-screen { position: relative; aspect-ratio: 16 / 9; max-height: 386px; margin: 0 auto; border-radius: 10px; overflow: hidden; }
+.g7-screen.yt { background: #050608; border: 2px solid #2a3040; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.g7-screen.yt p { margin: 14px 0 0; font-size: 28px; line-height: 1.3; text-align: center; color: var(--faint); }
+.g7-play { width: 96px; height: 68px; border-radius: 18px; background: #2a3040; color: var(--dim); display: grid; place-items: center; font-size: 34px; }
+.g7-ad { position: absolute; left: 14px; top: 14px; background: #FFD43B; color: #15171c; font: 700 22px var(--font-body); padding: 3px 12px; border-radius: 6px; }
+.g7-next { position: absolute; right: 14px; bottom: 26px; background: #2a3040; color: var(--text); font-size: 22px; padding: 6px 14px; border-radius: 8px; }
+.g7-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: #2a3040; }
+.g7-bar i { display: block; width: 22%; height: 100%; background: #FFD43B; }
+.g7-screen.ours { background: #000; }
+.g7-screen.ours video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.g7-pts { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.g7-pts li { position: relative; padding-left: 40px; font-size: 30px; line-height: 1.3; }
+.g7-yt .g7-pts li::before { content: '✕'; position: absolute; left: 0; color: var(--red-text); font-weight: 700; }
+.g7-ours .g7-pts li::before { content: '✓'; position: absolute; left: 0; color: #3ddc7a; font-weight: 700; }
+#s-g7-videos .srcline { right: auto; left: 300px; bottom: 30px; font-size: 26px; }
+
+/* ---------- V2 · one section, one video (s-g7-pipeline) ---------- */
+.g7p { display: flex; flex-direction: column; gap: 30px; justify-content: center; }
+.g7p-svg { display: block; width: 1680px; height: 340px; overflow: visible; }
+.g7p-box { fill: var(--stage-2); stroke: var(--line); stroke-width: 3; }
+.g7p-box.paper { fill: var(--paper); stroke: none; }
+.g7p-box.chk { stroke: var(--red); stroke-width: 4; }
+.g7p-box.end { stroke: #3ddc7a; stroke-width: 4; }
+.g7p-svg .g7p-t { font-family: var(--font-display); font-weight: 800; font-size: 38px; text-anchor: middle; }
+.g7p-svg .g7p-d { font-size: 23px; fill: var(--dim); text-anchor: middle; }
+.g7p-svg .ink { fill: var(--ink); }
+.g7p-svg .ink2 { fill: #4a5468; }
+.g7p-arr { stroke: #a9b0bd; stroke-width: 5; marker-end: url(#g7p-ah); }
+.g7p-mark rect { fill: rgba(227,18,27,.16); stroke: var(--red); stroke-width: 2; }
+.g7p-svg .g7p-mark text { font-size: 24px; font-weight: 600; fill: var(--red-text); text-anchor: middle; }
+.g7p-foot .tagline { margin: 0; }
+.g7p-note { margin: 12px 0 0; font-size: 30px; color: var(--dim); }
+
+/* v0.9: on a phone held upright (reveal's scroll view, under 435px wide) the copyright mark was
+   pinned to the bottom of the whole scrolling page, behind the slide backgrounds. Keep it on screen. */
+.reveal-scroll .copy-mark { position: fixed; z-index: 40; }

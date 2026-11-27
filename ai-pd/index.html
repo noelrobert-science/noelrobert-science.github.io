@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Expertise makes AI useful</title>
-<meta name="description" content="A short talk for teachers new to AI, by Noel Robert, Physical Sciences teacher. Six questions, to read at your own pace or to present. v0.8, for moderation.">
+<meta name="description" content="A short talk for teachers new to AI, by Noel Robert, Physical Sciences teacher. Six questions, to read at your own pace or to present. v0.9, for moderation.">
 <link rel="stylesheet" href="vendor/reveal/reset.css">
 <link rel="stylesheet" href="vendor/reveal/reveal.css">
 <link rel="stylesheet" href="css/deck.css">
@@ -16,11 +16,12 @@
 <link rel="stylesheet" href="css/v6.css">
 <link rel="stylesheet" href="css/v7.css">
 <link rel="stylesheet" href="css/v8.css">
+<link rel="stylesheet" href="css/v9.css">
 </head>
 <body>
 <div class="turn" id="turn"><div class="ph"></div><b>Turn your phone sideways</b><span>This talk is made of wide slides. It reads best sideways, or on a laptop.</span><button id="turn-ok">Show it anyway</button></div>
 <div class="reveal">
-<div class="copy-mark" aria-label="Copyright">© Noel Robert</div>
+<div class="copy-mark" aria-label="Copyright">© 2026 Noel Robert</div>
 <div class="slides">
 
 <!-- ================= OPENING ================= -->
@@ -688,6 +689,90 @@
   </div>
 </section>
 
+<section id="s-g7-videos" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · Grade 7 lesson videos</p>
+    <h2 class="headline">Every YouTube clip replaced <em>by our own video, in our own words.</em></h2>
+    <div class="body g7v">
+      <div class="g7c g7-yt">
+        <h3>Before: a good YouTube clip</h3>
+        <div class="g7-screen yt" role="img" aria-label="A drawn stand-in for a video site, with an advert chip and an Up next prompt">
+          <span class="g7-ad">Ad · 0:05</span>
+          <div class="g7-play">▶</div>
+          <p>Someone else's lesson,<br>someone else's syllabus</p>
+          <div class="g7-bar"><i></i></div>
+          <span class="g7-next">Up next ▸</span>
+        </div>
+        <ul class="g7-pts">
+          <li class="fragment" data-fragment-index="0">Adverts before and during</li>
+          <li class="fragment" data-fragment-index="1">"Up next" pulls them away</li>
+          <li class="fragment" data-fragment-index="2">Not the words the exam marks</li>
+        </ul>
+      </div>
+      <div class="g7c g7-ours">
+        <h3>After: our Grade 7 video</h3>
+        <div class="g7-screen ours"><video id="g7-video" src="video/g7/g7-m4l3-v2.mp4" poster="video/g7/g7-m4l3-v2-poster.jpg" controls preload="metadata" playsinline aria-label="Grade 7 Chemistry, Module 4 Lesson 3: Groups and periods"></video></div>
+        <ul class="g7-pts">
+          <li class="fragment" data-fragment-index="0">No adverts, nothing up next</li>
+          <li class="fragment" data-fragment-index="1">The book's words and section numbers</li>
+          <li class="fragment" data-fragment-index="2">Ends by sending them to the page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ia-tag"><span>▶</span>Try it: play our video</div>
+  <p class="srcline">15 videos so far, for a Grade 7 course being built for 2027.</p>
+  <aside class="notes">Press play on the right: it is the real Grade 7 video for Module 4 Lesson 3, Groups and periods, about a minute and a half. The left is a drawn stand-in, not a real channel. Each click compares one point on both sides.</aside>
+</section>
+
+<section id="s-g7-pipeline" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · Grade 7 lesson videos</p>
+    <h2 class="headline">One book section becomes one short video. <em>I check the words and the finished video.</em></h2>
+    <div class="body g7p">
+      <svg class="g7p-svg" viewBox="0 0 1680 340" role="img" aria-label="Book section 4.3 becomes a script in exam words, which I check; an AI voice reads it one scene at a time; the diagrams build scene by scene with captions; the video is about one to two minutes and ends with a Remember recap, which I watch through; it goes on the lesson page, then the Quick check.">
+        <defs><marker id="g7p-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a9b0bd"/></marker></defs>
+        <g class="g7p-step">
+          <rect class="g7p-box paper" x="0" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t ink" x="120" y="112">Book</text><text class="g7p-d ink2" x="120" y="156">section 4.3</text>
+        </g>
+        <g class="g7p-step fragment" data-fragment-index="0">
+          <line class="g7p-arr" x1="246" y1="130" x2="282" y2="130"/>
+          <rect class="g7p-box chk" x="288" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t" x="408" y="112">Script</text><text class="g7p-d" x="408" y="156">in exam words</text>
+          <g class="g7p-mark"><rect x="268" y="266" width="280" height="56" rx="28"/><text x="408" y="303">✓ I check the words</text></g>
+        </g>
+        <g class="g7p-step fragment" data-fragment-index="1">
+          <line class="g7p-arr" x1="534" y1="130" x2="570" y2="130"/>
+          <rect class="g7p-box" x="576" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t" x="696" y="100">Voice</text><text class="g7p-d" x="696" y="146">Leah, an AI voice,</text><text class="g7p-d" x="696" y="182">one scene at a time</text>
+        </g>
+        <g class="g7p-step fragment" data-fragment-index="2">
+          <line class="g7p-arr" x1="822" y1="130" x2="858" y2="130"/>
+          <rect class="g7p-box" x="864" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t" x="984" y="100">Diagrams</text><text class="g7p-d" x="984" y="146">build scene by scene,</text><text class="g7p-d" x="984" y="182">captions on screen</text>
+        </g>
+        <g class="g7p-step fragment" data-fragment-index="3">
+          <line class="g7p-arr" x1="1110" y1="130" x2="1146" y2="130"/>
+          <rect class="g7p-box chk" x="1152" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t" x="1272" y="92">Video</text><text class="g7p-d" x="1272" y="136">about 1 to 2</text><text class="g7p-d" x="1272" y="170">minutes, ends with</text><text class="g7p-d" x="1272" y="204">a Remember recap</text>
+          <g class="g7p-mark"><rect x="1132" y="266" width="280" height="56" rx="28"/><text x="1272" y="303">✓ I watch it through</text></g>
+        </g>
+        <g class="g7p-step fragment" data-fragment-index="4">
+          <line class="g7p-arr" x1="1398" y1="130" x2="1434" y2="130"/>
+          <rect class="g7p-box end" x="1440" y="20" width="240" height="220" rx="18"/>
+          <text class="g7p-t" x="1560" y="112">Lesson page</text><text class="g7p-d" x="1560" y="156">then Quick check</text>
+        </g>
+      </svg>
+      <div class="g7p-foot fragment" data-fragment-index="5">
+        <p class="tagline"><em>Change one sentence,</em> and only that part is voiced again.</p>
+        <p class="g7p-note">The voice is a labelled AI stand-in. The teaching, the words and the checks are mine.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">One book section, one video. I write and check the script in the words the exam marks. The AI voice reads one scene at a time, so changing one sentence only re-voices that scene. I watch every finished video through before it goes on the lesson page.</aside>
+</section>
+
 <section id="s-route" data-part="4">
   <div class="frame">
     <p class="kicker">Part 4 · A pupil's route</p>
@@ -720,6 +805,161 @@
     </div>
   </div>
   <aside class="notes">This is the point of the whole route, and the reason the measure that counts is what a pupil can do with the AI switched off.</aside>
+</section>
+
+<section id="s-coach-chat" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · The study coach</p>
+    <h2 class="headline">The coach asks one question, <em>then hands the pen back.</em></h2>
+    <div class="body cc">
+      <div class="cc-phone" role="img" aria-label="A phone showing a made-up practice exchange with the study coach">
+        <div class="cc-notch"></div>
+        <div class="cc-q"><b>Q 2.2</b> A 4 Ω and a 6 Ω resistor are in series with a 12 V battery. Calculate the current. <span class="cc-mk">(3)</span></div>
+        <div class="cc-lines">R<sub>s</sub> = R<sub>1</sub> + R<sub>2</sub> = 4 + 6 = 10 Ω<br>I = V/R = 10/12 = 0,83 A</div>
+        <div class="cc-msg cc-coach"><span class="who">Study coach</span>Your total resistance line is right. The gap is in the substitution line for I. In I = V/R, which number from the question is V?</div>
+        <div class="cc-msg cc-me">oh. I = 12/10 = 1,20 A</div>
+        <div class="cc-msg cc-coach"><span class="who">Study coach</span>That's right. Formula, substitution and answer with unit: 3 of 3 (Mr R's marking). Close the screen. Do this one in pen.</div>
+      </div>
+      <ol class="cc-pts">
+        <li class="fragment"><span class="k">1</span>Says what is right first</li>
+        <li class="fragment"><span class="k">2</span>Names the first gap only, with one question</li>
+        <li class="fragment"><span class="k">3</span>Talks in memo marks and names its source</li>
+        <li class="fragment"><span class="k">4</span>Three short sentences, never asks for a name</li>
+        <li class="fragment"><span class="k">5</span>Ends every session on paper</li>
+      </ol>
+    </div>
+  </div>
+  <p class="srcline">A made-up attempt. Tested only with made-up attempts so far, not with classes.</p>
+  <aside class="notes">The coach sits on the Circuits practice pages. The pupil types their own lines; the coach names what is right, then asks one question about the first gap. It never gives the answer straight away and always ends by sending the pupil back to pen and paper. This exchange is made up; the coach has not yet been used with a class.</aside>
+</section>
+
+<section id="s-coach-ladder" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · The study coach</p>
+    <h2 class="headline">Help comes one rung at a time. <em>The answer waits for two more real tries.</em></h2>
+    <div class="body cl">
+      <svg class="cl-svg" viewBox="0 0 1000 640" role="img" aria-label="A help ladder climbing up from rung 1 at the bottom: 1 a nudge, 2 the first line, 3 one like this, 4 the coursebook idea, 5 a fresh question to try.">
+        <line class="cl-rail" x1="60" y1="10" x2="60" y2="630"/><line class="cl-rail" x1="190" y1="10" x2="190" y2="630"/>
+        <g class="cl-rung fragment light" data-fragment-index="0">
+          <line x1="60" y1="572" x2="190" y2="572"/><circle cx="125" cy="572" r="30"/><text class="cl-n" x="125" y="583">1</text>
+          <text class="cl-t" x="240" y="562">A nudge</text><text class="cl-d" x="240" y="602">one question that points at the first gap</text>
+        </g>
+        <g class="cl-rung fragment light" data-fragment-index="1">
+          <line x1="60" y1="450" x2="190" y2="450"/><circle cx="125" cy="450" r="30"/><text class="cl-n" x="125" y="461">2</text>
+          <text class="cl-t" x="240" y="440">The first line</text><text class="cl-d" x="240" y="480">the formula, not the numbers</text>
+        </g>
+        <g class="cl-rung fragment light" data-fragment-index="2">
+          <line x1="60" y1="328" x2="190" y2="328"/><circle cx="125" cy="328" r="30"/><text class="cl-n" x="125" y="339">3</text>
+          <text class="cl-t" x="240" y="318">One like this</text><text class="cl-d" x="240" y="358">the same step with different numbers</text>
+        </g>
+        <g class="cl-rung fragment light" data-fragment-index="3">
+          <line x1="60" y1="206" x2="190" y2="206"/><circle cx="125" cy="206" r="30"/><text class="cl-n" x="125" y="217">4</text>
+          <text class="cl-t" x="240" y="196">The coursebook idea</text><text class="cl-d" x="240" y="236">with its page number</text>
+        </g>
+        <g class="cl-rung fragment light" data-fragment-index="4">
+          <line x1="60" y1="84" x2="190" y2="84"/><circle cx="125" cy="84" r="30"/><text class="cl-n" x="125" y="95">5</text>
+          <text class="cl-t" x="240" y="74">A fresh question to try</text><text class="cl-d" x="240" y="114">new numbers, back on paper</text>
+        </g>
+      </svg>
+      <div class="cl-side">
+        <div class="cl-gate fragment" data-fragment-index="5">
+          <svg class="cl-lock" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 28v-8a12 12 0 0 1 24 0v8" fill="none" stroke="#FFD43B" stroke-width="6"/><rect x="12" y="28" width="40" height="30" rx="6" fill="#FFD43B"/><circle cx="32" cy="43" r="4" fill="#14171f"/></svg>
+          <div><b>The final answer stays locked</b> until two more real attempts.<span class="cl-q">"Working it out earns the marks."</span></div>
+        </div>
+        <div class="cl-src fragment" data-fragment-index="6">
+          <b>Every fact carries its source:</b>
+          <span class="cl-tags"><i>memo</i><i>examiners' report</i><i>SAGS</i><i>Mr R's marking</i></span>
+          Not in the material? <span class="cl-ask">"Check it with Mr R."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">The ladder is taken from the coach's rules. Each request for help climbs one rung, starting at the bottom. The final answer is locked until the pupil has made two more real attempts. Every fact the coach uses is tagged with where it came from, and anything not in the material goes back to the teacher.</aside>
+</section>
+
+<section id="s-coach-worker" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · The study coach</p>
+    <h2 class="headline">A website can't keep a secret. <em>So a locked post office sits in the middle.</em></h2>
+    <div class="body cw">
+      <svg class="cw-svg" viewBox="0 0 1680 540" role="img" aria-label="1: the pupil's phone sends the question, their own lines and the marks to the Worker, never a name, school or class. 2: the Worker, a locked post office on Cloudflare, adds the secret key and the coach rules and passes it to Claude. 3: Claude's reply comes back through the Worker to the phone.">
+        <defs>
+          <marker id="cw-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff4a50"/></marker>
+          <marker id="cw-ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3ddc7a"/></marker>
+        </defs>
+        <rect class="cw-phone" x="0" y="30" width="420" height="500" rx="44"/>
+        <rect x="160" y="48" width="100" height="12" rx="6" fill="#3a4256"/>
+        <text class="cw-h" x="210" y="114">Pupil's phone</text>
+        <text class="cw-k" x="50" y="174">Sends</text>
+        <text class="cw-l" x="50" y="216">· the question</text><text class="cw-l" x="50" y="254">· their own lines</text><text class="cw-l" x="50" y="292">· the marks the page gave</text>
+        <text class="cw-k red" x="50" y="362">Never sends</text>
+        <text class="cw-l" x="50" y="404">a name, school or class</text>
+        <rect class="cw-work" x="560" y="30" width="560" height="500" rx="24"/>
+        <g transform="translate(808,-10)"><path d="M14 40v-14a18 18 0 0 1 36 0v14" fill="none" stroke="#FFD43B" stroke-width="7"/><rect x="0" y="36" width="64" height="44" rx="8" fill="#FFD43B"/><circle cx="32" cy="58" r="6" fill="#14171f"/></g>
+        <text class="cw-h" x="840" y="124">The Worker</text>
+        <text class="cw-s" x="840" y="162">a locked post office on Cloudflare</text>
+        <text class="cw-l" x="610" y="224">· adds the secret key</text>
+        <text class="cw-l" x="610" y="264">· adds Mr R's coach rules</text>
+        <text class="cw-l" x="610" y="304">· 30 replies per phone a day</text>
+        <text class="cw-l" x="610" y="344">· an off switch</text>
+        <text class="cw-l" x="610" y="384">· an anonymous 30-day log</text>
+        <text class="cw-s" x="840" y="490">free at this size</text>
+        <rect class="cw-ai" x="1290" y="110" width="380" height="340" rx="24"/>
+        <text class="cw-h ink" x="1480" y="252">Claude</text>
+        <text class="cw-s ink2" x="1480" y="296">writes the reply,</text>
+        <text class="cw-s ink2" x="1480" y="332">following the rules</text>
+        <g class="cw-a fragment" data-fragment-index="0">
+          <line class="cw-ln" x1="430" y1="200" x2="548" y2="200"/>
+          <circle class="cw-nb" cx="489" cy="150" r="26"/><text class="cw-nt" x="489" y="160">1</text>
+        </g>
+        <g class="cw-a fragment" data-fragment-index="1">
+          <line class="cw-ln" x1="1128" y1="200" x2="1278" y2="200"/>
+          <circle class="cw-nb" cx="1203" cy="150" r="26"/><text class="cw-nt" x="1203" y="160">2</text>
+        </g>
+        <g class="cw-a back fragment" data-fragment-index="2">
+          <line class="cw-ln" x1="1278" y1="370" x2="1128" y2="370"/>
+          <line class="cw-ln" x1="548" y1="370" x2="430" y2="370"/>
+          <circle class="cw-nb" cx="1203" cy="420" r="26"/><text class="cw-nt" x="1203" y="430">3</text>
+          <circle class="cw-nb" cx="489" cy="420" r="26"/><text class="cw-nt" x="489" y="430">3</text>
+        </g>
+      </svg>
+      <div class="cw-foot fragment" data-fragment-index="3">
+        <p><b>The key never sits on the website,</b> where anyone could copy it.</p>
+        <p class="dim">Cost: about R0,70 a reply, capped at $20 a month. Switched off, the practice page still works.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">A web page cannot hide a password: anyone can open it and read it. So the page never holds the key. The phone sends only the question, the pupil's own lines and the marks. The Worker adds the key and the rules, limits each phone to 30 replies a day, keeps an anonymous log for 30 days, and can be switched off. If it is off, the practice page still works without the coach.</aside>
+</section>
+
+<section id="s-coach-tests" data-part="4">
+  <div class="frame">
+    <p class="kicker">Part 4 · The study coach</p>
+    <h2 class="headline">240 test conversations before any pupil. <em>I wrote the rules, and I marked the coach.</em></h2>
+    <div class="body ct">
+      <svg class="ct-svg" viewBox="0 0 1680 340" role="img" aria-label="Out of 240 test conversations. First run: 155 clean, 77 small slips, 8 that matter. After fixes: 171 clean, 63 small slips, 6 that matter.">
+        <g class="ct-row fragment" data-fragment-index="0">
+          <text class="ct-lab" x="0" y="82">First run</text>
+          <rect class="ct-ok" x="260" y="34" width="775" height="76"/><rect class="ct-slip" x="1035" y="34" width="385" height="76"/><rect class="ct-bad" x="1420" y="34" width="40" height="76"/>
+          <text class="ct-in" x="284" y="84">155 clean</text><text class="ct-in" x="1059" y="84">77 small slips</text><text class="ct-out" x="1480" y="84">8 that matter</text>
+        </g>
+        <g class="ct-row fragment" data-fragment-index="1">
+          <text class="ct-lab" x="0" y="212">After fixes</text>
+          <rect class="ct-ok" x="260" y="164" width="855" height="76"/><rect class="ct-slip" x="1115" y="164" width="315" height="76"/><rect class="ct-bad" x="1430" y="164" width="30" height="76"/>
+          <text class="ct-in" x="284" y="214">171 clean</text><text class="ct-in" x="1139" y="214">63 small slips</text><text class="ct-out" x="1480" y="214">6 that matter</text>
+        </g>
+        <line class="ct-ax" x1="260" y1="272" x2="1460" y2="272"/>
+        <line class="ct-ax" x1="260" y1="264" x2="260" y2="282"/><line class="ct-ax" x1="1460" y1="264" x2="1460" y2="282"/>
+        <text class="ct-tk" x="260" y="318" text-anchor="start">0</text><text class="ct-tk" x="1460" y="318" text-anchor="end">240 conversations</text>
+      </svg>
+      <div class="ct-held fragment" data-fragment-index="2">
+        <b>Held every time</b>
+        <span class="ct-pills"><i>Safety replies</i><i>no answer given away</i><i>never says it is Mr R</i><i>arithmetic</i><i>vectors</i></span>
+      </div>
+    </div>
+  </div>
+  <p class="srcline">Made-up attempts, the live rules, each reply checked against my marking. Each fault became a rule change, then the same 240 ran again.</p>
+  <aside class="notes">Before any pupil sees the coach, it answered 240 made-up attempts using the live rules, and I checked every reply against my own marking. Small slips are things like a long sentence or a missing source tag. The ones that matter would mislead a pupil. Each fault became a rule change, then the same 240 ran again.</aside>
 </section>
 
 <section id="s-muscle" data-part="4">
@@ -937,6 +1177,7 @@
         <tr class="fragment dim-after"><td>Marks files stay put</td><td>They stay in <b>the school's systems</b></td></tr>
         <tr class="fragment dim-after"><td>Anything that collects pupil data</td><td>Runs in the <b>school's own systems</b>, with approval</td></tr>
         <tr class="fragment dim-after"><td>Passwords and sending</td><td>Passwords are <b>never shared</b>; a person sends every email</td></tr>
+        <tr class="fragment dim-after"><td>The study coach</td><td><b>Never asks for a name</b>; the log is anonymous and kept for 30 days; there is an off switch</td></tr>
       </table>
       <p class="tagline fragment" style="margin-top:28px">Before you start, check <em>your school's own rules on AI</em>, and give it only material you have the right to use.</p>
     </div>
@@ -1204,6 +1445,7 @@
 <script src="js/v5.js"></script>
 <script src="js/deck7.js"></script>
 <script src="js/v8.js"></script>
+<script src="js/v9.js"></script>
 <script src="js/count.js"></script>
 <script src="js/count-deck.js"></script>
 </body>
