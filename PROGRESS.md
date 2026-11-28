@@ -12,9 +12,10 @@ Wording source: G:\My Drive\Classroom\PD\Learning to learn fixes - wording (For 
 - B2 /how-to-learn/ page, home-page card in the learners band
 - Voice: how-to-learn/audio/three-habits.mp3 + .vtt (mr-r, +0% Grade 7 speed, 42 s, labelled "AI voice of Mr R"); listen.js / listen.css Listen button on both new pages
 
+- Checks done (28 Nov 2026): 50 changed pages + a check-in run at 390 px and 1280 px; no broken links, no missing files, no page wider than the phone, tile sits above "Tests that count", Listen plays with live captions, A5 shows in results, no learner data. Only console notes: "unload" policy warnings from the embedded video player on 5 lesson pages (already there before this change). Screenshots: G:\My Drive\Classroom\PD\Learning to learn web preview (For moderation)
+
 ## Next
-- Checks at 390 px and desktop; screenshots to G:\My Drive\Classroom\PD\Learning to learn web preview (For moderation)
-- Then wait for "publish learning to learn" (push branch, merge to main)
+- Wait for Noel to type "publish learning to learn", then push the branch and merge to main
 
 ## Notes for moderation
 - Clip is 42 s; the labels say "1 min" as in the wording.
