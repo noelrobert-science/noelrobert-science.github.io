@@ -71,3 +71,10 @@ body.menu .cv-course{display:none}
   .user_content iframe{height:560px}
   .user_content{overflow-x:auto}
 }
+/* Phone: the Edition 3 book card sits above its tick list instead of beside it */
+@media (max-width:600px){
+  .user_content td[style*="min-width:160px"]{display:block;width:auto!important;min-width:0!important;border-radius:16px 16px 0 0!important}
+  .user_content td[style*="min-width:160px"] ~ td{display:block;width:auto!important}
+  .user_content [style*="white-space:nowrap"]{white-space:normal!important}
+  .user_content td[style*="width:50%"],.user_content td[style*="width:33%;padding:0 6px"]{display:block;width:auto!important;padding:4px 0!important}
+}
