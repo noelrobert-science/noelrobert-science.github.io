@@ -538,5 +538,125 @@
     "title": "Remember"
    }
   ]
+ },
+ "g7-m7l1": {
+  "title": "Energy out, energy in",
+  "module": "Module 7 · Lesson 1",
+  "src": "media/g7-m7l1.mp4",
+  "dur": 104.6,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Two types"
+   },
+   {
+    "t": 16.1,
+    "title": "System and surroundings"
+   },
+   {
+    "t": 32.3,
+    "title": "Exothermic"
+   },
+   {
+    "t": 46.0,
+    "title": "Endothermic"
+   },
+   {
+    "t": 56.7,
+    "title": "Easy way to remember"
+   },
+   {
+    "t": 68.1,
+    "title": "Common mistake"
+   },
+   {
+    "t": 82.3,
+    "title": "Your turn"
+   },
+   {
+    "t": 91.6,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m7l2": {
+  "title": "Measuring the temperature change",
+  "module": "Module 7 · Lesson 2",
+  "src": "media/g7-m7l2.mp4",
+  "dur": 108.3,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "In class"
+   },
+   {
+    "t": 12.1,
+    "title": "The formula"
+   },
+   {
+    "t": 35.3,
+    "title": "Worked example"
+   },
+   {
+    "t": 52.0,
+    "title": "The working"
+   },
+   {
+    "t": 64.5,
+    "title": "Test tip"
+   },
+   {
+    "t": 83.4,
+    "title": "Your turn"
+   },
+   {
+    "t": 94.6,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m7l3": {
+  "title": "Examples to learn",
+  "module": "Module 7 · Lesson 3",
+  "src": "media/g7-m7l3.mp4",
+  "dur": 125.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Two of each"
+   },
+   {
+    "t": 9.3,
+    "title": "Exothermic"
+   },
+   {
+    "t": 30.5,
+    "title": "More exothermic"
+   },
+   {
+    "t": 39.1,
+    "title": "Endothermic"
+   },
+   {
+    "t": 58.6,
+    "title": "More endothermic"
+   },
+   {
+    "t": 67.8,
+    "title": "Not reactions"
+   },
+   {
+    "t": 85.4,
+    "title": "Science in South Africa"
+   },
+   {
+    "t": 99.4,
+    "title": "Your turn"
+   },
+   {
+    "t": 108.6,
+    "title": "Remember"
+   }
+  ]
  }
 }
