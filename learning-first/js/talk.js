@@ -12,7 +12,7 @@ document.addEventListener('click', (e) => {
   if (b) window.location.href = b.dataset.href;
 });
 
-/* slide 3: watch for 30 seconds, then write what you remember */
+/* slide 3: watch for 15 seconds, then write what you remember */
 (() => {
   const root = document.getElementById('demo');
   if (!root) return;
@@ -23,13 +23,13 @@ document.addEventListener('click', (e) => {
   const steps = [...document.querySelectorAll('#demo-steps li')];
   const startBtn = document.getElementById('demo-start');
   const revealBtn = document.getElementById('demo-reveal');
-  const TOTAL = 30, PER = TOTAL / facts.length;
+  const TOTAL = 15, PER = TOTAL / facts.length;
   let t0 = 0, raf = 0;
   const step = (i) => steps.forEach((s, k) => s.classList.toggle('now', k === i));
   const reset = () => {
     cancelAnimationFrame(raf); facts.forEach((f) => f.classList.remove('on'));
-    write.classList.remove('on'); bar.style.width = '0'; timer.textContent = '30'; step(0);
-    revealBtn.hidden = true; startBtn.textContent = '▶ Start the 30 seconds';
+    write.classList.remove('on'); bar.style.width = '0'; timer.textContent = '15'; step(0);
+    revealBtn.hidden = true; startBtn.textContent = '▶ Start the 15 seconds';
   };
   const tick = (now) => {
     const s = (now - t0) / 1000;
@@ -50,7 +50,7 @@ document.addEventListener('click', (e) => {
 /* slide 12: the click */
 (() => {
   const b = document.getElementById('bulb-btn');
-  if (b) b.addEventListener('click', () => document.getElementById('bulb').classList.toggle('on'));
+  if (b) b.addEventListener('click', () => { const on = document.getElementById('bulb').classList.toggle('on'); document.getElementById('lf-click').classList.toggle('lit', on); });
 })();
 
 /* slide 13: the Monday test */
