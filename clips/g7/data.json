@@ -658,5 +658,141 @@
     "title": "Remember"
    }
   ]
+ },
+ "g7-m5l1": {
+  "title": "Elements and compounds",
+  "module": "Module 5 · Lesson 1",
+  "src": "media/g7-m5l1.mp4",
+  "dur": 183.6,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Elements"
+   },
+   {
+    "t": 24.5,
+    "title": "Molecules"
+   },
+   {
+    "t": 47.0,
+    "title": "Compounds"
+   },
+   {
+    "t": 66.9,
+    "title": "New properties"
+   },
+   {
+    "t": 85.3,
+    "title": "Symbols"
+   },
+   {
+    "t": 106.1,
+    "title": "Reading a formula"
+   },
+   {
+    "t": 124.5,
+    "title": "Worked example"
+   },
+   {
+    "t": 144.1,
+    "title": "Common mistake"
+   },
+   {
+    "t": 156.8,
+    "title": "Your turn"
+   },
+   {
+    "t": 171.3,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m5l2": {
+  "title": "Mixtures and particle diagrams",
+  "module": "Module 5 · Lesson 2",
+  "src": "media/g7-m5l2.mp4",
+  "dur": 159.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Mixtures"
+   },
+   {
+    "t": 21.3,
+    "title": "Keeps its properties"
+   },
+   {
+    "t": 38.3,
+    "title": "All three"
+   },
+   {
+    "t": 49.8,
+    "title": "Particle pictures"
+   },
+   {
+    "t": 59.9,
+    "title": "Three kinds of mixture"
+   },
+   {
+    "t": 73.3,
+    "title": "Two questions"
+   },
+   {
+    "t": 92.6,
+    "title": "Try it"
+   },
+   {
+    "t": 121.5,
+    "title": "Test tip"
+   },
+   {
+    "t": 131.7,
+    "title": "Your turn"
+   },
+   {
+    "t": 147.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m5l3": {
+  "title": "Reactions with particle pictures",
+  "module": "Module 5 · Lesson 3",
+  "src": "media/g7-m5l3.mp4",
+  "dur": 156.9,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Reactants and products"
+   },
+   {
+    "t": 18.0,
+    "title": "Hydrogen and oxygen"
+   },
+   {
+    "t": 32.3,
+    "title": "Count the atoms"
+   },
+   {
+    "t": 54.8,
+    "title": "Sodium and chlorine"
+   },
+   {
+    "t": 71.1,
+    "title": "Common mistake"
+   },
+   {
+    "t": 98.8,
+    "title": "Worked example"
+   },
+   {
+    "t": 126.1,
+    "title": "Your turn"
+   },
+   {
+    "t": 141.0,
+    "title": "Remember"
+   }
+  ]
  }
 }
