@@ -221,3 +221,22 @@ a.cvx-shot:hover .cvx-hint, a.cvx-shot:focus-visible .cvx-hint { opacity: 1; }
 .tr-l { margin: 0; font-size: 30px; color: var(--dim); line-height: 1.3; }
 .tr-end { margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) { .mk, .mkt { transition: none; } }
+
+/* v3: built to make good learning hard to avoid */
+.ha4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; align-items: start; }
+.ha { background: var(--stage-2); border: 2px solid var(--line); border-radius: 18px; padding: 16px 16px 20px; }
+.ha-img { display: flex; flex-direction: column; justify-content: center; gap: 8px; width: 100%; height: 330px; padding: 10px; border: 0; border-radius: 10px; background: #fff; cursor: zoom-in; overflow: hidden; }
+.ha-img img { display: block; width: 100%; max-height: 100%; object-fit: contain; }
+.ha-two img:first-child { max-height: 255px; }
+.ha-two .ha-cu { max-height: 44px; }
+.ha p { margin: 16px 4px 0; font-size: 32px; line-height: 1.25; color: var(--text); font-weight: 600; }
+.ha-end { margin-top: 40px; }
+.todo-hook[hidden] { display: none !important; }
+.closing2 .theme-line { font-size: 92px; }
+.close-sub { margin: 36px auto 0; max-width: 1400px; font-size: 32px; line-height: 1.4; color: var(--dim); }
+.ha-img { height: 280px; }
+.ha:nth-child(3) .ha-img { padding: 0; }
+.ha:nth-child(3) .ha-img img { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: 0 40%; }
+.ha:nth-child(1) .ha-img { padding: 6px; }
+.ha:nth-child(4) .ha-img { height: 330px; }
+.ha:nth-child(4) .ha-img img:first-child { max-height: 250px; }
