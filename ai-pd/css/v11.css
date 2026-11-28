@@ -1,0 +1,36 @@
+/* v0.11 (28 Nov 2026): learning philosophy, s-hardavoid and s-forlife at the end of part 3. Loaded after logbook.css. */
+.lp { display: grid; grid-template-columns: 1fr 520px; gap: 60px; align-items: center; }
+.lp .lead { margin: 0 0 30px; font-size: 38px; line-height: 1.3; }
+.lp-pts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.lp-pts li { background: var(--stage-2); border: 2px solid var(--line); border-left: 10px solid var(--red); border-radius: 14px; padding: 14px 24px; font: 700 34px/1.2 var(--font-display); }
+.lp-pts li.hot { border-color: #FFD43B; color: #FFD43B; }
+/* visual: an animation that fades into a pen */
+.lp-vis { position: relative; width: 520px; height: 520px; border-radius: 22px; background: var(--stage-2); border: 2px solid var(--line); overflow: hidden; }
+.lp-vis svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lp-vis .anim { animation: lpFadeOut 9s ease-in-out infinite; }
+.lp-vis .pen { animation: lpFadeIn 9s ease-in-out infinite; }
+.lp-vis .flow { stroke-dasharray: 14 22; animation: lpFlow 1.2s linear infinite; }
+.lp-vis .ink { stroke-dasharray: 300; stroke-dashoffset: 300; animation: lpInk 9s ease-in-out infinite; }
+.lp-cap { position: absolute; left: 0; right: 0; bottom: 18px; margin: 0; text-align: center; font-size: 24px; color: var(--dim); }
+@keyframes lpFlow { to { stroke-dashoffset: -36; } }
+@keyframes lpFadeOut { 0%, 40% { opacity: 1; } 55%, 92% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes lpFadeIn { 0%, 45% { opacity: 0; } 58%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes lpInk { 0%, 55% { stroke-dashoffset: 300; } 85%, 100% { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .lp-vis .anim { animation: none; opacity: 0; }
+  .lp-vis .pen { animation: none; opacity: 1; }
+  .lp-vis .flow, .lp-vis .ink { animation: none; stroke-dashoffset: 0; }
+}
+/* slide B: marks now / for life */
+.fl .lead { margin: 0 0 34px; font-size: 36px; line-height: 1.32; max-width: 1700px; }
+.fl-pair { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: stretch; }
+.fl-col { border-radius: 20px; padding: 28px 32px; background: var(--stage-2); border: 2px solid var(--line); }
+.fl-col.life { border-color: #FFD43B; }
+.fl-col h3 { margin: 0 0 18px; font: 900 54px/1 var(--font-display); color: var(--red-text); }
+.fl-col.life h3 { color: #FFD43B; }
+.fl-col p { margin: 0; font-size: 32px; line-height: 1.35; color: var(--dim); }
+.fl-col ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; }
+.fl-col li { font-size: 31px; line-height: 1.3; }
+.fl-col li b { display: block; font: 700 33px/1.2 var(--font-display); color: var(--text); }
+.fl-col li span { color: var(--dim); font-size: 27px; }
+#s-hardavoid .srcline, #s-forlife .srcline { font-size: 24px; bottom: 30px; }
