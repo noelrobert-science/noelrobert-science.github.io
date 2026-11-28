@@ -1,0 +1,9 @@
+/* Listen button (AI voice of Mr R) */
+.l2l-listen{margin:18px 0 6px}
+.l2l-btn{display:inline-flex;align-items:center;gap:6px;border:2px solid #0b7285;background:#fff;color:#0b7285;border-radius:999px;padding:9px 18px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;text-align:left;max-width:100%}
+.l2l-btn:hover,.l2l-btn[aria-pressed="true"]{background:#0b7285;color:#fff}
+.l2l-btn:focus-visible{outline:3px solid #ffd84d;outline-offset:2px}
+.l2l-cap{min-height:1.5em;margin:10px 0 4px;font-size:16px;color:#1d2433}
+.l2l-words{font-size:15px;color:#5c6677}
+.l2l-words summary{cursor:pointer;color:#0b7285}
+.l2l-words p{margin:6px 0}
