@@ -14,7 +14,8 @@
     intro(Q);
   });
   function intro(Q) {
-    box.innerHTML = '<div class="qz-head"><div class="qz-facts"><span><b>Points</b> 10</span><span><b>Questions</b> 5</span><span><b>Time limit</b> none</span><span><b>Allowed attempts</b> 2</span></div>' +
+    box.innerHTML = '<table class="l2l-note" style="width:100%;border-collapse:collapse;margin:0 0 16px"><tbody><tr><td style="width:6px;background:#0b7285;padding:0"></td><td style="background:#e3f4f6;padding:12px 16px;font-size:16px;color:#1d2433">🧠 <strong>Counts 0 % on purpose.</strong> Testing yourself is how you learn. Two tries, fresh questions each time.</td></tr></tbody></table>' +
+      '<div class="qz-head"><div class="qz-facts"><span><b>Points</b> 10</span><span><b>Questions</b> 5</span><span><b>Time limit</b> none</span><span><b>Allowed attempts</b> 2</span></div>' +
       '<p>Try without the book first. You have two tries. Your score does not count for marks.</p>' +
       '<p style="color:#6b7780;font-size:14px">Preview copy: this check-in marks itself in your browser. Nothing is saved or sent.</p></div>' +
       '<button class="qz-btn" id="go">Take the check-in</button>';
@@ -75,7 +76,8 @@
     var sub = document.getElementById('sub'); sub.remove();
     var top = document.createElement('div');
     top.innerHTML = '<p class="qz-score">Score for this attempt: <b>' + total + '</b> out of 10</p>' +
-      (total === 10 ? '<p>All correct. Well done.</p>' : '<p>Read the feedback under each question you missed, then go back to the page it names.</p>') +
+      (total === 10 ? '<p>All correct. Well done.</p>' : '<p>Read the feedback under each question you missed, then go back to the page it names.</p>' +
+        '<table class="l2l-note" style="width:100%;border-collapse:collapse;margin:0 0 16px"><tbody><tr><td style="width:6px;background:#0b7285;padding:0"></td><td style="background:#e3f4f6;padding:12px 16px;font-size:16px;color:#1d2433">🤔 <strong>Before you go:</strong> Was there one you felt sure about but got wrong? That&#39;s the one to practise. Write it on your <em>Try again on</em> list.</td></tr></tbody></table>') +
       (attempt < 2 ? '<button class="qz-btn" id="again">Take it again (a new set of 5)</button>' : '<p>That was your second try. <button class="qz-btn alt" id="again">Practise again anyway</button></p>');
     box.insertBefore(top, box.firstChild);
     window.scrollTo(0, 0);
