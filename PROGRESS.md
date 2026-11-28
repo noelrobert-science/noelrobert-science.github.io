@@ -18,5 +18,5 @@ Wording source: G:\My Drive\Classroom\PD\Learning to learn fixes - wording (For 
 - Wait for Noel to type "publish learning to learn", then push the branch and merge to main
 
 ## Notes for moderation
-- Clip is 42 s; the labels say "1 min" as in the wording.
-- Home card says "Three habits" but the /how-to-learn/ page lists five habits (wording as given).
+- Clip is 42 s; labels changed to "45 sec" (28 Nov 2026).
+- Home card changed to "Five habits that make anything stick." to match the page (28 Nov 2026).
