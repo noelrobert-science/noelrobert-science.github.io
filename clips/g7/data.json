@@ -794,5 +794,197 @@
     "title": "Remember"
    }
   ]
+ },
+ "g7-m6l1": {
+  "title": "Acids and bases",
+  "module": "Module 6 · Lesson 1",
+  "src": "media/g7-m6l1.mp4",
+  "dur": 156.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Acids"
+   },
+   {
+    "t": 28.0,
+    "title": "Hydrogen ions"
+   },
+   {
+    "t": 45.5,
+    "title": "Where acids are found"
+   },
+   {
+    "t": 61.7,
+    "title": "Stay safe"
+   },
+   {
+    "t": 76.5,
+    "title": "Bases and alkalis"
+   },
+   {
+    "t": 98.5,
+    "title": "Every alkali is a base"
+   },
+   {
+    "t": 112.5,
+    "title": "True or False"
+   },
+   {
+    "t": 128.0,
+    "title": "Your turn"
+   },
+   {
+    "t": 144.3,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m6l2": {
+  "title": "Litmus and methyl orange",
+  "module": "Module 6 · Lesson 2",
+  "src": "media/g7-m6l2.mp4",
+  "dur": 96.1,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Indicators"
+   },
+   {
+    "t": 22.9,
+    "title": "Litmus"
+   },
+   {
+    "t": 31.1,
+    "title": "Reading litmus"
+   },
+   {
+    "t": 52.3,
+    "title": "Methyl orange"
+   },
+   {
+    "t": 70.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 82.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m6l3": {
+  "title": "Universal indicator and pH",
+  "module": "Module 6 · Lesson 3",
+  "src": "media/g7-m6l3.mp4",
+  "dur": 126.4,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "Universal indicator"
+   },
+   {
+    "t": 16.1,
+    "title": "Definitions"
+   },
+   {
+    "t": 34.1,
+    "title": "The colours"
+   },
+   {
+    "t": 54.7,
+    "title": "Acidic, neutral, alkaline"
+   },
+   {
+    "t": 77.3,
+    "title": "How to measure"
+   },
+   {
+    "t": 90.2,
+    "title": "Test tip"
+   },
+   {
+    "t": 101.6,
+    "title": "Your turn"
+   },
+   {
+    "t": 112.8,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m6l4": {
+  "title": "Neutralisation",
+  "module": "Module 6 · Lesson 4",
+  "src": "media/g7-m6l4.mp4",
+  "dur": 150.2,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The reaction"
+   },
+   {
+    "t": 26.2,
+    "title": "Towards seven"
+   },
+   {
+    "t": 46.3,
+    "title": "A salt"
+   },
+   {
+    "t": 62.8,
+    "title": "Common mistake"
+   },
+   {
+    "t": 83.5,
+    "title": "Everyday life"
+   },
+   {
+    "t": 106.8,
+    "title": "Antacid"
+   },
+   {
+    "t": 120.2,
+    "title": "Your turn"
+   },
+   {
+    "t": 138.5,
+    "title": "Remember"
+   }
+  ]
+ },
+ "g7-m6l5": {
+  "title": "Antacids and pH graphs",
+  "module": "Module 6 · Lesson 5",
+  "src": "media/g7-m6l5.mp4",
+  "dur": 120.8,
+  "chapters": [
+   {
+    "t": 0,
+    "title": "The exam task"
+   },
+   {
+    "t": 12.0,
+    "title": "Five marks"
+   },
+   {
+    "t": 48.3,
+    "title": "Worked example"
+   },
+   {
+    "t": 65.8,
+    "title": "Reading the graph"
+   },
+   {
+    "t": 81.3,
+    "title": "Bar charts"
+   },
+   {
+    "t": 92.4,
+    "title": "Your turn"
+   },
+   {
+    "t": 107.1,
+    "title": "Remember"
+   }
+  ]
  }
 }
